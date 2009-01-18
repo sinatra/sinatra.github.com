@@ -29,7 +29,8 @@ class Legend < Thor
       system "git clone git://github.com/sinatra/sinatra-book.git _book" unless File.directory?("_book")
       system "cd _book && git pull &>/dev/null && thor book:build"
 
-      File.read("_book/output/sinatra-book.html")[/<body>(.*?)<\/body>/m, 1]
+      content = File.read("_book/output/sinatra-book.html")[/<body>(.*?)<\/body>/m, 1]
+      content.gsub(/Table of Contents<\/h1>/, "The Book</h1>")
     end
 
     def build_api
