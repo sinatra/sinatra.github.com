@@ -11,7 +11,7 @@ Create a local clone:
 
 Install Jekyll (with dependencies):
 
-    $ sudo gem install -y jekyll
+    $ sudo gem install jekyll
 
 Run the test server:
 
