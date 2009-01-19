@@ -56,11 +56,11 @@ class Legend < Thor
     end
 
     def write_file(file_name, title, content)
-      template = File.read("_template.haml")
-
-      haml   = Haml::Engine.new(template, :format => :html5, :attr_wrapper => '"')
-      result = haml.render(Object.new, {:title => title, :content => content})
-
-      File.open(file_name, "w") { |f| f << result }
+      File.open(file_name, "w") do |f|
+        f.write "---\ntitle: #{title}\nlayout: default\n---\n"
+        f << content
+      end
     end
 end
+
+# vim: ft=ruby
