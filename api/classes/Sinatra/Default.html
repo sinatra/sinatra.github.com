@@ -34,9 +34,6 @@
             <a href="../../files/lib/sinatra/base_rb.html">lib/sinatra/base.rb</a>
           </li>
           <li class='other'>
-            <a href="../../files/lib/sinatra/compat_rb.html">lib/sinatra/compat.rb</a>
-          </li>
-          <li class='other'>
             <a href="../../files/lib/sinatra/main_rb.html">lib/sinatra/main.rb</a>
           </li>
           <li>
@@ -54,354 +51,65 @@
             <h2>Methods</h2>
             <h3>public class</h3>
             <ol>
-              <li><a href="#M000053">call</a></li>
-              <li><a href="#M000052">configure</a></li>
-              <li><a href="#M000064">configures</a></li>
-              <li><a href="#M000055">const_missing</a></li>
-              <li><a href="#M000065">default_options</a></li>
-              <li><a href="#M000069">env</a></li>
-              <li><a href="#M000068">env=</a></li>
-              <li><a href="#M000063">options</a></li>
-              <li><a href="#M000054">reload!</a></li>
-              <li><a href="#M000051">reloading?</a></li>
-              <li><a href="#M000066">set_option</a></li>
-              <li><a href="#M000067">set_options</a></li>
-            </ol>
-            <h3>public instance</h3>
-            <ol>
-              <li><a href="#M000059">entity_tag</a></li>
-              <li><a href="#M000057">header</a></li>
-              <li><a href="#M000056">headers</a></li>
-              <li><a href="#M000061">invoke</a></li>
-              <li><a href="#M000070">method_missing</a></li>
-              <li><a href="#M000062">options</a></li>
-              <li><a href="#M000060">send_file</a></li>
-              <li><a href="#M000058">stop</a></li>
+              <li><a href="#M000043">call</a></li>
+              <li><a href="#M000042">configure</a></li>
+              <li><a href="#M000044">reload!</a></li>
+              <li><a href="#M000041">reloading?</a></li>
             </ol>
           </div>
           <div id='section'>
             <div id='methods'>
               <h2>Public class methods</h2>
-              <div class='public-class method' id='method-M000053'>
-                <a name='M000053'>      </a>
+              <div class='public-class method' id='method-M000043'>
+                <a name='M000043'>      </a>
                 <div class='synopsis'>
                   <span class='name'>call</span>
                   <span class='arguments'>(env)</span>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000053-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000043-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000053-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 805</span>&#x000A;805:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">env</span>)&#x000A;806:       <span class="ruby-identifier">reload!</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">reload?</span>&#x000A;807:       <span class="ruby-keyword kw">super</span>&#x000A;808:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000043-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 818</span>&#x000A;818:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">env</span>)&#x000A;819:       <span class="ruby-identifier">synchronize</span> <span class="ruby-keyword kw">do</span>&#x000A;820:         <span class="ruby-identifier">reload!</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">reload?</span>&#x000A;821:         <span class="ruby-keyword kw">super</span>&#x000A;822:       <span class="ruby-keyword kw">end</span>&#x000A;823:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='public-class method' id='method-M000052'>
-                <a name='M000052'>      </a>
+              <div class='public-class method' id='method-M000042'>
+                <a name='M000042'>      </a>
                 <div class='synopsis'>
                   <span class='name'>configure</span>
                   <span class='arguments'>(*envs)</span>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000052-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000042-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000052-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 801</span>&#x000A;801:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">configure</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">envs</span>)&#x000A;802:       <span class="ruby-keyword kw">super</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">reloading?</span>&#x000A;803:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000042-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 814</span>&#x000A;814:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">configure</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">envs</span>)&#x000A;815:       <span class="ruby-keyword kw">super</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">reloading?</span>&#x000A;816:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='public-class method' id='method-M000064'>
-                <a name='M000064'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>configures</span>
-                  <span class='arguments'>(*args, &amp;block)</span>
-                </div>
-                <div class='description'>
-                  <p>
-                  Deprecated. Use: configure
-                  </p>
-                </div>
-                <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000064-source'); return false">
-                    [show source]
-                  </a>
-                  <pre id='M000064-source'>     <span class="ruby-comment cmt"># File lib/sinatra/compat.rb, line 149</span>&#x000A;149:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">configures</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;150:         <span class="ruby-identifier">sinatra_warn</span> <span class="ruby-value str">&quot;The 'configures' method is deprecated; use 'configure' instead.&quot;</span>&#x000A;151:         <span class="ruby-identifier">configure</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;152:       <span class="ruby-keyword kw">end</span></pre>
-                </div>
-              </div>
-              <div class='public-class method' id='method-M000055'>
-                <a name='M000055'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>const_missing</span>
-                  <span class='arguments'>(const_name)</span>
-                </div>
-                <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000055-source'); return false">
-                    [show source]
-                  </a>
-                  <pre id='M000055-source'>    <span class="ruby-comment cmt"># File lib/sinatra/compat.rb, line 65</span>&#x000A;65:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">const_missing</span>(<span class="ruby-identifier">const_name</span>)&#x000A;66:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">const_name</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:FORWARD_METHODS</span>&#x000A;67:         <span class="ruby-identifier">sinatra_warn</span> <span class="ruby-value str">'Sinatra::Application::FORWARD_METHODS is deprecated;'</span>,&#x000A;68:           <span class="ruby-value str">'use Sinatra::Delegator::METHODS instead.'</span>&#x000A;69:         <span class="ruby-identifier">const_set</span> <span class="ruby-identifier">:FORWARD_METHODS</span>, <span class="ruby-constant">Sinatra</span><span class="ruby-operator">::</span><span class="ruby-constant">Delegator</span><span class="ruby-operator">::</span><span class="ruby-constant">METHODS</span>&#x000A;70:         <span class="ruby-constant">Sinatra</span><span class="ruby-operator">::</span><span class="ruby-constant">Delegator</span><span class="ruby-operator">::</span><span class="ruby-constant">METHODS</span>&#x000A;71:       <span class="ruby-keyword kw">else</span>&#x000A;72:         <span class="ruby-keyword kw">super</span>&#x000A;73:       <span class="ruby-keyword kw">end</span>&#x000A;74:     <span class="ruby-keyword kw">end</span></pre>
-                </div>
-              </div>
-              <div class='public-class method' id='method-M000065'>
-                <a name='M000065'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>default_options</span>
-                  <span class='arguments'>()</span>
-                </div>
-                <div class='description'>
-                  <p>
-                  Deprecated. Use: set
-                  </p>
-                </div>
-                <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000065-source'); return false">
-                    [show source]
-                  </a>
-                  <pre id='M000065-source'>     <span class="ruby-comment cmt"># File lib/sinatra/compat.rb, line 155</span>&#x000A;155:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">default_options</span>&#x000A;156:         <span class="ruby-identifier">sinatra_warn</span> <span class="ruby-value str">&quot;Sinatra::Application.default_options is deprecated; use 'set' instead.&quot;</span>&#x000A;157:         <span class="ruby-identifier">fake</span> = <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">options</span><span class="ruby-operator">|</span> <span class="ruby-identifier">set</span>(<span class="ruby-identifier">options</span>) }&#x000A;158:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fake</span>.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>) ; <span class="ruby-identifier">call</span>(<span class="ruby-identifier">options</span>) ; <span class="ruby-keyword kw">end</span>&#x000A;159:         <span class="ruby-identifier">fake</span>&#x000A;160:       <span class="ruby-keyword kw">end</span></pre>
-                </div>
-              </div>
-              <div class='public-class method' id='method-M000069'>
-                <a name='M000069'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>env</span>
-                  <span class='arguments'>()</span>
-                </div>
-                <div class='description'>
-                  <p>
-                  Deprecated. Use: options.environment
-                  </p>
-                </div>
-                <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000069-source'); return false">
-                    [show source]
-                  </a>
-                  <pre id='M000069-source'>     <span class="ruby-comment cmt"># File lib/sinatra/compat.rb, line 180</span>&#x000A;180:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">env</span>&#x000A;181:         <span class="ruby-identifier">sinatra_warn</span> <span class="ruby-value str">&quot;The :env option is deprecated; use :environment instead.&quot;</span>&#x000A;182:         <span class="ruby-identifier">environment</span>&#x000A;183:       <span class="ruby-keyword kw">end</span></pre>
-                </div>
-              </div>
-              <div class='public-class method' id='method-M000068'>
-                <a name='M000068'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>env=</span>
-                  <span class='arguments'>(value)</span>
-                </div>
-                <div class='description'>
-                  <p>
-                  Deprecated. Use: set :environment, ENV
-                  </p>
-                </div>
-                <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000068-source'); return false">
-                    [show source]
-                  </a>
-                  <pre id='M000068-source'>     <span class="ruby-comment cmt"># File lib/sinatra/compat.rb, line 174</span>&#x000A;174:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">env=</span>(<span class="ruby-identifier">value</span>)&#x000A;175:         <span class="ruby-identifier">sinatra_warn</span> <span class="ruby-value str">&quot;The :env option is deprecated; use :environment instead.&quot;</span>&#x000A;176:         <span class="ruby-identifier">set</span> <span class="ruby-identifier">:environment</span>, <span class="ruby-identifier">value</span>&#x000A;177:       <span class="ruby-keyword kw">end</span></pre>
-                </div>
-              </div>
-              <div class='public-class method' id='method-M000063'>
-                <a name='M000063'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>options</span>
-                  <span class='arguments'>()</span>
-                </div>
-                <div class='description'>
-                  <p>
-                  Deprecated. Options are stored directly on the class object.
-                  </p>
-                </div>
-                <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000063-source'); return false">
-                    [show source]
-                  </a>
-                  <pre id='M000063-source'>     <span class="ruby-comment cmt"># File lib/sinatra/compat.rb, line 143</span>&#x000A;143:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">options</span>&#x000A;144:         <span class="ruby-identifier">sinatra_warn</span> <span class="ruby-value str">&quot;The 'options' class method is deprecated; use 'self' instead.&quot;</span>&#x000A;145:         <span class="ruby-constant">Options</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>)&#x000A;146:       <span class="ruby-keyword kw">end</span></pre>
-                </div>
-              </div>
-              <div class='public-class method' id='method-M000054'>
-                <a name='M000054'>      </a>
+              <div class='public-class method' id='method-M000044'>
+                <a name='M000044'>      </a>
                 <div class='synopsis'>
                   <span class='name'>reload!</span>
                   <span class='arguments'>()</span>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000054-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000044-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000054-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 810</span>&#x000A;810:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">reload!</span>&#x000A;811:       <span class="ruby-ivar">@reloading</span> = <span class="ruby-keyword kw">true</span>&#x000A;812:       <span class="ruby-identifier">superclass</span>.<span class="ruby-identifier">send</span> <span class="ruby-identifier">:inherited</span>, <span class="ruby-keyword kw">self</span>&#x000A;813:       <span class="ruby-identifier">$LOADED_FEATURES</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value str">&quot;sinatra.rb&quot;</span>)&#x000A;814:       <span class="ruby-operator">::</span><span class="ruby-constant">Kernel</span>.<span class="ruby-identifier">load</span> <span class="ruby-identifier">app_file</span>&#x000A;815:       <span class="ruby-ivar">@reloading</span> = <span class="ruby-keyword kw">false</span>&#x000A;816:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000044-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 825</span>&#x000A;825:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">reload!</span>&#x000A;826:       <span class="ruby-ivar">@reloading</span> = <span class="ruby-keyword kw">true</span>&#x000A;827:       <span class="ruby-identifier">superclass</span>.<span class="ruby-identifier">send</span> <span class="ruby-identifier">:inherited</span>, <span class="ruby-keyword kw">self</span>&#x000A;828:       <span class="ruby-identifier">$LOADED_FEATURES</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value str">&quot;sinatra.rb&quot;</span>)&#x000A;829:       <span class="ruby-operator">::</span><span class="ruby-constant">Kernel</span>.<span class="ruby-identifier">load</span> <span class="ruby-identifier">app_file</span>&#x000A;830:       <span class="ruby-ivar">@reloading</span> = <span class="ruby-keyword kw">false</span>&#x000A;831:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='public-class method' id='method-M000051'>
-                <a name='M000051'>      </a>
+              <div class='public-class method' id='method-M000041'>
+                <a name='M000041'>      </a>
                 <div class='synopsis'>
                   <span class='name'>reloading?</span>
                   <span class='arguments'>()</span>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000051-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000041-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000051-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 797</span>&#x000A;797:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">reloading?</span>&#x000A;798:       <span class="ruby-ivar">@reloading</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword kw">false</span>&#x000A;799:     <span class="ruby-keyword kw">end</span></pre>
-                </div>
-              </div>
-              <div class='public-class method' id='method-M000066'>
-                <a name='M000066'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>set_option</span>
-                  <span class='arguments'>(*args, &amp;block)</span>
-                </div>
-                <div class='description'>
-                  <p>
-                  Deprecated. Use: set
-                  </p>
-                </div>
-                <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000066-source'); return false">
-                    [show source]
-                  </a>
-                  <pre id='M000066-source'>     <span class="ruby-comment cmt"># File lib/sinatra/compat.rb, line 163</span>&#x000A;163:       <span class="ruby-keyword kw">def</span>  <span class="ruby-identifier">set_option</span><span class="ruby-identifier">set_option</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;164:         <span class="ruby-identifier">sinatra_warn</span> <span class="ruby-value str">&quot;The 'set_option' method is deprecated; use 'set' instead.&quot;</span>&#x000A;165:         <span class="ruby-identifier">set</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;166:       <span class="ruby-keyword kw">end</span></pre>
-                </div>
-              </div>
-              <div class='public-class method' id='method-M000067'>
-                <a name='M000067'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>set_options</span>
-                  <span class='arguments'>(*args, &amp;block)</span>
-                </div>
-                <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000067-source'); return false">
-                    [show source]
-                  </a>
-                  <pre id='M000067-source'>     <span class="ruby-comment cmt"># File lib/sinatra/compat.rb, line 168</span>&#x000A;168:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">set_options</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;169:         <span class="ruby-identifier">sinatra_warn</span> <span class="ruby-value str">&quot;The 'set_options' method is deprecated; use 'set' instead.&quot;</span>&#x000A;170:         <span class="ruby-identifier">set</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;171:       <span class="ruby-keyword kw">end</span></pre>
-                </div>
-              </div>
-              <h2>Public instance methods</h2>
-              <div class='public-instance method' id='method-M000059'>
-                <a name='M000059'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>entity_tag</span>
-                  <span class='arguments'>(*args, &amp;block)</span>
-                </div>
-                <div class='description'>
-                  <p>
-                  Deprecated. Use: etag
-                  </p>
-                </div>
-                <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000059-source'); return false">
-                    [show source]
-                  </a>
-                  <pre id='M000059-source'>    <span class="ruby-comment cmt"># File lib/sinatra/compat.rb, line 91</span>&#x000A;91:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">entity_tag</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;92:       <span class="ruby-identifier">sinatra_warn</span> <span class="ruby-value str">&quot;The 'entity_tag' method is deprecated; use 'etag' instead.&quot;</span>&#x000A;93:       <span class="ruby-identifier">etag</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;94:     <span class="ruby-keyword kw">end</span></pre>
-                </div>
-              </div>
-              <div class='public-instance method' id='method-M000057'>
-                <a name='M000057'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>header</span>
-                  <span class='arguments'>(header=nil)</span>
-                </div>
-                <div class='description'>
-                  <p>
-                  Alias for <a href="Default.html#M000056">headers</a>
-                  </p>
-                </div>
-              </div>
-              <div class='public-instance method' id='method-M000056'>
-                <a name='M000056'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>headers</span>
-                  <span class='arguments'>(header=nil)</span>
-                </div>
-                <div class='description'>
-                  <p>
-                  Deprecated. Use: response[&#8216;Header-Name&#8217;]
-                  </p>
-                </div>
-                <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000056-source'); return false">
-                    [show source]
-                  </a>
-                  <pre id='M000056-source'>    <span class="ruby-comment cmt"># File lib/sinatra/compat.rb, line 77</span>&#x000A;77:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">headers</span>(<span class="ruby-identifier">header</span>=<span class="ruby-keyword kw">nil</span>)&#x000A;78:       <span class="ruby-identifier">sinatra_warn</span> <span class="ruby-value str">&quot;The 'headers' method is deprecated; use 'response' instead.&quot;</span>&#x000A;79:       <span class="ruby-identifier">response</span>.<span class="ruby-identifier">headers</span>.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">header</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">header</span>&#x000A;80:       <span class="ruby-identifier">response</span>.<span class="ruby-identifier">headers</span>&#x000A;81:     <span class="ruby-keyword kw">end</span></pre>
-                </div>
-              </div>
-              <div class='public-instance method' id='method-M000061'>
-                <a name='M000061'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>invoke</span>
-                  <span class='arguments'>(handler)</span>
-                </div>
-                <div class='description'>
-                  <p>
-                  Throwing halt with a Symbol and the to_result convention are deprecated.
-                  Override the invoke method to detect those types of return values.
-                  </p>
-                </div>
-                <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000061-source'); return false">
-                    [show source]
-                  </a>
-                  <pre id='M000061-source'>     <span class="ruby-comment cmt"># File lib/sinatra/compat.rb, line 110</span>&#x000A;110:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">invoke</span>(<span class="ruby-identifier">handler</span>)&#x000A;111:       <span class="ruby-identifier">res</span> = <span class="ruby-keyword kw">super</span>&#x000A;112:       <span class="ruby-keyword kw">case</span>&#x000A;113:       <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">res</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Symbol</span>)&#x000A;114:         <span class="ruby-identifier">sinatra_warn</span> <span class="ruby-node">&quot;Invoking the :#{res} helper by returning a Symbol is deprecated;&quot;</span>,&#x000A;115:           <span class="ruby-value str">&quot;call the helper directly instead.&quot;</span>&#x000A;116:         <span class="ruby-ivar">@response</span>.<span class="ruby-identifier">body</span> = <span class="ruby-identifier">__send__</span>(<span class="ruby-identifier">res</span>)&#x000A;117:       <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">res</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:to_result</span>)&#x000A;118:         <span class="ruby-identifier">sinatra_warn</span> <span class="ruby-value str">&quot;The to_result convention is deprecated.&quot;</span>&#x000A;119:         <span class="ruby-ivar">@response</span>.<span class="ruby-identifier">body</span> = <span class="ruby-identifier">res</span>.<span class="ruby-identifier">to_result</span>(<span class="ruby-keyword kw">self</span>)&#x000A;120:       <span class="ruby-keyword kw">end</span>&#x000A;121:       <span class="ruby-identifier">res</span>&#x000A;122:     <span class="ruby-keyword kw">end</span></pre>
-                </div>
-              </div>
-              <div class='public-instance method' id='method-M000070'>
-                <a name='M000070'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>method_missing</span>
-                  <span class='arguments'>(name, *args, &amp;b)</span>
-                </div>
-                <div class='description'>
-                  <p>
-                  Deprecated. Missing messages are no longer delegated to @response.
-                  </p>
-                </div>
-                <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000070-source'); return false">
-                    [show source]
-                  </a>
-                  <pre id='M000070-source'>     <span class="ruby-comment cmt"># File lib/sinatra/compat.rb, line 187</span>&#x000A;187:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">method_missing</span>(<span class="ruby-identifier">name</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>)&#x000A;188:       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@response</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">name</span>)&#x000A;189:         <span class="ruby-identifier">sinatra_warn</span> <span class="ruby-node">&quot;The '#{name}' method is deprecated; use 'response.#{name}' instead.&quot;</span>&#x000A;190:         <span class="ruby-ivar">@response</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">name</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>)&#x000A;191:       <span class="ruby-keyword kw">else</span>&#x000A;192:         <span class="ruby-keyword kw">super</span>&#x000A;193:       <span class="ruby-keyword kw">end</span>&#x000A;194:     <span class="ruby-keyword kw">end</span></pre>
-                </div>
-              </div>
-              <div class='public-instance method' id='method-M000062'>
-                <a name='M000062'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>options</span>
-                  <span class='arguments'>()</span>
-                </div>
-                <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000062-source'); return false">
-                    [show source]
-                  </a>
-                  <pre id='M000062-source'>     <span class="ruby-comment cmt"># File lib/sinatra/compat.rb, line 124</span>&#x000A;124:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">options</span>&#x000A;125:       <span class="ruby-constant">Options</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>)&#x000A;126:     <span class="ruby-keyword kw">end</span></pre>
-                </div>
-              </div>
-              <div class='public-instance method' id='method-M000060'>
-                <a name='M000060'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>send_file</span>
-                  <span class='arguments'>(path, opts={})</span>
-                </div>
-                <div class='description'>
-                  <p>
-                  The :disposition option is deprecated; use: attachment. This method setting
-                  the Content-Transfer-Encoding header is deprecated.
-                  </p>
-                </div>
-                <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000060-source'); return false">
-                    [show source]
-                  </a>
-                  <pre id='M000060-source'>     <span class="ruby-comment cmt"># File lib/sinatra/compat.rb, line 100</span>&#x000A;100:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">send_file</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">opts</span>={})&#x000A;101:       <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:disposition</span>] = <span class="ruby-value str">'attachment'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">opts</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-identifier">:disposition</span>)&#x000A;102:       <span class="ruby-identifier">attachment</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:filename</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">path</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:filename</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:disposition</span>]&#x000A;103:       <span class="ruby-identifier">response</span>[<span class="ruby-value str">'Content-Transfer-Encoding'</span>] = <span class="ruby-value str">'binary'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:disposition</span>]&#x000A;104:       <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">opts</span>)&#x000A;105:     <span class="ruby-keyword kw">end</span></pre>
-                </div>
-              </div>
-              <div class='public-instance method' id='method-M000058'>
-                <a name='M000058'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>stop</span>
-                  <span class='arguments'>(*args, &amp;block)</span>
-                </div>
-                <div class='description'>
-                  <p>
-                  Deprecated. Use: halt
-                  </p>
-                </div>
-                <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000058-source'); return false">
-                    [show source]
-                  </a>
-                  <pre id='M000058-source'>    <span class="ruby-comment cmt"># File lib/sinatra/compat.rb, line 85</span>&#x000A;85:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">stop</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;86:       <span class="ruby-identifier">sinatra_warn</span> <span class="ruby-value str">&quot;The 'stop' method is deprecated; use 'halt' instead.&quot;</span>&#x000A;87:       <span class="ruby-identifier">halt</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;88:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000041-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 810</span>&#x000A;810:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">reloading?</span>&#x000A;811:       <span class="ruby-ivar">@reloading</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword kw">false</span>&#x000A;812:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
             </div>
