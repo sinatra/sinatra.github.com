@@ -3,19 +3,31 @@ require "haml"
 require "rdoc/markup/to_html"
 
 class Legend < Thor
-  desc "build", "Build Sinatra website"
+  desc "build", "Update static files and API docs"
   def build
+    static
+    api
+  end
+
+  desc "static", "Update static files"
+  def static
     build_intro
     build_book
+  end
+
+  desc "api", "Build Sinatra API docs"
+  def api
     build_api
   end
 
   private
     def build_intro
+      puts "building intro.html"
       write_file "intro.html", "Sinatra: Getting Started", readme
     end
 
     def build_book
+      puts "building book.html"
       write_file "book.html", "Sinatra Book", book
     end
 
