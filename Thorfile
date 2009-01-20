@@ -5,14 +5,14 @@ require "rdoc/markup/to_html"
 class Legend < Thor
   desc "build", "Build Sinatra website"
   def build
-    build_index
+    build_intro
     build_book
     build_api
   end
 
   private
-    def build_index
-      write_file "index.html", "Sinatra", readme
+    def build_intro
+      write_file "intro.html", "Sinatra: Getting Started", readme
     end
 
     def build_book
@@ -22,7 +22,8 @@ class Legend < Thor
     def readme
       fetch_sinatra
 
-      RDoc::Markup::ToHtml.new.convert(File.read("_sinatra/README.rdoc"))
+      RDoc::Markup::ToHtml.new.convert(File.read("_sinatra/README.rdoc")).
+        sub("<h1>Sinatra</h1>", "<h1>Introduction</h1>")
     end
 
     def book
@@ -57,7 +58,7 @@ class Legend < Thor
 
     def write_file(file_name, title, content)
       File.open(file_name, "w") do |f|
-        f.write "---\ntitle: #{title}\nlayout: default\n---\n"
+        f.write "---\ntitle: \"#{title}\"\nlayout: default\n---\n"
         f << content
       end
     end
