@@ -275,21 +275,28 @@ redirect &#39;http://www.google.com&#39;</code></pre>
 
 <p>The redirect actually sends back a Location header to the browser, and the browser makes a followup request to the location indicated. Since the browser makes that followup request, you can redirect to any page, in your application, or another site entirely.</p>
 
-<p>The flow of requests during a redirect is: Browser &#8211;&gt; Server (redirect to &#8217;/&#8217;) &#8211;&gt; Browser (request &#8217;/&#8217;) &#8211;&gt; Server (result for &#8217;/&#8217;)</p>
+<p>The flow of requests during a redirect is: Browser → Server (redirect to &#8217;/&#8217;) → Browser (request &#8217;/&#8217;) → Server (result for &#8217;/&#8217;)</p>
 
 <p>To force Sinatra to send a different response code, it&#8217;s very simple:</p>
 
 <pre><code>redirect &#39;/&#39;, 303 # forces the 303 return code
- 
+
 redirect &#39;/&#39;, 307 # forces the 307 return code</code></pre>
 
 <h2 id='sessions'>Sessions</h2>
 
 <h3 id='default_cookie_based_sessions'>Default Cookie Based Sessions</h3>
 
-<p>Sinatra ships with basic support for cookie based sessions. To enable it, in a configure block, or at the top of your application, you just need to enable to option.</p>
+<p>Sinatra ships with basic support for cookie based sessions. To enable it, in a configure block, or at the top of your application, you just need to enable the option.</p>
 
-<pre><code>enable :sessions</code></pre>
+<pre><code>enable :sessions
+
+get &#39;/&#39; do
+  session[&quot;counter&quot;] ||= 0
+  session[&quot;counter&quot;] += 1
+
+  &quot;You&#39;ve it this page #{session[&quot;counter&quot;]} time(s)&quot;
+end</code></pre>
 
 <p>The downside to this session approach is that all the data is stored in the cookie. Since cookies have a fairly hard limit of 4 kilobytes, you can&#8217;t store much data. The other issue is that cookies are not tamper proof. The user can change any data in their session. But&#8230; it is easy, and it doesn&#8217;t have the scaling problems that memory or database backed sessions run into.</p>
 
@@ -313,19 +320,19 @@ require &#39;sinatra&#39;
 get &#39;/&#39; do
     # Get the string representation
     cookie = request.cookies[&quot;thing&quot;]
- 
+
     # Set a default
     cookie ||= 0
- 
-    # Convert to an integer 
+
+    # Convert to an integer
     cookie = cookie.to_i
- 
+
     # Do something with the value
     cookie += 1
- 
+
     # Reset the cookie
     set_cookie(&quot;thing&quot;, cookie)
- 
+
     # Render something
     &quot;Thing is now: #{cookie}&quot;
 end</code></pre>
