@@ -10,7 +10,7 @@ Documentation
 
 A whirlwind tour of Sinatra's most interesting features.
 
-### Configuration
+### [Configuration](configuration.html)
 
 Using `configure` blocks, settings options, and using Rack
 middleware.
@@ -20,7 +20,7 @@ middleware.
 Using `get`, `put`, `post`, `delete` to define routes and `before`
 to inspect/modify the request before routing is performed.
 
-### Helpers and Views
+### [Helpers and Views](helpers-and-views.html)
 
 Extracting commonly used logic into helper methods and managing
 view code in external templates.
