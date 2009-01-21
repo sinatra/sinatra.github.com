@@ -1,0 +1,17 @@
+---
+layout: default
+title: "Sinatra: Blog"
+id: blog
+---
+
+{% for post in site.posts %}
+<div class='post'>
+  <h1><a href='{{ post.url }}'>{{ post.title }}</a></h1>
+  {{ post.content }}
+  <p class='meta'>
+    Posted by <a href='{{ post.author_url }}'>{{ post.author }}</a>
+    on <strong>{{ post.publish_date }}</strong>
+    <a href='{{ post.url }}'>#</a>
+  </p>
+</div>
+{% endfor %}

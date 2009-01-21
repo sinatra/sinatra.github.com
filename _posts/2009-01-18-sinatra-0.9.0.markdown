@@ -1,0 +1,115 @@
+---
+layout: post
+title: Sinatra 0.9 Released!
+author: Ryan Tomayko
+author_url: http://tomayko.com/about
+publish_date: Sunday, January 18, 2009
+---
+
+This is a major release with a good number of new features and bug
+fixes. Please be sure to test your apps under the new version before
+upgrading production environments.
+
+    $ gem install sinatra
+
+Huge thanks to everyone that helped out with this release by testing,
+reporting bugs, submitting patches, etc. We were able to make some large
+and invasive changes to the codebase in a very short amount of time due
+largely to everyone's willingness to help out.
+
+From the `CHANGES` file:
+
+ * Works with and requires Rack >= 0.9.1
+
+ * Parameters with subscripts are now parsed into a nested/recursive
+   Hash structure. e.g., `post[title]=Hello&post[body]=World` yields
+   params: `{'post' => {'title' => 'Hello', 'body' => 'World'}}`.
+
+ * Regular expressions may now be used in route pattens; captures are
+   available at `params[:captures]`.
+
+ * New ":provides" route condition takes an array of mime types and
+   matches only when an Accept request header is present with a
+   corresponding type.
+
+ * New request-level `pass` method; immediately exits the current block
+   and passes control to the next matching route.
+
+ * The request-level `body` method now takes a block; evaluation is
+   deferred until an attempt is made to read the body. The block must
+   return a String or Array.
+
+ * New `route conditions` system for attaching rules for when a route
+   matches. The :agent and :host route options now use this system.
+
+ * New `dump_errors` option controls whether the backtrace is dumped to
+   rack.errors when an exception is raised from a route. The option is
+   enabled by default for top-level apps.
+
+ * Better default "app_file", "root", "public", and "views" location
+   detection; changes to "root" and "app_file" automatically cascade to
+   other options that depend on them.
+
+ * Multiple Sinatra applications can now co-exist peacefully within a
+   single process. The new "Sinatra::Base" class can be subclassed to
+   establish a blank-slate Rack application or middleware component.
+   Documentation on using these features is forth-coming; the following
+   provides the basic gist: http://gist.github.com/38605
+
+ * Error mappings are now split into two distinct layers: exception
+   mappings and custom error pages. Exception mappings are registered
+   with "error(Exception)" and are run only when the app raises an
+   exception. Register custom error pages with "error(status_code)",
+   where "status_code" is an integer; custom error pages are run any
+   time the response has the status code specified. Or, register an
+   error page for a range of status codes: "error(500..599)".
+
+ * In-file templates are now automatically imported from the file that
+   requires 'sinatra'. The `use_in_file_templates!` method is still
+   available for loading templates from other files.
+
+ * Sinatra's testing support is no longer dependent on Test::Unit.
+   Requiring 'sinatra/test' adds the Sinatra::Test module and
+   Sinatra::TestHarness class, which can be used with any test
+   framework. The 'sinatra/test/unit', 'sinatra/test/spec',
+   'sinatra/test/rspec', or 'sinatra/test/bacon' files can be required
+   to setup a framework-specific testing environment. See the README
+   for more information.
+
+ * Added support for Bacon (test framework). The 'sinatra/test/bacon'
+   file can be required to setup Sinatra test helpers on Bacon::Context.
+
+ * Deprecated "set_option" and "set_options"; use "set" instead.
+
+ * Deprecated the "env" option ("options.env"); use "environment"
+   instead.
+
+ * Deprecated the request level "stop" method; use "halt" instead.
+
+ * Deprecated the request level "entity_tag" method; use "etag" instead.
+   Both "entity_tag" and "etag" were previously supported.
+
+ * Deprecated the request level "headers" method (HTTP response
+   headers); use `response['Header-Name']` instead.
+
+ * Deprecated "Sinatra.application"; use "Sinatra::Application" instead.
+
+ * Deprecated setting Sinatra.application = nil to reset an application.
+   This should no longer be necessary.
+
+ * Deprecated `Sinatra.default_options`; use `Sinatra::Default.set(key, value)` instead.
+
+ * Deprecated the "ServerError" exception. All Exceptions are now
+   treated as internal server errors and result in a 500 response
+   status.
+
+ * Deprecated the `get_it`, `post_it`, `put_it`, `delete_it`, and
+   `head_it` test helper methods. Use `get`, `post`, `put`, `delete`,
+   and `head`, respectively, instead.
+
+ * Removed Event and EventContext classes. Applications are defined in a
+   subclass of Sinatra::Base; each request is processed within an
+   instance.
+
+Please report any issues to the Sinatra mailing list
+<sinatrarb@googlegroups.com> or [open a ticket in lighthouse](http://sinatra.lighthouseapp.com/)
