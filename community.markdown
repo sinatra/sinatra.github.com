@@ -3,7 +3,10 @@ title: "Sinatra: Community"
 layout: default
 ---
 
-### [Contributing to Sinatra](/contribute.html)
+Community
+=========
+
+### [Contributing to Sinatra](/contributing.html)
 
 Want to help out?
 
