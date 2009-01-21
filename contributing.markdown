@@ -23,10 +23,10 @@ Log it in lighthouse by [adding a new ticket](http://sinatra.lighthouseapp.com/p
 
 Bugs and feature requests that include patches are much more likely to get attention. Here are some guidelines that will help ensure your patch can be applied as quickly as possible:
 
-  1. **Use [Git](http://git-scm.com) and [GitHub](http://github.com).** The easiest way to get setup is to fork the [github.com/sinatra/sinatra repo](http://github.com/sinatra/sinatra/).
-  2. **Write tests.** If you add or modify functionality, it must include specs. If you don't write specs, we have to and this can hold up acceptance of the patch.
-  3. **Mind the `README`.** If the patch adds or modifies a major feature, modify the `README.rdoc` file to reflect that. Again, if you don't update the `README`, we have to and this holds up acceptance.
-  4. Once you're ready, push your changes to a topic branch and add a note to the ticket with the URL. Or, say something like, "you can find the patch on johndoe/foobranch".
+1. **Use [Git](http://git-scm.com) and [GitHub](http://github.com).** The easiest way to get setup is to fork the [github.com/sinatra/sinatra repo](http://github.com/sinatra/sinatra/).
+2. **Write tests.** If you add or modify functionality, it must include specs. If you don't write specs, we have to and this can hold up acceptance of the patch.
+3. **Mind the `README`.** If the patch adds or modifies a major feature, modify the `README.rdoc` file to reflect that. Again, if you don't update the `README`, we have to and this holds up acceptance.
+4. Once you're ready, push your changes to a topic branch and add a note to the ticket with the URL. Or, say something like, "you can find the patch on johndoe/foobranch".
 
 All that being said, _we will take what we can get._ If you prefer to attach diffs in emails to the mailing list, that's fine -- but do know that _someone_ will need to take the diff through the process described above and this can hold things up quite a bit.
 
