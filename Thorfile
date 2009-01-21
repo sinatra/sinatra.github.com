@@ -28,7 +28,7 @@ class Legend < Thor
 
     def build_book
       puts "building book.html"
-      write_file "book.html", "Sinatra Book", book
+      write_file "book.html", "Sinatra: The Book", book
     end
 
     def readme
