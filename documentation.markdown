@@ -10,32 +10,32 @@ Documentation
 
 A whirlwind tour of Sinatra's most interesting features.
 
-### [Configuration](configuration.html)
+### [The Sinatra Book](book.html)
 
-Using `configure` blocks, settings options, and using Rack
-middleware.
+In-depth look at building and deploying Sinatra applications. The
+following sections link into the book.
 
-### [Routes and Filters](routes-and-filters.html)
+### [Routes](book.html#routes) and [Filters](book.html#filters)
 
 Using `get`, `put`, `post`, `delete` to define routes and `before`
 to inspect/modify the request before routing is performed.
 
-### [Helpers and Views](helpers-and-views.html)
+### [Helpers](book.html#helpers) and [Views](book.html#views)
 
 Extracting commonly used logic into helper methods and managing
 view code in external templates.
 
-### [Error Handling](error-handling.html)
+### [Configuration](book.html#configuration)
+
+Using `configure` blocks, settings options, and using Rack
+middleware.
+
+### [Error Handling](book.html#error_handling)
 
 How to create custom error pages or perform actions when certain
 exceptions occur within your application.
 
-### [Testing](testing.html)
-
-Using `Sinatra::Test` and `Sinatra::TestHarness` to write unit tests /
-specs for your application.
-
-### [Deployment](deployment.html)
+### [Deployment](book.html#deployment)
 
 How to deploy under Thin, Passenger, etc. using a Rackup file.
 
@@ -46,9 +46,14 @@ RDoc generated API documentation is also available.
 External Resources
 ------------------
 
-### [The Book](book.html)
+### [List of Sinatra Applications](http://gist.github.com/22172)
 
-The Book is a community effort to ...
+Massive list of Sinatra based applications, libraries, and sites.
+
+### [Sinatra: 29 Links and Resources For A Quicker, Easier Way to Build Webapps](http://www.rubyinside.com/sinatra-29-links-and-resources-for-a-quicker-easier-way-to-build-webapps-1371.html)
+
+Peter Cooper's massive compendium with links to tutortials, example
+applications, and presentations.
 
 ### [Christopher Schneid's Blog: GITTR](http://www.gittr.com/)
 
