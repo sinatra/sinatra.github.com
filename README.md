@@ -2,7 +2,10 @@ Sinatra Website / Documentation
 ===============================
 
 This repo contains the Sinatra website and documentation sources published
-at http://sinatra.github.com/. Here's how to work on the site locally:
+at http://sinatra.github.com/.
+
+Working Locally
+---------------
 
 Create a local clone:
 
@@ -27,7 +30,18 @@ repository to publish:
     $ git commit -m 'note that rtomayko is an asshole'
     $ git push
 
+Rebuilding Generated Files
+--------------------------
+
 The project index.html and book.html files are maintained under
 separate projects. To sync those files with their current upstream:
 
     thor legend:build
+
+Creating Blog Posts
+-------------------
+
+Blog posts are stored under the `_posts` directory. To create a new blog post
+and open your `$EDITOR`, use:
+
+    thor blog:new 'Blog Post Title'

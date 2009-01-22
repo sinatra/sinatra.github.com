@@ -76,4 +76,36 @@ class Legend < Thor
     end
 end
 
+class Blog < Thor
+  TEMPLATE = (<<-TEXT).gsub(/^ +/, '')
+    ---
+    layout: post
+    title: TITLE
+    author: YOUR NAME
+    author_url: http://sinatra.github.com/
+    publish_date: #{Time.now.strftime('%A, %B %d, %Y')}
+    ---
+
+    POST CONTENT HERE
+  TEXT
+
+  desc "new", "Create a new blog post and open in EDITOR"
+  def new(title=nil)
+    require 'pp'
+    if title.nil?
+      puts "usage: thor blog:new 'Post Title'"
+      exit 1
+    end
+
+    post = TEMPLATE.sub('TITLE', title)
+    date = Time.now.strftime('%Y-%m-%d')
+    file = "_posts/#{date}-#{title.downcase.gsub(/[!.,;:+=-]/, '').gsub(/\W+/, '-')}.markdown"
+    File.open(file, 'wb') { |f| f.write(post) }
+    system "$EDITOR #{file}"
+  end
+
+end
+
+
+
 # vim: ft=ruby
