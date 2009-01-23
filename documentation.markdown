@@ -48,7 +48,7 @@ RDoc generated API documentation is also available.
 Find out what changed in a given release.
 
 External Resources
-------------------
+==================
 
 ### [List of Sinatra Applications](http://gist.github.com/22172)
 
