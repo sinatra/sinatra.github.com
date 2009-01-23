@@ -39,6 +39,7 @@ class Legend < Thor
       puts "copying text files to _includes"
       fetch_sinatra
       cp '_sinatra/AUTHORS', '_includes/AUTHORS.markdown', :preserve => true
+      cp '_sinatra/CHANGES', '_includes/CHANGES.txt', :preserve => true
     end
 
     def readme

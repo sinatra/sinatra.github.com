@@ -43,6 +43,10 @@ How to deploy under Thin, Passenger, etc. using a Rackup file.
 
 RDoc generated API documentation is also available.
 
+### [CHANGES](changes.html)
+
+Find out what changed in a given release.
+
 External Resources
 ------------------
 
