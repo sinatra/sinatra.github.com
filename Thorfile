@@ -12,6 +12,7 @@ class Legend < Thor
   desc "static", "Update static files"
   def static
     build_intro
+    build_about
     build_book
   end
 
@@ -31,11 +32,21 @@ class Legend < Thor
       write_file "book.html", "Sinatra: The Book", book
     end
 
+    def build_about
+      puts "building about.html"
+      write_file "about.markdown", "Sinatra: About", about
+    end
+
     def readme
       fetch_sinatra
 
       RDoc::Markup::ToHtml.new.convert(File.read("_sinatra/README.rdoc")).
         sub("<h1>Sinatra</h1>", "<h1>Introduction</h1>")
+    end
+
+    def about
+      fetch_sinatra
+      File.read("_sinatra/AUTHORS")
     end
 
     def book
