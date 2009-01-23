@@ -1,29 +1,26 @@
 ---
-title: Contributing
+title: "Sinatra: Contribute"
 layout: default
 ---
 
-# Get Involved
+# Contribute
 
 Want to show Sinatra some love? Help out by contributing!
 
-## Documentation
-
-The Sinatra docs are split up in three places:
-
-* [The API docs](http://sinatra.github.com/api/index.html "API Docs")
-are generated from Sinatra itself
-* [The book](http://sinatra.github.com/book.html) contains in-depth
-  information about Sinatra
-* And finally, the website itself.
-
 ## Find a bug?
 
-Log it in lighthouse by [adding a new
-ticket](http://sinatra.lighthouseapp.com/projects/9779-sinatra/tickets/new).
-Include as much information as possible about the version of Sinatra,
-Ruby, etc. you are using. A gist or pastie of the code that caused the
-issue as well as any error messages are also very helpful.
+Log it in lighthouse by [creating a new ticket][li] or send a note to
+the [mailing list][ml]. Be sure to include all relevant information, like
+the versions of Sinatra and Ruby you're using. A [gist](http://gist.github.com/)
+of the code that caused the issue as well as any error messages are also very
+helpful.
+
+## Need help?
+
+The [Sinatra mailing list][ml] has over 250 subscribers, many of which are happy
+to help out newbies or talk about potential feature additions. You can also drop
+by the [#sinatra](irc://chat.freenode.net/#sinatra) channel on
+[irc.freenode.net](http://freenode.net).
 
 ## Have a patch?
 
@@ -31,54 +28,55 @@ Bugs and feature requests that include patches are much more likely to
 get attention. Here are some guidelines that will help ensure your patch
 can be applied as quickly as possible:
 
-1. **Use [Git](http://git-scm.com) and [GitHub](http://github.com).**
+1. **Use [Git](http://git-scm.com) and [GitHub](http://github.com):**
    The easiest way to get setup is to fork the
-   [github.com/sinatra/sinatra repo](http://github.com/sinatra/sinatra/).
-2. **Write tests.** If you add or modify functionality, it must include
-   specs. If you don't write specs, we have to and this can hold up
-   acceptance of the patch.
-3. **Mind the `README`.** If the patch adds or modifies a major feature,
+   [sinatra/sinatra repo](http://github.com/sinatra/sinatra/).
+   Or, the [sinatra.github.com repo](http://github.com/sinatra/sinatra.github.com/),
+   if the patch is doc related.
+
+2. **Write unit tests:** If you add or modify functionality, it must
+   include unit tests. If you don't write tests, we have to, and this
+   can hold up acceptance of the patch.
+
+3. **Mind the `README`:** If the patch adds or modifies a major feature,
    modify the `README.rdoc` file to reflect that. Again, if you don't
-   update the `README`, we have to and this holds up acceptance.
-4. Once you're ready, push your changes to a topic branch and add a note
-   to the ticket with the URL. Or, say something like, "you can find the
-   patch on johndoe/foobranch".
+   update the `README`, we have to, and this holds up acceptance.
 
-All that being said, _we will take what we can get._ If you prefer to
-attach diffs in emails to the mailing list, that's fine -- but do know
+4. **Push it:** Once you're ready, push your changes to a topic branch
+   and add a note to the ticket with the URL to your branch. Or, say
+   something like, "you can find the patch on johndoe/foobranch".
+
+__NOTE:__ _we will take whatever we can get._ If you prefer to
+attach diffs in emails to the mailing list, that's fine; but do know
 that _someone_ will need to take the diff through the process described
-above and this can hold things up quite a bit.
+above and this can hold things up considerably.
 
-## Want to help out?
+## Want to write docs?
 
-If you'd like to help out but aren't sure how, take a look at the [High
-Priority / Needs
-Owner](http://sinatra.lighthouseapp.com/projects/9779-sinatra/tickets/bins/13046)
-ticket bin. This is a list of issues planned for the next release that
-do not currently have as assignee. If you find something that looks
-interesting, leave a note -- a simple "Taking..." is fine) in the
-ticket. Once you've worked a few issues, someone will add you as an
-assignee.
+The process for contributing to Sinatra's website or documentation
+is the same as contributing code. We use git for versions control and
+lighthouse to track patch requests.
 
-Or help other uses on the Mailing List or on IRC:
+* [The sinatra.github.com repo](http://github.com/sinatra/sinatra.github.com/)
+  is where the website sources are managed. There are almost always people in
+  `#sinatra` that are happy to discuss, apply, and publish website patches.
 
-### Mailing List
+* [The Book](book.html) has its own [git repository](http://github.com/sinatra/sinatra-book/)
+  and build process but is managed the same as the website and project
+  codebase.
 
-The Sinatra mailing list has over 250 subscribers, many of which are
-happy to help out newbies or talk about potential feature additions:
+* [The Introduction](intro.html) is generated from Sinatra's
+  [README file](http://github.com/sinatra/sinatra/blob/master/README.rdoc).
 
-[http://groups.google.com/group/sinatrarb](http://groups.google.com/group/sinatrarb)
+## Looking for something to do?
 
-If you have a problem or question, please make sure to include all the
-relevant information in your mail, like the Sinatra version you're
-using, what version of Ruby you have, and so on. A gist or pastie of the
-code that causes the issue is also very helpful.
+If you'd like to help out but aren't sure how, take a look at the
+[High Priority / Needs Owner][hp] ticket bin. This is a list of issues
+planned for the next release that do not currently have an assignee. If
+you find something that looks interesting, leave a comment on the ticket
+noting that you're investigating (a simple "Taking..." is fine). Once
+you've worked a few issues, someone will add you as an assignee.
 
-### IRC
-
-You can find us on the Freenode network in
-[#sinatra](irc://chat.freenode.net/#sinatra).
-
-There's usually someone online at any given time, but we cannot pay
-attention to the channel all the time, so please stick around for a
-while after asking a question.
+[hp]: http://sinatra.lighthouseapp.com/projects/9779-sinatra/tickets/bins/13046
+[li]: http://sinatra.lighthouseapp.com/projects/9779-sinatra/tickets/new
+[ml]: http://groups.google.com/group/sinatrarb "Sinatra Mailing List"
