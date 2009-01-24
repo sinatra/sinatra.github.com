@@ -27,7 +27,7 @@ class Legend < Thor
   private
     def build_intro
       puts "building intro.html"
-      write_file "intro.html", "Sinatra: Getting Started", readme
+      write_file "intro.html", "Sinatra: README", readme
     end
 
     def build_book
@@ -46,7 +46,7 @@ class Legend < Thor
       fetch_sinatra
 
       RDoc::Markup::ToHtml.new.convert(File.read("_sinatra/README.rdoc")).
-        sub("<h1>Sinatra</h1>", "<h1>Introduction</h1>")
+        sub("<h1>Sinatra</h1>", "")
     end
 
     def book

@@ -6,7 +6,7 @@ layout: default
 Documentation
 =============
 
-### [Introduction to Sinatra](intro.html)
+### [README](intro.html)
 
 A whirlwind tour of Sinatra's most interesting features.
 
@@ -56,7 +56,8 @@ External Resources
 
 ### [RubyConf 08: Lightweight Web Services](http://rubyconf2008.confreaks.com/lightweight-web-services.html) (Video)
 
-Adam Wiggins and Blake Mizerany present Sinatra and RestClient
+Adam Wiggins and Blake Mizerany present Sinatra and
+[RestClient](http://github.com/adamwiggins/rest-client/tree/master)
 at RubyConf 2008. The talk details Sinatra's underlying philosophy and
 reflects on using Sinatra to build real world applications.
 
