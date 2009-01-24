@@ -50,11 +50,23 @@ Find out what changed in a given release.
 External Resources
 ==================
 
+### [RubyConf 08: Lightweight Web Services](http://rubyconf2008.confreaks.com/lightweight-web-services.html) (Video)
+
+Adam Wiggins and Blake Mizerany present Sinatra and RestClient
+at RubyConf 2008. The talk details Sinatra's underlying philosophy and
+reflects on using Sinatra to build real world applications.
+
 ### [List of Sinatra Applications](http://gist.github.com/22172)
 
 Massive list of Sinatra based applications, libraries, and sites.
 
-### [Sinatra: 29 Links and Resources For A Quicker, Easier Way to Build Webapps](http://www.rubyinside.com/sinatra-29-links-and-resources-for-a-quicker-easier-way-to-build-webapps-1371.html)
+### [Classy Web Development with Sinatra](http://www.pragprog.com/screencasts/v-aksinatra/classy-web-development-with-sinatra) (Screencast Series)
+
+Adam Keys and The Pragmatic Programmers have started a series of screencasts
+on Sinatra. The first two episodes cover creating a tiny web app and creating
+a REST service. $5 a pop.
+
+### [Sinatra: 29 Links and Resources](http://www.rubyinside.com/sinatra-29-links-and-resources-for-a-quicker-easier-way-to-build-webapps-1371.html)
 
 Peter Cooper's massive compendium with links to tutortials, example
 applications, and presentations.
