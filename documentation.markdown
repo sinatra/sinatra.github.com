@@ -12,8 +12,9 @@ A whirlwind tour of Sinatra's most interesting features.
 
 ### [The Sinatra Book](book.html)
 
-In-depth look at building and deploying Sinatra applications. The
-following sections link into the book.
+An in-depth look at building and deploying Sinatra applications.
+
+<!--
 
 ### [Routes](book.html#routes) and [Filters](book.html#filters)
 
@@ -39,13 +40,16 @@ exceptions occur within your application.
 
 How to deploy under Thin, Passenger, etc. using a Rackup file.
 
+-->
+
 ### [API Documentation](/api/index.html)
 
-RDoc generated API documentation is also available.
+RDoc generated API docs are also available.
 
-### [CHANGES](changes.html)
+### [Release Notes](changes.html)
 
-Find out what changed in a given release.
+Detailed change log for each Sinatra release; generated from the `CHANGES`
+file included with the distribution.
 
 External Resources
 ==================
@@ -68,7 +72,7 @@ a REST service. $5 a pop.
 
 ### [Sinatra: 29 Links and Resources](http://www.rubyinside.com/sinatra-29-links-and-resources-for-a-quicker-easier-way-to-build-webapps-1371.html)
 
-Peter Cooper's massive compendium with links to tutortials, example
+Peter Cooper's compendium with links to tutorials, example
 applications, and presentations.
 
 ### [Christopher Schneid's Blog: GITTR](http://www.gittr.com/)
