@@ -103,11 +103,7 @@ class Blog < Thor
 
   desc "new", "Create a new blog post and open in EDITOR"
   def new(title=nil)
-    require 'pp'
-    if title.nil?
-      puts "usage: thor blog:new 'Post Title'"
-      exit 1
-    end
+    abort("usage: thor blog:new 'Post Title'") if title.nil?
 
     post = TEMPLATE.sub('TITLE', title)
     date = Time.now.strftime('%Y-%m-%d')
