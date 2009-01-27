@@ -15,7 +15,7 @@ class Legend < Thor
   desc "static", "Update static files"
   def static
     copy_static
-    build_intro
+    build_readme
     build_book
   end
 
@@ -25,9 +25,9 @@ class Legend < Thor
   end
 
   private
-    def build_intro
-      puts "building intro.html"
-      write_file "intro.html", "Sinatra: README", readme
+    def build_readme
+      puts "building _includes/README.html"
+      write_file "_includes/README.html", nil, readme
     end
 
     def build_book
@@ -36,9 +36,10 @@ class Legend < Thor
     end
 
     def copy_static
-      puts "copying text files to _includes"
       fetch_sinatra
+      puts "building _includes/AUTHORS.markdown"
       cp '_sinatra/AUTHORS', '_includes/AUTHORS.markdown', :preserve => true
+      puts "building _includes/CHANGES.txt"
       cp '_sinatra/CHANGES', '_includes/CHANGES.txt', :preserve => true
     end
 
@@ -81,7 +82,7 @@ class Legend < Thor
 
     def write_file(file_name, title, content)
       File.open(file_name, "w") do |f|
-        f.write "---\ntitle: \"#{title}\"\nlayout: default\n---\n"
+        f.write "---\ntitle: \"#{title}\"\nlayout: default\n---\n" unless title.nil?
         f << content
       end
     end
