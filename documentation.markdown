@@ -10,9 +10,20 @@ Documentation
 
 A whirlwind tour of Sinatra's most interesting features.
 
-### [The Sinatra Book](book.html)
+### [Release Notes](changes.html)
+
+Detailed change log for each Sinatra release generated from the `CHANGES`
+file.
+
+### [API Documentation](/api/index.html)
+
+Generated from Sinatra's source with RDoc. The
+[Rack API docs](http://rack.rubyforge.org/doc/) should also be consulted.
+
+### [The Sinatra Book](book.html) (_Work In Progress_)
 
 An in-depth look at building and deploying Sinatra applications.
+
 
 <!--
 
@@ -42,40 +53,35 @@ How to deploy under Thin, Passenger, etc. using a Rackup file.
 
 -->
 
-### [API Documentation](/api/index.html)
+Screencasts and Presentations
+-----------------------------
 
-RDoc generated API docs are also available.
-
-### [Release Notes](changes.html)
-
-Detailed change log for each Sinatra release; generated from the `CHANGES`
-file included with the distribution.
-
-External Resources
-==================
-
-### [RubyConf 08: Lightweight Web Services](http://rubyconf2008.confreaks.com/lightweight-web-services.html) (Video)
+### [RubyConf 08: Lightweight Web Services](http://rubyconf2008.confreaks.com/lightweight-web-services.html)
 
 Adam Wiggins and Blake Mizerany present Sinatra and
 [RestClient](http://github.com/adamwiggins/rest-client/tree/master)
 at RubyConf 2008. The talk details Sinatra's underlying philosophy and
 reflects on using Sinatra to build real world applications.
 
+### [Classy Web Development with Sinatra](http://www.pragprog.com/screencasts/v-aksinatra/classy-web-development-with-sinatra) (Prag's Screencast Series)
+
+Adam Keys and The Pragmatic Programmers have started a series of screencasts
+on Sinatra. The first two episodes cover creating a tiny web app and creating
+a REST service. <em>$5 a pop.</em>
+
+Around The Web
+--------------
+
 ### [List of Sinatra Applications](http://gist.github.com/22172)
 
 Massive list of Sinatra based applications, libraries, and sites.
 
-### [Classy Web Development with Sinatra](http://www.pragprog.com/screencasts/v-aksinatra/classy-web-development-with-sinatra) (Screencast Series)
-
-Adam Keys and The Pragmatic Programmers have started a series of screencasts
-on Sinatra. The first two episodes cover creating a tiny web app and creating
-a REST service. $5 a pop.
-
-### [Sinatra: 29 Links and Resources](http://www.rubyinside.com/sinatra-29-links-and-resources-for-a-quicker-easier-way-to-build-webapps-1371.html)
+### [RubyInside's 29 Links and Resources](http://www.rubyinside.com/sinatra-29-links-and-resources-for-a-quicker-easier-way-to-build-webapps-1371.html)
 
 Peter Cooper's compendium with links to tutorials, example
 applications, and presentations.
 
 ### [Christopher Schneid's Blog: GITTR](http://www.gittr.com/)
 
-Christopher's blog is a treasure-trove of useful information ...
+Christopher's blog is a treasure-trove of useful Sinatra related
+information.
