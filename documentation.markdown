@@ -85,3 +85,5 @@ applications, and presentations.
 
 Christopher's blog is a treasure-trove of useful Sinatra related
 information.
+
+### [Using Compass for CSS in your Sinatra application](http://log.openmonkey.com/post/73462983/using-compass-for-css-in-your-sinatra-application)
