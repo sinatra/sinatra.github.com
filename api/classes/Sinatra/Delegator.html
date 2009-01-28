@@ -37,17 +37,28 @@
       </div>
       <div id='content'>
         <div id='text'>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public class</h3>
+            <ol>
+              <li><a href="#M000025">delegate</a></li>
+            </ol>
+          </div>
           <div id='section'>
-            <div id='constants-list'>
-              <h2>Constants</h2>
-              <div class='name-list'>
-                <table summary='Constants'>
-                  <tr class='top-aligned-row context-row'>
-                    <td class='context-item-name'>METHODS</td>
-                    <td>=</td>
-                    <td class='context-item-value'>%w[       get put post delete head template layout before error not_found       configures configure set set_option set_options enable disable use       development? test? production? use_in_file_templates!     ]</td>
-                  </tr>
-                </table>
+            <div id='methods'>
+              <h2>Public class methods</h2>
+              <div class='public-class method' id='method-M000025'>
+                <a name='M000025'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>delegate</span>
+                  <span class='arguments'>(*methods)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000025-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000025-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 896</span>&#x000A;896:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">delegate</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">methods</span>)&#x000A;897:       <span class="ruby-identifier">methods</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">method_name</span><span class="ruby-operator">|</span>&#x000A;898:         <span class="ruby-identifier">eval</span> <span class="ruby-value str">&quot;def \#{method_name}(*args, &amp;b)\n::Sinatra::Application.\#{method_name}(*args, &amp;b)\nend\nprivate :\#{method_name}\n&quot;</span>, <span class="ruby-identifier">binding</span>, <span class="ruby-value str">'(__DELEGATE__)'</span>, <span class="ruby-value">1</span>&#x000A;899:       <span class="ruby-keyword kw">end</span>&#x000A;900:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
               </div>
             </div>
           </div>

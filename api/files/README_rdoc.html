@@ -31,7 +31,7 @@
         </div>
         <div class='last-update'>
           Last Update:
-          <span class='datetime'>Tue Jan 20 22:07:49 +0100 2009</span>
+          <span class='datetime'>Wed Jan 28 06:36:13 -0800 2009</span>
         </div>
       </div>
       <div id='content'>
@@ -44,25 +44,27 @@
             </p>
             <pre># myapp.rb&#x000A;require 'rubygems'&#x000A;require 'sinatra'&#x000A;get '/' do&#x000A;  'Hello world!'&#x000A;end</pre>
             <p>
-            Run with <tt>ruby myapp.rb</tt> and view at <tt><a
-            href="http://localhost:4567">localhost:4567</a></tt>
+            Install the gem and run with:
             </p>
-            <h2>HTTP Methods</h2>
-            <pre>get '/' do&#x000A;  .. show things ..&#x000A;end&#x000A;&#x000A;post '/' do&#x000A;  .. create something ..&#x000A;end&#x000A;&#x000A;put '/' do&#x000A;  .. update something ..&#x000A;end&#x000A;&#x000A;delete '/' do&#x000A;  .. annihilate something ..&#x000A;end</pre>
+            <pre>sudo gem install sinatra&#x000A;ruby myapp.rb</pre>
+            <p>
+            View at: <a href="http://localhost:4567">localhost:4567</a>
+            </p>
             <h2>Routes</h2>
             <p>
-            Routes are matched based on the order of declaration. The first route that
+            In <a href="../classes/Sinatra.html">Sinatra</a>, a route is an HTTP method
+            paired with an URL matching pattern. Each route is associated with a block:
+            </p>
+            <pre>get '/' do&#x000A;  .. show something ..&#x000A;end&#x000A;&#x000A;post '/' do&#x000A;  .. create something ..&#x000A;end&#x000A;&#x000A;put '/' do&#x000A;  .. update something ..&#x000A;end&#x000A;&#x000A;delete '/' do&#x000A;  .. annihilate something ..&#x000A;end</pre>
+            <p>
+            Routes are matched in the order they are defined. The first route that
             matches the request is invoked.
             </p>
-            <p>
-            Basic routes:
-            </p>
-            <pre>get '/hi' do&#x000A;  ...&#x000A;end</pre>
             <p>
             Route patterns may include named parameters, accessible via the
             <tt>params</tt> hash:
             </p>
-            <pre>get '/:name' do&#x000A;  # matches &quot;GET /foo&quot; and &quot;GET /bar&quot;&#x000A;  # params[:name] is 'foo' or 'bar'&#x000A;  &quot;Hello #{params[:name]}!&quot;&#x000A;end</pre>
+            <pre>get '/hello/:name' do&#x000A;  # matches &quot;GET /foo&quot; and &quot;GET /bar&quot;&#x000A;  # params[:name] is 'foo' or 'bar'&#x000A;  &quot;Hello #{params[:name]}!&quot;&#x000A;end</pre>
             <p>
             Route patterns may also include splat (or wildcard) parameters, accessible
             via the <tt>params[:splat]</tt> array.
@@ -83,9 +85,14 @@
             specify a different location by setting the <tt>:public</tt> option:
             </p>
             <pre>set :public, File.dirname(__FILE__) + '/static'</pre>
+            <p>
+            Note that the public directory name is not included in the URL. A file
+            <tt>./public/css/style.css</tt> is made available as <tt><a
+            href="http://example.com/css/style.css">example.com/css/style.css</a></tt>.
+            </p>
             <h2>Views / Templates</h2>
             <p>
-            Templates are assumed to be located directly under a <tt>./views</tt>
+            Templates are assumed to be located directly under the <tt>./views</tt>
             directory. To use a different views directory:
             </p>
             <pre>set :views, File.dirname(__FILE__) + '/templates'</pre>
@@ -123,7 +130,7 @@
             <p>
             Renders the inlined template string.
             </p>
-            <h3>Accessing Variables</h3>
+            <h3>Accessing Variables in Templates</h3>
             <p>
             Templates are evaluated within the same context as the route blocks.
             Instance variables set in route blocks are available in templates:
@@ -143,14 +150,14 @@
             </p>
             <pre>require 'rubygems'&#x000A;require 'sinatra'&#x000A;&#x000A;get '/' do&#x000A;  haml :index&#x000A;end&#x000A;&#x000A;__END__&#x000A;&#x000A;@@ layout&#x000A;%html&#x000A;  = yield&#x000A;&#x000A;@@ index&#x000A;%div.title Hello world!!!!!</pre>
             <p>
-            NOTE: <a href="../classes/Sinatra.html">Sinatra</a> will automaticly load
-            any in-file-templates in the source file that first required sinatra. If
-            you have in-file-templates in another source file you will need to
-            explicitly call +use_in_file_templates! on main in that file.
+            NOTE: In-file templates defined in the source file that requires sinatra
+            are automatically loaded. Call the <tt>use_in_file_templates!</tt> method
+            explicitly if you have in-file templates in another source file.
             </p>
+            <h3>Named Templates</h3>
             <p>
-            It&#8217;s also possible to define named templates using the top-level
-            template method:
+            It&#8217;s possible to define named templates using the top-level
+            <tt>template</tt> method:
             </p>
             <pre>template :layout do&#x000A;  &quot;%html\n  =yield\n&quot;&#x000A;end&#x000A;&#x000A;template :index do&#x000A;  '%div.title Hello World!'&#x000A;end&#x000A;&#x000A;get '/' do&#x000A;  haml :index&#x000A;end</pre>
             <p>
@@ -182,7 +189,7 @@
             </p>
             <pre>halt 'this will be the body'</pre>
             <p>
-            Set the status and body &#8230;
+            Or set the status and body &#8230;
             </p>
             <pre>halt 401, 'go away!'</pre>
             <h2>Passing</h2>
@@ -235,7 +242,8 @@
             <p>
             The <tt>error</tt> handler is invoked any time an exception is raised from
             a route block or before filter. The exception object can be obtained from
-            the &#8216;sinatra.error&#8217; Rack variable:
+            the <tt>sinatra.error</tt> <a href="../classes/Rack.html">Rack</a>
+            variable:
             </p>
             <pre>error do&#x000A;  'Sorry there was a nasty error - ' + env['sinatra.error'].name&#x000A;end</pre>
             <p>
@@ -251,8 +259,9 @@
             </p>
             <pre>So what happened was... something bad</pre>
             <p>
-            <a href="../classes/Sinatra.html">Sinatra</a> installs special not_found
-            and error handlers when running under the development environment.
+            <a href="../classes/Sinatra.html">Sinatra</a> installs special
+            <tt>not_found</tt> and <tt>error</tt> handlers when running under the
+            development environment.
             </p>
             <h2>Mime types</h2>
             <p>
@@ -261,7 +270,7 @@
             <tt>mime</tt> to register them by file extension:
             </p>
             <pre>mime :foo, 'text/foo'</pre>
-            <h2>Rack Middleware</h2>
+            <h2><a href="../classes/Rack.html">Rack</a> Middleware</h2>
             <p>
             <a href="../classes/Sinatra.html">Sinatra</a> rides on <a
             href="http://rack.rubyforge.org/">Rack</a>, a minimal standard interface
@@ -272,8 +281,9 @@
             common functionality.
             </p>
             <p>
-            <a href="../classes/Sinatra.html">Sinatra</a> makes building Rack
-            middleware pipelines a cinch via a top-level <tt>use</tt> method:
+            <a href="../classes/Sinatra.html">Sinatra</a> makes building <a
+            href="../classes/Rack.html">Rack</a> middleware pipelines a cinch via a
+            top-level <tt>use</tt> method:
             </p>
             <pre>require 'sinatra'&#x000A;require 'my_custom_middleware'&#x000A;&#x000A;use Rack::Lint&#x000A;use MyCustomMiddleware&#x000A;&#x000A;get '/hello' do&#x000A;  'Hello World'&#x000A;end</pre>
             <p>
@@ -284,11 +294,11 @@
             </p>
             <pre>use Rack::Auth::Basic do |username, password|&#x000A;  username == 'admin' &amp;&amp; password == 'secret'&#x000A;end</pre>
             <p>
-            Rack is distributed with a variety of standard middleware for logging,
-            debugging, URL routing, authentication, and session handling. <a
-            href="../classes/Sinatra.html">Sinatra</a> uses many of of these components
-            automatically based on configuration so you typically don&#8217;t have to
-            <tt>use</tt> them explicitly.
+            <a href="../classes/Rack.html">Rack</a> is distributed with a variety of
+            standard middleware for logging, debugging, URL routing, authentication,
+            and session handling. <a href="../classes/Sinatra.html">Sinatra</a> uses
+            many of of these components automatically based on configuration so you
+            typically don&#8217;t have to <tt>use</tt> them explicitly.
             </p>
             <h2>Testing</h2>
             <p>
@@ -328,70 +338,45 @@
             Options are:
             </p>
             <pre>-h # help&#x000A;-p # set the port (default is 4567)&#x000A;-e # set the environment (default is development)&#x000A;-s # specify rack server/handler (default is thin)&#x000A;-x # turn on the mutex lock (default is off)</pre>
-            <h2>Contributing</h2>
-            <h3>Tools</h3>
+            <h2>The Bleeding Edge</h2>
             <p>
-            Besides Ruby itself, you only need a text editor, preferably one that
-            supports Ruby syntax hilighting. VIM and Emacs are a fine choice on any
-            platform, but feel free to use whatever you&#8217;re familiar with.
+            If you would like to use Sinatra&#8217;s latest bleeding code, create a
+            local clone and run your app with the <tt>sinatra/lib</tt> directory on the
+            <tt>LOAD_PATH</tt>:
             </p>
+            <pre>cd myapp&#x000A;git clone git://github.com/sinatra/sinatra.git&#x000A;ruby -Isinatra/lib myapp.rb</pre>
             <p>
-            <a href="../classes/Sinatra.html">Sinatra</a> uses the Git source code
-            management system. If you&#8217;re unfamiliar with Git, you can find more
-            information and tutorials on <a href="http://git.or.cz">git.or.cz</a> as
-            well as <a href="http://git-scm.com.">git-scm.com.</a> Scott Chacon created
-            a great series of introductory screencasts about Git, which you can find
-            here: <a href="http://www.gitcasts.com">www.gitcasts.com</a>
+            Alternatively, you can add the <tt>sinatra/lib&lt;tt&gt; directory to the
+            &lt;tt&gt;LOAD_PATH</tt> in your application:
             </p>
-            <h3>First Time: Cloning The <a href="../classes/Sinatra.html">Sinatra</a> Repo</h3>
-            <pre>cd where/you/keep/your/projects&#x000A;git clone git://github.com/sinatra/sinatra.git&#x000A;cd sinatra&#x000A;cd path/to/your_project&#x000A;ln -s ../sinatra/</pre>
-            <h3>Updating Your Existing <a href="../classes/Sinatra.html">Sinatra</a> Clone</h3>
-            <pre>cd where/you/keep/sinatra&#x000A;git pull</pre>
-            <h3>Using Edge <a href="../classes/Sinatra.html">Sinatra</a> in Your App</h3>
+            <pre>$LOAD_PATH.unshift File.dirname(__FILE__) + '/sinatra/lib'&#x000A;require 'rubygems'&#x000A;require 'sinatra'&#x000A;&#x000A;get '/about' do&#x000A;  &quot;I'm running version &quot; + Sinatra::VERSION&#x000A;end</pre>
             <p>
-            at the top of your sinatra_app.rb file:
+            To update the <a href="../classes/Sinatra.html">Sinatra</a> sources in the
+            future:
             </p>
-            <pre>$LOAD_PATH.unshift File.dirname(__FILE__) + '/sinatra/lib'&#x000A;require 'sinatra'&#x000A;&#x000A;get '/about' do&#x000A;  &quot;I'm running on Version &quot; + Sinatra::VERSION&#x000A;end</pre>
-            <h3>Contributing a Patch</h3>
-            <p>
-            There are several ways to do this. Probably the easiest (and preferred) way
-            is to fork <a href="../classes/Sinatra.html">Sinatra</a> on GitHub (<a
-            href="http://github.com/sinatra/sinatra">github.com/sinatra/sinatra</a>),
-            push your changes to your <a href="../classes/Sinatra.html">Sinatra</a>
-            repo and file a ticket in lighthouse (sinatra.lighthouseapp.com) where we
-            can discuss it.
-            </p>
-            <p>
-            You can also create a patch file and attach it to a feature request or bug
-            fix on the issue tracker (see below) or send it to the mailing list (see
-            Community section).
-            </p>
-            <h3>Issue Tracking and Feature Requests</h3>
-            <p>
-            <a href="http://sinatra.lighthouseapp.com">sinatra.lighthouseapp.com</a>
-            </p>
-            <h2>Community</h2>
-            <h3>Mailing List</h3>
-            <p>
-            <a
-            href="http://groups.google.com/group/sinatrarb">groups.google.com/group/sinatrarb</a>
-            </p>
-            <p>
-            If you have a problem or question, please make sure to include all the
-            relevant information in your mail, like the <a
-            href="../classes/Sinatra.html">Sinatra</a> version you&#8217;re using, what
-            version of Ruby you have, and so on.
-            </p>
-            <h3>IRC Channel</h3>
-            <p>
-            You can find us on the Freenode network in the channel sinatra
-            (irc://chat.freenode.net/#sinatra)
-            </p>
-            <p>
-            There&#8217;s usually someone online at any given time, but we cannot pay
-            attention to the channel all the time, so please stick around for a while
-            after asking a question.
-            </p>
+            <pre>cd myproject/sinatra&#x000A;git pull</pre>
+            <h2>More</h2>
+            <ul>
+            <li><a href="http://sinatra.github.com/">Project Website</a> - Additional
+            documentation, news, and links to other resources.
+            
+            </li>
+            <li><a href="http://sinatra.github.com/contribute.html">Contributing</a> - Find
+            a bug? Need help? Have a patch?
+            
+            </li>
+            <li><a href="http://sinatra.lighthouseapp.com">Lighthouse</a> - Issue tracking
+            and release planning.
+            
+            </li>
+            <li><a href="http://groups.google.com/group/sinatrarb">Mailing List</a>
+            
+            </li>
+            <li><a href="irc://chat.freenode.net/#sinatra">IRC: #sinatra</a> on <a
+            href="http://freenode.net">freenode.net</a>
+            
+            </li>
+            </ul>
           </div>
           <div id='section'>
           </div>
