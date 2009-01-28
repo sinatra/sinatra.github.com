@@ -4,7 +4,7 @@ financial support provided by [Heroku](http://heroku.com) and the emotional
 support provided by Adam Wiggins (adamwiggins), Chris Wanstrath (defunkt),
 PJ Hyett (pjhyett), and the rest of the GitHub crew.
 
-Special thanks to the following extraordinary individuals, who-out which
+Special thanks to the following extraordinary individuals, without whom
 Sinatra would not be possible:
 
 * **Ryan Tomayko** (rtomayko) for constantly fixing whitespace errors 60d5006   
