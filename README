@@ -1,0 +1,63 @@
+Sinatra Website / Documentation
+===============================
+
+This repo contains the Sinatra website and documentation sources published
+at http://sinatra.github.com/.
+
+Working Locally
+---------------
+
+Grab the sources from github:
+
+    $ git clone git@github.com:sinatra/sinatra.github.com.git
+    $ cd sinatra.github.com
+
+Install Jekyll (with dependencies):
+
+    $ gem install jekyll
+
+Run the test server:
+
+    $ rake server
+
+Changes are immediately available at:
+
+    http://localhost:4000/
+
+Once your changes are complete, commit them and push back to the
+repository to publish:
+
+    $ git commit -m 'note that rtomayko is an asshole'
+    $ git push
+
+Creating Blog Posts
+-------------------
+
+Blog posts are stored under the `_posts` directory. To create a new blog post
+and open your `$EDITOR`, use:
+
+    thor blog:new 'Blog Post Title'
+
+This requires Thor:
+
+    $ gem install thor
+
+Prebuilt Files
+--------------
+
+You will need thor, rdoc, and mislav's hanna gem to rebuild static files
+and the API docs:
+
+    $ gem install thor rdoc
+    $ gem install mislav-hanna --source=http://gems.github.com/
+
+The prebuilt file sources are maintained under the sinatra and sinatra-book
+projects. To pull in the latest versions and build them:
+
+    rake pull build
+
+The generated files under the "_includes" and "api" directories need to be
+committed after building. To regenerate and add those files to your index
+for the next commit:
+
+    rake regen
