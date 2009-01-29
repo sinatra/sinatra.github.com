@@ -10,6 +10,11 @@ Documentation
 
 A whirlwind tour of Sinatra's most interesting features.
 
+### [Frequently Asked Questions](faq.html)
+
+Answers to those questions most frequently asked on the mailing list and
+in #sinatra.
+
 ### [Release Notes](changes.html)
 
 Detailed change log for each Sinatra release generated from the `CHANGES`
