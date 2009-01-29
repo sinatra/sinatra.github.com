@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>File: CHANGES [Sinatra API Documentation]</title>
+    <meta content='text/html; charset=utf8' http-equiv='Content-Type'>
+    <link href='.././rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='file' id='wrapper'>
+      <div class='header'>
+        <div class='name'>CHANGES</div>
+        <div class='paths'>
+          CHANGES
+        </div>
+        <div class='last-update'>
+          Last Update:
+          <span class='datetime'>Thu Jan 29 00:47:17 -0800 2009</span>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <h1>0.9.0.4 / 2009-01-25</h1>
+            <pre>* Using halt with more than 1 args causes ArgumentError [#131]&#x000A;* using halt in a before filter doesn't modify response [#127]&#x000A;* Add deprecated Sinatra::EventContext to unbreak plugins [#130]&#x000A;* Give access to GET/POST params in filters [#129]&#x000A;* Preserve non-nested params in nested params hash [#117]&#x000A;* Fix backtrace dump with Rack::Lint [#116]</pre>
+            <h1>0.9.0.3 / 2009-01-21</h1>
+            <pre>* Fall back on mongrel then webrick when thin not found. [#75]&#x000A;* Use :environment instead of :env in test helpers to&#x000A;  fix deprecation warnings coming from framework.&#x000A;* Make sinatra/test/rspec work again [#113]&#x000A;* Fix app_file detection on windows [#118]&#x000A;* Fix static files with Rack::Lint in pipeline [#121]</pre>
+            <h1>0.9.0.2 / 2009-01-18</h1>
+            <pre>* Halting a before block should stop processing of routes [#85]&#x000A;* Fix redirect/halt in before filters [#85]</pre>
+            <h1>0.9.0 / 2009-01-18</h1>
+            <pre>* Works with and requires Rack &gt;= 0.9.1&#x000A;&#x000A;* Multiple Sinatra applications can now co-exist peacefully within a&#x000A;  single process. The new &quot;Sinatra::Base&quot; class can be subclassed to&#x000A;  establish a blank-slate Rack application or middleware component.&#x000A;  Documentation on using these features is forth-coming; the following&#x000A;  provides the basic gist: http://gist.github.com/38605&#x000A;&#x000A;* Parameters with subscripts are now parsed into a nested/recursive&#x000A;  Hash structure. e.g., &quot;post[title]=Hello&amp;post[body]=World&quot; yields&#x000A;  params: {'post' =&gt; {'title' =&gt; 'Hello', 'body' =&gt; 'World'}}.&#x000A;&#x000A;* Regular expressions may now be used in route pattens; captures are&#x000A;  available at &quot;params[:captures]&quot;.&#x000A;&#x000A;* New &quot;:provides&quot; route condition takes an array of mime types and&#x000A;  matches only when an Accept request header is present with a&#x000A;  corresponding type. [cypher]&#x000A;&#x000A;* New request-level &quot;pass&quot; method; immediately exits the current block&#x000A;  and passes control to the next matching route.&#x000A;&#x000A;* The request-level &quot;body&quot; method now takes a block; evaluation is&#x000A;  deferred until an attempt is made to read the body. The block must&#x000A;  return a String or Array.&#x000A;&#x000A;* New &quot;route conditions&quot; system for attaching rules for when a route&#x000A;  matches. The :agent and :host route options now use this system.&#x000A;&#x000A;* New &quot;dump_errors&quot; option controls whether the backtrace is dumped to&#x000A;  rack.errors when an exception is raised from a route. The option is&#x000A;  enabled by default for top-level apps.&#x000A;&#x000A;* Better default &quot;app_file&quot;, &quot;root&quot;, &quot;public&quot;, and &quot;views&quot; location&#x000A;  detection; changes to &quot;root&quot; and &quot;app_file&quot; automatically cascade to&#x000A;  other options that depend on them.&#x000A;&#x000A;* Error mappings are now split into two distinct layers: exception&#x000A;  mappings and custom error pages. Exception mappings are registered&#x000A;  with &quot;error(Exception)&quot; and are run only when the app raises an&#x000A;  exception. Custom error pages are registered with &quot;error(status_code)&quot;,&#x000A;  where &quot;status_code&quot; is an integer, and are run any time the response&#x000A;  has the status code specified. It's also possible to register an error&#x000A;  page for a range of status codes: &quot;error(500..599)&quot;.&#x000A;&#x000A;* In-file templates are now automatically imported from the file that&#x000A;  requires 'sinatra'. The use_in_file_templates! method is still available&#x000A;  for loading templates from other files.&#x000A;&#x000A;* Sinatra's testing support is no longer dependent on Test::Unit. Requiring&#x000A;  'sinatra/test' adds the Sinatra::Test module and Sinatra::TestHarness&#x000A;  class, which can be used with any test framework. The 'sinatra/test/unit',&#x000A;  'sinatra/test/spec', 'sinatra/test/rspec', or 'sinatra/test/bacon' files&#x000A;  can be required to setup a framework-specific testing environment. See the&#x000A;  README for more information.&#x000A;&#x000A;* Added support for Bacon (test framework). The 'sinatra/test/bacon' file&#x000A;  can be required to setup Sinatra test helpers on Bacon::Context.&#x000A;&#x000A;* Deprecated &quot;set_option&quot; and &quot;set_options&quot;; use &quot;set&quot; instead.&#x000A;&#x000A;* Deprecated the &quot;env&quot; option (&quot;options.env&quot;); use &quot;environment&quot; instead.&#x000A;&#x000A;* Deprecated the request level &quot;stop&quot; method; use &quot;halt&quot; instead.&#x000A;&#x000A;* Deprecated the request level &quot;entity_tag&quot; method; use &quot;etag&quot; instead.&#x000A;  Both &quot;entity_tag&quot; and &quot;etag&quot; were previously supported.&#x000A;&#x000A;* Deprecated the request level &quot;headers&quot; method (HTTP response headers);&#x000A;  use &quot;response['Header-Name']&quot; instead.&#x000A;&#x000A;* Deprecated &quot;Sinatra.application&quot;; use &quot;Sinatra::Application&quot; instead.&#x000A;&#x000A;* Deprecated setting Sinatra.application = nil to reset an application.&#x000A;  This should no longer be necessary.&#x000A;&#x000A;* Deprecated &quot;Sinatra.default_options&quot;; use&#x000A;  &quot;Sinatra::Default.set(key, value)&quot; instead.&#x000A;&#x000A;* Deprecated the &quot;ServerError&quot; exception. All Exceptions are now&#x000A;  treated as internal server errors and result in a 500 response&#x000A;  status.&#x000A;&#x000A;* Deprecated the &quot;get_it&quot;, &quot;post_it&quot;, &quot;put_it&quot;, &quot;delete_it&quot;, and &quot;head_it&quot;&#x000A;  test helper methods. Use &quot;get&quot;, &quot;post&quot;, &quot;put&quot;, &quot;delete&quot;, and &quot;head&quot;,&#x000A;  respectively, instead.&#x000A;&#x000A;* Removed Event and EventContext classes. Applications are defined in a&#x000A;  subclass of Sinatra::Base; each request is processed within an&#x000A;  instance.</pre>
+            <h1>0.3.3 / 2009-01-06</h1>
+            <pre>* Pin to Rack 0.4.0 (this is the last release on Rack 0.4)&#x000A;&#x000A;* Log unhandled exception backtraces to rack.errors.&#x000A;&#x000A;* Use RACK_ENV environment variable to establish Sinatra&#x000A;  environment when given. Thin sets this when started with&#x000A;  the -e argument.&#x000A;&#x000A;* BUG: raising Sinatra::NotFound resulted in a 500 response&#x000A;  code instead of 404.&#x000A;&#x000A;* BUG: use_in_file_templates! fails with CR/LF (#45)&#x000A;&#x000A;* BUG: Sinatra detects the app file and root path when run under&#x000A;  thin/passenger.</pre>
+            <h1>0.3.2</h1>
+            <pre>* BUG: Static and send_file read entire file into String before&#x000A;  sending. Updated to stream with 8K chunks instead.&#x000A;&#x000A;* Rake tasks and assets for building basic documentation website.&#x000A;  See http://sinatra.rubyforge.org&#x000A;&#x000A;* Various minor doc fixes.</pre>
+            <h1>0.3.1</h1>
+            <pre>* Unbreak optional path parameters [jeremyevans]</pre>
+            <h1>0.3.0</h1>
+            <pre>* Add sinatra.gemspec w/ support for github gem builds. Forks can now&#x000A;  enable the build gem option in github to get free username-sinatra.gem&#x000A;  builds: gem install username-sinatra.gem --source=http://gems.github.com/&#x000A;&#x000A;* Require rack-0.4 gem; removes frozen rack dir.&#x000A;&#x000A;* Basic RSpec support; require 'sinatra/test/rspec' instead of&#x000A;  'sinatra/test/spec' to use. [avdi]&#x000A;&#x000A;* before filters can modify request environment vars used for&#x000A;  routing (e.g., PATH_INFO, REQUEST_METHOD, etc.) for URL rewriting&#x000A;  type functionality.&#x000A;&#x000A;* In-file templates now uses @@ instead of ## as template separator.&#x000A;&#x000A;* Top-level environment test predicates: development?, test?, production?&#x000A;&#x000A;* Top-level &quot;set&quot;, &quot;enable&quot;, and &quot;disable&quot; methods for tweaking&#x000A;  app options. [rtomayko]&#x000A;&#x000A;* Top-level &quot;use&quot; method for building Rack middleware pipelines&#x000A;  leading to app. See README for usage. [rtomayko]&#x000A;&#x000A;* New &quot;reload&quot; option - set false to disable reloading in development.&#x000A;&#x000A;* New &quot;host&quot; option - host/ip to bind to [cschneid]&#x000A;&#x000A;* New &quot;app_file&quot; option - override the file to reload in development&#x000A;  mode [cschneid]&#x000A;&#x000A;* Development error/not_found page cleanup [sr, adamwiggins]&#x000A;&#x000A;* Remove a bunch of core extensions (String#to_param, String#from_param,&#x000A;  Hash#from_params, Hash#to_params, Hash#symbolize_keys, Hash#pass)&#x000A;&#x000A;* Various grammar and formatting fixes to README; additions on&#x000A;  community and contributing [cypher]&#x000A;&#x000A;* Build RDoc using Hanna template: http://sinatrarb.rubyforge.org/api&#x000A;&#x000A;* Specs, documentation and fixes for splat'n routes [vic]&#x000A;&#x000A;* Fix whitespace errors across all source files. [rtomayko]&#x000A;&#x000A;* Fix streaming issues with Mongrel (body not closed). [bmizerany]&#x000A;&#x000A;* Fix various issues with environment not being set properly (configure&#x000A;  blocks not running, error pages not registering, etc.) [cypher]&#x000A;&#x000A;* Fix to allow locals to be passed to ERB templates [cschneid]&#x000A;&#x000A;* Fix locking issues causing random errors during reload in development.&#x000A;&#x000A;* Fix for escaped paths not resolving static files [Matthew Walker]</pre>
+            <h1>0.2.1</h1>
+            <pre>* File upload fix and minor tweaks.</pre>
+            <h1>0.2.0</h1>
+            <pre>* Initial gem release of 0.2 codebase.</pre>
+          </div>
+          <div id='section'>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>
