@@ -1,0 +1,1031 @@
+
+
+<div class='maruku_toc'><ul style='list-style: none;'><li><a href='#table_of_contents'>Table of Contents</a></li><li><a href='#introduction'>Introduction</a><ul style='list-style: none;'><li><a href='#what_is_sinatra'>What is Sinatra?</a></li><li><a href='#installation'>Installation</a><ul style='list-style: none;'><li><a href='#dependencies'>Dependencies</a></li><li><a href='#living_on_the_edge'>Living on the Edge</a></li></ul></li><li><a href='#hello_world_application'>Hello World Application</a></li><li><a href='#real_world_applications_in_sinatra'>Real World Applications in Sinatra</a><ul style='list-style: none;'><li><a href='#github_services'>Github Services</a></li><li><a href='#git_wiki'>Git Wiki</a></li><li><a href='#integrity'>Integrity</a></li><li><a href='#seinfeld_calendar'>Seinfeld Calendar</a></li></ul></li><li><a href='#about_this_book'>About this book</a></li></ul></li><li><a href='#routes'>Routes</a><ul style='list-style: none;'><li><a href='#http_methods'>HTTP methods</a></li><li><a href='#basic'>Basic</a></li><li><a href='#options'>Options</a></li><li><a href='#splats'>Splats</a></li><li><a href='#user_agent'>User agent</a></li><li><a href='#other_methods'>Other methods</a></li><li><a href='#the_put_and_delete_methods'>The PUT and DELETE methods</a></li><li><a href='#how_routes_are_looked_up'>How routes are looked up</a></li><li><a href='#splitting_into_multiple_files'>Splitting into multiple files</a></li></ul></li><li><a href='#handlers'>Handlers</a><ul style='list-style: none;'><li><a href='#structure'>Structure</a></li><li><a href='#redirect'>Redirect</a></li><li><a href='#sessions'>Sessions</a><ul style='list-style: none;'><li><a href='#default_cookie_based_sessions'>Default Cookie Based Sessions</a></li><li><a href='#memory_based_sessions'>Memory Based Sessions</a></li><li><a href='#memcached_based_sessions'>Memcached Based Sessions</a></li><li><a href='#file_based_sessions'>File Based Sessions</a></li><li><a href='#database_based_sessions'>Database Based Sessions</a></li></ul></li><li><a href='#cookies'>Cookies</a></li><li><a href='#status'>Status</a></li><li><a href='#authentication'>Authentication</a></li></ul></li><li><a href='#filters'>Filters</a><ul style='list-style: none;'><li><a href='#before_do'>before do&#8230;</a></li><li><a href='#handling_of_rails_like_nested_params'>Handling of Rails like nested params</a></li></ul></li><li><a href='#views'>Views</a><ul style='list-style: none;'><li><a href='#template_languages'>Template Languages</a><ul style='list-style: none;'><li><a href='#haml'>Haml</a></li><li><a href='#sass'>Sass</a></li><li><a href='#erb'>Erb</a></li><li><a href='#builder'>Builder</a><ul style='list-style: none;'><li><a href='#atom_feed'>Atom Feed</a></li><li><a href='#rss_feed'>RSS Feed</a></li></ul></li></ul></li><li><a href='#layouts'>Layouts</a></li><li><a href='#avoiding_a_layout'>Avoiding a layout</a></li><li><a href='#in_file_views'>In File Views</a></li><li><a href='#partials'>Partials</a></li></ul></li><li><a href='#models'>Models</a><ul style='list-style: none;'><li><a href='#datamapper'>Datamapper</a></li><li><a href='#sequel'>Sequel</a></li><li><a href='#activerecord'>ActiveRecord</a></li></ul></li><li><a href='#helpers'>Helpers</a><ul style='list-style: none;'><li><a href='#the_basics'>The basics</a></li><li><a href='#implemention_of_rails_style_partials'>Implemention of rails style partials</a></li></ul></li><li><a href='#rack_middleware'>Rack Middleware</a></li><li><a href='#error_handling'>Error Handling</a><ul style='list-style: none;'><li><a href='#not_found'>not_found</a></li><li><a href='#error'>error</a></li><li><a href='#additional_information'>Additional Information</a></li></ul></li><li><a href='#configuration'>Configuration</a><ul style='list-style: none;'><li><a href='#use_sinatras_set_option'>Use Sinatra&#8217;s &#8220;set&#8221; option</a></li><li><a href='#external_config_file_via_the_configure_block'>External config file via the configure block</a></li><li><a href='#application_module__config_area'>Application module / config area</a></li></ul></li><li><a href='#deployment'>Deployment</a><ul style='list-style: none;'><li><a href='#deployment_lighttpd'>Lighttpd Proxied to Thin</a></li><li><a href='#deployment_passenger'>Passenger (mod rails)</a></li><li><a href='#deployment_fastcgi'>FastCGI</a></li><li><a href='#heroku'>Heroku</a></li><li><a href='#fuzed_and_amazon'>Fuzed and Amazon</a></li><li><a href='#poolparty_and_amazon_ec2'>Poolparty and Amazon EC2</a></li></ul></li><li><a href='#contributing'>Contributing</a><ul style='list-style: none;'><li><a href='#how_can_i_clone_the_sinatra_repository'>How can I clone the Sinatra repository?</a></li><li><a href='#how_to_create_a_patch'>How to create a patch?</a></li><li><a href='#how_to_get_that_patch_into_the_official_sinatra'>How to get that patch into the official Sinatra?</a></li></ul></li></ul></div><hr />
+<h1 id='introduction'>Introduction</h1>
+
+<h2 id='what_is_sinatra'>What is Sinatra?</h2>
+
+<p>Sinatra is a Domain Specific Language (DSL) for quickly creating web-applications in Ruby.</p>
+
+<p>It keeps a minimal feature set, leaving the developer to use the tools that best suit them and their application.</p>
+
+<p>It doesn&#8217;t assume much about your application, apart from that:</p>
+
+<ul>
+<li>it will be written in Ruby programming language</li>
+
+<li>it will have URLs</li>
+</ul>
+
+<p>In Sinatra, you can write short <em>ad hoc</em> applications or mature, larger application with the same easiness. (See section &#8220;Real World Applications&#8221; later in this book.)</p>
+
+<p>You can use the power of various Rubygems and other libraries for Ruby available.</p>
+
+<p>Sinatra really shines when used for experiments and application mock-ups or for creating a quick interface for your code.</p>
+
+<p>It isn&#8217;t a Model-View-Controller framework, but ties specific URL directly to relevant Ruby code and returns it&#8217;s output in response. It does enable you, however, to write clean, properly organized applications: separating <em>views</em> from application code, for instance.</p>
+
+<h2 id='installation'>Installation</h2>
+
+<p>The simplest way to obtain Sinatra is through Rubygems</p>
+
+<pre><code>$ sudo gem install sinatra</code></pre>
+
+<h3 id='dependencies'>Dependencies</h3>
+
+<p>Sinatra depends on the <em>Rack</em> gem (http://rack.rubyforge.org).</p>
+
+<p>For optimal experience, you should also install the <em>Haml</em> (http://haml.hamptoncatlin.com) and <em>Builder</em> gem (http://builder.rubyforge.org), which simplifies working with views.</p>
+
+<pre><code>$ sudo gem install builder haml</code></pre>
+
+<h3 id='living_on_the_edge'>Living on the Edge</h3>
+
+<p>The <em>edge</em> version of Sinatra lives in it&#8217;s Git repository, available at <strong>http://github.com/sinatra/sinatra/tree/master</strong>.</p>
+
+<p>You can use the <em>edge</em> version to try new functionality or to contribute to the framework. You need to have Git version control software installed (http://www.git-scm.com). Then follow these steps:</p>
+
+<ol>
+<li>cd where/you/keep/your/projects</li>
+
+<li>git clone git://github.com/sinatra/sinatra.git</li>
+
+<li>cd sinatra</li>
+
+<li>cd your_project</li>
+
+<li>ln -s ../sinatra</li>
+</ol>
+
+<p>Then add this to your application:</p>
+
+<pre><code>$:.unshift File.dirname(__FILE__) + &#39;/sinatra/lib&#39;
+require &#39;sinatra&#39;</code></pre>
+
+<p>You can check the version you are running by adding this route</p>
+
+<pre><code>get &#39;/about&#39; do
+  &quot;I&#39;m running on Version &quot; + Sinatra::VERSION
+end</code></pre>
+
+<p>and loading <code>http://localhost:4567/about</code> in your browser.</p>
+
+<h2 id='hello_world_application'>Hello World Application</h2>
+
+<p>Sinatra is installed and you&#8217;re done eating cake, how about making your first application?</p>
+
+<pre><code># hello_world.rb
+require &#39;rubygems&#39;
+require &#39;sinatra&#39;
+
+get &#39;/&#39; do
+  &quot;Hello world, it&#39;s #{Time.now} at the server!&quot;
+end</code></pre>
+
+<p>Run this application by <code>$ ruby hello_world.rb</code> and load <code>http://localhost:4567</code> in your browser.</p>
+
+<p>As you can see, Sinatra doesn&#8217;t force you to setup much infrastructure: a request to some URL (<em>root</em> URL in this case) evaluates some Ruby code and returns some text in response.</p>
+
+<h2 id='real_world_applications_in_sinatra'>Real World Applications in Sinatra</h2>
+
+<h3 id='github_services'>Github Services</h3>
+
+<p>Git hosting provider Github uses Sinatra for post-receive hooks, calling user specified services/URLs, whenever someone pushes to her repository:</p>
+
+<ul>
+<li>http://github.com/blog/53-github-services-ipo</li>
+
+<li>http://github.com/guides/post-receive-hooks</li>
+
+<li>http://github.com/pjhyett/github-services</li>
+</ul>
+
+<h3 id='git_wiki'>Git Wiki</h3>
+
+<p>Git Wiki is minimal Wiki engine powered by Sinatra and Git. See also various forks with additional functionality.</p>
+
+<ul>
+<li>http://github.com/sr/git-wiki</li>
+
+<li>http://github.com/sr/git-wiki/network</li>
+</ul>
+
+<h3 id='integrity'>Integrity</h3>
+
+<p>Integrity is small and clean <em>continuous integration</em> service using Sinatra, watching for failing builds of your codebase and notifying you by various channels.</p>
+
+<ul>
+<li>http://www.integrityapp.com/</li>
+
+<li>http://github.com/foca/integrity</li>
+</ul>
+
+<h3 id='seinfeld_calendar'>Seinfeld Calendar</h3>
+
+<p>Seinfeld Calendar is a fun application tracking your contributions to open-source projects, displaying your &#8220;streaks&#8221;, ie. continuous commits to Github repositories.</p>
+
+<ul>
+<li>http://www.calendaraboutnothing.com</li>
+
+<li>http://github.com/entp/seinfeld</li>
+</ul>
+
+<h2 id='about_this_book'>About this book</h2>
+
+<p>This book will assume you have a basic knowledge of the Ruby scripting language and a working Ruby interpreter.</p>
+
+<p>For more information about the Ruby language visit the following links:</p>
+
+<ul>
+<li>http://www.ruby-lang.org</li>
+
+<li>http://www.ruby-lang.org/en/documentation/ruby-from-other-languages/</li>
+
+<li>http://www.ruby-doc.org</li>
+
+<li>http://www.ruby-doc.org/core-1.8.7/index.html</li>
+
+<li>http://www.ruby-doc.org/docs/ProgrammingRuby/</li>
+</ul>
+<hr />
+<h1 id='routes'>Routes</h1>
+
+<h2 id='http_methods'>HTTP methods</h2>
+
+<p>Sinatra&#8217;s routes are designed to respond to the HTTP request methods.</p>
+
+<ul>
+<li>GET</li>
+
+<li>POST</li>
+
+<li>PUT</li>
+
+<li>DELETE</li>
+</ul>
+
+<h2 id='basic'>Basic</h2>
+
+<p>Simple</p>
+
+<pre><code>get &#39;/hi&#39; do
+  ...
+end</code></pre>
+
+<p>With params</p>
+
+<pre><code>get &#39;/:name&#39; do
+  # matches /sinatra and the like and sets params[:name]
+end</code></pre>
+
+<h2 id='options'>Options</h2>
+
+<h2 id='splats'>Splats</h2>
+
+<pre><code>get &#39;/say/*/to/*&#39; do
+  # matches /say/hello/to/world
+  params[&quot;splat&quot;] # =&gt; [&quot;hello&quot;, &quot;world&quot;]
+end
+
+get &#39;/download/*.*&#39; do
+  # matches /download/path/to/file.xml
+  params[&quot;splat&quot;] # =&gt; [&quot;path/to/file&quot;, &quot;xml&quot;]
+end</code></pre>
+
+<h2 id='user_agent'>User agent</h2>
+
+<pre><code>get &#39;/foo&#39;, :agent =&gt; /Songbird (\d\.\d)[\d\/]*?/ do
+  &quot;You&#39;re using Songbird version #{params[:agent][0]}&quot;
+end
+
+get &#39;/foo&#39; do
+  # matches non-songbird browsers
+end</code></pre>
+
+<h2 id='other_methods'>Other methods</h2>
+
+<p>Other methods are requested exactly the same as &#8220;get&#8221; routes. You simply use the <code>post</code>, <code>put</code>, or <code>delete</code> functions to define the route, rather then the <code>get</code> one. To access POSTed parameters, use <code>params[:xxx]</code> where xxx is the name of the form element that was posted.</p>
+
+<pre><code>post &#39;/foo&#39; do
+  &quot;You just asked for foo, with post param bar equal to #{params[:bar]}&quot;
+end</code></pre>
+
+<h2 id='the_put_and_delete_methods'>The PUT and DELETE methods</h2>
+
+<p>Since browsers don&#8217;t natively support the PUT and DELETE methods, a hacky workaround has been adopted by the web community. Simply add a hidden element with the name &#8220;_method&#8221; and the value equal to the HTTP method you want to use. The form itself is sent as a POST, but Sinatra will interpret it as the desired method. For example:</p>
+
+<pre><code>&lt;form method=&quot;post&quot; action=&quot;/destroy_it&quot;&gt;
+  &lt;input name=&quot;_method&quot; value=&quot;delete&quot; /&gt;
+  &lt;div&gt;&lt;button type=&quot;submit&quot;&gt;Destroy it&lt;/button&gt;&lt;/div&gt;
+&lt;/form&gt;</code></pre>
+
+<p>When you want to use PUT or DELETE from a client that does support them (like Curl, or ActiveResource), just go ahead and use them as you normally would, and ignore the <code>_method</code> advice above. That is only for hacking in support for browsers.</p>
+
+<h2 id='how_routes_are_looked_up'>How routes are looked up</h2>
+
+<p>Each time you add a new route to your application, it gets compiled down into a regular expression that will match it. That is stored in an array along with the handler block attached to that route.</p>
+
+<p>When a new request comes in, each regex is run in turn, until one matches. Then the the handler (the code block) attached to that route gets executed.</p>
+
+<h2 id='splitting_into_multiple_files'>Splitting into multiple files</h2>
+
+<p>Because Sinatra clears out your routes and reloads your application on every request in development mode, you can&#8217;t use require to load files containing your routes because these will only be loaded when the application starts (and reloaded even on the first request!) Instead, use <a href='http://www.ruby-doc.org/core/classes/Kernel.html#M005966' title='Ruby RDoc: load'>load</a>:</p>
+
+<pre><code># application.rb
+require &#39;rubygems&#39;
+require &#39;sinatra&#39;
+
+get &#39;/&#39; do
+  &quot;Hello world!&quot;
+end
+
+load &#39;more_routes.rb&#39;</code></pre>
+
+<p>and</p>
+
+<pre><code># more_routes.rb
+
+get &#39;/foo&#39; do
+  &quot;Bar?  How unimaginative.&quot;
+end</code></pre>
+<hr />
+<h1 id='handlers'>Handlers</h1>
+
+<h2 id='structure'>Structure</h2>
+
+<p>Handler is the generic term that Sinatra uses for the &#8220;controllers&#8221;. A handler is the initial point of entry for new HTTP requests into your application.</p>
+
+<p>To find more about the routes, head to the Routes section (right above this one)</p>
+
+<h2 id='redirect'>Redirect</h2>
+
+<p>The redirect helper is a shortcut to a common http response code (302).</p>
+
+<p>Basic usage is easy:</p>
+
+<pre><code>redirect &#39;/&#39;
+
+redirect &#39;/posts/1&#39;
+
+redirect &#39;http://www.google.com&#39;</code></pre>
+
+<p>The redirect actually sends back a Location header to the browser, and the browser makes a followup request to the location indicated. Since the browser makes that followup request, you can redirect to any page, in your application, or another site entirely.</p>
+
+<p>The flow of requests during a redirect is: Browser → Server (redirect to &#8217;/&#8217;) → Browser (request &#8217;/&#8217;) → Server (result for &#8217;/&#8217;)</p>
+
+<p>To force Sinatra to send a different response code, it&#8217;s very simple:</p>
+
+<pre><code>redirect &#39;/&#39;, 303 # forces the 303 return code
+
+redirect &#39;/&#39;, 307 # forces the 307 return code</code></pre>
+
+<h2 id='sessions'>Sessions</h2>
+
+<h3 id='default_cookie_based_sessions'>Default Cookie Based Sessions</h3>
+
+<p>Sinatra ships with basic support for cookie based sessions. To enable it, in a configure block, or at the top of your application, you just need to enable the option.</p>
+
+<pre><code>enable :sessions
+
+get &#39;/&#39; do
+  session[&quot;counter&quot;] ||= 0
+  session[&quot;counter&quot;] += 1
+
+  &quot;You&#39;ve hit this page #{session[&quot;counter&quot;]} time(s)&quot;
+end</code></pre>
+
+<p>The downside to this session approach is that all the data is stored in the cookie. Since cookies have a fairly hard limit of 4 kilobytes, you can&#8217;t store much data. The other issue is that cookies are not tamper proof. The user can change any data in their session. But&#8230; it is easy, and it doesn&#8217;t have the scaling problems that memory or database backed sessions run into.</p>
+
+<h3 id='memory_based_sessions'>Memory Based Sessions</h3>
+
+<h3 id='memcached_based_sessions'>Memcached Based Sessions</h3>
+
+<h3 id='file_based_sessions'>File Based Sessions</h3>
+
+<h3 id='database_based_sessions'>Database Based Sessions</h3>
+
+<h2 id='cookies'>Cookies</h2>
+
+<p>Cookies are a fairly simple thing to use in Sinatra, but they have a few quirks.</p>
+
+<p>Lets first look at the simple use case:</p>
+
+<pre><code>require &#39;rubygems&#39;
+require &#39;sinatra&#39;
+
+get &#39;/&#39; do
+    # Get the string representation
+    cookie = request.cookies[&quot;thing&quot;]
+
+    # Set a default
+    cookie ||= 0
+
+    # Convert to an integer
+    cookie = cookie.to_i
+
+    # Do something with the value
+    cookie += 1
+
+    # Reset the cookie
+    set_cookie(&quot;thing&quot;, cookie)
+
+    # Render something
+    &quot;Thing is now: #{cookie}&quot;
+end</code></pre>
+
+<p>Setting a path, expiration date, or domain gets a little more complicated - see the source code for set_cookie if you want to dig deeper.</p>
+
+<pre><code>set_cookie(&quot;thing&quot;, :domain =&gt; myDomain,
+                    :path =&gt; myPath,
+                    :expires =&gt; Date.new)</code></pre>
+
+<p>That&#8217;s the easy stuff with cookies - It can also serialize Array objects, separating them with ampersands (&amp;), but when they come back, it doesn&#8217;t deserialize or split them in any way, it hands you the raw, encoded string for your parsing pleasure.</p>
+
+<h2 id='status'>Status</h2>
+
+<p>If you want to set your own status response instead of the normal 200 (Success), you can use the <code>status</code>-helper to set the code, and then still render normally:</p>
+
+<pre><code>get &#39;/&#39; do
+  status 404
+  &quot;Not found&quot;
+end</code></pre>
+
+<p>Alternatively you can use <code>throw :halt, [404, &quot;Not found&quot;]</code> to immediately stop any further actions and return the specified status code and string to the client. <code>throw</code> supports more options in this regard, see the appropriate section for more info.</p>
+
+<h2 id='authentication'>Authentication</h2>
+<hr />
+<h1 id='filters'>Filters</h1>
+
+<h2 id='before_do'>before do&#8230;</h2>
+
+<p>These are run in Sinatra::EventContext</p>
+
+<pre><code>before do
+  # .. this code will run before each event ..
+end</code></pre>
+
+<h2 id='handling_of_rails_like_nested_params'>Handling of Rails like nested params</h2>
+
+<p>If you want to use a form with parameters like this (aka. Rails&#8217; nested params):</p>
+
+<pre><code>&lt;form&gt;
+  &lt;input ... name=&quot;post[title]&quot; /&gt;
+  &lt;input ... name=&quot;post[body]&quot; /&gt;
+  &lt;input ... name=&quot;post[author]&quot; /&gt;
+&lt;/form&gt;</code></pre>
+
+<p>You have convert parameters to a hash. You can easily do this with a before filter:</p>
+
+<pre><code>before do
+  new_params = {}
+  params.each_pair do |full_key, value|
+    this_param = new_params
+    split_keys = full_key.split(/\]\[|\]|\[/)
+    split_keys.each_index do |index|
+      break if split_keys.length == index + 1
+      this_param[split_keys[index]] ||= {}
+      this_param = this_param[split_keys[index]]
+   end
+   this_param[split_keys.last] = value
+  end
+  request.params.replace new_params
+end</code></pre>
+
+<p>Then parameters became:</p>
+
+<pre><code>{&quot;post&quot;=&gt;{ &quot;title&quot;=&gt;&quot;&quot;, &quot;body&quot;=&gt;&quot;&quot;, &quot;author&quot;=&gt;&quot;&quot; }}</code></pre>
+<hr />
+<h1 id='views'>Views</h1>
+
+<p>All file-based views are looked up in:</p>
+
+<pre><code>root
+  | - views/</code></pre>
+
+<h2 id='template_languages'>Template Languages</h2>
+
+<h3 id='haml'>Haml</h3>
+
+<pre><code>get &#39;/&#39; do
+  haml :index
+end</code></pre>
+
+<p>This will render ./views/index.haml</p>
+
+<h3 id='sass'>Sass</h3>
+
+<pre><code>get &#39;/&#39; do
+  sass :styles
+end</code></pre>
+
+<p>This will render ./views/styles.sass</p>
+
+<h3 id='erb'>Erb</h3>
+
+<pre><code>get &#39;/&#39; do
+  erb :index
+end</code></pre>
+
+<p>This will render ./views/index.erb</p>
+
+<h3 id='builder'>Builder</h3>
+
+<pre><code>get &#39;/&#39; do
+  builder :index
+end</code></pre>
+
+<p>This will render ./views/index.builder</p>
+
+<pre><code>get &#39;/&#39; do
+  builder do |xml|
+    xml.node do
+      xml.subnode &quot;Inner text&quot;
+    end
+  end
+end</code></pre>
+
+<p>This will render the xml inline, directly from the handler.</p>
+
+<h4 id='atom_feed'>Atom Feed</h4>
+
+<h4 id='rss_feed'>RSS Feed</h4>
+
+<p>Assume that your site url is http://liftoff.msfc.nasa.gov/.</p>
+
+<pre><code>get &#39;/rss.xml&#39; do
+  builder do |xml|
+    xml.instruct! :xml, :version =&gt; &#39;1.0&#39;
+    xml.rss :version =&gt; &quot;2.0&quot; do
+      xml.channel do
+        xml.title &quot;Liftoff News&quot;
+        xml.description &quot;Liftoff to Space Exploration.&quot;
+        xml.link &quot;http://liftoff.msfc.nasa.gov/&quot;
+        
+        @posts.each do |post|
+          xml.item do
+            xml.title post.title
+            xml.link &quot;http://liftoff.msfc.nasa.gov/posts/#{post.id}&quot;
+            xml.description post.body
+            xml.pubDate Time.parse(post.created_at.to_s).rfc822()
+            xml.guid &quot;http://liftoff.msfc.nasa.gov/posts/#{post.id}&quot;
+          end
+        end
+      end
+    end
+  end
+end</code></pre>
+
+<p>This will render the rss inline, directly from the handler.</p>
+
+<h2 id='layouts'>Layouts</h2>
+
+<p>Layouts are simple in Sinatra. Put a file in your views directory named &#8220;layout.erb&#8221;, &#8220;layout.haml&#8221;, or &#8220;layout.builder&#8221;. When you render a page, the appropriate layout will be grabbed (of the same filetype), and used.</p>
+
+<p>The layout itself should call <code>yield</code> at the point you want the content to be included.</p>
+
+<p>An example haml layout file could look something like this:</p>
+
+<pre><code>%html
+  %head
+    %title SINATRA BOOK
+  %body
+    #container
+      = yield</code></pre>
+
+<h2 id='avoiding_a_layout'>Avoiding a layout</h2>
+
+<dl>
+<dt>Sometimes you don&#8217;t want the layout rendered. In your render method just pass</dt>
+
+<dd>
+<p>layout =&gt; false, and you&#8217;re good.</p>
+
+<p>get &#8217;/&#8217; do haml :index, :layout =&gt; false end</p>
+</dd>
+</dl>
+
+<h2 id='in_file_views'>In File Views</h2>
+
+<p>This one is cool:</p>
+
+<pre><code>get &#39;/&#39; do
+  haml :index
+end
+
+use_in_file_templates!
+
+__END__
+
+@@ layout
+X
+= yield
+X
+
+@@ index
+%div.title Hello world!!!!!</code></pre>
+
+<p>Try it!</p>
+
+<h2 id='partials'>Partials</h2>
+<hr />
+<h1 id='models'>Models</h1>
+
+<h2 id='datamapper'>Datamapper</h2>
+
+<h2 id='sequel'>Sequel</h2>
+
+<h2 id='activerecord'>ActiveRecord</h2>
+
+<p>First require ActiveRecord gem in your app, then give your database connection settings:</p>
+
+<pre><code>require &#39;rubygems&#39;
+require &#39;sinatra&#39;
+require &#39;activerecord&#39;
+
+ActiveRecord::Base.establish_connection(
+  :adapter =&gt; &#39;sqlite3&#39;,
+  :dbfile =&gt;  &#39;sinatra_application.sqlite3.db&#39;
+)</code></pre>
+
+<p>Now you can create and use ActiveRecord models just like in Rails (the example assumes you already have a &#8216;posts&#8217; table in your database):</p>
+
+<pre><code>class Post &lt; ActiveRecord::Base
+end
+
+get &#39;/&#39; do
+  @posts = Post.all()
+  erb :index 
+end</code></pre>
+
+<p>This will render ./views/index.html:</p>
+
+<pre><code>&lt;% for post in @posts %&gt;
+  &lt;h1&gt;&lt;% post.title %&gt;&lt;/h1&gt;
+&lt;% end %&gt;</code></pre>
+<hr />
+<h1 id='helpers'>Helpers</h1>
+
+<h2 id='the_basics'>The basics</h2>
+
+<p>It is ill-advised to create helpers on the root level of your application. They muddy the global namespace, and don&#8217;t have easy access to the request, response, session or cookie variables.</p>
+
+<p>Instead, use the handy helpers method to install methods on <code>Sinatra::EventContext</code> for use inside events and templates.</p>
+
+<p>Example:</p>
+
+<pre><code>helpers do
+  def bar(name)
+    &quot;#{name}bar&quot;
+  end
+end
+
+get &#39;/:name&#39; do
+  bar(params[:name])
+end</code></pre>
+
+<h2 id='implemention_of_rails_style_partials'>Implemention of rails style partials</h2>
+
+<p>Using partials in your views is a great way to keep them clean. Since Sinatra takes the hands off approach to framework design, you&#8217;ll have to implement a partial handler yourself.</p>
+
+<p>Here is a really basic version:</p>
+
+<pre><code># Usage: partial :foo
+helpers do
+  def partial(page, options={})
+    haml page, options.merge!(:layout =&gt; false)
+  end
+end</code></pre>
+
+<p>A more advanced version that would handle passing local options, and looping over a hash would look like:</p>
+
+<pre><code># Render the page once:
+# Usage: partial :foo
+# 
+# foo will be rendered once for each element in the array, passing in a local variable named &quot;foo&quot;
+# Usage: partial :foo, :collection =&gt; @my_foos    
+
+helpers do
+  def partial(template, *args)
+    options = args.extract_options!
+    options.merge!(:layout =&gt; false)
+    if collection = options.delete(:collection) then
+      collection.inject([]) do |buffer, member|
+        buffer &lt;&lt; haml(template, options.merge(
+                                  :layout =&gt; false, 
+                                  :locals =&gt; {template.to_sym =&gt; member}
+                                )
+                     )
+      end.join(&quot;\n&quot;)
+    else
+      haml(template, options)
+    end
+  end
+end</code></pre>
+<hr />
+<h1 id='rack_middleware'>Rack Middleware</h1>
+
+<p>Sinatra rides on <a href='http://rack.rubyforge.org/'>Rack</a>, a minimal standard interface for Ruby web frameworks. One of Rack’s most interesting capabilities for application developers is support for &#8220;middleware&#8221; &#8211; components that sit between the server and your application monitoring and/or manipulating the HTTP request/response to provide various types of common functionality.</p>
+
+<p>Sinatra makes building Rack middleware pipelines a cinch via a top-level <code>use</code> method:</p>
+
+<pre><code>require &#39;sinatra&#39;
+require &#39;my_custom_middleware&#39;
+
+use Rack::Lint
+use MyCustomMiddleware
+
+get &#39;/hello&#39; do
+  &#39;Hello World&#39;
+end</code></pre>
+
+<p>The semantics of &#8220;use&#8221; are identical to those defined for the <a href='http://rack.rubyforge.org/doc/classes/Rack/Builder.html'>Rack::Builder</a> DSL (most frequently used from rackup files). For example, the use method accepts multiple/variable args as well as blocks:</p>
+
+<pre><code>use Rack::Auth::Basic do |username, password|
+  username == &#39;admin&#39; &amp;&amp; password == &#39;secret&#39;
+end</code></pre>
+
+<p>Rack is distributed with a variety of standard middleware for logging, debugging, URL routing, authentication, and session handling. Sinatra uses many of of these components automatically based on configuration so you typically don’t have to use them explicitly.</p>
+<hr />
+<h1 id='error_handling'>Error Handling</h1>
+
+<h2 id='not_found'>not_found</h2>
+
+<p>Remember: These are run inside the Sinatra::EventContext which means you get all the goodies is has to offer (i.e. haml, erb, :halt, etc.)</p>
+
+<p>Whenever NotFound is raised this will be called</p>
+
+<pre><code>not_found do
+  &#39;This is nowhere to be found&#39;
+end</code></pre>
+
+<h2 id='error'>error</h2>
+
+<p>By default error will catch Sinatra::ServerError</p>
+
+<p>Sinatra will pass you the error via the ‘sinatra.error’ in request.env</p>
+
+<pre><code>error do
+  &#39;Sorry there was a nasty error - &#39; + request.env[&#39;sinatra.error&#39;].name
+end</code></pre>
+
+<p>Custom error mapping:</p>
+
+<pre><code>error MyCustomError do
+  &#39;So what happened was...&#39; + request.env[&#39;sinatra.error&#39;].message
+end</code></pre>
+
+<p>then if this happens:</p>
+
+<pre><code>get &#39;/&#39; do
+  raise MyCustomError, &#39;something bad&#39;
+end</code></pre>
+
+<p>you gets this:</p>
+
+<pre><code>So what happened was... something bad</code></pre>
+
+<h2 id='additional_information'>Additional Information</h2>
+
+<p>Because Sinatra give you a default not_found and error do :production that are secure. If you want to customize only for :production but want to keep the friendly helper screens for :development then do this:</p>
+
+<pre><code>configure :production do
+  not_found do
+    &quot;We&#39;re so sorry, but we don&#39;t what this is&quot;
+  end
+
+  error do
+    &quot;Something really nasty happened.  We&#39;re on it!&quot;
+  end
+end</code></pre>
+<hr />
+<h1 id='configuration'>Configuration</h1>
+
+<h2 id='use_sinatras_set_option'>Use Sinatra&#8217;s &#8220;set&#8221; option</h2>
+
+<p>Configure blocks are not executed in the event context, and don&#8217;t have access to the same instance variables. To store a piece of information that you want to access in your routes, use <code>set</code>.</p>
+
+<pre><code>configure :development do
+  set :dbname, &#39;devdb&#39;
+end
+
+configure :production do
+  set :dbname, &#39;productiondb&#39;
+end</code></pre>
+
+<p>&#8230;</p>
+
+<pre><code>get &#39;/whatdb&#39; do
+  &#39;We are using the database named &#39; + options.dbname
+end</code></pre>
+
+<h2 id='external_config_file_via_the_configure_block'>External config file via the configure block</h2>
+
+<h2 id='application_module__config_area'>Application module / config area</h2>
+<hr />
+<h1 id='deployment'>Deployment</h1>
+
+<h2 id='deployment_lighttpd'>Lighttpd Proxied to Thin</h2>
+
+<p>This will cover how to deploy Sinatra to a load balanced reverse proxy setup using Lighttpd and Thin.</p>
+
+<ol>
+<li>
+<p>Install Lighttpd and Thin</p>
+
+<pre><code># Figure out lighttpd yourself, it should be handled by your 
+# linux distro&#39;s package manager
+ 
+# For thin:
+gem install thin</code></pre>
+</li>
+
+<li>
+<p>Create your rackup file &#8211; the <code>require &#39;app&#39;</code> line should require the actual Sinatra app you have written.</p>
+
+<pre><code>require &#39;rubygems&#39;
+require &#39;sinatra&#39;
+
+set :env,       :production
+set :port,      4567
+disable :run, :reload
+
+require &#39;app&#39;
+
+run Sinatra.application</code></pre>
+</li>
+
+<li>
+<p>Setup a config.yml - change the /path/to/my/app path to reflect reality.</p>
+
+<pre><code>---
+  environment: production
+  chdir: /path/to/my/app
+  address: 127.0.0.1
+  user: root
+  group: root
+  port: 4567
+  pid: /path/to/my/app/thin.pid
+  rackup: /path/to/my/app/config.ru
+  log: /path/to/my/app/thin.log
+  max_conns: 1024
+  timeout: 30
+  max_persistent_conns: 512
+  daemonize: true</code></pre>
+</li>
+
+<li>
+<p>Setup lighttpd.conf - change mydomain to reflect reality. Also make sure the first port here matches up with the port setting in config.yml.</p>
+
+<pre><code>$HTTP[&quot;host&quot;] =~ &quot;(www\.)?mydomain\.com&quot;  {
+        proxy.balance = &quot;fair&quot;
+        proxy.server =  (&quot;/&quot; =&gt;
+                                (
+                                        ( &quot;host&quot; =&gt; &quot;127.0.0.1&quot;, &quot;port&quot; =&gt; 4567 ),
+                                        ( &quot;host&quot; =&gt; &quot;127.0.0.1&quot;, &quot;port&quot; =&gt; 4568 )
+                                )
+                        )
+}</code></pre>
+</li>
+
+<li>
+<p>Start thin and your application. I have a rake script so I can just call &#8220;rake start&#8221; rather than typing this in.</p>
+
+<pre><code>thin -s 2 -C config.yml -R config.ru start</code></pre>
+</li>
+</ol>
+
+<p>You&#8217;re done! Go to mydomain.com/ and see the result! Everything should be setup now, check it out at the domain you setup in your lighttpd.conf file.</p>
+
+<p><em>Variation</em> - nginx via proxy - The same approach to proxying can be applied to the nginx web server</p>
+
+<pre><code>upstream www_mydomain_com {
+  server 127.0.0.1:5000;
+  server 127.0.0.1:5001;
+}
+
+server {
+  listen    www.mydomain.com:80
+  server_name  www.mydomain.com live;
+  access_log /path/to/logfile.log
+  
+  location / {
+    proxy_pass http://www_mydomain_com;
+  }
+  
+}</code></pre>
+
+<p><em>Variation</em> - More Thin instances - To add more thin instances, change the <code>-s 2</code> parameter on the thin start command to be how ever many servers you want. Then be sure lighttpd proxies to all of them by adding more lines to the proxy statements. Then restart lighttpd and everything should come up as expected.</p>
+
+<h2 id='deployment_passenger'>Passenger (mod rails)</h2>
+
+<p>Hate deployment via FastCGI? You&#8217;re not alone. But guess what, Passenger supports Rack; and this book tells you how to get it all going.</p>
+
+<p>You can find additional documentation at the Passenger Github repository.</p>
+
+<ol>
+<li>
+<p>Setting up the account in the Dreamhost interface</p>
+
+<pre><code>Domains -&gt; Manage Domains -&gt; Edit (web hosting column)
+Enable &#39;Ruby on Rails Passenger (mod_rails)&#39;
+Add the public directory to the web directory box. So if you were using &#39;rails.com&#39;, it would change to &#39;rails.com/public&#39;
+Save your changes</code></pre>
+</li>
+
+<li>
+<p>Creating the directory structure</p>
+
+<pre><code>domain.com/
+domain.com/tmp
+domain.com/public
+# a vendored version of sinatra - not necessary if you use the gem
+domain.com/sinatra</code></pre>
+</li>
+
+<li>
+<p>Creating the &#8220;Rackup file&#8221; (rack configuration file) <code>config.ru</code> &#8211; the <code>require &#39;app&#39;</code> line should require the actual Sinatra app you have written.</p>
+
+<pre><code># This file goes in domain.com/config.ru
+require &#39;rubygems&#39;
+require &#39;sinatra&#39;
+ 
+set :env,  :production
+disable :run
+
+require &#39;app&#39;
+
+run Sinatra.application</code></pre>
+</li>
+
+<li>
+<p>A very simple Sinatra application</p>
+
+<pre><code># this is test.rb referred to above
+get &#39;/&#39; do
+  &quot;Worked on dreamhost&quot;
+end
+ 
+get &#39;/foo/:bar&#39; do
+  &quot;You asked for foo/#{params[:bar]}&quot;
+end</code></pre>
+</li>
+</ol>
+
+<p>And that&#8217;s all there is to it! Once it&#8217;s all setup, point your browser at your domain, and you should see a &#8216;Worked on Dreamhost&#8217; page. To restart the application after making changes, you need to run <code>touch tmp/restart.txt</code>.</p>
+
+<p>Please note that currently passenger 2.0.3 has a bug where it can cause Sinatra to not find the view directory. In that case, add <code>:views =&gt; &#39;/path/to/views/&#39;</code> to the Sinatra options in your Rackup file.</p>
+
+<p>Additional note: some documentation sources will have a different format for passing options to Sinatra in the Rackup file, e.g.:</p>
+
+<pre><code>Sinatra::Application.default_options.merge!(
+  :run =&gt; false,
+  :env =&gt; :production,
+  :raise_errors =&gt; true
+)</code></pre>
+
+<p>This is perfectly valid, however calling <code>set</code>, <code>disable</code> and <code>enable</code> is preferred.</p>
+
+<h2 id='deployment_fastcgi'>FastCGI</h2>
+
+<p>The standard method for deployment is to use Thin or Mongrel, and have a reverse proxy (lighttpd, nginx, or even Apache) point to your bundle of servers.</p>
+
+<p>But that isn&#8217;t always possible. Cheaper shared hosting (like Dreamhost) won&#8217;t let you run Thin or Mongrel, or setup reverse proxies (at least on the default shared plan).</p>
+
+<p>Luckily, Rack supports various connectors, including CGI and FastCGI. Unluckily for us, FastCGI doesn&#8217;t quite work with the current Sinatra release.</p>
+
+<p>To get a simple &#8216;hello world&#8217; Sinatra application up and running on Dreamhost involves pulling down the current Sinatra code, and hacking at it a bit. Don&#8217;t worry though, it only requires commenting out a few lines, and tweaking another.</p>
+
+<p>Steps to deploy via FastCGI:</p>
+
+<ul>
+<li>.htaccess</li>
+
+<li>dispatch.fcgi</li>
+
+<li>Tweaked sinatra.rb</li>
+</ul>
+
+<ol>
+<li>
+<p>.htaccess RewriteEngine on</p>
+
+<pre><code>AddHandler fastcgi-script .fcgi
+Options +FollowSymLinks +ExecCGI
+ 
+RewriteRule ^(.*)$ dispatch.fcgi [QSA,L]</code></pre>
+</li>
+
+<li>
+<p>dispatch.fcgi</p>
+
+<pre><code>#!/usr/bin/ruby
+ 
+require &#39;rubygems&#39;
+require &#39;sinatra/lib/sinatra&#39;
+ 
+fastcgi_log = File.open(&quot;fastcgi.log&quot;, &quot;a&quot;)
+STDOUT.reopen fastcgi_log
+STDERR.reopen fastcgi_log
+STDOUT.sync = true
+ 
+set :logging, false
+set :server, &quot;FastCGI&quot;
+ 
+module Rack
+  class Request
+    def path_info
+      @env[&quot;REDIRECT_URL&quot;].to_s
+    end
+    def path_info=(s)
+      @env[&quot;REDIRECT_URL&quot;] = s.to_s
+    end
+  end
+end
+ 
+load &#39;app.rb&#39;</code></pre>
+</li>
+
+<li>
+<p>sinatra.rb - Replace this function with the new version here (commenting out the <code>puts</code> lines)</p>
+
+<pre><code>def run
+  begin
+    #puts &quot;== Sinatra has taken the stage on port #{port} for #{env} with backup by #{server.name}&quot;
+    require &#39;pp&#39;
+    server.run(application) do |server|
+      trap(:INT) do
+        server.stop
+        #puts &quot;\n== Sinatra has ended his set (crowd applauds)&quot;
+      end
+    end
+  rescue Errno::EADDRINUSE =&gt; e
+    #puts &quot;== Someone is already performing on port #{port}!&quot;
+  end
+end</code></pre>
+</li>
+</ol>
+
+<h2 id='heroku'>Heroku</h2>
+
+<p><a href='http://www.heroku.com'>Heroku</a> has added basic support for Sinatra applications. This is possibly the easiest deployment option as once correctly configured,<br />deploying to Heroku becomes simply a matter of pushing to git</p>
+
+<p>Steps to deploy to Heroku:</p>
+
+<ul>
+<li>make a config/rackup.ru</li>
+
+<li>push to git</li>
+</ul>
+
+<ol>
+<li>
+<p>An example rackup file</p>
+
+<pre><code>set :app_file, File.expand_path(File.dirname(__FILE__) + &#39;/../my_sinatra_app.rb&#39;)
+set :public,   File.expand_path(File.dirname(__FILE__) + &#39;/../public&#39;)
+set :views,    File.expand_path(File.dirname(__FILE__) + &#39;/../views&#39;)
+set :env,      :production
+disable :run, :reload
+
+require File.dirname(__FILE__) + &quot;/../my_sinatra_app&quot;
+
+run Sinatra.application</code></pre>
+</li>
+
+<li>
+<p>push to git</p>
+
+<pre><code>$ git remote add heroku git@heroku.com:my-sinatra-app.git
+$ git push heroku master</code></pre>
+</li>
+</ol>
+
+<h2 id='fuzed_and_amazon'>Fuzed and Amazon</h2>
+
+<p>// TODO: Talk with Blake about this.</p>
+
+<h2 id='poolparty_and_amazon_ec2'>Poolparty and Amazon EC2</h2>
+
+<p>// TODO: What other deployment strategies are there?</p>
+<hr />
+<h1 id='contributing'>Contributing</h1>
+
+<h2 id='how_can_i_clone_the_sinatra_repository'>How can I clone the Sinatra repository?</h2>
+
+<p>First of all, you&#8217;ll need the <a href='http://git.or.cz'>Git</a> version control system. <a href='http://git.or.cz'>Git</a> is available for all major platforms:</p>
+
+<ul>
+<li><a href='http://code.google.com/p/msysgit/'>Windows</a></li>
+
+<li><a href='http://code.google.com/p/git-osx-installer/'>Mac OS X</a></li>
+
+<li>Linux and BSD users can usually acquire <a href='http://git.or.cz'>Git</a> through their Package Management System, e.g. <code>apt-get install git-core</code> on Debian systems.</li>
+</ul>
+
+<p>After that, cloning the Sinatra repository is as easy as typing the following into your command line:</p>
+
+<pre><code>git clone git://github.com/sinatra/sinatra.git</code></pre>
+
+<h2 id='how_to_create_a_patch'>How to create a patch?</h2>
+
+<h2 id='how_to_get_that_patch_into_the_official_sinatra'>How to get that patch into the official Sinatra?</h2>
