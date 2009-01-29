@@ -37,8 +37,6 @@ class Legend < Thor
 
     def copy_static
       fetch_sinatra
-      puts "building _includes/AUTHORS.markdown"
-      cp '_sinatra/AUTHORS', '_includes/AUTHORS.markdown', :preserve => true
       puts "building _includes/CHANGES.txt"
       cp '_sinatra/CHANGES', '_includes/CHANGES.txt', :preserve => true
     end
