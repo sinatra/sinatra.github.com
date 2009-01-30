@@ -102,6 +102,23 @@ Put a question mark after it:
 
 The route matches `"/foo/bar"` and `"/foo/bar/"`.
 
+## <a id='subdir' href='#subdir'>How do I render templates nested in subdirectories?</a>
+
+Sinatra apps do not typically have a very complex file heirarchy under
+`views`. First, consider whether you really need subdirectories at all.
+If so, you can use the `views/foo/bar.haml` file as a template with:
+
+    get '/' do
+      haml :'foo/bar'
+    end
+
+This is basically the same as sending `#to_sym` to the filename and can also
+be written as:
+
+    get '/' do
+      haml 'foo/bar'.to_sym
+    end
+
 ## <a id='thindebug' href='#thindebug'>I'm running Thin and an error occurs but there's no output</a>
 
 Try starting Thin with the `--debug` argument:
