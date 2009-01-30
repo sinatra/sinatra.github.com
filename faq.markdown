@@ -22,6 +22,14 @@ Sessions are disabled by default. You need to enable them and then use the
       session[:message]   # => 'Hello World!'
     end
 
+## <a id='ruby19' href='#ruby19'>Can I run Sinatra under Ruby 1.9?</a>
+
+Not yet. [Rack](http://rack.rubyforge.org/) is not yet Ruby 1.9 compatible
+and Sinatra is very much dependent on Rack. We _are_ in the early stages of
+testing under 1.9 and we're reviewing all new code and idioms for potential
+1.9 compatibility issues. The 1.0 release (currently scheduled for mid 2009)
+will run on 1.9 and chances are good that we'll support 1.9 before then.
+
 ## <a id='path_info' href='#path_info'>How do I get the "route" for the current page?</a>
 
 The `request` object probably has what you're looking for:
