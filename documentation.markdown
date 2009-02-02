@@ -81,10 +81,6 @@ a REST service. <em>$5 a pop.</em>
 Around The Web
 --------------
 
-### [List of Sinatra Applications](http://gist.github.com/22172)
-
-Massive list of Sinatra based applications, libraries, and sites.
-
 ### [RubyInside's 29 Links and Resources](http://www.rubyinside.com/sinatra-29-links-and-resources-for-a-quicker-easier-way-to-build-webapps-1371.html)
 
 Peter Cooper's compendium with links to tutorials, example
