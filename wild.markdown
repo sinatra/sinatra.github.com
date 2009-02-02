@@ -30,6 +30,8 @@ care of the rest.
   [FiveRuns Dash service](http://dash.fiveruns.com/)
 - [Gaze](http://github.com/ichverstehe/gaze) tiny app that serves up your
   Markdown files
+- [Giftsmas](http://github.com/jeremyevans/giftsmas) Gift Tracking Website
+  using Sinatra, Sequel, and Scaffolding Extensions
 
 ## <a id="libs" href="#libs">Libraries and extensions</a>
 
@@ -51,6 +53,8 @@ care of the rest.
   Base app with DataMapper, Haml and RSpec. Fork and build.
 - [Sinatra OAuth Provider](http://github.com/eddanger/sinatra-oauth-provider)
   an [OAuth](http://oauth.net) provider implemented with Sinatra
+- [Spork](http://github.com/deadprogrammer/spork) Executes some aynchronous
+  code using Sinatra running under Passenger
 
 ## <a id="sites" href="#sites">Websites</a>
 
