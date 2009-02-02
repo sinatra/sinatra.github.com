@@ -15,6 +15,10 @@ A whirlwind tour of Sinatra's most interesting features.
 Answers to those questions most frequently asked on the mailing list and
 in #sinatra.
 
+### [In the Wild](/wild.html)
+
+List of applications, libraries, websites and companies using Sinatra.
+
 ### [Release Notes](changes.html)
 
 Detailed change log for each Sinatra release generated from the `CHANGES`
