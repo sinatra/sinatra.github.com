@@ -32,6 +32,7 @@ care of the rest.
   Markdown files
 - [Giftsmas](http://github.com/jeremyevans/giftsmas) Gift Tracking Website
   using Sinatra, Sequel, and Scaffolding Extensions
+- [Toopaste](http://github.com/zapnap/toopaste) Pastebin site created with Sinatra and DataMapper
 
 ## <a id="libs" href="#libs">Libraries and extensions</a>
 
@@ -55,6 +56,7 @@ care of the rest.
   an [OAuth](http://oauth.net) provider implemented with Sinatra
 - [Spork](http://github.com/deadprogrammer/spork) Executes some aynchronous
   code using Sinatra running under Passenger
+- [Reteweet](http://github.com/zapnap/retweet) Create Twitter apps like tweetdreams.org with ease
 
 ## <a id="sites" href="#sites">Websites</a>
 
@@ -66,6 +68,7 @@ care of the rest.
   the pain?
 - [Is LOST on yet?](http://islostonyet.com/)
 - [URL Unwind](http://urlunwind.com) Don't get RickRolled again
+- [Tweetdreams](http://tweetdreams.org) Twitter dream journal
 
 ## <a id="biz" href="#biz">Companies using Sinatra</a>
 
