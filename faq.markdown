@@ -160,6 +160,23 @@ And in `mailerapp.rb`:
 
 See the [book](book.html#deployment).
 
+## <a id='escape_html' href='#escape_html'>How do I escape html?</a>
+
+Include [Rack::Utils](http://rack.rubyforge.org/doc/classes/Rack/Utils.html)
+in your helpers and create an `h` alias as follows:
+
+    helpers do
+      include Rack::Utils
+      alias_method :h, :escape_html
+    end
+
+Now you can escape html in your templates like this:
+
+    <%= h scary_output %>
+
+Thanks to [Christopher Schneid](http://www.gittr.com/index.php/archive/using-rackutils-in-sinatra-escape_html-h-in-rails/)
+for the tip!
+
 <!--
 
 ### <a id='queue' href='#queue'>How do I process jobs in the background?</a>
