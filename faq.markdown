@@ -177,8 +177,6 @@ Now you can escape html in your templates like this:
 Thanks to [Chris Schneider](http://www.gittr.com/index.php/archive/using-rackutils-in-sinatra-escape_html-h-in-rails/)
 for the tip!
 
-=======
->>>>>>> Deployment is the #1 question I get most often:faq.markdown
 <!--
 
 ### <a id='queue' href='#queue'>How do I process jobs in the background?</a>

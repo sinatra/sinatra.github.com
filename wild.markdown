@@ -33,7 +33,7 @@ care of the rest.
 - [Giftsmas](http://github.com/jeremyevans/giftsmas) Gift Tracking Website
   using Sinatra, Sequel, and Scaffolding Extensions
 - [Toopaste](http://github.com/zapnap/toopaste) Pastebin site created with Sinatra and DataMapper
-- [go get me some](http://go-get-me-so.me/) Our new favorite timesink
+- [Columnlog](http://github.com/quirkey/columnlog) Tiny feed fetching app
 
 ## <a id="libs" href="#libs">Libraries and extensions</a>
 
@@ -70,6 +70,13 @@ care of the rest.
 - [Is LOST on yet?](http://islostonyet.com/)
 - [URL Unwind](http://urlunwind.com) Don't get RickRolled again
 - [Tweetdreams](http://tweetdreams.org) Twitter dream journal
+- [Does Follow](http://doesfollow.com) Twitter tool for figuring out who follows whom
+- [portfolio.quirkey.com](http://portfolio.quirkey.com/)
+- [go get me some](http://go-get-me-so.me/) Our new favorite timesink
+- [Chargd](http://www.chargd.com/) The quick way to get paid
+- [themoviedb.org](http://api.themoviedb.org/) The name says it all :)
+- [columnlog](http://github.com/quirkey/columnlog) Tiny feed fetching app
+- [Your Fiveruns Dashboard](http://dash.fiveruns.com)
 
 ## <a id="biz" href="#biz">Companies using Sinatra</a>
 
@@ -77,3 +84,8 @@ care of the rest.
 - [GitHub](http://github.com/blog/53-github-services-ipo)
 - [Songbird](http://getsongbird.com)
 - [Curbed Network](http://curbed.com)
+- [Meticulo](http://www.meticulo.com/)
+- [Apartment Therapy](http://www.apartmenttherapy.com)
+- [Nitobi](http://nitobi.com)
+- [ENTP](http://entp.com)
+- [FiveRuns](http://fiveruns.com)
