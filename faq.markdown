@@ -156,6 +156,10 @@ And in `mailerapp.rb`:
         :body => erb(:email)
     end
 
+## <a id='deploy' href='#deploy'>What are my deployment options?</a>
+
+See the [book](book.html#deployment).
+
 <!--
 
 ### <a id='queue' href='#queue'>How do I process jobs in the background?</a>

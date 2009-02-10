@@ -726,7 +726,7 @@ end</code></pre>
 
 <h2 id='heroku'>Heroku</h2>
 
-<p><a href='http://www.heroku.com'>Heroku</a> has full support for Sinatra applications. This is the easiest configuration + deployment option. Deploying to Heroku is simply a matter of pushing to a remote git repository.</p>
+<p>This is the easiest configuration + deployment option. <a href='http://www.heroku.com'>Heroku</a> has full support for Sinatra applications. Deploying to Heroku is simply a matter of pushing to a remote git repository.</p>
 
 <p>Steps to deploy to Heroku:</p>
 
@@ -748,7 +748,7 @@ end</code></pre>
 
 <pre><code>require &quot;myapp&quot;
 
-run Sinatra.application</code></pre>
+run Sinatra::Application</code></pre>
 </li>
 
 <li>
@@ -784,13 +784,13 @@ gem install thin</code></pre>
 <pre><code>require &#39;rubygems&#39;
 require &#39;sinatra&#39;
 
-set :env,       :production
-set :port,      4567
+set :environment, :production
+set :port, 4567
 disable :run, :reload
 
 require &#39;app&#39;
 
-run Sinatra.application</code></pre>
+run Sinatra::Application</code></pre>
 </li>
 
 <li>
@@ -888,12 +888,12 @@ domain.com/sinatra</code></pre>
 require &#39;rubygems&#39;
 require &#39;sinatra&#39;
  
-set :env,  :production
+set :environment, :production
 disable :run
 
 require &#39;app&#39;
 
-run Sinatra.application</code></pre>
+run Sinatra::Application</code></pre>
 </li>
 
 <li>
@@ -916,13 +916,10 @@ end</code></pre>
 
 <p>Additional note: some documentation sources will have a different format for passing options to Sinatra in the Rackup file, e.g.:</p>
 
-<pre><code>Sinatra::Application.default_options.merge!(
-  :run =&gt; false,
-  :env =&gt; :production,
-  :raise_errors =&gt; true
-)</code></pre>
+<pre><code>set :environment, :production
+disable :run
 
-<p>This is perfectly valid, however calling <code>set</code>, <code>disable</code> and <code>enable</code> is preferred.</p>
+run Sinatra::Application</code></pre>
 
 <h2 id='deployment_fastcgi'>FastCGI</h2>
 
