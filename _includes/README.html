@@ -59,6 +59,14 @@ Route patterns may include named parameters, accessible via the
   end
 </pre>
 <p>
+You can also access named parameters via block parameters:
+</p>
+<pre>
+  get '/hello/:name' do |n|
+    &quot;Hello #{n}!&quot;
+  end
+</pre>
+<p>
 Route patterns may also include splat (or wildcard) parameters, accessible
 via the <tt>params[:splat]</tt> array.
 </p>
@@ -79,6 +87,14 @@ Route matching with Regular Expressions:
 <pre>
   get %r{/hello/([\w]+)} do
     &quot;Hello, #{params[:captures].first}!&quot;
+  end
+</pre>
+<p>
+Or with a block parameter:
+</p>
+<pre>
+  get %r{/hello/([\w]+)} do |c|
+    &quot;Hello, #{c}!&quot;
   end
 </pre>
 <p>

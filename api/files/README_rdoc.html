@@ -31,7 +31,7 @@
         </div>
         <div class='last-update'>
           Last Update:
-          <span class='datetime'>Thu Jan 29 00:47:17 -0800 2009</span>
+          <span class='datetime'>Tue Feb 10 01:16:55 -0800 2009</span>
         </div>
       </div>
       <div id='content'>
@@ -66,6 +66,10 @@
             </p>
             <pre>get '/hello/:name' do&#x000A;  # matches &quot;GET /foo&quot; and &quot;GET /bar&quot;&#x000A;  # params[:name] is 'foo' or 'bar'&#x000A;  &quot;Hello #{params[:name]}!&quot;&#x000A;end</pre>
             <p>
+            You can also access named parameters via block parameters:
+            </p>
+            <pre>get '/hello/:name' do |n|&#x000A;  &quot;Hello #{n}!&quot;&#x000A;end</pre>
+            <p>
             Route patterns may also include splat (or wildcard) parameters, accessible
             via the <tt>params[:splat]</tt> array.
             </p>
@@ -74,6 +78,10 @@
             Route matching with Regular Expressions:
             </p>
             <pre>get %r{/hello/([\w]+)} do&#x000A;  &quot;Hello, #{params[:captures].first}!&quot;&#x000A;end</pre>
+            <p>
+            Or with a block parameter:
+            </p>
+            <pre>get %r{/hello/([\w]+)} do |c|&#x000A;  &quot;Hello, #{c}!&quot;&#x000A;end</pre>
             <p>
             Routes may include a variety of matching conditions, such as the user
             agent:
@@ -242,8 +250,7 @@
             <p>
             The <tt>error</tt> handler is invoked any time an exception is raised from
             a route block or before filter. The exception object can be obtained from
-            the <tt>sinatra.error</tt> <a href="../classes/Rack.html">Rack</a>
-            variable:
+            the <tt>sinatra.error</tt> Rack variable:
             </p>
             <pre>error do&#x000A;  'Sorry there was a nasty error - ' + env['sinatra.error'].name&#x000A;end</pre>
             <p>
@@ -270,7 +277,7 @@
             <tt>mime</tt> to register them by file extension:
             </p>
             <pre>mime :foo, 'text/foo'</pre>
-            <h2><a href="../classes/Rack.html">Rack</a> Middleware</h2>
+            <h2>Rack Middleware</h2>
             <p>
             <a href="../classes/Sinatra.html">Sinatra</a> rides on <a
             href="http://rack.rubyforge.org/">Rack</a>, a minimal standard interface
@@ -281,9 +288,8 @@
             common functionality.
             </p>
             <p>
-            <a href="../classes/Sinatra.html">Sinatra</a> makes building <a
-            href="../classes/Rack.html">Rack</a> middleware pipelines a cinch via a
-            top-level <tt>use</tt> method:
+            <a href="../classes/Sinatra.html">Sinatra</a> makes building Rack
+            middleware pipelines a cinch via a top-level <tt>use</tt> method:
             </p>
             <pre>require 'sinatra'&#x000A;require 'my_custom_middleware'&#x000A;&#x000A;use Rack::Lint&#x000A;use MyCustomMiddleware&#x000A;&#x000A;get '/hello' do&#x000A;  'Hello World'&#x000A;end</pre>
             <p>
@@ -294,11 +300,11 @@
             </p>
             <pre>use Rack::Auth::Basic do |username, password|&#x000A;  username == 'admin' &amp;&amp; password == 'secret'&#x000A;end</pre>
             <p>
-            <a href="../classes/Rack.html">Rack</a> is distributed with a variety of
-            standard middleware for logging, debugging, URL routing, authentication,
-            and session handling. <a href="../classes/Sinatra.html">Sinatra</a> uses
-            many of of these components automatically based on configuration so you
-            typically don&#8217;t have to <tt>use</tt> them explicitly.
+            Rack is distributed with a variety of standard middleware for logging,
+            debugging, URL routing, authentication, and session handling. <a
+            href="../classes/Sinatra.html">Sinatra</a> uses many of of these components
+            automatically based on configuration so you typically don&#8217;t have to
+            <tt>use</tt> them explicitly.
             </p>
             <h2>Testing</h2>
             <p>

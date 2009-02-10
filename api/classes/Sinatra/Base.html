@@ -41,27 +41,51 @@
       </div>
       <div id='content'>
         <div id='text'>
+          <div id='description'>
+            <p>
+            <a href="Base.html">Base</a> class for all <a
+            href="../Sinatra.html">Sinatra</a> applications and middleware.
+            </p>
+          </div>
           <div id='method-list'>
             <h2>Methods</h2>
             <h3>public class</h3>
             <ol>
-              <li><a href="#M000088">call</a></li>
-              <li><a href="#M000085">configure</a></li>
-              <li><a href="#M000082">development?</a></li>
-              <li><a href="#M000081">helpers</a></li>
-              <li><a href="#M000075">new</a></li>
-              <li><a href="#M000084">production?</a></li>
-              <li><a href="#M000087">run!</a></li>
-              <li><a href="#M000083">test?</a></li>
-              <li><a href="#M000086">use</a></li>
+              <li><a href="#M000072">before</a></li>
+              <li><a href="#M000087">call</a></li>
+              <li><a href="#M000073">condition</a></li>
+              <li><a href="#M000084">configure</a></li>
+              <li><a href="#M000077">delete</a></li>
+              <li><a href="#M000081">development?</a></li>
+              <li><a href="#M000065">disable</a></li>
+              <li><a href="#M000064">enable</a></li>
+              <li><a href="#M000066">error</a></li>
+              <li><a href="#M000074">get</a></li>
+              <li><a href="#M000078">head</a></li>
+              <li><a href="#M000079">helpers</a></li>
+              <li><a href="#M000069">layout</a></li>
+              <li><a href="#M000071">media_type</a></li>
+              <li><a href="#M000057">new</a></li>
+              <li><a href="#M000067">not_found</a></li>
+              <li><a href="#M000076">post</a></li>
+              <li><a href="#M000083">production?</a></li>
+              <li><a href="#M000075">put</a></li>
+              <li><a href="#M000080">register</a></li>
+              <li><a href="#M000088">reload!</a></li>
+              <li><a href="#M000086">run!</a></li>
+              <li><a href="#M000063">set</a></li>
+              <li><a href="#M000068">template</a></li>
+              <li><a href="#M000082">test?</a></li>
+              <li><a href="#M000085">use</a></li>
+              <li><a href="#M000070">use_in_file_templates!</a></li>
             </ol>
             <h3>public instance</h3>
             <ol>
-              <li><a href="#M000076">call</a></li>
-              <li><a href="#M000077">call!</a></li>
-              <li><a href="#M000079">halt</a></li>
-              <li><a href="#M000078">options</a></li>
-              <li><a href="#M000080">pass</a></li>
+              <li><a href="#M000058">call</a></li>
+              <li><a href="#M000059">call!</a></li>
+              <li><a href="#M000061">halt</a></li>
+              <li><a href="#M000060">options</a></li>
+              <li><a href="#M000062">pass</a></li>
             </ol>
           </div>
           <div id='context'>
@@ -139,187 +163,446 @@
             </div>
             <div id='methods'>
               <h2>Public class methods</h2>
-              <div class='public-class method' id='method-M000088'>
-                <a name='M000088'>      </a>
+              <div class='public-class method' id='method-M000072'>
+                <a name='M000072'>      </a>
                 <div class='synopsis'>
-                  <span class='name'>call</span>
-                  <span class='arguments'>(env)</span>
+                  <span class='name'>before</span>
+                  <span class='arguments'>(&amp;block)</span>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000088-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000072-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000088-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 696</span>&#x000A;696:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">call</span>(<span class="ruby-identifier">env</span>)&#x000A;697:         <span class="ruby-identifier">construct_middleware</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@callsite</span>.<span class="ruby-identifier">nil?</span>&#x000A;698:         <span class="ruby-ivar">@callsite</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">env</span>)&#x000A;699:       <span class="ruby-keyword kw">end</span></pre>
-                </div>
-              </div>
-              <div class='public-class method' id='method-M000085'>
-                <a name='M000085'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>configure</span>
-                  <span class='arguments'>(*envs) {|if envs.empty? || envs.include?(environment.to_sym)| ...}</span>
-                </div>
-                <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000085-source'); return false">
-                    [show source]
-                  </a>
-                  <pre id='M000085-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 670</span>&#x000A;670:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">configure</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">envs</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;671:         <span class="ruby-keyword kw">yield</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">envs</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">envs</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">environment</span>.<span class="ruby-identifier">to_sym</span>)&#x000A;672:       <span class="ruby-keyword kw">end</span></pre>
-                </div>
-              </div>
-              <div class='public-class method' id='method-M000082'>
-                <a name='M000082'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>development?</span>
-                  <span class='arguments'>()</span>
-                </div>
-                <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000082-source'); return false">
-                    [show source]
-                  </a>
-                  <pre id='M000082-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 666</span>&#x000A;666:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">development?</span> ; <span class="ruby-identifier">environment</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:development</span> ; <span class="ruby-keyword kw">end</span></pre>
-                </div>
-              </div>
-              <div class='public-class method' id='method-M000081'>
-                <a name='M000081'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>helpers</span>
-                  <span class='arguments'>(*modules, &amp;block)</span>
-                </div>
-                <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000081-source'); return false">
-                    [show source]
-                  </a>
-                  <pre id='M000081-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 661</span>&#x000A;661:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">helpers</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">modules</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;662:         <span class="ruby-identifier">include</span> <span class="ruby-operator">*</span><span class="ruby-identifier">modules</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">modules</span>.<span class="ruby-identifier">empty?</span>&#x000A;663:         <span class="ruby-identifier">class_eval</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block</span>&#x000A;664:       <span class="ruby-keyword kw">end</span></pre>
-                </div>
-              </div>
-              <div class='public-class method' id='method-M000075'>
-                <a name='M000075'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>new</span>
-                  <span class='arguments'>(app=nil) {|self if block_given?| ...}</span>
-                </div>
-                <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000075-source'); return false">
-                    [show source]
-                  </a>
-                  <pre id='M000075-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 306</span>&#x000A;306:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">app</span>=<span class="ruby-keyword kw">nil</span>)&#x000A;307:       <span class="ruby-ivar">@app</span> = <span class="ruby-identifier">app</span>&#x000A;308:       <span class="ruby-keyword kw">yield</span> <span class="ruby-keyword kw">self</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>&#x000A;309:     <span class="ruby-keyword kw">end</span></pre>
-                </div>
-              </div>
-              <div class='public-class method' id='method-M000084'>
-                <a name='M000084'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>production?</span>
-                  <span class='arguments'>()</span>
-                </div>
-                <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000084-source'); return false">
-                    [show source]
-                  </a>
-                  <pre id='M000084-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 668</span>&#x000A;668:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">production?</span> ; <span class="ruby-identifier">environment</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:production</span> ; <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000072-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 596</span>&#x000A;596:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">before</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;597:         <span class="ruby-ivar">@filters</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">block</span>&#x000A;598:       <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='public-class method' id='method-M000087'>
                 <a name='M000087'>      </a>
                 <div class='synopsis'>
-                  <span class='name'>run!</span>
-                  <span class='arguments'>(options={})</span>
+                  <span class='name'>call</span>
+                  <span class='arguments'>(env)</span>
                 </div>
                 <div class='source'>
                   <a class='source-toggle' href='#' onclick="toggleCode('M000087-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000087-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 679</span>&#x000A;679:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">run!</span>(<span class="ruby-identifier">options</span>={})&#x000A;680:         <span class="ruby-identifier">set</span> <span class="ruby-identifier">options</span>&#x000A;681:         <span class="ruby-identifier">handler</span> = <span class="ruby-identifier">detect_rack_handler</span>&#x000A;682:         <span class="ruby-identifier">handler_name</span> = <span class="ruby-identifier">handler</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/.*::/</span>, <span class="ruby-value str">''</span>)&#x000A;683:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;== Sinatra/#{Sinatra::VERSION} has taken the stage &quot;</span> <span class="ruby-operator">+</span>&#x000A;684:           <span class="ruby-node">&quot;on #{port} for #{environment} with backup from #{handler_name}&quot;</span>&#x000A;685:         <span class="ruby-identifier">handler</span>.<span class="ruby-identifier">run</span> <span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">:Host</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">host</span>, <span class="ruby-identifier">:Port</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">port</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">server</span><span class="ruby-operator">|</span>&#x000A;686:           <span class="ruby-identifier">trap</span>(<span class="ruby-identifier">:INT</span>) <span class="ruby-keyword kw">do</span>&#x000A;687:             <span class="ruby-comment cmt">## Use thins' hard #stop! if available, otherwise just #stop</span>&#x000A;688:             <span class="ruby-identifier">server</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:stop!</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">server</span>.<span class="ruby-identifier">stop!</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">server</span>.<span class="ruby-identifier">stop</span>&#x000A;689:             <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\n== Sinatra has ended his set (crowd applauds)&quot;</span>&#x000A;690:           <span class="ruby-keyword kw">end</span>&#x000A;691:         <span class="ruby-keyword kw">end</span>&#x000A;692:       <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">EADDRINUSE</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>&#x000A;693:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;== Someone is already performing on port #{port}!&quot;</span>&#x000A;694:       <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000087-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 738</span>&#x000A;738:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">call</span>(<span class="ruby-identifier">env</span>)&#x000A;739:         <span class="ruby-identifier">synchronize</span> <span class="ruby-keyword kw">do</span>&#x000A;740:           <span class="ruby-identifier">reload!</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">reload?</span>&#x000A;741:           <span class="ruby-identifier">construct_middleware</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@callsite</span>.<span class="ruby-identifier">nil?</span>&#x000A;742:           <span class="ruby-ivar">@callsite</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">env</span>)&#x000A;743:         <span class="ruby-keyword kw">end</span>&#x000A;744:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-class method' id='method-M000073'>
+                <a name='M000073'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>condition</span>
+                  <span class='arguments'>(&amp;block)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000073-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000073-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 600</span>&#x000A;600:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">condition</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;601:         <span class="ruby-ivar">@conditions</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">block</span>&#x000A;602:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-class method' id='method-M000084'>
+                <a name='M000084'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>configure</span>
+                  <span class='arguments'>(*envs) {|if envs.empty? || envs.include?(environment.to_sym)| ...}</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000084-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000084-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 711</span>&#x000A;711:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">configure</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">envs</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;712:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">reloading?</span>&#x000A;713:         <span class="ruby-keyword kw">yield</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">envs</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">envs</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">environment</span>.<span class="ruby-identifier">to_sym</span>)&#x000A;714:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-class method' id='method-M000077'>
+                <a name='M000077'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>delete</span>
+                  <span class='arguments'>(path, opts={}, &amp;bk)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000077-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000077-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 646</span>&#x000A;646:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">delete</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">opts</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">bk</span>); <span class="ruby-identifier">route</span> <span class="ruby-value str">'DELETE'</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">opts</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">bk</span>; <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-class method' id='method-M000081'>
+                <a name='M000081'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>development?</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000081-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000081-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 707</span>&#x000A;707:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">development?</span> ; <span class="ruby-identifier">environment</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:development</span> ; <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-class method' id='method-M000065'>
+                <a name='M000065'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>disable</span>
+                  <span class='arguments'>(*opts)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000065-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000065-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 547</span>&#x000A;547:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">disable</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">opts</span>)&#x000A;548:         <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span> <span class="ruby-identifier">set</span>(<span class="ruby-identifier">key</span>, <span class="ruby-keyword kw">false</span>) }&#x000A;549:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-class method' id='method-M000064'>
+                <a name='M000064'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>enable</span>
+                  <span class='arguments'>(*opts)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000064-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000064-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 543</span>&#x000A;543:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">enable</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">opts</span>)&#x000A;544:         <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span> <span class="ruby-identifier">set</span>(<span class="ruby-identifier">key</span>, <span class="ruby-keyword kw">true</span>) }&#x000A;545:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-class method' id='method-M000066'>
+                <a name='M000066'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>error</span>
+                  <span class='arguments'>(codes=Exception, &amp;block)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000066-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000066-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 551</span>&#x000A;551:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">error</span>(<span class="ruby-identifier">codes</span>=<span class="ruby-constant">Exception</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;552:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">codes</span>.<span class="ruby-identifier">respond_to?</span> <span class="ruby-identifier">:each</span>&#x000A;553:           <span class="ruby-identifier">codes</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">err</span><span class="ruby-operator">|</span> <span class="ruby-identifier">error</span>(<span class="ruby-identifier">err</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) }&#x000A;554:         <span class="ruby-keyword kw">else</span>&#x000A;555:           <span class="ruby-ivar">@errors</span>[<span class="ruby-identifier">codes</span>] = <span class="ruby-identifier">block</span>&#x000A;556:         <span class="ruby-keyword kw">end</span>&#x000A;557:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-class method' id='method-M000074'>
+                <a name='M000074'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>get</span>
+                  <span class='arguments'>(path, opts={}, &amp;block)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000074-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000074-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 636</span>&#x000A;636:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">opts</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;637:         <span class="ruby-identifier">conditions</span> = <span class="ruby-ivar">@conditions</span>.<span class="ruby-identifier">dup</span>&#x000A;638:         <span class="ruby-identifier">route</span>(<span class="ruby-value str">'GET'</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">opts</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;639: &#x000A;640:         <span class="ruby-ivar">@conditions</span> = <span class="ruby-identifier">conditions</span>&#x000A;641:         <span class="ruby-identifier">route</span>(<span class="ruby-value str">'HEAD'</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">opts</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;642:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-class method' id='method-M000078'>
+                <a name='M000078'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>head</span>
+                  <span class='arguments'>(path, opts={}, &amp;bk)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000078-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000078-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 647</span>&#x000A;647:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">head</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">opts</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">bk</span>); <span class="ruby-identifier">route</span> <span class="ruby-value str">'HEAD'</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">opts</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">bk</span>; <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-class method' id='method-M000079'>
+                <a name='M000079'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>helpers</span>
+                  <span class='arguments'>(*extensions, &amp;block)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000079-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000079-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 697</span>&#x000A;697:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">helpers</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">extensions</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;698:         <span class="ruby-identifier">class_eval</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>&#x000A;699:         <span class="ruby-identifier">include</span> <span class="ruby-operator">*</span><span class="ruby-identifier">extensions</span>&#x000A;700:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-class method' id='method-M000069'>
+                <a name='M000069'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>layout</span>
+                  <span class='arguments'>(name=:layout, &amp;block)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000069-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000069-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 567</span>&#x000A;567:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">layout</span>(<span class="ruby-identifier">name</span>=<span class="ruby-identifier">:layout</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;568:         <span class="ruby-identifier">template</span> <span class="ruby-identifier">name</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>&#x000A;569:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-class method' id='method-M000071'>
+                <a name='M000071'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>media_type</span>
+                  <span class='arguments'>(type)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Look up a media type by file extension in Rack&#8217;s mime registry.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000071-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000071-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 590</span>&#x000A;590:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">media_type</span>(<span class="ruby-identifier">type</span>)&#x000A;591:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">type</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">type</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">type</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value str">'/'</span>)&#x000A;592:         <span class="ruby-identifier">type</span> = <span class="ruby-node">&quot;.#{type}&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">type</span>.<span class="ruby-identifier">to_s</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-value">?.</span>&#x000A;593:         <span class="ruby-constant">Rack</span><span class="ruby-operator">::</span><span class="ruby-constant">Mime</span>.<span class="ruby-identifier">mime_type</span>(<span class="ruby-identifier">type</span>, <span class="ruby-keyword kw">nil</span>)&#x000A;594:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-class method' id='method-M000057'>
+                <a name='M000057'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>new</span>
+                  <span class='arguments'>(app=nil) {|self if block_given?| ...}</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000057-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000057-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 321</span>&#x000A;321:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">app</span>=<span class="ruby-keyword kw">nil</span>)&#x000A;322:       <span class="ruby-ivar">@app</span> = <span class="ruby-identifier">app</span>&#x000A;323:       <span class="ruby-keyword kw">yield</span> <span class="ruby-keyword kw">self</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>&#x000A;324:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-class method' id='method-M000067'>
+                <a name='M000067'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>not_found</span>
+                  <span class='arguments'>(&amp;block)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000067-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000067-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 559</span>&#x000A;559:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">not_found</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;560:         <span class="ruby-identifier">error</span> <span class="ruby-value">404</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>&#x000A;561:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-class method' id='method-M000076'>
+                <a name='M000076'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>post</span>
+                  <span class='arguments'>(path, opts={}, &amp;bk)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000076-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000076-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 645</span>&#x000A;645:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">post</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">opts</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">bk</span>); <span class="ruby-identifier">route</span> <span class="ruby-value str">'POST'</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">opts</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">bk</span>; <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='public-class method' id='method-M000083'>
                 <a name='M000083'>      </a>
                 <div class='synopsis'>
-                  <span class='name'>test?</span>
+                  <span class='name'>production?</span>
                   <span class='arguments'>()</span>
                 </div>
                 <div class='source'>
                   <a class='source-toggle' href='#' onclick="toggleCode('M000083-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000083-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 667</span>&#x000A;667:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test?</span> ; <span class="ruby-identifier">environment</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:test</span> ; <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000083-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 709</span>&#x000A;709:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">production?</span> ; <span class="ruby-identifier">environment</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:production</span> ; <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='public-class method' id='method-M000086'>
-                <a name='M000086'>      </a>
+              <div class='public-class method' id='method-M000075'>
+                <a name='M000075'>      </a>
                 <div class='synopsis'>
-                  <span class='name'>use</span>
-                  <span class='arguments'>(middleware, *args, &amp;block)</span>
+                  <span class='name'>put</span>
+                  <span class='arguments'>(path, opts={}, &amp;bk)</span>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000086-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000075-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000086-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 674</span>&#x000A;674:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">use</span>(<span class="ruby-identifier">middleware</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;675:         <span class="ruby-identifier">reset_middleware</span>&#x000A;676:         <span class="ruby-ivar">@middleware</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">middleware</span>, <span class="ruby-identifier">args</span>, <span class="ruby-identifier">block</span>]&#x000A;677:       <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000075-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 644</span>&#x000A;644:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">put</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">opts</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">bk</span>); <span class="ruby-identifier">route</span> <span class="ruby-value str">'PUT'</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">opts</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">bk</span>; <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <h2>Public instance methods</h2>
-              <div class='public-instance method' id='method-M000076'>
-                <a name='M000076'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>call</span>
-                  <span class='arguments'>(env)</span>
-                </div>
-                <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000076-source'); return false">
-                    [show source]
-                  </a>
-                  <pre id='M000076-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 311</span>&#x000A;311:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">call</span>(<span class="ruby-identifier">env</span>)&#x000A;312:       <span class="ruby-identifier">dup</span>.<span class="ruby-identifier">call!</span>(<span class="ruby-identifier">env</span>)&#x000A;313:     <span class="ruby-keyword kw">end</span></pre>
-                </div>
-              </div>
-              <div class='public-instance method' id='method-M000077'>
-                <a name='M000077'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>call!</span>
-                  <span class='arguments'>(env)</span>
-                </div>
-                <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000077-source'); return false">
-                    [show source]
-                  </a>
-                  <pre id='M000077-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 317</span>&#x000A;317:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">call!</span>(<span class="ruby-identifier">env</span>)&#x000A;318:       <span class="ruby-ivar">@env</span>      = <span class="ruby-identifier">env</span>&#x000A;319:       <span class="ruby-ivar">@request</span>  = <span class="ruby-constant">Request</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">env</span>)&#x000A;320:       <span class="ruby-ivar">@response</span> = <span class="ruby-constant">Response</span>.<span class="ruby-identifier">new</span>&#x000A;321:       <span class="ruby-ivar">@params</span>   = <span class="ruby-keyword kw">nil</span>&#x000A;322: &#x000A;323:       <span class="ruby-identifier">invoke</span> { <span class="ruby-identifier">dispatch!</span> }&#x000A;324:       <span class="ruby-identifier">invoke</span> { <span class="ruby-identifier">error_block!</span>(<span class="ruby-identifier">response</span>.<span class="ruby-identifier">status</span>) }&#x000A;325: &#x000A;326:       <span class="ruby-ivar">@response</span>.<span class="ruby-identifier">body</span> = [] <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@env</span>[<span class="ruby-value str">'REQUEST_METHOD'</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'HEAD'</span>&#x000A;327:       <span class="ruby-ivar">@response</span>.<span class="ruby-identifier">finish</span>&#x000A;328:     <span class="ruby-keyword kw">end</span></pre>
-                </div>
-              </div>
-              <div class='public-instance method' id='method-M000079'>
-                <a name='M000079'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>halt</span>
-                  <span class='arguments'>(*response)</span>
-                </div>
-                <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000079-source'); return false">
-                    [show source]
-                  </a>
-                  <pre id='M000079-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 334</span>&#x000A;334:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">halt</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">response</span>)&#x000A;335:       <span class="ruby-identifier">response</span> = <span class="ruby-identifier">response</span>.<span class="ruby-identifier">first</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>&#x000A;336:       <span class="ruby-identifier">throw</span> <span class="ruby-identifier">:halt</span>, <span class="ruby-identifier">response</span>&#x000A;337:     <span class="ruby-keyword kw">end</span></pre>
-                </div>
-              </div>
-              <div class='public-instance method' id='method-M000078'>
-                <a name='M000078'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>options</span>
-                  <span class='arguments'>()</span>
-                </div>
-                <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000078-source'); return false">
-                    [show source]
-                  </a>
-                  <pre id='M000078-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 330</span>&#x000A;330:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">options</span>&#x000A;331:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>&#x000A;332:     <span class="ruby-keyword kw">end</span></pre>
-                </div>
-              </div>
-              <div class='public-instance method' id='method-M000080'>
+              <div class='public-class method' id='method-M000080'>
                 <a name='M000080'>      </a>
                 <div class='synopsis'>
-                  <span class='name'>pass</span>
-                  <span class='arguments'>()</span>
+                  <span class='name'>register</span>
+                  <span class='arguments'>(*extensions, &amp;block)</span>
                 </div>
                 <div class='source'>
                   <a class='source-toggle' href='#' onclick="toggleCode('M000080-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000080-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 339</span>&#x000A;339:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pass</span>&#x000A;340:       <span class="ruby-identifier">throw</span> <span class="ruby-identifier">:pass</span>&#x000A;341:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000080-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 702</span>&#x000A;702:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">register</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">extensions</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;703:         <span class="ruby-identifier">extensions</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Module</span>.<span class="ruby-identifier">new</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block</span>&#x000A;704:         <span class="ruby-identifier">extend</span> <span class="ruby-operator">*</span><span class="ruby-identifier">extensions</span>&#x000A;705:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-class method' id='method-M000088'>
+                <a name='M000088'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>reload!</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000088-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000088-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 746</span>&#x000A;746:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reload!</span>&#x000A;747:         <span class="ruby-ivar">@reloading</span> = <span class="ruby-keyword kw">true</span>&#x000A;748:         <span class="ruby-identifier">superclass</span>.<span class="ruby-identifier">send</span> <span class="ruby-identifier">:reset!</span>, <span class="ruby-keyword kw">self</span>&#x000A;749:         <span class="ruby-identifier">$LOADED_FEATURES</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value str">&quot;sinatra.rb&quot;</span>)&#x000A;750:         <span class="ruby-operator">::</span><span class="ruby-constant">Kernel</span>.<span class="ruby-identifier">load</span> <span class="ruby-identifier">app_file</span>&#x000A;751:         <span class="ruby-ivar">@reloading</span> = <span class="ruby-keyword kw">false</span>&#x000A;752:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-class method' id='method-M000086'>
+                <a name='M000086'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>run!</span>
+                  <span class='arguments'>(options={})</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000086-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000086-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 721</span>&#x000A;721:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">run!</span>(<span class="ruby-identifier">options</span>={})&#x000A;722:         <span class="ruby-identifier">set</span> <span class="ruby-identifier">options</span>&#x000A;723:         <span class="ruby-identifier">handler</span>      = <span class="ruby-identifier">detect_rack_handler</span>&#x000A;724:         <span class="ruby-identifier">handler_name</span> = <span class="ruby-identifier">handler</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/.*::/</span>, <span class="ruby-value str">''</span>)&#x000A;725:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;== Sinatra/#{Sinatra::VERSION} has taken the stage &quot;</span> <span class="ruby-operator">+</span>&#x000A;726:           <span class="ruby-node">&quot;on #{port} for #{environment} with backup from #{handler_name}&quot;</span>&#x000A;727:         <span class="ruby-identifier">handler</span>.<span class="ruby-identifier">run</span> <span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">:Host</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">host</span>, <span class="ruby-identifier">:Port</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">port</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">server</span><span class="ruby-operator">|</span>&#x000A;728:           <span class="ruby-identifier">trap</span>(<span class="ruby-identifier">:INT</span>) <span class="ruby-keyword kw">do</span>&#x000A;729:             <span class="ruby-comment cmt">## Use thins' hard #stop! if available, otherwise just #stop</span>&#x000A;730:             <span class="ruby-identifier">server</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:stop!</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">server</span>.<span class="ruby-identifier">stop!</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">server</span>.<span class="ruby-identifier">stop</span>&#x000A;731:             <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\n== Sinatra has ended his set (crowd applauds)&quot;</span>&#x000A;732:           <span class="ruby-keyword kw">end</span>&#x000A;733:         <span class="ruby-keyword kw">end</span>&#x000A;734:       <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">EADDRINUSE</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>&#x000A;735:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;== Someone is already performing on port #{port}!&quot;</span>&#x000A;736:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-class method' id='method-M000063'>
+                <a name='M000063'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>set</span>
+                  <span class='arguments'>(option, value=self)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000063-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000063-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 528</span>&#x000A;528:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">set</span>(<span class="ruby-identifier">option</span>, <span class="ruby-identifier">value</span>=<span class="ruby-keyword kw">self</span>)&#x000A;529:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Proc</span>)&#x000A;530:           <span class="ruby-identifier">metadef</span>(<span class="ruby-identifier">option</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">value</span>)&#x000A;531:           <span class="ruby-identifier">metadef</span>(<span class="ruby-node">&quot;#{option}?&quot;</span>) { <span class="ruby-operator">!</span><span class="ruby-operator">!</span><span class="ruby-identifier">__send__</span>(<span class="ruby-identifier">option</span>) }&#x000A;532:           <span class="ruby-identifier">metadef</span>(<span class="ruby-node">&quot;#{option}=&quot;</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">val</span><span class="ruby-operator">|</span> <span class="ruby-identifier">set</span>(<span class="ruby-identifier">option</span>, <span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span>{<span class="ruby-identifier">val</span>}) }&#x000A;533:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">self</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">option</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:to_hash</span>)&#x000A;534:           <span class="ruby-identifier">option</span>.<span class="ruby-identifier">to_hash</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">set</span>(<span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span>) }&#x000A;535:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">respond_to?</span>(<span class="ruby-node">&quot;#{option}=&quot;</span>)&#x000A;536:           <span class="ruby-identifier">__send__</span> <span class="ruby-node">&quot;#{option}=&quot;</span>, <span class="ruby-identifier">value</span>&#x000A;537:         <span class="ruby-keyword kw">else</span>&#x000A;538:           <span class="ruby-identifier">set</span> <span class="ruby-identifier">option</span>, <span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span>{<span class="ruby-identifier">value</span>}&#x000A;539:         <span class="ruby-keyword kw">end</span>&#x000A;540:         <span class="ruby-keyword kw">self</span>&#x000A;541:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-class method' id='method-M000068'>
+                <a name='M000068'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>template</span>
+                  <span class='arguments'>(name, &amp;block)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000068-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000068-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 563</span>&#x000A;563:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">template</span>(<span class="ruby-identifier">name</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;564:         <span class="ruby-identifier">templates</span>[<span class="ruby-identifier">name</span>] = <span class="ruby-identifier">block</span>&#x000A;565:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-class method' id='method-M000082'>
+                <a name='M000082'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>test?</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000082-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000082-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 708</span>&#x000A;708:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test?</span> ; <span class="ruby-identifier">environment</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:test</span> ; <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-class method' id='method-M000085'>
+                <a name='M000085'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>use</span>
+                  <span class='arguments'>(middleware, *args, &amp;block)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000085-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000085-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 716</span>&#x000A;716:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">use</span>(<span class="ruby-identifier">middleware</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;717:         <span class="ruby-identifier">reset_middleware</span>&#x000A;718:         <span class="ruby-ivar">@middleware</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">middleware</span>, <span class="ruby-identifier">args</span>, <span class="ruby-identifier">block</span>]&#x000A;719:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-class method' id='method-M000070'>
+                <a name='M000070'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>use_in_file_templates!</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000070-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000070-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 571</span>&#x000A;571:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">use_in_file_templates!</span>&#x000A;572:         <span class="ruby-identifier">ignore</span> = [<span class="ruby-regexp re">/lib\/sinatra.*\.rb/</span>, <span class="ruby-regexp re">/\(.*\)/</span>, <span class="ruby-regexp re">/rubygems\/custom_require\.rb/</span>]&#x000A;573:         <span class="ruby-identifier">file</span> = <span class="ruby-identifier">caller</span>.&#x000A;574:           <span class="ruby-identifier">map</span>  { <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp re">/:\d+.*$/</span>, <span class="ruby-value str">''</span>) }.&#x000A;575:           <span class="ruby-identifier">find</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span> <span class="ruby-identifier">ignore</span>.<span class="ruby-identifier">all?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">pattern</span><span class="ruby-operator">|</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">!~</span> <span class="ruby-identifier">pattern</span> } }&#x000A;576:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">data</span> = <span class="ruby-operator">::</span><span class="ruby-constant">IO</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">file</span>).<span class="ruby-identifier">split</span>(<span class="ruby-value str">'__END__'</span>)[<span class="ruby-value">1</span>]&#x000A;577:           <span class="ruby-identifier">data</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/\r\n/</span>, <span class="ruby-value str">&quot;\n&quot;</span>)&#x000A;578:           <span class="ruby-identifier">template</span> = <span class="ruby-keyword kw">nil</span>&#x000A;579:           <span class="ruby-identifier">data</span>.<span class="ruby-identifier">each_line</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>&#x000A;580:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^@@\s*(.*)/</span>&#x000A;581:               <span class="ruby-identifier">template</span> = <span class="ruby-identifier">templates</span>[<span class="ruby-identifier">$1</span>.<span class="ruby-identifier">to_sym</span>] = <span class="ruby-value str">''</span>&#x000A;582:             <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">template</span>&#x000A;583:               <span class="ruby-identifier">template</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>&#x000A;584:             <span class="ruby-keyword kw">end</span>&#x000A;585:           <span class="ruby-keyword kw">end</span>&#x000A;586:         <span class="ruby-keyword kw">end</span>&#x000A;587:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <h2>Public instance methods</h2>
+              <div class='public-instance method' id='method-M000058'>
+                <a name='M000058'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>call</span>
+                  <span class='arguments'>(env)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Rack call interface.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000058-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000058-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 327</span>&#x000A;327:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">call</span>(<span class="ruby-identifier">env</span>)&#x000A;328:       <span class="ruby-identifier">dup</span>.<span class="ruby-identifier">call!</span>(<span class="ruby-identifier">env</span>)&#x000A;329:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-instance method' id='method-M000059'>
+                <a name='M000059'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>call!</span>
+                  <span class='arguments'>(env)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000059-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000059-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 333</span>&#x000A;333:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">call!</span>(<span class="ruby-identifier">env</span>)&#x000A;334:       <span class="ruby-ivar">@env</span>      = <span class="ruby-identifier">env</span>&#x000A;335:       <span class="ruby-ivar">@request</span>  = <span class="ruby-constant">Request</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">env</span>)&#x000A;336:       <span class="ruby-ivar">@response</span> = <span class="ruby-constant">Response</span>.<span class="ruby-identifier">new</span>&#x000A;337:       <span class="ruby-ivar">@params</span>   = <span class="ruby-keyword kw">nil</span>&#x000A;338: &#x000A;339:       <span class="ruby-identifier">invoke</span> { <span class="ruby-identifier">dispatch!</span> }&#x000A;340:       <span class="ruby-identifier">invoke</span> { <span class="ruby-identifier">error_block!</span>(<span class="ruby-identifier">response</span>.<span class="ruby-identifier">status</span>) }&#x000A;341: &#x000A;342:       <span class="ruby-comment cmt"># never respond with a body on HEAD requests</span>&#x000A;343:       <span class="ruby-ivar">@response</span>.<span class="ruby-identifier">body</span> = [] <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@env</span>[<span class="ruby-value str">'REQUEST_METHOD'</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'HEAD'</span>&#x000A;344: &#x000A;345:       <span class="ruby-ivar">@response</span>.<span class="ruby-identifier">finish</span>&#x000A;346:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-instance method' id='method-M000061'>
+                <a name='M000061'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>halt</span>
+                  <span class='arguments'>(*response)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Exit the current block and halt the response.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000061-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000061-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 354</span>&#x000A;354:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">halt</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">response</span>)&#x000A;355:       <span class="ruby-identifier">response</span> = <span class="ruby-identifier">response</span>.<span class="ruby-identifier">first</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>&#x000A;356:       <span class="ruby-identifier">throw</span> <span class="ruby-identifier">:halt</span>, <span class="ruby-identifier">response</span>&#x000A;357:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-instance method' id='method-M000060'>
+                <a name='M000060'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>options</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Access options defined with <a href="Base.html#M000063">Base.set</a>.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000060-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000060-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 349</span>&#x000A;349:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">options</span>&#x000A;350:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>&#x000A;351:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-instance method' id='method-M000062'>
+                <a name='M000062'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>pass</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Pass control to the next matching route.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000062-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000062-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 360</span>&#x000A;360:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pass</span>&#x000A;361:       <span class="ruby-identifier">throw</span> <span class="ruby-identifier">:pass</span>&#x000A;362:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
             </div>
