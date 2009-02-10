@@ -6,6 +6,10 @@ layout: default
 Frequently Asked Questions
 ==========================
 
+## <a id='deploy' href='#deploy'>What are my deployment options?</a>
+
+See the [book](book.html#deployment).
+
 ## <a id='sessions' href='#sessions'>How do I use sessions?</a>
 
 Sessions are disabled by default. You need to enable them and then use the
@@ -156,10 +160,6 @@ And in `mailerapp.rb`:
         :body => erb(:email)
     end
 
-## <a id='deploy' href='#deploy'>What are my deployment options?</a>
-
-See the [book](book.html#deployment).
-
 ## <a id='escape_html' href='#escape_html'>How do I escape html?</a>
 
 Include [Rack::Utils](http://rack.rubyforge.org/doc/classes/Rack/Utils.html)
@@ -177,6 +177,8 @@ Now you can escape html in your templates like this:
 Thanks to [Chris Schneider](http://www.gittr.com/index.php/archive/using-rackutils-in-sinatra-escape_html-h-in-rails/)
 for the tip!
 
+=======
+>>>>>>> Deployment is the #1 question I get most often:faq.markdown
 <!--
 
 ### <a id='queue' href='#queue'>How do I process jobs in the background?</a>
