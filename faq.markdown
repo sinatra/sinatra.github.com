@@ -75,7 +75,7 @@ follows:
 
     <%= erb(:mypartial, :layout => false) %>
 
-See [Christopher Schneid](http://www.gittr.com/)'s
+See [Chris Schneider](http://www.gittr.com/)'s
 [partials.rb](http://github.com/cschneid/irclogger/blob/master/lib/partials.rb)
 for a more robust partials implementation. It even supports rendering
 collections.
@@ -174,7 +174,7 @@ Now you can escape html in your templates like this:
 
     <%= h scary_output %>
 
-Thanks to [Christopher Schneid](http://www.gittr.com/index.php/archive/using-rackutils-in-sinatra-escape_html-h-in-rails/)
+Thanks to [Chris Schneider](http://www.gittr.com/index.php/archive/using-rackutils-in-sinatra-escape_html-h-in-rails/)
 for the tip!
 
 <!--

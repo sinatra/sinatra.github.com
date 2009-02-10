@@ -21,7 +21,7 @@ Sinatra would not be possible:
   whitespace errors __60d5006__
 * [Ezra Zygmuntowicz](http://brainspl.at/) (ezmobius) for initial help and
   letting Blake steal some of merbs internal code.
-* [Christopher Schneid](http://gittr.com) (cschneid) for The Book, the blog,
+* [Chris Schneider](http://gittr.com) (cschneid) for The Book, the blog,
   [irclogger.com](http://irclogger.com/sinatra), and a bunch of useful patches.
 * [Markus Prinz](http://blog.nuclearsquid.com/) (cypher) for patches over the
   years, caring about the README, and hanging in there when times were rough.

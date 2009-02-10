@@ -86,7 +86,7 @@ Around The Web
 Peter Cooper's compendium with links to tutorials, example
 applications, and presentations.
 
-### [Christopher Schneid's Blog: GITTR](http://www.gittr.com/)
+### [Chris Schneider's Blog: GITTR](http://www.gittr.com/)
 
 Christopher's blog is a treasure-trove of useful Sinatra related
 information.
