@@ -33,6 +33,7 @@ care of the rest.
 - [Giftsmas](http://github.com/jeremyevans/giftsmas) Gift Tracking Website
   using Sinatra, Sequel, and Scaffolding Extensions
 - [Toopaste](http://github.com/zapnap/toopaste) Pastebin site created with Sinatra and DataMapper
+- [go get me some](http://go-get-me-so.me/) Our new favorite timesink
 
 ## <a id="libs" href="#libs">Libraries and extensions</a>
 
