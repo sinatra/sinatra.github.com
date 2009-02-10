@@ -34,6 +34,8 @@ care of the rest.
   using Sinatra, Sequel, and Scaffolding Extensions
 - [Toopaste](http://github.com/zapnap/toopaste) Pastebin site created with Sinatra and DataMapper
 - [Columnlog](http://github.com/quirkey/columnlog) Tiny feed fetching app
+- [Kapow](http://code.google.com/p/kapow/) Comics on your iPhone
+- [Knapsack](http://github.com/joseph/knapsack/tree/master) Pack pages into data URIs
 
 ## <a id="libs" href="#libs">Libraries and extensions</a>
 
@@ -87,5 +89,6 @@ care of the rest.
 - [Meticulo](http://www.meticulo.com/)
 - [Apartment Therapy](http://www.apartmenttherapy.com)
 - [Nitobi](http://nitobi.com)
+- [Inventive Labs](http://inventivelabs.com.au/)
 - [ENTP](http://entp.com)
 - [FiveRuns](http://fiveruns.com)
