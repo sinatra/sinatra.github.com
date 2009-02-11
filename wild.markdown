@@ -80,6 +80,7 @@ care of the rest.
 - [columnlog](http://github.com/quirkey/columnlog) Tiny feed fetching app
 - [Your Fiveruns Dashboard](http://dash.fiveruns.com)
 - [IronRuby](http://ironruby.info) Watch their great stats here
+- [beeing.com](http://beeing.com/) Explore, Discover, Create
 
 ## <a id="biz" href="#biz">Companies using Sinatra</a>
 
