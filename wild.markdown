@@ -81,6 +81,10 @@ care of the rest.
 - [Your Fiveruns Dashboard](http://dash.fiveruns.com)
 - [IronRuby](http://ironruby.info) Watch their great stats here
 - [beeing.com](http://beeing.com/) Explore, Discover, Create
+- [ZapText](http://zaptxt.com/) Never miss critical time sensitive data (API uses Sinatra)
+- [MooURL](http://moourl.com/) The web's cutest URL shortening service
+- [FlexCode](http://flexcode.com.br/) iPhone development
+- [California PATH program - UC Berkley](http://www.path.berkeley.edu/) In-vehicle applications on their Vehicle-Infrastructure Integration server
 
 ## <a id="biz" href="#biz">Companies using Sinatra</a>
 
