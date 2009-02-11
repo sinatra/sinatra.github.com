@@ -79,6 +79,7 @@ care of the rest.
 - [themoviedb.org](http://api.themoviedb.org/) The name says it all :)
 - [columnlog](http://github.com/quirkey/columnlog) Tiny feed fetching app
 - [Your Fiveruns Dashboard](http://dash.fiveruns.com)
+- [IronRuby](http://ironruby.info) Watch their great stats here
 
 ## <a id="biz" href="#biz">Companies using Sinatra</a>
 
@@ -93,3 +94,4 @@ care of the rest.
 - [ENTP](http://entp.com)
 - [FiveRuns](http://fiveruns.com)
 - [Engine Yard](http://engineyard.com)
+- [Citrusbyte](http://www.citrusbyte.com/)
