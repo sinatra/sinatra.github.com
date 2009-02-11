@@ -177,6 +177,55 @@ Now you can escape html in your templates like this:
 Thanks to [Chris Schneider](http://www.gittr.com/index.php/archive/using-rackutils-in-sinatra-escape_html-h-in-rails/)
 for the tip!
 
+## <a id='how_to_test_http_authorization' href='#how_to_test_http_authorization'>How do I test HTTP Basic Auth?</a>
+
+Assuming you have simple implementation of HTTP authentication in your application:
+
+    require 'rubygems'
+    require 'sinatra'
+
+    use Rack::Auth::Basic do |username, password|
+      [username, password] == ['admin', 'admin']
+    end
+
+    get '/protected' do
+      "You're welcome"
+    end
+
+You can test it like this:
+
+    require 'rubygems'
+    require 'sinatra'
+    require 'sinatra/test/unit'
+    require 'application'
+    require 'base64'
+
+    class ApplicationTest < Test::Unit::TestCase
+
+      def test_without_authentication
+        get '/protected'
+        assert_equal 401, @response.status
+      end
+
+      def test_with_bad_credentials
+        get '/protected', {}, {'HTTP_AUTHORIZATION' => encode_credentials('go', 'away')}
+        assert_equal 401, @response.status
+      end
+
+      def test_with_proper_credentials
+        get '/protected', {}, {'HTTP_AUTHORIZATION'=> encode_credentials('admin', 'admin')}
+        assert_equal 200, @response.status
+        assert_equal "You're welcome", @response.body
+      end
+
+      private
+
+      def encode_credentials(username, password)
+        "Basic " + Base64.encode64("#{username}:#{password}")
+      end
+
+    end
+
 <!--
 
 ### <a id='queue' href='#queue'>How do I process jobs in the background?</a>
