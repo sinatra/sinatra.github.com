@@ -76,6 +76,7 @@ care of the rest.
 - [portfolio.quirkey.com](http://portfolio.quirkey.com/)
 - [go get me some](http://go-get-me-so.me/) Our new favorite timesink
 - [Chargd](http://www.chargd.com/) The quick way to get paid
+- [Deleanotes](http://delanotes.com/)
 - [themoviedb.org](http://api.themoviedb.org/) The name says it all :)
 - [columnlog](http://github.com/quirkey/columnlog) Tiny feed fetching app
 - [Your Fiveruns Dashboard](http://dash.fiveruns.com)
@@ -94,6 +95,7 @@ care of the rest.
 - [Curbed Network](http://curbed.com)
 - [Meticulo](http://www.meticulo.com/)
 - [Rock-n-code](http://www.rock-n-code.com/)
+- [Solutions](http://solutious.com/)
 - [Apartment Therapy](http://www.apartmenttherapy.com)
 - [Nitobi](http://nitobi.com)
 - [Inventive Labs](http://inventivelabs.com.au/)
