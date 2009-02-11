@@ -177,9 +177,60 @@ Now you can escape html in your templates like this:
 Thanks to [Chris Schneider](http://www.gittr.com/index.php/archive/using-rackutils-in-sinatra-escape_html-h-in-rails/)
 for the tip!
 
-## <a id='how_to_test_http_authorization' href='#how_to_test_http_authorization'>How do I test HTTP Basic Auth?</a>
+## <a id='auth' href='#auth'>How do I use HTTP authentication?</a>
 
-Assuming you have simple implementation of HTTP authentication in your application:
+You have at least two options for implementing basic access authentication (Basic HTTP Auth) in your application.
+
+I. When you want to protect all requests in the application, simply put Rack::Auth::Basic middleware in the request processing chain by the `use` directive:
+
+    require 'rubygems'
+    require 'sinatra'
+
+    use Rack::Auth::Basic do |username, password|
+      [username, password] == ['admin', 'admin']
+    end
+
+    get '/' do
+      "You're welcome"
+    end
+
+    get '/foo' do
+      "You're also welcome"
+    end
+
+II. When you want to protect only certain URLs in the application, or want the authorization to be more complex, you may use something like this:
+
+    require 'rubygems'
+    require 'sinatra'
+
+    helpers do
+
+      def protected!
+        response['WWW-Authenticate'] = %(Basic realm="Testing HTTP Auth") and \
+        throw(:halt, [401, "Not authorized\n"]) and \
+        return unless authorized?
+      end
+
+      def authorized?
+        @auth ||=  Rack::Auth::Basic::Request.new(request.env)
+        @auth.provided? && @auth.basic? && @auth.credentials && @auth.credentials == ['admin', 'admin']
+      end
+
+    end
+
+    get '/' do
+      "Everybody can see this page"
+    end
+
+    get '/protected' do
+      protected!
+      "Welcome, authenticated client"
+    end
+
+
+## <a id='test_http_auth' href='#test_http_auth'>How do I test HTTP authentication?</a>
+
+Assuming you have this simple implementation of HTTP authentication in your application:
 
     require 'rubygems'
     require 'sinatra'
@@ -229,7 +280,6 @@ You can test it like this:
 <!--
 
 ### <a id='queue' href='#queue'>How do I process jobs in the background?</a>
-### <a id='auth' href='#auth'>How do I use HTTP authorization?</a>
 ### <a id='auth' href='#auth'>How do I process file uploads?</a>
 
 -->
