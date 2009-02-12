@@ -36,6 +36,7 @@ care of the rest.
 - [Columnlog](http://github.com/quirkey/columnlog) Tiny feed fetching app
 - [Kapow](http://code.google.com/p/kapow/) Comics on your iPhone
 - [Knapsack](http://github.com/joseph/knapsack/tree/master) Pack pages into data URIs
+- [Thumblmonks](http://github.com/thumblemonks/evoke/tree/master) Delayed HTTP Requests
 
 ## <a id="libs" href="#libs">Libraries and extensions</a>
 
@@ -76,6 +77,7 @@ care of the rest.
 - [portfolio.quirkey.com](http://portfolio.quirkey.com/)
 - [go get me some](http://go-get-me-so.me/) Our new favorite timesink
 - [Chargd](http://www.chargd.com/) The quick way to get paid
+- [Gusg.us](http://gusg.us/) Blog - Ridding the long bus
 - [Deleanotes](http://delanotes.com/)
 - [themoviedb.org](http://api.themoviedb.org/) The name says it all :)
 - [columnlog](http://github.com/quirkey/columnlog) Tiny feed fetching app
