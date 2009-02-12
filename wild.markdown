@@ -37,6 +37,7 @@ care of the rest.
 - [Kapow](http://code.google.com/p/kapow/) Comics on your iPhone
 - [Knapsack](http://github.com/joseph/knapsack/tree/master) Pack pages into data URIs
 - [Thumblmonks](http://github.com/thumblemonks/evoke/tree/master) Delayed HTTP Requests
+- [weaky](http://github.com/benatkin/weaky) a basic CouchDB wiki
 
 ## <a id="libs" href="#libs">Libraries and extensions</a>
 
