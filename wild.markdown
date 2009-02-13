@@ -67,7 +67,7 @@ care of the rest.
 
 - [Calendar About Nothing](http://calendaraboutnothing.com) Seinfeld calendar
   for hackers
-- [irclogger](http://irclogger.com), logging
+- [irclogger](http://irclogger.com) Logging urz IRC channel
   [#sinatra](http://irclogger.com/sinatra)
 - [Follow Cost](http://followcost.com) Is that Twitter celebrity worth
   the pain?
@@ -80,6 +80,7 @@ care of the rest.
 - [Chargd](http://www.chargd.com/) The quick way to get paid
 - [Gusg.us](http://gusg.us/) Blog - Ridding the long bus
 - [Deleanotes](http://delanotes.com/)
+- [Pagestacker](http://pagestacker.com)
 - [themoviedb.org](http://api.themoviedb.org/) The name says it all :)
 - [columnlog](http://github.com/quirkey/columnlog) Tiny feed fetching app
 - [Your Fiveruns Dashboard](http://dash.fiveruns.com)
@@ -99,6 +100,7 @@ care of the rest.
 - [Meticulo](http://www.meticulo.com/)
 - [Rock-n-code](http://www.rock-n-code.com/)
 - [Solutions](http://solutious.com/)
+- [Centro](http://www.centro.net/)
 - [Apartment Therapy](http://www.apartmenttherapy.com)
 - [Nitobi](http://nitobi.com)
 - [Inventive Labs](http://inventivelabs.com.au/)
