@@ -99,7 +99,7 @@ care of the rest.
 - [Curbed Network](http://curbed.com)
 - [Meticulo](http://www.meticulo.com/)
 - [Rock-n-code](http://www.rock-n-code.com/)
-- [Solutions](http://solutious.com/)
+- [Solutious](http://solutious.com/)
 - [Centro](http://www.centro.net/)
 - [Apartment Therapy](http://www.apartmenttherapy.com)
 - [Nitobi](http://nitobi.com)
