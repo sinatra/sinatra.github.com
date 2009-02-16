@@ -38,6 +38,8 @@ care of the rest.
 - [Knapsack](http://github.com/joseph/knapsack/tree/master) Pack pages into data URIs
 - [Thumblmonks](http://github.com/thumblemonks/evoke/tree/master) Delayed HTTP Requests
 - [weaky](http://github.com/benatkin/weaky) a basic CouchDB wiki
+- [Amnesia](http://github.com/benschwarz/amnesia) an app that presents
+  memcached server stats
 
 ## <a id="libs" href="#libs">Libraries and extensions</a>
 
