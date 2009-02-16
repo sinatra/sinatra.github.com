@@ -6,11 +6,16 @@ layout: default
 Frequently Asked Questions
 ==========================
 
-## <a id='deploy' href='#deploy'>What are my deployment options?</a>
+* this will become the toc
+{:toc}
+
+What are my deployment options? {#deploy}
+-------------------------------
 
 See the [book](book.html#deployment).
 
-## <a id='sessions' href='#sessions'>How do I use sessions?</a>
+How do I use sessions? {#sessions}
+----------------------
 
 Sessions are disabled by default. You need to enable them and then use the
 `session` hash from routes and views:
@@ -26,7 +31,8 @@ Sessions are disabled by default. You need to enable them and then use the
       session[:message]   # => 'Hello World!'
     end
 
-## <a id='ruby19' href='#ruby19'>Can I run Sinatra under Ruby 1.9?</a>
+Can I run Sinatra under Ruby 1.9? {#ruby19}
+---------------------------------
 
 Not yet. [Rack](http://rack.rubyforge.org/) is not yet Ruby 1.9 compatible
 and Sinatra is very much dependent on Rack. We _are_ in the early stages of
@@ -34,7 +40,8 @@ testing under 1.9 and we're reviewing all new code and idioms for potential
 1.9 compatibility issues. The 1.0 release (currently scheduled for mid 2009)
 will run on 1.9 and chances are good that we'll support 1.9 before then.
 
-## <a id='path_info' href='#path_info'>How do I get the "route" for the current page?</a>
+How do I get the "route" for the current page? {#path_info}
+----------------------------------------------
 
 The `request` object probably has what you're looking for:
 
@@ -47,7 +54,8 @@ The `request` object probably has what you're looking for:
 See [Rack::Request](http://rack.rubyforge.org/doc/classes/Rack/Request.html)
 for a detailed list of methods supported by the `request` object.
 
-## <a id='helpview' href='#helpview'>How do I access helpers from within my views?</a>
+How do I access helpers from within my views? {#helpview}
+---------------------------------------------
 
 Call them! Views automatically have access to all helper methods. In fact,
 Sinatra evaluates routes, views, and helpers within the same exact object
@@ -70,7 +78,8 @@ In `views/hello.haml`:
 
     %p= "Hello " + em(@subject)
 
-## <a id='partials' href='#partials'>How do I render partials?</a>
+How do I render partials? {#partials}
+-------------------------
 
 Sinatra's template system is simple enough that it can be used for page and
 fragment level rendering tasks. The `erb` and `haml` methods simply return a
@@ -84,7 +93,8 @@ See [Chris Schneider](http://www.gittr.com/)'s
 for a more robust partials implementation. It even supports rendering
 collections.
 
-## <a id='multiroute' href='#multiroute'>Can I have multiple URLs trigger the same route/handler?</a>
+Can I have multiple URLs trigger the same route/handler? {#multiroute}
+--------------------------------------------------------
 
 Sure:
 
@@ -96,7 +106,8 @@ Sure:
 
 Seriously.
 
-## <a id='slash' href='#slash'>How do I make the trailing slash optional?</a>
+How do I make the trailing slash optional? {#slash}
+------------------------------------------
 
 Put a question mark after it:
 
@@ -106,7 +117,8 @@ Put a question mark after it:
 
 The route matches `"/foo/bar"` and `"/foo/bar/"`.
 
-## <a id='subdir' href='#subdir'>How do I render templates nested in subdirectories?</a>
+How do I render templates nested in subdirectories? {#subdir}
+---------------------------------------------------
 
 Sinatra apps do not typically have a very complex file heirarchy under
 `views`. First, consider whether you really need subdirectories at all.
@@ -123,7 +135,8 @@ be written as:
       haml 'foo/bar'.to_sym
     end
 
-## <a id='thindebug' href='#thindebug'>I'm running Thin and an error occurs but there's no output</a>
+I'm running Thin and an error occurs but there's no output {#thindebug}
+----------------------------------------------------------
 
 Try starting Thin with the `--debug` argument:
 
@@ -131,7 +144,8 @@ Try starting Thin with the `--debug` argument:
 
 That should give you an exception and backtrace on `stderr`.
 
-## <a id='email' href='#email'>How do I send Email from Sinatra?</a>
+How do I send Email from Sinatra? #{email}
+---------------------------------
 
 How about a [Pony](http://adam.blog.heroku.com/past/2008/11/2/pony_the_express_way_to_send_email_from_ruby/)
 (`sudo gem install pony`):
@@ -160,7 +174,8 @@ And in `mailerapp.rb`:
         :body => erb(:email)
     end
 
-## <a id='escape_html' href='#escape_html'>How do I escape html?</a>
+How do I escape html? {#escape_html}
+---------------------
 
 Include [Rack::Utils](http://rack.rubyforge.org/doc/classes/Rack/Utils.html)
 in your helpers and create an `h` alias as follows:
@@ -177,7 +192,8 @@ Now you can escape html in your templates like this:
 Thanks to [Chris Schneider](http://www.gittr.com/index.php/archive/using-rackutils-in-sinatra-escape_html-h-in-rails/)
 for the tip!
 
-## <a id='auth' href='#auth'>How do I use HTTP authentication?</a>
+How do I use HTTP authentication? {#auth}
+---------------------------------
 
 You have at least two options for implementing basic access authentication (Basic HTTP Auth) in your application.
 
@@ -228,7 +244,8 @@ II. When you want to protect only certain URLs in the application, or want the a
     end
 
 
-## <a id='test_http_auth' href='#test_http_auth'>How do I test HTTP authentication?</a>
+How do I test HTTP authentication? {#test_http_auth}
+----------------------------------
 
 Assuming you have this simple implementation of HTTP authentication in your application:
 
