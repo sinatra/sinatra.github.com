@@ -40,6 +40,9 @@ care of the rest.
 - [weaky](http://github.com/benatkin/weaky) a basic CouchDB wiki
 - [Amnesia](http://github.com/benschwarz/amnesia) an app that presents
   memcached server stats
+- [Rash](http://github.com/webs/rash), Ruby, Twitter &amp; Hashtags
+- [So Nice](http://github.com/sunny/so-nice) is a Small web interface to
+  control iTunes, Rhythmbox or MPD
 
 ## <a id="libs" href="#libs">Libraries and extensions</a>
 
