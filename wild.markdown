@@ -97,6 +97,7 @@ care of the rest.
 - [FlexCode](http://flexcode.com.br/) iPhone development
 - [California PATH program - UC Berkley](http://www.path.berkeley.edu/) In-vehicle applications on their Vehicle-Infrastructure Integration server
 - [TweepDiff](http://tweepdiff.com) Compare friends/followers of two Twitter users
+- [CSptRun](http://csptrun.com/) Minimal URL shortening service
 
 ## <a id="biz" href="#biz">Companies using Sinatra</a>
 
