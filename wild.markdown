@@ -96,6 +96,7 @@ care of the rest.
 - [MooURL](http://moourl.com/) The web's cutest URL shortening service
 - [FlexCode](http://flexcode.com.br/) iPhone development
 - [California PATH program - UC Berkley](http://www.path.berkeley.edu/) In-vehicle applications on their Vehicle-Infrastructure Integration server
+- [TweepDiff](http://tweepdiff.com) Compare friends/followers of two Twitter users
 
 ## <a id="biz" href="#biz">Companies using Sinatra</a>
 
