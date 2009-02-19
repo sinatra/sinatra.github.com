@@ -70,6 +70,7 @@ care of the rest.
 
 ## <a id="sites" href="#sites">Websites</a>
 
+- [Fabulously40 Mobile](http://iphone.fabulously40.com) Sinatra powered mobile site of [Fabulously40](http://fabulously40.com/)
 - [Calendar About Nothing](http://calendaraboutnothing.com) Seinfeld calendar
   for hackers
 - [irclogger](http://irclogger.com) Logging urz IRC channel
