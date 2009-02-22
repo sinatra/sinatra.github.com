@@ -193,7 +193,7 @@ application's root directory (see the `:root` option). The best way to
 specify an alternative directory name within the root of the application is
 to use a deferred value that references the `:root` option:
 
-    set :public, Proc.new { File.join(root, "templates") }
+    set :views, Proc.new { File.join(root, "templates") }
 
 ### `:run` - enable/disable the built-in web server
 
