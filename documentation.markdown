@@ -10,6 +10,10 @@ Documentation
 
 A whirlwind tour of Sinatra's most interesting features.
 
+### [Testing](testing.html)
+
+Guide to testing Sinatra
+
 ### [Frequently Asked Questions](faq.html)
 
 Answers to those questions most frequently asked on the mailing list and
