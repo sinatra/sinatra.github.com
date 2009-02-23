@@ -12,7 +12,7 @@ A whirlwind tour of Sinatra's most interesting features.
 
 ### [Testing](testing.html)
 
-Guide to testing Sinatra
+Guide to testing Sinatra apps.
 
 ### [Frequently Asked Questions](faq.html)
 

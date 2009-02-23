@@ -1,87 +1,109 @@
 ---
-title: Testing Sinatra
+title: Testing with Sinatra
 layout: default
 ---
 
-## Testing
+Testing with Sinatra
+====================
 
-The Sinatra::Test module includes a variety of helper methods for testing
-your Sinatra app. Sinatra includes support for Test::Unit, test-spec,
-RSpec, and Bacon through separate source files.
+The `Sinatra::Test` module includes a variety of helper methods
+to test your app.
 
-### Test::Unit
+As of version `0.9.1`, Sinatra does not provides any testing
+framework-specific helpers anymore. Those found in `sinatra/test/*.rb`
+are deprecated and will be removed in Sinatra `1.0`.
+
+However, this document explains how to install Sinatra's test helpers
+intro a variety of testing frameworks.
+
+Install it
+----------
+
+### [Test::Unit][] and [Test::Spec][]
+
+    require 'test/unit' # or test/spec
+    require 'sinatra/test'
+
+    Sinatra::Default.set :environment, :test
+    requie 'app'
+
+    class Test::Unit::TestCase
+      include Sinatra::Test
+    end
+
+
+### [RSpec][]
+
+Only the stuff that needs to be required change:
+
+    require 'spec'
+    require 'spec/interop/test'
+    require 'sinatra/test'
+
+    ...
+
+### [Bacon][]
+
+    require 'bacon'
+    require 'sinatra/test'
+
+    Sinatra::Default.set :environment, :test
+    requie 'app'
+
+    class Bacon::Context
+      include Sinatra::Test
+    end
+
+<!-- TODO: Webrat -->
+
+Use it
+------
+
+To be as general as possible, these examples assume `Test::Unit` is being used.
+
+*NOTE:* There are plenty of apps [in the wild][wild] that are using other
+testing frameworks.
+
+## app.rb
+
     require 'sinatra'
-    require 'sinatra/test/unit'
-    require 'my_sinatra_app'
+
+    get '/' do
+      "Hello #{params[:name]}"
+    end
+
+## test/test\_helpers.rb
+
+    require 'test/unit'
+    require 'sinatra/test'
+
+    Sinatra::Default.set :environment, :test
+    requie 'app'
+
+    class Test::Unit::TestCase
+      include Sinatra::Test
+    end
+
+## test/app\_test.rb
+
+    require File.dirname(__FILE__) + '/test_helper'
 
     class MyAppTest < Test::Unit::TestCase
-      def test_my_default
-        get '/'
-        assert_equal 'My Default Page!', @response.body
-      end
-
-      def test_with_agent
-        get '/', :env => { :agent => 'Songbird' }
-        assert_equal 'You're in Songbird!', @response.body
-      end
-
-      ...
-
-    end
-
-### Test::Spec
-
-Install the test-spec gem and require <tt>'sinatra/test/spec'</tt> before
-your app:
-
-    require 'sinatra'
-    require 'sinatra/test/spec'
-    require 'my_sinatra_app'
-
-    describe 'My app' do
-      it 'should show a default page' do
-        get '/'
-        should.be.ok
-        body.should.equal 'My Default Page!'
-      end
-
-      ...
-
-    end
-
-### RSpec
-
-Install the rspec gem and require <tt>'sinatra/test/rspec'</tt> before your
-app:
-
-    require 'sinatra'
-    require 'sinatra/test/rspec'
-    require 'my_sinatra_app'
-
-    describe 'My app' do
-      it 'should show a default page' do
-        get '/'
-        @response.should be_ok
-        @response.body.should == 'My Default Page!'
-      end
-
-      ...
-
-    end
-
-### Bacon
-
-    require 'sinatra'
-    require 'sinatra/test/bacon'
-    require 'my_sinatra_app'
-
-    describe 'My app' do
-      it 'should be ok' do
-        get '/'
-        should.be.ok
-        body.should == 'Im OK'
+      get test_it_says_hello
+        get '/', :name => 'Ryan "Middleware" Tomayko'
+        assert body.include?("Middleware")
       end
     end
 
-See Sinatra::Test for more information on <tt>get</tt>, <tt>post</tt>, <tt>put</tt> and friends.
+<!-- TODO: document usage of get, post etc -->
 
+See [Sinatra::Test][] and the [accompagning tests][test] for more information
+on `get`, `post`, `delete` and friends.
+
+[Test::Unit]: http://www.ruby-doc.org/stdlib/libdoc/test/unit/rdoc/classes/Test/Unit.html
+[RSpec]: http://rspec.info
+[Bacon]: http://github.com/chneukirchen/bacon
+[Test::Spec]: http://rubyforge.org/projects/test-spec/
+[Sinatra::Test]: http://github.com/sinatra/sinatra/blob/HEAD/lib/sinatra/test.rb
+[test]: http://github.com/sinatra/sinatra/blob/HEAD/test/test_test.rb
+[wild]: /wild.html
