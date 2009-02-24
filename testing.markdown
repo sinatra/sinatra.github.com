@@ -1,6 +1,7 @@
 ---
 title: Testing with Sinatra
 layout: default
+id: testing
 ---
 
 Testing with Sinatra
@@ -9,9 +10,9 @@ Testing with Sinatra
 The `Sinatra::Test` module includes a variety of helper methods
 to test your app.
 
-As of version `0.9.1`, Sinatra does not provides any testing
-framework-specific helpers anymore. Those found in `sinatra/test/*.rb`
-are deprecated and will be removed in Sinatra `1.0`.
+As of version `0.9.1`, Sinatra no longer provides testing framework-specific
+helpers. Those found in `sinatra/test/*.rb` are deprecated and will be removed
+in Sinatra `1.0`.
 
 However, this document explains how to install Sinatra's test helpers
 intro a variety of testing frameworks.
@@ -97,7 +98,7 @@ testing frameworks.
 
 <!-- TODO: document usage of get, post etc -->
 
-See [Sinatra::Test][] and the [accompagning tests][test] for more information
+See [Sinatra::Test][] and the [accompanying tests][test] for more information
 on `get`, `post`, `delete` and friends.
 
 [Test::Unit]: http://www.ruby-doc.org/stdlib/libdoc/test/unit/rdoc/classes/Test/Unit.html
