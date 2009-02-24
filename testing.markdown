@@ -25,7 +25,7 @@ Install it
     require 'sinatra/test'
 
     Sinatra::Default.set :environment, :test
-    requie 'app'
+    require 'app'
 
     class Test::Unit::TestCase
       include Sinatra::Test
@@ -48,7 +48,7 @@ Only the stuff that needs to be required change:
     require 'sinatra/test'
 
     Sinatra::Default.set :environment, :test
-    requie 'app'
+    require 'app'
 
     class Bacon::Context
       include Sinatra::Test
@@ -78,7 +78,7 @@ testing frameworks.
     require 'sinatra/test'
 
     Sinatra::Default.set :environment, :test
-    requie 'app'
+    require 'app'
 
     class Test::Unit::TestCase
       include Sinatra::Test
