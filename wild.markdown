@@ -8,7 +8,8 @@ layout: default
 and add your own entry to the `wild.markdown` file. Just push and we'll take
 care of the rest.
 
-## <a id="apps" href="#apps">Applications</a>
+Applications {#apps}
+------------
 
 - [Integrity](http://integrityapp.com) the easy and fun
   Continuous Integration server
@@ -49,7 +50,8 @@ care of the rest.
 - [sinatra-rubygems](http://github.com/jnewland/sinatra-rubygems) A complete
   reimplementation of the gem server command as a Sinatra application
 
-## <a id="libs" href="#libs">Libraries and extensions</a>
+Libraries and extensions {#libs}
+------------------------
 
 - [Sinatra's Hat](http://github.com/nakajima/sinatras-hat) Mount models as web
   services in Sinatra with ease
@@ -74,7 +76,8 @@ care of the rest.
 - [Reteweet](http://github.com/zapnap/retweet) Create Twitter apps like
   tweetdreams.org with ease
 
-## <a id="sites" href="#sites">Websites</a>
+Websites {#sites}
+--------
 
 - [Fabulously40 Mobile](http://iphone.fabulously40.com) Sinatra powered mobile
   site of [Fabulously40](http://fabulously40.com/)
@@ -110,7 +113,8 @@ care of the rest.
   users
 - [CSptRun](http://csptrun.com/) Minimal URL shortening service
 
-## <a id="biz" href="#biz">Companies using Sinatra</a>
+Companies using Sinatra {#biz}
+-----------------------
 
 - [Heroku](http://heroku.com)
 - [GitHub](http://github.com/blog/53-github-services-ipo)
