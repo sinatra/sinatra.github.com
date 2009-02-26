@@ -67,6 +67,8 @@ care of the rest.
 - [Spork](http://github.com/deadprogrammer/spork) Executes some aynchronous
   code using Sinatra running under Passenger
 - [Reteweet](http://github.com/zapnap/retweet) Create Twitter apps like tweetdreams.org with ease
+- [sinatra-rubygems](http://github.com/jnewland/sinatra-rubygems) A complete
+  reimplementation of the gem server command as a Sinatra application
 
 ## <a id="sites" href="#sites">Websites</a>
 
