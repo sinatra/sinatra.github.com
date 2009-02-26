@@ -31,6 +31,11 @@ Sessions are disabled by default. You need to enable them and then use the
       session[:message]   # => 'Hello World!'
     end
 
+How do I use session-based flash? {#flash}
+--------------------------------
+
+Use [Sinatra Flash](http://github.com/nakajima/sinatra-flash).
+
 Can I run Sinatra under Ruby 1.9? {#ruby19}
 ---------------------------------
 
