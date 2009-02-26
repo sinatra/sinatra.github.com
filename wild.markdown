@@ -32,17 +32,22 @@ care of the rest.
   Markdown files
 - [Giftsmas](http://github.com/jeremyevans/giftsmas) Gift Tracking Website
   using Sinatra, Sequel, and Scaffolding Extensions
-- [Toopaste](http://github.com/zapnap/toopaste) Pastebin site created with Sinatra and DataMapper
+- [Toopaste](http://github.com/zapnap/toopaste) Pastebin site created with
+  Sinatra and DataMapper
 - [Columnlog](http://github.com/quirkey/columnlog) Tiny feed fetching app
 - [Kapow](http://code.google.com/p/kapow/) Comics on your iPhone
-- [Knapsack](http://github.com/joseph/knapsack/tree/master) Pack pages into data URIs
-- [Thumblmonks](http://github.com/thumblemonks/evoke/tree/master) Delayed HTTP Requests
+- [Knapsack](http://github.com/joseph/knapsack/tree/master) Pack pages into
+  data URIs
+- [Thumblmonks](http://github.com/thumblemonks/evoke/tree/master) Delayed HTTP
+  Requests
 - [weaky](http://github.com/benatkin/weaky) a basic CouchDB wiki
 - [Amnesia](http://github.com/benschwarz/amnesia) an app that presents
   memcached server stats
 - [Rash](http://github.com/webs/rash), Ruby, Twitter &amp; Hashtags
 - [So Nice](http://github.com/sunny/so-nice) is a Small web interface to
   control iTunes, Rhythmbox or MPD
+- [sinatra-rubygems](http://github.com/jnewland/sinatra-rubygems) A complete
+  reimplementation of the gem server command as a Sinatra application
 
 ## <a id="libs" href="#libs">Libraries and extensions</a>
 
@@ -66,13 +71,13 @@ care of the rest.
   an [OAuth](http://oauth.net) provider implemented with Sinatra
 - [Spork](http://github.com/deadprogrammer/spork) Executes some aynchronous
   code using Sinatra running under Passenger
-- [Reteweet](http://github.com/zapnap/retweet) Create Twitter apps like tweetdreams.org with ease
-- [sinatra-rubygems](http://github.com/jnewland/sinatra-rubygems) A complete
-  reimplementation of the gem server command as a Sinatra application
+- [Reteweet](http://github.com/zapnap/retweet) Create Twitter apps like
+  tweetdreams.org with ease
 
 ## <a id="sites" href="#sites">Websites</a>
 
-- [Fabulously40 Mobile](http://iphone.fabulously40.com) Sinatra powered mobile site of [Fabulously40](http://fabulously40.com/)
+- [Fabulously40 Mobile](http://iphone.fabulously40.com) Sinatra powered mobile
+  site of [Fabulously40](http://fabulously40.com/)
 - [Calendar About Nothing](http://calendaraboutnothing.com) Seinfeld calendar
   for hackers
 - [irclogger](http://irclogger.com) Logging urz IRC channel
@@ -82,7 +87,8 @@ care of the rest.
 - [Is LOST on yet?](http://islostonyet.com/)
 - [URL Unwind](http://urlunwind.com) Don't get RickRolled again
 - [Tweetdreams](http://tweetdreams.org) Twitter dream journal
-- [Does Follow](http://doesfollow.com) Twitter tool for figuring out who follows whom
+- [Does Follow](http://doesfollow.com) Twitter tool for figuring out who
+  follows whom
 - [portfolio.quirkey.com](http://portfolio.quirkey.com/)
 - [go get me some](http://go-get-me-so.me/) Our new favorite timesink
 - [Chargd](http://www.chargd.com/) The quick way to get paid
@@ -94,11 +100,14 @@ care of the rest.
 - [Your Fiveruns Dashboard](http://dash.fiveruns.com)
 - [IronRuby](http://ironruby.info) Watch their great stats here
 - [beeing.com](http://beeing.com/) Explore, Discover, Create
-- [ZapText](http://zaptxt.com/) Never miss critical time sensitive data (API uses Sinatra)
+- [ZapText](http://zaptxt.com/) Never miss critical time sensitive data
+  (API uses Sinatra)
 - [MooURL](http://moourl.com/) The web's cutest URL shortening service
 - [FlexCode](http://flexcode.com.br/) iPhone development
-- [California PATH program - UC Berkley](http://www.path.berkeley.edu/) In-vehicle applications on their Vehicle-Infrastructure Integration server
-- [TweepDiff](http://tweepdiff.com) Compare friends/followers of two Twitter users
+- [California PATH program - UC Berkley](http://www.path.berkeley.edu/)
+  In-vehicle applications on their Vehicle-Infrastructure Integration server
+- [TweepDiff](http://tweepdiff.com) Compare friends/followers of two Twitter
+  users
 - [CSptRun](http://csptrun.com/) Minimal URL shortening service
 
 ## <a id="biz" href="#biz">Companies using Sinatra</a>
