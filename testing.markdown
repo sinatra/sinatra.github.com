@@ -290,7 +290,7 @@ more information on `get`, `post`, `put`, `delete` and friends.
 [RSpec]: http://rspec.info
 [Bacon]: http://github.com/chneukirchen/bacon
 [Test::Spec]: http://rubyforge.org/projects/test-spec/
-[Sinatra::Test]: http://github.com/sinatra/sinatra/blob/HEAD/lib/sinatra/test.rb
+[Sinatra::Test]: http://github.com/sinatra/sinatra/blob/987d622a52f3eaf28f8f6beb7451c3e43c23f075/test/test_test.rb
 [test]: http://github.com/sinatra/sinatra/blob/HEAD/test/test_test.rb
 [wild]: /wild.html
 [spec]: http://rack.rubyforge.org/doc/files/SPEC.html
