@@ -75,8 +75,8 @@ Libraries and extensions {#libs}
   code using Sinatra running under Passenger
 - [Reteweet](http://github.com/zapnap/retweet) Create Twitter apps like
   tweetdreams.org with ease
-- [Sinatra Flash](http://github.com/nakajima/sinatra-flash) Simple flash hash
-  implementation for Sinatra.
+- [Rack Flash](http://github.com/nakajima/rack-flash) Simple flash hash
+  implementation for Rack with extra sugar for Sinatra.
 
 Websites {#sites}
 --------
