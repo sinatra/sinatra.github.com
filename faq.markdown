@@ -197,6 +197,32 @@ Now you can escape html in your templates like this:
 Thanks to [Chris Schneider](http://www.gittr.com/index.php/archive/using-rackutils-in-sinatra-escape_html-h-in-rails/)
 for the tip!
 
+How do I use ActiveRecord migrations? {#ar-migrations}
+-------------------------------------
+
+From [Adam Wiggins's blog](http://adam.blog.heroku.com/past/2009/2/28/activerecord_migrations_outside_rails/):
+
+> To use ActiveRecord’s migrations with Sinatra (or other non-Rails project),
+> add the following to your Rakefile:
+>
+>     namespace :db do
+>       desc "Migrate the database"
+>         task(:migrate => :environment) do
+>         ActiveRecord::Base.logger = Logger.new(STDOUT)
+>         ActiveRecord::Migration.verbose = true
+>         ActiveRecord::Migrator.migrate("db/migrate")
+>       end
+>     end
+>
+> This assumes you have a task called `:environment` which loads your app’s
+> environment (requires the right files, sets up the database connection, etc).
+>
+> Now you can create a directory called `db/migrate` and fill in your
+> migrations. I usually call the first one `001_init.rb`.
+> (I prefer the old sequential method for numbering migrations vs. the
+> datetime method used since Rails 2.1, but either will work.)
+
+
 How do I use HTTP authentication? {#auth}
 ---------------------------------
 
