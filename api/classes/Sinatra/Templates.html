@@ -47,65 +47,65 @@
             <h2>Methods</h2>
             <h3>public instance</h3>
             <ol>
-              <li><a href="#M000016">builder</a></li>
-              <li><a href="#M000013">erb</a></li>
-              <li><a href="#M000014">haml</a></li>
-              <li><a href="#M000015">sass</a></li>
+              <li><a href="#M000015">builder</a></li>
+              <li><a href="#M000012">erb</a></li>
+              <li><a href="#M000013">haml</a></li>
+              <li><a href="#M000014">sass</a></li>
             </ol>
           </div>
           <div id='section'>
             <div id='methods'>
               <h2>Public instance methods</h2>
-              <div class='public-instance method' id='method-M000016'>
-                <a name='M000016'>      </a>
+              <div class='public-instance method' id='method-M000015'>
+                <a name='M000015'>      </a>
                 <div class='synopsis'>
                   <span class='name'>builder</span>
                   <span class='arguments'>(template=nil, options={}, &amp;block)</span>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000016-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000015-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000016-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 231</span>&#x000A;231:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">builder</span>(<span class="ruby-identifier">template</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">options</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;232:       <span class="ruby-identifier">require</span> <span class="ruby-value str">'builder'</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">defined?</span> <span class="ruby-operator">::</span><span class="ruby-constant">Builder</span>&#x000A;233:       <span class="ruby-identifier">options</span>, <span class="ruby-identifier">template</span> = <span class="ruby-identifier">template</span>, <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">template</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)&#x000A;234:       <span class="ruby-identifier">template</span> = <span class="ruby-identifier">lambda</span> { <span class="ruby-identifier">block</span> } <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">template</span>.<span class="ruby-identifier">nil?</span>&#x000A;235:       <span class="ruby-identifier">render</span> <span class="ruby-identifier">:builder</span>, <span class="ruby-identifier">template</span>, <span class="ruby-identifier">options</span>&#x000A;236:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000015-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 237</span>&#x000A;237:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">builder</span>(<span class="ruby-identifier">template</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">options</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;238:       <span class="ruby-identifier">require</span> <span class="ruby-value str">'builder'</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">defined?</span> <span class="ruby-operator">::</span><span class="ruby-constant">Builder</span>&#x000A;239:       <span class="ruby-identifier">options</span>, <span class="ruby-identifier">template</span> = <span class="ruby-identifier">template</span>, <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">template</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)&#x000A;240:       <span class="ruby-identifier">template</span> = <span class="ruby-identifier">lambda</span> { <span class="ruby-identifier">block</span> } <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">template</span>.<span class="ruby-identifier">nil?</span>&#x000A;241:       <span class="ruby-identifier">render</span> <span class="ruby-identifier">:builder</span>, <span class="ruby-identifier">template</span>, <span class="ruby-identifier">options</span>&#x000A;242:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-instance method' id='method-M000012'>
+                <a name='M000012'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>erb</span>
+                  <span class='arguments'>(template, options={})</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000012-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000012-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 220</span>&#x000A;220:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">erb</span>(<span class="ruby-identifier">template</span>, <span class="ruby-identifier">options</span>={})&#x000A;221:       <span class="ruby-identifier">require</span> <span class="ruby-value str">'erb'</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">defined?</span> <span class="ruby-operator">::</span><span class="ruby-constant">ERB</span>&#x000A;222:       <span class="ruby-identifier">render</span> <span class="ruby-identifier">:erb</span>, <span class="ruby-identifier">template</span>, <span class="ruby-identifier">options</span>&#x000A;223:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='public-instance method' id='method-M000013'>
                 <a name='M000013'>      </a>
                 <div class='synopsis'>
-                  <span class='name'>erb</span>
+                  <span class='name'>haml</span>
                   <span class='arguments'>(template, options={})</span>
                 </div>
                 <div class='source'>
                   <a class='source-toggle' href='#' onclick="toggleCode('M000013-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000013-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 214</span>&#x000A;214:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">erb</span>(<span class="ruby-identifier">template</span>, <span class="ruby-identifier">options</span>={})&#x000A;215:       <span class="ruby-identifier">require</span> <span class="ruby-value str">'erb'</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">defined?</span> <span class="ruby-operator">::</span><span class="ruby-constant">ERB</span>&#x000A;216:       <span class="ruby-identifier">render</span> <span class="ruby-identifier">:erb</span>, <span class="ruby-identifier">template</span>, <span class="ruby-identifier">options</span>&#x000A;217:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000013-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 225</span>&#x000A;225:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">haml</span>(<span class="ruby-identifier">template</span>, <span class="ruby-identifier">options</span>={})&#x000A;226:       <span class="ruby-identifier">require</span> <span class="ruby-value str">'haml'</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">defined?</span> <span class="ruby-operator">::</span><span class="ruby-constant">Haml</span>&#x000A;227:       <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:options</span>] <span class="ruby-operator">||=</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">haml</span> <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">respond_to?</span> <span class="ruby-identifier">:haml</span>&#x000A;228:       <span class="ruby-identifier">render</span> <span class="ruby-identifier">:haml</span>, <span class="ruby-identifier">template</span>, <span class="ruby-identifier">options</span>&#x000A;229:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='public-instance method' id='method-M000014'>
                 <a name='M000014'>      </a>
                 <div class='synopsis'>
-                  <span class='name'>haml</span>
-                  <span class='arguments'>(template, options={})</span>
+                  <span class='name'>sass</span>
+                  <span class='arguments'>(template, options={}, &amp;block)</span>
                 </div>
                 <div class='source'>
                   <a class='source-toggle' href='#' onclick="toggleCode('M000014-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000014-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 219</span>&#x000A;219:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">haml</span>(<span class="ruby-identifier">template</span>, <span class="ruby-identifier">options</span>={})&#x000A;220:       <span class="ruby-identifier">require</span> <span class="ruby-value str">'haml'</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">defined?</span> <span class="ruby-operator">::</span><span class="ruby-constant">Haml</span>&#x000A;221:       <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:options</span>] <span class="ruby-operator">||=</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">haml</span> <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">respond_to?</span> <span class="ruby-identifier">:haml</span>&#x000A;222:       <span class="ruby-identifier">render</span> <span class="ruby-identifier">:haml</span>, <span class="ruby-identifier">template</span>, <span class="ruby-identifier">options</span>&#x000A;223:     <span class="ruby-keyword kw">end</span></pre>
-                </div>
-              </div>
-              <div class='public-instance method' id='method-M000015'>
-                <a name='M000015'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>sass</span>
-                  <span class='arguments'>(template, options={}, &amp;block)</span>
-                </div>
-                <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000015-source'); return false">
-                    [show source]
-                  </a>
-                  <pre id='M000015-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 225</span>&#x000A;225:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sass</span>(<span class="ruby-identifier">template</span>, <span class="ruby-identifier">options</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;226:       <span class="ruby-identifier">require</span> <span class="ruby-value str">'sass'</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">defined?</span> <span class="ruby-operator">::</span><span class="ruby-constant">Sass</span>&#x000A;227:       <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:layout</span>] = <span class="ruby-keyword kw">false</span>&#x000A;228:       <span class="ruby-identifier">render</span> <span class="ruby-identifier">:sass</span>, <span class="ruby-identifier">template</span>, <span class="ruby-identifier">options</span>&#x000A;229:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000014-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 231</span>&#x000A;231:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sass</span>(<span class="ruby-identifier">template</span>, <span class="ruby-identifier">options</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;232:       <span class="ruby-identifier">require</span> <span class="ruby-value str">'sass'</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">defined?</span> <span class="ruby-operator">::</span><span class="ruby-constant">Sass</span>&#x000A;233:       <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:layout</span>] = <span class="ruby-keyword kw">false</span>&#x000A;234:       <span class="ruby-identifier">render</span> <span class="ruby-identifier">:sass</span>, <span class="ruby-identifier">template</span>, <span class="ruby-identifier">options</span>&#x000A;235:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
             </div>

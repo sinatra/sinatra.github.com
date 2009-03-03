@@ -31,7 +31,7 @@
         </div>
         <div class='last-update'>
           Last Update:
-          <span class='datetime'>Tue Feb 10 01:33:16 -0800 2009</span>
+          <span class='datetime'>Mon Mar 02 16:11:39 -0800 2009</span>
         </div>
       </div>
       <div id='content'>
@@ -140,8 +140,8 @@
             </p>
             <h3>Accessing Variables in Templates</h3>
             <p>
-            Templates are evaluated within the same context as the route blocks.
-            Instance variables set in route blocks are available in templates:
+            Templates are evaluated within the same context as route handlers. Instance
+            variables set in route handlers are direcly accessible by templates:
             </p>
             <pre>get '/:id' do&#x000A;  @foo = Foo.find(params[:id])&#x000A;  haml '%h1= @foo.name'&#x000A;end</pre>
             <p>
@@ -160,12 +160,11 @@
             <p>
             NOTE: In-file templates defined in the source file that requires sinatra
             are automatically loaded. Call the <tt>use_in_file_templates!</tt> method
-            explicitly if you have in-file templates in another source file.
+            explicitly if you have in-file templates in other source files.
             </p>
             <h3>Named Templates</h3>
             <p>
-            It&#8217;s possible to define named templates using the top-level
-            <tt>template</tt> method:
+            Templates may also be defined using the top-level <tt>template</tt> method:
             </p>
             <pre>template :layout do&#x000A;  &quot;%html\n  =yield\n&quot;&#x000A;end&#x000A;&#x000A;template :index do&#x000A;  '%div.title Hello World!'&#x000A;end&#x000A;&#x000A;get '/' do&#x000A;  haml :index&#x000A;end</pre>
             <p>
@@ -177,14 +176,14 @@
             <h2>Helpers</h2>
             <p>
             Use the top-level <tt>helpers</tt> method to define helper methods for use
-            in route blocks and templates:
+            in route handlers and templates:
             </p>
             <pre>helpers do&#x000A;  def bar(name)&#x000A;    &quot;#{name}bar&quot;&#x000A;  end&#x000A;end&#x000A;&#x000A;get '/:name' do&#x000A;  bar(params[:name])&#x000A;end</pre>
             <h2>Filters</h2>
             <p>
             Before filters are evaluated before each request within the context of the
             request and can modify the request and response. Instance variables set in
-            filters are accessible by routes and templates.
+            filters are accessible by routes and templates:
             </p>
             <pre>before do&#x000A;  @note = 'Hi!'&#x000A;  request.path_info = '/foo/bar/baz'&#x000A;end&#x000A;&#x000A;get '/foo/*' do&#x000A;  @note #=&gt; 'Hi!'&#x000A;  params[:splat] #=&gt; 'bar/baz'&#x000A;end</pre>
             <h2>Halting</h2>
@@ -202,8 +201,7 @@
             <pre>halt 401, 'go away!'</pre>
             <h2>Passing</h2>
             <p>
-            A route can punt processing to the next matching route using the
-            <tt>pass</tt> statement:
+            A route can punt processing to the next matching route using <tt>pass</tt>:
             </p>
             <pre>get '/guess/:who' do&#x000A;  pass unless params[:who] == 'Frank'&#x000A;  &quot;You got me!&quot;&#x000A;end&#x000A;&#x000A;get '/guess/*' do&#x000A;  &quot;You missed!&quot;&#x000A;end</pre>
             <p>
@@ -308,31 +306,17 @@
             </p>
             <h2>Testing</h2>
             <p>
-            The <a href="../classes/Sinatra/Test.html">Sinatra::Test</a> module
-            includes a variety of helper methods for testing your <a
-            href="../classes/Sinatra.html">Sinatra</a> app. <a
-            href="../classes/Sinatra.html">Sinatra</a> includes support for Test::Unit,
-            test-spec, RSpec, and Bacon through separate source files.
+            The <a href="../classes/Sinatra/Test.html">Sinatra::Test</a> mixin and <a
+            href="../classes/Sinatra/TestHarness.html">Sinatra::TestHarness</a> class
+            include a variety of helper methods for testing your <a
+            href="../classes/Sinatra.html">Sinatra</a> app:
             </p>
-            <h3>Test::Unit</h3>
-            <pre>require 'sinatra'&#x000A;require 'sinatra/test/unit'&#x000A;require 'my_sinatra_app'&#x000A;&#x000A;class MyAppTest &lt; Test::Unit::TestCase&#x000A;  def test_my_default&#x000A;    get '/'&#x000A;    assert_equal 'My Default Page!', @response.body&#x000A;  end&#x000A;&#x000A;  def test_with_agent&#x000A;    get '/', :agent =&gt; 'Songbird'&#x000A;    assert_equal 'You're in Songbird!', @response.body&#x000A;  end&#x000A;&#x000A;  ...&#x000A;end</pre>
-            <h3>Test::Spec</h3>
+            <pre>require 'my_sinatra_app'&#x000A;require 'test/unit'&#x000A;require 'sinatra/test'&#x000A;&#x000A;class MyAppTest &lt; Test::Unit::TestCase&#x000A;  include Sinatra::Test&#x000A;&#x000A;  def test_my_default&#x000A;    get '/'&#x000A;    assert_equal 'Hello World!', @response.body&#x000A;  end&#x000A;&#x000A;  def test_with_params&#x000A;    get '/meet', {:name =&gt; 'Frank'}&#x000A;    assert_equal 'Hello Frank!', @response.body&#x000A;  end&#x000A;&#x000A;  def test_with_rack_env&#x000A;    get '/', {}, :agent =&gt; 'Songbird'&#x000A;    assert_equal &quot;You're using Songbird!&quot;, @response.body&#x000A;  end&#x000A;end</pre>
             <p>
-            Install the test-spec gem and require <tt>'sinatra/test/spec'</tt> before
-            your app:
-            </p>
-            <pre>require 'sinatra'&#x000A;require 'sinatra/test/spec'&#x000A;require 'my_sinatra_app'&#x000A;&#x000A;describe 'My app' do&#x000A;  it &quot;should show a default page&quot; do&#x000A;    get '/'&#x000A;    should.be.ok&#x000A;    body.should.equal 'My Default Page!'&#x000A;  end&#x000A;&#x000A;  ...&#x000A;end</pre>
-            <h3>RSpec</h3>
-            <p>
-            Install the rspec gem and require <tt>'sinatra/test/rspec'</tt> before your
-            app:
-            </p>
-            <pre>require 'sinatra'&#x000A;require 'sinatra/test/rspec'&#x000A;require 'my_sinatra_app'&#x000A;&#x000A;describe 'My app' do&#x000A;  it 'should show a default page' do&#x000A;    get '/'&#x000A;    @response.should be_ok&#x000A;    @response.body.should == 'My Default Page!'&#x000A;  end&#x000A;&#x000A;  ...&#x000A;&#x000A;end</pre>
-            <h3>Bacon</h3>
-            <pre>require 'sinatra'&#x000A;require 'sinatra/test/bacon'&#x000A;require 'my_sinatra_app'&#x000A;&#x000A;describe 'My app' do&#x000A;  it 'should be ok' do&#x000A;    get '/'&#x000A;    should.be.ok&#x000A;    body.should == 'Im OK'&#x000A;  end&#x000A;end</pre>
-            <p>
-            See <a href="../classes/Sinatra/Test.html">Sinatra::Test</a> for more
-            information on <tt>get</tt>, <tt>post</tt>, <tt>put</tt>, and friends.
+            See <a
+            href="http://www.sinatrarb.com/testing.html">www.sinatrarb.com/testing.html</a>
+            for more on <a href="../classes/Sinatra/Test.html">Sinatra::Test</a> and
+            using it with other test frameworks such as RSpec, Bacon, and test/spec.
             </p>
             <h2>Command line</h2>
             <p>
@@ -367,12 +351,15 @@
             documentation, news, and links to other resources.
             
             </li>
-            <li><a href="http://sinatra.github.com/contribute.html">Contributing</a> - Find
-            a bug? Need help? Have a patch?
+            <li><a href="http://sinatra.github.com/contributing.html">Contributing</a> -
+            Find a bug? Need help? Have a patch?
             
             </li>
             <li><a href="http://sinatra.lighthouseapp.com">Lighthouse</a> - Issue tracking
             and release planning.
+            
+            </li>
+            <li><a href="http://twitter.com/sinatra">Twitter</a>
             
             </li>
             <li><a href="http://groups.google.com/group/sinatrarb">Mailing List</a>

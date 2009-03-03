@@ -189,8 +189,8 @@ Renders the inlined template string.
 </p>
 <h3>Accessing Variables in Templates</h3>
 <p>
-Templates are evaluated within the same context as the route blocks.
-Instance variables set in route blocks are available in templates:
+Templates are evaluated within the same context as route handlers. Instance
+variables set in route handlers are direcly accessible by templates:
 </p>
 <pre>
   get '/:id' do
@@ -235,12 +235,11 @@ Templates may be defined at the end of the source file:
 <p>
 NOTE: In-file templates defined in the source file that requires sinatra
 are automatically loaded. Call the <tt>use_in_file_templates!</tt> method
-explicitly if you have in-file templates in another source file.
+explicitly if you have in-file templates in other source files.
 </p>
 <h3>Named Templates</h3>
 <p>
-It&#8217;s possible to define named templates using the top-level
-<tt>template</tt> method:
+Templates may also be defined using the top-level <tt>template</tt> method:
 </p>
 <pre>
   template :layout do
@@ -268,7 +267,7 @@ a template is rendered. You can disable layouts by passing <tt>:layout
 <h2>Helpers</h2>
 <p>
 Use the top-level <tt>helpers</tt> method to define helper methods for use
-in route blocks and templates:
+in route handlers and templates:
 </p>
 <pre>
   helpers do
@@ -285,7 +284,7 @@ in route blocks and templates:
 <p>
 Before filters are evaluated before each request within the context of the
 request and can modify the request and response. Instance variables set in
-filters are accessible by routes and templates.
+filters are accessible by routes and templates:
 </p>
 <pre>
   before do
@@ -319,8 +318,7 @@ Or set the status and body &#8230;
 </pre>
 <h2>Passing</h2>
 <p>
-A route can punt processing to the next matching route using the
-<tt>pass</tt> statement:
+A route can punt processing to the next matching route using <tt>pass</tt>:
 </p>
 <pre>
   get '/guess/:who' do
@@ -476,88 +474,38 @@ typically don&#8217;t have to <tt>use</tt> them explicitly.
 </p>
 <h2>Testing</h2>
 <p>
-The Sinatra::Test module includes a variety of helper methods for testing
-your Sinatra app. Sinatra includes support for Test::Unit, test-spec,
-RSpec, and Bacon through separate source files.
+The Sinatra::Test mixin and Sinatra::TestHarness class include a variety of
+helper methods for testing your Sinatra app:
 </p>
-<h3>Test::Unit</h3>
 <pre>
-  require 'sinatra'
-  require 'sinatra/test/unit'
   require 'my_sinatra_app'
+  require 'test/unit'
+  require 'sinatra/test'
 
   class MyAppTest &lt; Test::Unit::TestCase
+    include Sinatra::Test
+
     def test_my_default
       get '/'
-      assert_equal 'My Default Page!', @response.body
+      assert_equal 'Hello World!', @response.body
     end
 
-    def test_with_agent
-      get '/', :env =&gt; { :agent =&gt; 'Songbird' }
-      assert_equal &quot;You're in Songbird!&quot;, @response.body
+    def test_with_params
+      get '/meet', {:name =&gt; 'Frank'}
+      assert_equal 'Hello Frank!', @response.body
     end
 
-    ...
-  end
-</pre>
-<h3>Test::Spec</h3>
-<p>
-Install the test-spec gem and require <tt>'sinatra/test/spec'</tt> before
-your app:
-</p>
-<pre>
-  require 'sinatra'
-  require 'sinatra/test/spec'
-  require 'my_sinatra_app'
-
-  describe 'My app' do
-    it &quot;should show a default page&quot; do
-      get '/'
-      should.be.ok
-      body.should.equal 'My Default Page!'
-    end
-
-    ...
-  end
-</pre>
-<h3>RSpec</h3>
-<p>
-Install the rspec gem and require <tt>'sinatra/test/rspec'</tt> before your
-app:
-</p>
-<pre>
-  require 'sinatra'
-  require 'sinatra/test/rspec'
-  require 'my_sinatra_app'
-
-  describe 'My app' do
-    it 'should show a default page' do
-      get '/'
-      @response.should be_ok
-      @response.body.should == 'My Default Page!'
-    end
-
-    ...
-
-  end
-</pre>
-<h3>Bacon</h3>
-<pre>
-  require 'sinatra'
-  require 'sinatra/test/bacon'
-  require 'my_sinatra_app'
-
-  describe 'My app' do
-    it 'should be ok' do
-      get '/'
-      should.be.ok
-      body.should == 'Im OK'
+    def test_with_rack_env
+      get '/', {}, :agent =&gt; 'Songbird'
+      assert_equal &quot;You're using Songbird!&quot;, @response.body
     end
   end
 </pre>
 <p>
-See Sinatra::Test for more information on <tt>get</tt>, <tt>post</tt>,
-<tt>put</tt>, and friends.
+See <a
+href="http://www.sinatrarb.com/testing.html">www.sinatrarb.com/testing.html</a>
+for more on Sinatra::Test and using it with other test frameworks such as
+RSpec, Bacon, and test/spec.
 </p>
 <h2>Command line</h2>
 <p>
@@ -619,6 +567,9 @@ Find a bug? Need help? Have a patch?
 </li>
 <li><a href="http://sinatra.lighthouseapp.com">Lighthouse</a> - Issue tracking
 and release planning.
+
+</li>
+<li><a href="http://twitter.com/sinatra">Twitter</a>
 
 </li>
 <li><a href="http://groups.google.com/group/sinatrarb">Mailing List</a>
