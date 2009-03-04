@@ -49,6 +49,7 @@ Applications {#apps}
   control iTunes, Rhythmbox or MPD
 - [sinatra-rubygems](http://github.com/jnewland/sinatra-rubygems) A complete
   reimplementation of the gem server command as a Sinatra application
+- [Nesta](http://effectif.com/nesta) is an SEO oriented CMS/blog for developers
 
 Libraries and extensions {#libs}
 ------------------------
@@ -114,6 +115,7 @@ Websites {#sites}
 - [TweepDiff](http://tweepdiff.com) Compare friends/followers of two Twitter
   users
 - [CSptRun](http://csptrun.com/) Minimal URL shortening service
+- [Effectif Development](http://effectif.com)
 
 Companies using Sinatra {#biz}
 -----------------------
