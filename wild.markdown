@@ -19,6 +19,7 @@ Applications {#apps}
 - [Scanty](http://github.com/adamwiggins/scanty) an even more minimalist
   blogging engine
 - [Scanty using CouchDB](http://github.com/jtulloch/scanty/tree/master)
+- [Scanty using CouchDB 0.9.0a and CouchRest 0.16](http://github.com/norr/scanty/tree/master)
 - [git-wiki](http://github.com/sr/git-wiki) a git-powered wiki
 - [Wordnatra](http://github.com/gnugeek/wordnatra) an interface to Princeton's
   WordNet lexical dictionary
