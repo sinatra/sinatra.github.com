@@ -82,6 +82,8 @@ Libraries and extensions {#libs}
   tweetdreams.org with ease
 - [Rack Flash](http://github.com/nakajima/rack-flash) Simple flash hash
   implementation for Rack with extra sugar for Sinatra.
+- [Sinatra-REST](http://github.com/blindgaenger/sinatra-rest) generates RESTful 
+  routes for your models (ActiveRecord, DataMapper, Stone)
 
 Websites {#sites}
 --------
