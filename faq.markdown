@@ -125,7 +125,7 @@ The route matches `"/foo/bar"` and `"/foo/bar/"`.
 How do I render templates nested in subdirectories? {#subdir}
 ---------------------------------------------------
 
-Sinatra apps do not typically have a very complex file heirarchy under
+Sinatra apps do not typically have a very complex file hierarchy under
 `views`. First, consider whether you really need subdirectories at all.
 If so, you can use the `views/foo/bar.haml` file as a template with:
 
