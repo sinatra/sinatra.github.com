@@ -34,7 +34,7 @@ Sessions are disabled by default. You need to enable them and then use the
 How do I use session-based flash? {#flash}
 --------------------------------
 
-Use [Sinatra Flash](http://github.com/nakajima/sinatra-flash).
+Use [Rack::Flash](http://github.com/nakajima/rack-flash).
 
 Can I run Sinatra under Ruby 1.9? {#ruby19}
 ---------------------------------
