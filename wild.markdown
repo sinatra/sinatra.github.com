@@ -59,7 +59,7 @@ Libraries and extensions {#libs}
 - [Classy Resources](http://github.com/giraffesoft/classy_resources) Think
   [resources controller](http://plugins.ardes.com/doc/resources_controller),
   except for sinatra
-- [Sinatra Diddies](http://github.com/foca/sinatra-diddies) A collection of
+- [Sinatra Ditties](http://github.com/foca/sinatra-ditties) A collection of
   plugins and useful helpers
 - [Chicago](http://github.com/thumblemonks/chicago) runtime and testing
   helpers, extensions, and macros commonly used by
