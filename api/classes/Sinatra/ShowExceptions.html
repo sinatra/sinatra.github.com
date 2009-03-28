@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>Class: Sinatra::ShowExceptions [Sinatra API Documentation]</title>
+    <meta content='text/html; charset=utf8' http-equiv='Content-Type'>
+    <link href='../.././rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Class</span>
+          Sinatra::ShowExceptions
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../files/lib/sinatra/showexceptions_rb.html">lib/sinatra/showexceptions.rb</a>
+          </li>
+        </ol>
+        <div class='parent'>
+          Parent:
+          <strong>Rack::ShowExceptions</strong>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public class</h3>
+            <ol>
+              <li><a href="#M000043">new</a></li>
+            </ol>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M000044">frame_class</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='constants-list'>
+              <h2>Constants</h2>
+              <div class='name-list'>
+                <table summary='Constants'>
+                  <tr class='top-aligned-row context-row'>
+                    <td class='context-item-name'>TEMPLATE</td>
+                    <td>=</td>
+                    <td class='context-item-value'>&lt;&lt;HTML &lt;!DOCTYPE html&gt; &lt;html&gt; &lt;head&gt;   &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;/&gt;   &lt;title&gt;&lt;%=h exception.class %&gt; at &lt;%=h path %&gt;&lt;/title&gt;    &lt;script type=&quot;text/javascript&quot;&gt;   //&lt;!--   function toggle(id) {     var pre  = document.getElementById(&quot;pre-&quot; + id);     var post = document.getElementById(&quot;post-&quot; + id);     var context = document.getElementById(&quot;context-&quot; + id);      if (pre.style.display == 'block') {       pre.style.display = 'none';       post.style.display = 'none';       context.style.background = &quot;none&quot;;     } else {       pre.style.display = 'block';       post.style.display = 'block';       context.style.background = &quot;#fffed9&quot;;     }   }    function toggleBacktrace(){     var bt = document.getElementById(&quot;backtrace&quot;);     var toggler = document.getElementById(&quot;expando&quot;);      if (bt.className == 'condensed') {       bt.className = 'expanded';       toggler.innerHTML = &quot;(condense)&quot;;     } else {       bt.className = 'condensed';       toggler.innerHTML = &quot;(expand)&quot;;     }   }   //--&gt;   &lt;/script&gt;  &lt;style type=&quot;text/css&quot; media=&quot;screen&quot;&gt;   *                   {margin: 0; padding: 0; border: 0; outline: 0;}   div.clear           {clear: both;}   body                {background: #EEEEEE; margin: 0; padding: 0;                        font-family: 'Lucida Grande', 'Lucida Sans Unicode',                        'Garuda';}   code                {font-family: 'Lucida Console', monospace;                        font-size: 12px;}   li                  {height: 18px;}   ul                  {list-style: none; margin: 0; padding: 0;}   ol:hover            {cursor: pointer;}   ol li               {white-space: pre;}   #explanation        {font-size: 12px; color: #666666;                        margin: 20px 0 0 100px;} /* WRAP */   #wrap               {width: 860px; background: #FFFFFF; margin: 0 auto;                        padding: 30px 50px 20px 50px;                        border-left: 1px solid #DDDDDD;                        border-right: 1px solid #DDDDDD;} /* HEADER */   #header             {margin: 0 auto 25px auto;}   #header img         {float: left;}   #header #summary    {float: left; margin: 12px 0 0 20px; width:520px;                        font-family: 'Lucida Grande', 'Lucida Sans Unicode';}   h1                  {margin: 0; font-size: 36px; color: #981919;}   h2                  {margin: 0; font-size: 22px; color: #333333;}   #header ul          {margin: 0; font-size: 12px; color: #666666;}   #header ul li strong{color: #444444;}   #header ul li       {display: inline; padding: 0 10px;}   #header ul li.first {padding-left: 0;}   #header ul li.last  {border: 0; padding-right: 0;} /* BODY */   #backtrace,   #get,   #post,   #cookies,   #rack               {width: 860px; margin: 0 auto 10px auto;}   p#nav               {float: right; font-size: 14px;} /* BACKTRACE */   a#expando           {float: left; padding-left: 5px; color: #666666;                       font-size: 14px; text-decoration: none; cursor: pointer;}   a#expando:hover     {text-decoration: underline;}   h3                  {float: left; width: 100px; margin-bottom: 10px;                        color: #981919; font-size: 14px; font-weight: bold;}   #nav a              {color: #666666; text-decoration: none; padding: 0 5px;}   #backtrace li.frame-info {background: #f7f7f7; padding-left: 10px;                            font-size: 12px; color: #333333;}   #backtrace ul       {list-style-position: outside; border: 1px solid #E9E9E9;                        border-bottom: 0;}   #backtrace ol       {width: 808px; margin-left: 50px;                        font: 10px 'Lucida Console', monospace; color: #666666;}   #backtrace ol li    {border: 0; border-left: 1px solid #E9E9E9;                        padding: 2px 0;}   #backtrace ol code  {font-size: 10px; color: #555555; padding-left: 5px;}   #backtrace-ul li    {border-bottom: 1px solid #E9E9E9; height: auto;                        padding: 3px 0;}   #backtrace-ul .code {padding: 6px 0 4px 0;}   #backtrace.condensed .system,   #backtrace.condensed .framework {display:none;} /* REQUEST DATA */   p.no-data           {padding-top: 2px; font-size: 12px; color: #666666;}   table.req           {width: 760px; text-align: left; font-size: 12px;                        color: #666666; padding: 0; border-spacing: 0;                        border: 1px solid #EEEEEE; border-bottom: 0;                        border-left: 0;}   table.req tr th     {padding: 2px 10px; font-weight: bold;                        background: #F7F7F7; border-bottom: 1px solid #EEEEEE;                        border-left: 1px solid #EEEEEE;}   table.req tr td     {padding: 2px 20px 2px 10px;                        border-bottom: 1px solid #EEEEEE;                        border-left: 1px solid #EEEEEE;} /* HIDE PRE/POST CODE AT START */   .pre-context,   .post-context       {display: none;} &lt;/style&gt; &lt;/head&gt; &lt;body&gt;   &lt;div id=&quot;wrap&quot;&gt;     &lt;div id=&quot;header&quot;&gt;       &lt;img src=&quot;/__sinatra__/500.png&quot; alt=&quot;application error&quot; /&gt;       &lt;div id=&quot;summary&quot;&gt;         &lt;h1&gt;&lt;strong&gt;&lt;%=h exception.class %&gt;&lt;/strong&gt; at &lt;strong&gt;&lt;%=h path %&gt;           &lt;/strong&gt;&lt;/h1&gt;         &lt;h2&gt;&lt;%=h exception.message %&gt;&lt;/h2&gt;         &lt;ul&gt;           &lt;li class=&quot;first&quot;&gt;&lt;strong&gt;file:&lt;/strong&gt; &lt;code&gt;             &lt;%=h frames.first.filename.split(&quot;/&quot;).last %&gt;&lt;/code&gt;&lt;/li&gt;           &lt;li&gt;&lt;strong&gt;location:&lt;/strong&gt; &lt;code&gt;&lt;%=h frames.first.function %&gt;             &lt;/code&gt;&lt;/li&gt;           &lt;li class=&quot;last&quot;&gt;&lt;strong&gt;line:             &lt;/strong&gt; &lt;%=h frames.first.lineno %&gt;&lt;/li&gt;         &lt;/ul&gt;       &lt;/div&gt;       &lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;     &lt;/div&gt;      &lt;div id=&quot;backtrace&quot; class='condensed'&gt;       &lt;h3&gt;BACKTRACE&lt;/h3&gt;       &lt;p&gt;&lt;a href=&quot;#&quot; id=&quot;expando&quot;             onclick=&quot;toggleBacktrace(); return false&quot;&gt;(expand)&lt;/a&gt;&lt;/p&gt;       &lt;p id=&quot;nav&quot;&gt;&lt;strong&gt;JUMP TO:&lt;/strong&gt;          &lt;a href=&quot;#get-info&quot;&gt;GET&lt;/a&gt;          &lt;a href=&quot;#post-info&quot;&gt;POST&lt;/a&gt;          &lt;a href=&quot;#cookie-info&quot;&gt;COOKIES&lt;/a&gt;          &lt;a href=&quot;#env-info&quot;&gt;ENV&lt;/a&gt;       &lt;/p&gt;       &lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;        &lt;ul id=&quot;backtrace-ul&quot;&gt;        &lt;% id = 1 %&gt;       &lt;% frames.each do |frame| %&gt;           &lt;% if frame.context_line &amp;&amp; frame.context_line != &quot;#&quot; %&gt;              &lt;li class=&quot;frame-info &lt;%= frame_class(frame) %&gt;&quot;&gt;               &lt;code&gt;&lt;%=h frame.filename %&gt;&lt;/code&gt; in                 &lt;code&gt;&lt;strong&gt;&lt;%=h frame.function %&gt;&lt;/strong&gt;&lt;/code&gt;             &lt;/li&gt;              &lt;li class=&quot;code &lt;%= frame_class(frame) %&gt;&quot;&gt;               &lt;% if frame.pre_context %&gt;               &lt;ol start=&quot;&lt;%=h frame.pre_context_lineno + 1 %&gt;&quot;                   class=&quot;pre-context&quot; id=&quot;pre-&lt;%= id %&gt;&quot;                   onclick=&quot;toggle(&lt;%= id %&gt;);&quot;&gt;                 &lt;% frame.pre_context.each do |line| %&gt;                 &lt;li class=&quot;pre-context-line&quot;&gt;&lt;code&gt;&lt;%=h line %&gt;&lt;/code&gt;&lt;/li&gt;                 &lt;% end %&gt;               &lt;/ol&gt;               &lt;% end %&gt;                &lt;ol start=&quot;&lt;%= frame.lineno %&gt;&quot; class=&quot;context&quot; id=&quot;&lt;%= id %&gt;&quot;                   onclick=&quot;toggle(&lt;%= id %&gt;);&quot;&gt;                 &lt;li class=&quot;context-line&quot; id=&quot;context-&lt;%= id %&gt;&quot;&gt;&lt;code&gt;&lt;%=                   h frame.context_line %&gt;&lt;/code&gt;&lt;/li&gt;               &lt;/ol&gt;                &lt;% if frame.post_context %&gt;               &lt;ol start=&quot;&lt;%=h frame.lineno + 1 %&gt;&quot; class=&quot;post-context&quot;                   id=&quot;post-&lt;%= id %&gt;&quot; onclick=&quot;toggle(&lt;%= id %&gt;);&quot;&gt;                 &lt;% frame.post_context.each do |line| %&gt;                 &lt;li class=&quot;post-context-line&quot;&gt;&lt;code&gt;&lt;%=h line %&gt;&lt;/code&gt;&lt;/li&gt;                 &lt;% end %&gt;               &lt;/ol&gt;               &lt;% end %&gt;               &lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;             &lt;/li&gt;            &lt;% end %&gt;          &lt;% id += 1 %&gt;       &lt;% end %&gt;        &lt;/ul&gt;     &lt;/div&gt; &lt;!-- /BACKTRACE --&gt;      &lt;div id=&quot;get&quot;&gt;       &lt;h3 id=&quot;get-info&quot;&gt;GET&lt;/h3&gt;       &lt;% unless req.GET.empty? %&gt;         &lt;table class=&quot;req&quot;&gt;           &lt;tr&gt;             &lt;th&gt;Variable&lt;/th&gt;             &lt;th&gt;Value&lt;/th&gt;           &lt;/tr&gt;            &lt;% req.GET.sort_by { |k, v| k.to_s }.each { |key, val| %&gt;           &lt;tr&gt;             &lt;td&gt;&lt;%=h key %&gt;&lt;/td&gt;             &lt;td class=&quot;code&quot;&gt;&lt;div&gt;&lt;%=h val.inspect %&gt;&lt;/div&gt;&lt;/td&gt;           &lt;/tr&gt;           &lt;% } %&gt;         &lt;/table&gt;       &lt;% else %&gt;         &lt;p class=&quot;no-data&quot;&gt;No GET data.&lt;/p&gt;       &lt;% end %&gt;       &lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;     &lt;/div&gt; &lt;!-- /GET --&gt;      &lt;div id=&quot;post&quot;&gt;       &lt;h3 id=&quot;post-info&quot;&gt;POST&lt;/h3&gt;       &lt;% unless req.POST.empty? %&gt;         &lt;table class=&quot;req&quot;&gt;           &lt;tr&gt;             &lt;th&gt;Variable&lt;/th&gt;             &lt;th&gt;Value&lt;/th&gt;           &lt;/tr&gt;           &lt;% req.POST.sort_by { |k, v| k.to_s }.each { |key, val| %&gt;           &lt;tr&gt;             &lt;td&gt;&lt;%=h key %&gt;&lt;/td&gt;             &lt;td class=&quot;code&quot;&gt;&lt;div&gt;&lt;%=h val.inspect %&gt;&lt;/div&gt;&lt;/td&gt;           &lt;/tr&gt;           &lt;% } %&gt;         &lt;/table&gt;       &lt;% else %&gt;         &lt;p class=&quot;no-data&quot;&gt;No POST data.&lt;/p&gt;       &lt;% end %&gt;       &lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;     &lt;/div&gt; &lt;!-- /POST --&gt;      &lt;div id=&quot;cookies&quot;&gt;       &lt;h3 id=&quot;cookie-info&quot;&gt;COOKIES&lt;/h3&gt;       &lt;% unless req.cookies.empty? %&gt;         &lt;table class=&quot;req&quot;&gt;           &lt;tr&gt;             &lt;th&gt;Variable&lt;/th&gt;             &lt;th&gt;Value&lt;/th&gt;           &lt;/tr&gt;           &lt;% req.cookies.each { |key, val| %&gt;             &lt;tr&gt;               &lt;td&gt;&lt;%=h key %&gt;&lt;/td&gt;               &lt;td class=&quot;code&quot;&gt;&lt;div&gt;&lt;%=h val.inspect %&gt;&lt;/div&gt;&lt;/td&gt;             &lt;/tr&gt;           &lt;% } %&gt;         &lt;/table&gt;       &lt;% else %&gt;         &lt;p class=&quot;no-data&quot;&gt;No cookie data.&lt;/p&gt;       &lt;% end %&gt;       &lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;     &lt;/div&gt; &lt;!-- /COOKIES --&gt;      &lt;div id=&quot;rack&quot;&gt;       &lt;h3 id=&quot;env-info&quot;&gt;Rack ENV&lt;/h3&gt;       &lt;table class=&quot;req&quot;&gt;         &lt;tr&gt;           &lt;th&gt;Variable&lt;/th&gt;           &lt;th&gt;Value&lt;/th&gt;         &lt;/tr&gt;          &lt;% env.sort_by { |k, v| k.to_s }.each { |key, val| %&gt;          &lt;tr&gt;            &lt;td&gt;&lt;%=h key %&gt;&lt;/td&gt;            &lt;td class=&quot;code&quot;&gt;&lt;div&gt;&lt;%=h val %&gt;&lt;/div&gt;&lt;/td&gt;          &lt;/tr&gt;          &lt;% } %&gt;       &lt;/table&gt;       &lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;     &lt;/div&gt; &lt;!-- /RACK ENV --&gt;      &lt;p id=&quot;explanation&quot;&gt;You're seeing this error because you use you have enabled the &lt;code&gt;show_exceptions&lt;/code&gt; option.&lt;/p&gt;   &lt;/div&gt; &lt;!-- /WRAP --&gt;   &lt;/body&gt; &lt;/html&gt; HTML</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div id='methods'>
+              <h2>Public class methods</h2>
+              <div class='public-class method' id='method-M000043'>
+                <a name='M000043'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>new</span>
+                  <span class='arguments'>(app)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000043-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000043-source'>   <span class="ruby-comment cmt"># File lib/sinatra/showexceptions.rb, line 5</span>&#x000A;5:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">app</span>)&#x000A;6:       <span class="ruby-ivar">@app</span>      = <span class="ruby-identifier">app</span>&#x000A;7:       <span class="ruby-ivar">@template</span> = <span class="ruby-constant">ERB</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">TEMPLATE</span>)&#x000A;8:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <h2>Public instance methods</h2>
+              <div class='public-instance method' id='method-M000044'>
+                <a name='M000044'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>frame_class</span>
+                  <span class='arguments'>(frame)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000044-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000044-source'>    <span class="ruby-comment cmt"># File lib/sinatra/showexceptions.rb, line 10</span>&#x000A;10:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">frame_class</span>(<span class="ruby-identifier">frame</span>)&#x000A;11:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">frame</span>.<span class="ruby-identifier">filename</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/lib\/sinatra.*\.rb/</span>&#x000A;12:         <span class="ruby-value str">&quot;framework&quot;</span>&#x000A;13:       <span class="ruby-keyword kw">elsif</span> (<span class="ruby-keyword kw">defined?</span>(<span class="ruby-constant">Gem</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">frame</span>.<span class="ruby-identifier">filename</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-constant">Gem</span>.<span class="ruby-identifier">dir</span>)) <span class="ruby-operator">||</span>&#x000A;14:             <span class="ruby-identifier">frame</span>.<span class="ruby-identifier">filename</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\/bin\/(\w+)$/</span>&#x000A;15:         <span class="ruby-value str">&quot;system&quot;</span>&#x000A;16:       <span class="ruby-keyword kw">else</span>&#x000A;17:         <span class="ruby-value str">&quot;app&quot;</span>&#x000A;18:       <span class="ruby-keyword kw">end</span>&#x000A;19:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

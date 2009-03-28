@@ -40,6 +40,9 @@
             <a href="../files/lib/sinatra/main_rb.html">lib/sinatra/main.rb</a>
           </li>
           <li class='other'>
+            <a href="../files/lib/sinatra/showexceptions_rb.html">lib/sinatra/showexceptions.rb</a>
+          </li>
+          <li class='other'>
             <a href="../files/lib/sinatra/test_rb.html">lib/sinatra/test.rb</a>
           </li>
           <li>
@@ -77,6 +80,7 @@
               Class <a href="Sinatra/Request.html" class="link">Sinatra::Request</a><br />
               Class <a href="Sinatra/Response.html" class="link">Sinatra::Response</a><br />
               Class <a href="Sinatra/ServerError.html" class="link">Sinatra::ServerError</a><br />
+              Class <a href="Sinatra/ShowExceptions.html" class="link">Sinatra::ShowExceptions</a><br />
               Class <a href="Sinatra/TestHarness.html" class="link">Sinatra::TestHarness</a><br />
             </div>
             <div id='constants-list'>
@@ -86,7 +90,7 @@
                   <tr class='top-aligned-row context-row'>
                     <td class='context-item-name'>VERSION</td>
                     <td>=</td>
-                    <td class='context-item-value'>'0.9.1'</td>
+                    <td class='context-item-value'>'0.9.1.1'</td>
                   </tr>
                 </table>
               </div>
@@ -171,7 +175,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000004-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000004-source'>      <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 1014</span>&#x000A;1014:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">helpers</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">extensions</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;1015:     <span class="ruby-constant">Default</span>.<span class="ruby-identifier">helpers</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">extensions</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;1016:   <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000004-source'>      <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 1055</span>&#x000A;1055:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">helpers</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">extensions</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;1056:     <span class="ruby-constant">Default</span>.<span class="ruby-identifier">helpers</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">extensions</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;1057:   <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='public-class method' id='method-M000010'>
@@ -193,11 +197,17 @@
                   <span class='name'>new</span>
                   <span class='arguments'>(base=Base, options={}, &amp;block)</span>
                 </div>
+                <div class='description'>
+                  <p>
+                  Create a new <a href="Sinatra.html">Sinatra</a> application. The block is
+                  evaluated in the new app&#8217;s class scope.
+                  </p>
+                </div>
                 <div class='source'>
                   <a class='source-toggle' href='#' onclick="toggleCode('M000002-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000002-source'>      <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 1002</span>&#x000A;1002:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">base</span>=<span class="ruby-constant">Base</span>, <span class="ruby-identifier">options</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;1003:     <span class="ruby-identifier">base</span> = <span class="ruby-constant">Class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">base</span>)&#x000A;1004:     <span class="ruby-identifier">base</span>.<span class="ruby-identifier">send</span> <span class="ruby-identifier">:class_eval</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>&#x000A;1005:     <span class="ruby-identifier">base</span>&#x000A;1006:   <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000002-source'>      <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 1043</span>&#x000A;1043:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">base</span>=<span class="ruby-constant">Base</span>, <span class="ruby-identifier">options</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;1044:     <span class="ruby-identifier">base</span> = <span class="ruby-constant">Class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">base</span>)&#x000A;1045:     <span class="ruby-identifier">base</span>.<span class="ruby-identifier">send</span> <span class="ruby-identifier">:class_eval</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>&#x000A;1046:     <span class="ruby-identifier">base</span>&#x000A;1047:   <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='public-class method' id='method-M000008'>
@@ -241,7 +251,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000003-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000003-source'>      <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 1009</span>&#x000A;1009:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">register</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">extensions</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;1010:     <span class="ruby-constant">Default</span>.<span class="ruby-identifier">register</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">extensions</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;1011:   <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000003-source'>      <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 1050</span>&#x000A;1050:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">register</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">extensions</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;1051:     <span class="ruby-constant">Default</span>.<span class="ruby-identifier">register</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">extensions</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;1052:   <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
             </div>

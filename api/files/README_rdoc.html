@@ -31,7 +31,7 @@
         </div>
         <div class='last-update'>
           Last Update:
-          <span class='datetime'>Mon Mar 02 16:11:39 -0800 2009</span>
+          <span class='datetime'>Sat Mar 28 17:30:53 +0100 2009</span>
         </div>
       </div>
       <div id='content'>
@@ -104,6 +104,12 @@
             directory. To use a different views directory:
             </p>
             <pre>set :views, File.dirname(__FILE__) + '/templates'</pre>
+            <p>
+            One important thing to remember is that you always have to reference
+            templates with symbols, even if they&#8217;re in a subdirectory (in this
+            case use <tt>:'subdir/template'</tt>). Rendering methods will render any
+            strings passed to them directly.
+            </p>
             <h3>Haml Templates</h3>
             <p>
             The haml gem/library is required to render HAML templates:
@@ -112,6 +118,13 @@
             <p>
             Renders <tt>./views/index.haml</tt>.
             </p>
+            <p>
+            <a href="http://haml.hamptoncatlin.com/docs/rdoc/classes/Haml.html">Haml's
+            options</a> can be set globally through Sinatra&#8217;s configurations, see
+            <a href="http://www.sinatrarb.com/configuration.html">Options and
+            Configurations</a>, and overridden on an individual basis.
+            </p>
+            <pre>set :haml, {:format =&gt; :html5 } # default Haml format is :xhtml&#x000A;&#x000A;get '/' do&#x000A;  haml :index, :haml_options =&gt; {:format =&gt; :html4 } # overridden&#x000A;end</pre>
             <h3>Erb Templates</h3>
             <pre>get '/' do&#x000A;  erb :index&#x000A;end</pre>
             <p>
@@ -133,6 +146,13 @@
             <p>
             Renders <tt>./views/stylesheet.sass</tt>.
             </p>
+            <p>
+            <a href="http://haml.hamptoncatlin.com/docs/rdoc/classes/Sass.html">Sass'
+            options</a> can be set globally through Sinatra&#8217;s configurations, see
+            <a href="http://www.sinatrarb.com/configuration.html">Options and
+            Configurations</a>, and overridden on an individual basis.
+            </p>
+            <pre>set :sass, {:style =&gt; :compact } # default Sass style is :nested&#x000A;&#x000A;get '/stylesheet.css' do&#x000A;  content_type 'text/css', :charset =&gt; 'utf-8'&#x000A;  sass :stylesheet, :sass_options =&gt; {:style =&gt; :expanded } # overridden&#x000A;end</pre>
             <h3>Inline Templates</h3>
             <pre>get '/' do&#x000A;  haml '%div.title Hello World'&#x000A;end</pre>
             <p>
@@ -208,27 +228,19 @@
             The route block is immediately exited and control continues with the next
             matching route. If no matching route is found, a 404 is returned.
             </p>
-            <h2>Configuration and Reloading</h2>
-            <p>
-            <a href="../classes/Sinatra.html">Sinatra</a> supports multiple
-            environments and reloading. Reloading happens before each request when
-            running under the <tt>:development</tt> environment. Wrap your
-            configurations (e.g., database connections, constants, etc.) in
-            <tt>configure</tt> blocks to protect them from reloading or to target
-            specific environments.
-            </p>
+            <h2>Configuration</h2>
             <p>
             Run once, at startup, in any environment:
             </p>
             <pre>configure do&#x000A;  ...&#x000A;end</pre>
             <p>
             Run only when the environment (RACK_ENV environment variable) is set to
-            <tt>:production</tt>.
+            <tt>:production</tt>:
             </p>
             <pre>configure :production do&#x000A;  ...&#x000A;end</pre>
             <p>
-            Run when the environment (RACK_ENV environment variable) is set to either
-            <tt>:production</tt> or <tt>:test</tt>.
+            Run when the environment is set to either <tt>:production</tt> or
+            <tt>:test</tt>:
             </p>
             <pre>configure :production, :test do&#x000A;  ...&#x000A;end</pre>
             <h2>Error handling</h2>
