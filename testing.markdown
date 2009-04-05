@@ -30,11 +30,7 @@ assumed to be in a file named `hello_world.rb`:
     require 'sinatra'
 
     get '/' do
-      "Hello World"
-    end
-
-    get '/:name' do
-      "Hello #{params[:name]}"
+      "Hello World #{params[:name]}".strip
     end
 
 Using The `Sinatra::Test` Mixin
@@ -65,7 +61,7 @@ properly:
 
       def test_it_says_hello_to_a_person
         get '/', :name => 'Simon'
-        assert response.body.include?("Simon")
+        assert response.body.include?('Simon')
       end
     end
 
