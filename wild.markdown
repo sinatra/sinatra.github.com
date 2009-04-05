@@ -50,6 +50,7 @@ Applications {#apps}
 - [sinatra-rubygems](http://github.com/jnewland/sinatra-rubygems) A complete
   reimplementation of the gem server command as a Sinatra application
 - [Nesta](http://effectif.com/nesta) is an SEO oriented CMS/blog for developers
+- [Mogo](http://github.com/zapnap/mogo) A planet-style feed aggregator
 
 Libraries and extensions {#libs}
 ------------------------
@@ -74,7 +75,7 @@ Libraries and extensions {#libs}
   an [OAuth](http://oauth.net) provider implemented with Sinatra
 - [Spork](http://github.com/deadprogrammer/spork) Executes some aynchronous
   code using Sinatra running under Passenger
-- [Reteweet](http://github.com/zapnap/retweet) Create Twitter apps like
+- [Retweet](http://github.com/zapnap/retweet) Create Twitter apps like
   tweetdreams.org with ease
 - [Rack Flash](http://github.com/nakajima/rack-flash) Simple flash hash
   implementation for Rack with extra sugar for Sinatra.
