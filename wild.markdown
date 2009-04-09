@@ -120,6 +120,7 @@ Websites {#sites}
   users
 - [CSptRun](http://csptrun.com/) Minimal URL shortening service
 - [Effectif Development](http://effectif.com)
+- [Chirp-chirp](http://blog.saush.com/2009/04/write-a-sinatra-based-twitter-clone-in-200-lines-of-ruby-code/) Write a Sinatra-based Twitter clone in 200 lines of Ruby code
 
 Companies using Sinatra {#biz}
 -----------------------
