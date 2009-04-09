@@ -11,6 +11,8 @@ care of the rest.
 Applications {#apps}
 ------------
 
+- [Shoes and a Shotgun](http://github.com/hansineffect/shoes-and-a-shotgun/)
+  an one click development environment built on Shoes
 - [Integrity](http://integrityapp.com) the easy and fun
   Continuous Integration server
 - [Wink](http://github.com/rtomayko/wink) minimalist blogging engine
