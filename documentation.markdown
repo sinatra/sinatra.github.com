@@ -92,6 +92,10 @@ Adam Keys and The Pragmatic Programmers have started a series of screencasts
 on Sinatra. The first two episodes cover creating a tiny web app and creating
 a REST service. <em>$5 a pop.</em>
 
+### [Sinatra at Locos x Rails](http://www.slideshare.net/godfoca/sinatra-1282891), in Buenos Aires
+
+By [Nicolás Sanguinetti](http://github.com/foca), April 2009.
+
 Around The Web
 --------------
 
