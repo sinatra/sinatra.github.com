@@ -54,6 +54,10 @@ Applications {#apps}
   reimplementation of the gem server command as a Sinatra application
 - [Nesta](http://effectif.com/nesta) is an SEO oriented CMS/blog for developers
 - [Mogo](http://github.com/zapnap/mogo) A planet-style feed aggregator
+- [Hancock](http://github.com/atmos/hancock/tree/master) A Single Sign On
+  provider based on OpenID
+- [Hancock Client](http://github.com/atmos/hancock-client/tree/master) Rack
+  middleware client written in Sinatra for the the Hancock server.
 
 Libraries and extensions {#libs}
 ------------------------
