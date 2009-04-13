@@ -57,7 +57,7 @@ Applications {#apps}
 - [Hancock](http://github.com/atmos/hancock/tree/master) A Single Sign On
   provider based on OpenID
 - [Hancock Client](http://github.com/atmos/hancock-client/tree/master) Rack
-  middleware client written in Sinatra for the the Hancock server.
+  middleware client for the the Hancock server, written in Sinatra.
 
 Libraries and extensions {#libs}
 ------------------------
