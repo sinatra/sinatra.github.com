@@ -31,6 +31,14 @@ Sessions are disabled by default. You need to enable them and then use the
       session[:message]   # => 'Hello World!'
     end
 
+If you need to set additional parameters for sessions, like expiration date, use [`Rack::Session::Cookie`](http://rack.rubyforge.org/doc/classes/Rack/Session/Cookie.html) directly instead of `enable :sessions` (example from _Rack_ documentation):
+
+    use Rack::Session::Cookie, :key => 'rack.session',
+                               :domain => 'foo.com',
+                               :path => '/',
+                               :expire_after => 2592000, # In seconds
+                               :secret => 'change_me'
+
 How do I use session-based flash? {#flash}
 --------------------------------
 
