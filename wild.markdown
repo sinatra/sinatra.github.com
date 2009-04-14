@@ -147,3 +147,4 @@ Companies using Sinatra {#biz}
 - [FiveRuns](http://fiveruns.com)
 - [Engine Yard](http://engineyard.com)
 - [Citrusbyte](http://www.citrusbyte.com/)
+- [Lomographic Society International](http://beta.lomography.com)
