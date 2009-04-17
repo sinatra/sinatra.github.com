@@ -43,6 +43,8 @@ file.
 Generated from Sinatra's source with RDoc. The
 [Rack API docs](http://rack.rubyforge.org/doc/) should also be consulted.
 
+Also available with an alternate template at <http://railsapi.com/sinatra>.
+
 ### [The Sinatra Book](book.html) (_Work In Progress_)
 
 An in-depth look at building and deploying Sinatra applications.
