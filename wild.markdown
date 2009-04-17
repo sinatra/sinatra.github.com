@@ -89,6 +89,8 @@ Libraries and extensions {#libs}
   implementation for Rack with extra sugar for Sinatra.
 - [Sinatra-REST](http://github.com/blindgaenger/sinatra-rest) generates RESTful 
   routes for your models (ActiveRecord, DataMapper, Stone)
+- [R18n](http://r18n.rubyforge.org/#sinatra) Agnostic i18n library with Sinatra
+  extension.
 
 Websites {#sites}
 --------
