@@ -91,6 +91,8 @@ Libraries and extensions {#libs}
   routes for your models (ActiveRecord, DataMapper, Stone)
 - [R18n](http://r18n.rubyforge.org/#sinatra) Agnostic i18n library with Sinatra
   extension.
+- [url_for](http://github.com/emk/sinatra-url-for/) Construct absolute paths
+  and full URLs for current application.
 
 Websites {#sites}
 --------
