@@ -93,6 +93,8 @@ Libraries and extensions {#libs}
   extension.
 - [url\_for](http://github.com/emk/sinatra-url-for/) Construct absolute paths
   and full URLs for current application.
+- [WebIRC](http://github.com/andyherbert/WebIRC) Web-based IRC
+  client
 
 Websites {#sites}
 --------
