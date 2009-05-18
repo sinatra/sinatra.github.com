@@ -15,11 +15,6 @@ A whirlwind tour of Sinatra's most interesting features.
 Detailed documentation on all of Sinatra's built-in options and using `set`,
 `enable`, and `disable` to configure them.
 
-### [Testing with Sinatra](testing.html)
-
-Guide to testing Sinatra apps. Includes information on integrating Sinatra's
-test helpers with test/unit, RSpec, Bacon, and test/spec.
-
 ### [Writing Extensions](extensions.html)
 
 How to add new functionality to Sinatra using the extension APIs.

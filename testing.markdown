@@ -7,6 +7,10 @@ id: testing
 Testing with Sinatra
 ====================
 
+**NOTE: Sinatra's built-in test framework -- and everything described
+on this page -- is deprecated. Please see
+[Rack::Test](http://gitrdoc.com/brynary/rack-test/tree/master) instead.**
+
 Sinatra includes utility classes and modules to assist in testing
 applications. The utilities are based heavily on Rack's
 [`MockRequest`][Rack::MockRequest] and [`MockResponse`][Rack::MockResponse]
