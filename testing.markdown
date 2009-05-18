@@ -50,6 +50,10 @@ properly:
     class HelloWorldTest < Test::Unit::TestCase
       include Rack::Test::Methods
 
+      def app
+        Sinatra::Application
+      end
+
       def test_it_says_hello_world
         get '/'
         assert last_response.ok?
@@ -116,6 +120,13 @@ subclasses, simply set the `app` method to return your particular class.
 
       def app 
       	MySinatraApp
+      end
+
+If you're using a classic style Sinatra application, then you need to return an 
+instance of `Sinatra::Application`.
+
+      def app
+        Sinatra::Application
       end
 
 ### Making `Rack::Test` available to all test cases
