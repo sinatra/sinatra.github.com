@@ -95,7 +95,7 @@ Libraries and extensions {#libs}
   and full URLs for current application.
 - [WebIRC](http://github.com/andyherbert/WebIRC) Web-based IRC
   client.
-- [content_for](http://github.com/foca/sinatra-content-for) Rails-like `content_for`
+- [content\_for](http://github.com/foca/sinatra-content-for) Rails-like `content_for`
   helper for your views (supports ERB and Haml.)
 
 Websites {#sites}
