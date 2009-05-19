@@ -94,7 +94,9 @@ Libraries and extensions {#libs}
 - [url\_for](http://github.com/emk/sinatra-url-for/) Construct absolute paths
   and full URLs for current application.
 - [WebIRC](http://github.com/andyherbert/WebIRC) Web-based IRC
-  client
+  client.
+- [content_for](http://github.com/foca/sinatra-content-for) Rails-like `content_for`
+  helper for your views (supports ERB and Haml.)
 
 Websites {#sites}
 --------
