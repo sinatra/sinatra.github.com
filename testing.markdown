@@ -1,22 +1,20 @@
 ---
-title: Testing with Sinatra
+title: Testing Sinatra with Rack::Test
 layout: default
 id: testing
 ---
 
-Testing with Sinatra
-====================
+Testing Sinatra with Rack::Test
+===============================
 
-**NOTE: Sinatra's built-in test framework  has been deprecated.  This page uses the new recommended test framework
-[Rack::Test](http://gitrdoc.com/brynary/rack-test/tree/master) instead.**
+**NOTE: Sinatra's built-in test framework has been deprecated in favor of
+[Rack::Test](http://gitrdoc.com/brynary/rack-test/tree/master) as of version
+0.9.2. This document describes testing with Rack::Test.**
 
 All examples in the following  sections assume that `Test::Unit` is being 
 used in an attempt to be as general as possible. See the [Test Framework
-Examples](#frameworks) for information on using Sinatra's test helpers in
+Examples](#frameworks) for information on using the test helpers in
 other testing environments.
-
-*NOTE:* There are plenty of apps [in the wild][wild] that are using other
-testing frameworks.
 
 Example App: `hello_world.rb`
 -----------------------------
@@ -31,7 +29,7 @@ assumed to be in a file named `hello_world.rb`:
     end
 
 Using The `Rack::Test::Methods` Mixin
--------------------------------
+-------------------------------------
 
 The `Rack::Test::Methods` module includes a variety of helper methods for
 simulating requests against an application and asserting expectations about
@@ -67,7 +65,7 @@ properly:
     end
 
 Using `Rack::Test` without the Mixin
-----------------------------------
+------------------------------------
 For a variety of reasons you may not want to include `Rack::Test::Methods`
 into your own classes.  `Rack::Test` supports this style of testing as well, here is the above example without using Mixin.
 
@@ -137,7 +135,6 @@ Consider the following examples:
       assert_equal 'Hello World'.length.to_s, last_response.header['Content-Length']
       assert_equal 'Hello World', last_response.body
     end
-
 
 ### Optional Test Setup
 

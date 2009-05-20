@@ -15,6 +15,10 @@ A whirlwind tour of Sinatra's most interesting features.
 Detailed documentation on all of Sinatra's built-in options and using `set`,
 `enable`, and `disable` to configure them.
 
+### [Testing Sinatra with Rack::Test](testing.html)
+
+Guide to testing Sinatra apps.
+
 ### [Writing Extensions](extensions.html)
 
 How to add new functionality to Sinatra using the extension APIs.
