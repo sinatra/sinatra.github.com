@@ -137,6 +137,7 @@ Websites {#sites}
 - [CSptRun](http://csptrun.com/) Minimal URL shortening service
 - [Effectif Development](http://effectif.com)
 - [Chirp-chirp](http://blog.saush.com/2009/04/write-a-sinatra-based-twitter-clone-in-200-lines-of-ruby-code/) Write a Sinatra-based Twitter clone in 200 lines of Ruby code
+- [Rdoc.info](http://rdoc.info/) Auto-generate and host Ruby library documentation using GitHub web hooks
 
 Companies using Sinatra {#biz}
 -----------------------
@@ -158,3 +159,4 @@ Companies using Sinatra {#biz}
 - [Citrusbyte](http://www.citrusbyte.com/)
 - [Lomographic Society International](http://beta.lomography.com)
 - [Swipht Technologies](http://www.swipht.com)
+- [Nth Metal Interactive](http://nthmetal.com)
