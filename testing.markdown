@@ -10,7 +10,7 @@ Testing with Sinatra
 **NOTE: Sinatra's built-in test framework  has been deprecated.  This page uses the new recommended test framework
 [Rack::Test](http://gitrdoc.com/brynary/rack-test/tree/master) instead.**
 
-All examples in the follow  sections assume that `Test::Unit` is being 
+All examples in the following  sections assume that `Test::Unit` is being 
 used in an attempt to be as general as possible. See the [Test Framework
 Examples](#frameworks) for information on using Sinatra's test helpers in
 other testing environments.
@@ -30,10 +30,10 @@ assumed to be in a file named `hello_world.rb`:
       "Hello World #{params[:name]}".strip
     end
 
-Using The `Rack::Test` Mixin
+Using The `Rack::Test::Methods` Mixin
 -------------------------------
 
-The `Rack::Test` module includes a variety of helper methods for
+The `Rack::Test::Methods` module includes a variety of helper methods for
 simulating requests against an application and asserting expectations about
 the response. It's typically included directly within the test context and
 makes a few helper methods and attributes available.
@@ -65,6 +65,35 @@ properly:
         assert last_response.body.include?('Simon')
       end
     end
+
+Using `Rack::Test` without the Mixin
+----------------------------------
+For a variety of reasons you may not want to include `Rack::Test::Methods`
+into your own classes.  `Rack::Test` supports this style of testing as well, here is the above example without using Mixin.
+
+
+    require 'hello_world'
+    require 'test/unit'
+    require 'rack/test'
+
+    set :environment, :test
+
+    class HelloWorldTest < Test::Unit::TestCase
+
+      def test_it_says_hello_world
+	    browser = Rack::Test::Session.new(Sinatra::Application)
+        browser.get '/'
+        assert browser.last_response.ok?
+        assert_equal 'Hello World', browser.last_response.body
+      end
+
+      def test_it_says_hello_to_a_person
+	    browser = Rack::Test::Session.new(Sinatra::Application)
+        browser.get '/', :name => 'Simon'
+        assert browser.last_response.body.include?('Simon')
+      end
+    end
+
 
 ### Rack::Test's Mock Request Methods
 
@@ -119,7 +148,7 @@ If you're testing a modular application that has multiple `Sinatra::Base`
 subclasses, simply set the `app` method to return your particular class.
 
       def app 
-      	MySinatraApp
+        MySinatraApp
       end
 
 If you're using a classic style Sinatra application, then you need to return an 
