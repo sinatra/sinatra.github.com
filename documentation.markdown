@@ -44,7 +44,7 @@ Also available with an alternate template at <http://railsapi.com/sinatra>.
 
 List of applications, libraries, websites and companies using Sinatra.
 
-### [Extensions in the Wild](/extensions_in_the_wild.html)
+### [Extensions in the Wild](/extensions-wild.html)
 
 List of Sinatra extensions, typically available as gems.
 
