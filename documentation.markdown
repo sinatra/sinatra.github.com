@@ -23,19 +23,10 @@ Guide to testing Sinatra apps.
 
 How to add new functionality to Sinatra using the extension APIs.
 
-### [Extensions in the Wild](/extensions_in_the_wild.html)
-
-Sinatra extensions are distributed as gems.
-Please find here a gems list with short descriptions.
-
 ### [Frequently Asked Questions](faq.html)
 
 Answers to those questions most frequently asked on the mailing list and
 in `#sinatra`.
-
-### [In the Wild](/wild.html)
-
-List of applications, libraries, websites and companies using Sinatra.
 
 ### [Release Notes](changes.html)
 
@@ -48,6 +39,14 @@ Generated from Sinatra's source with RDoc. The
 [Rack API docs](http://rack.rubyforge.org/doc/) should also be consulted.
 
 Also available with an alternate template at <http://railsapi.com/sinatra>.
+
+### [In the Wild](/wild.html)
+
+List of applications, libraries, websites and companies using Sinatra.
+
+### [Extensions in the Wild](/extensions_in_the_wild.html)
+
+List of Sinatra extensions, typically available as gems.
 
 ### [The Sinatra Book](book.html) (_Work In Progress_)
 
