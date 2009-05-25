@@ -23,6 +23,11 @@ Guide to testing Sinatra apps.
 
 How to add new functionality to Sinatra using the extension APIs.
 
+### [Extensions in the Wild](/extensions_in_the_wild.html)
+
+Sinatra extensions are distributed as gems.
+Please find here a gems list with short descriptions.
+
 ### [Frequently Asked Questions](faq.html)
 
 Answers to those questions most frequently asked on the mailing list and
