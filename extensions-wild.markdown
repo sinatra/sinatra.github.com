@@ -56,6 +56,10 @@ Note, that we require *sinatra/prawn* rather than *sbfaulkner-sinatra-prawn*.
 1. [sinatra-url-for](http://github.com/emk/sinatra-url-for/)
    construct absolute paths and full URLs to actions
    in a Sinatra application
+1. [sinatra-static-assets](http://github.com/wbzyl/sinatra-static-assets/)
+   implements `image_tag`, `stylesheet_link_tag`, `javascript_script_tag`
+   and `link_tag` helpers. These helpers construct correct absolute paths
+   for applications dispatched to sub URI.
 
 ## Extensions which provide class methods
 
