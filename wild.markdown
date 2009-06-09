@@ -59,6 +59,7 @@ Applications {#apps}
 - [Hancock Client](http://github.com/atmos/hancock-client/tree/master) Rack
   middleware client for the Hancock server, written in Sinatra
 - [Rails Searchable API Doc](http://railsapi.com/) runs on Sinatra
+- [Sinatra Saucer](http://github.com/angelic/sinatra_saucer) JRuby web application frontend for Flying Saucer, which converts xhtml into a pdf
 
 Libraries and extensions {#libs}
 ------------------------
