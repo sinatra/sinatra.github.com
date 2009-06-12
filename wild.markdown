@@ -139,6 +139,7 @@ Websites {#sites}
 - [Chirp-chirp](http://blog.saush.com/2009/04/write-a-sinatra-based-twitter-clone-in-200-lines-of-ruby-code/) Write a Sinatra-based Twitter clone in 200 lines of Ruby code
 - [Rdoc.info](http://rdoc.info/) Auto-generate and host Ruby library documentation using GitHub web hooks
 - [All Sorts](http://all-sorts.org/) An aggregator for novel *collective nouns*, driven by Twitter
+- [The Setup](http://usesthis.com/) Interviews with nerds about their computer setups.
 
 Companies using Sinatra {#biz}
 -----------------------
