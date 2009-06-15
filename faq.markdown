@@ -9,6 +9,23 @@ Frequently Asked Questions
 * this will become the toc
 {:toc}
 
+What happened to reloading in Sinatra 0.9.2? {#reloading}
+--------------------------------------------
+
+Source file reloading was removed in the 0.9.2 due to excess complexity.
+The [shotgun](http://rtomayko.github.com/shotgun/) program can be used to
+achieve the same in most situations. Install shotgun via gem and run
+your app as follows:
+
+    $ sudo gem install shotgun
+    $ shotgun myapp.rb
+
+Passenger users can use the [tmp/always_restart.txt file](http://tinyurl.com/c67o4h).
+
+Another option may be the
+[Rack::Reloader](http://github.com/rack/rack/blob/5ca8f82fb59f0bf0e8fd438e8e91c5acf3d98e44/lib/rack/reloader.rb)
+middleware, which reloads source files before each request.
+
 What are my deployment options? {#deploy}
 -------------------------------
 
