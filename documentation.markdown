@@ -10,6 +10,11 @@ Documentation
 
 A whirlwind tour of Sinatra's most interesting features.
 
+### [Frequently Asked Questions](faq.html)
+
+Answers to those questions most frequently asked on the mailing list and
+in `#sinatra`.
+
 ### [Options and Configuration](configuration.html)
 
 Detailed documentation on all of Sinatra's built-in options and using `set`,
@@ -22,11 +27,6 @@ Guide to testing Sinatra apps.
 ### [Writing Extensions](extensions.html)
 
 How to add new functionality to Sinatra using the extension APIs.
-
-### [Frequently Asked Questions](faq.html)
-
-Answers to those questions most frequently asked on the mailing list and
-in `#sinatra`.
 
 ### [Release Notes](changes.html)
 
