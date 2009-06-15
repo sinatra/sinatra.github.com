@@ -47,11 +47,7 @@ Use [Rack::Flash](http://github.com/nakajima/rack-flash).
 Can I run Sinatra under Ruby 1.9? {#ruby19}
 ---------------------------------
 
-Not yet. [Rack](http://rack.rubyforge.org/) is not yet Ruby 1.9 compatible
-and Sinatra is very much dependent on Rack. We _are_ in the early stages of
-testing under 1.9 and we're reviewing all new code and idioms for potential
-1.9 compatibility issues. The 1.0 release (currently scheduled for mid 2009)
-will run on 1.9 and chances are good that we'll support 1.9 before then.
+Yes. As of Sinatra 0.9.2, Sinatra is fully Ruby 1.9 and Rack 1.0 compatible.
 
 How do I get the "route" for the current page? {#path_info}
 ----------------------------------------------
