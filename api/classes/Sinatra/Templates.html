@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang='en'>
   <head>
-    <title>: Sinatra::Templates [Sinatra API Documentation]</title>
+    <title>Module: Sinatra::Templates [Sinatra API Documentation]</title>
     <meta content='text/html; charset=utf8' http-equiv='Content-Type'>
-    <link href='../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <link href='../.././rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
     <script type='text/javascript'>
       //<![CDATA[
         function popupCode(url) {
@@ -39,7 +39,7 @@
         <div id='text'>
           <div id='description'>
             <p>
-            Template rendering methods. Each method takes a the name of a template to
+            Template rendering methods. Each method takes the name of a template to
             render as a Symbol and returns a String with the rendered output, as well
             as an optional hash with additional options.
             </p>
@@ -57,65 +57,65 @@
             <h2>Methods</h2>
             <h3>public instance</h3>
             <ol>
-              <li><a href="#M000015">builder</a></li>
-              <li><a href="#M000012">erb</a></li>
-              <li><a href="#M000013">haml</a></li>
-              <li><a href="#M000014">sass</a></li>
+              <li><a href="#M000008">builder</a></li>
+              <li><a href="#M000005">erb</a></li>
+              <li><a href="#M000006">haml</a></li>
+              <li><a href="#M000007">sass</a></li>
             </ol>
           </div>
           <div id='section'>
             <div id='methods'>
               <h2>Public instance methods</h2>
-              <div class='public-instance method' id='method-M000015'>
-                <a name='M000015'>      </a>
+              <div class='public-instance method' id='method-M000008'>
+                <a name='M000008'>      </a>
                 <div class='synopsis'>
                   <span class='name'>builder</span>
                   <span class='arguments'>(template=nil, options={}, locals={}, &amp;block)</span>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000015-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000008-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000015-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 244</span>&#x000A;244:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">builder</span>(<span class="ruby-identifier">template</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">options</span>={}, <span class="ruby-identifier">locals</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;245:       <span class="ruby-identifier">require_warn</span>(<span class="ruby-value str">'Builder'</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">defined?</span>(<span class="ruby-operator">::</span><span class="ruby-constant">Builder</span>)&#x000A;246: &#x000A;247:       <span class="ruby-identifier">options</span>, <span class="ruby-identifier">template</span> = <span class="ruby-identifier">template</span>, <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">template</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)&#x000A;248:       <span class="ruby-identifier">template</span> = <span class="ruby-identifier">lambda</span> { <span class="ruby-identifier">block</span> } <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">template</span>.<span class="ruby-identifier">nil?</span>&#x000A;249:       <span class="ruby-identifier">render</span> <span class="ruby-identifier">:builder</span>, <span class="ruby-identifier">template</span>, <span class="ruby-identifier">options</span>, <span class="ruby-identifier">locals</span>&#x000A;250:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000008-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 238</span>&#x000A;238:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">builder</span>(<span class="ruby-identifier">template</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">options</span>={}, <span class="ruby-identifier">locals</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;239:       <span class="ruby-identifier">options</span>, <span class="ruby-identifier">template</span> = <span class="ruby-identifier">template</span>, <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">template</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)&#x000A;240:       <span class="ruby-identifier">template</span> = <span class="ruby-identifier">lambda</span> { <span class="ruby-identifier">block</span> } <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">template</span>.<span class="ruby-identifier">nil?</span>&#x000A;241:       <span class="ruby-identifier">render</span> <span class="ruby-identifier">:builder</span>, <span class="ruby-identifier">template</span>, <span class="ruby-identifier">options</span>, <span class="ruby-identifier">locals</span>&#x000A;242:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='public-instance method' id='method-M000012'>
-                <a name='M000012'>      </a>
+              <div class='public-instance method' id='method-M000005'>
+                <a name='M000005'>      </a>
                 <div class='synopsis'>
                   <span class='name'>erb</span>
                   <span class='arguments'>(template, options={}, locals={})</span>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000012-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000005-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000012-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 225</span>&#x000A;225:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">erb</span>(<span class="ruby-identifier">template</span>, <span class="ruby-identifier">options</span>={}, <span class="ruby-identifier">locals</span>={})&#x000A;226:       <span class="ruby-identifier">require_warn</span>(<span class="ruby-value str">'ERB'</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">defined?</span>(<span class="ruby-operator">::</span><span class="ruby-constant">ERB</span>)&#x000A;227: &#x000A;228:       <span class="ruby-identifier">render</span> <span class="ruby-identifier">:erb</span>, <span class="ruby-identifier">template</span>, <span class="ruby-identifier">options</span>, <span class="ruby-identifier">locals</span>&#x000A;229:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000005-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 225</span>&#x000A;225:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">erb</span>(<span class="ruby-identifier">template</span>, <span class="ruby-identifier">options</span>={}, <span class="ruby-identifier">locals</span>={})&#x000A;226:       <span class="ruby-identifier">render</span> <span class="ruby-identifier">:erb</span>, <span class="ruby-identifier">template</span>, <span class="ruby-identifier">options</span>, <span class="ruby-identifier">locals</span>&#x000A;227:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='public-instance method' id='method-M000013'>
-                <a name='M000013'>      </a>
+              <div class='public-instance method' id='method-M000006'>
+                <a name='M000006'>      </a>
                 <div class='synopsis'>
                   <span class='name'>haml</span>
                   <span class='arguments'>(template, options={}, locals={})</span>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000013-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000006-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000013-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 231</span>&#x000A;231:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">haml</span>(<span class="ruby-identifier">template</span>, <span class="ruby-identifier">options</span>={}, <span class="ruby-identifier">locals</span>={})&#x000A;232:       <span class="ruby-identifier">require_warn</span>(<span class="ruby-value str">'Haml'</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">defined?</span>(<span class="ruby-operator">::</span><span class="ruby-constant">Haml</span><span class="ruby-operator">::</span><span class="ruby-constant">Engine</span>)&#x000A;233: &#x000A;234:       <span class="ruby-identifier">render</span> <span class="ruby-identifier">:haml</span>, <span class="ruby-identifier">template</span>, <span class="ruby-identifier">options</span>, <span class="ruby-identifier">locals</span>&#x000A;235:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000006-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 229</span>&#x000A;229:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">haml</span>(<span class="ruby-identifier">template</span>, <span class="ruby-identifier">options</span>={}, <span class="ruby-identifier">locals</span>={})&#x000A;230:       <span class="ruby-identifier">render</span> <span class="ruby-identifier">:haml</span>, <span class="ruby-identifier">template</span>, <span class="ruby-identifier">options</span>, <span class="ruby-identifier">locals</span>&#x000A;231:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='public-instance method' id='method-M000014'>
-                <a name='M000014'>      </a>
+              <div class='public-instance method' id='method-M000007'>
+                <a name='M000007'>      </a>
                 <div class='synopsis'>
                   <span class='name'>sass</span>
                   <span class='arguments'>(template, options={}, locals={})</span>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000014-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000007-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000014-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 237</span>&#x000A;237:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sass</span>(<span class="ruby-identifier">template</span>, <span class="ruby-identifier">options</span>={}, <span class="ruby-identifier">locals</span>={})&#x000A;238:       <span class="ruby-identifier">require_warn</span>(<span class="ruby-value str">'Sass'</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">defined?</span>(<span class="ruby-operator">::</span><span class="ruby-constant">Sass</span><span class="ruby-operator">::</span><span class="ruby-constant">Engine</span>)&#x000A;239: &#x000A;240:       <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:layout</span>] = <span class="ruby-keyword kw">false</span>&#x000A;241:       <span class="ruby-identifier">render</span> <span class="ruby-identifier">:sass</span>, <span class="ruby-identifier">template</span>, <span class="ruby-identifier">options</span>, <span class="ruby-identifier">locals</span>&#x000A;242:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000007-source'>     <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 233</span>&#x000A;233:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sass</span>(<span class="ruby-identifier">template</span>, <span class="ruby-identifier">options</span>={}, <span class="ruby-identifier">locals</span>={})&#x000A;234:       <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:layout</span>] = <span class="ruby-keyword kw">false</span>&#x000A;235:       <span class="ruby-identifier">render</span> <span class="ruby-identifier">:sass</span>, <span class="ruby-identifier">template</span>, <span class="ruby-identifier">options</span>, <span class="ruby-identifier">locals</span>&#x000A;236:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
             </div>
