@@ -60,6 +60,9 @@ Note, that we require *sinatra/prawn* rather than *sbfaulkner-sinatra-prawn*.
    implements `image_tag`, `stylesheet_link_tag`, `javascript_script_tag`
    and `link_tag` helpers. These helpers construct correct absolute paths
    for applications dispatched to sub URI.
+1. [sinatra-mapping](http://github.com/hallison/sinatra-mapping/)
+   implements `map` in the DSL syntax commands which creates dynamically
+   `mapname_path` method.
 
 ## Extensions which provide class methods
 
