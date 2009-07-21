@@ -180,18 +180,21 @@ removed in Sinatra `1.0`.
 
 ### [RSpec][]
 
-Sinatra can be tested under RSpec using the `spec/interop` library. The
-`Rack::Test` module should be included within the `describe` block:
+Sinatra can be tested under plain RSpec. The `Rack::Test` module should be
+included within the `describe` block:
 
     require 'hello_world'  # <-- your sinatra app
     require 'spec'
-    require 'spec/interop/test'
     require 'rack/test'
 
     set :environment, :test
 
     describe 'The HelloWorld App' do
       include Rack::Test::Methods
+
+      def app
+        Sinatra::Application
+      end
 
       it "says hello" do
         get '/'
@@ -200,14 +203,15 @@ Sinatra can be tested under RSpec using the `spec/interop` library. The
       end
     end
 
-Make `Rack::Test` available to all spec contexts by including it in
-`Test::Unit::TestCase`:
+Make `Rack::Test` available to all spec contexts by including it via
+`Spec::Runner`:
 
     require 'spec'
-    require 'spec/interop/test'
     require 'rack/test'
 
-    Test::Unit::TestCase.send :include, Rack::Test::Methods
+    Spec::Runner.configure do |conf|
+      conf.include Rack::Test::Methods
+    end
 
 ### [Bacon][]
 
