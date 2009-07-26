@@ -11,6 +11,7 @@ care of the rest.
 Applications {#apps}
 ------------
 
+- [Sum](https://sumapp.com) is an email-based budgeting application
 - [Shoes and a Shotgun](http://github.com/hansineffect/shoes-and-a-shotgun/)
   an one click development environment built on Shoes
 - [Integrity](http://integrityapp.com) the easy and fun
