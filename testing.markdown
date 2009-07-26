@@ -11,7 +11,7 @@ Testing Sinatra with Rack::Test
 [Rack::Test](http://gitrdoc.com/brynary/rack-test/tree/master) as of version
 0.9.2. This document describes testing with Rack::Test.**
 
-All examples in the following  sections assume that `Test::Unit` is being 
+All examples in the following  sections assume that `Test::Unit` is being
 used in an attempt to be as general as possible. See the [Test Framework
 Examples](#frameworks) for information on using the test helpers in
 other testing environments.
@@ -145,11 +145,11 @@ a method named `app`.
 If you're testing a modular application that has multiple `Sinatra::Base`
 subclasses, simply set the `app` method to return your particular class.
 
-      def app 
+      def app
         MySinatraApp
       end
 
-If you're using a classic style Sinatra application, then you need to return an 
+If you're using a classic style Sinatra application, then you need to return an
 instance of `Sinatra::Application`.
 
       def app
