@@ -227,6 +227,10 @@ Testing with Bacon is similar to `test/unit` and RSpec:
     describe 'The HelloWorld App' do
       include Rack::Test::Methods
 
+      def app
+        Sinatra::Application
+      end
+
       it "says hello" do
         get '/'
         last_response.should.be.ok
@@ -254,6 +258,10 @@ The `Rack::Test` module should be included within the context of the
 
     describe 'The HelloWorld App' do
       include Rack::Test::Methods
+
+      def app
+        Sinatra::Application
+      end
 
       it "says hello" do
         get '/'
