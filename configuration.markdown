@@ -86,10 +86,6 @@ A symbol specifying the deployment environment; typically set to one of
 the value of the `RACK_ENV` environment variable (`ENV['RACK_ENV']`), or
 `:development` when no `RACK_ENV` environment variable is set.
 
-The `:environment` option effects the default values of various other
-options. For instance, application reloading (`:reload`) is enabled by
-default in the development environment.
-
 The environment can be set explicitly:
 
     set :environment, :production
@@ -130,26 +126,6 @@ The POST `_method` hack is implemented by inserting the
 [`Rack::MethodOverride`][mo] component into the middleware pipeline.
 
 [mo]: http://rack.rubyforge.org/doc/classes/Rack/MethodOverride.html
-
-### `:reload` - enable/disable automatic source code reloading
-
-The `:reload` option determines whether the main application file is
-reloaded before processing each request. Automatic reloading is enabled by
-default when running under the development environment (see the
-`:environment` option) and a valid `:app_file` was detected.
-
-To explicitly enable reloading, it's best to set both the `:reload` and
-`:app_file` options as follows:
-
-    set :app_file, __FILE__
-    set :reload, true
-
-Sinatra implements reloading by clearing all routes, filters, templates, and
-error handlers and then calling `Kernel::load` on the main application file.
-Note that files loaded by the application file using `Kernel::require` are
-not automatically reloaded. You can cause other files to be reloaded by
-using `Kernel::load` instead of `Kernel::require` from within the main
-application file.
 
 ### `:root` - The application's root directory
 
@@ -231,16 +207,16 @@ explicitly:
 
 ### `:app_file` - main application file
 
-The ruby source file that's reloaded before each request when the `:reload`
-option is enabled. This is set to the first source file that invokes
-`require 'sinatra'` by default.
-
-The `:app_file` option is also used to calculate the default `:root`,
+The `:app_file` option is used to calculate the default `:root`,
 `:public`, and `:views` option values. A common idiom is to override the
 default detection heuristic by setting the `:app_file` explicitly from
 within the main application file:
 
     set :app_file, __FILE__
+
+It's also used to detect whether Sinatra should boot a web server when
+using [classic-style](http://www.sinatrarb.com/extensions.html#background)
+applications.
 
 ### `:dump_errors` - log exception backtraces to `STDERR`
 
@@ -286,5 +262,4 @@ are thread-safe and may cause intermittent errors or general weirdness.
 Enabling the `:lock` option causes all requests to synchronize on a mutex
 lock, ensuring that only a single request is processed at a time.
 
-The `:lock` option is disabled by default unless the `:reload` option is
-enabled -- source code reloading must be synchronized.
+The `:lock` option is disabled by default.
