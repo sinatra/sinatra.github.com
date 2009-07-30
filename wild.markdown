@@ -145,6 +145,7 @@ Websites {#sites}
 - [Rdoc.info](http://rdoc.info/) Auto-generate and host Ruby library documentation using GitHub web hooks
 - [All Sorts](http://all-sorts.org/) An aggregator for novel *collective nouns*, driven by Twitter
 - [The Setup](http://usesthis.com/) Interviews with nerds about their computer setups.
+- [Congrelate])http://congrelate.com) Congress data mashup visualization tool.
 
 Companies using Sinatra {#biz}
 -----------------------
