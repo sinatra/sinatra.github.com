@@ -20,7 +20,7 @@ your app as follows:
     $ sudo gem install shotgun
     $ shotgun myapp.rb
 
-Passenger users can use the [tmp/always\_restart.txt file](http://tinyurl.com/c67o4h).
+Passenger users can use the [tmp/always\_restart.txt file](http://www.modrails.com/documentation/Users%20guide.html#_making_the_application_restart_after_each_request).
 
 Another option may be the
 [Rack::Reloader](http://github.com/rack/rack/blob/5ca8f82fb59f0bf0e8fd438e8e91c5acf3d98e44/lib/rack/reloader.rb)
