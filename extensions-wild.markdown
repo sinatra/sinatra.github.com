@@ -66,5 +66,8 @@ Note, that we require *sinatra/prawn* rather than *sbfaulkner-sinatra-prawn*.
 
 ## Extensions which provide class methods
 
-There are none available at the moment, except examples described
-in [Writing Extensions](extensions.html).
+1. [snap](http://github.com/bcarlso/snap/)
+   provides support for named routes and helper methods for building URLs for
+   use in links and redirects.
+   
+Add more! Examples described in [Writing Extensions](extensions.html).
