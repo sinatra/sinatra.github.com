@@ -9,6 +9,7 @@ task :build => ['build:static', 'build:api']
 desc "Build outdated static files"
 task 'build:static' => [
   '_includes/README.html',
+  '_includes/README.jp.html',
   '_includes/CHANGES.txt',
   '_includes/book.html'
 ]
@@ -48,14 +49,14 @@ task 'pull:book' do
     touch '_book', :verbose => false
   else
     puts 'Cloning sinatra-book repo'
-    sh "git clone git://github.com/sinatra/sinatra-book.git _book" 
+    sh "git clone git://github.com/sinatra/sinatra-book.git _book"
   end
   sh "cd _book && git pull &>/dev/null && thor book:build"
 end
 file('_book') { Rake::Task['pull:book'].invoke }
 CLOBBER.include '_book'
 
-%w[README.rdoc CHANGES AUTHORS].each do |fn|
+%w[README.rdoc README.jp.rdoc CHANGES AUTHORS].each do |fn|
   file "_sinatra/#{fn}" => ['_sinatra']
 end
 
@@ -66,6 +67,14 @@ file '_includes/README.html' => ['_sinatra/README.rdoc', 'Rakefile'] do |f|
   File.open(f.name, 'wb') { |io| io.write(html) }
 end
 CLEAN.include '_includes/README.html'
+
+# Build _includes/README.jp.html from RDoc
+file '_includes/README.jp.html' => ['_sinatra/README.jp.rdoc', 'Rakefile'] do |f|
+  html = RDoc::Markup::ToHtml.new.convert(File.read("_sinatra/README.jp.rdoc")).
+    sub("<h1>Sinatra</h1>", "")
+  File.open(f.name, 'wb') { |io| io.write(html) }
+end
+CLEAN.include '_includes/README.jp.html'
 
 # Build _includes/CHANGES.txt from CHANGES file
 file '_includes/CHANGES.txt' => ['_sinatra/CHANGES', 'Rakefile'] do |f|
