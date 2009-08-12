@@ -91,7 +91,7 @@ Libraries and extensions {#libs}
   tweetdreams.org with ease
 - [Rack Flash](http://github.com/nakajima/rack-flash) Simple flash hash
   implementation for Rack with extra sugar for Sinatra.
-- [Sinatra-REST](http://github.com/blindgaenger/sinatra-rest) generates RESTful 
+- [Sinatra-REST](http://github.com/blindgaenger/sinatra-rest) generates RESTful
   routes for your models (ActiveRecord, DataMapper, Stone)
 - [R18n](http://r18n.rubyforge.org/#sinatra) Agnostic i18n library with Sinatra
   extension.
@@ -145,7 +145,7 @@ Websites {#sites}
 - [Rdoc.info](http://rdoc.info/) Auto-generate and host Ruby library documentation using GitHub web hooks
 - [All Sorts](http://all-sorts.org/) An aggregator for novel *collective nouns*, driven by Twitter
 - [The Setup](http://usesthis.com/) Interviews with nerds about their computer setups.
-- [Congrelate])http://congrelate.com) Congress data mashup visualization tool.
+- [Congrelate](http://congrelate.com) Congress data mashup visualization tool.
 
 Companies using Sinatra {#biz}
 -----------------------
