@@ -20,6 +20,13 @@ in `#sinatra`.
 Detailed documentation on all of Sinatra's built-in options and using `set`,
 `enable`, and `disable` to configure them.
 
+### [API Documentation](/api/index.html)
+
+Generated from Sinatra's source with RDoc. The
+[Rack API docs](http://rack.rubyforge.org/doc/) should also be consulted.
+
+Also available with an alternate template at <http://railsapi.com/sinatra>.
+
 ### [Testing Sinatra with Rack::Test](testing.html)
 
 Guide to testing Sinatra apps.
@@ -33,13 +40,6 @@ How to add new functionality to Sinatra using the extension APIs.
 Detailed change log for each Sinatra release generated from the `CHANGES`
 file.
 
-### [API Documentation](/api/index.html)
-
-Generated from Sinatra's source with RDoc. The
-[Rack API docs](http://rack.rubyforge.org/doc/) should also be consulted.
-
-Also available with an alternate template at <http://railsapi.com/sinatra>.
-
 ### [In the Wild](/wild.html)
 
 List of applications, libraries, websites and companies using Sinatra.
@@ -51,7 +51,6 @@ List of Sinatra extensions, typically available as gems.
 ### [The Sinatra Book](book.html) (_Work In Progress_)
 
 An in-depth look at building and deploying Sinatra applications.
-
 
 <!--
 
