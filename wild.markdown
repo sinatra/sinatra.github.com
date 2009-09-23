@@ -111,6 +111,7 @@ Websites {#sites}
 - [NYLS Upload Tool](http://upload.citylaw.org) Web-based replacement of FTP
 - [Fabulously40 Mobile](http://iphone.fabulously40.com) Sinatra powered mobile
   site of [Fabulously40](http://fabulously40.com/)
+- [UploadBooth](http://uploadbooth.com) Sinatra powered Upload Service
 - [Calendar About Nothing](http://calendaraboutnothing.com) Seinfeld calendar
   for hackers
 - [irclogger](http://irclogger.com) Logging urz IRC channel
