@@ -150,6 +150,7 @@ Websites {#sites}
 - [All Sorts](http://all-sorts.org/) An aggregator for novel *collective nouns*, driven by Twitter
 - [The Setup](http://usesthis.com/) Interviews with nerds about their computer setups.
 - [Congrelate](http://congrelate.com) Congress data mashup visualization tool.
+- [Scholas](http://schol.as) Social file-sharing for academics.
 
 Companies using Sinatra {#biz}
 -----------------------
@@ -173,3 +174,4 @@ Companies using Sinatra {#biz}
 - [Lomographic Society International](http://beta.lomography.com)
 - [Swipht Technologies](http://www.swipht.com)
 - [Nth Metal Interactive](http://nthmetal.com)
+- [Osborne Brook](http://osbornebrook.co.uk)
