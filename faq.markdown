@@ -15,10 +15,23 @@ What happened to reloading in Sinatra 0.9.2? {#reloading}
 Source file reloading was removed in the 0.9.2 due to excess complexity.
 The [shotgun](http://rtomayko.github.com/shotgun/) program can be used to
 achieve the same in most situations. Install shotgun via gem and run
-your app as follows:
+your app as follows, if your application is the default,
+"classic" style aplication (as shown eg. in README):
 
     $ sudo gem install shotgun
     $ shotgun myapp.rb
+
+When your application is a "modular" application (where you define your own class
+and inherit eg. from `Sinatra::Base`), you have to create a `config.ru` file for
+your application:
+
+    $ cat config.ru
+    require 'app'
+    run App
+
+and then point shotgun to the config ru file:
+
+    $ shotgun config.ru -p 4567
 
 Passenger users can use the [tmp/always\_restart.txt file](http://www.modrails.com/documentation/Users%20guide.html#_making_the_application_restart_after_each_request).
 
