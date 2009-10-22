@@ -11,14 +11,17 @@ care of the rest.
 Applications {#apps}
 ------------
 
-- [Tweeps](http://tweeps.webdirections.org) conference app to aggregate tweets by attendees
-- [Pearson Reader UAE](http://uae.pearsonreader.com) online textbooks for the Ministry of Education, Abu Dhabi
-- [Healthy Communities](http://healthycommunities.lgsa.org.au) preventative health grant applications for Government
+- [Tweeps](http://tweeps.webdirections.org) conference app to aggregate
+  tweets by attendees
+- [Integrity](http://integrityapp.com) the easy and fun
+  Continuous Integration server
+- [Pearson Reader UAE](http://uae.pearsonreader.com) online textbooks for the
+  Ministry of Education, Abu Dhabi
+- [Healthy Communities](http://healthycommunities.lgsa.org.au) preventative
+  health grant applications for Government
 - [Sum](https://sumapp.com) is an email-based budgeting application
 - [Shoes and a Shotgun](http://github.com/hansineffect/shoes-and-a-shotgun/)
   an one click development environment built on Shoes
-- [Integrity](http://integrityapp.com) the easy and fun
-  Continuous Integration server
 - [Marley](http://github.com/karmi/marley) the blog engine
   without &lt;textareas&gt;
 - [Postview](http://github.com/hallison/postview) a simple blog-engine that
