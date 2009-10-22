@@ -19,7 +19,6 @@ Applications {#apps}
   an one click development environment built on Shoes
 - [Integrity](http://integrityapp.com) the easy and fun
   Continuous Integration server
-- [Wink](http://github.com/rtomayko/wink) minimalist blogging engine
 - [Marley](http://github.com/karmi/marley) the blog engine
   without &lt;textareas&gt;
 - [Postview](http://github.com/hallison/postview) a simple blog-engine that
@@ -66,6 +65,7 @@ Applications {#apps}
   middleware client for the Hancock server, written in Sinatra
 - [Rails Searchable API Doc](http://railsapi.com/) runs on Sinatra
 - [Sinatra Saucer](http://github.com/angelic/sinatra_saucer) JRuby web application frontend for Flying Saucer, which converts xhtml into a pdf
+- [Wink](http://github.com/rtomayko/wink) minimalist blogging engine
 
 Libraries and extensions {#libs}
 ------------------------
