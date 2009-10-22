@@ -11,6 +11,9 @@ care of the rest.
 Applications {#apps}
 ------------
 
+- [Tweeps](http://tweeps.webdirections.org) conference app to aggregate tweets by attendees
+- [Pearson Reader UAE](http://uae.pearsonreader.com) online textbooks for the Ministry of Education, Abu Dhabi
+- [Healthy Communities](http://healthycommunities.lgsa.org.au) preventative health grant applications for Government
 - [Sum](https://sumapp.com) is an email-based budgeting application
 - [Shoes and a Shotgun](http://github.com/hansineffect/shoes-and-a-shotgun/)
   an one click development environment built on Shoes
@@ -150,6 +153,7 @@ Websites {#sites}
 Companies using Sinatra {#biz}
 -----------------------
 
+- [Agency Rainford](http://agencyrainford.com)
 - [Heroku](http://heroku.com)
 - [GitHub](http://github.com/blog/53-github-services-ipo)
 - [Songbird](http://getsongbird.com)
