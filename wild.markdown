@@ -153,9 +153,9 @@ Websites {#sites}
 Companies using Sinatra {#biz}
 -----------------------
 
-- [Agency Rainford](http://agencyrainford.com)
 - [Heroku](http://heroku.com)
 - [GitHub](http://github.com/blog/53-github-services-ipo)
+- [Agency Rainford](http://agencyrainford.com)
 - [Songbird](http://getsongbird.com)
 - [Curbed Network](http://curbed.com)
 - [Meticulo](http://www.meticulo.com/)
