@@ -83,6 +83,11 @@ How to deploy under Thin, Passenger, etc. using a Rackup file.
 Screencasts and Presentations
 -----------------------------
 
+### [Sinatra, rack and middleware](http://www.slideshare.net/benschwarz/sinatra-rack-and-middleware-1509268)
+
+Ben Schwarz presents Sinatra and his realisations of its inner workings in regard to 
+rack and rack middlware at Melbourne RORO shortly after Railsconf (US).
+
 ### [RubyConf 08: Lightweight Web Services](http://rubyconf2008.confreaks.com/lightweight-web-services.html)
 
 Adam Wiggins and Blake Mizerany present Sinatra and
