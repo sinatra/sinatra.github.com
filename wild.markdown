@@ -73,7 +73,7 @@ Applications {#apps}
 Libraries and extensions {#libs}
 ------------------------
 
-- [sinatra_more](http://github.com/nesquena/sinatra_more) Library with agnostic 
+- [sinatra\_more](http://github.com/nesquena/sinatra\_more) Library with agnostic 
    generators, form builders, named route mappings, easy mailer support, and more.
 - [Sinatra's Hat](http://github.com/nakajima/sinatras-hat) Mount models as web
   services in Sinatra with ease
