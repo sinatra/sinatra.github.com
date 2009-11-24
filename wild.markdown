@@ -69,6 +69,7 @@ Applications {#apps}
 - [Rails Searchable API Doc](http://railsapi.com/) runs on Sinatra
 - [Sinatra Saucer](http://github.com/angelic/sinatra_saucer) JRuby web application frontend for Flying Saucer, which converts xhtml into a pdf
 - [Wink](http://github.com/rtomayko/wink) minimalist blogging engine
+- [WineAdds](http://wineadds.com) micro-app that calculates common additions to wine
 
 Libraries and extensions {#libs}
 ------------------------
