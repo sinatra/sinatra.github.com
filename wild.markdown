@@ -10,7 +10,7 @@ care of the rest.
 
 Applications {#apps}
 ------------
-
+- [Tweetrad.io](http://tweetrad.io/sinatra) text to speech conversion for twitter
 - [Tweeps](http://tweeps.webdirections.org) conference app to aggregate
   tweets by attendees
 - [Integrity](http://integrityapp.com) the easy and fun
