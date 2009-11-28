@@ -180,3 +180,4 @@ Companies using Sinatra {#biz}
 - [Swipht Technologies](http://www.swipht.com)
 - [Nth Metal Interactive](http://nthmetal.com)
 - [Osborne Brook](http://osbornebrook.co.uk)
+- [Robot Mode](http://robotmo.de)
