@@ -10,6 +10,7 @@ care of the rest.
 
 Applications {#apps}
 ------------
+- [OnBoard](http:/dev.vemarsas.it/onboard/) a web interface to manage Linux-based network appliances. 
 - [Tweetrad.io](http://tweetrad.io/sinatra) text to speech conversion for twitter
 - [Tweeps](http://tweeps.webdirections.org) conference app to aggregate
   tweets by attendees
