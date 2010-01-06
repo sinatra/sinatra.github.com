@@ -203,8 +203,8 @@ How about a [Pony](http://adam.blog.heroku.com/past/2008/11/2/pony_the_express_w
     require 'pony'
     post '/signup' do
       Pony.mail :to => 'you@example.com',
-        :from => 'me@example.com',
-        :subject => 'Howdy, Partna!'
+                :from => 'me@example.com',
+                :subject => 'Howdy, Partna!'
     end
 
 You can even use templates to render the body. In `email.erb`:
@@ -219,9 +219,9 @@ And in `mailerapp.rb`:
 
     post '/guestbook/sign' do
       Pony.mail :to => params[:email],
-        :from => "me@example.com",
-        :subject => "Thanks for signing my guestbook, #{params[:name]}!",
-        :body => erb(:email)
+                :from => "me@example.com",
+                :subject => "Thanks for signing my guestbook, #{params[:name]}!",
+                :body => erb(:email)
     end
 
 How do I escape html? {#escape_html}
@@ -252,7 +252,7 @@ From [Adam Wiggins's blog](http://adam.blog.heroku.com/past/2009/2/28/activereco
 >
 >     namespace :db do
 >       desc "Migrate the database"
->         task(:migrate => :environment) do
+>       task(:migrate => :environment) do
 >         ActiveRecord::Base.logger = Logger.new(STDOUT)
 >         ActiveRecord::Migration.verbose = true
 >         ActiveRecord::Migrator.migrate("db/migrate")
@@ -298,9 +298,10 @@ II. When you want to protect only certain URLs in the application, or want the a
     helpers do
 
       def protected!
-        response['WWW-Authenticate'] = %(Basic realm="Testing HTTP Auth") and \
-        throw(:halt, [401, "Not authorized\n"]) and \
-        return unless authorized?
+	unless authorized?
+          response['WWW-Authenticate'] = %(Basic realm="Testing HTTP Auth")
+          throw(:halt, [401, "Not authorized\n"])
+	end
       end
 
       def authorized?
