@@ -112,6 +112,10 @@ Libraries and extensions {#libs}
   client.
 - [content\_for](http://github.com/foca/sinatra-content-for) Rails-like `content_for`
   helper for your views (supports ERB and Haml.)
+- [Sinatra Effigy](http://github.com/dancroak/sinatra-effigy) Sinatra extension
+  for Effigy (HTML in .html files, Ruby in .rb files) views.
+- [Sinatra Mongoid](http://github.com/dancroak/sinatra-mongoid) Sinatra extension
+  for Mongoid (MongoDB ORM).
 
 Websites {#sites}
 --------
@@ -159,6 +163,7 @@ Websites {#sites}
 - [The Setup](http://usesthis.com/) Interviews with nerds about their computer setups.
 - [Congrelate](http://congrelate.com) Congress data mashup visualization tool.
 - [Scholas](http://schol.as) Social file-sharing for academics.
+- [Gemcutter](http://gemcutter.org) Awesome gem hosting.
 
 Companies using Sinatra {#biz}
 -----------------------
@@ -184,3 +189,4 @@ Companies using Sinatra {#biz}
 - [Nth Metal Interactive](http://nthmetal.com)
 - [Osborne Brook](http://osbornebrook.co.uk)
 - [Robot Mode](http://robotmo.de)
+- [thoughtbot](http://thoughtbot.com)
