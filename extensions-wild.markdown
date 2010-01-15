@@ -51,6 +51,8 @@ Note, that we require *sinatra/prawn* rather than *sbfaulkner-sinatra-prawn*.
    provides Maruku templates for a Sinatra application.
 1. [sinatra-rdiscount](http://github.com/wbzyl/sinatra-rdiscount/)
    provides RDiscount templates for a Sinatra application.
+1. [sinatra-effigy](http://github.com/dancroak/sinatra-effigy/)
+   provides Effigy templates and views for a Sinatra application.
 1. [sinatra-content-for](http://github.com/foca/sinatra-content-for/)
    provides `content_for` helper similar to Rails one.
 1. [sinatra-url-for](http://github.com/emk/sinatra-url-for/)
@@ -71,5 +73,11 @@ Note, that we require *sinatra/prawn* rather than *sbfaulkner-sinatra-prawn*.
 1. [snap](http://github.com/bcarlso/snap/)
    provides support for named routes and helper methods for building URLs for
    use in links and redirects.
-   
+
+## Extensions which handle setup and configuration
+
+1. [sinatra-mongoid](http://github.com/dancroak/sinatra-mongoid)
+   sets up a MongoDB connection, provides Mongoid to your app, and
+   provides options for configuration.
+
 Add more! Examples described in [Writing Extensions](extensions.html).
