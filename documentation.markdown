@@ -10,22 +10,10 @@ Documentation
 
 A whirlwind tour of Sinatra's most interesting features.
 
-### [Frequently Asked Questions](faq.html)
-
-Answers to those questions most frequently asked on the mailing list and
-in `#sinatra`.
-
 ### [Options and Configuration](configuration.html)
 
 Detailed documentation on all of Sinatra's built-in options and using `set`,
 `enable`, and `disable` to configure them.
-
-### [API Documentation](/api/index.html)
-
-Generated from Sinatra's source with RDoc. The
-[Rack API docs](http://rack.rubyforge.org/doc/) should also be consulted.
-
-Also available with an alternate template at <http://railsapi.com/sinatra>.
 
 ### [Testing Sinatra with Rack::Test](testing.html)
 
@@ -35,10 +23,25 @@ Guide to testing Sinatra apps.
 
 How to add new functionality to Sinatra using the extension APIs.
 
+Project Information
+-------------------
+
+### [Frequently Asked Questions](faq.html)
+
+Answers to those questions most frequently asked on the mailing list and
+in `#sinatra`.
+
 ### [Release Notes](changes.html)
 
 Detailed change log for each Sinatra release generated from the `CHANGES`
 file.
+
+### [API Documentation](/api/index.html)
+
+Generated from Sinatra's source with RDoc. The
+[Rack API docs](http://rack.rubyforge.org/doc/) should also be consulted.
+
+Also available with an alternate template at <http://railsapi.com/sinatra>.
 
 ### [In the Wild](/wild.html)
 
