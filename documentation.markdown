@@ -26,6 +26,12 @@ How to add new functionality to Sinatra using the extension APIs.
 Project Information
 -------------------
 
+### [Sinatra 1.0 FAQ](./one-oh-faq)
+
+Sinatra is going 1.0, breaking backward compatibility for the first
+time in two years. The 1.0 FAQ includes information and best practices
+for upgrading.
+
 ### [Frequently Asked Questions](faq.html)
 
 Answers to those questions most frequently asked on the mailing list and
