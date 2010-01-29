@@ -113,6 +113,7 @@ The following is a comprehensive list of features obsoleted in the
 
 ## How will versions be handled in the 1.x series?
 
+We've adopted the [Semantic Versioning Model](http://semver.org/).
 All 1.x releases will be backward compatible with the initial
 1.0 release.
 
@@ -125,6 +126,8 @@ long time, so interfaces we don't like require considerable scrutiny.
 Yes. There will be additional Sinatra 0.9.x releases for security
 issues or major defects. No new features will be added to the 0.9.x
 series.
+
+The 0.9.x series will be maintained for as long as people use it.
 
 ## How can I pin my app to 0.9.x to avoid upgrading to 1.0?
 
