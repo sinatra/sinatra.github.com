@@ -121,6 +121,7 @@ Libraries and extensions {#libs}
 
 Websites {#sites}
 --------
+- [Speed of Animals](http://www.speedofanimals.com/): imagine being a spotted hyena...
 - [Bloor and Lansdowne is Blansdowne](http://blansdowne.ca) is a photoblog about a neighbourhood in Toronto.
 - [NYLS Upload Tool](http://upload.citylaw.org) Web-based replacement of FTP
 - [Fabulously40 Mobile](http://iphone.fabulously40.com) Sinatra powered mobile
