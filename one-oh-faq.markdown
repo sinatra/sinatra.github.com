@@ -47,17 +47,21 @@ Alternatively, you can run off of the `master` branch:
 The following is a comprehensive list of features obsoleted in the
 1.0 release. All of these have been deprecated for some time:
 
- * The `sinatra/test` library is obsolete. This includes the
-   `Sinatra::Test` module, the `Sinatra::TestHarness` class,
-   and the `get_it`, `post_it`, `put_it`, `delete_it`, and `head_it`
-   helper methods.  The
+ * The `sinatra/test` library is obsolete. This includes the `Sinatra::Test`
+   module, the `Sinatra::TestHarness` class, and the `get_it`, `post_it`,
+   `put_it`, `delete_it`, and `head_it` helper methods. The
    [`Rack::Test` library](http://gitrdoc.com/brynary/rack-test) should
    be used instead.
 
  * Test framework specific libraries (`sinatra/test/spec`,
-   `sinatra/test/bacon`,`sinatra/test/rspec`, etc.) are obsolete.
-   See http://www.sinatrarb.com/testing.html for instructions on
-   setting up a testing environment under each of these frameworks.
+   `sinatra/test/bacon`,`sinatra/test/rspec`, etc.) are obsolete. See
+   http://www.sinatrarb.com/testing.html for instructions on setting up a
+   testing environment under each of these frameworks.
+
+ * `Sinatra::Default` is obsolete; use `Sinatra::Base` instead.
+   `Sinatra::Base` acts more like `Sinatra::Default` in development mode.
+   For example, static file serving and sexy development error pages are
+   enabled by default.
 
  * Auto-requiring template libraries in the `erb`, `builder`, `haml`,
    and `sass` methods is obsolete due to thread-safety issues. You must
@@ -71,6 +75,8 @@ The following is a comprehensive list of features obsoleted in the
    instead.
 
  * The `media_type` helper method is obsolete. Use `mime_type` instead.
+
+ * The `mime` main and class method is obsolete. Use `mime_type` instead.
 
  * The request-level `send_data` method is no longer supported.
 
