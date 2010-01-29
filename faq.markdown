@@ -298,10 +298,10 @@ II. When you want to protect only certain URLs in the application, or want the a
     helpers do
 
       def protected!
-	unless authorized?
+        unless authorized?
           response['WWW-Authenticate'] = %(Basic realm="Testing HTTP Auth")
           throw(:halt, [401, "Not authorized\n"])
-	end
+        end
       end
 
       def authorized?

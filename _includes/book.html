@@ -212,12 +212,20 @@ end</code></pre>
 
 <h2 id='the_put_and_delete_methods'>The PUT and DELETE methods</h2>
 
-<p>Since browsers don&#8217;t natively support the PUT and DELETE methods, a hacky workaround has been adopted by the web community. Simply add a hidden element with the name &#8220;_method&#8221; and the value equal to the HTTP method you want to use. The form itself is sent as a POST, but Sinatra will interpret it as the desired method. For example:</p>
+<p>Since browsers don&#8217;t natively support the PUT and DELETE methods, a hacky workaround has been adopted by the web community. Simply add a hidden element with the name &#8220;_method&#8221; and the value equal to the HTTP method you want to use. Although the form itself is sent as a POST, Sinatra will interpret the request as the desired method. For example, this form:</p>
 
 <pre><code>&lt;form method=&quot;post&quot; action=&quot;/destroy_it&quot;&gt;
   &lt;input name=&quot;_method&quot; value=&quot;delete&quot; /&gt;
   &lt;div&gt;&lt;button type=&quot;submit&quot;&gt;Destroy it&lt;/button&gt;&lt;/div&gt;
 &lt;/form&gt;</code></pre>
+
+<p>Will trigger the following route:</p>
+
+<pre><code>delete '/destroy_it' do
+  # Your code
+end</code></pre>
+
+<p>Note that subclassed Sinatra apps will need to enable this functionality with the line <code>enable :methodoverride</code>.</p>
 
 <p>When you want to use PUT or DELETE from a client that does support them (like Curl, or ActiveResource), just go ahead and use them as you normally would, and ignore the <code>_method</code> advice above. That is only for hacking in support for browsers.</p>
 
