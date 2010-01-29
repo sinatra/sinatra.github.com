@@ -21,6 +21,8 @@ Some new features will be introduced.
 
 ## Will my existing Sinatra app work with 1.0? How can I check?
 
+Maybe.
+
 If you've kept up with deprecations and use officially documented
 features, your app should be fine under Sinatra 1.0.
 
@@ -110,6 +112,12 @@ The following is a comprehensive list of features obsoleted in the
  * The `Sinatra::ServerError` exception is obsolete. All exceptions raised
    within a request are now treated as internal server errors and result in
    a 500 response status.
+
+## What about new features?
+
+See the [CHANGES](changes) file for a comprehensive list of features
+added in the 1.0 release. There's also a list of all commits + diff
+[between the 0.9.x and 1.0 release](http://github.com/sinatra/sinatra/compare/0.9.4...1.0.a)
 
 ## How will versions be handled in the 1.x series?
 
