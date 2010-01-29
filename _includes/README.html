@@ -177,6 +177,21 @@ Configurations</a>, and overridden on an individual basis.
 <p>
 Renders <tt>./views/index.erb</tt>
 </p>
+<h3>Erubis</h3>
+<p>
+The erubis gem/library is required to render builder templates:
+</p>
+<pre>
+  ## You'll need to require erubis in your app
+  require 'erubis'
+
+  get '/' do
+    erubis :index
+  end
+</pre>
+<p>
+Renders <tt>./views/index.erubis</tt>
+</p>
 <h3>Builder Templates</h3>
 <p>
 The builder gem/library is required to render builder templates:
@@ -220,7 +235,7 @@ Configurations</a>, and overridden on an individual basis.
 
   get '/stylesheet.css' do
     content_type 'text/css', :charset =&gt; 'utf-8'
-    sass :stylesheet, :sass_options =&gt; {:style =&gt; :expanded } # overridden
+    sass :stylesheet, :style =&gt; :expanded # overridden
   end
 </pre>
 <h3>Inline Templates</h3>
@@ -256,7 +271,7 @@ Or, specify an explicit Hash of local variables:
 This is typically used when rendering templates as partials from within
 other templates.
 </p>
-<h3>In-file Templates</h3>
+<h3>Inline Templates</h3>
 <p>
 Templates may be defined at the end of the source file:
 </p>
@@ -278,9 +293,9 @@ Templates may be defined at the end of the source file:
   %div.title Hello world!!!!!
 </pre>
 <p>
-NOTE: In-file templates defined in the source file that requires sinatra
-are automatically loaded. Call the <tt>use_in_file_templates!</tt> method
-explicitly if you have in-file templates in other source files.
+NOTE: Inline templates defined in the source file that requires sinatra are
+automatically loaded. Call `enable :inline_templates` explicitly if you
+have inline templates in other source files.
 </p>
 <h3>Named Templates</h3>
 <p>
@@ -342,24 +357,46 @@ filters are accessible by routes and templates:
     params[:splat] #=&gt; 'bar/baz'
   end
 </pre>
+<p>
+After filter are evaluated after each request within the context of the
+request and can also modify the request and response. Instance variables
+set in before filters and routes are accessible by after filters:
+</p>
+<pre>
+  after do
+    puts response.status
+  end
+</pre>
 <h2>Halting</h2>
 <p>
-To immediately stop a request during a before filter or route use:
+To immediately stop a request within a filter or route use:
 </p>
 <pre>
   halt
 </pre>
 <p>
-You can also specify a body when halting &#8230;
+You can also specify the status when halting &#8230;
+</p>
+<pre>
+  halt 410
+</pre>
+<p>
+Or the body &#8230;
 </p>
 <pre>
   halt 'this will be the body'
 </pre>
 <p>
-Or set the status and body &#8230;
+Or both &#8230;
 </p>
 <pre>
   halt 401, 'go away!'
+</pre>
+<p>
+With headers &#8230;
+</p>
+<pre>
+  halt 402, {'Content-Type' =&gt; 'text/plain'}, 'revenge'
 </pre>
 <h2>Passing</h2>
 <p>
@@ -368,11 +405,11 @@ A route can punt processing to the next matching route using <tt>pass</tt>:
 <pre>
   get '/guess/:who' do
     pass unless params[:who] == 'Frank'
-    &quot;You got me!&quot;
+    'You got me!'
   end
 
   get '/guess/*' do
-    &quot;You missed!&quot;
+    'You missed!'
   end
 </pre>
 <p>
@@ -426,8 +463,8 @@ invoked:
 <h3>Error</h3>
 <p>
 The <tt>error</tt> handler is invoked any time an exception is raised from
-a route block or before filter. The exception object can be obtained from
-the <tt>sinatra.error</tt> Rack variable:
+a route block or a filter. The exception object can be obtained from the
+<tt>sinatra.error</tt> Rack variable:
 </p>
 <pre>
   error do
@@ -457,17 +494,43 @@ You get this:
   So what happened was... something bad
 </pre>
 <p>
+Alternatively, you can install error handler for a status code:
+</p>
+<pre>
+  error 403 do
+    'Access forbidden'
+  end
+
+  get '/secret' do
+    403
+  end
+</pre>
+<p>
+Or a range:
+</p>
+<pre>
+  error 400..510 do
+    'Boom'
+  end
+</pre>
+<p>
 Sinatra installs special <tt>not_found</tt> and <tt>error</tt> handlers
 when running under the development environment.
 </p>
 <h2>Mime types</h2>
 <p>
 When using <tt>send_file</tt> or static files you may have mime types
-Sinatra doesn&#8217;t understand. Use <tt>mime</tt> to register them by
-file extension:
+Sinatra doesn&#8217;t understand. Use <tt>mime_type</tt> to register them
+by file extension:
 </p>
 <pre>
-  mime :foo, 'text/foo'
+  mime_type :foo, 'text/foo'
+</pre>
+<p>
+You can also use it with the <tt>content_type</tt> helper:
+</p>
+<pre>
+  content_type :foo
 </pre>
 <h2>Rack Middleware</h2>
 <p>
@@ -616,7 +679,7 @@ into the main namespace</a>.
 Sinatra applications can be run directly:
 </p>
 <pre>
-  ruby myapp.rb [-h] [-x] [-e ENVIRONMENT] [-p PORT] [-s HANDLER]
+  ruby myapp.rb [-h] [-x] [-e ENVIRONMENT] [-p PORT] [-h HOST] [-s HANDLER]
 </pre>
 <p>
 Options are:
@@ -624,6 +687,7 @@ Options are:
 <pre>
   -h # help
   -p # set the port (default is 4567)
+  -h # set the host (default is 0.0.0.0)
   -e # set the environment (default is development)
   -s # specify rack server/handler (default is thin)
   -x # turn on the mutex lock (default is off)
