@@ -32,14 +32,15 @@ environment to Sinatra 1.0 and verify that stuff works.
 
 ## Can I install and run under Sinatra 1.0 today?
 
-Sinatra 1.0 has not been officially released yet but you can run off
-of the `master` branch:
+Sinatra 1.0 has not been officially released yet, but [prerelease gems
+are available from gemcutter](http://gemcutter.org/gems/sinatra/versions/1.0.a):
+
+    gem install --pre sinatra
+
+Alternatively, you can run off of the `master` branch:
 
     git clone git://github.com/sinatra/sinatra.git
-    RUBYLIB="$(pwd)/sinatra/lib"
-
-We expect to make pre-release gems available some time before the
-official 1.0 release.
+    RUBYLIB="$(pwd)/sinatra/lib:$RUBYLIB"
 
 ## What incompatibilities are being introduced in Sinatra 1.0?
 
