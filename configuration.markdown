@@ -113,7 +113,7 @@ log messages.
 
 [cl]: http://rack.rubyforge.org/doc/classes/Rack/CommonLogger.html
 
-### `:methodoverride` - enable/disable the POST `_method` hack
+### `:method_override` - enable/disable the POST `_method` hack
 
 Boolean specifying whether the HTTP POST `_method` parameter hack should be
 enabled. When `true`, the actual HTTP request method is overridden by the
