@@ -65,8 +65,10 @@ Note, that we require *sinatra/prawn* rather than *sbfaulkner-sinatra-prawn*.
 1. [sinatra-mapping](http://github.com/hallison/sinatra-mapping/)
    implements `map` in the DSL syntax commands which creates dynamically
    `mapname_path` method.
-1. [sinatra\_more](http://github.com/nesquena/sinatra\_more) Library with agnostic generators, 
+1. [sinatra\_more](http://github.com/nesquena/sinatra\_more) Library with agnostic generators,
    form builders, named route mappings, easy mailer support among other functionality.
+1. [sinatra-authorization](http://github.com/integrity/sinatra-authorization)
+   HTTP auth helpers
 
 ## Extensions which provide class methods
 
