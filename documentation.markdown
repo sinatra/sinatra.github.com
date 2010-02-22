@@ -104,6 +104,10 @@ Adam Wiggins and Blake Mizerany present Sinatra and
 at RubyConf 2008. The talk details Sinatra's underlying philosophy and
 reflects on using Sinatra to build real world applications.
 
+### [Meet Sinatra](http://peepcode.com/products/sinatra) (PeepCode)
+
+Dan Benjamin introduces Sinatra in an hour-long screencast. Build an ad server with DataMapper, JavaScript, HAML, and Sinatra. In collaboration with Sinatra creator Blake Mizerany. Only $9.
+
 ### [Classy Web Development with Sinatra](http://www.pragprog.com/screencasts/v-aksinatra/classy-web-development-with-sinatra) (Prag's Screencast Series)
 
 Adam Keys and The Pragmatic Programmers have started a series of screencasts
