@@ -10,7 +10,7 @@ care of the rest.
 
 Applications {#apps}
 ------------
-- [Flickr Group Viewer](http://gv.vqvz.com) is a (nicer?) way to view photos in a flickr group.
+- [Flickr Group Viewer](http://gv.vqvz.com) is a (nicer?) way to view photos in a flickr group -- [on GitHub](http://github.com/funkaoshi/gv.vqvz.com).
 - [OnBoard](http://dev.vemarsas.it/onboard/) a web interface to manage Linux-based network appliances. 
 - [Tweetrad.io](http://tweetrad.io/sinatra) text to speech conversion for twitter
 - [Tweeps](http://tweeps.webdirections.org) conference app to aggregate
@@ -121,6 +121,7 @@ Libraries and extensions {#libs}
 
 Websites {#sites}
 --------
+- [I Shoot Film](http://film.vqvz.com) presents Funkaoshi's film photography posted to Flickr organized by film rolls -- [on GitHub](http://github.com/funkaoshi/I-Shoot-Film).
 - [Speed of Animals](http://www.speedofanimals.com/): imagine being a spotted hyena...
 - [Bloor and Lansdowne is Blansdowne](http://blansdowne.ca) is a photoblog about a neighbourhood in Toronto.
 - [NYLS Upload Tool](http://upload.citylaw.org) Web-based replacement of FTP
