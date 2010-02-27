@@ -16,7 +16,7 @@ Source file reloading was removed in the 0.9.2 due to excess complexity.
 The [shotgun](http://rtomayko.github.com/shotgun/) program can be used to
 achieve the same in most situations. Install shotgun via gem and run
 your app as follows, if your application is the default,
-"classic" style aplication (as shown eg. in README):
+"classic" style application (as shown eg. in README):
 
     $ sudo gem install shotgun
     $ shotgun myapp.rb
