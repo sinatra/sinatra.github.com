@@ -73,9 +73,10 @@ List of applications, libraries, websites and companies using Sinatra.
 
 List of Sinatra extensions, typically available as gems.
 
-### [The Sinatra Book](book.html) (_Work In Progress_)
+### [The Sinatra Book](http://sinatra-book.gittr.com/)
 
 An in-depth look at building and deploying Sinatra applications.
+Maintained by [Chris Schneider](http://github.com/cschneid).
 
 <!--
 
