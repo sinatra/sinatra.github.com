@@ -14,8 +14,8 @@ Background
 ----------
 
 Some knowledge of Sinatra's internal design is required to write good
-extensions. This section provides a high level overview of the classes and
-idioms at the core of Sinatra's design.
+extensions. This section provides a high level overview of the classes
+and idioms at the core of Sinatra's design.
 
 Sinatra has two distinct modes of use that extensions should be aware of:
 
@@ -39,9 +39,9 @@ extension authors to ensure that extensions do the right thing under each
 style. The extension API (`Sinatra.register` and `Sinatra.helpers`) is
 provided to help extension authors with this task.
 
-__Important:__ The following notes on `Sinatra::Base`, `Sinatra::Default`, and
-`Sinatra::Application` are provided for background only - extension authors
-should not need to modify these classes directly.
+__Important:__ The following notes on `Sinatra::Base` and
+`Sinatra::Application` are provided for background only - extension
+authors should not need to modify these classes directly.
 
 ### `Sinatra::Base`
 
@@ -54,7 +54,7 @@ subclass. The "DSL" (e.g., `get`, `post`, `before`, `configure`, `set`,
 etc.) is simply a set of class methods defined on `Sinatra::Base`. Extending
 the DSL is achieved by adding class methods to `Sinatra::Base` or one of its
 subclasses. However, Base classes should not be extended with
-`Module.extend`; the `Sinatra.register` method (described below) is provided
+`extend`; the `Sinatra.register` method (described below) is provided
 for this task.
 
 Requests are evaluated within a new `Sinatra::Base` instance -- routes,
@@ -63,18 +63,20 @@ The default set of request-level helper methods (e.g, `erb`, `haml`, `halt`,
 `content_type`, etc.) are simple instance methods defined on `Sinatra::Base`
 or within modules that are included in `Sinatra::Base`. Providing new
 functionality at the request level is achieved by adding instance methods to
-`Sinatra::Base`. As with DSL extensions, helper modules should not be added
-directly to `Sinatra::Base` by extension authors with `Module.include`; the
+`Sinatra::Base`.
+
+As with DSL extensions, helper modules should not be added directly to
+`Sinatra::Base` by extension authors with `include`; the
 `Sinatra.helpers` method (described below) is provided for this task.
 
-### `Sinatra::Default` and `Sinatra::Application`
+### `Sinatra::Application`
 
-The `Sinatra::Default` class provides the default execution context for
-_classic style applications_. It is a simple subclass of `Sinatra::Base`
-that provides default option values and other behavior tailored for
-top-level apps. When a classic style application is run, a new
-`Sinatra::Default` subclass is created at `Sinatra::Application` and the
-public class methods are exported to the top-level.
+The `Sinatra::Application` class provides the default execution context
+for _classic style applications_. It is a simple subclass of
+`Sinatra::Base` that provides default option values and other behavior
+tailored for top-level apps. When a classic style application is run,
+all `Sinatra::Application` public class methods are exported to the
+top-level.
 
 Rules for Extensions
 --------------------
@@ -121,10 +123,11 @@ module Sinatra
 end
 {% endhighlight %}
 
-The call to `Sinatra.helpers` includes the module in `Sinatra::Default`,
-making all methods defined in the module available to classic style
-applications. Using this extension in classic style apps is a simple as
-requiring the extension and using the new method:
+The call to `Sinatra.helpers` includes the module in
+`Sinatra::Application`, making all methods defined in the module
+available to classic style applications. Using this extension in classic
+style apps is a simple as requiring the extension and using the new
+method:
 
 {% highlight ruby %}
 require 'sinatra'
@@ -177,7 +180,7 @@ end
 {% endhighlight %}
 
 `Sinatra.register` adds all public methods in the module(s) given as class
-methods on `Sinatra::Default`. It also handles exporting public methods to
+methods on `Sinatra::Application`. It also handles exporting public methods to
 the top-level when classic style apps are executed.
 
 A classic style application would use this extension as follows:
