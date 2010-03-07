@@ -17,7 +17,7 @@ helpful.
 
 ## Need help?
 
-The [Sinatra mailing list][ml] has over 250 subscribers, many of which are happy
+The [Sinatra mailing list][ml] has over 700 subscribers, many of which are happy
 to help out newbies or talk about potential feature additions. You can also drop
 by the [#sinatra](irc://chat.freenode.net/#sinatra) channel on
 [irc.freenode.net](http://freenode.net).
@@ -79,4 +79,4 @@ you've worked a few issues, someone will add you as an assignee.
 
 [hp]: http://sinatra.lighthouseapp.com/projects/9779-sinatra/tickets/bins/13046
 [li]: http://sinatra.lighthouseapp.com/projects/9779-sinatra/tickets/new
-[ml]: http://groups.google.com/group/sinatrarb "Sinatra Mailing List"
+[ml]: http://groups.google.com/group/sinatrarb/topics "Sinatra Mailing List"
