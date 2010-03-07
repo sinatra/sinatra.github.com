@@ -7,10 +7,6 @@ id: testing
 Testing Sinatra with Rack::Test
 ===============================
 
-**NOTE: Sinatra's built-in test framework has been deprecated in favor of
-[Rack::Test](http://gitrdoc.com/brynary/rack-test/tree/master) as of version
-0.9.2. This document describes testing with Rack::Test.**
-
 All examples in the following  sections assume that `Test::Unit` is being
 used in an attempt to be as general as possible. See the [Test Framework
 Examples](#frameworks) for information on using the test helpers in
