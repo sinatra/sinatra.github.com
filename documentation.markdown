@@ -58,12 +58,9 @@ See the `CHANGES` file included for release notes about each release:
  * [0.9.0](http://github.com/sinatra/sinatra/blob/0.9.0/CHANGES)
    January 18, 2009
 
-### [API Documentation](/api/index.html)
+### [API Documentation](http://railsapi.com/doc/sinatra-v1.0/)
 
-Generated from Sinatra's source with RDoc. The
-[Rack API docs](http://rack.rubyforge.org/doc/) should also be consulted.
-
-Also available with an alternate template at <http://railsapi.com/sinatra>.
+RDoc documentation courtesy of `railsapi.com`.
 
 ### [In the Wild](/wild.html)
 
