@@ -1,63 +1,63 @@
 ---
-title: 'Sinatra: Options and Configuration'
+title: 'Sinatra: Configuring Settings'
 layout: default
 id: configuration
 ---
 
-Options and Configuration
-=========================
+Configuring Settings
+====================
 
-Sinatra includes a number of built-in options that control whether certain
-features are enabled. Options are application-level variables that are
+Sinatra includes a number of built-in settings that control whether certain
+features are enabled. Settings are application-level variables that are
 modified using one of the `set`, `enable`, or `disable` methods and are
-available within the request context via the `options` object. Applications
-are free to set custom options as well as the default, built-in options
+available within the request context via the `settings` object. Applications
+are free to set custom settings as well as the default, built-in settings
 provided by the framework.
 
 Using `set`, `enable`, and `disable`
 ------------------------------------
 
-In its simplest form, the `set` method takes an option name and value and
-creates an attribute on the application. Options can be accessed within
-requests via the `options` object:
+In its simplest form, the `set` method takes an setting name and value and
+creates an attribute on the application. Settings can be accessed within
+requests via the `settings` object:
 
 {% highlight ruby %}
 set :foo, 'bar'
 
 get '/foo' do
-  "foo is set to " + options.foo
+  "foo is set to " + settings.foo
 end
 {% endhighlight %}
 
-### Deferring option evaluation
+### Deferring evaluation
 
-When the option value is a `Proc`, evaluation is performed when the option
-is read so that other options may be used to calculate the option value:
+When the setting value is a `Proc`, evaluation is performed when the setting
+is read so that other settings may be used to calculate the value:
 
 {% highlight ruby %}
 set :foo, 'bar'
 set :baz, Proc.new { "Hello " + foo }
 
 get '/baz' do
-  "baz is set to " + options.baz
+  "baz is set to " + settings.baz
 end
 {% endhighlight %}
 
 The `/baz` response should come as "baz is set to Hello bar" unless the
-`foo` option is modified.
+`foo` setting is modified.
 
-### Setting multiple options
+### Configuring multiple settings
 
-Multiple options can be set by passing a Hash to `set`. The previous example
+Multiple settings can be set by passing a Hash to `set`. The previous example
 could be rewritten with:
 
 {% highlight ruby %}
 set :foo => 'bar', :baz => Proc.new { "Hello " + foo }
 {% endhighlight %}
 
-### Setting multiple boolean options with `enable` and `disable`
+### Setting multiple boolean settings with `enable` and `disable`
 
-The `enable` and `disable` methods are sugar for setting a list of options
+The `enable` and `disable` methods are sugar for setting a list of settings
 to `true` or `false`, respectively. The following two code examples are
 equivalent:
 
@@ -76,8 +76,8 @@ set :dump_errors, false
 set :some_custom_option, false
 {% endhighlight %}
 
-Built-in Options
-----------------
+Built-in Settings
+-----------------
 
 ### `:environment` - configuration/deployment environment
 
@@ -105,7 +105,7 @@ component into the application's middleware pipeline.
 ### `:logging` - log requests to `STDERR`
 
 Writes a single line to `STDERR` in Apache common log format when enabled.
-This option is enabled by default in classic style apps and disabled by
+This setting is enabled by default in classic style apps and disabled by
 default in `Sinatra::Base` subclasses.
 
 Internally, the [`Rack::CommonLogger`][cl] component is used to generate
@@ -131,8 +131,8 @@ The POST `_method` hack is implemented by inserting the
 
 The directory used as a base for the application. By default, this is
 assumed to be the directory containing the main application file
-(`:app_file` option). The root directory is used to construct the default
-`:public` and `:views` options. A common idiom is to set the `:root` option
+(`:app_file` setting). The root directory is used to construct the default
+`:public` and `:views` settings. A common idiom is to set the `:root` setting
 explicitly in the main application file as follows:
 
     set :root, File.dirname(__FILE__)
@@ -140,24 +140,24 @@ explicitly in the main application file as follows:
 ### `:static` - enable/disable static file routes
 
 Boolean that determines whether static files should be served from the
-application's public directory (see the `:public` option). When `:static` is
+application's public directory (see the `:public` setting). When `:static` is
 truthy, Sinatra will check if a static file exists and serve it before
 checking for a matching route.
 
-The `:static` option is enabled by default when the `public` directory
+The `:static` setting is enabled by default when the `public` directory
 exists.
 
 ### `:public` - static files directory
 
 A string specifying the directory where static files should be served from.
 By default, this is assumed to be a directory named "public" within the root
-directory (see the `:root` option). You can set the public directory
+directory (see the `:root` setting). You can set the public directory
 explicitly with:
 
     set :public, '/var/www'
 
 The best way to specify an alternative directory name within the root of the
-application is to use a deferred value that references the `:root` option:
+application is to use a deferred value that references the `:root` setting:
 
     set :public, Proc.new { File.join(root, "static") }
 
@@ -165,16 +165,16 @@ application is to use a deferred value that references the `:root` option:
 
 A string specifying the directory where view templates are located.  By
 default, this is assumed to be a directory named "views" within the
-application's root directory (see the `:root` option). The best way to
+application's root directory (see the `:root` setting). The best way to
 specify an alternative directory name within the root of the application is
-to use a deferred value that references the `:root` option:
+to use a deferred value that references the `:root` setting:
 
     set :views, Proc.new { File.join(root, "templates") }
 
 ### `:run` - enable/disable the built-in web server
 
 Boolean specifying whether the built-in web server is started after the app
-is fully loaded. By default, this option is enabled only when the
+is fully loaded. By default, this setting is enabled only when the
 `:app_file` matches `$0`.  i.e., when running a Sinatra app file directly
 with `ruby myapp.rb`. To disable the built-in web server:
 
@@ -182,16 +182,16 @@ with `ruby myapp.rb`. To disable the built-in web server:
 
 ### `:server` - handler used for built-in web server
 
-String or Array of Rack server handler names. When the `:run` option is
+String or Array of Rack server handler names. When the `:run` setting is
 enabled, Sinatra will run through the list and start a server with the
-first available handler. The `:server` option is set as follows by default:
+first available handler. The `:server` setting is set as follows by default:
 
     set :server, %w[thin mongrel webrick]
 
 ### `:host` - server hostname or IP address
 
 String specifying the hostname or IP address of the interface to listen on
-when the `:run` option is enabled. The default value -- `'0.0.0.0'` -- causes
+when the `:run` setting is enabled. The default value -- `'0.0.0.0'` -- causes
 the server to listen on all available interfaces. To listen on the
 loopback interface only, use:
 
@@ -200,15 +200,15 @@ loopback interface only, use:
 ### `:port` - server port
 
 The port that should be used when starting the built-in web server when the
-`:run` option is enabled. The default port is `4567`. To set the port
+`:run` setting is enabled. The default port is `4567`. To set the port
 explicitly:
 
     set :port, 9494
 
 ### `:app_file` - main application file
 
-The `:app_file` option is used to calculate the default `:root`,
-`:public`, and `:views` option values. A common idiom is to override the
+The `:app_file` setting is used to calculate the default `:root`,
+`:public`, and `:views` setting values. A common idiom is to override the
 default detection heuristic by setting the `:app_file` explicitly from
 within the main application file:
 
@@ -221,19 +221,19 @@ applications.
 ### `:dump_errors` - log exception backtraces to `STDERR`
 
 Boolean specifying whether backtraces are written to `STDERR` when an
-exception is raised from a route or filter. This option is enabled by
+exception is raised from a route or filter. This setting is enabled by
 default in classic style apps. Disable with:
 
     set :dump_errors, false
 
 ### `:clean_trace` - scrub library entries from backtraces
 
-When the `:clean_trace` option is enabled, library/framework entries are
+When the `:clean_trace` setting is enabled, library/framework entries are
 removed from exception backtraces before being written to `STDERR`
-(see `:dump_errors` option) or being displayed on the development mode
+(see `:dump_errors` setting) or being displayed on the development mode
 error page.
 
-The `:clean_trace` option is enabled by default in all environments. Disable
+The `:clean_trace` setting is enabled by default in all environments. Disable
 it to get full exception backtraces:
 
     set :clean_trace, false
@@ -243,7 +243,7 @@ it to get full exception backtraces:
 Boolean specifying whether exceptions raised from routes and filters should
 escape the application. When disabled, exceptions are rescued and mapped to
 error handlers which typically set a 5xx status code and render a custom
-error page. Enabling the `:raise_errors` option causes exceptions to be
+error page. Enabling the `:raise_errors` setting causes exceptions to be
 raised outside of the application where it may be handled by the server
 handler or Rack middleware, such as [`Rack::ShowExceptions`][se] or
 [`Rack::MailExceptions`][me].
@@ -256,10 +256,10 @@ handler or Rack middleware, such as [`Rack::ShowExceptions`][se] or
 Sinatra can be used in threaded environments where more than a single
 request is processed at a time. However, not all applications and libraries
 are thread-safe and may cause intermittent errors or general weirdness.
-Enabling the `:lock` option causes all requests to synchronize on a mutex
+Enabling the `:lock` setting causes all requests to synchronize on a mutex
 lock, ensuring that only a single request is processed at a time.
 
-The `:lock` option is disabled by default.
+The `:lock` setting is disabled by default.
 
 ### `:show_exceptions` - enable classy error pages
 

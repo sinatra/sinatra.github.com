@@ -10,9 +10,9 @@ Documentation
 
 A whirlwind tour of Sinatra's most interesting features.
 
-### [Options and Configuration](configuration.html)
+### [Configuring Settings](configuration.html)
 
-Detailed documentation on all of Sinatra's built-in options and using `set`,
+Detailed documentation on all of Sinatra's built-in settings and using `set`,
 `enable`, and `disable` to configure them.
 
 ### [Testing Sinatra with Rack::Test](testing.html)
