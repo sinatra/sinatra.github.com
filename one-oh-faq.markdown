@@ -11,13 +11,13 @@ Sinatra is going 1.0. Here are some things you should know:
 ## Is Sinatra 1.0 a rewrite / major conceptual overhaul?
 
 No. Sinatra 1.0 is very much the same codebase as the current stable
-0.9.x release. The largest changes are internal - we're dropping the
-backward compatibility module and test suite that's been maintained
-since the 0.3 release. The majority of obsoleted features are simple
-class/method name changes that have been documented for some time. Very
-few features have been removed in their entirety.
+0.9 release (0.9.6). The largest changes are internal - we're dropping
+the backward compatibility module and test suite that's been
+maintained since the 0.3 release. The majority of obsoleted features
+are simple class/method name changes that have been documented for
+some time. Very few features have been removed in their entirety.
 
-Some new features will be introduced.
+Some [new features][ch] have been introduced.
 
 ## Will my existing Sinatra app work with 1.0? How can I check?
 
@@ -26,23 +26,26 @@ Maybe.
 If you've kept up with deprecations and use officially documented
 features, your app should be fine under Sinatra 1.0.
 
-The latest Sinatra 0.9.x release includes comprehensive deprecation
-warnings for all incompatibilities introduced in Sinatra 1.0. Run your
-test suite and app under 0.9.x and watch for warnings on standard error.
-When no more deprecation warnings remain, upgrade your staging
-environment to Sinatra 1.0 and verify that stuff works.
+The latest Sinatra 0.9.x release (0.9.6 at time of writing) includes
+comprehensive deprecation warnings for all incompatibilities introduced
+in Sinatra 1.0. Run your test suite and app under 0.9.6 and watch for
+warnings on standard error. When no more deprecation warnings remain,
+upgrade your staging environment to Sinatra 1.0 and verify that stuff
+works.
 
 ## Can I install and run under Sinatra 1.0 today?
 
-Sinatra 1.0 has not been officially released yet, but [prerelease gems
-are available from gemcutter](http://gemcutter.org/gems/sinatra/versions/1.0.a):
+Sinatra 1.0 has not been officially released yet but [prerelease gems
+are available][pg]:
 
     gem install --pre sinatra
 
-Alternatively, you can run off of the `master` branch:
+Alternatively, you can grab a clone of the `master` branch:
 
     git clone git://github.com/sinatra/sinatra.git
     RUBYLIB="$(pwd)/sinatra/lib:$RUBYLIB"
+
+[pg]: http://gemcutter.org/gems/sinatra/versions/1.0.b
 
 ## What incompatibilities are being introduced in Sinatra 1.0?
 
@@ -61,9 +64,10 @@ The following is a comprehensive list of features obsoleted in the
    testing environment under each of these frameworks.
 
  * `Sinatra::Default` is obsolete; use `Sinatra::Base` instead.
-   `Sinatra::Base` acts more like `Sinatra::Default` in development mode.
-   For example, static file serving and sexy development error pages are
-   enabled by default.
+   `Sinatra::Base` acts more like `Sinatra::Default` in 1.0. For
+   example, static files and error handlers are enabled by default in
+   all environment and classy development error pages are enabled in
+   development environments.
 
  * Auto-requiring template libraries in the `erb`, `builder`, `haml`,
    and `sass` methods is obsolete due to thread-safety issues. You must
@@ -115,9 +119,16 @@ The following is a comprehensive list of features obsoleted in the
 
 ## What about new features?
 
-See the [CHANGES](changes) file for a comprehensive list of features
-added in the 1.0 release. There's also a list of all commits + diff
-[between the 0.9.x and 1.0 release](http://github.com/sinatra/sinatra/compare/0.9.4...1.0.a)
+See the [CHANGES][ch] file for a list of features added in the 1.0
+release. There's also a comprehensive diff of all changes [between the
+0.9.x and 1.0 releases][cv].
+
+Lastly, the [1.0 Lighthouse milestone page][li] includes 80 tickets with
+details on various features and bug fixes.
+
+[ch]: http://github.com/sinatra/sinatra/blob/1.0.b/CHANGES
+[cv]: http://github.com/sinatra/sinatra/compare/0.9.x...1.0.b
+[li]: https://sinatra.lighthouseapp.com/projects/9779-sinatra/milestones/41832-10
 
 ## How will versions be handled in the 1.x series?
 
@@ -125,9 +136,9 @@ We've adopted the [Semantic Versioning Model](http://semver.org/).
 All 1.x releases will be backward compatible with the initial
 1.0 release.
 
-This is one of the reasons we've waited so long to do an official 1.0
+(This is one of the reasons we've waited so long to do an official 1.0
 release. We're required not to break anything shipped in 1.0 for a very
-long time, so interfaces we don't like require considerable scrutiny.
+long time, so interfaces we don't like require considerable scrutiny.)
 
 ## Will the 0.9.x series continue to be maintained?
 
