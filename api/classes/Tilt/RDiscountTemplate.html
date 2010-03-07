@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: Tilt::RDiscountTemplate [Sinatra API Documentation]</title>
+    <meta content='text/html; charset=utf8' http-equiv='Content-Type'>
+    <link href='../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Class</span>
+          Tilt::RDiscountTemplate
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../files/lib/sinatra/tilt_rb.html">lib/sinatra/tilt.rb</a>
+          </li>
+        </ol>
+        <div class='parent'>
+          Parent:
+          <strong><a href="Template.html">Tilt::Template</a></strong>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <p>
+            Discount Markdown implementation. See: <a
+            href="http://github.com/rtomayko/rdiscount">github.com/rtomayko/rdiscount</a>
+            </p>
+            <p>
+            RDiscount is a simple text filter. It does not support <tt>scope</tt> or
+            <tt>locals</tt>. The <tt>:smart</tt> and <tt>:filter_html</tt> options may
+            be set true to enable those flags on the underlying RDiscount object.
+            </p>
+          </div>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M000074">evaluate</a></li>
+              <li><a href="#M000071">flags</a></li>
+              <li><a href="#M000072">initialize_engine</a></li>
+              <li><a href="#M000073">prepare</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M000074'>
+                <a name='M000074'></a>
+                <div class='synopsis'>
+                  <span class='name'>evaluate</span>
+                  <span class='arguments'>(scope, locals, &amp;block)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000074-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000074-source'>     <span class="ruby-comment cmt"># File lib/sinatra/tilt.rb, line 630</span>&#x000A;630:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">evaluate</span>(<span class="ruby-identifier">scope</span>, <span class="ruby-identifier">locals</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;631:       <span class="ruby-ivar">@output</span> <span class="ruby-operator">||=</span> <span class="ruby-ivar">@engine</span>.<span class="ruby-identifier">to_html</span>&#x000A;632:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000071'>
+                <a name='M000071'></a>
+                <div class='synopsis'>
+                  <span class='name'>flags</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000071-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000071-source'>     <span class="ruby-comment cmt"># File lib/sinatra/tilt.rb, line 616</span>&#x000A;616:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">flags</span>&#x000A;617:       [<span class="ruby-identifier">:smart</span>, <span class="ruby-identifier">:filter_html</span>].<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">flag</span><span class="ruby-operator">|</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">flag</span>] }&#x000A;618:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000072'>
+                <a name='M000072'></a>
+                <div class='synopsis'>
+                  <span class='name'>initialize_engine</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000072-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000072-source'>     <span class="ruby-comment cmt"># File lib/sinatra/tilt.rb, line 620</span>&#x000A;620:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize_engine</span>&#x000A;621:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">defined?</span> <span class="ruby-operator">::</span><span class="ruby-constant">RDiscount</span>&#x000A;622:       <span class="ruby-identifier">require_template_library</span> <span class="ruby-value str">'rdiscount'</span>&#x000A;623:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000073'>
+                <a name='M000073'></a>
+                <div class='synopsis'>
+                  <span class='name'>prepare</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000073-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000073-source'>     <span class="ruby-comment cmt"># File lib/sinatra/tilt.rb, line 625</span>&#x000A;625:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">prepare</span>&#x000A;626:       <span class="ruby-ivar">@engine</span> = <span class="ruby-constant">RDiscount</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">data</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">flags</span>)&#x000A;627:       <span class="ruby-ivar">@output</span> = <span class="ruby-keyword kw">nil</span>&#x000A;628:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

@@ -3,7 +3,7 @@
   <head>
     <title>File: README.rdoc [Sinatra API Documentation]</title>
     <meta content='text/html; charset=utf8' http-equiv='Content-Type'>
-    <link href='.././rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <link href='../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
     <script type='text/javascript'>
       //<![CDATA[
         function popupCode(url) {
@@ -31,7 +31,7 @@
         </div>
         <div class='last-update'>
           Last Update:
-          <span class='datetime'>Thu Jul 09 14:45:07 +0200 2009</span>
+          <span class='datetime'>Sun Mar 07 04:45:08 -0800 2010</span>
         </div>
       </div>
       <div id='content'>
@@ -130,6 +130,14 @@
             <p>
             Renders <tt>./views/index.erb</tt>
             </p>
+            <h3>Erubis</h3>
+            <p>
+            The erubis gem/library is required to render builder templates:
+            </p>
+            <pre>## You'll need to require erubis in your app&#x000A;require 'erubis'&#x000A;&#x000A;get '/' do&#x000A;  erubis :index&#x000A;end</pre>
+            <p>
+            Renders <tt>./views/index.erubis</tt>
+            </p>
             <h3>Builder Templates</h3>
             <p>
             The builder gem/library is required to render builder templates:
@@ -152,7 +160,15 @@
             <a href="http://www.sinatrarb.com/configuration.html">Options and
             Configurations</a>, and overridden on an individual basis.
             </p>
-            <pre>set :sass, {:style =&gt; :compact } # default Sass style is :nested&#x000A;&#x000A;get '/stylesheet.css' do&#x000A;  content_type 'text/css', :charset =&gt; 'utf-8'&#x000A;  sass :stylesheet, :sass_options =&gt; {:style =&gt; :expanded } # overridden&#x000A;end</pre>
+            <pre>set :sass, {:style =&gt; :compact } # default Sass style is :nested&#x000A;&#x000A;get '/stylesheet.css' do&#x000A;  content_type 'text/css', :charset =&gt; 'utf-8'&#x000A;  sass :stylesheet, :style =&gt; :expanded # overridden&#x000A;end</pre>
+            <h3>Less Templates</h3>
+            <p>
+            The less gem/library is required to render Less templates:
+            </p>
+            <pre>## You'll need to require less in your app&#x000A;require 'less'&#x000A;&#x000A;get '/stylesheet.css' do&#x000A;  content_type 'text/css', :charset =&gt; 'utf-8'&#x000A;  less :stylesheet&#x000A;end</pre>
+            <p>
+            Renders <tt>./views/stylesheet.less</tt>.
+            </p>
             <h3>Inline Templates</h3>
             <pre>get '/' do&#x000A;  haml '%div.title Hello World'&#x000A;end</pre>
             <p>
@@ -172,15 +188,15 @@
             This is typically used when rendering templates as partials from within
             other templates.
             </p>
-            <h3>In-file Templates</h3>
+            <h3>Inline Templates</h3>
             <p>
             Templates may be defined at the end of the source file:
             </p>
             <pre>require 'rubygems'&#x000A;require 'sinatra'&#x000A;&#x000A;get '/' do&#x000A;  haml :index&#x000A;end&#x000A;&#x000A;__END__&#x000A;&#x000A;@@ layout&#x000A;%html&#x000A;  = yield&#x000A;&#x000A;@@ index&#x000A;%div.title Hello world!!!!!</pre>
             <p>
-            NOTE: In-file templates defined in the source file that requires sinatra
-            are automatically loaded. Call the <tt>use_in_file_templates!</tt> method
-            explicitly if you have in-file templates in other source files.
+            NOTE: Inline templates defined in the source file that requires sinatra are
+            automatically loaded. Call `enable :inline_templates` explicitly if you
+            have inline templates in other source files.
             </p>
             <h3>Named Templates</h3>
             <p>
@@ -206,24 +222,38 @@
             filters are accessible by routes and templates:
             </p>
             <pre>before do&#x000A;  @note = 'Hi!'&#x000A;  request.path_info = '/foo/bar/baz'&#x000A;end&#x000A;&#x000A;get '/foo/*' do&#x000A;  @note #=&gt; 'Hi!'&#x000A;  params[:splat] #=&gt; 'bar/baz'&#x000A;end</pre>
+            <p>
+            After filter are evaluated after each request within the context of the
+            request and can also modify the request and response. Instance variables
+            set in before filters and routes are accessible by after filters:
+            </p>
+            <pre>after do&#x000A;  puts response.status&#x000A;end</pre>
             <h2>Halting</h2>
             <p>
-            To immediately stop a request during a before filter or route use:
+            To immediately stop a request within a filter or route use:
             </p>
             <pre>halt</pre>
             <p>
-            You can also specify a body when halting &#8230;
+            You can also specify the status when halting &#8230;
+            </p>
+            <pre>halt 410</pre>
+            <p>
+            Or the body &#8230;
             </p>
             <pre>halt 'this will be the body'</pre>
             <p>
-            Or set the status and body &#8230;
+            Or both &#8230;
             </p>
             <pre>halt 401, 'go away!'</pre>
+            <p>
+            With headers &#8230;
+            </p>
+            <pre>halt 402, {'Content-Type' =&gt; 'text/plain'}, 'revenge'</pre>
             <h2>Passing</h2>
             <p>
             A route can punt processing to the next matching route using <tt>pass</tt>:
             </p>
-            <pre>get '/guess/:who' do&#x000A;  pass unless params[:who] == 'Frank'&#x000A;  &quot;You got me!&quot;&#x000A;end&#x000A;&#x000A;get '/guess/*' do&#x000A;  &quot;You missed!&quot;&#x000A;end</pre>
+            <pre>get '/guess/:who' do&#x000A;  pass unless params[:who] == 'Frank'&#x000A;  'You got me!'&#x000A;end&#x000A;&#x000A;get '/guess/*' do&#x000A;  'You missed!'&#x000A;end</pre>
             <p>
             The route block is immediately exited and control continues with the next
             matching route. If no matching route is found, a 404 is returned.
@@ -259,8 +289,8 @@
             <h3>Error</h3>
             <p>
             The <tt>error</tt> handler is invoked any time an exception is raised from
-            a route block or before filter. The exception object can be obtained from
-            the <tt>sinatra.error</tt> Rack variable:
+            a route block or a filter. The exception object can be obtained from the
+            <tt>sinatra.error</tt> Rack variable:
             </p>
             <pre>error do&#x000A;  'Sorry there was a nasty error - ' + env['sinatra.error'].name&#x000A;end</pre>
             <p>
@@ -276,6 +306,14 @@
             </p>
             <pre>So what happened was... something bad</pre>
             <p>
+            Alternatively, you can install error handler for a status code:
+            </p>
+            <pre>error 403 do&#x000A;  'Access forbidden'&#x000A;end&#x000A;&#x000A;get '/secret' do&#x000A;  403&#x000A;end</pre>
+            <p>
+            Or a range:
+            </p>
+            <pre>error 400..510 do&#x000A;  'Boom'&#x000A;end</pre>
+            <p>
             <a href="../classes/Sinatra.html">Sinatra</a> installs special
             <tt>not_found</tt> and <tt>error</tt> handlers when running under the
             development environment.
@@ -284,9 +322,13 @@
             <p>
             When using <tt>send_file</tt> or static files you may have mime types <a
             href="../classes/Sinatra.html">Sinatra</a> doesn&#8217;t understand. Use
-            <tt>mime</tt> to register them by file extension:
+            <tt>mime_type</tt> to register them by file extension:
             </p>
-            <pre>mime :foo, 'text/foo'</pre>
+            <pre>mime_type :foo, 'text/foo'</pre>
+            <p>
+            You can also use it with the <tt>content_type</tt> helper:
+            </p>
+            <pre>content_type :foo</pre>
             <h2>Rack Middleware</h2>
             <p>
             <a href="../classes/Sinatra.html">Sinatra</a> rides on <a
@@ -377,21 +419,21 @@
             &#8212; receives all :get, :put, :post, :delete, :before, :error,
             :not_found, :configure, and :set messages sent to the top-level. Have a
             look at the code for yourself: here&#8217;s the <a
-            href="http://github.com/sinatra/sinatra/blob/master/lib/sinatra/base.rb#L1064">Sinatra::Delegator
+            href="http://github.com/sinatra/sinatra/blob/ceac46f0bc129a6e994a06100aa854f606fe5992/lib/sinatra/base.rb#L1128">Sinatra::Delegator
             mixin</a> being <a
-            href="http://github.com/sinatra/sinatra/blob/master/lib/sinatra/main.rb#L25">included
-            into the main namespace</a>.
+            href="http://github.com/sinatra/sinatra/blob/ceac46f0bc129a6e994a06100aa854f606fe5992/lib/sinatra/main.rb#L28">included
+            into the main namespace</a>
             </p>
             <h2>Command line</h2>
             <p>
             <a href="../classes/Sinatra.html">Sinatra</a> applications can be run
             directly:
             </p>
-            <pre>ruby myapp.rb [-h] [-x] [-e ENVIRONMENT] [-p PORT] [-s HANDLER]</pre>
+            <pre>ruby myapp.rb [-h] [-x] [-e ENVIRONMENT] [-p PORT] [-o HOST] [-s HANDLER]</pre>
             <p>
             Options are:
             </p>
-            <pre>-h # help&#x000A;-p # set the port (default is 4567)&#x000A;-e # set the environment (default is development)&#x000A;-s # specify rack server/handler (default is thin)&#x000A;-x # turn on the mutex lock (default is off)</pre>
+            <pre>-h # help&#x000A;-p # set the port (default is 4567)&#x000A;-o # set the host (default is 0.0.0.0)&#x000A;-e # set the environment (default is development)&#x000A;-s # specify rack server/handler (default is thin)&#x000A;-x # turn on the mutex lock (default is off)</pre>
             <h2>The Bleeding Edge</h2>
             <p>
             If you would like to use Sinatra&#8217;s latest bleeding code, create a
@@ -411,12 +453,12 @@
             <pre>cd myproject/sinatra&#x000A;git pull</pre>
             <h2>More</h2>
             <ul>
-            <li><a href="http://sinatra.github.com/">Project Website</a> - Additional
+            <li><a href="http://www.sinatrarb.com/">Project Website</a> - Additional
             documentation, news, and links to other resources.
             
             </li>
-            <li><a href="http://sinatra.github.com/contributing.html">Contributing</a> -
-            Find a bug? Need help? Have a patch?
+            <li><a href="http://www.sinatrarb.com/contributing">Contributing</a> - Find a
+            bug? Need help? Have a patch?
             
             </li>
             <li><a href="http://sinatra.lighthouseapp.com">Lighthouse</a> - Issue tracking
@@ -426,7 +468,7 @@
             <li><a href="http://twitter.com/sinatra">Twitter</a>
             
             </li>
-            <li><a href="http://groups.google.com/group/sinatrarb">Mailing List</a>
+            <li><a href="http://groups.google.com/group/sinatrarb/topics">Mailing List</a>
             
             </li>
             <li><a href="irc://chat.freenode.net/#sinatra">IRC: #sinatra</a> on <a

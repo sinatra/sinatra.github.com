@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: Tilt::ErubisTemplate [Sinatra API Documentation]</title>
+    <meta content='text/html; charset=utf8' http-equiv='Content-Type'>
+    <link href='../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Class</span>
+          Tilt::ErubisTemplate
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../files/lib/sinatra/tilt_rb.html">lib/sinatra/tilt.rb</a>
+          </li>
+        </ol>
+        <div class='parent'>
+          Parent:
+          <strong><a href="ERBTemplate.html">Tilt::ERBTemplate</a></strong>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <p>
+            Erubis template implementation. See: <a
+            href="http://www.kuwata-lab.com/erubis/">www.kuwata-lab.com/erubis/</a>
+            </p>
+          </div>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M000124">initialize_engine</a></li>
+              <li><a href="#M000128">precompiled</a></li>
+              <li><a href="#M000127">precompiled_postamble</a></li>
+              <li><a href="#M000126">precompiled_preamble</a></li>
+              <li><a href="#M000125">prepare</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M000124'>
+                <a name='M000124'></a>
+                <div class='synopsis'>
+                  <span class='name'>initialize_engine</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000124-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000124-source'>     <span class="ruby-comment cmt"># File lib/sinatra/tilt.rb, line 406</span>&#x000A;406:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize_engine</span>&#x000A;407:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">defined?</span> <span class="ruby-operator">::</span><span class="ruby-constant">Erubis</span>&#x000A;408:       <span class="ruby-identifier">require_template_library</span> <span class="ruby-value str">'erubis'</span>&#x000A;409:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000128'>
+                <a name='M000128'></a>
+                <div class='synopsis'>
+                  <span class='name'>precompiled</span>
+                  <span class='arguments'>(locals)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000128-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000128-source'>     <span class="ruby-comment cmt"># File lib/sinatra/tilt.rb, line 428</span>&#x000A;428:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">precompiled</span>(<span class="ruby-identifier">locals</span>)&#x000A;429:         <span class="ruby-identifier">source</span>, <span class="ruby-identifier">offset</span> = <span class="ruby-keyword kw">super</span>&#x000A;430:         [<span class="ruby-identifier">source</span>, <span class="ruby-identifier">offset</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>]&#x000A;431:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000127'>
+                <a name='M000127'></a>
+                <div class='synopsis'>
+                  <span class='name'>precompiled_postamble</span>
+                  <span class='arguments'>(locals)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000127-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000127-source'>     <span class="ruby-comment cmt"># File lib/sinatra/tilt.rb, line 421</span>&#x000A;421:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">precompiled_postamble</span>(<span class="ruby-identifier">locals</span>)&#x000A;422:       [<span class="ruby-value str">&quot;_buf&quot;</span>, <span class="ruby-keyword kw">super</span>].<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;\n&quot;</span>)&#x000A;423:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000126'>
+                <a name='M000126'></a>
+                <div class='synopsis'>
+                  <span class='name'>precompiled_preamble</span>
+                  <span class='arguments'>(locals)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000126-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000126-source'>     <span class="ruby-comment cmt"># File lib/sinatra/tilt.rb, line 417</span>&#x000A;417:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">precompiled_preamble</span>(<span class="ruby-identifier">locals</span>)&#x000A;418:       [<span class="ruby-keyword kw">super</span>, <span class="ruby-node">&quot;#{@outvar} = _buf = ''&quot;</span>].<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;\n&quot;</span>)&#x000A;419:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000125'>
+                <a name='M000125'></a>
+                <div class='synopsis'>
+                  <span class='name'>prepare</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000125-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000125-source'>     <span class="ruby-comment cmt"># File lib/sinatra/tilt.rb, line 411</span>&#x000A;411:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">prepare</span>&#x000A;412:       <span class="ruby-ivar">@options</span>.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">:preamble</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>, <span class="ruby-identifier">:postamble</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>)&#x000A;413:       <span class="ruby-ivar">@outvar</span> = (<span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:outvar</span>) <span class="ruby-operator">||</span> <span class="ruby-value str">'_erbout'</span>).<span class="ruby-identifier">to_s</span>&#x000A;414:       <span class="ruby-ivar">@engine</span> = <span class="ruby-operator">::</span><span class="ruby-constant">Erubis</span><span class="ruby-operator">::</span><span class="ruby-constant">Eruby</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">data</span>, <span class="ruby-identifier">options</span>)&#x000A;415:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: Tilt::MustacheTemplate [Sinatra API Documentation]</title>
+    <meta content='text/html; charset=utf8' http-equiv='Content-Type'>
+    <link href='../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Class</span>
+          Tilt::MustacheTemplate
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../files/lib/sinatra/tilt_rb.html">lib/sinatra/tilt.rb</a>
+          </li>
+        </ol>
+        <div class='parent'>
+          Parent:
+          <strong><a href="Template.html">Tilt::Template</a></strong>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <p>
+            Mustache is written and maintained by Chris Wanstrath. See: <a
+            href="http://github.com/defunkt/mustache">github.com/defunkt/mustache</a>
+            </p>
+            <p>
+            When a scope argument is provided to MustacheTemplate#render, the instance
+            variables are copied from the scope object to the Mustache view.
+            </p>
+          </div>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M000083">evaluate</a></li>
+              <li><a href="#M000081">initialize_engine</a></li>
+              <li><a href="#M000082">prepare</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='attribute-list'>
+              <h2 class='section-bar'>Attributes</h2>
+              <div class='name-list'>
+                <table>
+                  <tr class='top-aligned-row context-row'>
+                    <td class='context-item-name'>engine</td>
+                    <td class='context-item-value'>[R]</td>
+                    <td class='context-item-desc'></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M000083'>
+                <a name='M000083'></a>
+                <div class='synopsis'>
+                  <span class='name'>evaluate</span>
+                  <span class='arguments'>(scope=nil, locals={}, &amp;block)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000083-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000083-source'>     <span class="ruby-comment cmt"># File lib/sinatra/tilt.rb, line 683</span>&#x000A;683:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">evaluate</span>(<span class="ruby-identifier">scope</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">locals</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;684:       <span class="ruby-identifier">instance</span> = <span class="ruby-ivar">@engine</span>.<span class="ruby-identifier">new</span>&#x000A;685: &#x000A;686:       <span class="ruby-comment cmt"># copy instance variables from scope to the view</span>&#x000A;687:       <span class="ruby-identifier">scope</span>.<span class="ruby-identifier">instance_variables</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span>&#x000A;688:         <span class="ruby-identifier">instance</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">scope</span>.<span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-identifier">name</span>))&#x000A;689:       <span class="ruby-keyword kw">end</span>&#x000A;690: &#x000A;691:       <span class="ruby-comment cmt"># locals get added to the view's context</span>&#x000A;692:       <span class="ruby-identifier">locals</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">local</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>&#x000A;693:         <span class="ruby-identifier">instance</span>[<span class="ruby-identifier">local</span>] = <span class="ruby-identifier">value</span>&#x000A;694:       <span class="ruby-keyword kw">end</span>&#x000A;695: &#x000A;696:       <span class="ruby-comment cmt"># if we're passed a block it's a subview. Sticking it in yield</span>&#x000A;697:       <span class="ruby-comment cmt"># lets us use {{yield}} in layout.html to render the actual page.</span>&#x000A;698:       <span class="ruby-identifier">instance</span>[<span class="ruby-identifier">:yield</span>] = <span class="ruby-identifier">block</span>.<span class="ruby-identifier">call</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block</span>&#x000A;699: &#x000A;700:       <span class="ruby-identifier">instance</span>.<span class="ruby-identifier">template</span> = <span class="ruby-identifier">data</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">instance</span>.<span class="ruby-identifier">compiled?</span>&#x000A;701: &#x000A;702:       <span class="ruby-identifier">instance</span>.<span class="ruby-identifier">to_html</span>&#x000A;703:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000081'>
+                <a name='M000081'></a>
+                <div class='synopsis'>
+                  <span class='name'>initialize_engine</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000081-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000081-source'>     <span class="ruby-comment cmt"># File lib/sinatra/tilt.rb, line 668</span>&#x000A;668:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize_engine</span>&#x000A;669:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">defined?</span> <span class="ruby-operator">::</span><span class="ruby-constant">Mustache</span>&#x000A;670:       <span class="ruby-identifier">require_template_library</span> <span class="ruby-value str">'mustache'</span>&#x000A;671:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000082'>
+                <a name='M000082'></a>
+                <div class='synopsis'>
+                  <span class='name'>prepare</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000082-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000082-source'>     <span class="ruby-comment cmt"># File lib/sinatra/tilt.rb, line 673</span>&#x000A;673:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">prepare</span>&#x000A;674:       <span class="ruby-constant">Mustache</span>.<span class="ruby-identifier">view_namespace</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:namespace</span>]&#x000A;675:       <span class="ruby-constant">Mustache</span>.<span class="ruby-identifier">view_path</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:view_path</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:mustaches</span>]&#x000A;676:       <span class="ruby-ivar">@engine</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:view</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">Mustache</span>.<span class="ruby-identifier">view_class</span>(<span class="ruby-identifier">name</span>)&#x000A;677:       <span class="ruby-identifier">options</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>&#x000A;678:         <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-node">%w[view view_path namespace mustaches]</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>)&#x000A;679:         <span class="ruby-ivar">@engine</span>.<span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;#{key}=&quot;</span>, <span class="ruby-identifier">value</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@engine</span>.<span class="ruby-identifier">respond_to?</span> <span class="ruby-node">&quot;#{key}=&quot;</span>&#x000A;680:       <span class="ruby-keyword kw">end</span>&#x000A;681:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

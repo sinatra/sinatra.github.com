@@ -238,6 +238,22 @@ Configurations</a>, and overridden on an individual basis.
     sass :stylesheet, :style =&gt; :expanded # overridden
   end
 </pre>
+<h3>Less Templates</h3>
+<p>
+The less gem/library is required to render Less templates:
+</p>
+<pre>
+  ## You'll need to require less in your app
+  require 'less'
+
+  get '/stylesheet.css' do
+    content_type 'text/css', :charset =&gt; 'utf-8'
+    less :stylesheet
+  end
+</pre>
+<p>
+Renders <tt>./views/stylesheet.less</tt>.
+</p>
 <h3>Inline Templates</h3>
 <pre>
   get '/' do
@@ -669,17 +685,17 @@ delegation system. The +Sinatra::Application+ class &#8212; a special
 subclass of Sinatra::Base &#8212; receives all :get, :put, :post, :delete,
 :before, :error, :not_found, :configure, and :set messages sent to the
 top-level. Have a look at the code for yourself: here&#8217;s the <a
-href="http://github.com/sinatra/sinatra/blob/master/lib/sinatra/base.rb#L1064">Sinatra::Delegator
+href="http://github.com/sinatra/sinatra/blob/ceac46f0bc129a6e994a06100aa854f606fe5992/lib/sinatra/base.rb#L1128">Sinatra::Delegator
 mixin</a> being <a
-href="http://github.com/sinatra/sinatra/blob/master/lib/sinatra/main.rb#L25">included
-into the main namespace</a>.
+href="http://github.com/sinatra/sinatra/blob/ceac46f0bc129a6e994a06100aa854f606fe5992/lib/sinatra/main.rb#L28">included
+into the main namespace</a>
 </p>
 <h2>Command line</h2>
 <p>
 Sinatra applications can be run directly:
 </p>
 <pre>
-  ruby myapp.rb [-h] [-x] [-e ENVIRONMENT] [-p PORT] [-h HOST] [-s HANDLER]
+  ruby myapp.rb [-h] [-x] [-e ENVIRONMENT] [-p PORT] [-o HOST] [-s HANDLER]
 </pre>
 <p>
 Options are:
@@ -687,7 +703,7 @@ Options are:
 <pre>
   -h # help
   -p # set the port (default is 4567)
-  -h # set the host (default is 0.0.0.0)
+  -o # set the host (default is 0.0.0.0)
   -e # set the environment (default is development)
   -s # specify rack server/handler (default is thin)
   -x # turn on the mutex lock (default is off)
@@ -725,12 +741,12 @@ To update the Sinatra sources in the future:
 </pre>
 <h2>More</h2>
 <ul>
-<li><a href="http://sinatra.github.com/">Project Website</a> - Additional
+<li><a href="http://www.sinatrarb.com/">Project Website</a> - Additional
 documentation, news, and links to other resources.
 
 </li>
-<li><a href="http://sinatra.github.com/contributing.html">Contributing</a> -
-Find a bug? Need help? Have a patch?
+<li><a href="http://www.sinatrarb.com/contributing">Contributing</a> - Find a
+bug? Need help? Have a patch?
 
 </li>
 <li><a href="http://sinatra.lighthouseapp.com">Lighthouse</a> - Issue tracking
@@ -740,7 +756,7 @@ and release planning.
 <li><a href="http://twitter.com/sinatra">Twitter</a>
 
 </li>
-<li><a href="http://groups.google.com/group/sinatrarb">Mailing List</a>
+<li><a href="http://groups.google.com/group/sinatrarb/topics">Mailing List</a>
 
 </li>
 <li><a href="irc://chat.freenode.net/#sinatra">IRC: #sinatra</a> on <a

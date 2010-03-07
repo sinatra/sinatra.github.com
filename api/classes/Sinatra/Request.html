@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang='en'>
   <head>
-    <title>Class: Sinatra::Request [Sinatra API Documentation]</title>
+    <title>: Sinatra::Request [Sinatra API Documentation]</title>
     <meta content='text/html; charset=utf8' http-equiv='Content-Type'>
-    <link href='../.././rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <link href='../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
     <script type='text/javascript'>
       //<![CDATA[
         function popupCode(url) {
@@ -51,16 +51,17 @@
             <h2>Methods</h2>
             <h3>public instance</h3>
             <ol>
-              <li><a href="#M000052">accept</a></li>
-              <li><a href="#M000053">params</a></li>
-              <li><a href="#M000051">user_agent</a></li>
+              <li><a href="#M000055">accept</a></li>
+              <li><a href="#M000057">params</a></li>
+              <li><a href="#M000056">secure?</a></li>
+              <li><a href="#M000058">user_agent</a></li>
             </ol>
           </div>
           <div id='section'>
             <div id='methods'>
               <h2>Public instance methods</h2>
-              <div class='public-instance method' id='method-M000052'>
-                <a name='M000052'>      </a>
+              <div class='method public-instance' id='method-M000055'>
+                <a name='M000055'></a>
                 <div class='synopsis'>
                   <span class='name'>accept</span>
                   <span class='arguments'>()</span>
@@ -71,42 +72,49 @@
                   </p>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000052-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000055-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000052-source'>    <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 19</span>&#x000A;19:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">accept</span>&#x000A;20:       <span class="ruby-ivar">@env</span>[<span class="ruby-value str">'HTTP_ACCEPT'</span>].<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">','</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">strip</span> }&#x000A;21:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000055-source'>    <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 28</span>&#x000A;28:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">accept</span>&#x000A;29:       <span class="ruby-ivar">@env</span>[<span class="ruby-value str">'HTTP_ACCEPT'</span>].<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">','</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">strip</span> }&#x000A;30:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='public-instance method' id='method-M000053'>
-                <a name='M000053'>      </a>
+              <div class='method public-instance' id='method-M000057'>
+                <a name='M000057'></a>
                 <div class='synopsis'>
                   <span class='name'>params</span>
                   <span class='arguments'>()</span>
                 </div>
-                <div class='description'>
-                  <p>
-                  Override Rack 0.9.x&#8217;s <a href="Request.html#M000053">params</a>
-                  implementation (see 72 in lighthouse)
-                  </p>
-                </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000053-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000057-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000053-source'>    <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 24</span>&#x000A;24:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">params</span>&#x000A;25:       <span class="ruby-keyword kw">self</span>.<span class="ruby-constant">GET</span>.<span class="ruby-identifier">update</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-constant">POST</span>)&#x000A;26:     <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">EOFError</span>, <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">ESPIPE</span>&#x000A;27:       <span class="ruby-keyword kw">self</span>.<span class="ruby-constant">GET</span>&#x000A;28:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000057-source'>    <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 40</span>&#x000A;40:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">params</span>&#x000A;41:         <span class="ruby-keyword kw">self</span>.<span class="ruby-constant">GET</span>.<span class="ruby-identifier">update</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-constant">POST</span>)&#x000A;42:       <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">EOFError</span>, <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">ESPIPE</span>&#x000A;43:         <span class="ruby-keyword kw">self</span>.<span class="ruby-constant">GET</span>&#x000A;44:       <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='public-instance method' id='method-M000051'>
-                <a name='M000051'>      </a>
+              <div class='method public-instance' id='method-M000056'>
+                <a name='M000056'></a>
+                <div class='synopsis'>
+                  <span class='name'>secure?</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000056-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000056-source'>    <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 32</span>&#x000A;32:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">secure?</span>&#x000A;33:       (<span class="ruby-ivar">@env</span>[<span class="ruby-value str">'HTTP_X_FORWARDED_PROTO'</span>] <span class="ruby-operator">||</span> <span class="ruby-ivar">@env</span>[<span class="ruby-value str">'rack.url_scheme'</span>]) <span class="ruby-operator">==</span> <span class="ruby-value str">'https'</span>&#x000A;34:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000058'>
+                <a name='M000058'></a>
                 <div class='synopsis'>
                   <span class='name'>user_agent</span>
                   <span class='arguments'>()</span>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000051-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000058-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000051-source'>    <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 14</span>&#x000A;14:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">user_agent</span>&#x000A;15:       <span class="ruby-ivar">@env</span>[<span class="ruby-value str">'HTTP_USER_AGENT'</span>]&#x000A;16:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000058-source'>    <span class="ruby-comment cmt"># File lib/sinatra/base.rb, line 46</span>&#x000A;46:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">user_agent</span>&#x000A;47:         <span class="ruby-ivar">@env</span>[<span class="ruby-value str">'HTTP_USER_AGENT'</span>]&#x000A;48:       <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
             </div>
