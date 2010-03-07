@@ -37,10 +37,26 @@ for upgrading.
 Answers to those questions most frequently asked on the mailing list and
 in `#sinatra`.
 
-### [Release Notes](changes.html)
+### Release Notes
 
-Detailed change log for each Sinatra release generated from the `CHANGES`
-file.
+See the `CHANGES` file included for release notes about each release:
+
+ * [1.0](http://github.com/sinatra/sinatra/blob/1.0.b/CHANGES)
+   not yet released
+ * [0.9.6](http://github.com/sinatra/sinatra/blob/0.9.6/CHANGES)
+   March 07, 2010
+ * [0.9.5](http://github.com/sinatra/sinatra/blob/0.9.5/CHANGES)
+   March 05, 2010
+ * [0.9.4](http://github.com/sinatra/sinatra/blob/0.9.4/CHANGES)
+   July 26, 2009
+ * [0.9.3](http://github.com/sinatra/sinatra/blob/0.9.3/CHANGES)
+   June 08, 2009
+ * [0.9.2](http://github.com/sinatra/sinatra/blob/0.9.2/CHANGES)
+   March 18, 2009
+ * [0.9.1](http://github.com/sinatra/sinatra/blob/0.9.1/CHANGES)
+   March 02, 2009
+ * [0.9.0](http://github.com/sinatra/sinatra/blob/0.9.0/CHANGES)
+   January 18, 2009
 
 ### [API Documentation](/api/index.html)
 
