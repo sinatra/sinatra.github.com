@@ -1,47 +1,33 @@
 ---
-title: "Sinatra: Extensions in the Wild"
+title: "Sinatra: Using Extensions"
 layout: default
 ---
 
-Extensions in the Wild
-======================
+Using Extensions
+================
 
 Extensions provide helper or class methods for Sinatra applications.
 These methods are customarily listed and described on extensions home
-pages.
+pages, many of which are listed below.
 
-Before we use a method provided by the particular an extension, the
-gem which implements it has to be installed. For
-example, to install the *sinatra-prawn* gem available from the
-*github.com*, type and run the following command:
+Using an extension is usually as simple as installing a gem or library
+and requiring a file. Consult these steps if you run into problems:
 
-    gem install sbfaulkner-sinatra-prawn -s http://gems.github.com
+  1. Install the gem or vendor the library with your project:
+     `gem install sinatra-prawn`
 
-where `sbfaulkner` is the login of the extension author.
+  2. Require the extension in your application: `require 'sinatra/prawn'`
 
-To use the above extension in a Sinatra application, the following
-lines needs to be inserted into the application code:
+  3. If you're application is "classic" (i.e., you `require 'sinatra'` and
+     define the application in the main/top-level context), you're done.
+     The extension methods should be available to your application.
 
-    gem 'sbfaulkner-sinatra-prawn'
-    require 'sinatra/prawn'
+  4. If you're application subclasses `Sinatra::Base`, you have to register the
+     extension in your subclass: `register Sinatra::Prawn`
 
-We can take advantage of
-[RubyGems](http://www.rubygems.org/read/chapter/4) ability to use
-versioned libraries at runtime:
+## Helper Extensions
 
-    gem 'sbfaulkner-sinatra-prawn', '~>0.9.0'
-
-We request the latest installed version of *sinatra-prawn* gem
-in the 0.9.x series. If no such gem is installed, an exception is thrown.
-
-If the most current version is not appropriate we can ask for specific
-one we need:
-
-    gem 'sbfaulkner-sinatra-prawn', '=0.9.1'
-
-Note, that we require *sinatra/prawn* rather than *sbfaulkner-sinatra-prawn*.
-
-## Extensions which provide helper methods
+These extensions add helper methods to the request context:
 
 1. [sinatra-prawn](http://github.com/sbfaulkner/sinatra-prawn/)
    adds support for pdf rendering with Prawn templates.
@@ -70,7 +56,9 @@ Note, that we require *sinatra/prawn* rather than *sbfaulkner-sinatra-prawn*.
 1. [sinatra-authorization](http://github.com/integrity/sinatra-authorization)
    HTTP auth helpers
 
-## Extensions which provide class methods
+## DSL Extensions
+
+These extensions add methods to Sinatra's application DSL:
 
 1. [snap](http://github.com/bcarlso/snap/)
    provides support for named routes and helper methods for building URLs for
@@ -82,4 +70,5 @@ Note, that we require *sinatra/prawn* rather than *sbfaulkner-sinatra-prawn*.
    sets up a MongoDB connection, provides Mongoid to your app, and
    provides options for configuration.
 
-Add more! Examples described in [Writing Extensions](extensions.html).
+Add more! See [Writing Extensions](extensions.html) for more information
+about creating your own.

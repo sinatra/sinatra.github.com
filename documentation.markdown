@@ -19,6 +19,11 @@ Detailed documentation on all of Sinatra's built-in options and using `set`,
 
 Guide to testing Sinatra apps.
 
+### [Using Extensions](/extensions-wild.html)
+
+How to use Sinatra extensions in your application and links to
+extensions in the wild.
+
 ### [Writing Extensions](extensions.html)
 
 How to add new functionality to Sinatra using the extension APIs.
@@ -65,10 +70,6 @@ RDoc documentation courtesy of `railsapi.com`.
 ### [In the Wild](/wild.html)
 
 List of applications, libraries, websites and companies using Sinatra.
-
-### [Extensions in the Wild](/extensions-wild.html)
-
-List of Sinatra extensions, typically available as gems.
 
 ### [The Sinatra Book](http://sinatra-book.gittr.com/)
 
