@@ -144,8 +144,8 @@ application's public directory (see the `:public` option). When `:static` is
 truthy, Sinatra will check if a static file exists and serve it before
 checking for a matching route.
 
-The `:static` option is enabled by default in classic style apps and
-disabled by default in `Sinatra::Base` subclasses.
+The `:static` option is enabled by default when the `public` directory
+exists.
 
 ### `:public` - static files directory
 
@@ -251,9 +251,6 @@ handler or Rack middleware, such as [`Rack::ShowExceptions`][se] or
 [se]: http://rack.rubyforge.org/doc/classes/Rack/ShowExceptions.html
 [me]: http://github.com/rack/rack-contrib/blob/master/lib/rack/contrib/mailexceptions.rb
 
-The `:raise_errors` option is disabled by default for classic style apps
-and enabled by default for `Sinatra::Base` subclasses.
-
 ### `:lock` - ensure single request concurrency with a mutex lock
 
 Sinatra can be used in threaded environments where more than a single
@@ -263,3 +260,9 @@ Enabling the `:lock` option causes all requests to synchronize on a mutex
 lock, ensuring that only a single request is processed at a time.
 
 The `:lock` option is disabled by default.
+
+### `:show_exceptions` - enable classy error pages
+
+Enable error pages that show backtrace and environment information when
+an unhandled exception occurs. Enabled in development environments by
+default.
