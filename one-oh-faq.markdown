@@ -35,10 +35,9 @@ works.
 
 ## Can I install and run under Sinatra 1.0 today?
 
-Sinatra 1.0 has not been officially released yet but [prerelease gems
-are available][pg]:
+**YES!** Install the latest 1.0 release with:
 
-    gem install --pre sinatra
+    gem install sinatra
 
 Alternatively, you can grab a clone of the `master` branch:
 
