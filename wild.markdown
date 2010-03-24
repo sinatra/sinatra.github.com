@@ -75,7 +75,7 @@ Applications {#apps}
 - [Wink](http://github.com/rtomayko/wink) minimalist blogging engine
 - [WineAdds](http://wineadds.com) micro-app that calculates common additions to wine
 - [Deltacloud](http://www.deltacloud.org) Deltacloud protects your apps from cloud API changes and incompatibilies. REST API is written using Sinatra
-- [jamMm.in](http://jamm.in) a music collaboration application
+- [jamMm.in](http://jammm.in) a music collaboration application
 
 Libraries and extensions {#libs}
 ------------------------
