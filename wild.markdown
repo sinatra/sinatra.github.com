@@ -213,3 +213,4 @@ Companies using Sinatra {#biz}
 - [thoughtbot](http://thoughtbot.com)
 - [Forward](http://forward.co.uk)
 - [WyeWorks](http://www.wyeworks.com)
+- [Idealist Digital](http://idealistdigital.fi)
