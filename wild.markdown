@@ -74,6 +74,8 @@ Applications {#apps}
 - [Sinatra Saucer](http://github.com/angelic/sinatra_saucer) JRuby web application frontend for Flying Saucer, which converts xhtml into a pdf
 - [Wink](http://github.com/rtomayko/wink) minimalist blogging engine
 - [WineAdds](http://wineadds.com) micro-app that calculates common additions to wine
+- [Deltacloud](http://www.deltacloud.org) Deltacloud protects your apps from cloud API changes and incompatibilies. REST API is written using Sinatra
+- [jamMm.in](http://jamm.in) a music collaboration application
 
 Libraries and extensions {#libs}
 ------------------------
@@ -118,6 +120,18 @@ Libraries and extensions {#libs}
   for Effigy (HTML in .html files, Ruby in .rb files) views.
 - [Sinatra Mongoid](http://github.com/dancroak/sinatra-mongoid) Sinatra extension
   for Mongoid (MongoDB ORM).
+- [Haml::More](http://github.com/rkh/haml-more) Adds more functionality to Haml and Sass
+- [Sinatra::AdvancedRoutes](http://github.com/rkh/sinatra-advanced-routes) Makes routes first class objects
+- [Sinatra::Compass](http://github.com/rkh/sinatra-compass) Integrates the Compass stylesheet framework
+- [Sinatra::ConfigFile](http://github.com/rkh/sinatra-config-file) Adds YAML config file support
+- [Sinatra::MoreServer](http://github.com/rkh/sinatra-more-server) Adds support for more web servers to Sinatra::Base#run!
+- [Sinatra::Namespace](http://github.com/rkh/sinatra-more-server) Adds namespaces, allows namespaces to have local helpers.
+- [Sinatra::Reloader](http://github.com/rkh/sinatra-reloader) Advanced and fast code reloader
+- [Sinatra::Sugar](http://github.com/rkh/sinatra-sugar) Extensions for Sinatra's standard methods, like #set or #register
+- [Sinatra::TestHelper](http://github.com/rkh/sinatra-test-helper) Adds helper methods and better integration for various testing frameworks
+- [Sinatra::WebInspector](http://github.com/rkh/sinatra-web-inspector) Allows you to inspect a running app
+- [Yard::Sinatra](http://github.com/rkh/yard-sinatra) Displays Sinatra routes (including comments) in YARD output
+- [BigBand](http://github.com/rkh/big_band) Pre-configured replacement for Sinatra::Base setting up useful extensions
 
 Websites {#sites}
 --------
@@ -168,6 +182,8 @@ Websites {#sites}
 - [Congrelate](http://congrelate.com) Congress data mashup visualization tool.
 - [Scholas](http://schol.as) Social file-sharing for academics.
 - [Gemcutter](http://gemcutter.org) Awesome gem hosting.
+- [UKOfficeAdvisers](http://ukofficeadviser.co.uk/) Find serviced offices in the UK.
+- [SavvyFranchises](http://www.savvyfranchises.com/) Franchise Search + Discovery for the Savvy Entrepreneur.
 
 Companies using Sinatra {#biz}
 -----------------------
@@ -194,3 +210,5 @@ Companies using Sinatra {#biz}
 - [Osborne Brook](http://osbornebrook.co.uk)
 - [Robot Mode](http://robotmo.de)
 - [thoughtbot](http://thoughtbot.com)
+- [Forward](http://forward.co.uk)
+- [WyeWorks](http://www.wyeworks.com)
