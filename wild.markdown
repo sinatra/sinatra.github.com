@@ -216,3 +216,4 @@ Companies using Sinatra {#biz}
 - [WyeWorks](http://www.wyeworks.com)
 - [Idealist Digital](http://idealistdigital.fi)
 - [A Good Company](http://www.weareagoodcompany.com)
+- [Ylastic](http://ylastic.com)
