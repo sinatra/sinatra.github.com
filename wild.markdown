@@ -215,3 +215,4 @@ Companies using Sinatra {#biz}
 - [Forward](http://forward.co.uk)
 - [WyeWorks](http://www.wyeworks.com)
 - [Idealist Digital](http://idealistdigital.fi)
+- [A Good Company](http://www.weareagoodcompany.com)
