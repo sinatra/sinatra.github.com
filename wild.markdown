@@ -185,6 +185,7 @@ Websites {#sites}
 - [UKOfficeAdvisers](http://ukofficeadviser.co.uk/) Find serviced offices in the UK.
 - [SavvyFranchises](http://www.savvyfranchises.com/) Franchise Search + Discovery for the Savvy Entrepreneur.
 - [The Setup](http://usesthis.com/) The setup is a bunch of nerdy interviews ([Source](http://github.com/waferbaby/usesthis/))
+- [A Good Company](http://www.weareagoodcompany.com/) An awesome little portfolio for a great design company.
 
 Companies using Sinatra {#biz}
 -----------------------
