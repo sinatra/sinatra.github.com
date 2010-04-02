@@ -33,7 +33,7 @@ Project Information
 
 ### [Sinatra 1.0 FAQ](./one-oh-faq)
 
-Sinatra is going 1.0, breaking backward compatibility for the first
+Sinatra reached 1.0, breaking backward compatibility for the first
 time in two years. The 1.0 FAQ includes information and best practices
 for upgrading.
 
@@ -47,7 +47,7 @@ in `#sinatra`.
 See the `CHANGES` file included for release notes about each release:
 
  * [1.0](http://github.com/sinatra/sinatra/blob/1.0.b/CHANGES)
-   not yet released
+   March 23, 2010
  * [0.9.6](http://github.com/sinatra/sinatra/blob/0.9.6/CHANGES)
    March 07, 2010
  * [0.9.5](http://github.com/sinatra/sinatra/blob/0.9.5/CHANGES)
