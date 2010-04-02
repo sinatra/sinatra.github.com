@@ -44,8 +44,6 @@ Alternatively, you can grab a clone of the `master` branch:
     git clone git://github.com/sinatra/sinatra.git
     RUBYLIB="$(pwd)/sinatra/lib:$RUBYLIB"
 
-[pg]: http://gemcutter.org/gems/sinatra/versions/1.0.b
-
 ## What incompatibilities are being introduced in Sinatra 1.0?
 
 The following is a comprehensive list of features obsoleted in the
@@ -59,8 +57,9 @@ The following is a comprehensive list of features obsoleted in the
 
  * Test framework specific libraries (`sinatra/test/spec`,
    `sinatra/test/bacon`,`sinatra/test/rspec`, etc.) are obsolete. See
-   http://www.sinatrarb.com/testing.html for instructions on setting up a
-   testing environment under each of these frameworks.
+   [Testing Sinatra](http://www.sinatrarb.com/testing.html)
+   for instructions on setting up a testing environment under each of
+   these frameworks.
 
  * `Sinatra::Default` is obsolete; use `Sinatra::Base` instead.
    `Sinatra::Base` acts more like `Sinatra::Default` in 1.0. For
@@ -125,8 +124,8 @@ release. There's also a comprehensive diff of all changes [between the
 Lastly, the [1.0 Lighthouse milestone page][li] includes 80 tickets with
 details on various features and bug fixes.
 
-[ch]: http://github.com/sinatra/sinatra/blob/1.0.b/CHANGES
-[cv]: http://github.com/sinatra/sinatra/compare/0.9.x...1.0.b
+[ch]: http://github.com/sinatra/sinatra/blob/1.0/CHANGES
+[cv]: http://github.com/sinatra/sinatra/compare/0.9.x...1.0
 [li]: https://sinatra.lighthouseapp.com/projects/9779-sinatra/milestones/41832-10
 
 ## How will versions be handled in the 1.x series?
