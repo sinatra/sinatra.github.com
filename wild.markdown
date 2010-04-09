@@ -184,6 +184,7 @@ Websites {#sites}
 - [Gemcutter](http://gemcutter.org) Awesome gem hosting.
 - [UKOfficeAdvisers](http://ukofficeadviser.co.uk/) Find serviced offices in the UK.
 - [SavvyFranchises](http://www.savvyfranchises.com/) Franchise Search + Discovery for the Savvy Entrepreneur.
+- [The Setup](http://usesthis.com/) The setup is a bunch of nerdy interviews ([Source](http://github.com/waferbaby/usesthis/))
 
 Companies using Sinatra {#biz}
 -----------------------
