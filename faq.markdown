@@ -13,10 +13,17 @@ What happened to reloading in Sinatra 0.9.2? {#reloading}
 --------------------------------------------
 
 Source file reloading was removed in the 0.9.2 due to excess complexity.
-The [shotgun](http://rtomayko.github.com/shotgun/) program can be used to
-achieve the same in most situations. Install shotgun via gem and run
-your app as follows, if your application is the default,
-"classic" style application (as shown eg. in README):
+
+For reloading Sinatra you have can use [shotgun](http://rtomayko.github.com/shotgun/),
+[Rack::Reloader](http://github.com/rack/rack/blob/master/lib/rack/reloader.rb), or
+[Sinatra::Reloader](http://github.com/rkh/sinatra-reloader).
+
+Shotgun is the cleanest, but slowest of all options, as it forks a new ruby process loading
+your code for every request. That way you got no conflicts between old and new code. As it uses
+`fork`, it does work neither on JRuby nor on Windows.
+
+Install shotgun via gem and run your app as follows, if your application is the default, "classic" style
+application (as shown eg. in README):
 
     $ sudo gem install shotgun
     $ shotgun myapp.rb
@@ -33,11 +40,14 @@ and then point shotgun to the config ru file:
 
     $ shotgun config.ru -p 4567
 
-Passenger users can use the [tmp/always\_restart.txt file](http://www.modrails.com/documentation/Users%20guide.html#_making_the_application_restart_after_each_request).
+Rack::Reloader is a Rack middleware that reloads all files on every request. This normally does not
+play well with Sinatra, due to its internals.
 
-Another option may be the
-[Rack::Reloader](http://github.com/rack/rack/blob/5ca8f82fb59f0bf0e8fd438e8e91c5acf3d98e44/lib/rack/reloader.rb)
-middleware, which reloads source files before each request.
+Sinatra::Reloader is a Sinatra extension. It reloads only files that have changed and automatically
+detects orphaned routes that have to be removed. Most other implementations delete all routes and
+reload all code if one file changed, which takes way more time than reloading only one file,
+especially in larger projects. Files defining routes will be added to the reload list per default.
+You can add and remove files to the reload list at runtime. For more information, see its [README](http://github.com/rkh/sinatra-reloader/blob/master/README.md).
 
 What are my deployment options? {#deploy}
 -------------------------------
