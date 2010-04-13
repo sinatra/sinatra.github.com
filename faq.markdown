@@ -14,7 +14,7 @@ What happened to reloading in Sinatra 0.9.2? {#reloading}
 
 Source file reloading was removed in the 0.9.2 due to excess complexity.
 
-For reloading Sinatra you have can use [shotgun](http://rtomayko.github.com/shotgun/),
+For reloading Sinatra you can use [shotgun](http://rtomayko.github.com/shotgun/),
 [Rack::Reloader](http://github.com/rack/rack/blob/master/lib/rack/reloader.rb), or
 [Sinatra::Reloader](http://github.com/rkh/sinatra-reloader).
 
