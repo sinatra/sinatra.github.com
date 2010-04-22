@@ -76,6 +76,7 @@ Applications {#apps}
 - [WineAdds](http://wineadds.com) micro-app that calculates common additions to wine
 - [Deltacloud](http://www.deltacloud.org) Deltacloud protects your apps from cloud API changes and incompatibilies. REST API is written using Sinatra
 - [jamMm.in](http://jammm.in) a music collaboration application
+- [Jaconda](http://jaconda.im) A simple team collaboration service that allows you to create chat rooms for groups through Gtalk/Jabber protocol. REST API is written in Sinatra
 
 Libraries and extensions {#libs}
 ------------------------
