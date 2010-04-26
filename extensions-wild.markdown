@@ -18,11 +18,11 @@ and requiring a file. Consult these steps if you run into problems:
 
   2. Require the extension in your application: `require 'sinatra/prawn'`
 
-  3. If you're application is "classic" (i.e., you `require 'sinatra'` and
+  3. If your application is "classic" (i.e., you `require 'sinatra'` and
      define the application in the main/top-level context), you're done.
      The extension methods should be available to your application.
 
-  4. If you're application subclasses `Sinatra::Base`, you have to register the
+  4. If your application subclasses `Sinatra::Base`, you have to register the
      extension in your subclass: `register Sinatra::Prawn`
 
 ## Helper Extensions
