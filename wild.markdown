@@ -132,6 +132,7 @@ Libraries and extensions {#libs}
 - [Sinatra::WebInspector](http://github.com/rkh/sinatra-web-inspector) Allows you to inspect a running app
 - [Yard::Sinatra](http://github.com/rkh/yard-sinatra) Displays Sinatra routes (including comments) in YARD output
 - [BigBand](http://github.com/rkh/big_band) Pre-configured replacement for Sinatra::Base setting up useful extensions
+- [Sinatra::Jsonp](http://github.com/shtirlic/sinatra-jsonp) JSONP output helper for Sinatra. 
 
 Websites {#sites}
 --------
@@ -217,3 +218,4 @@ Companies using Sinatra {#biz}
 - [Idealist Digital](http://idealistdigital.fi)
 - [A Good Company](http://www.weareagoodcompany.com)
 - [Ylastic](http://ylastic.com)
+- [SPB Software](http://spb.com)
