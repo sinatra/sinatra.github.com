@@ -188,14 +188,14 @@ first available handler. The `:server` setting is set as follows by default:
 
     set :server, %w[thin mongrel webrick]
 
-### `:host` - server hostname or IP address
+### `:bind` - server hostname or IP address
 
 String specifying the hostname or IP address of the interface to listen on
 when the `:run` setting is enabled. The default value -- `'0.0.0.0'` -- causes
 the server to listen on all available interfaces. To listen on the
 loopback interface only, use:
 
-    set :host, 'localhost'
+    set :bind, 'localhost'
 
 ### `:port` - server port
 
