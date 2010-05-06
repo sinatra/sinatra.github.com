@@ -77,6 +77,7 @@ Applications {#apps}
 - [Deltacloud](http://www.deltacloud.org) Deltacloud protects your apps from cloud API changes and incompatibilies. REST API is written using Sinatra
 - [jamMm.in](http://jammm.in) a music collaboration application
 - [Jaconda](http://jaconda.im) A simple team collaboration service that allows you to create chat rooms for groups through Gtalk/Jabber protocol. REST API is written in Sinatra
+- [Soxer](http://soxer.mutsu.org/) Soxer is a lean but infinitely extensible web publishing tool.
 
 Libraries and extensions {#libs}
 ------------------------
@@ -220,3 +221,4 @@ Companies using Sinatra {#biz}
 - [A Good Company](http://www.weareagoodcompany.com)
 - [Ylastic](http://ylastic.com)
 - [SPB Software](http://spb.com)
+- [Formalibre](http://www.formalibre.si)
