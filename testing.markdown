@@ -274,7 +274,32 @@ Make `Rack::Test` available to all spec contexts by including it in
 
     Test::Unit::TestCase.send :include, Rack::Test::Methods
 
-<!-- TODO: Webrat -->
+### [Webrat][]
+
+From `Webrat`'s wiki where you'll find more [examples][].
+
+    require 'hello_world'  # <-- your sinatra app
+    require 'rack/test'
+    require 'test/unit'
+
+    Webrat.configure do |config|
+      config.mode = :rack
+    end
+
+    class HelloWorldTest < Test::Unit::TestCase
+      include Rack::Test::Methods
+      include Webrat::Methods
+      include Webrat::Matchers
+
+      def app
+        Sinatra::Application.new
+      end
+
+      def test_it_works
+        visit '/'
+        assert_contain('Hello World')
+      end
+    end
 
 See Also
 --------
@@ -293,3 +318,5 @@ more information on `get`, `post`, `put`, `delete` and friends.
 [spec]: http://rack.rubyforge.org/doc/files/SPEC.html
 [Rack::MockRequest]: http://rack.rubyforge.org/doc/classes/Rack/MockRequest.html
 [Rack::MockResponse]: http://rack.rubyforge.org/doc/classes/Rack/MockResponse.html
+[Webrat]: http://github.com/brynary/webrat
+[examples]: http://wiki.github.com/brynary/webrat/sinatra
