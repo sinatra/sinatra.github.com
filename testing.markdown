@@ -301,6 +301,30 @@ From `Webrat`'s wiki where you'll find more [examples][].
       end
     end
 
+### [Capybara][]
+
+`Capybara` will use `Rack::Test` by default. You can use another driver, like
+`Selenium`, by setting the default_driver.
+
+    require 'hello_world'  # <-- your sinatra app
+    require 'capybara'
+    require 'capybara/dsl'
+    require 'test/unit'
+
+    class HelloWorldTest < Test::Unit::TestCase
+      include Capybara
+      # Capybara.default_driver = :selenium # <-- use Selenium driver
+
+      def setup
+        Capybara.app = Sinatra::Application.new
+      end
+
+      def test_it_works
+        visit '/'
+        assert page.has_content?('Hello World')
+      end
+    end
+
 See Also
 --------
 
@@ -320,3 +344,4 @@ more information on `get`, `post`, `put`, `delete` and friends.
 [Rack::MockResponse]: http://rack.rubyforge.org/doc/classes/Rack/MockResponse.html
 [Webrat]: http://github.com/brynary/webrat
 [examples]: http://wiki.github.com/brynary/webrat/sinatra
+[Capybara]: http://github.com/jnicklas/capybara
