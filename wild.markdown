@@ -189,6 +189,7 @@ Websites {#sites}
 - [SavvyFranchises](http://www.savvyfranchises.com/) Franchise Search + Discovery for the Savvy Entrepreneur.
 - [The Setup](http://usesthis.com/) The setup is a bunch of nerdy interviews ([Source](http://github.com/waferbaby/usesthis/))
 - [A Good Company](http://www.weareagoodcompany.com/) An awesome little portfolio for a great design company.
+- [dbpedia lite](http://dbpedialite.org/) takes some of the structured data in Wikipedia and presents it as Linked Data ([Source](http://github.com/njh/dbpedialite/)).
 
 Companies using Sinatra {#biz}
 -----------------------
