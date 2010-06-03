@@ -135,6 +135,7 @@ Libraries and extensions {#libs}
 - [Yard::Sinatra](http://github.com/rkh/yard-sinatra) Displays Sinatra routes (including comments) in YARD output
 - [BigBand](http://github.com/rkh/big_band) Pre-configured replacement for Sinatra::Base setting up useful extensions
 - [Sinatra::Jsonp](http://github.com/shtirlic/sinatra-jsonp) JSONP output helper for Sinatra. 
+- [Bowtie](http://github.com/tomas/bowtie) Admin generator for DataMapper models, on Sinatra.
 
 Websites {#sites}
 --------
@@ -223,3 +224,4 @@ Companies using Sinatra {#biz}
 - [Ylastic](http://ylastic.com)
 - [SPB Software](http://spb.com)
 - [Formalibre](http://www.formalibre.si)
+- [Fork](http://usefork.com)
