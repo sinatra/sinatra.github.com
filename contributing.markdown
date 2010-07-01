@@ -9,7 +9,7 @@ Want to show Sinatra some love? Help out by contributing!
 
 ## Find a bug?
 
-Log it in lighthouse by [creating a new ticket][li] or send a note to
+Log it in our [issue tracker][ghi] or send a note to
 the [mailing list][ml]. Be sure to include all relevant information, like
 the versions of Sinatra and Ruby you're using. A [gist](http://gist.github.com/)
 of the code that caused the issue as well as any error messages are also very
@@ -70,13 +70,11 @@ lighthouse to track patch requests.
 
 ## Looking for something to do?
 
-If you'd like to help out but aren't sure how, take a look at the
-[High Priority / Needs Owner][hp] ticket bin. This is a list of issues
-planned for the next release that do not currently have an assignee. If
-you find something that looks interesting, leave a comment on the ticket
-noting that you're investigating (a simple "Taking..." is fine). Once
-you've worked a few issues, someone will add you as an assignee.
+If you'd like to help out but aren't sure how, pick something that looks
+interesting from the [issues][ghi] list and hack on. Make sure to leave a
+comment on the ticket noting that you're investigating (a simple "Taking..."
+is fine).
 
 [hp]: http://sinatra.lighthouseapp.com/projects/9779-sinatra/tickets/bins/13046
-[li]: http://sinatra.lighthouseapp.com/projects/9779-sinatra/tickets/new
+[ghi]: http://github.com/sinatra/sinatra/issues
 [ml]: http://groups.google.com/group/sinatrarb/topics "Sinatra Mailing List"
