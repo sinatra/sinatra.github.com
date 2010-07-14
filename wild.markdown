@@ -191,6 +191,7 @@ Websites {#sites}
 - [The Setup](http://usesthis.com/) The setup is a bunch of nerdy interviews ([Source](http://github.com/waferbaby/usesthis/))
 - [A Good Company](http://www.weareagoodcompany.com/) An awesome little portfolio for a great design company.
 - [dbpedia lite](http://dbpedialite.org/) takes some of the structured data in Wikipedia and presents it as Linked Data ([Source](http://github.com/njh/dbpedialite/)).
+- [Evan Lecklider](http://lecklider.com/) Website showing off work, code examples and experiments built with Sinatra and Compass.
 
 Companies using Sinatra {#biz}
 -----------------------
