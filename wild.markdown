@@ -146,6 +146,8 @@ Websites {#sites}
 - [Fabulously40 Mobile](http://iphone.fabulously40.com) Sinatra powered mobile
   site of [Fabulously40](http://fabulously40.com/)
 - [UploadBooth](http://uploadbooth.com) Sinatra powered Upload Service
+- [PasteBooth](http://pastebooth.com) Sinatra powered multi-lingual Paste Service
+- [ShrinkBooth](http://shrinkbooth.com) Sinatra powered multi-lingual URL shortening Service
 - [Calendar About Nothing](http://calendaraboutnothing.com) Seinfeld calendar
   for hackers
 - [irclogger](http://irclogger.com) Logging urz IRC channel
