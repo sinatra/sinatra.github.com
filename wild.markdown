@@ -34,6 +34,7 @@ Applications {#apps}
 - [Scanty using CouchDB 0.9.0a and CouchRest 0.16](http://github.com/norr/scanty/tree/master)
 - [Haze](http://github.com/madx/haze) a lightweight and minimalist blogging
   engine using flat text files.
+- [Wind](http://github.com/wagnerandrade/wind) HTML5 blog engine focused in a easy, extensible and fast admin.
 - [git-wiki](http://github.com/sr/git-wiki) a git-powered wiki
 - [Wordnatra](http://github.com/gnugeek/wordnatra) an interface to Princeton's
   WordNet lexical dictionary
