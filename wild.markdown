@@ -79,6 +79,7 @@ Applications {#apps}
 - [jamMm.in](http://jammm.in) a music collaboration application
 - [Jaconda](http://jaconda.im) A simple team collaboration service that allows you to create chat rooms for groups through Gtalk/Jabber protocol. REST API is written in Sinatra
 - [Soxer](http://soxer.mutsu.org/) Soxer is a lean but infinitely extensible web publishing tool.
+- [SinMagick](http://blog.50projects.com/p/sinmagick-image-processing.html) a front-end for image processing and thumbnailing with flexible storage options.
 
 Libraries and extensions {#libs}
 ------------------------
