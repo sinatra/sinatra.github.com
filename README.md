@@ -15,7 +15,7 @@ Grab the sources from github:
 Install dependencies:
 
     $ gem install jekyll
-    $ gem instal rdoc -v 2.3.0
+    $ gem install rdoc -v 2.3.0
 
 Run the test server:
 
