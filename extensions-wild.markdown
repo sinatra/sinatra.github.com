@@ -55,6 +55,8 @@ These extensions add helper methods to the request context:
    form builders, named route mappings, easy mailer support among other functionality.
 1. [sinatra-authorization](http://github.com/integrity/sinatra-authorization)
    HTTP auth helpers
+1. [sinatra-simple-navigation](http://github.com/andi/sinatra-simple-navigation) enables creating
+   navigations using the simple-navigation gem.
 
 ## DSL Extensions
 
