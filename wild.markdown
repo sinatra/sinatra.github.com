@@ -82,7 +82,8 @@ Applications {#apps}
 
 Libraries and extensions {#libs}
 ------------------------
-
+- [Sinatra::SimpleNavigation](http://github.com/andi/sinatra-simple-navigation) Easy creation of navigations (with multiple levels)
+  with sinatra and the simple-navigation gem
 - [sinatra\_more](http://github.com/nesquena/sinatra_more) Library with agnostic 
    generators, form builders, named route mappings, easy mailer support, and more.
 - [Sinatra's Hat](http://github.com/nakajima/sinatras-hat) Mount models as web
