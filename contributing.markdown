@@ -44,7 +44,8 @@ can be applied as quickly as possible:
 
 4. **Push it:** Once you're ready, push your changes to a topic branch
    and add a note to the ticket with the URL to your branch. Or, say
-   something like, "you can find the patch on johndoe/foobranch".
+   something like, "you can find the patch on johndoe/foobranch". We also
+   gladly accept Github [pull requests](http://help.github.com/pull-requests/).
 
 __NOTE:__ _we will take whatever we can get._ If you prefer to
 attach diffs in emails to the mailing list, that's fine; but do know
