@@ -69,11 +69,11 @@ GitHub to track patch requests.
 * [The Introduction](intro.html) is generated from Sinatra's
   [README file](http://github.com/sinatra/sinatra/blob/master/README.rdoc).
 
-* If you want help translating the documentation, there already are a
+* If you want to help translating the documentation, there already is a
   [Japanese](http://github.com/sinatra/sinatra/blob/master/README.jp.rdoc)
   and a [German](http://github.com/sinatra/sinatra/blob/master/README.de.rdoc)
-  version of the README, which regularly tend to fall behind the English
-  version.
+  version of the README, which tend to fall behind the English
+  version.  Translations into other languages would also be appreciated.
 
 ## Looking for something to do?
 
