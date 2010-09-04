@@ -82,6 +82,5 @@ interesting from the [issues][ghi] list and hack on. Make sure to leave a
 comment on the ticket noting that you're investigating (a simple "Taking..."
 is fine).
 
-[hp]: http://sinatra.lighthouseapp.com/projects/9779-sinatra/tickets/bins/13046
 [ghi]: http://github.com/sinatra/sinatra/issues
 [ml]: http://groups.google.com/group/sinatrarb/topics "Sinatra Mailing List"
