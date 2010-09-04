@@ -54,9 +54,9 @@ above and this can hold things up considerably.
 
 ## Want to write docs?
 
-The process for contributing to Sinatra's website or documentation
+The process for contributing to Sinatra's website, documentation or the book
 is the same as contributing code. We use git for versions control and
-lighthouse to track patch requests.
+GitHub to track patch requests.
 
 * [The sinatra.github.com repo](http://github.com/sinatra/sinatra.github.com/)
   is where the website sources are managed. There are almost always people in
@@ -68,6 +68,12 @@ lighthouse to track patch requests.
 
 * [The Introduction](intro.html) is generated from Sinatra's
   [README file](http://github.com/sinatra/sinatra/blob/master/README.rdoc).
+
+* If you want help translating the documentation, there already are a
+  [Japanese](http://github.com/sinatra/sinatra/blob/master/README.jp.rdoc)
+  and a [German](http://github.com/sinatra/sinatra/blob/master/README.de.rdoc)
+  version of the README, which regularly tend to fall behind the English
+  version.
 
 ## Looking for something to do?
 
