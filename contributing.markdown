@@ -17,7 +17,7 @@ helpful.
 
 ## Need help?
 
-The [Sinatra mailing list][ml] has over 700 subscribers, many of which are happy
+The [Sinatra mailing list][ml] has over 800 subscribers, many of which are happy
 to help out newbies or talk about potential feature additions. You can also drop
 by the [#sinatra](irc://chat.freenode.net/#sinatra) channel on
 [irc.freenode.net](http://freenode.net).
