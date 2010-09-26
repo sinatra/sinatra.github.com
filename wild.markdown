@@ -197,6 +197,7 @@ Websites {#sites}
 - [A Good Company](http://www.weareagoodcompany.com/) An awesome little portfolio for a great design company.
 - [dbpedia lite](http://dbpedialite.org/) takes some of the structured data in Wikipedia and presents it as Linked Data ([Source](http://github.com/njh/dbpedialite/)).
 - [Evan Lecklider](http://lecklider.com/) Website showing off work, code examples and experiments built with Sinatra and Compass.
+- [Brightspoke.com](http://www.brightspoke.com/) matches people with bicycles.
 
 Companies using Sinatra {#biz}
 -----------------------
