@@ -232,3 +232,4 @@ Companies using Sinatra {#biz}
 - [SPB Software](http://spb.com)
 - [Formalibre](http://www.formalibre.si)
 - [Fork](http://usefork.com)
+- [Tractor Feed](http://tractorfeed.org)
