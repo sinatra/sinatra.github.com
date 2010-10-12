@@ -5,8 +5,8 @@ effort:
 </p>
 <pre>
   # myapp.rb
-  require 'rubygems'
   require 'sinatra'
+  
   get '/' do
     'Hello world!'
   end
@@ -15,8 +15,8 @@ effort:
 Install the gem and run with:
 </p>
 <pre>
-  sudo gem install sinatra
-  ruby myapp.rb
+  gem install sinatra
+  ruby -rubygems myapp.rb
 </pre>
 <p>
 View at: <a href="http://localhost:4567">localhost:4567</a>
@@ -97,6 +97,7 @@ Or with a block parameter:
     &quot;Hello, #{c}!&quot;
   end
 </pre>
+<h3>Conditions</h3>
 <p>
 Routes may include a variety of matching conditions, such as the user
 agent:
@@ -109,6 +110,80 @@ agent:
   get '/foo' do
     # Matches non-songbird browsers
   end
+</pre>
+<p>
+Other available conditions are <tt>host_name</tt> and <tt>provides</tt>:
+</p>
+<pre>
+  get '/', :host_name =&gt; /^admin\./ do
+    &quot;Admin Area, Access denied!&quot;
+  end
+
+  get '/', :provides =&gt; 'html' do
+    haml :index
+  end
+  
+  get '/', :provides =&gt; ['rss', 'atom', 'xml'] do
+    builder :feed
+  end
+</pre>
+<p>
+You can easily define your own conditions:
+</p>
+<pre>
+  set(:probability) { |value| condition { rand &lt;= value } }
+  
+  get '/win_a_car', :probability =&gt; 0.1 do
+    &quot;You won!&quot;
+  end
+  
+  get '/win_a_car' do
+    &quot;Sorry, you lost.&quot;
+  end
+</pre>
+<h3>Return values</h3>
+<p>
+The return value of a route block determines at least the response body
+passed on to the HTTP client, or at least the next middleware in the Rack
+stack. Most commonly this is a string, as in the above examples. But other
+values are also accepted.
+</p>
+<p>
+You can return any object that would either be a valid Rack response, Rack
+body object or HTTP status code:
+</p>
+<ul>
+<li><p>
+An Array with three elements: <tt>[status (Fixnum), headers (Hash),
+response body (responds to #each)]</tt>
+</p>
+</li>
+<li><p>
+An Array with two elements: <tt>[status (Fixnum), response body (responds
+to #each)]</tt>
+</p>
+</li>
+<li><p>
+An object that responds to <tt>#each</tt> and passes nothing but strings to
+the given block
+</p>
+</li>
+<li><p>
+A Fixnum representing the status code
+</p>
+</li>
+</ul>
+<p>
+That way we can for instance easily implement a streaming example:
+</p>
+<pre>
+    class Stream
+      def each
+        100.times { |i| yield &quot;#{i}\n&quot; }
+      end
+    end
+
+    get('/') { Stream.new }
 </pre>
 <h2>Static Files</h2>
 <p>
@@ -134,8 +209,9 @@ directory. To use a different views directory:
 <p>
 One important thing to remember is that you always have to reference
 templates with symbols, even if they&#8217;re in a subdirectory (in this
-case use <tt>:'subdir/template'</tt>). Rendering methods will render any
-strings passed to them directly.
+case use <tt>:'subdir/template'</tt>). You must use a symbol because 
+otherwise rendering methods will render any strings passed to them 
+directly.
 </p>
 <h3>Haml Templates</h3>
 <p>
@@ -160,10 +236,10 @@ options</a> can be set globally through Sinatra&#8217;s configurations, see
 Configurations</a>, and overridden on an individual basis.
 </p>
 <pre>
-  set :haml, {:format =&gt; :html5 } # default Haml format is :xhtml
+  set :haml, :format =&gt; :html5 # default Haml format is :xhtml
 
   get '/' do
-    haml :index, :haml_options =&gt; {:format =&gt; :html4 } # overridden
+    haml :index, :format =&gt; :html4 # overridden
   end
 </pre>
 <h3>Erb Templates</h3>
@@ -233,7 +309,7 @@ options</a> can be set globally through Sinatra&#8217;s configurations, see
 Configurations</a>, and overridden on an individual basis.
 </p>
 <pre>
-  set :sass, {:style =&gt; :compact } # default Sass style is :nested
+  set :sass, :style =&gt; :compact # default Sass style is :nested
 
   get '/stylesheet.css' do
     content_type 'text/css', :charset =&gt; 'utf-8'
@@ -294,7 +370,6 @@ other templates.
 Templates may be defined at the end of the source file:
 </p>
 <pre>
-  require 'rubygems'
   require 'sinatra'
 
   get '/' do
@@ -312,7 +387,7 @@ Templates may be defined at the end of the source file:
 </pre>
 <p>
 NOTE: Inline templates defined in the source file that requires sinatra are
-automatically loaded. Call `enable :inline_templates` explicitly if you
+automatically loaded. Call +enable :inline_templates+ explicitly if you
 have inline templates in other source files.
 </p>
 <h3>Named Templates</h3>
@@ -360,9 +435,9 @@ in route handlers and templates:
 </pre>
 <h2>Filters</h2>
 <p>
-Before filters are evaluated before each request within the context of the
-request and can modify the request and response. Instance variables set in
-filters are accessible by routes and templates:
+Before filters are evaluated before each request within the same context as
+the routes will be and can modify the request and response. Instance
+variables set in filters are accessible by routes and templates:
 </p>
 <pre>
   before do
@@ -376,9 +451,9 @@ filters are accessible by routes and templates:
   end
 </pre>
 <p>
-After filter are evaluated after each request within the context of the
-request and can also modify the request and response. Instance variables
-set in before filters and routes are accessible by after filters:
+After filter are evaluated after each request within the same context and
+can also modify the request and response. Instance variables set in before
+filters and routes are accessible by after filters:
 </p>
 <pre>
   after do
@@ -393,25 +468,25 @@ To immediately stop a request within a filter or route use:
   halt
 </pre>
 <p>
-You can also specify the status when halting &#8230;
+You can also specify the status when halting:
 </p>
 <pre>
   halt 410
 </pre>
 <p>
-Or the body &#8230;
+Or the body:
 </p>
 <pre>
   halt 'this will be the body'
 </pre>
 <p>
-Or both &#8230;
+Or both:
 </p>
 <pre>
   halt 401, 'go away!'
 </pre>
 <p>
-With headers &#8230;
+With headers:
 </p>
 <pre>
   halt 402, {'Content-Type' =&gt; 'text/plain'}, 'revenge'
@@ -434,6 +509,59 @@ A route can punt processing to the next matching route using <tt>pass</tt>:
 The route block is immediately exited and control continues with the next
 matching route. If no matching route is found, a 404 is returned.
 </p>
+<h2>Accessing the Request Object</h2>
+<p>
+The incoming request object can be accessed from request level (filter,
+routes, error handlers) through the `request` method:
+</p>
+<pre>
+  # app running on http://example.com/example
+  get '/foo' do
+    request.body              # request body sent by the client (see below)
+    request.scheme            # &quot;http&quot;
+    request.script_name       # &quot;/example&quot;
+    request.path_info         # &quot;/foo&quot;
+    request.port              # 80
+    request.request_method    # &quot;GET&quot;
+    request.query_string      # &quot;&quot;
+    request.content_length    # length of request.body
+    request.media_type        # media type of request.body
+    request.host              # &quot;example.com&quot;
+    request.get?              # true (similar methods for other verbs)
+    request.form_data?        # false
+    request[&quot;SOME_HEADER&quot;]    # value of SOME_HEADER header
+    request.referer           # the referer of the client or '/'
+    request.user_agent        # user agent (used by :agent condition)
+    request.cookies           # hash of browser cookies
+    request.xhr?              # is this an ajax request?
+    request.url               # &quot;http://example.com/example/foo&quot;
+    request.path              # &quot;/example/foo&quot;
+    request.ip                # client IP address
+    request.secure?           # false
+    requuest.env              # raw env hash handed in by Rack
+  end
+</pre>
+<p>
+Some options, like <tt>script_name</tt> or <tt>path_info</tt> can also be
+written:
+</p>
+<pre>
+  before { request.path_info = &quot;/&quot; }
+  
+  get &quot;/&quot; do
+    &quot;all requests end up here&quot;
+  end
+</pre>
+<p>
+The <tt>request.body</tt> is an IO or StringIO object:
+</p>
+<pre>
+  post &quot;/api&quot; do
+    request.body.rewind  # in case someone already read it
+    data = JSON.parse request.body.read
+    &quot;Hello #{data['name']}!&quot;
+  end
+</pre>
 <h2>Configuration</h2>
 <p>
 Run once, at startup, in any environment:
@@ -475,7 +603,7 @@ invoked:
 </p>
 <pre>
   not_found do
-    'This is nowhere to be found'
+    'This is nowhere to be found.'
   end
 </pre>
 <h3>Error</h3>
@@ -599,6 +727,7 @@ recommended:
 </p>
 <pre>
   require 'my_sinatra_app'
+  require 'test/unit'
   require 'rack/test'
 
   class MyAppTest &lt; Test::Unit::TestCase
@@ -631,7 +760,7 @@ deprecated as of the 0.9.2 release.
 <h2>Sinatra::Base - Middleware, Libraries, and Modular Apps</h2>
 <p>
 Defining your app at the top-level works well for micro-apps but has
-considerable drawbacks when building reuseable components such as Rack
+considerable drawbacks when building reusable components such as Rack
 middleware, Rails metal, simple libraries with a server component, or even
 Sinatra extensions. The top-level DSL pollutes the Object namespace and
 assumes a micro-app style configuration (e.g., a single application file,
@@ -683,16 +812,178 @@ including the built-in server. See <a
 href="http://sinatra.github.com/configuration.html">Options and
 Configuration</a> for details on available options and their behavior.
 </p>
+<h3>Using Sinatra as Middleware</h3>
 <p>
-SIDEBAR: Sinatra&#8217;s top-level DSL is implemented using a simple
-delegation system. The +Sinatra::Application+ class &#8212; a special
-subclass of Sinatra::Base &#8212; receives all :get, :put, :post, :delete,
-:before, :error, :not_found, :configure, and :set messages sent to the
-top-level. Have a look at the code for yourself: here&#8217;s the <a
+Not only is Sinatra able to use other Rack middleware, any Sinatra
+application can in turn be added in front of any Rack endpoint as
+middleware itself. This endpoint could be another Sinatra application, or
+any other Rack-based application (Rails/Ramaze/Camping/&#8230;).
+</p>
+<pre>
+  require 'sinatra/base'
+  
+  class LoginScreen &lt; Sinatra::Base
+    enable :session
+    
+    get('/login') { haml :login }
+    
+    post('/login') do
+      if params[:name] = 'admin' and params[:password] = 'admin'
+        session['user_name'] = params[:name]
+      else
+        redirect '/login'
+      end
+    end
+  end
+  
+  class MyApp &lt; Sinatra::Base
+    # middleware will run before filters
+    use LoginScreen
+    
+    before do
+      unless session['user_name']
+        halt &quot;Access denied, please &lt;a href='/login'&gt;login&lt;/a&gt;.&quot;
+      end
+    end
+    
+    get('/') { &quot;Hello #{session['user_name']}.&quot; }
+  end
+</pre>
+<h2>Scopes and Binding</h2>
+<p>
+The scope you are currently in determines what methods and variables are
+available.
+</p>
+<h3>Application/Class Scope</h3>
+<p>
+Every Sinatra application corresponds to a subclass of Sinatra::Base. If
+you are using the top level DSL (<tt>require 'sinatra'</tt>), then this
+class is Sinatra::Application, otherwise it is the subclass you created
+explicitly. At class level you have methods like `get` or `before`, but you
+cannot access the `request` object or the `session`, as there only is a
+single application class for all requests.
+</p>
+<p>
+Options created via `set` are methods at class level:
+</p>
+<pre>
+    class MyApp &lt;&lt; Sinatra::Base
+      # Hey, I'm in the application scope!
+      set :foo, 42
+      foo # =&gt; 42
+      
+      get '/foo' do
+        # Hey, I'm no longer in the application scope!
+      end
+    end
+</pre>
+<p>
+You have the application scope binding inside:
+</p>
+<ul>
+<li><p>
+Your application class body
+</p>
+</li>
+<li><p>
+Methods defined by extensions
+</p>
+</li>
+<li><p>
+The block passed to `helpers`
+</p>
+</li>
+<li><p>
+Procs/blocks used as value for `set`
+</p>
+</li>
+</ul>
+<p>
+You can reach the scope object (the class) like this:
+</p>
+<ul>
+<li><p>
+Via the object passed to configure blocks (<tt>configure { |c| ... }</tt>)
+</p>
+</li>
+<li><p>
+`settings` from within request scope
+</p>
+</li>
+</ul>
+<h3>Request/Instance Scope</h3>
+<p>
+For every incoming request, a new instance of your application class is
+created and all handler blocks run in that scope. From within this scope
+you can access the `request` and `session` object or call rendering methods
+like `erb` or `haml`. You can access the application scope from within the
+request scope via the `settings` helper:
+</p>
+<pre>
+  class MyApp &lt;&lt; Sinatra::Base
+    # Hey, I'm in the application scope!
+    get '/define_route/:name' do
+      # Request scope for '/define_route/:name'
+      @value = 42
+      
+      settings.get(&quot;/#{params[:name]}&quot;) do
+        # Request scope for &quot;/#{params[:name]}&quot;
+        @value # =&gt; nil (not the same request)
+      end
+      
+      &quot;Route defined!&quot;
+    end
+  end
+</pre>
+<p>
+You have the request scope binding inside:
+</p>
+<ul>
+<li><p>
+get/head/post/put/delete blocks
+</p>
+</li>
+<li><p>
+before/after filters
+</p>
+</li>
+<li><p>
+helper methods
+</p>
+</li>
+<li><p>
+templates/views
+</p>
+</li>
+</ul>
+<h3>Delegation Scope</h3>
+<p>
+The delegation scope just forwards methods to the class scope. However, it
+does not behave 100% like the class scope, as you do not have the
+class&#8217; binding: Only methods explicitly marked for delegation are
+available and you do not share variables/state with the class scope (read:
+you have a different `self`). You can explicitly add method delegations by
+calling <tt>Sinatra::Delegator.delegate :method_name</tt>.
+</p>
+<p>
+You have the delegate scope binding inside:
+</p>
+<ul>
+<li><p>
+The top level binding, if you did <tt>require &quot;sinatra&quot;</tt>
+</p>
+</li>
+<li><p>
+An object extended with the `Sinatra::Delegator` mixin
+</p>
+</li>
+</ul>
+<p>
+Have a look at the code for yourself: here&#8217;s the <a
 href="http://github.com/sinatra/sinatra/blob/ceac46f0bc129a6e994a06100aa854f606fe5992/lib/sinatra/base.rb#L1128">Sinatra::Delegator
 mixin</a> being <a
 href="http://github.com/sinatra/sinatra/blob/ceac46f0bc129a6e994a06100aa854f606fe5992/lib/sinatra/main.rb#L28">included
-into the main namespace</a>
+into the main namespace</a>.
 </p>
 <h2>Command line</h2>
 <p>
