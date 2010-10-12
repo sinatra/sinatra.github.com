@@ -1,16 +1,20 @@
 require 'rake/clean'
 require 'rdoc/markup/to_html'
 
+def readme(pattern = "%s", &block)
+  return readme(pattern).each(&block) if block_given?
+  %w[en de es fr jp].map do |lang|
+    pattern % "README#{lang == "en" ? "" : ".#{lang}"}"
+  end
+end
+
 task :default => ['_sinatra', :build]
 
 desc "Build outdated static files and API docs"
 task :build => ['build:static']
 
 desc "Build outdated static files"
-task 'build:static' => [
-  '_includes/README.html',
-  '_includes/README.jp.html'
-]
+task 'build:static' => readme("_includes/%s.html")
 
 desc "Build anything that's outdated and stage changes for next commit"
 task :regen => [:build] do
@@ -36,25 +40,19 @@ end
 file('_sinatra') { Rake::Task['pull:sinatra'].invoke }
 CLOBBER.include '_sinatra'
 
-%w[README.rdoc README.jp.rdoc AUTHORS].each do |fn|
-  file "_sinatra/#{fn}" => ['_sinatra']
-end
+readme("_sinatra/%s.rdoc") { |fn| file fn => '_sinatra' }
+file 'AUTHORS' => '_sinatra'
 
-# Build _includes/README.html from RDoc
-file '_includes/README.html' => ['_sinatra/README.rdoc', 'Rakefile'] do |f|
-  html = RDoc::Markup::ToHtml.new.convert(File.read("_sinatra/README.rdoc")).
-    sub("<h1>Sinatra</h1>", "")
-  File.open(f.name, 'wb') { |io| io.write(html) }
+readme do |fn|
+  file "_includes/#{fn}.html" => ["_sinatra/#{fn}.rdoc", "Rakefile"] do |f|
+    html =
+      RDoc::Markup::ToHtml.new.
+      convert(File.read("_sinatra/#{fn}.rdoc")).
+      sub("<h1>Sinatra</h1>", "")
+    File.open(f.name, 'wb') { |io| io.write(html) }
+  end
+  CLEAN.include "_includes/#{fn}.html"
 end
-CLEAN.include '_includes/README.html'
-
-# Build _includes/README.jp.html from RDoc
-file '_includes/README.jp.html' => ['_sinatra/README.jp.rdoc', 'Rakefile'] do |f|
-  html = RDoc::Markup::ToHtml.new.convert(File.read("_sinatra/README.jp.rdoc")).
-    sub("<h1>Sinatra</h1>", "")
-  File.open(f.name, 'wb') { |io| io.write(html) }
-end
-CLEAN.include '_includes/README.jp.html'
 
 desc 'Rebuild site under _site with Jekyll'
 task :jekyll do

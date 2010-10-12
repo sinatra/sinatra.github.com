@@ -1,5 +1,9 @@
 
 <p>
+<em>注）
+本文書は英語から翻訳したものであり、その内容が最新でない場合もあります。最新の情報はオリジナルの英語版を参照して下さい。</em>
+</p>
+<p>
 SinatraはRubyで下記のような最小労力で手早くウェブアプリケーションを作成するためのDSLです。
 </p>
 <pre>
@@ -186,12 +190,26 @@ builderを使うにはbuilderライブラリが必要です:
   require 'builder'
 
   get '/' do
-    content_type 'application/xml', :charset =&gt; 'utf-8'
     builder :index
   end
 </pre>
 <p>
 <tt>./views/index.builder</tt>を表示します。
+</p>
+<h3>鋸 テンプレート</h3>
+<p>
+鋸を使うには鋸ライブラリが必要です:
+</p>
+<pre>
+  ## 鋸を読み込みます
+  require 'nokogiri'
+
+  get '/' do
+    nokogiri :index
+  end
+</pre>
+<p>
+<tt>./views/index.nokogiri</tt>を表示します。
 </p>
 <h3>Sass テンプレート</h3>
 <p>
@@ -202,7 +220,6 @@ Sassテンプレートを使うにはsassライブラリが必要です:
   require 'sass'
 
   get '/stylesheet.css' do
-    content_type 'text/css', :charset =&gt; 'utf-8'
     sass :stylesheet
   end
 </pre>
@@ -222,7 +239,6 @@ Configurations</a>,
   set :sass, {:style =&gt; :compact } # デフォルトのSass styleは :nested
 
   get '/stylesheet.css' do
-    content_type 'text/css', :charset =&gt; 'utf-8'
     sass :stylesheet, :sass_options =&gt; {:style =&gt; :expanded } # 上書き
   end
 </pre>
