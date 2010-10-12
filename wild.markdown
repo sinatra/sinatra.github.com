@@ -80,6 +80,7 @@ Applications {#apps}
 - [Jaconda](http://jaconda.im) A simple team collaboration service that allows you to create chat rooms for groups through Gtalk/Jabber protocol. REST API is written in Sinatra
 - [Soxer](http://soxer.mutsu.org/) Soxer is a lean but infinitely extensible web publishing tool.
 - [SinMagick](http://blog.50projects.com/p/sinmagick-image-processing.html) a front-end for image processing and thumbnailing with flexible storage options.
+- [Brakes](http://github.com/rdnck76/brakes) a simple sinatra app for hosting static html on heroku.
 
 Libraries and extensions {#libs}
 ------------------------
@@ -232,3 +233,4 @@ Companies using Sinatra {#biz}
 - [SPB Software](http://spb.com)
 - [Formalibre](http://www.formalibre.si)
 - [Fork](http://usefork.com)
+- [Tractor Feed](http://tractorfeed.org)
