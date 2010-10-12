@@ -46,6 +46,8 @@ in `#sinatra`.
 
 See the `CHANGES` file included for release notes about each release:
 
+ * [1.1.0](http://github.com/sinatra/sinatra/blob/1.1.0/CHANGES)
+   Not Yet Released
  * [1.0](http://github.com/sinatra/sinatra/blob/1.0/CHANGES)
    March 23, 2010
  * [0.9.6](http://github.com/sinatra/sinatra/blob/0.9.6/CHANGES)
