@@ -750,6 +750,59 @@ Der Block wird sofort verlassen und es wird nach der nächsten treffenden
 Route gesucht. Ein 404 Fehler wird zurückgegeben, wenn kein treffendes
 Routen-Muster gefunden wird.
 </p>
+<h2>Das Request-Objekt</h2>
+<p>
+Auf das `request`-Objeket der eigehenden Anfrage kann man vom Anfragescope
+aus zugreifen:
+</p>
+<pre>
+  # App läuft unter http://example.com/example
+  get '/foo' do
+    request.body              # Request Body des Clients (siehe unten)
+    request.scheme            # &quot;http&quot;
+    request.script_name       # &quot;/example&quot;
+    request.path_info         # &quot;/foo&quot;
+    request.port              # 80
+    request.request_method    # &quot;GET&quot;
+    request.query_string      # &quot;&quot;
+    request.content_length    # Länge von request.body
+    request.media_type        # Media-Type von request.body
+    request.host              # &quot;example.com&quot;
+    request.get?              # true (ähnliche Methoden für andere Verben)
+    request.form_data?        # false
+    request[&quot;SOME_HEADER&quot;]    # Wert des SOME_HEADER-headers
+    request.referer           # der Referrer des Clients oder '/'
+    request.user_agent        # User Agent (genutzt von :agent-Bedingung)
+    request.cookies           # Hash der Cookies
+    request.xhr?              # Ist dies eine Ajax-Anfrage?
+    request.url               # &quot;http://example.com/example/foo&quot;
+    request.path              # &quot;/example/foo&quot;
+    request.ip                # Client IP-Addresse
+    request.secure?           # false
+    requuest.env              # env-Hash den Rack durchreicht
+  end
+</pre>
+<p>
+Manche Optionen, wie etwa <tt>script_name</tt> oder <tt>path_info</tt> sind
+auch schreibbar:
+</p>
+<pre>
+  before { request.path_info = &quot;/&quot; }
+  
+  get &quot;/&quot; do
+    &quot;Alle Anfragen kommen hier an!&quot;
+  end
+</pre>
+<p>
+Der <tt>request.body</tt> ist einn IO- oder StringIO-Objekt:
+</p>
+<pre>
+  post &quot;/api&quot; do
+    request.body.rewind  # falls schon jemand davon gelesen hat
+    daten = JSON.parse request.body.read
+    &quot;Hallo #{daten['name']}!&quot;
+  end
+</pre>
 <h2>Konfiguration</h2>
 <p>
 Wird einmal beim Starten in jedweder Umgebung ausgeführt:
@@ -914,6 +967,7 @@ href="http://gitrdoc.com/brynary/rack-test">Rack::Test</a> wird empfohlen:
 </p>
 <pre>
   require 'my_sinatra_app'
+  require 'test/unit'
   require 'rack/test'
 
   class MyAppTest &lt; Test::Unit::TestCase
@@ -998,13 +1052,179 @@ sind per default deaktiviert. Das betrifft auch den eingebauten Server.
 Siehe <a href="http://sinatra.github.com/configuration.html">Optionen und
 Konfiguration</a> für Details über möglichen Optionen.
 </p>
+<h3>Sinatra als Middleware nutzen</h3>
 <p>
-SIDEBAR: Sinatras Top-Level DSL-Methoden sind als einfache Delegationen
-implementiert. Die Sinatra::Application-Klasse &#8212; eine spezielle
-Subklasse von Sinatra::Base &#8212; erhält alle :get, :put, :post,
-:delete, :before, :error, :not_found, :configure und :set Meldungen, die
-vom Top-Level aus gesendet werden. Schau am besten im Code nach: Hier ist
-<a
+Es ist nicht nur möglich andere Rack-Middleware mit Sinatra zu nutzen, man
+kann außerdem jede Sinatra-Anwendung selbst als Middlware vor jeden
+beliebigen Rack-Endpunkt hängen. Bei diesem Endpunkt muss es sich nicht um
+eine andere Sinatra-Anwendung handen, es kann jede andere Rack-Anwendung
+sein (Rails/Ramaze/Camping/&#8230;).
+</p>
+<pre>
+  require 'sinatra/base'
+
+  class LoginScreen &lt; Sinatra::Base
+    enable :session
+  
+    get('/login') { haml :login }
+  
+    post('/login') do
+      if params[:name] = 'admin' and params[:password] = 'admin'
+        session['user_name'] = params[:name]
+      else
+        redirect '/login'
+      end
+    end
+  end
+
+  class MyApp &lt; Sinatra::Base
+    # Middleware wird vor Filtern ausgeführt
+    use LoginScreen
+  
+    before do
+      unless session['user_name']
+        halt &quot;Zugriff verweigert, bitte &lt;a href='/login'&gt;einloggen&lt;/a&gt;.&quot;
+      end
+    end
+  
+    get('/') { &quot;Hallo #{session['user_name']}.&quot; }
+  end
+</pre>
+<h2>Scopes und Bindung</h2>
+<p>
+In welchem Scope man sich gerade befinded legt fest, welche Methoden und
+Variablen zur Verfügung stehen.
+</p>
+<h3>Anwendungs- oder Klassenscope</h3>
+<p>
+Jede Sinatra-Anwendung entspricht einer Sinatra::Base-Subklasse. Falls man
+die Top-Level-DSL verwendet (<tt>require 'sinatra'</tt>), so handelt es
+sich hierbei um Sinatra::Application, andernfalls is es jene Subklasse, die
+man explizit angelegt hat. Auf Klassenebene stehen Methoden wie `get` oder
+`before` zur Verfügung, man hat aber keinen Zugriff auf das
+`request`-Object oder die `session`, da nur eine einzige Klasse für alle
+eingehenden Anfragen genutzt wird.
+</p>
+<p>
+Optionen die via `set` gesetzt werden, sind Methoden auf Klassenebene:
+</p>
+<pre>
+  class MyApp &lt;&lt; Sinatra::Base
+    # Hey, ich bin im Anwendungsscope!
+    set :foo, 42
+    foo # =&gt; 42
+    
+    get '/foo' do
+      # Hey, ich bin nicht mehr im Anwendungsscope!
+    end
+  end
+</pre>
+<p>
+Im Anwendungsscope befindet man sich:
+</p>
+<ul>
+<li><p>
+In der Anwenungsklasse.
+</p>
+</li>
+<li><p>
+In Methoden die von Erweiterungen definiert werden.
+</p>
+</li>
+<li><p>
+Im Block, der an `helpers` übergeben wird.
+</p>
+</li>
+<li><p>
+In Procs und Blöcken die an `set` übergeben werden.
+</p>
+</li>
+</ul>
+<p>
+Man kann auf das Scope-Object (die Klasse) wie folgt zugreifen:
+</p>
+<ul>
+<li><p>
+Über das Objekt, dass an den `configure`-Block übergeben wird
+(<tt>configure { |c| ... }</tt>).
+</p>
+</li>
+<li><p>
+`settings` aus den anderen Scopes heraus.
+</p>
+</li>
+</ul>
+<h3>Anfrage- oder Instanzscope</h3>
+<p>
+Für jede eingehende Anfrage wird eine neue Instanz der Anwendungsklasse
+erstellt und alle Handlers werden in diesem Scope ausgeführt. Aus diesem
+Scope heraus kann man auf `request` oder `session` zugreifen und Methoden
+wie `erb` oder `haml` aufrufen. Man kann mit der `settings` Methode
+außerdem auf den Anwengungsscope zugreifen.
+</p>
+<pre>
+  class MyApp &lt;&lt; Sinatra::Base
+    # Hey, ich bin im Anwendungsscope!
+    get '/neue_route/:name' do
+      # Anfragescope für '/neue_route/:name'
+      @value = 42
+      
+      settings.get &quot;/#{params[:name]}&quot; do
+        # Anfragescope für &quot;/#{params[:name]}&quot;
+        @value # =&gt; nil (nicht die gleiche Anfrage)
+      end
+      
+      &quot;Route definiert!&quot;
+    end
+  end
+</pre>
+<p>
+Im Anfragescope befindet man sich:
+</p>
+<ul>
+<li><p>
+In get/head/post/put/delete Blöcken
+</p>
+</li>
+<li><p>
+In before/after Filtern
+</p>
+</li>
+<li><p>
+In Helfermethoden
+</p>
+</li>
+<li><p>
+In Templates
+</p>
+</li>
+</ul>
+<h3>Delegation-Scope</h3>
+<p>
+Vom Delegation-Scope aus werden Methoden einfach an den Klassenscope
+weitergeleitet. Dieser verhält sich jedoch nicht 100%ig wie der
+Klassenscope, da man nicht die Bindung der Klasse besitzt: Nur Methoden,
+die explizit als deligierbar markiert wurden stehen hier zur Verfügung und
+man kann nicht auf die Variablen des Klassenscopes zugreifen (mit anderen
+Worten: man hat ein anderes `self`). Man kann mit
+<tt>Sinatra::Delegator.delegate :methoden_name</tt> auch weitere
+Delegationen hinzufügen.
+</p>
+<p>
+Im Delegation-Scop befindet man sich:
+</p>
+<ul>
+<li><p>
+Im Top-Level, wenn man <tt>require 'sinatra'</tt> aufgerufen hat.
+</p>
+</li>
+<li><p>
+In einem Objekt, dass mit dem `Sinatra::Delegator` mixin erweitert wurde.
+</p>
+</li>
+</ul>
+<p>
+Schau am besten im Code nach: Hier ist <a
 href="http://github.com/sinatra/sinatra/blob/master/lib/sinatra/base.rb#L1064">Sinatra::Delegator
 mixin</a> definiert und wird in den <a
 href="http://github.com/sinatra/sinatra/blob/master/lib/sinatra/main.rb#L25">globalen

@@ -314,7 +314,7 @@ Utilisera le template: <tt>./views/index.nokogiri</tt>.
 </p>
 <h3>Templates Sass</h3>
 <p>
-Le gem sass est nécessaire pour utiliser la fonction de rendu Sass:
+Le gem haml est nécessaire pour utiliser la fonction de rendu Sass:
 </p>
 <pre>
   ## Chargez la bibliothèque haml ou sass dans votre application
@@ -345,7 +345,7 @@ dans cet exemple.
 </pre>
 <h3>Scss Templates</h3>
 <p>
-Le gem sass est nécessaire pour utiliser la fonction de rendu Scss:
+Le gem haml est nécessaire pour utiliser la fonction de rendu Scss:
 </p>
 <pre>
   ## Chargez la bibliothèque haml ou sass dans votre application
@@ -765,6 +765,60 @@ On sort donc immédiatement de ce gestionnaire et on continue à chercher,
 dans les masques suivants, le prochain qui correspond à la requête. Si
 aucun des masques suivants ne correspond, un code 404 est retourné.
 </p>
+<h2>Accéder à l&#8217;objet requête</h2>
+<p>
+L&#8217;objet correspondant à la requête envoyée peut être récupéré
+dans le contexte de la requête (filtres, routes, gestionnaires
+d&#8217;erreur) au moyen de la méthode `request`:
+</p>
+<pre>
+  # application tournant à l'adresse http://exemple.com/exemple
+  get '/foo' do
+    request.body              # corps de la requête envoyée par le client (voir ci-dessous)
+    request.scheme            # &quot;http&quot;
+    request.script_name       # &quot;/exemple&quot;
+    request.path_info         # &quot;/foo&quot;
+    request.port              # 80
+    request.request_method    # &quot;GET&quot;
+    request.query_string      # &quot;&quot;
+    request.content_length    # taille de request.body
+    request.media_type        # type de média pour request.body
+    request.host              # &quot;exemple.com&quot;
+    request.get?              # true (méthodes similaires pour les autres verbes HTTP)
+    request.form_data?        # false
+    request[&quot;UN_ENTETE&quot;]      # valeur de l'entête UN_ENTETE
+    request.referer           # référant du client ou '/'
+    request.user_agent        # user agent (utilisé par la condition :agent)
+    request.cookies           # tableau contenant les cookies du navigateur
+    request.xhr?              # requête AJAX ?
+    request.url               # &quot;http://exemple.com/exemple/foo&quot;
+    request.path              # &quot;/exemple/foo&quot;
+    request.ip                # adresse IP du client
+    request.secure?           # false
+    request.env               # tableau brut de l'environnement fourni par Rack
+  end
+</pre>
+<p>
+Certaines options, telles que <tt>script_name</tt> ou <tt>path_info</tt>
+peuvent également être modifiées:
+</p>
+<pre>
+  before { request.path_info = &quot;/&quot; }
+
+  get &quot;/&quot; do
+    &quot;toutes les requêtes arrivent ici&quot;
+  end
+</pre>
+<p>
+<tt>request.body</tt> est un objet IO ou StringIO:
+</p>
+<pre>
+  post &quot;/api&quot; do
+    request.body.rewind  # au cas où il a déjà été lu
+    donnees = JSON.parse request.body.read
+    &quot;Bonjour #{donnees['nom']}!&quot;
+  end
+</pre>
 <h2>Configuration</h2>
 <p>
 Lancé une seule fois au démarrage de tous les environnements:
