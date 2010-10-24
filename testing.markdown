@@ -172,7 +172,7 @@ Test Framework Examples {#frameworks}
 -----------------------
 
 As of version `0.9.1`, Sinatra no longer provides testing framework-specific
-helpers. Those found in `sinatra/test/*.rb` are deprecated and will be
+helpers. Those found in `sinatra/test/*.rb` are deprecated and has been
 removed in Sinatra `1.0`.
 
 ### [RSpec][]
