@@ -1,5 +1,9 @@
 
 <p>
+<em>注）
+本文書は英語から翻訳したものであり、その内容が最新でない場合もあります。最新の情報はオリジナルの英語版を参照して下さい。</em>
+</p>
+<p>
 SinatraはRubyで下記のような最小労力で手早くウェブアプリケーションを作成するためのDSLです。
 </p>
 <pre>
@@ -95,6 +99,7 @@ Sinatraでは、ルートはHTTPメソッドとURLマッチングパターンが
     &quot;Hello, #{c}!&quot;
   end
 </pre>
+<h3>条件</h3>
 <p>
 ルートにはユーザエージェントのようなさまざまな条件を含めることができます。
 </p>
@@ -106,6 +111,79 @@ Sinatraでは、ルートはHTTPメソッドとURLマッチングパターンが
   get '/foo' do
     # Matches non-songbird browsers
   end
+</pre>
+<p>
+ほかに<tt>host_name</tt>と<tt>provides</tt>条件が利用可能です:
+</p>
+<pre>
+  get '/', :host_name =&gt; /^admin\./ do
+    &quot;Admin Area, Access denied!&quot;
+  end
+
+  get '/', :provides =&gt; 'html' do
+    haml :index
+  end
+  
+  get '/', :provides =&gt; ['rss', 'atom', 'xml'] do
+    builder :feed
+  end
+</pre>
+<p>
+独自の条件を定義することも簡単にできます:
+</p>
+<pre>
+  set(:probability) { |value| condition { rand &lt;= value } }
+  
+  get '/win_a_car', :probability =&gt; 0.1 do
+    &quot;You won!&quot;
+  end
+  
+  get '/win_a_car' do
+    &quot;Sorry, you lost.&quot;
+  end
+</pre>
+<h3>戻り値</h3>
+<p>
+ルートブロックの戻り値は、HTTPクライアントまたはRackスタックでの次のミドルウェアに渡されるレスポンスボディを決定します。
+</p>
+<p>
+これは大抵の場合、上の例のように文字列ですが、それ以外の値も使用することができます。
+</p>
+<p>
+Rackレスポンス、Rackボディオブジェクト、HTTPステータスコードのいずれかとして
+妥当なオブジェクトであればどのようなオブジェクトでも返すことができます:
+</p>
+<ul>
+<li><p>
+3要素の配列: <tt>[ステータス(Fixnum), ヘッダ(Hash),
+レスポンスボディ(#eachに応答する)]</tt>
+</p>
+</li>
+<li><p>
+2要素の配列: <tt>[ステータス(Fixnum),
+レスポンスボディ(#eachに応答する)]</tt>
+</p>
+</li>
+<li><p>
+<tt>#each</tt>に応答し、与えられたブロックに文字列を渡すオブジェクト
+</p>
+</li>
+<li><p>
+ステータスコードを表現するFixnum
+</p>
+</li>
+</ul>
+<p>
+そのように、例えばストリーミングの例を簡単に実装することができます:
+</p>
+<pre>
+    class Stream
+      def each
+        100.times { |i| yield &quot;#{i}\n&quot; }
+      end
+    end
+
+    get('/') { Stream.new }
 </pre>
 <h2>静的ファイル</h2>
 <p>
@@ -177,6 +255,21 @@ Configurations</a>,
 <p>
 <tt>./views/index.erb</tt>を表示します。
 </p>
+<h3>Erubis</h3>
+<p>
+erubisテンプレートを表示するには、erubisライブラリが必要です:
+</p>
+<pre>
+  ## erubisを読み込みます
+  require 'erubis'
+
+  get '/' do
+    erubis :index
+  end
+</pre>
+<p>
+<tt>./views/index.erubis</tt>を表示します。
+</p>
 <h3>Builder テンプレート</h3>
 <p>
 builderを使うにはbuilderライブラリが必要です:
@@ -186,12 +279,26 @@ builderを使うにはbuilderライブラリが必要です:
   require 'builder'
 
   get '/' do
-    content_type 'application/xml', :charset =&gt; 'utf-8'
     builder :index
   end
 </pre>
 <p>
 <tt>./views/index.builder</tt>を表示します。
+</p>
+<h3>鋸 テンプレート</h3>
+<p>
+鋸を使うには鋸ライブラリが必要です:
+</p>
+<pre>
+  ## 鋸を読み込みます
+  require 'nokogiri'
+
+  get '/' do
+    nokogiri :index
+  end
+</pre>
+<p>
+<tt>./views/index.nokogiri</tt>を表示します。
 </p>
 <h3>Sass テンプレート</h3>
 <p>
@@ -202,7 +309,6 @@ Sassテンプレートを使うにはsassライブラリが必要です:
   require 'sass'
 
   get '/stylesheet.css' do
-    content_type 'text/css', :charset =&gt; 'utf-8'
     sass :stylesheet
   end
 </pre>
@@ -222,10 +328,216 @@ Configurations</a>,
   set :sass, {:style =&gt; :compact } # デフォルトのSass styleは :nested
 
   get '/stylesheet.css' do
-    content_type 'text/css', :charset =&gt; 'utf-8'
     sass :stylesheet, :sass_options =&gt; {:style =&gt; :expanded } # 上書き
   end
 </pre>
+<h3>Scss テンプレート</h3>
+<p>
+Scssテンプレートを使うにはsassライブラリが必要です:
+</p>
+<pre>
+  ## hamlかsassを読み込みます
+  require 'sass'
+
+  get '/stylesheet.css' do
+    scss :stylesheet
+  end
+</pre>
+<p>
+<tt>./views/stylesheet.scss</tt>を表示します。
+</p>
+<p>
+<a
+href="http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#options">Sass'
+options</a>
+はSinatraの設定でグローバルに設定することができます。
+see <a href="http://www.sinatrarb.com/configuration.html">Options and
+Configurations</a>,
+を参照してそれぞれ設定を上書きして下さい。
+</p>
+<pre>
+  set :scss, :style =&gt; :compact # デフォルトのScss styleは:nested
+
+  get '/stylesheet.css' do
+    scss :stylesheet, :style =&gt; :expanded # 上書き
+  end
+</pre>
+<h3>Less テンプレート</h3>
+<p>
+Lessテンプレートを使うにはlessライブラリが必要です:
+</p>
+<pre>
+  ## lessを読み込みます
+  require 'less'
+
+  get '/stylesheet.css' do
+    less :stylesheet
+  end
+</pre>
+<p>
+<tt>./views/stylesheet.less</tt>を表示します。
+</p>
+<h3>Liquid テンプレート</h3>
+<p>
+Liquidテンプレートを使うにはliquidライブラリが必要です:
+</p>
+<pre>
+  ## liquidを読み込みます
+  require 'liquid'
+
+  get '/' do
+    liquid :index
+  end
+</pre>
+<p>
+<tt>./views/index.liquid</tt>を表示します。
+</p>
+<p>
+LiquidテンプレートからRubyのメソッド(<tt>yield</tt>を除く)を呼び出すことができないため、
+ほぼ全ての場合にlocalsを指定する必要があるでしょう:
+</p>
+<pre>
+  liquid :index, :locals =&gt; { :key =&gt; 'value' }
+</pre>
+<h3>Markdown テンプレート</h3>
+<p>
+Markdownテンプレートを使うにはrdiscountライブラリが必要です:
+</p>
+<pre>
+  ## rdiscountを読み込みます
+  require &quot;rdiscount&quot;
+  
+  get '/' do
+    markdown :index
+  end
+</pre>
+<p>
+<tt>./views/index.markdown</tt>を表示します。(<tt>md</tt>と<tt>mkd</tt>も妥当な拡張子です)
+</p>
+<p>
+markdownからメソッドを呼び出すことも、localsに変数を渡すこともできません。
+それゆえ、他のレンダリングエンジンとの組み合わせで使うのが普通です:
+</p>
+<pre>
+  erb :overview, :locals =&gt; { :text =&gt; markdown(:introduction) }
+</pre>
+<p>
+他のテンプレートからmarkdownメソッドを呼び出してもよいことに注意してください:
+</p>
+<pre>
+  %h1 Hello From Haml!
+  %p= markdown(:greetings)
+</pre>
+<h3>Textile テンプレート</h3>
+<p>
+Textileテンプレートを使うにはRedClothライブラリが必要です:
+</p>
+<pre>
+  ## redclothを読み込みます
+  require &quot;redcloth&quot;
+
+  get '/' do
+    textile :index
+  end
+</pre>
+<p>
+<tt>./views/index.textile</tt>を表示します。
+</p>
+<p>
+textileからメソッドを呼び出すことも、localsに変数を渡すこともできません。
+それゆえ、他のレンダリングエンジンとの組み合わせで使うのが普通です:
+</p>
+<pre>
+  erb :overview, :locals =&gt; { :text =&gt; textile(:introduction) }
+</pre>
+<p>
+他のテンプレートからtextileメソッドを呼び出してもよいことに注意してください:
+</p>
+<pre>
+  %h1 Hello From Haml!
+  %p= textile(:greetings)
+</pre>
+<h3>RDoc テンプレート</h3>
+<p>
+RDocテンプレートを使うにはRDocライブラリが必要です:
+</p>
+<pre>
+  ## rdocを読み込みます
+  require &quot;rdoc&quot;
+
+  get '/' do
+    rdoc :index
+  end
+</pre>
+<p>
+<tt>./views/index.rdoc</tt>を表示します。
+</p>
+<p>
+rdocからメソッドを呼び出すことも、localsに変数を渡すこともできません。
+それゆえ、他のレンダリングエンジンとの組み合わせで使うのが普通です:
+</p>
+<pre>
+  erb :overview, :locals =&gt; { :text =&gt; rdoc(:introduction) }
+</pre>
+<p>
+他のテンプレートからrdocメソッドを呼び出してもよいことに注意してください:
+</p>
+<pre>
+  %h1 Hello From Haml!
+  %p= rdoc(:greetings)
+</pre>
+<h3>Radius テンプレート</h3>
+<p>
+Radiusテンプレートを使うにはradiusライブラリが必要です:
+</p>
+<pre>
+  ## radiusを読み込みます
+  require 'radius'
+
+  get '/' do
+    radius :index
+  end
+</pre>
+<p>
+<tt>./views/index.radius</tt>を表示します。
+</p>
+<p>
+RadiusテンプレートからRubyのメソッド(<tt>yield</tt>を除く)を呼び出すことができないため、
+ほぼ全ての場合にlocalsを指定する必要があるでしょう:
+</p>
+<pre>
+  radius :index, :locals =&gt; { :key =&gt; 'value' }
+</pre>
+<h3>Markaby テンプレート</h3>
+<p>
+Markabyテンプレートを使うにはmarkabyライブラリが必要です:
+</p>
+<pre>
+  ## markabyを読み込みます
+  require 'markaby'
+
+  get '/' do
+    markaby :index
+  end
+</pre>
+<p>
+<tt>./views/index.mab</tt>を表示します。
+</p>
+<h3>CoffeeScript テンプレート</h3>
+<p>
+CoffeeScriptテンプレートを表示するにはcoffee-scriptライブラリと`coffee`バイナリが必要です:
+</p>
+<pre>
+  ## coffee-scriptを読み込みます
+  require 'coffee-script'
+
+  get '/application.js' do
+    coffee :application
+  end
+</pre>
+<p>
+<tt>./views/application.coffee</tt>を表示します。
+</p>
 <h3>インラインテンプレート</h3>
 <pre>
   get '/' do
@@ -284,7 +596,7 @@ Configurations</a>,
 注意:
 sinatraをrequireするファイル内で定義されたファイル内テンプレートは自動的に読み込まれます。
 他のファイルで定義されているテンプレートを使うには
-<tt>use_in_file_templates!</tt>メソッドで指定します。
+<tt>enable :inline_templates</tt>を明示的に呼んでください。
 </p>
 <h3>名前付きテンプレート</h3>
 <p>
@@ -306,7 +618,7 @@ sinatraをrequireするファイル内で定義されたファイル内テンプ
 <p>
 「layout」というテンプレートが存在する場合、そのテンプレートファイルは他のテンプレートが
 表示される度に使用されます。<tt>:layout =&gt;
-false</tt>.することでlayoutsを無効にできます。
+false</tt>することでlayoutsを無効にできます。
 </p>
 <pre>
   get '/' do
@@ -346,12 +658,42 @@ beforeフィルタはリクエストされたコンテキストを実行する�
     params[:splat] #=&gt; 'bar/baz'
   end
 </pre>
+<p>
+afterフィルタは同じコンテキストにあるリクエストの後に評価され、
+同じくリクエストとレスポンスを変更することができます。
+beforeフィルタとルートで設定されたインスタンス変数は、
+afterフィルタからアクセスすることができます:
+</p>
+<pre>
+  after do
+    puts response.status
+  end
+</pre>
+<p>
+フィルタにはオプションとしてパターンを渡すことができ、
+この場合はリクエストのパスがパターンにマッチした場合のみフィルタが評価されます:
+</p>
+<pre>
+  before '/protected/*' do
+    authenticate!
+  end
+
+  after '/create/:slug' do |slug|
+    session[:last_slug] = slug
+  end
+</pre>
 <h2>強制終了</h2>
 <p>
 ルートかbeforeフィルタ内で直ちに実行を終了する方法:
 </p>
 <pre>
   halt
+</pre>
+<p>
+ステータスを指定することができます:
+</p>
+<pre>
+  halt 410
 </pre>
 <p>
 body部を指定することもできます &#8230;
@@ -364,6 +706,12 @@ body部を指定することもできます &#8230;
 </p>
 <pre>
   halt 401, '立ち去れ!'
+</pre>
+<p>
+ヘッダを指定:
+</p>
+<pre>
+  halt 402, {'Content-Type' =&gt; 'text/plain'}, 'リベンジ'
 </pre>
 <h2>パッシング(Passing)</h2>
 <p>
@@ -383,6 +731,57 @@ body部を指定することもできます &#8230;
 ルートブロックからすぐに抜け出し、次にマッチするルートを実行します。
 マッチするルートが見当たらない場合は404が返されます。
 </p>
+<h2>リクエストオブジェクトへのアクセス</h2>
+<p>
+受信するリクエストオブジェクトは、`request`メソッドを通じてリクエストレベル(フィルタ、ルート、エラーハンドラ)からアクセスすることができます:
+</p>
+<pre>
+  # アプリケーションが http://example.com/example で動作している場合
+  get '/foo' do
+    request.body              # クライアントによって送信されたリクエストボディ(下記参照)
+    request.scheme            # &quot;http&quot;
+    request.script_name       # &quot;/example&quot;
+    request.path_info         # &quot;/foo&quot;
+    request.port              # 80
+    request.request_method    # &quot;GET&quot;
+    request.query_string      # &quot;&quot;
+    request.content_length    # request.bodyの長さ
+    request.media_type        # request.bodyのメディアタイプ
+    request.host              # &quot;example.com&quot;
+    request.get?              # true (他の動詞についても同様のメソッドあり)
+    request.form_data?        # false
+    request[&quot;SOME_HEADER&quot;]    # SOME_HEADERヘッダの値
+    request.referer           # クライアントのリファラまたは'/'
+    request.user_agent        # ユーザエージェント (:agent 条件によって使用される)
+    request.cookies           # ブラウザクッキーのハッシュ
+    request.xhr?              # Ajaxリクエストかどうか
+    request.url               # &quot;http://example.com/example/foo&quot;
+    request.path              # &quot;/example/foo&quot;
+    request.ip                # クライアントのIPアドレス
+    request.secure?           # false
+    request.env               # Rackによって渡された生のenvハッシュ
+  end
+</pre>
+<p>
+<tt>script_name</tt>や<tt>path_info</tt>などのオプションは次のように利用することもできます:
+</p>
+<pre>
+  before { request.path_info = &quot;/&quot; }
+  
+  get &quot;/&quot; do
+    &quot;全てのリクエストはここに来る&quot;
+  end
+</pre>
+<p>
+<tt>request.body</tt>はIOまたはStringIOのオブジェクトです:
+</p>
+<pre>
+  post &quot;/api&quot; do
+    request.body.rewind  # 既に読まれているときのため
+    data = JSON.parse request.body.read
+    &quot;Hello #{data['name']}!&quot;
+  end
+</pre>
 <h2>設定</h2>
 <p>
 どの環境でも起動時に１回だけ実行されます。
@@ -393,8 +792,7 @@ body部を指定することもできます &#8230;
   end
 </pre>
 <p>
-環境変数<tt>:production</tt>(RACK_ENV環境変数)
-がセットされている時だけ実行する方法:
+環境(RACK_ENV環境変数)が<tt>:production</tt>に設定されている時だけ実行する方法:
 </p>
 <pre>
   configure :production do
@@ -402,8 +800,7 @@ body部を指定することもできます &#8230;
   end
 </pre>
 <p>
-環境変数<tt>:production</tt>
-か<tt>:test</tt>の場合に設定する方法:
+環境が<tt>:production</tt>か<tt>:test</tt>の場合に設定する方法:
 </p>
 <pre>
   configure :production, :test do
@@ -430,8 +827,7 @@ body部を指定することもできます &#8230;
 <p>
 <tt>error</tt>
 ハンドラーはルートブロックかbeforeフィルタ内で例外が発生した時はいつでも発動します。
-block or before filter.
-例外オブジェクトはRack変数<tt>sinatra.error</tt>から取得されます。
+例外オブジェクトはRack変数<tt>sinatra.error</tt>から取得できます。
 </p>
 <pre>
   error do
@@ -461,6 +857,26 @@ block or before filter.
   エラーメッセージ... 何かがまずかったようです
 </pre>
 <p>
+あるいは、ステータスコードに対応するエラーハンドラを設定することもできます:
+</p>
+<pre>
+  error 403 do
+    'Access forbidden'
+  end
+
+  get '/secret' do
+    403
+  end
+</pre>
+<p>
+範囲指定もできます:
+</p>
+<pre>
+  error 400..510 do
+    'Boom'
+  end
+</pre>
+<p>
 開発環境として実行している場合、Sinatraは特別な<tt>not_found</tt>と<tt>error</tt>ハンドラーを
 インストールしています。
 </p>
@@ -472,6 +888,12 @@ block or before filter.
 </p>
 <pre>
   mime_type :foo, 'text/foo'
+</pre>
+<p>
+これはcontent_typeヘルパで利用することができます:
+</p>
+<pre>
+  content_type :foo
 </pre>
 <h2>Rackミドルウェア</h2>
 <p>
@@ -620,12 +1042,184 @@ mixin</a> <a
 href="http://github.com/sinatra/sinatra/blob/master/lib/sinatra/main.rb#L25">included
 into the main namespace</a>.
 </p>
+<h3>Sinatraをミドルウェアとして利用する</h3>
+<p>
+Sinatraは他のRackミドルウェアを利用することができるだけでなく、
+全てのSinatraアプリケーションは、それ自体ミドルウェアとして別のRackエンドポイントの前に追加することが可能です。
+</p>
+<p>
+このエンドポイントには、別のSinatraアプリケーションまたは他のRackベースのアプリケーション(Rails/Ramaze/Camping/&#8230;)が用いられるでしょう。
+</p>
+<pre>
+  require 'sinatra/base'
+  
+  class LoginScreen &lt; Sinatra::Base
+    enable :session
+    
+    get('/login') { haml :login }
+    
+    post('/login') do
+      if params[:name] = 'admin' and params[:password] = 'admin'
+        session['user_name'] = params[:name]
+      else
+        redirect '/login'
+      end
+    end
+  end
+  
+  class MyApp &lt; Sinatra::Base
+    # middleware will run before filters
+    use LoginScreen
+    
+    before do
+      unless session['user_name']
+        halt &quot;Access denied, please &lt;a href='/login'&gt;login&lt;/a&gt;.&quot;
+      end
+    end
+    
+    get('/') { &quot;Hello #{session['user_name']}.&quot; }
+  end
+</pre>
+<h2>スコープとバインディング</h2>
+<p>
+現在のスコープはどのメソッドや変数が利用可能かを決定します。
+</p>
+<h3>アプリケーション/クラスのスコープ</h3>
+<p>
+全てのSinatraアプリケーションはSinatra::Baseのサブクラスに相当します。
+もしトップレベルDSLを利用しているならば(<tt>require
+'sinatra'</tt>)このクラスはSinatra::Applicationであり、
+そうでなければ、あなたが明示的に作成したサブクラスです。
+クラスレベルでは`get`や`before`のようなメソッドを持っています。
+しかし`request`オブジェクトや`session`には、全てのリクエストのために1つのアプリケーションクラスが存在するためアクセスできません。
+</p>
+<p>
+`set`によって作られたオプションはクラスレベルのメソッドです:
+</p>
+<pre>
+    class MyApp &lt; Sinatra::Base
+      # Hey, I'm in the application scope!
+      set :foo, 42
+      foo # =&gt; 42
+      
+      get '/foo' do
+        # Hey, I'm no longer in the application scope!
+      end
+    end
+</pre>
+<p>
+次の場所ではアプリケーションスコープバインディングを持ちます:
+</p>
+<ul>
+<li><p>
+アプリケーションのクラス本体
+</p>
+</li>
+<li><p>
+拡張によって定義されたメソッド
+</p>
+</li>
+<li><p>
+`helpers`に渡されたブロック
+</p>
+</li>
+<li><p>
+`set`の値として使われるProcまたはブロック
+</p>
+</li>
+</ul>
+<p>
+このスコープオブジェクト(クラス)は次のように利用できます:
+</p>
+<ul>
+<li><p>
+configureブロックに渡されたオブジェクト経由(<tt>configure
+{ |c| ... }</tt>)
+</p>
+</li>
+<li><p>
+リクエストスコープの中での`settings`
+</p>
+</li>
+</ul>
+<h3>リクエスト/インスタンスのスコープ</h3>
+<p>
+やってくるリクエストごとに、あなたのアプリケーションクラスの新しいインスタンスが作成され、全てのハンドラブロックがそのスコープで実行されます。
+このスコープの内側からは`request`や`session`オブジェクトにアクセスすることができ、`erb`や`haml`のような表示メソッドを呼び出すことができます。
+リクエストスコープの内側からは、`settings`ヘルパによってアプリケーションスコープにアクセスすることができます。
+</p>
+<pre>
+  class MyApp &lt;&lt; Sinatra::Base
+    # Hey, I'm in the application scope!
+    get '/define_route/:name' do
+      # Request scope for '/define_route/:name'
+      @value = 42
+      
+      settings.get(&quot;/#{params[:name]}&quot;) do
+        # Request scope for &quot;/#{params[:name]}&quot;
+        @value # =&gt; nil (not the same request)
+      end
+      
+      &quot;Route defined!&quot;
+    end
+  end
+</pre>
+<p>
+次の場所ではリクエストスコープバインディングを持ちます:
+</p>
+<ul>
+<li><p>
+get/head/post/put/delete ブロック
+</p>
+</li>
+<li><p>
+before/after フィルタ
+</p>
+</li>
+<li><p>
+helper メソッド
+</p>
+</li>
+<li><p>
+テンプレート/ビュー
+</p>
+</li>
+</ul>
+<h3>デリゲートスコープ</h3>
+<p>
+デリゲートスコープは、単にクラススコープにメソッドを転送します。
+しかしながら、クラスのバインディングを持っていないため、クラススコープと全く同じふるまいをするわけではありません:
+委譲すると明示的に示されたメソッドのみが利用可能であり、またクラススコープと変数/状態を共有することはできません(注:
+異なった`self`を持っています)。 <tt>Sinatra::Delegator.delegate
+:method_name</tt>を呼び出すことによってデリゲートするメソッドを明示的に追加することができます。
+</p>
+<p>
+次の場所ではデリゲートスコープを持ちます:
+</p>
+<ul>
+<li><p>
+もし<tt>require
+&quot;sinatra&quot;</tt>しているならば、トップレベルバインディング
+</p>
+</li>
+<li><p>
+`Sinatra::Delegator` mixinでextendされたオブジェクト
+</p>
+</li>
+</ul>
+<p>
+コードをご覧ください: ここでは <a
+href="http://github.com/sinatra/sinatra/blob/ceac46f0bc129a6e994a06100aa854f606fe5992/lib/sinatra/base.rb#L1128">Sinatra::Delegator
+mixin</a> は<a
+href="http://github.com/sinatra/sinatra/blob/ceac46f0bc129a6e994a06100aa854f606fe5992/lib/sinatra/main.rb#L28">main
+名前空間にincludeされています</a>.
+</p>
 <h2>コマンドライン</h2>
 <p>
 Sinatraアプリケーションは直接実行できます。
 </p>
 <pre>
-  ruby myapp.rb [-h] [-x] [-e ENVIRONMENT] [-p PORT] [-s HANDLER]
+  ruby myapp.rb [-h] [-x] [-e ENVIRONMENT] [-p PORT] [-o HOST] [-s HANDLER]
 </pre>
 <p>
 オプション:
@@ -633,6 +1227,7 @@ Sinatraアプリケーションは直接実行できます。
 <pre>
   -h # ヘルプ
   -p # ポート指定(デフォルトは4567)
+  -o # ホスト指定(デフォルトは0.0.0.0)
   -e # 環境を指定 (デフォルトはdevelopment)
   -s # rackserver/handlerを指定 (デフォルトはthin)
   -x # mutex lockを付ける (デフォルトはoff)

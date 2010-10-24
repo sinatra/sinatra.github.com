@@ -278,23 +278,36 @@ The builder gem/library is required to render builder templates:
   require 'builder'
 
   get '/' do
-    content_type 'application/xml', :charset =&gt; 'utf-8'
     builder :index
   end
 </pre>
 <p>
 Renders <tt>./views/index.builder</tt>.
 </p>
+<h3>Nokogiri Templates</h3>
+<p>
+The nokogiri gem/library is required to render nokogiri templates:
+</p>
+<pre>
+  ## You'll need to require nokogiri in your app
+  require 'nokogiri'
+
+  get '/' do
+    nokogiri :index
+  end
+</pre>
+<p>
+Renders <tt>./views/index.nokogiri</tt>.
+</p>
 <h3>Sass Templates</h3>
 <p>
-The sass gem/library is required to render Sass templates:
+The haml gem/library is required to render Sass templates:
 </p>
 <pre>
   ## You'll need to require haml or sass in your app
   require 'sass'
 
   get '/stylesheet.css' do
-    content_type 'text/css', :charset =&gt; 'utf-8'
     sass :stylesheet
   end
 </pre>
@@ -312,8 +325,36 @@ Configurations</a>, and overridden on an individual basis.
   set :sass, :style =&gt; :compact # default Sass style is :nested
 
   get '/stylesheet.css' do
-    content_type 'text/css', :charset =&gt; 'utf-8'
     sass :stylesheet, :style =&gt; :expanded # overridden
+  end
+</pre>
+<h3>Scss Templates</h3>
+<p>
+The haml gem/library is required to render Scss templates:
+</p>
+<pre>
+  ## You'll need to require haml or sass in your app
+  require 'sass'
+
+  get '/stylesheet.css' do
+    scss :stylesheet
+  end
+</pre>
+<p>
+Renders <tt>./views/stylesheet.scss</tt>.
+</p>
+<p>
+<a
+href="http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#options">Scss'
+options</a> can be set globally through Sinatra&#8217;s configurations, see
+<a href="http://www.sinatrarb.com/configuration.html">Options and
+Configurations</a>, and overridden on an individual basis.
+</p>
+<pre>
+  set :scss, :style =&gt; :compact # default Scss style is :nested
+
+  get '/stylesheet.css' do
+    scss :stylesheet, :style =&gt; :expanded # overridden
   end
 </pre>
 <h3>Less Templates</h3>
@@ -325,12 +366,177 @@ The less gem/library is required to render Less templates:
   require 'less'
 
   get '/stylesheet.css' do
-    content_type 'text/css', :charset =&gt; 'utf-8'
     less :stylesheet
   end
 </pre>
 <p>
 Renders <tt>./views/stylesheet.less</tt>.
+</p>
+<h3>Liquid Templates</h3>
+<p>
+The liquid gem/library is required to render Liquid templates:
+</p>
+<pre>
+  ## You'll need to require liquid in your app
+  require 'liquid'
+
+  get '/' do
+    liquid :index
+  end
+</pre>
+<p>
+Renders <tt>./views/index.liquid</tt>.
+</p>
+<p>
+Since you cannot call Ruby methods (except for <tt>yield</tt>) from a
+Liquid template, you almost always want to pass locals to it:
+</p>
+<pre>
+  liquid :index, :locals =&gt; { :key =&gt; 'value' }
+</pre>
+<h3>Markdown Templates</h3>
+<p>
+The rdiscount gem/library is required to render Markdown templates:
+</p>
+<pre>
+  ## You'll need to require rdiscount in your app
+  require &quot;rdiscount&quot;
+  
+  get '/' do
+    markdown :index
+  end
+</pre>
+<p>
+Renders <tt>./views/index.markdown</tt> (<tt>md</tt> and <tt>mkd</tt> are
+also valid file extensions).
+</p>
+<p>
+It is not possible to call methods from markdown, nor to pass locals to it.
+You therefore will usually use it in combination with another rendering
+engine:
+</p>
+<pre>
+  erb :overview, :locals =&gt; { :text =&gt; markdown(:introduction) }
+</pre>
+<p>
+Note that you may also call the markdown method from within other
+templates:
+</p>
+<pre>
+  %h1 Hello From Haml!
+  %p= markdown(:greetings)
+</pre>
+<h3>Textile Templates</h3>
+<p>
+The RedCloth gem/library is required to render Textile templates:
+</p>
+<pre>
+  ## You'll need to require redcloth in your app
+  require &quot;redcloth&quot;
+
+  get '/' do
+    textile :index
+  end
+</pre>
+<p>
+Renders <tt>./views/index.textile</tt>.
+</p>
+<p>
+It is not possible to call methods from textile, nor to pass locals to it.
+You therefore will usually use it in combination with another rendering
+engine:
+</p>
+<pre>
+  erb :overview, :locals =&gt; { :text =&gt; textile(:introduction) }
+</pre>
+<p>
+Note that you may also call the textile method from within other templates:
+</p>
+<pre>
+  %h1 Hello From Haml!
+  %p= textile(:greetings)
+</pre>
+<h3>RDoc Templates</h3>
+<p>
+The RDoc gem/library is required to render RDoc templates:
+</p>
+<pre>
+  ## You'll need to require rdoc in your app
+  require &quot;rdoc&quot;
+
+  get '/' do
+    rdoc :index
+  end
+</pre>
+<p>
+Renders <tt>./views/index.rdoc</tt>.
+</p>
+<p>
+It is not possible to call methods from rdoc, nor to pass locals to it. You
+therefore will usually use it in combination with another rendering engine:
+</p>
+<pre>
+  erb :overview, :locals =&gt; { :text =&gt; rdoc(:introduction) }
+</pre>
+<p>
+Note that you may also call the rdoc method from within other templates:
+</p>
+<pre>
+  %h1 Hello From Haml!
+  %p= rdoc(:greetings)
+</pre>
+<h3>Radius Templates</h3>
+<p>
+The radius gem/library is required to render Radius templates:
+</p>
+<pre>
+  ## You'll need to require radius in your app
+  require 'radius'
+
+  get '/' do
+    radius :index
+  end
+</pre>
+<p>
+Renders <tt>./views/index.radius</tt>.
+</p>
+<p>
+Since you cannot call Ruby methods (except for <tt>yield</tt>) from a
+Radius template, you almost always want to pass locals to it:
+</p>
+<pre>
+  radius :index, :locals =&gt; { :key =&gt; 'value' }
+</pre>
+<h3>Markaby Templates</h3>
+<p>
+The markaby gem/library is required to render Markaby templates:
+</p>
+<pre>
+  ## You'll need to require markaby in your app
+  require 'markaby'
+
+  get '/' do
+    markaby :index
+  end
+</pre>
+<p>
+Renders <tt>./views/index.mab</tt>.
+</p>
+<h3>CoffeeScript Templates</h3>
+<p>
+The coffee-script gem/library and the `coffee` binary are required to
+render CoffeeScript templates:
+</p>
+<pre>
+  ## You'll need to require coffee-script in your app
+  require 'coffee-script'
+
+  get '/application.js' do
+    coffee :application
+  end
+</pre>
+<p>
+Renders <tt>./views/application.coffee</tt>.
 </p>
 <h3>Inline Templates</h3>
 <pre>
@@ -460,6 +666,19 @@ filters and routes are accessible by after filters:
     puts response.status
   end
 </pre>
+<p>
+Filters optionally taking a pattern, causing them to be evaluated only if
+the request path matches that pattern:
+</p>
+<pre>
+  before '/protected/*' do
+    authenticate!
+  end
+
+  after '/create/:slug' do |slug|
+    session[:last_slug] = slug
+  end
+</pre>
 <h2>Halting</h2>
 <p>
 To immediately stop a request within a filter or route use:
@@ -538,7 +757,7 @@ routes, error handlers) through the `request` method:
     request.path              # &quot;/example/foo&quot;
     request.ip                # client IP address
     request.secure?           # false
-    requuest.env              # raw env hash handed in by Rack
+    request.env               # raw env hash handed in by Rack
   end
 </pre>
 <p>
