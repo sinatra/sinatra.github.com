@@ -3,7 +3,7 @@ require 'rdoc/markup/to_html'
 
 def readme(pattern = "%s", &block)
   return readme(pattern).each(&block) if block_given?
-  %w[en de es fr hu jp].map do |lang|
+  %w[en de es fr hu jp zh].map do |lang|
     pattern % "README#{lang == "en" ? "" : ".#{lang}"}"
   end
 end
