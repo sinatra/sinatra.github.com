@@ -130,6 +130,12 @@ In `views/hello.haml`:
 How do I render partials? {#partials}
 -------------------------
 
+Since Sinatra 1.1, you can simply do something like this:
+
+    <%= erb :mypartial %>
+
+If you use an earlier version, the following does still apply:
+
 Sinatra's template system is simple enough that it can be used for page and
 fragment level rendering tasks. The `erb` and `haml` methods simply return a
 string. However, you need to make sure you disable layout rendering as
