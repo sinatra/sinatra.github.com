@@ -10,6 +10,7 @@ care of the rest.
 
 Applications {#apps}
 ------------
+- [Fundry - Crowdfunding for Software Development](http://fundry.com) - Fundry is designed around software projects, helping developers get paid for developing new features, and enabling your community to pledge to get the features they want. The site and API (coming soon) is all written in Sinatra.
 - [Flickr Group Viewer](http://gv.vqvz.com) is a (nicer?) way to view photos in a flickr group -- [on GitHub](http://github.com/funkaoshi/gv.vqvz.com).
 - [OnBoard](http://dev.vemarsas.it/onboard/) a web interface to manage Linux-based network appliances. 
 - [Tweetrad.io](http://tweetrad.io/sinatra) text to speech conversion for twitter
