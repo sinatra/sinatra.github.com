@@ -199,6 +199,7 @@ Websites {#sites}
 - [dbpedia lite](http://dbpedialite.org/) takes some of the structured data in Wikipedia and presents it as Linked Data ([Source](http://github.com/njh/dbpedialite/)).
 - [Evan Lecklider](http://lecklider.com/) Website showing off work, code examples and experiments built with Sinatra and Compass.
 - [Brightspoke.com](http://www.brightspoke.com/) matches people with bicycles.
+- [happens.co.za](http://www.happens.co.za/) Add countdown times for any "happening" or event and share it with others.
 
 Companies using Sinatra {#biz}
 -----------------------
