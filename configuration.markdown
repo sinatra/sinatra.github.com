@@ -62,16 +62,15 @@ to `true` or `false`, respectively. The following two code examples are
 equivalent:
 
 {% highlight ruby %}
-enable  :sessions, :clean_trace
-disable :logging, :dump_errors, :some_custom_option
+enable  :sessions, :logging
+disable :dump_errors, :some_custom_option
 {% endhighlight %}
 
 Using `set`:
 
 {% highlight ruby %}
 set :sessions, true
-set :clean_trace, true
-set :logging, false
+set :logging, true
 set :dump_errors, false
 set :some_custom_option, false
 {% endhighlight %}
@@ -225,18 +224,6 @@ exception is raised from a route or filter. This setting is enabled by
 default in classic style apps. Disable with:
 
     set :dump_errors, false
-
-### `:clean_trace` - scrub library entries from backtraces
-
-When the `:clean_trace` setting is enabled, library/framework entries are
-removed from exception backtraces before being written to `STDERR`
-(see `:dump_errors` setting) or being displayed on the development mode
-error page.
-
-The `:clean_trace` setting is enabled by default in all environments. Disable
-it to get full exception backtraces:
-
-    set :clean_trace, false
 
 ### `:raise_errors` - allow exceptions to propagate outside of the app
 
