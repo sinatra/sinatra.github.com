@@ -340,7 +340,7 @@ II. When you want to protect only certain URLs in the application, or want the a
 How do I test HTTP authentication? {#test_http_auth}
 ----------------------------------
 
-Assuming you have this simple implementation of HTTP authentication in your application:
+Assuming you have this simple implementation of HTTP authentication in your `application.rb`:
 
     require 'rubygems'
     require 'sinatra'
@@ -353,39 +353,42 @@ Assuming you have this simple implementation of HTTP authentication in your appl
       "You're welcome"
     end
 
-You can test it like this:
+You can test it like this with [_Rack::Test_](https://github.com/brynary/rack-test):
+
+    ENV['RACK_ENV'] = 'test'
 
     require 'rubygems'
-    require 'sinatra'
-    require 'sinatra/test/unit'
+    require 'test/unit'
+    require 'rack/test'
+
     require 'application'
-    require 'base64'
 
     class ApplicationTest < Test::Unit::TestCase
+      include Rack::Test::Methods
+
+      def app
+        Sinatra::Application
+      end
 
       def test_without_authentication
         get '/protected'
-        assert_equal 401, @response.status
+        assert_equal 401, last_response.status
       end
 
       def test_with_bad_credentials
-        get '/protected', {}, {'HTTP_AUTHORIZATION' => encode_credentials('go', 'away')}
-        assert_equal 401, @response.status
+        authorize 'bad', 'boy'
+        get '/protected'
+        assert_equal 401, last_response.status
       end
 
       def test_with_proper_credentials
-        get '/protected', {}, {'HTTP_AUTHORIZATION'=> encode_credentials('admin', 'admin')}
-        assert_equal 200, @response.status
-        assert_equal "You're welcome", @response.body
+        authorize 'admin', 'admin'
+        get '/protected'
+        assert_equal 200, last_response.status
+        assert_equal "You're welcome", last_response.body
       end
-
-      private
-
-      def encode_credentials(username, password)
-        "Basic " + Base64.encode64("#{username}:#{password}")
-      end
-
     end
+
 
 <!--
 
