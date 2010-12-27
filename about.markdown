@@ -22,9 +22,9 @@ Sinatra would not be possible:
 * [Ezra Zygmuntowicz](http://brainspl.at/) (ezmobius) for initial help and
   letting Blake steal some of merbs internal code.
 * [Chris Schneider](http://gittr.com) (cschneid) for The Book, the blog,
-  [irclogger.com](http://irclogger.com/sinatra/today), and a bunch of useful
+  [irclogger.com](http://irclogger.com/sinatra/), and a bunch of useful
   patches.
-* [Markus Prinz](http://blog.nuclearsquid.com/) (cypher) for patches over the
+* [Markus Prinz](http://nuclearsquid.com/) (cypher) for patches over the
   years, caring about the README, and hanging in there when times were rough.
 * [Simon Rozet](http://atonie.org/) (sr) for a ton of doc patches, HAML options,
   and all that advocacy stuff he's going to do for 1.0.
