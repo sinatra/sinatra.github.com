@@ -294,7 +294,7 @@ I. When you want to protect all requests in the application, simply put Rack::Au
     require 'rubygems'
     require 'sinatra'
 
-    use Rack::Auth::Basic do |username, password|
+    use Rack::Auth::Basic, "Testing HTTP Auth", do |username, password|
       [username, password] == ['admin', 'admin']
     end
 
