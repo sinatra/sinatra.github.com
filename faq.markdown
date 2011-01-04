@@ -295,7 +295,7 @@ I. When you want to protect all requests in the application, simply put Rack::Au
     require 'rubygems'
     require 'sinatra'
 
-    use Rack::Auth::Basic do |username, password|
+    use Rack::Auth::Basic, "Restricted Area", do |username, password|
       [username, password] == ['admin', 'admin']
     end
 
@@ -316,7 +316,7 @@ II. When you want to protect only certain URLs in the application, or want the a
 
       def protected!
         unless authorized?
-          response['WWW-Authenticate'] = %(Basic realm="Testing HTTP Auth")
+          response['WWW-Authenticate'] = %(Basic realm="Restricted Area")
           throw(:halt, [401, "Not authorized\n"])
         end
       end
