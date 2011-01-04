@@ -88,6 +88,7 @@ Can I run Sinatra under Ruby 1.9? {#ruby19}
 ---------------------------------
 
 Yes. As of Sinatra 0.9.2, Sinatra is fully Ruby 1.9 and Rack 1.0 compatible.
+Since 1.1 you do not have to deal with encodings on your own, unless you want to.
 
 How do I get the "route" for the current page? {#path_info}
 ----------------------------------------------
