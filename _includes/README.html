@@ -44,6 +44,9 @@
 		<li><a href='#Testing'>Testing</a></li>
 		<li><a href='#Sinatra::Base%20-%20Middleware,%20Libraries,%20and%20Modular%20Apps'>Sinatra::Base - Middleware, Libraries, and Modular Apps</a></li>
 		<ol class='level-2'>
+			<li><a href='#Serving%20a%20modular%20app'>Serving a modular app</a></li>
+			<li><a href='#Using%20a%20classic%20app%20with%20a%20config.ru'>Using a classic app with a config.ru</a></li>
+			<li><a href='#When%20to%20use%20a%20config.ru?'>When to use a config.ru?</a></li>
 			<li><a href='#Using%20Sinatra%20as%20Middleware'>Using Sinatra as Middleware</a></li>
 		</ol>
 		<li><a href='#Scopes%20and%20Binding'>Scopes and Binding</a></li>
@@ -601,8 +604,9 @@ get '/' do
 end</pre>
 
 <p>If a template named “layout” exists, it will be used each time a
-template is rendered. You can disable layouts by passing <tt>:layout =&gt;
-false</tt>.</p>
+template is rendered. You can individually disable layouts by passing
+<tt>:layout =&gt; false</tt> or disable them by default via <tt>set :haml,
+:layout =&gt; false</tt>.</p>
 
 <pre>get '/' do
   haml :index, :layout =&gt; !request.xhr?
@@ -944,13 +948,6 @@ class MyApp &lt; Sinatra::Base
   end
 end</pre>
 
-<p>The MyApp class is an independent Rack component that can act as Rack
-middleware, a Rack application, or Rails metal. You can <tt>use</tt> or
-<tt>run</tt> this class from a rackup <tt>config.ru</tt> file; or, control
-a server component shipped as a library:</p>
-
-<pre>MyApp.run! :host =&gt; 'localhost', :port =&gt; 9090</pre>
-
 <p>The methods available to Sinatra::Base subclasses are exactly as those
 available via the top-level DSL. Most top-level apps can be converted to
 Sinatra::Base components with two modifications:</p>
@@ -967,6 +964,70 @@ of Sinatra::Base.</p>
 default, including the built-in server. See <a
 href="http://sinatra.github.com/configuration.html">Options and
 Configuration</a> for details on available options and their behavior.</p>
+
+<a name='Serving%20a%20modular%20app'></a>
+<h3>Serving a modular app</h3>
+
+<p>There are two common options for starting a modular app, activly starting
+with <tt>run!</tt>:</p>
+
+<pre># my_app.rb
+require 'sinatra/base'
+
+class MyApp &lt; Sinatra::Base
+  # ... app code here ...
+
+  # start the server if ruby file executed directly
+  run! if app_file == $0
+end</pre>
+
+<p>Start with:</p>
+
+<pre>ruby my_app.rb</pre>
+
+<p>Or with a <tt>config.ru</tt>, which allows using any Rack handler:</p>
+
+<pre># config.ru
+require 'my_app'
+run MyApp</pre>
+
+<p>Run:</p>
+
+<pre>rackup -p 4567</pre>
+
+<a name='Using%20a%20classic%20app%20with%20a%20config.ru'></a>
+<h3>Using a classic app with a config.ru</h3>
+
+<p>Write your app file:</p>
+
+<pre># app.rb
+require 'sinatra'
+
+get '/' do
+  'Hello world!'
+end</pre>
+
+<p>And a corresponding <tt>config.ru</tt>:</p>
+
+<pre>require 'app'
+run Sinatra::Application</pre>
+
+<a name='When%20to%20use%20a%20config.ru?'></a>
+<h3>When to use a config.ru?</h3>
+
+<p>Good signs you probably want to use a <tt>config.ru</tt>:</p>
+<ul><li>
+<p>You want to deploy with a different Rack handler (Passenger, Unicorn,
+Heroku, …).</p>
+</li><li>
+<p>You want to use more than one subclass of <tt>Sinatra::Base</tt>.</p>
+</li><li>
+<p>You want to use Sinatra only for middleware, but not as endpoint.</p>
+</li></ul>
+
+<p><b>There is no need to switch to a <tt>config.ru</tt> only because you
+switched to modular style, and you don’t have to use modular style for
+running with a <tt>config.ru</tt>.</b></p>
 
 <a name='Using%20Sinatra%20as%20Middleware'></a>
 <h3>Using Sinatra as Middleware</h3>

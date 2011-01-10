@@ -44,6 +44,9 @@
 		<li><a href='#Pruebas'>Pruebas</a></li>
 		<li><a href='#Sinatra::Base%20-%20Middleware,%20Librer%C3%ADas,%20y%20Aplicaciones%20Modulares'>Sinatra::Base - Middleware, Librerías, y Aplicaciones Modulares</a></li>
 		<ol class='level-2'>
+			<li><a href='#Sirviendo%20una%20aplicaci%C3%B3n%20modular'>Sirviendo una aplicación modular</a></li>
+			<li><a href='#Usando%20una%20aplicaci%C3%B3n%20cl%C3%A1sica%20con%20un%20archivo%20config.ru'>Usando una aplicación clásica con un archivo config.ru</a></li>
+			<li><a href='#%C2%BFCu%C3%A1ndo%20usar%20config.ru?'>¿Cuándo usar config.ru?</a></li>
 			<li><a href='#Utilizando%20Sinatra%20como%20Middleware'>Utilizando Sinatra como Middleware</a></li>
 		</ol>
 		<li><a href='#%C3%81mbitos%20y%20Ligaduras'>Ámbitos y Ligaduras</a></li>
@@ -619,8 +622,9 @@ get '/' do
 end</pre>
 
 <p>Si existe una plantilla con el nombre “layout”, va a ser usada cada vez
-que una plantilla es renderizada. Podés desactivar los layouts pasando
-<tt>:layout =&gt; false</tt>.</p>
+que una plantilla es renderizada. Podés desactivar los layouts
+individualmente pasando <tt>:layout =&gt; false</tt> o globalmente con
+<tt>set :haml, :layout =&gt; false</tt>.</p>
 
 <pre>get '/' do
   haml :index, :layout =&gt; !request.xhr?
@@ -976,14 +980,6 @@ class MiApp &lt; Sinatra::Base
   end
 end</pre>
 
-<p>La clase MiApp es un componente Rack independiente que puede actuar como
-Rack middleware, una aplicación Rack, o Rails metal. Podés usar (con
-<tt>use</tt>) o ejecutar (con <tt>run</tt>) esta clase desde un archivo
-rackup <tt>config.ru</tt>; o, controlar un componente de servidor provisto
-como una librería:</p>
-
-<pre>MiApp.run! :host =&gt; 'localhost', :port =&gt; 9090</pre>
-
 <p>Las subclases de Sinatra::Base tienen disponibles exactamente los mismos
 métodos que los provistos por el DSL de top-level. La mayoría de las
 aplicaciones top-level se pueden convertir en componentes Sinatra::Base con
@@ -1003,6 +999,71 @@ incorporado. Mirá <a
 href="http://sinatra.github.com/configuration.html">Opciones y
 Configuraciones</a> para detalles sobre las opciones disponibles y su
 comportamiento.</p>
+
+<a name='Sirviendo%20una%20aplicaci%C3%B3n%20modular'></a>
+<h3>Sirviendo una aplicación modular</h3>
+
+<p>Las dos opciones más comunes para iniciar una aplicación modular son,
+iniciarla activamente con <tt>run!</tt>:</p>
+
+<pre># mi_app.rb
+require 'sinatra/base'
+
+class MiApp &lt; Sinatra::Base
+  # ... código de la app  ...
+
+  # iniciar el servidor si el archivo fue ejecutado directamente
+  run! if app_file == $0
+end</pre>
+
+<p>Iniciar con:</p>
+
+<pre>ruby mi_app.rb</pre>
+
+<p>O, con un archivo <tt>config.ru</tt>, que permite usar cualquier handler
+Rack:</p>
+
+<pre># config.ru
+require 'mi_app'
+run MiApp</pre>
+
+<p>Después ejecutar:</p>
+
+<pre>rackup -p 4567</pre>
+
+<a name='Usando%20una%20aplicaci%C3%B3n%20cl%C3%A1sica%20con%20un%20archivo%20config.ru'></a>
+<h3>Usando una aplicación clásica con un archivo config.ru</h3>
+
+<p>Escribí el archivo de tu aplicación:</p>
+
+<pre># app.rb
+require 'sinatra'
+
+get '/' do
+  'Hola mundo!'
+end</pre>
+
+<p>Y el <tt>config.ru</tt> correspondiente:</p>
+
+<pre>require 'app'
+run Sinatra::Application</pre>
+
+<a name='%C2%BFCu%C3%A1ndo%20usar%20config.ru?'></a>
+<h3>¿Cuándo usar config.ru?</h3>
+
+<p>Indicadores de que probablemente querés usar <tt>config.ru</tt>:</p>
+<ul><li>
+<p>Querés realizar el deploy con un hanlder Rack distinto (Passenger,
+Unicorn, Heroku, …).</p>
+</li><li>
+<p>Querés usar más de una subclase de <tt>Sinatra::Base</tt>.</p>
+</li><li>
+<p>Querés usar Sinatra únicamente para middleware, pero no como un endpoint.</p>
+</li></ul>
+
+<p><b>No hay necesidad de utilizar un archivo <tt>config.ru</tt>
+exclusivamente porque tenés una aplicación modular, y no necesitás una
+aplicación modular para iniciarla con <tt>config.ru</tt>.</b></p>
 
 <a name='Utilizando%20Sinatra%20como%20Middleware'></a>
 <h3>Utilizando Sinatra como Middleware</h3>
