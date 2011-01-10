@@ -1,11 +1,29 @@
 require 'rake/clean'
 require 'rdoc/markup/to_html'
+require 'uri'
 
 def readme(pattern = "%s", &block)
   return readme(pattern).each(&block) if block_given?
   %w[en de es fr hu jp zh ru].map do |lang|
     pattern % "README#{lang == "en" ? "" : ".#{lang}"}"
   end
+end
+
+# generates Table of Contents
+def with_toc(src, lang)
+  toc = "<div class='toc'>\n"
+  last_level = 1
+  src = src.gsub(/<h(\d)>(.*)<\/h\d>/) do |line|
+    level, heading = $1.to_i, $2.strip
+    aname = URI.escape(heading)
+    toc << "\t"*last_level << "<ol class='level-#{level-1}'>\n" if level > last_level
+    toc << "\t"*level << "</ol>"*(last_level - level) << "\n" if level < last_level
+    toc << "\t"*level << "<li><a href='##{aname}'>#{heading}</a></li>\n"
+    last_level = level
+    "<a name='#{aname}'></a>\n" << line
+  end
+  toc << "\t" << "</ol>"*(last_level-1) << "\n</div>\n"
+  toc + src
 end
 
 task :default => ['_sinatra', :build]
@@ -49,7 +67,7 @@ readme do |fn|
       RDoc::Markup::ToHtml.new.
       convert(File.read("_sinatra/#{fn}.rdoc")).
       sub("<h1>Sinatra</h1>", "")
-    File.open(f.name, 'wb') { |io| io.write(html) }
+    File.open(f.name, 'wb') { |io| io.write with_toc(html) }
   end
   CLEAN.include "_includes/#{fn}.html"
 end
