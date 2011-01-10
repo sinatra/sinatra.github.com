@@ -10,7 +10,7 @@ def readme(pattern = "%s", &block)
 end
 
 # generates Table of Contents
-def with_toc(src, lang)
+def with_toc(src)
   toc = "<div class='toc'>\n"
   last_level = 1
   src = src.gsub(/<h(\d)>(.*)<\/h\d>/) do |line|
