@@ -2,7 +2,7 @@ Sinatra Website / Documentation
 ===============================
 
 This repo contains the Sinatra website and documentation sources published
-at http://sinatra.github.com/.
+at [http://sinatra.github.com/](http://sinatra.github.com/).
 
 Working Locally
 ---------------
@@ -28,7 +28,7 @@ Changes are immediately available at:
 Contributing
 ------------
 
-http://github.com/guides/fork-a-project-and-submit-your-modifications
+[See GitHub's "Forking a project" for more information](https://github.com/guides/fork-a-project-and-submit-your-modifications "Forking a project").
 
 Creating Blog Posts
 -------------------
