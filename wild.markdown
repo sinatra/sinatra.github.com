@@ -10,6 +10,7 @@ care of the rest.
 
 Applications {#apps}
 ------------
+- [SequenceServer](http://www.sequenceserver.com/) An easy-to-setup BLAST sequence search server
 - [Flickr Group Viewer](http://gv.vqvz.com) is a (nicer?) way to view photos in a flickr group -- [on GitHub](http://github.com/funkaoshi/gv.vqvz.com).
 - [OnBoard](http://dev.vemarsas.it/onboard/) a web interface to manage Linux-based network appliances. 
 - [Tweetrad.io](http://tweetrad.io/sinatra) text to speech conversion for twitter
@@ -203,6 +204,7 @@ Websites {#sites}
 - [Kittygram](http://kittygram.heroku.com/) shows cute cat photos from around the world.
 - [happens.co.za](http://www.happens.co.za/) Add countdown times for any "happening" or event and share it with others.
 - [DarkArts Studios](http://www.darkarts.co.za/) Projects and source code of Clive Crous
+- [Ant genome database](http://fourmidable.unil.ch)
 
 Companies using Sinatra {#biz}
 -----------------------
@@ -238,3 +240,4 @@ Companies using Sinatra {#biz}
 - [Formalibre](http://www.formalibre.si)
 - [Fork](http://usefork.com)
 - [Tractor Feed](http://tractorfeed.org)
+- [University of Lausanne](http://fourmidable.unil.ch)
