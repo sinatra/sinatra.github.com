@@ -52,7 +52,7 @@ See the `CHANGES` file included for release notes about each release:
    December 25, 2010
  * [1.1.0](http://github.com/sinatra/sinatra/blob/1.1.0/CHANGES)
    October 24, 2010
- * [1.0](http://github.com/sinatra/sinatra/blob/1.0/CHANGES)
+ * [1.0.0](http://github.com/sinatra/sinatra/blob/1.0/CHANGES)
    March 23, 2010
  * [0.9.6](http://github.com/sinatra/sinatra/blob/0.9.6/CHANGES)
    March 07, 2010
