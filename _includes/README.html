@@ -3,7 +3,7 @@
 		<li><a href='#Routes'>Routes</a></li>
 		<ol class='level-2'>
 			<li><a href='#Conditions'>Conditions</a></li>
-			<li><a href='#Return%20values'>Return values</a></li>
+			<li><a href='#Return%20Values'>Return Values</a></li>
 		</ol>
 		<li><a href='#Static%20Files'>Static Files</a></li>
 		<li><a href='#Views%20/%20Templates'>Views / Templates</a></li>
@@ -46,6 +46,7 @@
 		<li><a href='#Testing'>Testing</a></li>
 		<li><a href='#Sinatra::Base%20-%20Middleware,%20Libraries,%20and%20Modular%20Apps'>Sinatra::Base - Middleware, Libraries, and Modular Apps</a></li>
 		<ol class='level-2'>
+			<li><a href='#Modular%20vs.%20Classic%20Style'>Modular vs. Classic Style</a></li>
 			<li><a href='#Serving%20a%20Modular%20Application'>Serving a Modular Application</a></li>
 			<li><a href='#Using%20a%20Classic%20Style%20Application%20with%20a%20config.ru'>Using a Classic Style Application with a config.ru</a></li>
 			<li><a href='#When%20to%20use%20a%20config.ru?'>When to use a config.ru?</a></li>
@@ -192,8 +193,8 @@ get '/win_a_car' do
   &quot;Sorry, you lost.&quot;
 end</pre>
 
-<a name='Return%20values'></a>
-<h3>Return values</h3>
+<a name='Return%20Values'></a>
+<h3>Return Values</h3>
 
 <p>The return value of a route block determines at least the response body
 passed on to the HTTP client, or at least the next middleware in the Rack
@@ -731,6 +732,10 @@ filters and routes are accessible by after filters:</p>
   puts response.status
 end</pre>
 
+<p>Note: Unless you use the `body` method rather than just returning a String
+from the routes, the body will not yet be available in the after filter,
+since it is generated later on.</p>
+
 <p>Filters optionally taking a pattern, causing them to be evaluated only if
 the request path matches that pattern:</p>
 
@@ -837,7 +842,20 @@ end</pre>
 <p>Run once, at startup, in any environment:</p>
 
 <pre>configure do
-  ...
+  # setting one option
+  set :option, 'value'
+
+  # setting multiple options
+  set :a =&gt; 1, :b =&gt; 2
+
+  # same as `set :option, true`
+  enable :option
+
+  # same as `set :option, false`
+  disable :option
+
+  # you can also have dynamic settings with blocks
+  set(:css_dir) { File.join(views, 'css') }
 end</pre>
 
 <p>Run only when the environment (RACK_ENV environment variable) is set to
@@ -851,6 +869,18 @@ end</pre>
 <tt>:test</tt>:</p>
 
 <pre>configure :production, :test do
+  ...
+end</pre>
+
+<p>You can access those options via <tt>settings</tt>:</p>
+
+<pre>configure do
+  set :foo, 'bar'
+end
+
+get '/' do
+  settings.foo? # =&gt; true
+  settings.foo  # =&gt; 'bar'
   ...
 end</pre>
 
@@ -1042,6 +1072,35 @@ of Sinatra::Base.</p>
 default, including the built-in server. See <a
 href="http://sinatra.github.com/configuration.html">Options and
 Configuration</a> for details on available options and their behavior.</p>
+
+<a name='Modular%20vs.%20Classic%20Style'></a>
+<h3>Modular vs. Classic Style</h3>
+
+<p>Contrary to common believes, there is nothing wrong with classic style. If
+it suits your application, you do not have to switch to a modular
+application.</p>
+
+<p>There are only two downsides compared to modulare style:</p>
+<ul><li>
+<p>You may only have one Sinatra application per Ruby process - if you plan to
+use more, switch to modular style.</p>
+</li><li>
+<p>Classic style pollutes Object with delegator methods - if you plan to ship
+your application in a library/gem, switch to modular style.</p>
+</li></ul>
+
+<p>There is no reason you cannot mix modular and classic style.</p>
+
+<p>If switching from one style to the other, you should be aware of slight
+differences in the setting:</p>
+
+<pre>Setting             Classic                 Modular
+
+app_file            file loading sinatra    nil
+run                 $0 == app_file          false
+logging             true                    false
+method_override     true                    false
+inline_templates    true                    false</pre>
 
 <a name='Serving%20a%20Modular%20Application'></a>
 <h3>Serving a Modular Application</h3>
