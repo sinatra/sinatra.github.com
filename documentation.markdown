@@ -68,6 +68,30 @@ See the `CHANGES` file included for release notes about each release:
    March 02, 2009
  * [0.9.0](http://github.com/sinatra/sinatra/blob/0.9.0/CHANGES)
    January 18, 2009
+ * [0.3.3](https://github.com/sinatra/sinatra/blob/0.3.3/ChangeLog)
+   November 2, 2008
+ * [0.3.2](https://github.com/sinatra/sinatra/blob/0.3.2/ChangeLog)
+   November 2, 2008
+ * [0.3.1](https://github.com/sinatra/sinatra/blob/0.3.1/ChangeLog)
+   September 8, 2008
+ * [0.3.0](https://github.com/sinatra/sinatra/blob/0.3.0/ChangeLog)
+   August 31, 2008
+ * [0.2.2](http://github.com/sinatra/sinatra/blob/0.2.2/CHANGELOG)
+   April 15, 2008
+ * [0.2.1](http://github.com/sinatra/sinatra/blob/0.2.1/CHANGELOG)
+   April 15, 2008
+ * [0.2.0](http://github.com/sinatra/sinatra/blob/0.2.0/CHANGELOG)
+   April 11, 2008
+ * [0.1.7](http://github.com/sinatra/sinatra/blob/0.1.6/CHANGELOG)
+   October 23, 2007
+ * [0.1.6](http://github.com/sinatra/sinatra/blob/0.1.6/CHANGELOG)
+   October 15, 2007
+ * [0.1.5](http://github.com/sinatra/sinatra/blob/0.1.5/CHANGELOG)
+   October 7, 2007
+ * [0.1.0](http://github.com/sinatra/sinatra/blob/0.1.0/CHANGELOG)
+   October 4, 2007
+ * [0.0.1](https://github.com/sinatra/sinatra/tree/0.0.1)
+   September 09, 2007
 
 ### [API Documentation](http://railsapi.com/doc/sinatra-v1.0/)
 
