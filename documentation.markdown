@@ -104,7 +104,10 @@ List of applications, libraries, websites and companies using Sinatra.
 ### [The Sinatra Book](http://sinatra-book.gittr.com/)
 
 An in-depth look at building and deploying Sinatra applications.
-Maintained by [Chris Schneider](http://github.com/cschneid).
+Maintained by [Chris Schneider][cschneid] and [Zachary Scott][zzak].
+
+[cschneid]: http://github.com/cschneid
+[zzak]: http://github.com/zacharyscott
 
 <!--
 
