@@ -111,6 +111,10 @@ Maintained by [Chris Schneider][cschneid] and [Zachary Scott][zzak].
 [cschneid]: http://github.com/cschneid
 [zzak]: http://github.com/zacharyscott
 
+### [Sinatra Book Contrib](http://sinatra-book-contrib.com/)
+
+Community contributed recipes and tutorials for Sinatra.
+
 <!--
 
 ### [Routes](book.html#routes) and [Filters](book.html#filters)

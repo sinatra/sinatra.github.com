@@ -62,9 +62,14 @@ GitHub to track patch requests.
   is where the website sources are managed. There are almost always people in
   `#sinatra` that are happy to discuss, apply, and publish website patches.
 
-* [The Book](book.html) has its own [git repository](http://github.com/sinatra/sinatra-book/)
-  and build process but is managed the same as the website and project
-  codebase.
+* [The Book](http://sinatra-book.gittr.com/) has its own [git
+  repository](http://github.com/sinatra/sinatra-book/) and build process but is
+  managed the same as the website and project codebase.
+
+* [Sinatra Book Contrib](http://sinatra-book-contrib.com/) is a community
+  project where anyone is free to contribute ideas, recipes and tutorials. Which
+  also has its own [git
+  repository](http://github.com/sinatra/sinatra-book-contrib).
 
 * [The Introduction](intro.html) is generated from Sinatra's
   [README file](http://github.com/sinatra/sinatra/blob/master/README.rdoc).
