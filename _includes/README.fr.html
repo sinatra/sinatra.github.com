@@ -22,6 +22,7 @@
 			<li><a href='#Templates%20RDoc'>Templates RDoc</a></li>
 			<li><a href='#Templates%20Radius'>Templates Radius</a></li>
 			<li><a href='#Templates%20Markaby'>Templates Markaby</a></li>
+			<li><a href='#Templates%20Slim'>Templates Slim</a></li>
 			<li><a href='#Templates%20CoffeeScript'>Templates CoffeeScript</a></li>
 			<li><a href='#Templates%20en%20ligne'>Templates en ligne</a></li>
 			<li><a href='#Acc%C3%A9der%20aux%20variables%20dans%20un%20Template'>Accéder aux variables dans un Template</a></li>
@@ -254,7 +255,7 @@ de caractères au lieu de les considérer comme un chemin vers un fichier.</p>
 
 <p>Le gem haml est nécessaire pour utiliser la fonction de rendu Haml:</p>
 
-<pre>## Chargez la bibliothèque haml dans votre application
+<pre># Chargez la bibliothèque haml dans votre application
 require 'haml'
 
 get '/' do
@@ -280,7 +281,7 @@ end</pre>
 <a name='Templates%20Erb'></a>
 <h3>Templates Erb</h3>
 
-<pre>## Chargez la bibliothèque erb dans votre application
+<pre># Chargez la bibliothèque erb dans votre application
 require 'erb'
 
 get '/' do
@@ -294,7 +295,7 @@ end</pre>
 
 <p>Le gem erubis est nécessaire pour utiliser la fonction de rendu erubis:</p>
 
-<pre>## Chargez la bibliothèque erubis dans votre application
+<pre># Chargez la bibliothèque erubis dans votre application
 require 'erubis'
 
 get '/' do
@@ -308,7 +309,7 @@ end</pre>
 
 <p>Le gem builder est nécessaire pour utiliser la fonction de rendu builder:</p>
 
-<pre>## Chargez la bibliothèque builder dans votre application
+<pre># Chargez la bibliothèque builder dans votre application
 require 'builder'
 
 get '/' do
@@ -323,7 +324,7 @@ end</pre>
 <p>Le gem nokogiri est nécessaire pour utiliser la fonction de rendu
 nokogiri:</p>
 
-<pre>## Chargez la bibliothèque nokogiri dans votre application
+<pre># Chargez la bibliothèque nokogiri dans votre application
 require 'nokogiri'
 
 get '/' do
@@ -337,7 +338,7 @@ end</pre>
 
 <p>Le gem haml est nécessaire pour utiliser la fonction de rendu Sass:</p>
 
-<pre>## Chargez la bibliothèque haml ou sass dans votre application
+<pre># Chargez la bibliothèque haml ou sass dans votre application
 require 'sass'
 
 get '/stylesheet.css' do
@@ -365,7 +366,7 @@ end</pre>
 
 <p>Le gem haml est nécessaire pour utiliser la fonction de rendu Scss:</p>
 
-<pre>## Chargez la bibliothèque haml ou sass dans votre application
+<pre># Chargez la bibliothèque haml ou sass dans votre application
 require 'sass'
 
 get '/stylesheet.css' do
@@ -393,7 +394,7 @@ end</pre>
 
 <p>Le gem less est nécessaire pour utiliser la fonction de rendu Less:</p>
 
-<pre>## Chargez la bibliothèque less dans votre application
+<pre># Chargez la bibliothèque less dans votre application
 require 'less'
 
 get '/stylesheet.css' do
@@ -407,7 +408,7 @@ end</pre>
 
 <p>Le gem liquid est nécessaire pour utiliser la fonction de rendu Liquid:</p>
 
-<pre>## Chargez la bibliothèque liquid dans votre application
+<pre># Chargez la bibliothèque liquid dans votre application
 require 'liquid'
 
 get '/' do
@@ -428,7 +429,7 @@ lui passer des variables locales:</p>
 <p>Le gem rdiscount est nécessaire pour utiliser la fonction de rendu
 Markdown:</p>
 
-<pre>## Chargez la bibliothèque rdiscount dans votre application
+<pre># Chargez la bibliothèque rdiscount dans votre application
 require &quot;rdiscount&quot;
 
 get '/' do
@@ -455,7 +456,7 @@ d’autres templates:</p>
 
 <p>Le gem RedCloth est nécessaire pour utiliser la fonction de rendu Textile:</p>
 
-<pre>## Chargez la bibliothèqye redcloth dans votre application
+<pre># Chargez la bibliothèqye redcloth dans votre application
 require &quot;redcloth&quot;
 
 get '/' do
@@ -481,8 +482,8 @@ d’autres templates:</p>
 
 <p>Le gem RDoc est nécessaire pour utiliser la fonction de rendu RDoc:</p>
 
-<pre>## Chargez la bibliothèque rdoc dans votre application
-require &quot;rdoc&quot;
+<pre># Chargez la bibliothèque rdoc/markup/to_html dans votre application
+require &quot;rdoc/markup/to_html&quot;
 
 get '/' do
   rdoc :index
@@ -507,7 +508,7 @@ d’autres templates:</p>
 
 <p>Le gem radius est nécessaire pour utiliser la fonction de rendu Radius:</p>
 
-<pre>## Chargez la bibliotèque radius dans votre application
+<pre># Chargez la bibliotèque radius dans votre application
 require 'radius'
 
 get '/' do
@@ -527,7 +528,7 @@ lui passer des variables locales:</p>
 
 <p>Le gem markaby est nécessaire pour utiliser la fonction de rendu Markaby:</p>
 
-<pre>## Chargez la bibliothèque markaby dans votre application
+<pre># Chargez la bibliothèque markaby dans votre application
 require 'markaby'
 
 get '/' do
@@ -536,13 +537,27 @@ end</pre>
 
 <p>Utilisera <tt>./views/index.mab</tt>.</p>
 
+<a name='Templates%20Slim'></a>
+<h3>Templates Slim</h3>
+
+<p>Le gem slim est nécessaire pour utiliser la fonction de rendu Slim:</p>
+
+<pre># Chargez la bibliothèque slim dans votre application
+require 'slim'
+
+get '/' do
+  slim :index
+end</pre>
+
+<p>Utilisera <tt>./views/index.slim</tt>.</p>
+
 <a name='Templates%20CoffeeScript'></a>
 <h3>Templates CoffeeScript</h3>
 
 <p>Le gem coffee-script et l’exécutable `coffee` sont nécessaires pour
 utiliser la fonction de rendu CoffeeScript:</p>
 
-<pre>## Chargez la bibliothèque coffee-script dans votre application
+<pre># Chargez la bibliothèque coffee-script dans votre application
 require 'coffee-script'
 
 get '/application.js' do

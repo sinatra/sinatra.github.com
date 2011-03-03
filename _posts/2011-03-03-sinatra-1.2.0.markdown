@@ -1,0 +1,254 @@
+---
+layout: post
+title: What's New in Sinatra 1.2?
+author: Konstantin Haase
+author_url: http://rkh.im
+publish_date: Thursday, March 3, 2011
+---
+
+As announced on the [mailing list](http://groups.google.com/group/sinatrarb), we
+have just released [Sinatra
+1.2.0](https://rubygems.org/gems/sinatra/versions/1.2.0). Let's have a closer
+look at the new features.
+
+## Slim support
+
+Sinatra now supports the [Slim Template Engine](http://slim-lang.com/):
+
+{% highlight ruby %}
+require 'sinatra'
+require 'slim'
+
+get('/') { slim :index }
+
+__END__
+
+@@ index
+! doctype html
+html
+  head
+    title Sinatra With Slim
+  body
+    h1 Slim Is Fun!
+    a href="http://haml-lang.com/" A bit like Haml, don't you think?
+{% endhighlight %}
+
+## Inline Markaby
+
+Like Builder and Nokogiri templates, [Markaby](http://markaby.rubyforge.org/)
+can now be used directly inline:
+
+{% highlight ruby %}
+require 'sinatra'
+require 'markaby'
+
+get '/' do
+  markaby do
+    html do
+      head { title "Sinatra With Markaby" }
+      body { h1 "Markaby Is Fun!" }
+    end
+  end
+end
+{% endhighlight %}
+
+## Layout Engines
+
+Whenever you render a template, like `some_page.haml`, Sinatra will use a
+corresponding layout, like `layout.haml` for you. With the `:layout` option it
+has always been possible to use a different layout, but it still had to be
+written in the same template language, Haml in our example. In 1.1 we introduced
+`markdown`, `textile` and `rdoc` templates. It is not possible to use those for
+layouts. We therefore added the `:layout_engine` option, which easily allows you
+to combine one two different template engines:
+
+{% highlight ruby %}
+require 'sinatra'
+require 'rdiscount'
+
+# for all markdown files, use post.haml as layout
+set :markdown, :layout_engine => :haml, :layout => :post
+
+get '/' do
+  # use index.haml for readme
+  markdown :README, :layout => :index
+end
+
+get '/:post' do
+  markdown params[:post]
+end
+{% endhighlight %}
+
+This feature should also be handy when migrating from one template language to
+another, as it allows you to combine Erb with Haml, for instance.
+
+## Conditional Filters
+
+We introduced pattern matching filters in 1.1. Now they also support conditions:
+
+{% highlight ruby %}
+before :agent => /Song Bird/ do
+  # ...
+end
+{% endhighlight %}
+
+Those can also be combined with patterns, of course:
+
+{% highlight ruby %}
+after '/api/*', :provides => :json do
+  # ...
+end
+{% endhighlight %}
+
+## URL helper
+
+Usually Sinatra does not provide any view helper methods. Those are provided by
+extensions and would not suit Sinatra's approach of a small but robust core.
+However, constructing URLs is a use case most people run in sooner or later.
+It is a bit complicated to construct URLs right. Consider this example:
+
+{% highlight ruby %}
+get('/foo') { "<a href='/bar'>Will you make it?</a>" }
+get('/bar') { "You made it!" }
+{% endhighlight %}
+
+Feel free to run it. Works, doesn't it? So, what is wrong with it?
+
+Imagine your app is "mounted" by another Rack application, for instance in a
+`config.ru` like this:
+
+{% highlight ruby %}
+map('/there') { run Sinatra::Application }
+map('/') { run MyRailsApp::Application }
+{% endhighlight %}
+
+Now the link to `/bar` would end up in a request send to `MyRailsApp` rather
+than to Sinatra. Injecting `requst.script_name` would fix this, but be honest,
+how often do you do that?
+
+Now, imagine these links are presented out of context, in an RSS feed or
+embedded on another host. In that case you might want to construct absolute
+URLs. This is even more cumbersome, as you most certainly either forget to
+handle reverse proxies, alternative ports/protocols or you end up with lots of
+URL related code all over the place, while what you should do is use the `url`
+helper:
+
+{% highlight ruby %}
+get('/foo') { "<a href='#{url '/bar'}'>You will make it!</a>" }
+get('/bar') { "You made it!" }
+{% endhighlight %}
+
+Since you are likely going to use this with redirects, we also aliased the
+helper to `to`:
+
+{% highlight ruby %}
+get('/foo') { redirect to('/bar') }
+get('/bar') { "You made it!" }
+{% endhighlight %}
+
+## Named Captures on 1.9
+
+Ruby 1.9 introduced [named captures](http://ruby.runpaint.org/regexps#captures)
+for regular expressions. Sinatra accepts regular expressions for matching paths.
+Now named captures will automatically end up populating `params`:
+
+{% highlight ruby %}
+get %r{/(?<year>\d{4})/(?<month>\d{2})/(?<day>\d{2})/?} do
+  date = Date.new params[:year].to_i, params[:month].to_i, params[:day].to_i
+  @posts = Post.pubished_on date
+  erb :posts
+end
+{% endhighlight %}
+
+## Templates with different scopes
+
+All rendering methods now accept a `:scope` options:
+
+{% highlight ruby %}
+get '/:id' do |id|
+  @post = Post.find id
+
+  # without scope
+  erb "<%= @post.name %>"
+
+  # with scope
+  erb "<%= name %>", :scope => @post
+end
+{% endhighlight %}
+
+Note that all Sinatra helper methods and instance variables will *not* be
+available.
+
+## Configurable redirects
+
+In 1.1 we made sure all redirects were absolute URIs, to conform with RFC 2616
+(HTTP 1.1). This will result in issues for you, if you have a broken Reverse
+Proxy configuration. If so, you should really fix your configuration. If you are
+unable to do so, a simple `disable :absolute_redirects` will now give you back
+the 1.0 behavior. As shown above, you can now use the `to` helper with redirect.
+If all your redirects are application local, you can now
+`enable :prefixed_redirects` and skip the `to` altogether:
+
+{% highlight ruby %}
+enable :prefixed_redirects
+get('/foo') { redirect '/bar' }
+get('/bar') { "You made it!" }
+{% endhighlight %}
+
+We did not enable this per default to not break compatibility and to allow you
+redirects to other Rack endpoints.
+
+## Overriding template lookup
+
+One popular feature request is supporting multiple view folders. But everyone
+wants different semantics. So, instead of choosing one way to go, we gave you
+means to implement your own lookup logic:
+
+{% highlight ruby %}
+helpers do
+  def find_template(*)
+    puts "looking for index.txt"
+    yield "views/index.txt"
+    puts "apparently, index.txt doesn't exist, let's try index.html"
+    yield "views/index.html"
+  end
+end
+
+get "/" do
+  haml :foo
+end
+{% endhighlight %}
+
+Sinatra will call `find_template` to discover the template file. In the above
+example, we don't care about what template engine to use or what name the
+template has. It will use `views/index.txt` or `views/index.html` for every
+template. Let's have a look at the standard implementation:
+
+{% highlight ruby %}
+def find_template(views, name, engine)
+  Tilt.mappings.each do |ext, klass|
+    next unless klass == engine
+    yield ::File.join(views, "#{name}.#{ext}")
+  end
+end
+{% endhighlight %}
+
+As you can see, it will look in the views folder for a file named like the
+template with any of the file extensions registered for the template engine.
+
+If all you want to change is the folder, you probably should just call `super`:
+
+{% highlight ruby %}
+def find_template(views, *a, &b)
+  super("#{views}/a", *a, &b)
+  super("#{views}/b", *a, &b)
+end
+{% endhighlight %}
+
+More examples can be found in the
+[readme](http://www.sinatrarb.com/intro#Looking%20Up%20Template%20Files)
+
+## Other changes
+
+* `send_file` now takes a `:last_modified` option
+* improved error handling
