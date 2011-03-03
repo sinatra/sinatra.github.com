@@ -3,7 +3,7 @@ layout: post
 title: Blog revived
 author: Konstantin Haase
 author_url: http://rkh.im
-publish_date: Thursday, February 2, 2011
+publish_date: Thursday, March 3, 2011
 ---
 
 It has been quiet on this blog recently. Announcements, like the 1.0 and 1.1
