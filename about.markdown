@@ -8,7 +8,7 @@ About
 =====
 
 Sinatra was designed and developed by __Blake Mizerany__ (bmizerany) in
-California.  Continued development would not be possible without the ongoing
+California. Continued development would not be possible without the ongoing
 financial support provided by [Heroku](http://heroku.com) and the emotional
 support provided by [Adam Wiggins](http://adam.blog.heroku.com/) of Heroku,
 [Chris Wanstrath](http://defunkt.github.com/), [PJ Hyett](http://pjhyett.github.com),
@@ -57,6 +57,19 @@ Sinatra would not be possible:
 * **Steven Garcia** for the amazing custom artwork you see on 404's and 500's
 * [Pat Nakajima](http://patnakajima.com/) (nakajima) for fixing non-nested
   params in nested params Hash's.
+* [Konstantin Haase](http://rkh.im) (rkk) for his hard work and ongoing
+  commitment to improving Sinatra, for 1.1.0, 1.2.0 and beyond..
+* **Zachary Scott** for adding Konstantin to the AUTHORS file. He also did help
+  writing the book, but mainly for adding Konstantin.
+* **Gabriel Andretta** for having people wonder whether our documentation is
+  actually in English or in Spanish.
+* **Vasily Polovnyov**, **Nickolay Schwarz**, **Luciano Sousa**, **Wu Jiang**,
+  **Mickael Riga**, **Bernhard Essl**, **Janos Hardi**, **Kouhei Yanagita** and
+  **"burningTyger"** for willingly translating whatever ends up in the README.
+* [Wordy](http://www.wordy.com/) for proofreading our README. **73e137d**
+* **cactus** for digging through code and specs, multiple times.
+* **Nicolás Sanguinetti** (foca) for strong demand of karma and shaping
+  helpers/register.
 
 And last but not least:
 
