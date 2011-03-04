@@ -57,7 +57,7 @@ Sinatra would not be possible:
 * **Steven Garcia** for the amazing custom artwork you see on 404's and 500's
 * [Pat Nakajima](http://patnakajima.com/) (nakajima) for fixing non-nested
   params in nested params Hash's.
-* [Konstantin Haase](http://rkh.im) (rkk) for his hard work and ongoing
+* [Konstantin Haase](http://rkh.im) (rkh) for his hard work and ongoing
   commitment to improving Sinatra, for 1.1.0, 1.2.0 and beyond..
 * **Zachary Scott** for adding Konstantin to the AUTHORS file. He also did help
   writing the book, but mainly for adding Konstantin.
