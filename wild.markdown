@@ -5,8 +5,8 @@ layout: default
 
 *NOTE:* Feel free to fork
 [Sinatra's website on GitHub](http://github.com/sinatra/sinatra.github.com)
-and add your own entry to the `wild.markdown` file. Just push and we'll take
-care of the rest.
+and add your own entry to the `wild.markdown` file. Just push and send a pull request.
+We'll take care of the rest.
 
 Applications {#apps}
 ------------
