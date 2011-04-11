@@ -93,9 +93,9 @@ See the `CHANGES` file included for release notes about each release:
  * [0.0.1](https://github.com/sinatra/sinatra/tree/0.0.1)
    September 09, 2007
 
-### [API Documentation](http://railsapi.com/doc/sinatra-v1.0/)
+### [API Documentation](http://rubydoc.info/gems/sinatra)
 
-RDoc documentation courtesy of `railsapi.com`.
+RDoc documentation courtesy of `rubydoc.info`.
 
 ### [In the Wild](/wild.html)
 
