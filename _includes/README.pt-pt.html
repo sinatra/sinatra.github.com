@@ -10,8 +10,8 @@
 			<li><a href='#Builder%20Templates'>Builder Templates</a></li>
 			<li><a href='#Sass%20Templates'>Sass Templates</a></li>
 			<li><a href='#Less%20Templates'>Less Templates</a></li>
-			<li><a href='#Inline%20Templates'>Inline Templates</a></li>
-			<li><a href='#Acessando%20Vari%C3%A1veis%20nos%20Templates'>Acessando Variáveis nos Templates</a></li>
+			<li><a href='#Templates%20Inline'>Templates Inline</a></li>
+			<li><a href='#Acedendo%20a%20Vari%C3%A1veis%20nos%20Templates'>Acedendo a Variáveis nos Templates</a></li>
 			<li><a href='#Templates%20Inline'>Templates Inline</a></li>
 			<li><a href='#Templates%20nomeados'>Templates nomeados</a></li>
 		</ol>
@@ -20,7 +20,7 @@
 		<li><a href='#Halting'>Halting</a></li>
 		<li><a href='#Passing'>Passing</a></li>
 		<li><a href='#Configura%C3%A7%C3%A3o'>Configuração</a></li>
-		<li><a href='#Tratamento%20de%20Erros'>Tratamento de Erros</a></li>
+		<li><a href='#Lidar%20com%20Erros'>Lidar com Erros</a></li>
 		<ol class='level-2'>
 			<li><a href='#N%C3%A3o%20Encontrado'>Não Encontrado</a></li>
 			<li><a href='#Erro'>Erro</a></li>
@@ -29,7 +29,7 @@
 		<li><a href='#Middleware%20Rack'>Middleware Rack</a></li>
 		<li><a href='#Testando'>Testando</a></li>
 		<li><a href='#Sinatra::Base%20-%20Middleware,%20Bibliotecas%20e%20aplicativos%20modulares'>Sinatra::Base - Middleware, Bibliotecas e aplicativos modulares</a></li>
-		<li><a href='#Linha%20de%20Comando'>Linha de Comando</a></li>
+		<li><a href='#Linha%20de%20Comandos'>Linha de Comandos</a></li>
 		<li><a href='#A%20%C3%BAltima%20vers%C3%A3o'>A última versão</a></li>
 		<li><a href='#Mais'>Mais</a></li>
 	</ol>
@@ -52,14 +52,14 @@ mínimo de esforço:
   end
 </pre>
 <p>
-Instale a gem e execute como:
+Instale a gem e execute com:
 </p>
 <pre>
   sudo gem install sinatra
   ruby minhaapp.rb
 </pre>
 <p>
-Acesse em: <a href="http://localhost:4567">localhost:4567</a>
+Aceda em: <a href="http://localhost:4567">localhost:4567</a>
 </p>
 <a name='Rotas'></a>
 <h2>Rotas</h2>
@@ -69,19 +69,19 @@ padrão. Cada rota é associada a um bloco:
 </p>
 <pre>
   get '/' do
-    .. mostrando alguma coisa ..
+    .. mostrar algo ..
   end
 
   post '/' do
-    .. criando alguma coisa ..
+    .. criar algo ..
   end
 
   put '/' do
-    .. atualizando alguma coisa ..
+    .. atualizar algo ..
   end
 
   delete '/' do
-    .. apagando alguma coisa ..
+    .. apagar algo ..
   end
 </pre>
 <p>
@@ -89,8 +89,8 @@ Rotas são encontradas na ordem em que são definidas. A primeira rota que é
 encontrada invoca o pedido.
 </p>
 <p>
-Padrões de rota podem incluir parâmetros nomeados, acessáveis via a hash
-<tt>params</tt>:
+Padrões de rota podem incluir parâmetros nomeados, acessíveis através da
+hash <tt>params</tt>:
 </p>
 <pre>
   get '/ola/:nome' do
@@ -100,7 +100,7 @@ Padrões de rota podem incluir parâmetros nomeados, acessáveis via a hash
   end
 </pre>
 <p>
-Você também pode acessar parâmetros nomeados via bloco de parâmetros:
+Pode também aceder a parâmetros nomeados através do bloco de parâmetros:
 </p>
 <pre>
   get '/ola/:nome' do |n|
@@ -108,12 +108,12 @@ Você também pode acessar parâmetros nomeados via bloco de parâmetros:
   end
 </pre>
 <p>
-Padrões de rota também podem incluir parâmetros splat (ou curingas),
-acessáveis via o array <tt>params[:splat]</tt>.
+Padrões de rota podem também incluir parâmetros splat (asteriscos),
+acessíveis através do array <tt>params[:splat]</tt>.
 </p>
 <pre>
-  get '/diga/*/para/*' do
-    # corresponde a /diga/ola/para/mundo
+  get '/diga/*/ao/*' do
+    # corresponde a /diga/ola/ao/mundo
     params[:splat] # =&gt; [&quot;ola&quot;, &quot;mundo&quot;]
   end
 
@@ -123,7 +123,7 @@ acessáveis via o array <tt>params[:splat]</tt>.
   end
 </pre>
 <p>
-Rotas se correspondem com expressões regulares:
+Rotas correspondem-se com expressões regulares:
 </p>
 <pre>
   get %r{/ola/([\w]+)} do
@@ -135,16 +135,16 @@ Ou com um bloco de parâmetro:
 </p>
 <pre>
   get %r{/ola/([\w]+)} do |c|
-    &quot;Hello, #{c}!&quot;
+    &quot;Olá, #{c}!&quot;
   end
 </pre>
 <p>
-Rotas podem incluir uma variedade de condições correspondes, tal como o
-agente usuário:
+Rotas podem incluir uma variedade de condições correspondentes, por
+exemplo, o agente usuário:
 </p>
 <pre>
   get '/foo', :agent =&gt; /Songbird (\d\.\d)[\d\/]*?/ do
-    &quot;Você está utilizando a versão #{params[:agent][0]} do Songbird.&quot;
+    &quot;Você está a utilizar a versão #{params[:agent][0]} do Songbird.&quot;
   end
 
   get '/foo' do
@@ -154,32 +154,32 @@ agente usuário:
 <a name='Arquivos%20est%C3%A1ticos'></a>
 <h2>Arquivos estáticos</h2>
 <p>
-Arquivos estáticos são disponibilizados a partir do diretório
-<tt>./public</tt>. Você pode especificar um local diferente pela opção
-<tt>:public</tt>
+Arquivos estáticos são disponibilizados a partir do directório
+<tt>./public</tt>. Você pode especificar um local diferente através da
+opção <tt>:public</tt>
 </p>
 <pre>
   set :public, File.dirname(__FILE__) + '/estatico'
 </pre>
 <p>
-Note que o nome do diretório público não é incluido na URL. Um arquivo
+Note que o nome do directório público não é incluido no URL. Um arquivo
 <tt>./public/css/style.css</tt> é disponibilizado como <tt><a
 href="http://example.com/css/style.css">example.com/css/style.css</a></tt>.
 </p>
 <a name='Views%20/%20Templates'></a>
 <h2>Views / Templates</h2>
 <p>
-Templates presumem-se estar localizados sob o diretório <tt>./views</tt>.
-Para utilizar um diretório view diferente:
+Templates presumem-se estar localizados sob o directório <tt>./views</tt>.
+Para utilizar um directório de views diferente:
 </p>
 <pre>
   set :views, File.dirname(__FILE__) + '/modelo'
 </pre>
 <p>
 Uma coisa importante a ser lembrada é que você sempre tem as referências
-dos templates como símbolos, mesmo se eles estiverem em um sub-diretório
+dos templates como símbolos, mesmo se eles estiverem num sub-directório
 (nesse caso utilize <tt>:'subdir/template'</tt>). Métodos de renderização
-irão processar qualquer string passada diretamente para elas.
+irão processar qualquer string passada directamente para elas.
 </p>
 <a name='Haml%20Templates'></a>
 <h3>Haml Templates</h3>
@@ -187,7 +187,7 @@ irão processar qualquer string passada diretamente para elas.
 A gem/biblioteca haml é necessária para renderizar templates HAML:
 </p>
 <pre>
-  # Você precisa do 'require haml' em sua aplicação.
+  # É necessário requerir 'haml' na aplicação.
   require 'haml'
 
   get '/' do
@@ -200,7 +200,7 @@ Renderiza <tt>./views/index.haml</tt>.
 <p>
 <a
 href="http://haml-lang.com/docs/yardoc/file.HAML_REFERENCE.html#options">Opções
-Haml</a> podem ser setadas globalmente através das configurações do
+Haml</a> podem ser definidas globalmente através das configurações do
 sinatra, veja <a href="http://www.sinatrarb.com/configuration.html">Opções
 e Configurações</a>, e substitua em uma requisição individual.
 </p>
@@ -214,7 +214,7 @@ e Configurações</a>, e substitua em uma requisição individual.
 <a name='Erb%20Templates'></a>
 <h3>Erb Templates</h3>
 <pre>
-  # Você precisa do 'require erb' em sua aplicação
+  # É necessário requerir 'erb' na aplicação.
   require 'erb'
 
   get '/' do
@@ -230,7 +230,7 @@ Renderiza <tt>./views/index.erb</tt>
 A gem/biblioteca erubis é necessária para renderizar templates erubis:
 </p>
 <pre>
-  # Você precisa do 'require erubis' em sua aplicação.
+  # É necessário requerir 'erubis' na aplicação.
   require 'erubis'
 
   get '/' do
@@ -246,7 +246,7 @@ Renderiza <tt>./views/index.erubis</tt>
 A gem/biblioteca builder é necessária para renderizar templates builder:
 </p>
 <pre>
-  # Você precisa do 'require builder' em sua aplicação.
+  # É necessário requerir 'builder' na aplicação.
   require 'builder'
 
   get '/' do
@@ -263,7 +263,7 @@ Renderiza <tt>./views/index.builder</tt>.
 A gem/biblioteca sass é necessária para renderizar templates sass:
 </p>
 <pre>
-  # Você precisa do 'require haml' ou 'require sass' em sua aplicação.
+  # É necessário requerir 'haml' ou 'sass' na aplicação.
   require 'sass'
 
   get '/stylesheet.css' do
@@ -277,7 +277,7 @@ Renderiza <tt>./views/stylesheet.sass</tt>.
 <p>
 <a
 href="http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#options">Opções
-Sass</a> podem ser setadas globalmente através das configurações do
+Sass</a> podem ser definidas globalmente através das configurações do
 sinatra, veja <a href="http://www.sinatrarb.com/configuration.html">Opções
 e Configurações</a>, e substitua em uma requisição individual.
 </p>
@@ -295,7 +295,7 @@ e Configurações</a>, e substitua em uma requisição individual.
 A gem/biblioteca less é necessária para renderizar templates Less:
 </p>
 <pre>
-  # Você precisa do 'require less' em sua aplicação.
+  # É necessário requerir 'less' na aplicação.
   require 'less'
 
   get '/stylesheet.css' do
@@ -306,8 +306,8 @@ A gem/biblioteca less é necessária para renderizar templates Less:
 <p>
 Renderiza <tt>./views/stylesheet.less</tt>.
 </p>
-<a name='Inline%20Templates'></a>
-<h3>Inline Templates</h3>
+<a name='Templates%20Inline'></a>
+<h3>Templates Inline</h3>
 <pre>
   get '/' do
     haml '%div.title Olá Mundo'
@@ -316,12 +316,12 @@ Renderiza <tt>./views/stylesheet.less</tt>.
 <p>
 Renderiza a string, em uma linha, no template.
 </p>
-<a name='Acessando%20Vari%C3%A1veis%20nos%20Templates'></a>
-<h3>Acessando Variáveis nos Templates</h3>
+<a name='Acedendo%20a%20Vari%C3%A1veis%20nos%20Templates'></a>
+<h3>Acedendo a Variáveis nos Templates</h3>
 <p>
-Templates são avaliados dentro do mesmo contexto como manipuladores de
-rota. Variáveis de instância setadas em rotas manipuladas são diretamente
-acessadas por templates:
+Templates são avaliados dentro do mesmo contexto que os manipuladores de
+rota. Variáveis de instância definidas em rotas manipuladas são
+directamente acedidas por templates:
 </p>
 <pre>
   get '/:id' do
@@ -339,8 +339,8 @@ Ou, especifique um hash explícito para variáveis locais:
   end
 </pre>
 <p>
-Isso é tipicamente utilizando quando renderizamos templates como partials
-dentro de outros templates.
+Isso é tipicamente utilizado quando renderizamos templates parciais
+(partials) dentro de outros templates.
 </p>
 <a name='Templates%20Inline'></a>
 <h3>Templates Inline</h3>
@@ -366,8 +366,8 @@ Templates podem ser definidos no final do arquivo fonte(.rb):
 </pre>
 <p>
 NOTA: Templates inline definidos no arquivo fonte são automaticamente
-carregados pelo sinatra. Digite `enable :inline_templates` se você tem
-templates inline no outro arquivo fonte.
+carregados pelo sinatra. Digite `enable :inline_templates` se tem templates
+inline no outro  arquivo fonte.
 </p>
 <a name='Templates%20nomeados'></a>
 <h3>Templates nomeados</h3>
@@ -390,8 +390,8 @@ Templates também podem ser definidos utilizando o  método top-level
 </pre>
 <p>
 Se existir um template com nome &#8220;layout&#8221;, ele será utilizado
-toda vez que um template for renderizado. Você pode desabilitar layouts
-passando <tt>:layout =&gt; false</tt>.
+sempre que um template for renderizado. Pode desactivar layouts usando
+<tt>:layout =&gt; false</tt>.
 </p>
 <pre>
   get '/' do
@@ -419,24 +419,24 @@ para utilizar em manipuladores de rotas e modelos:
 <h2>Filtros</h2>
 <p>
 Filtros Before são avaliados antes de cada requisição dentro do contexto da
-requisição e pode modificar a requisição e a reposta. Variáveis de
-instância setadas nos filtros são acessadas através de rotas e templates:
+requisição e podem modificar a requisição e a reposta. Variáveis de
+instância definidas nos filtros são acedidas através de rotas e templates:
 </p>
 <pre>
   before do
-    @nota = 'Oi!'
+    @nota = 'Olá!'
     request.path_info = '/foo/bar/baz'
   end
 
   get '/foo/*' do
-    @nota #=&gt; 'Oi!'
+    @nota #=&gt; 'Olá!'
     params[:splat] #=&gt; 'bar/baz'
   end
 </pre>
 <p>
 Filtros After são avaliados após cada requisição dentro do contexto da
 requisição e também podem modificar o pedido e a resposta. Variáveis de
-instância definidas nos filtros before e rotas são acessadas através dos
+instância definidas nos filtros before e rotas são acedidas através dos
 filtros after:
 </p>
 <pre>
@@ -445,12 +445,12 @@ filtros after:
   end
 </pre>
 <p>
-Filtros opcionalmente tem um padrão, fazendo com que sejam avaliados
+Filtros opcionalmente têm um padrão, fazendo com que sejam avaliados
 somente se o caminho do pedido coincidir com esse padrão:
 </p>
 <pre>
   before '/protected/*' do
-    authenticate!
+    autenticar!
   end
 
   after '/create/:slug' do |slug|
@@ -460,22 +460,23 @@ somente se o caminho do pedido coincidir com esse padrão:
 <a name='Halting'></a>
 <h2>Halting</h2>
 <p>
-Para parar imediatamente uma requisição com um filtro ou rota utilize:
+Para parar imediatamente uma requisição dentro de um filtro ou rota
+utilize:
 </p>
 <pre>
   halt
 </pre>
 <p>
-Você também pode especificar o status quando parar&#8230;
+Pode também especificar o status ao parar&#8230;
 </p>
 <pre>
   halt 410
 </pre>
 <p>
-Ou com corpo de texto&#8230;
+Ou com um corpo de texto&#8230;
 </p>
 <pre>
-  halt 'isso será o corpo do texto'
+  halt 'isto será o corpo de texto'
 </pre>
 <p>
 Ou também&#8230;
@@ -492,17 +493,17 @@ Com cabeçalhos&#8230;
 <a name='Passing'></a>
 <h2>Passing</h2>
 <p>
-Uma rota pode processar aposta para a próxima rota correspondente usando
+Dentro de uma rota, pode passar para a próxima rota correspondente usando
 <tt>pass</tt>:
 </p>
 <pre>
   get '/adivinhar/:quem' do
     pass unless params[:quem] == 'Frank'
-    'Você me pegou!'
+    'Apanhaste-me!'
   end
 
   get '/adivinhar/*' do
-    'Você falhou!'
+    'Falhaste!'
   end
 </pre>
 <p>
@@ -513,7 +514,7 @@ próxima rota de parâmetro. Se o parâmetro da rota não for encontrado, um
 <a name='Configura%C3%A7%C3%A3o'></a>
 <h2>Configuração</h2>
 <p>
-Rodando uma vez, na inicialização, em qualquer ambiente:
+Correndo uma vez, na inicialização, em qualquer ambiente:
 </p>
 <pre>
   configure do
@@ -521,8 +522,8 @@ Rodando uma vez, na inicialização, em qualquer ambiente:
   end
 </pre>
 <p>
-Rodando somente quando o ambiente (RACK_ENV environment variável) é setado
-para <tt>:production</tt>:
+Correndo somente quando o ambiente (RACK_ENV environment variável) é
+definido para <tt>:production</tt>:
 </p>
 <pre>
   configure :production do
@@ -530,7 +531,7 @@ para <tt>:production</tt>:
   end
 </pre>
 <p>
-Rodando quando o ambiente é setado para <tt>:production</tt> ou
+Correndo quando o ambiente é definido para <tt>:production</tt> ou
 <tt>:test</tt>:
 </p>
 <pre>
@@ -538,18 +539,17 @@ Rodando quando o ambiente é setado para <tt>:production</tt> ou
     ...
   end
 </pre>
-<a name='Tratamento%20de%20Erros'></a>
-<h2>Tratamento de Erros</h2>
+<a name='Lidar%20com%20Erros'></a>
+<h2>Lidar com Erros</h2>
 <p>
-Tratamento de erros rodam dentro do mesmo contexto como rotas e filtros
-before, o que significa que você pega todos os presentes que tem para
-oferecer, como <tt>haml</tt>, <tt>erb</tt>, <tt>halt</tt>, etc.
+Lida-se com erros no mesmo contexto das rotas e filtros before, o que
+signifca que <tt>haml</tt>, <tt>erb</tt>, etc, estão disponíveis.
 </p>
 <a name='N%C3%A3o%20Encontrado'></a>
 <h3>Não Encontrado</h3>
 <p>
 Quando um <tt>Sinatra::NotFound</tt> exception é levantado, ou o código de
-status da reposta é 404, o <tt>not_found</tt> manipulador é invocado:
+status da reposta é 404, o manipulador <tt>not_found</tt> é invocado:
 </p>
 <pre>
   not_found do
@@ -559,21 +559,21 @@ status da reposta é 404, o <tt>not_found</tt> manipulador é invocado:
 <a name='Erro'></a>
 <h3>Erro</h3>
 <p>
-O manipulador <tt>error</tt> é invocado toda a vez que uma exceção é
-lançada a partir de um bloco de rota ou um filtro. O objeto da exceção pode
-ser obtido a partir da variável Rack <tt>sinatra.error</tt>:
+O manipulador <tt>error</tt> é invocado sempre que uma exceção é lançada a
+partir de um bloco de rota ou um filtro. O objecto da exceção pode ser
+obtido a partir da variável Rack <tt>sinatra.error</tt>:
 </p>
 <pre>
   error do
-    'Desculpe, houve um erro desagradável - ' + env['sinatra.error'].name
+    'Peço desculpa, houve um erro desagradável - ' + env['sinatra.error'].name
   end
 </pre>
 <p>
-Erros customizados:
+Erros personalizados:
 </p>
 <pre>
-  error MeuErroCustomizado do
-    'Então que aconteceu foi...' + request.env['sinatra.error'].message
+  error MeuErroPersonalizado do
+    'O que aconteceu foi...' + request.env['sinatra.error'].message
   end
 </pre>
 <p>
@@ -581,17 +581,17 @@ Então, se isso acontecer:
 </p>
 <pre>
   get '/' do
-    raise MeuErroCustomizado, 'alguma coisa ruim'
+    raise MeuErroPersonalizado, 'alguma coisa desagradável'
   end
 </pre>
 <p>
-Você receberá isso:
+O resultado será:
 </p>
 <pre>
-  Então que aconteceu foi... alguma coisa ruim
+  O que aconteceu foi...alguma coisa desagradável
 </pre>
 <p>
-Alternativamente, você pode instalar manipulador de erro para um código de
+Alternativamente, pode definir um manipulador de erro para um código de
 status:
 </p>
 <pre>
@@ -604,7 +604,7 @@ status:
   end
 </pre>
 <p>
-Ou um range:
+Ou um range (alcance):
 </p>
 <pre>
   error 400..510 do
@@ -612,21 +612,21 @@ Ou um range:
   end
 </pre>
 <p>
-O Sinatra instala os manipuladores especiais <tt>not_found</tt> e
-<tt>error</tt> quando roda sobre o ambiente de desenvolvimento.
+O Sinatra define os manipuladores especiais <tt>not_found</tt> e
+<tt>error</tt> quando corre no ambiente de desenvolvimento.
 </p>
 <a name='Mime%20Types'></a>
 <h2>Mime Types</h2>
 <p>
-Quando utilizamos <tt>send_file</tt> ou arquivos estáticos você pode ter
-mime types Sinatra não entendidos. Use <tt>mime_type</tt> para registrar
-eles por extensão de arquivos:
+Quando utilizamos <tt>send_file</tt> ou arquivos estáticos pode ter mime
+types Sinatra não entendidos. Use <tt>mime_type</tt> para os registar por
+extensão de arquivos:
 </p>
 <pre>
   mime_type :foo, 'text/foo'
 </pre>
 <p>
-Você também pode utilizar isto com o helper <tt>content_type</tt>:
+Pode também utilizar isto com o helper <tt>content_type</tt>:
 </p>
 <pre>
   content_type :foo
@@ -634,23 +634,24 @@ Você também pode utilizar isto com o helper <tt>content_type</tt>:
 <a name='Middleware%20Rack'></a>
 <h2>Middleware Rack</h2>
 <p>
-O Sinatra roda no <a href="http://rack.rubyforge.org/">Rack</a>, uma
-interface padrão mínima para frameworks web em Ruby. Um das capacidades
-mais interessantes do Rack para desenvolver aplicativos é suporte a
-&#8220;middleware&#8221; &#8212; componentes que ficam entre o servidor e
-sua aplicação monitorando e/ou manipulando o request/response do HTTP para
-prover vários tipos de funcionalidades comuns.
+O Sinatra corre no <a href="http://rack.rubyforge.org/">Rack</a>, uma
+interface padrão mínima para frameworks web em Ruby. Uma das capacidades
+mais interessantes do Rack, para desenvolver aplicações, é o suporte de
+&#8220;middleware&#8221; &#8212; componentes que residem entre o servidor e
+a aplicação, monitorizando e/ou manipulando o pedido/resposta
+(request/response) HTTP para providenciar varios tipos de funcionalidades
+comuns.
 </p>
 <p>
-O Sinatra faz construtores pipelines do middleware Rack facilmente em um
+O Sinatra torna a construção de pipelines do middleware Rack fácil a um
 nível superior utilizando o método <tt>use</tt>:
 </p>
 <pre>
   require 'sinatra'
-  require 'meu_middleware_customizado'
+  require 'meu_middleware_personalizado'
 
   use Rack::Lint
-  use MeuMiddlewareCustomizado
+  use MeuMiddlewarePersonalizado
 
   get '/ola' do
     'Olá mundo'
@@ -660,18 +661,19 @@ nível superior utilizando o método <tt>use</tt>:
 A semântica de <tt>use</tt> é idêntica aquela definida para a DSL <a
 href="http://rack.rubyforge.org/doc/classes/Rack/Builder.html">Rack::Builder</a>
 (mais frequentemente utilizada para arquivos rackup). Por exemplo, o método
-<tt>use</tt> aceita múltiplos argumentos/variáveis bem como blocos:
+<tt>use</tt> aceita múltiplos argumentos/variáveis, bem como blocos:
 </p>
 <pre>
-  use Rack::Auth::Basic do |usuario, senha|
-    usuario == 'admin' &amp;&amp; senha == 'secreto'
+  use Rack::Auth::Basic do |utilizador, senha|
+    utilizador == 'admin' &amp;&amp; senha == 'secreto'
   end
 </pre>
 <p>
 O Rack é distribuido com uma variedade de middleware padrões para logs,
-debugs, rotas de URL, autenticação, e manipuladores de sessão. Sinatra
-utilizada muitos desses componentes automaticamente baseando sobre
-configuração, então, tipicamente você não tem <tt>use</tt> explicitamente.
+debugs, rotas de URL, autenticação, e manipuladores de sessão.Sinatra
+utiliza  muitos desses componentes automaticamente dependendo da
+configuração, por isso,  tipicamente nao é necessário utilizar <tt>use</tt>
+explicitamente.
 </p>
 <a name='Testando'></a>
 <h2>Testando</h2>
@@ -714,14 +716,14 @@ são depreciados na versão 0.9.2.
 <a name='Sinatra::Base%20-%20Middleware,%20Bibliotecas%20e%20aplicativos%20modulares'></a>
 <h2>Sinatra::Base - Middleware, Bibliotecas e aplicativos modulares</h2>
 <p>
-Definir sua aplicação em um nível superior de trabalho funciona bem para
+Definir sua aplicação a um nível superior de trabalho funciona bem para
 micro aplicativos, mas tem consideráveis incovenientes na construção de
 componentes reutilizáveis como um middleware Rack, metal Rails, bibliotecas
 simples como um componente de servidor, ou mesmo extensões Sinatra. A DSL
 de nível superior polui o espaço do objeto e assume um estilo de
-configuração de micro aplicativos (exemplo: uma simples arquivo de
-aplicação, diretórios ./public e ./views, logs, página de detalhes de
-exceção, etc.). É onde o Sinatra::Base entra em jogo:
+configuração de micro aplicativos (exemplo: um simples arquivo de
+aplicação, directórios ./public e ./views, logs, página de detalhes de
+excepção, etc.). É onde o Sinatra::Base entra em jogo:
 </p>
 <pre>
   require 'sinatra/base'
@@ -731,13 +733,13 @@ exceção, etc.). É onde o Sinatra::Base entra em jogo:
     set :foo, 'bar'
 
     get '/' do
-      'Ola mundo!'
+      'Olá mundo!'
     end
   end
 </pre>
 <p>
-A classe MinhaApp é um componente Rack independente que pode agir como um
-middleware Rack, uma aplicação Rack, ou metal Rails. Você pode
+A classe MinhaApp é um componente Rack independente que pode utilizar como
+um middleware Rack, uma aplicação Rack, ou metal Rails. Pode
 <tt>utilizar</tt> ou <tt>executar</tt> esta classe com um arquivo rackup
 <tt>config.ru</tt>; ou, controlar um componente de servidor fornecendo como
 biblioteca:
@@ -765,7 +767,7 @@ na subclasse de um Sinatra::Base.
 </li>
 </ul>
 <p>
-+Sinatra::Base+ é um quadro branco. Muitas opções são desabilitadas por
++Sinatra::Base+ é um quadro branco. Muitas opções são desactivadas por
 padrão, incluindo o servidor embutido. Veja <a
 href="http://sinatra.github.com/configuration.html">Opções e
 Configurações</a> para detalhes de opções disponíveis e seus
@@ -776,17 +778,17 @@ SIDEBAR: A DSL de alto nível do Sinatra é implementada utilizando um
 simples sistema de delegação. A classe +Sinatra::Application+ &#8212; uma
 subclasse especial da Sinatra::Base &#8212; recebe todos os :get, :put,
 :post, :delete, :before, :error, :not_found, :configure, e :set messages
-enviados para o alto nível. Dê uma olhada no código você mesmo: aqui está o
-<a
+enviados para o alto nível. Dê você mesmo uma vista de olhos ao código:
+aqui está o <a
 href="http://github.com/sinatra/sinatra/blob/ceac46f0bc129a6e994a06100aa854f606fe5992/lib/sinatra/base.rb#L1128">Sinatra::Delegator
 mixin</a> sendo <a
 href="http://github.com/sinatra/sinatra/blob/ceac46f0bc129a6e994a06100aa854f606fe5992/lib/sinatra/main.rb#L28">incluido
 dentro de um espaço principal</a>
 </p>
-<a name='Linha%20de%20Comando'></a>
-<h2>Linha de Comando</h2>
+<a name='Linha%20de%20Comandos'></a>
+<h2>Linha de Comandos</h2>
 <p>
-Aplicações Sinatra podem ser executadas diretamente:
+As aplicações Sinatra podem ser executadas directamente:
 </p>
 <pre>
   ruby minhaapp.rb [-h] [-x] [-e AMBIENTE] [-p PORTA] [-o HOST] [-s SERVIDOR]
@@ -800,13 +802,13 @@ As opções são:
   -o # define o host (padrão é 0.0.0.0)
   -e # define o ambiente (padrão é development)
   -s # especifica o servidor/manipulador rack (padrão é thin)
-  -x # ativa o bloqueio (padrão é desligado)
+  -x # activa o bloqueio (padrão é desligado)
 </pre>
 <a name='A%20%C3%BAltima%20vers%C3%A3o'></a>
 <h2>A última versão</h2>
 <p>
-Se você gostaria de utilizar o código da última versão do Sinatra, crie um
-clone local e execute sua aplicação com o diretório <tt>sinatra/lib</tt> no
+Se gostaria de utilizar o código da última versão do Sinatra, crie um clone
+local e execute sua aplicação com o directório <tt>sinatra/lib</tt> no
 <tt>LOAD_PATH</tt>:
 </p>
 <pre>
@@ -815,8 +817,8 @@ clone local e execute sua aplicação com o diretório <tt>sinatra/lib</tt> no
   ruby -I sinatra/lib minhaapp.rb
 </pre>
 <p>
-Alternativamente, você pode adicionar o diretório do <tt>sinatra/lib</tt>
-no <tt>LOAD_PATH</tt> do seu aplicativo:
+Alternativamente, pode adicionar o directório do <tt>sinatra/lib</tt> no
+<tt>LOAD_PATH</tt> do seu aplicativo:
 </p>
 <pre>
   $LOAD_PATH.unshift File.dirname(__FILE__) + '/sinatra/lib'
@@ -824,11 +826,11 @@ no <tt>LOAD_PATH</tt> do seu aplicativo:
   require 'sinatra'
 
   get '/sobre' do
-    &quot;Estou rodando a versão&quot; + Sinatra::VERSION
+    &quot;Estou correndo a versão&quot; + Sinatra::VERSION
   end
 </pre>
 <p>
-Para atualizar o código do Sinatra no futuro:
+Para actualizar o código do Sinatra no futuro:
 </p>
 <pre>
   cd meuprojeto/sinatra
@@ -843,7 +845,7 @@ adicional, novidades e links para outros recursos.
 </p>
 </li>
 <li><p>
-<a href="http://www.sinatrarb.com/contributing">Contribuir</a> - Encontrar
+<a href="http://www.sinatrarb.com/contributing">Contribuir</a> - Encontrou
 um bug? Precisa de ajuda? Tem um patch?
 </p>
 </li>
