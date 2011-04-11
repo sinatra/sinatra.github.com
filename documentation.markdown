@@ -113,34 +113,6 @@ Maintained by [Chris Schneider][cschneid] and [Zachary Scott][zzak].
 
 Community contributed recipes and tutorials for Sinatra.
 
-<!--
-
-### [Routes](book.html#routes) and [Filters](book.html#filters)
-
-Using `get`, `put`, `post`, `delete` to define routes and `before`
-to inspect/modify the request before routing is performed.
-
-### [Helpers](book.html#helpers) and [Views](book.html#views)
-
-Extracting commonly used logic into helper methods and managing
-view code in external templates.
-
-### [Configuration](book.html#configuration)
-
-Using `configure` blocks, settings options, and using Rack
-middleware.
-
-### [Error Handling](book.html#error_handling)
-
-How to create custom error pages or perform actions when certain
-exceptions occur within your application.
-
-### [Deployment](book.html#deployment)
-
-How to deploy under Thin, Passenger, etc. using a Rackup file.
-
--->
-
 Screencasts and Presentations
 -----------------------------
 
