@@ -170,6 +170,10 @@ a REST service. <em>$5 a pop.</em>
 
 By [Nicolás Sanguinetti](http://github.com/foca), April 2009.
 
+### [Introduction to Sinatra](http://screencasts.org/episodes/introduction-to-sinatra) (screencasts.org)
+
+The first episode in [screencasts.org's Sinatra series](http://screencasts.org/topics/sinatra).
+
 Around The Web
 --------------
 
