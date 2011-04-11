@@ -301,6 +301,7 @@ stop there. You can easily define your own matchers:
       @captures = Match.new([])
     end
 
+<<<<<<< HEAD
     def match(str)
       @captures unless @except === str
     end
@@ -308,6 +309,15 @@ stop there. You can easily define your own matchers:
 
   def all_but(pattern)
     AllButPattern.new(pattern)
+=======
+  def initialize(except)
+    @except   = except
+    @captures = Match.new([])
+  end
+
+  def match(str)
+    @captures unless @except === str
+>>>>>>> cb0c8bddc098d0435c2b999d5e3071889163a1c7
   end
 
   get all_but(&quot;/index&quot;) do

@@ -5,8 +5,8 @@ layout: default
 
 *NOTE:* Feel free to fork
 [Sinatra's website on GitHub](http://github.com/sinatra/sinatra.github.com)
-and add your own entry to the `wild.markdown` file. Just push and we'll take
-care of the rest.
+and add your own entry to the `wild.markdown` file. Just push and send a pull request.
+We'll take care of the rest.
 
 Applications {#apps}
 ------------
@@ -84,6 +84,7 @@ Applications {#apps}
 - [Brakes](http://github.com/rdnck76/brakes) a simple sinatra app for hosting static html on heroku.
 - [Fundry - Crowdfunding for Software Development](http://fundry.com) - Fundry is designed around software projects, helping developers get paid for developing new features, and enabling your community to pledge to get the features they want. The site and API (coming soon) is all written in Sinatra.
 - [Picky](http://github.com/floere/picky) - a fast &amp; clever semantic search engine.
+- [Headhunter](http://headhunter.heroku.com) - giving Twitter profile pics a permanent URL
 
 Libraries and extensions {#libs}
 ------------------------
