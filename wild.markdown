@@ -85,6 +85,7 @@ Applications {#apps}
 - [Fundry - Crowdfunding for Software Development](http://fundry.com) - Fundry is designed around software projects, helping developers get paid for developing new features, and enabling your community to pledge to get the features they want. The site and API (coming soon) is all written in Sinatra.
 - [Picky](http://github.com/floere/picky) - a fast &amp; clever semantic search engine.
 - [Headhunter](http://headhunter.heroku.com) - giving Twitter profile pics a permanent URL
+- [blitz.io](http://blitz.io) - Making load and performance testing a fun sport
 
 Libraries and extensions {#libs}
 ------------------------
@@ -243,3 +244,4 @@ Companies using Sinatra {#biz}
 - [Fork](http://usefork.com)
 - [Tractor Feed](http://tractorfeed.org)
 - [University of Lausanne](http://fourmidable.unil.ch)
+- [Mu Dynamics](http://www.mudynamics.com)
