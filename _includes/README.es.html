@@ -1205,8 +1205,8 @@ no te va a servir.  Para lograr esto, podés usar <tt>call</tt>:
 </p>
 <pre>
   get '/foo' do
-    status, headers, body = call request.env.merge(&quot;PATH_INFO&quot; =&gt; '/bar')
-    [status, body.upcase]
+    status, headers, body = call env.merge(&quot;PATH_INFO&quot; =&gt; '/bar')
+    [status, headers, body.map(&amp;:upcase)]
   end
 
   get '/bar' do
@@ -1795,7 +1795,8 @@ define si Sinatra debe encargarse de servir archivos estáticos.
 </p>
 <p>
 Deshabilitala cuando usés un servidor capaz de hacerlo por sí solo, porque
-mejorará el rendimiento.  Se encuentra habilitada por defecto.
+mejorará el rendimiento.  Se encuentra habilitada por defecto en el estilo
+clásico y desactivado en el el modular.
 </p>
 </dd>
 <dt>views</dt><dd><p>
@@ -1838,7 +1839,7 @@ Errores personalizados:
 </p>
 <pre>
   error MiErrorPersonalizado do
-    'Lo que pasó fue...' request.env['sinatra.error'].message
+    'Lo que pasó fue...' + env['sinatra.error'].message
   end
 </pre>
 <p>
@@ -2053,6 +2054,7 @@ entre sus configuraciones:
   logging             true                         false
   method_override     true                         false
   inline_templates    true                         false
+  static              true                         false
 </pre>
 <a name='Sirviendo%20una%20Aplicaci%C3%B3n%20Modular'></a>
 <h3>Sirviendo una Aplicación Modular</h3>
@@ -2587,6 +2589,13 @@ Correo</a>
 <li><p>
 <a href="irc://chat.freenode.net/#sinatra">IRC: #sinatra</a> en <a
 href="http://freenode.net">freenode.net</a>
+</p>
+</li>
+<li><p>
+Documentación de la API para la <a
+href="http://rubydoc.info/gems/sinatra">última versión liberada</a> o para
+la <a href="http://rubydoc.info/github/sinatra/sinatra">rama de desarrollo
+actual</a> en <a href="http://rubydoc.info">rubydoc.info</a>/
 </p>
 </li>
 </ul>

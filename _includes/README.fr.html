@@ -1221,8 +1221,8 @@ utilisez simplement <tt>call</tt> :
 </p>
 <pre>
   get '/foo' do
-    status, headers, body = call request.env.merge(&quot;PATH_INFO&quot; =&gt; '/bar')
-    [status, body.upcase]
+    status, headers, body = call env.merge(&quot;PATH_INFO&quot; =&gt; '/bar')
+    [status, headers, body.map(&amp;:upcase)]
   end
 
   get '/bar' do
@@ -1858,7 +1858,7 @@ Erreur sur mesure:
 </p>
 <pre>
   error MonErreurSurMesure do
-    'Donc il est arrivé ceci...' + request.env['sinatra.error'].message
+    'Donc il est arrivé ceci...' + env['sinatra.error'].message
   end
 </pre>
 <p>

@@ -1203,8 +1203,8 @@ sich <tt>call</tt> nutzen:
 </p>
 <pre>
   get '/foo' do
-    status, headers, body = call request.env.merge(&quot;PATH_INFO&quot; =&gt; '/bar')
-    [status, body.upcase]
+    status, headers, body = call env.merge(&quot;PATH_INFO&quot; =&gt; '/bar')
+    [status, headers, body.map(&amp;:upcase)]
   end
 
   get '/bar' do
@@ -1762,7 +1762,7 @@ Benutzerdefinierte Fehler:
 </p>
 <pre>
   error MeinFehler do
-    'Au weia, ' + request.env['sinatra.error'].message
+    'Au weia, ' + env['sinatra.error'].message
   end
 </pre>
 <p>
@@ -2375,11 +2375,11 @@ prerelease Gems,  die so installiert werden:
 <h3>Mit Bundler</h3>
 <p>
 Wenn die Applikation mit der neuesten Version von Sinatra und <a
-href="http://gembundler.com/">Bundler</a> genutzt werden soll, schlagen wir
-folgenden Weg vor:
+href="http://gembundler.com/">Bundler</a> genutzt werden soll, empfehlen
+wir den nachfolgenden Weg.
 </p>
 <p>
-Soweit Bundler noch nicht installiert ist, folgendes:
+Soweit Bundler noch nicht installiert ist:
 </p>
 <pre>
   gem install bundler
@@ -2475,14 +2475,9 @@ Dokumentation, News und Links zu anderen Ressourcen.
 </li>
 <li><p>
 <a href="http://sinatra.github.com/contributing.html">Hilfe beisteuern</a>
-- Einen
+- Einen Fehler gefunden? Brauchst du Hilfe? Hast du einen Patch?
 </p>
 </li>
-</ul>
-<p>
-Fehler gefunden? Brauchst du Hilfe? Hast du einen Patch?
-</p>
-<ul>
 <li><p>
 <a href="http://github.com/sinatra/sinatra/issues">Issue-Tracker</a>
 </p>
@@ -2498,6 +2493,13 @@ Fehler gefunden? Brauchst du Hilfe? Hast du einen Patch?
 <li><p>
 <a href="irc://chat.freenode.net/#sinatra">IRC: #sinatra</a> auf <a
 href="http://freenode.net">freenode.net</a>
+</p>
+</li>
+<li><p>
+API Dokumentation für die <a
+href="http://rubydoc.info/gems/sinatra">aktuelle Version</a>	 oder für <a
+href="http://rubydoc.info/github/sinatra/sinatra">HEAD</a> auf  <a
+href="http://rubydoc.info">rubydoc.info</a>
 </p>
 </li>
 </ul>

@@ -1097,8 +1097,8 @@ Session被用来在请求之间保持状态。如果被激活，每一个用户�
 </p>
 <pre>
   get '/foo' do
-    status, headers, body = call request.env.merge(&quot;PATH_INFO&quot; =&gt; '/bar')
-    [status, body.upcase]
+    status, headers, body = call env.merge(&quot;PATH_INFO&quot; =&gt; '/bar')
+    [status, headers, body.map(&amp;:upcase)]
   end
 
   get '/bar' do
@@ -1666,7 +1666,7 @@ views 文件夹。
 </p>
 <pre>
   error MyCustomError do
-    'So what happened was...' + request.env['sinatra.error'].message
+    'So what happened was...' + env['sinatra.error'].message
   end
 </pre>
 <p>

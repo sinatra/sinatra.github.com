@@ -1175,8 +1175,8 @@ this:
 </p>
 <pre>
   get '/foo' do
-    status, headers, body = call request.env.merge(&quot;PATH_INFO&quot; =&gt; '/bar')
-    [status, body.upcase]
+    status, headers, body = call env.merge(&quot;PATH_INFO&quot; =&gt; '/bar')
+    [status, headers, body.map(&amp;:upcase)]
   end
 
   get '/bar' do
@@ -1786,7 +1786,7 @@ Custom errors:
 </p>
 <pre>
   error MyCustomError do
-    'So what happened was...' + request.env['sinatra.error'].message
+    'So what happened was...' + env['sinatra.error'].message
   end
 </pre>
 <p>
@@ -1980,8 +1980,8 @@ your application in a library/gem, switch to modular style.
 There is no reason you cannot mix modular and classic style.
 </p>
 <p>
-If switching from one style to the other, you should be aware of slight
-differences in the setting:
+If switching from one style to the other, you should be aware of slightly
+different default settings:
 </p>
 <pre>
   Setting             Classic                 Modular
@@ -2520,6 +2520,22 @@ bug? Need help? Have a patch?
 <li><p>
 <a href="irc://chat.freenode.net/#sinatra">IRC: #sinatra</a> on <a
 href="http://freenode.net">freenode.net</a>
+</p>
+</li>
+<li><p>
+<a href="http://sinatra-book.gittr.com">Sinatra Book</a> Cookbook Tutorial
+</p>
+</li>
+<li><p>
+<a href="http://sinatra-book-contrib.com/">Sinatra Book Contrib</a>
+Community contributed recipes
+</p>
+</li>
+<li><p>
+API documentation for the <a href="http://rubydoc.info/gems/sinatra">latest
+release</a> or the <a
+href="http://rubydoc.info/github/sinatra/sinatra">current HEAD</a> on <a
+href="http://rubydoc.info">rubydoc.info</a>/
 </p>
 </li>
 </ul>
