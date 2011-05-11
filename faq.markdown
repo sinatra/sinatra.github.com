@@ -259,6 +259,16 @@ Now you can escape html in your templates like this:
 Thanks to [Chris Schneider](http://www.gittr.com/index.php/archive/using-rackutils-in-sinatra-escape_html-h-in-rails/)
 for the tip!
 
+How do I automatically escape html? {#auto_escape_html}
+---------------------
+
+Require [erubis](http://rubygems.org/gems/erubis) and set `escape_html` to `true`:
+
+    require 'erubis'
+    set :erubis, :escape_html => true
+
+Read more on the [Tilt Google Group](https://groups.google.com/forum/#!topic/tiltrb/PPm-sMz6Swc) and see [this example](http://flowcoder.com/177) for details. 
+
 How do I use ActiveRecord migrations? {#ar-migrations}
 -------------------------------------
 
