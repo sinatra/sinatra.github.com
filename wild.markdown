@@ -86,6 +86,7 @@ Applications {#apps}
 - [Picky](http://github.com/floere/picky) - a fast &amp; clever semantic search engine.
 - [Headhunter](http://headhunter.heroku.com) - giving Twitter profile pics a permanent URL
 - [blitz.io](http://blitz.io) - Making load and performance testing a fun sport
+- [Xenng](http://xenng.com) - A place for sharing interesting stuff, and for when you are bored.
 
 Libraries and extensions {#libs}
 ------------------------
