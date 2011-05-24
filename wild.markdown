@@ -242,4 +242,5 @@ Companies using Sinatra {#biz}
 - [Formalibre](http://www.formalibre.si)
 - [Fork](http://usefork.com)
 - [Tractor Feed](http://tractorfeed.org)
-- [University of Lausanne](http://fourmidable.unil.ch)
+- [University of Lausanne](http://fourmidable.unil.ch) 
+- [Scribble Squad](http://www.scribblesquad.com)
