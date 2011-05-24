@@ -246,3 +246,4 @@ Companies using Sinatra {#biz}
 - [Tractor Feed](http://tractorfeed.org)
 - [University of Lausanne](http://fourmidable.unil.ch)
 - [Mu Dynamics](http://www.mudynamics.com)
+- [Scribble Squad](http://www.scribblesquad.com)
