@@ -87,6 +87,7 @@ Applications {#apps}
 - [Headhunter](http://headhunter.heroku.com) - giving Twitter profile pics a permanent URL
 - [blitz.io](http://blitz.io) - Making load and performance testing a fun sport
 - [funFUUU](http://funfuuu.com) - A friendly fun sharing community
+- [GitHub High Scores](http://github.com/leereilly/github-high-scores) - A fun way to rank Github repository contributors in a 8-bit, 80's-tastic aracdey viewing environment.
 
 Libraries and extensions {#libs}
 ------------------------
@@ -209,6 +210,7 @@ Websites {#sites}
 - [happens.co.za](http://www.happens.co.za/) Add countdown times for any "happening" or event and share it with others.
 - [DarkArts Studios](http://www.darkarts.co.za/) Projects and source code of Clive Crous
 - [Ant genome database](http://fourmidable.unil.ch)
+- [GitHub High Scores](http://github-high-scores.heroku.com) A fun way to rank Github repository contributors in a 8-bit, 80's-tastic aracdey viewing environment.
 
 Companies using Sinatra {#biz}
 -----------------------
@@ -247,3 +249,4 @@ Companies using Sinatra {#biz}
 - [University of Lausanne](http://fourmidable.unil.ch)
 - [Mu Dynamics](http://www.mudynamics.com)
 - [Scribble Squad](http://www.scribblesquad.com)
+- [Stanford](http://www.stanford.edu)
