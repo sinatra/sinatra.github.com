@@ -73,5 +73,5 @@ Sinatra would not be possible:
 
 And last but not least:
 
-* **Frank Sinatra** (chairman of the board) for having so much class he
+* **[Frank Sinatra](http://www.sinatra.com/)** (chairman of the board) for having so much class he
   deserves a web-framework named after him.
