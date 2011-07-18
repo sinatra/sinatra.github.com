@@ -212,6 +212,7 @@ Websites {#sites}
 - [DarkArts Studios](http://www.darkarts.co.za/) Projects and source code of Clive Crous
 - [Ant genome database](http://fourmidable.unil.ch)
 - [GitHub High Scores](http://github-high-scores.heroku.com) A fun way to rank Github repository contributors in a 8-bit, 80's-tastic aracdey viewing environment.
+- [Conker Software](http://conkersoftware.co.uk) Micro-company of Tom Philip that makes Web, Android and Boxee apps.
 
 Companies using Sinatra {#biz}
 -----------------------
