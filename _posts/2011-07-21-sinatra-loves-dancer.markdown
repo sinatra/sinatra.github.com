@@ -6,6 +6,8 @@ author_url: http://rkh.im
 publish_date: Thursday, July 21, 2011
 ---
 
+*"The only cool PR is provided by one's enemies. They toil incessantly and for free." - Marshall McLuhan*
+
 There are [a lot of frameworks](http://en.wikipedia.org/wiki/Sinatra_%28software%29#Sinatra_inspired_frameworks) out there inspired by Sinatra. One of them is [Dancer](http://www.perldancer.org/). Some unknown individual or group was posing as different members of the Sinatra core team on [CPAN ratings](http://cpanratings.perl.org/dist/Dancer), a website to comment on the quality of Perl libraries.
 
 Those comments were extremely rude and do not represent the opinion of any of the Sinatra developers. Quite the opposite, we love how Sinatra inspired so many of the libraries and are even proud to see Dancer being adopted by Perl developers.
