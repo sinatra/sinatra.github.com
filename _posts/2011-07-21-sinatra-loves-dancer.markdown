@@ -10,6 +10,6 @@ There are [a lot of frameworks](http://en.wikipedia.org/wiki/Sinatra_%28software
 
 Those comments were extremely rude and do not represent the opinion of any of the Sinatra developers. Quite the opposite, we love how Sinatra inspired so many of the libraries and are even proud to see Dancer being adopted by Perl developers.
 
-We do not know what the agenda of this one individual is, and honestly, we do not care. The harm done by this person to the Dancer project, the Sinatra project and the people he posed as is unacceptable. The incident has been reported to the CPAN ratings team and we hope that those comment will be removed in due time.
+We do not know what the agenda of this one individual is, and honestly, we do not care. The harm done by this person to the Dancer project, the Sinatra project and the people he posed as is unacceptable. The incident has been reported to the CPAN ratings team and we hope that those comments will be removed in due time.
 
 If you are a Perl developer, we suggest you check out Dancer.
