@@ -201,12 +201,12 @@ included within the `describe` block:
     end
 
 Make `Rack::Test` available to all spec contexts by including it via
-`Spec::Runner`:
+`RSpec`:
 
     require 'spec'
     require 'rack/test'
 
-    Spec::Runner.configure do |conf|
+    RSpec.configure do |conf|
       conf.include Rack::Test::Methods
     end
 
