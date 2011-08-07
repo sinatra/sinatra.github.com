@@ -151,6 +151,7 @@ Libraries and extensions {#libs}
 
 Websites {#sites}
 --------
+- [LinkedIn](http://www.linkedin.com/) is a social network for business contacts
 - [I Shoot Film](http://film.vqvz.com) presents Funkaoshi's film photography posted to Flickr organized by film rolls -- [on GitHub](http://github.com/funkaoshi/I-Shoot-Film).
 - [Speed of Animals](http://www.speedofanimals.com/): imagine being a spotted hyena...
 - [Bloor and Lansdowne is Blansdowne](http://blansdowne.ca) is a photoblog about a neighbourhood in Toronto.
@@ -218,6 +219,9 @@ Companies using Sinatra {#biz}
 -----------------------
 - [Heroku](http://heroku.com)
 - [GitHub](http://github.com/blog/53-github-services-ipo)
+- [Apple](http://www.apple.com/)
+- [BBC](http://www.bbc.co.uk/)
+- [LinkedIn](http://www.linkedin.com/)
 - [Zenbe](http://zenbe.com) 
 - [Agency Rainford](http://agencyrainford.com)
 - [Songbird](http://getsongbird.com)
