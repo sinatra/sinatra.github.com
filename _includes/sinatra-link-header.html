@@ -1,0 +1,57 @@
+<h1>Sinatra::LinkHeader</h1>
+<p>
+<tt>Sinatra::LinkHeader</tt> adds a set of helper methods to generate link
+HTML tags and their corresponding Link HTTP headers.
+</p>
+<h2>Usage</h2>
+<p>
+Once you had set up the helpers in your application (see below), you will
+be able to call the following methods from inside your route handlers,
+filters and templates:
+</p>
+<table>
+<tr><td valign="top"><tt>prefetch</tt></td><td><p>
+Sets the Link HTTP headers and returns HTML tags to prefetch the given
+resources.
+</p>
+</td></tr>
+<tr><td valign="top"><tt>stylesheet</tt></td><td><p>
+Sets the Link HTTP headers and returns HTML tags to use the given
+stylesheets.
+</p>
+</td></tr>
+<tr><td valign="top"><tt>link</tt></td><td><p>
+Sets the Link HTTP headers and returns the corresponding HTML tags for the
+given resources.
+</p>
+</td></tr>
+<tr><td valign="top"><tt>link_headers</tt></td><td><p>
+Returns the corresponding HTML tags for the current Link HTTP headers.
+</p>
+</td></tr>
+</table>
+<h3>Classic Application</h3>
+<p>
+In a classic application simply require the helpers, and start using them:
+</p>
+<pre>
+    require &quot;sinatra&quot;
+    require &quot;sinatra/link_header&quot;
+
+    # The rest of your classic application code goes here...
+</pre>
+<h3>Modular Application</h3>
+<p>
+In a modular application you need to require the helpers, and then tell the
+application you will use them:
+</p>
+<pre>
+    require &quot;sinatra/base&quot;
+    require &quot;sinatra/link_header&quot;
+
+    class MyApp &lt; Sinatra::Base
+      helpers Sinatra::LinkHeader
+
+      # The rest of your modular application code goes here...
+    end
+</pre>

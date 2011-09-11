@@ -1,0 +1,106 @@
+<h1>Sinatra::ConfigFile</h1>
+<p>
+<tt>Sinatra::ConfigFile</tt> is an extension that allows you to load the
+application&#8217;s configuration from YAML files.  It automatically
+detects if the files contains specific environment settings and it will use
+the corresponding to the current one.
+</p>
+<p>
+Within the application you can access those options through
+<tt>settings</tt>.  If you try to get the value for a setting that
+hasn&#8217;t been defined in the config file for the current environment,
+you will get whatever it was set to in the application.
+</p>
+<h2>Usage</h2>
+<p>
+Once you have written your configurations to a YAML file you can tell the
+extension to load them.  See below for more information about how these
+files are interpreted.
+</p>
+<p>
+For the examples, lets assume the following config.yml file:
+</p>
+<pre>
+    greeting: Welcome to my file configurable application
+</pre>
+<h3>Classic Application</h3>
+<pre>
+    require &quot;sinatra&quot;
+    require &quot;sinatra/config_file&quot;
+
+    config_file 'path/to/config.yml'
+
+    get '/' do
+      @greeting = settings.greeting
+      haml :index
+    end
+
+    # The rest of your classic application code goes here...
+</pre>
+<h3>Modular Application</h3>
+<pre>
+    require &quot;sinatra/base&quot;
+    require &quot;sinatra/config_file&quot;
+
+    class MyApp &lt; Sinatra::Base
+      register Sinatra::ConfigFile
+
+      config_file 'path/to/config.yml'
+
+      get '/' do
+        @greeting = settings.greeting
+        haml :index
+      end
+
+      # The rest of your modular application code goes here...
+    end
+</pre>
+<h3>Config File Format</h3>
+<p>
+In its most simple form this file is just a key-value list:
+</p>
+<pre>
+    foo: bar
+    something: 42
+    nested:
+      a: 1
+      b: 2
+</pre>
+<p>
+But it also can provide specific environment configuration.  There are two
+ways to do that: at the file level and at the setting level.  They are
+illustrated, repsectively, as follows:
+</p>
+<pre>
+    development:
+      foo: development
+      bar: bar
+    test:
+      foo: test
+      bar: bar
+    production:
+      foo: production
+      bar: bar
+</pre>
+<p>
+and
+</p>
+<pre>
+    foo:
+      development: development
+      test: test
+      production: production
+    bar: bar
+</pre>
+<p>
+In either case, <tt>settings.foo</tt> will return the environment name, and
+<tt>settings.bar</tt> will return <tt>&quot;bar&quot;</tt>.
+</p>
+<p>
+Be aware that if you have a different environment, besides development,
+test and production, you will also need to adjust the <tt>environments</tt>
+setting.  For instance, when you also have a staging environment:
+</p>
+<pre>
+    set :environments, %w{development test production staging}
+</pre>

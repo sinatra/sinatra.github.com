@@ -1,0 +1,58 @@
+<h1>Sinatra::Cookies</h1>
+<p>
+Easy way to deal with cookies
+</p>
+<h2>Usage</h2>
+<p>
+Allows you to read cookies:
+</p>
+<pre>
+  get '/' do
+    &quot;value: #{cookie[:something]}&quot;
+  end
+</pre>
+<p>
+And of course to write cookies:
+</p>
+<pre>
+  get '/set' do
+    cookies[:something] = 'foobar'
+    redirect to('/')
+  end
+</pre>
+<p>
+And generally behaves like a hash:
+</p>
+<pre>
+  get '/demo' do
+    cookies.merge! 'foo' =&gt; 'bar', 'bar' =&gt; 'baz'
+    cookies.keep_if { |key, value| key.start_with? 'b' }
+    foo, bar = cookies.values_at 'foo', 'bar'
+    &quot;size: #{cookies.length}&quot;
+  end
+</pre>
+<h3>Classic Application</h3>
+<p>
+In a classic application simply require the helpers, and start using them:
+</p>
+<pre>
+    require &quot;sinatra&quot;
+    require &quot;sinatra/cookies&quot;
+
+    # The rest of your classic application code goes here...
+</pre>
+<h3>Modular Application</h3>
+<p>
+In a modular application you need to require the helpers, and then tell the
+application you will use them:
+</p>
+<pre>
+    require &quot;sinatra/base&quot;
+    require &quot;sinatra/link_header&quot;
+
+    class MyApp &lt; Sinatra::Base
+      helpers Sinatra::Cookies
+
+      # The rest of your modular application code goes here...
+    end
+</pre>
