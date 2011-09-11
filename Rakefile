@@ -9,6 +9,27 @@ def readme(pattern = "%s", &block)
   end
 end
 
+def contrib(pattern = "%s", &block)
+  return contrib(pattern).each(&block) if block_given?
+
+  %w[
+    sinatra-config-file
+    sinatra-multi-route
+    sinatra-content-for
+    sinatra-namespace
+    sinatra-cookies
+    sinatra-reloader
+    sinatra-decompile
+    sinatra-respond-with
+    sinatra-extension
+    sinatra-streaming
+    sinatra-json
+    sinatra-link-header
+  ].map do |extension|
+    pattern % extension
+  end
+end
+
 # generates Table of Contents
 def with_toc(src)
   toc = "<div class='toc'>\n"
@@ -32,7 +53,7 @@ desc "Build outdated static files and API docs"
 task :build => ['build:static']
 
 desc "Build outdated static files"
-task 'build:static' => readme("_includes/%s.html")
+task 'build:static' => readme("_includes/%s.html") + contrib("_includes/%s.html")
 
 desc "Build anything that's outdated and stage changes for next commit"
 task :regen => [:build] do
@@ -41,8 +62,8 @@ task :regen => [:build] do
   puts "  git commit -m 'Regen prebuilt files'"
 end
 
-desc 'Pull in the latest from the sinatra and sinatra-book repos'
-task :pull => ['pull:sinatra']
+desc 'Pull in the latest from the sinatra and sinatra-contrib repos'
+task :pull => ['pull:sinatra', 'pull:contrib']
 
 desc 'Pull in the latest from the sinatra repo'
 task 'pull:sinatra' do
@@ -68,6 +89,35 @@ readme do |fn|
       convert(File.read("_sinatra/#{fn}.rdoc")).
       sub("<h1>Sinatra</h1>", "")
     File.open(f.name, 'wb') { |io| io.write with_toc(html) }
+  end
+  CLEAN.include "_includes/#{fn}.html"
+end
+
+desc 'Pull in the latest from the sinatra-contrib repo'
+task 'pull:contrib' do
+  if File.directory?("_contrib")
+    puts 'Pulling sinatra-contrib.git'
+    sh "cd _contrib && git pull &>/dev/null"
+    touch '_contrib', :verbose => false
+  else
+    puts 'Cloning sinatra-contrib repo'
+    sh "git clone git://github.com/sinatra/sinatra-contrib.git _contrib" 
+  end
+  puts 'Building sinatra-contrib docs'
+  sh "cd _contrib && rake doc &>/dev/null"
+end
+
+file('_contrib') { Rake::Task['pull:contrib'].invoke }
+CLOBBER.include '_contrib'
+
+contrib("_contrib/doc/%s.rdoc") { |fn| file fn => '_contrib' }
+
+contrib do |fn|
+  file "_includes/#{fn}.html" => ["_contrib/doc/#{fn}.rdoc", "Rakefile"] do |f|
+    html =
+      RDoc::Markup::ToHtml.new.
+      convert(File.read("_contrib/doc/#{fn}.rdoc"))
+    File.open(f.name, 'wb') { |io| io.write html }
   end
   CLEAN.include "_includes/#{fn}.html"
 end
