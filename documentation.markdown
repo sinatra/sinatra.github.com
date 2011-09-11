@@ -19,6 +19,11 @@ Detailed documentation on all of Sinatra's built-in settings and using `set`,
 
 Guide to testing Sinatra apps.
 
+### [Sinatra::Contrib](contrib/index.html)
+
+A collection of common Sinatra extensions, that tries to include the stuff
+developers ask for a lot and isn't part of Sinatra.
+
 ### [Using Extensions](/extensions-wild.html)
 
 How to use Sinatra extensions in your application and links to
