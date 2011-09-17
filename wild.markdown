@@ -214,6 +214,7 @@ Websites {#sites}
 - [Ant genome database](http://fourmidable.unil.ch)
 - [GitHub High Scores](http://github-high-scores.heroku.com) A fun way to rank Github repository contributors in a 8-bit, 80's-tastic aracdey viewing environment.
 - [Conker Software](http://conkersoftware.co.uk) Micro-company of Tom Philip that makes Web, Android and Boxee apps.
+- [Similander](http://similar.heroku.com) extracts keywords from a given URL to find similar pages ([Source](http://github.com/ema/similander)).
 
 Companies using Sinatra {#biz}
 -----------------------
