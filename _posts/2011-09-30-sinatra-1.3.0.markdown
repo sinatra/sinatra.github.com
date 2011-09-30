@@ -1,0 +1,139 @@
+---
+layout: post
+title: New feature release, Contrib and Recipes
+author: Konstantin Haase
+author_url: http://rkh.im
+publish_date: Friday, September 30, 2011
+---
+
+We're proud to announce two new releases today: 1.3.0 and 1.2.7. We're also
+simultaneously releasing sinatra-contrib and would like to officially announce
+the recently launched Sinatra Recipes project. Read on for more goodness!
+
+Sinatra 1.3.0
+-------------
+
+We have a new feature release!
+
+From our perspective, one of the biggest additions is a streaming API. A simple
+version of it ships with Sinatra directly and is extended in sinatra-contrib.
+The vanilla version looks like this:
+
+    get '/' do
+      stream do |out|
+        out << "It's gonna be legen -\n"
+        sleep 0.5
+        out << " (wait for it) \n"
+        sleep 1
+        out << "- dary!\n"
+      end
+    end
+
+The cool thing about this is that it abstracts away the differences between all
+the different Rack servers, no matter if those are evented (like Thin, Rainbows!
+or Ebb) or sequential (like Unicorn, Passenger or Mongrel). Only WEBRick has
+issues with it at the moment (you'll get the response body all at once), but we
+are looking into this.
+
+What is really interesting about this: If you run on an evented server, like
+Thin, you can keep the connection open and easily implement messaging services,
+Server-Sent Events and so on:
+
+    set :server, :thin
+    connections = []
+
+    get '/' do
+      # keep stream open
+      stream(:keep_open) { |out| connections << out }
+    end
+
+    post '/' do
+      # write to all open streams
+      connections.each { |out| out << params[:message] << "\n" }
+      "message sent"
+    end
+
+It is worth mentioning that all this works without fibers (which, amongst other
+things, would significantly limit the stack size).
+
+We added support for the PATCH HTTP verb, which you might be familiar with from
+the new GitHub API:
+
+    patch '/' do
+      # ... modify a resource ...
+    end
+
+A `logger` helper for logging is available now, and if it writes to the logs
+depends on whether you enabled or disabled logging:
+
+    configure(:test) { disable :logging }
+    
+    get '/' do
+      logger.info "I just want to let you know: I'll take care of the request!"
+      "Hello World!"
+    end
+
+The `erubis` method has been deprecated. Sinatra will automatically use Erubis
+for rendering ERB templates if available.
+
+There is more coming with this release, but the rest is mainly bug fixes and
+improving the behavior. For instance, Sinatra treats ETags and Last-Modified
+headers properly when they are used as optimistic locking for unsafe HTTP verbs.
+For more changes, see the 1.3.0
+[change log](https://github.com/sinatra/sinatra/blob/v1.3.0/CHANGES).
+
+Special thanks for helping with the 1.3.0 release go to:
+
+Gabriel Andretta, michelc, burningTyger, Tim Felgentreff, Vasily Polovnyov,
+nashby, kenichi nakamura, Gaku Ueda, Gabriel Horner, Sylvain Desvé, Jacob
+Burkhart & Josh Lane, aibo (irc), Selman ULUG, Aviv Ben-Yosef, Paolo "Nusco"
+Perrotta, Marcos Toledo, Matthew Schinckel, Tim Preston, Davide D'Agostino,
+Simone Carletti, Peter Suschlik, Postmodern, F. Zhang, Rémy Coutable, and David
+Waite
+
+Sinatra 1.2.7
+-------------
+
+We will drop support for Rack prior to 1.3 and Ruby 1.8.6 with the Sinatra 1.3.0
+release. However, we will continue to supply Sinatra 1.2 with bug fixes until
+the End-Of-Life of Rack 1.2.x and Sinatra 1.2 will always remain compatible with
+the latest released 1.8.6 patchlevel.
+
+For the backported patches, see the 1.2.7
+[change log](https://github.com/sinatra/sinatra/blob/v1.2.7/CHANGES).
+
+We'd like to thank everyone helping with the 1.2.7 release:
+
+Emanuele Vicentini, Takanori Ishikawa, David Kellum, Gaku Ueda, Lee Reilly, Iain
+Barnett, pete, Luke Jahnke, John Wolfe, Andrew Armenia, Tim Felgentreff, and
+Alessandro Dal Grande
+
+Sinatra-Contrib
+---------------
+
+There are a lot of Sinatra extensions out there, and some of those are used by a
+large number of apps, like sinatra-content-for or sinatra-reloader. The
+maintainers of these extensions have to keep up with new Sinatra releases to
+make sure everything works fine. This poses an issue from time to time, esp.
+since some of these extensions were relying on Sinatra internals. To fix this,
+we created the sinatra-contrib project (source code at
+https://github.com/sinatra/sinatra-contrib). This project contains a number of
+extensions that are probably useful for most Sinatra applications. Some are old
+extensions that have largely been rewritten to ensure the code quality
+developers are used to from Sinatra itself and to no longer rely on internals,
+like sinatra-namespace, and some are new additions of general interest, for
+example sinatra-respond-with.
+
+Here is the promise: For every Sinatra release, starting with 1.3.0, there will
+*always* be a fully compatible sinatra-contrib release. Documentation for all the
+extensions shipping with sinatra-contrib will be made available on the Sinatra
+website. I would not have managed to take care of this all by my self, so I'm
+really grateful that Gabriel Andretta jumped in to help with this project.
+
+Documentation is available at http://www.sinatrarb.com/contrib.
+
+Sinatra Recipes
+---------------
+
+Zachary Scott recently launched the the [Recipes](http://recipes.sinatrarb.com/)
+project. It contains community contributed recipes and techniques for Sinatra.
