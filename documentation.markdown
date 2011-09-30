@@ -45,6 +45,10 @@ in `#sinatra`.
 
 See the `CHANGES` file included for release notes about each release:
 
+ * [1.3.0](http://github.com/sinatra/sinatra/blob/1.3.0/CHANGES)
+   September 30, 2011
+ * [1.2.7](http://github.com/sinatra/sinatra/blob/1.2.7/CHANGES)
+   September 30, 2011
  * [1.2.6](http://github.com/sinatra/sinatra/blob/1.2.6/CHANGES)
    May 1, 2011
  * [1.2.5](http://github.com/sinatra/sinatra/blob/1.2.5/CHANGES)
