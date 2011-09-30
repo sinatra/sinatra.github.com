@@ -24,6 +24,7 @@
 			<li><a href='#Radius%20%E6%A8%A1%E6%9D%BF'>Radius 模板</a></li>
 			<li><a href='#Markaby%20%E6%A8%A1%E6%9D%BF'>Markaby 模板</a></li>
 			<li><a href='#Slim%20%E6%A8%A1%E6%9D%BF'>Slim 模板</a></li>
+			<li><a href='#Creole%20%E6%A8%A1%E6%9D%BF'>Creole 模板</a></li>
 			<li><a href='#CoffeeScript%20%E6%A8%A1%E6%9D%BF'>CoffeeScript 模板</a></li>
 			<li><a href='#%E5%B5%8C%E5%85%A5%E6%A8%A1%E6%9D%BF%E5%AD%97%E7%AC%A6%E4%B8%B2'>嵌入模板字符串</a></li>
 			<li><a href='#%E5%9C%A8%E6%A8%A1%E6%9D%BF%E4%B8%AD%E8%AE%BF%E9%97%AE%E5%8F%98%E9%87%8F'>在模板中访问变量</a></li>
@@ -320,10 +321,10 @@ Sinatra是一个基于Ruby语言，以最小精力为代价快速创建web应用
 <a name='%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6'></a>
 <h2>静态文件</h2>
 <p>
-静态文件是从 <tt>./public</tt> 目录提供服务。你可以通过设置<tt>:public</tt> 选项设定一个不同的位置：
+静态文件是从 <tt>./public_folder</tt> 目录提供服务。你可以通过设置<tt>:public</tt> 选项设定一个不同的位置：
 </p>
 <pre>
-  set :public, File.dirname(__FILE__) + '/static'
+  set :public_folder, File.dirname(__FILE__) + '/static'
 </pre>
 <p>
 请注意public目录名并没有被包含在URL之中。文件 <tt>./public/css/style.css</tt>是通过 <tt><a
@@ -788,6 +789,22 @@ href="http://www.sinatrarb.com/configuration.html">选项和配置（英文）</
 <p>
 渲染 <tt>./views/index.slim</tt>。
 </p>
+<a name='Creole%20%E6%A8%A1%E6%9D%BF'></a>
+<h3>Creole 模板 </h3>
+<p>
+需要引入 <tt>creole</tt> gem/library 来渲染 Creole 模板：
+</p>
+<pre>
+  # 需要在你的应用中引入 creole
+  require 'creole'
+
+  get '/' do
+    creole :index
+  end
+</pre>
+<p>
+渲染 <tt>./views/index.creole</tt>。
+</p>
 <a name='CoffeeScript%20%E6%A8%A1%E6%9D%BF'></a>
 <h3>CoffeeScript 模板</h3>
 <p>
@@ -1145,7 +1162,7 @@ Session被用来在请求之间保持状态。如果被激活，每一个用户�
   get '/foo' do
     status 418
     headers \
-      &quot;Allow&quot;   =&gt; &quot;BREW, POST, GET, PROPFIND, WHEN&quot;
+      &quot;Allow&quot;   =&gt; &quot;BREW, POST, GET, PROPFIND, WHEN&quot;,
       &quot;Refresh&quot; =&gt; &quot;Refresh: 20; http://www.ietf.org/rfc/rfc2324.txt&quot;
     body &quot;I'm a tea pot!&quot;
   end
@@ -1225,7 +1242,7 @@ Session被用来在请求之间保持状态。如果被激活，每一个用户�
 或者使用session:
 </p>
 <pre>
-  enable :session
+  enable :sessions
 
   get '/foo' do
     session[:secret] = 'foo'
@@ -1587,7 +1604,7 @@ mode以外的场合 被缓存。你应该时刻提醒自己这一点， 如果�
 '/foo'</tt> 会和 <tt>redirect to('/foo')</tt>起相同作用。默认禁用。
 </p>
 </dd>
-<dt>public</dt><dd><p>
+<dt>public_folder</dt><dd><p>
 public文件夹的位置。
 </p>
 </dd>
@@ -1877,7 +1894,7 @@ href="http://sinatra.github.com/configuration.html">选项和配置</a>
 </p>
 <pre>
   # config.ru
-  require 'my_app'
+  require './my_app'
   run MyApp
 </pre>
 <p>
@@ -1903,7 +1920,7 @@ href="http://sinatra.github.com/configuration.html">选项和配置</a>
 加入相应的 <tt>config.ru</tt>:
 </p>
 <pre>
-  require 'app'
+  require './app'
   run Sinatra::Application
 </pre>
 <a name='%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8%20config.ru?'></a>

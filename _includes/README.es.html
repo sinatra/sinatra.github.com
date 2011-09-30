@@ -9,13 +9,13 @@
 		<li><a href='#Archivos%20Est%C3%A1ticos'>Archivos Estáticos</a></li>
 		<li><a href='#Vistas%20/%20Plantillas'>Vistas / Plantillas</a></li>
 		<ol class='level-2'>
+			<li><a href='#Lenguajes%20de%20Plantillas%20Disponibles'>Lenguajes de Plantillas Disponibles</a></li>
 			<li><a href='#Plantillas%20Haml'>Plantillas Haml</a></li>
 			<li><a href='#Plantillas%20Erb'>Plantillas Erb</a></li>
-			<li><a href='#Plantillas%20Erubis'>Plantillas Erubis</a></li>
 			<li><a href='#Plantillas%20Builder'>Plantillas Builder</a></li>
 			<li><a href='#Plantillas%20Nokogiri'>Plantillas Nokogiri</a></li>
 			<li><a href='#Plantillas%20Sass'>Plantillas Sass</a></li>
-			<li><a href='#Plantillas%20Scss'>Plantillas Scss</a></li>
+			<li><a href='#Plantillas%20SCSS'>Plantillas SCSS</a></li>
 			<li><a href='#Plantillas%20Less'>Plantillas Less</a></li>
 			<li><a href='#Plantillas%20Liquid'>Plantillas Liquid</a></li>
 			<li><a href='#Plantillas%20Markdown'>Plantillas Markdown</a></li>
@@ -24,6 +24,7 @@
 			<li><a href='#Plantillas%20Radius'>Plantillas Radius</a></li>
 			<li><a href='#Plantillas%20Markaby'>Plantillas Markaby</a></li>
 			<li><a href='#Plantillas%20Slim'>Plantillas Slim</a></li>
+			<li><a href='#Plantillas%20Creole'>Plantillas Creole</a></li>
 			<li><a href='#Plantillas%20CoffeeScript'>Plantillas CoffeeScript</a></li>
 			<li><a href='#Plantillas%20Embebidas'>Plantillas Embebidas</a></li>
 			<li><a href='#Accediendo%20a%20Variables%20en%20Plantillas'>Accediendo a Variables en Plantillas</a></li>
@@ -40,6 +41,8 @@
 			<li><a href='#Paso'>Paso</a></li>
 			<li><a href='#Ejecutando%20Otra%20Ruta'>Ejecutando Otra Ruta</a></li>
 			<li><a href='#Asignando%20el%20C%C3%B3digo%20de%20Estado,%20los%20Encabezados%20y%20el%20Cuerpo%20de%20una%20Respuesta'>Asignando el Código de Estado, los Encabezados y el Cuerpo de una Respuesta</a></li>
+			<li><a href='#Streaming%20De%20Respuestas'>Streaming De Respuestas</a></li>
+			<li><a href='#Log%20(Registro)'>Log (Registro)</a></li>
 			<li><a href='#Tipos%20Mime'>Tipos Mime</a></li>
 			<li><a href='#Generando%20URLs'>Generando URLs</a></li>
 			<li><a href='#Redirecci%C3%B3n%20del%20Navegador'>Redirección del Navegador</a></li>
@@ -47,10 +50,13 @@
 			<li><a href='#Enviando%20Archivos'>Enviando Archivos</a></li>
 			<li><a href='#Accediendo%20al%20objeto%20de%20la%20petici%C3%B3n'>Accediendo al objeto de la petición</a></li>
 			<li><a href='#Archivos%20Adjuntos'>Archivos Adjuntos</a></li>
+			<li><a href='#Fecha%20y%20Hora'>Fecha y Hora</a></li>
 			<li><a href='#Buscando%20los%20Archivos%20de%20las%20Plantillas'>Buscando los Archivos de las Plantillas</a></li>
 		</ol>
 		<li><a href='#Configuraci%C3%B3n'>Configuración</a></li>
-		<ol class='level-2'>
+		<ol class='level-3'>
+				<li><a href='#Configurando%20la%20Protecci%C3%B3n%20de%20Ataques'>Configurando la Protección de Ataques</a></li>
+			</ol>
 			<li><a href='#Configuraciones%20Disponibles'>Configuraciones Disponibles</a></li>
 		</ol>
 		<li><a href='#Manejo%20de%20Errores'>Manejo de Errores</a></li>
@@ -76,7 +82,7 @@
 			<li><a href='#%C3%81mbito%20de%20Delegaci%C3%B3n'>Ámbito de Delegación</a></li>
 		</ol>
 		<li><a href='#L%C3%ADnea%20de%20Comandos'>Línea de Comandos</a></li>
-		<li><a href='#Requerimientos'>Requerimientos</a></li>
+		<li><a href='#Versiones%20de%20Ruby%20Soportadas'>Versiones de Ruby Soportadas</a></li>
 		<li><a href='#A%20la%20Vanguardia'>A la Vanguardia</a></li>
 		<ol class='level-2'>
 			<li><a href='#Con%20Bundler'>Con Bundler</a></li>
@@ -134,7 +140,11 @@ URL. Cada ruta se asocia con un bloque:
   end
 
   put '/' do
-    .. actualizar algo ..
+    .. reemplazar algo ..
+  end
+
+  patch '/' do
+    .. modificar algo ..
   end
 
   delete '/' do
@@ -185,6 +195,14 @@ accesibles a través del arreglo <tt>params[:splat]</tt>:
   end
 </pre>
 <p>
+O, con parámetros de bloque:
+</p>
+<pre>
+  get '/descargar/*.*' do |path, ext|
+    [path, ext] # =&gt; [&quot;path/al/archivo&quot;, &quot;xml&quot;]
+  end
+</pre>
+<p>
 Rutas con Expresiones Regulares:
 </p>
 <pre>
@@ -200,6 +218,20 @@ O con un parámetro de bloque:
     &quot;Hola, #{c}!&quot;
   end
 </pre>
+<p>
+Los patrones de ruta pueden contener parámetros opcionales:
+</p>
+<pre>
+  get '/posts.?:formato?' do
+    # coincide con &quot;GET /posts&quot; y además admite cualquier extensión, por
+    # ejemplo, &quot;GET /posts.json&quot;, &quot;GET /posts.xml&quot;, etc.
+  end
+</pre>
+<p>
+A propósito, a menos que desactivés la protección para el ataque <em>path
+traversal</em> (ver más abajo), el path de la petición puede ser modificado
+antes de que se compare con los de tus rutas.
+</p>
 <a name='Condiciones'></a>
 <h3>Condiciones</h3>
 <p>
@@ -243,6 +275,28 @@ Podés definir tus propias condiciones fácilmente:
 
   get '/gana_un_auto' do
     &quot;Lo siento, perdiste.&quot;
+  end
+</pre>
+<p>
+Si tu condición acepta más de un argumento, podés pasarle un arreglo.  Al
+definir la condición puede resultarte conveniente utilizar el operador
+splat en la lista de parámetros:
+</p>
+<pre>
+  set(:autorizar) do |*roles|   # &lt;- mirá el splat
+    condition do
+      unless sesion_iniciada? &amp;&amp; roles.any? {|rol| usuario_actual.tiene_rol? rol }
+        redirect &quot;/iniciar_sesion/&quot;, 303
+      end
+    end
+  end
+
+  get &quot;/mi/cuenta/&quot;, :autorizar =&gt; [:usuario, :administrador] do
+    &quot;Detalles de mi cuenta&quot;
+  end
+
+  get &quot;/solo/administradores/&quot;, :autorizar =&gt; :administrador do
+    &quot;Únicamente para administradores!&quot;
   end
 </pre>
 <a name='Valores%20de%20Retorno'></a>
@@ -343,10 +397,10 @@ O, usando un lookahead negativo:
 <p>
 Los archivos estáticos son servidos desde el directorio público
 <tt>./public</tt>. Podés especificar una ubicación diferente ajustando la
-opción <tt>:public</tt>:
+opción <tt>:public_folder</tt>:
 </p>
 <pre>
-  set :public, File.dirname(__FILE__) + '/estaticos'
+  set :public_folder, File.dirname(__FILE__) + '/estaticos'
 </pre>
 <p>
 Notá que el nombre del directorio público no está incluido en la URL. Por
@@ -354,14 +408,124 @@ ejemplo, el archivo <tt>./public/css/style.css</tt> se accede a través de
 <tt><a
 href="http://ejemplo.com/css/style.css">ejemplo.com/css/style.css</a></tt>.
 </p>
+<p>
+Usá la configuración <tt>:static_cache_control</tt> para agregar el
+encabezado <tt>Cache-Control</tt> (ver la sección de configuración para más
+detalles).
+</p>
 <a name='Vistas%20/%20Plantillas'></a>
 <h2>Vistas / Plantillas</h2>
+<p>
+Cada lenguaje de plantilla se expone a través de un método de renderizado
+que lleva su nombre.  Estos métodos simplemente devuelven un string:
+</p>
+<pre>
+  get '/' do
+    erb :index
+  end
+</pre>
+<p>
+Renderiza <tt>views/index.erb</tt>.
+</p>
+<p>
+En lugar del nombre de la plantilla podés proporcionar directamente el
+contenido de la misma:
+</p>
+<pre>
+  get '/' do
+    codigo = &quot;&lt;%= Time.now %&gt;&quot;
+    erb codigo
+  end
+</pre>
+<p>
+Los métodos de renderizado, aceptan además un segundo argumento, el hash de
+opciones:
+</p>
+<pre>
+  get '/' do
+    erb :index, :layout =&gt; :post
+  end
+</pre>
+<p>
+Renderiza <tt>views/index.erb</tt> embebido en <tt>views/post.erb</tt> (por
+defecto, la plantilla :index es embebida en <tt>views/layout.erb</tt>
+siempre y cuando este último archivo exista).
+</p>
+<p>
+Cualquier opción que Sinatra no entienda le será pasada al motor de
+renderizado de la plantilla:
+</p>
+<pre>
+  get '/' do
+    haml :index, :format =&gt; :html5
+  end
+</pre>
+<p>
+Además podés definir las opciones para un lenguaje de plantillas de forma
+general:
+</p>
+<pre>
+  set :haml, :format =&gt; :html5
+
+  get '/' do
+    haml :index
+  end
+</pre>
+<p>
+Las opciones pasadas al método de renderizado tienen precedencia sobre las
+definidas mediante <tt>set</tt>.
+</p>
+<p>
+Opciones disponibles:
+</p>
+<dl>
+<dt>locals</dt><dd><p>
+Lista de variables locales pasadas al documento.  Resultan muy útiles
+cuando se combinan con parciales. Ejemplo: <tt>erb &quot;&lt;%= foo
+%&gt;&quot;, :locals =&gt; {:foo =&gt; &quot;bar&quot;}</tt>
+</p>
+</dd>
+<dt>default_encoding</dt><dd><p>
+Encoding utilizado cuando el de un string es dudoso.  Por defecto toma el
+valor de <tt>settings.default_encoding</tt>.
+</p>
+</dd>
+<dt>views</dt><dd><p>
+Directorio desde donde se cargan las vistas.  Por defecto toma el valor de
+<tt>settings.views</tt>.
+</p>
+</dd>
+<dt>layout</dt><dd><p>
+Si es <tt>true</tt> o <tt>false</tt> indica que se debe usar, o nó, un
+layout, respectivamente.  También puede ser un símbolo que especifique qué
+plantilla usar.  Ejemplo: <tt>erb :index, :layout =&gt; !request.xhr?</tt>
+</p>
+</dd>
+<dt>content_type</dt><dd><p>
+Content-Type que produce la plantilla.  El valor por defecto depende de
+cada lenguaje de plantillas.
+</p>
+</dd>
+<dt>scope</dt><dd><p>
+Ámbito en el que se renderiza la plantilla.  Por defecto utiliza la
+instancia de la aplicación.  Tené en cuenta que si cambiás esta opción las
+variables de instancia y los helpers van a dejar de estar disponibles.
+</p>
+</dd>
+<dt>layout_engine</dt><dd><p>
+Motor de renderizado de plantillas que usa para el layout.  Resulta
+conveniente para lenguajes que no soportan layouts.  Por defecto toma el
+valor del motor usado para renderizar la plantilla. Ejemplo: <tt>set :rdoc,
+:layout_engine =&gt; :erb</tt>
+</p>
+</dd>
+</dl>
 <p>
 Se asume que las plantillas están ubicadas directamente bajo el directorio
 <tt>./views</tt>. Para usar un directorio de vistas diferente:
 </p>
 <pre>
-  set :views, File.dirname(__FILE__) + '/plantillas'
+  set :views, settings.root + '/plantillas'
 </pre>
 <p>
 Es importante acordarse que siempre tenés que referenciar a las plantillas
@@ -370,238 +534,178 @@ caso tenés que usar <tt>:'subdir/plantilla'</tt>). Tenés que usar un
 símbolo porque los métodos de renderización van a renderizar directamente
 cualquier string que se les pase como argumento.
 </p>
+<a name='Lenguajes%20de%20Plantillas%20Disponibles'></a>
+<h3>Lenguajes de Plantillas Disponibles</h3>
+<p>
+Algunos lenguajes tienen varias implementaciones.  Para especificar que
+implementación usar (y para ser thread-safe), deberías requerirla antes de
+usarla:
+</p>
+<pre>
+  require 'rdiscount' # o require 'bluecloth'
+  get('/') { markdown :index }
+</pre>
 <a name='Plantillas%20Haml'></a>
 <h3>Plantillas Haml</h3>
-<p>
-La gem/librería <tt>haml</tt> es necesaria para para renderizar plantillas
-HAML:
+<table>
+<tr><td valign="top">Dependencias</td><td><p>
+<a href="http://haml-lang.com/">haml</a>
 </p>
-<pre>
-  # Vas a necesitar requerir haml en tu app
-  require 'haml'
-
-  get '/' do
-    haml :index
-  end
-</pre>
-<p>
-Renderiza <tt>./views/index.haml</tt>.
+</td></tr>
+<tr><td valign="top">Extensiones de Archivo</td><td><p>
+<tt>.haml</tt>
 </p>
-<p>
-Las <a
-href="http://haml-lang.com/docs/yardoc/file.HAML_REFERENCE.html#options">opciones
-de Haml</a> pueden ser ajustadas globalmente a través de las
-configuraciones de Sinatra, ver <a
-href="http://www.sinatrarb.com/configuration.html">Opciones y
-Configuraciones</a>, y reemplazadas individualmente.
+</td></tr>
+<tr><td valign="top">Ejemplo</td><td><p>
+<tt>haml :index, :format =&gt; :html5</tt>
 </p>
-<pre>
-  set :haml, :format =&gt; :html5 # el formato por defecto de Haml es :xhtml
-
-  get '/' do
-    haml :index, :format =&gt; :html4 # reemplazado
-  end
-</pre>
+</td></tr>
+</table>
 <a name='Plantillas%20Erb'></a>
 <h3>Plantillas Erb</h3>
-<pre>
-  # Vas a necesitar requerir erb en tu app
-  require 'erb'
-
-  get '/' do
-    erb :index
-  end
-</pre>
-<p>
-Renderiza <tt>./views/index.erb</tt>
+<table>
+<tr><td valign="top">Dependencias</td><td><p>
+<a href="http://www.kuwata-lab.com/erubis/">erubis</a> o erb (incluida en
+Ruby)
 </p>
-<a name='Plantillas%20Erubis'></a>
-<h3>Plantillas Erubis</h3>
-<p>
-La gem/librería <tt>erubis</tt> es necesaria para renderizar plantillas
-Erubis:
+</td></tr>
+<tr><td valign="top">Extensiones de Archivo</td><td><p>
+<tt>.erb</tt>, <tt>.rhtml</tt> o <tt>.erubis</tt> (solamente con Erubis)
 </p>
-<pre>
-  # Vas a necesitar requerir erubis en tu app
-  require 'erubis'
-
-  get '/' do
-    erubis :index
-  end
-</pre>
-<p>
-Renderiza <tt>./views/index.erubis</tt>.
+</td></tr>
+<tr><td valign="top">Ejemplo</td><td><p>
+<tt>erb :index</tt>
 </p>
-<p>
-También es posible reemplazar Erb con Erubis:
-</p>
-<pre>
-  require 'erubis'
-  Tilt.register :erb, Tilt[:erubis]
-
-  get '/' do
-    erb :index
-  end
-</pre>
-<p>
-Renderiza <tt>./views/index.erb</tt> con Erubis.
-</p>
+</td></tr>
+</table>
 <a name='Plantillas%20Builder'></a>
 <h3>Plantillas Builder</h3>
-<p>
-La gem/librería <tt>builder</tt> es necesaria para renderizar plantillas
-builder:
+<table>
+<tr><td valign="top">Dependencias</td><td><p>
+<a href="http://builder.rubyforge.org/">builder</a>
 </p>
-<pre>
-  # Vas a necesitar requerir builder en tu app
-  require 'builder'
-
-  get '/' do
-    builder :index
-  end
-</pre>
+</td></tr>
+<tr><td valign="top">Extensiones de Archivo</td><td><p>
+<tt>.builder</tt>
+</p>
+</td></tr>
+<tr><td valign="top">Ejemplo</td><td><p>
+<tt>builder { |xml| xml.em &quot;hola&quot; }</tt>
+</p>
+</td></tr>
+</table>
 <p>
-Renderiza <tt>./views/index.builder</tt>.
+Además, acepta un bloque con la definición de la plantilla (ver el
+ejemplo).
 </p>
 <a name='Plantillas%20Nokogiri'></a>
 <h3>Plantillas Nokogiri</h3>
-<p>
-La gem/librería <tt>nokogiri</tt> es necesaria para renderizar plantillas
-nokogiri:
+<table>
+<tr><td valign="top">Dependencias</td><td><p>
+<a href="http://nokogiri.org/">nokogiri</a>
 </p>
-<pre>
-  # Vas a necesitar requerir nokogiri en tu app
-  require 'nokogiri'
-
-  get '/' do
-    nokogiri :index
-  end
-</pre>
+</td></tr>
+<tr><td valign="top">Extensiones de Archivo</td><td><p>
+<tt>.nokogiri</tt>
+</p>
+</td></tr>
+<tr><td valign="top">Ejemplo</td><td><p>
+<tt>nokogiri { |xml| xml.em &quot;hola&quot; }</tt>
+</p>
+</td></tr>
+</table>
 <p>
-Renderiza <tt>./views/index.nokogiri</tt>.
+Además, acepta un bloque con la definición de la plantilla (ver el
+ejemplo).
 </p>
 <a name='Plantillas%20Sass'></a>
 <h3>Plantillas Sass</h3>
-<p>
-La gem/librería <tt>haml</tt> o <tt>sass</tt> es necesaria para renderizar
-plantillas Sass:
+<table>
+<tr><td valign="top">Dependencias</td><td><p>
+<a href="http://sass-lang.com/">sass</a>
 </p>
-<pre>
-  # Vas a necesitar requerir haml o sass en tu app
-  require 'sass'
-
-  get '/stylesheet.css' do
-    sass :stylesheet
-  end
-</pre>
-<p>
-Renderiza <tt>./views/stylesheet.sass</tt>.
+</td></tr>
+<tr><td valign="top">Extensiones de Archivo</td><td><p>
+<tt>.sass</tt>
 </p>
-<p>
-Las <a
-href="http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#options">opciones
-de Sass</a> pueden ser ajustadas globalmente a través de las
-configuraciones de Sinatra, ver <a
-href="http://www.sinatrarb.com/configuration.html">Opciones y
-Configuraciones</a>, y reemplazadas individualmente.
+</td></tr>
+<tr><td valign="top">Ejemplo</td><td><p>
+<tt>sass :stylesheet, :style =&gt; :expanded</tt>
 </p>
-<pre>
-  set :sass, :style =&gt; :compact # el estilo por defecto de Sass es :nested
-
-  get '/stylesheet.css' do
-    sass :stylesheet, :style =&gt; :expanded # reemplazado
-  end
-</pre>
-<a name='Plantillas%20Scss'></a>
-<h3>Plantillas Scss</h3>
-<p>
-La gem/librería <tt>haml</tt> o <tt>sass</tt>es necesaria para renderizar
-plantillas Scss:
+</td></tr>
+</table>
+<a name='Plantillas%20SCSS'></a>
+<h3>Plantillas SCSS</h3>
+<table>
+<tr><td valign="top">Dependencias</td><td><p>
+<a href="http://sass-lang.com/">scss</a>
 </p>
-<pre>
-  # Vas a necesitar requerir haml o sass en tu app
-  require 'sass'
-
-  get '/stylesheet.css' do
-    scss :stylesheet
-  end
-</pre>
-<p>
-Renderiza <tt>./views/stylesheet.scss</tt>.
+</td></tr>
+<tr><td valign="top">Extensiones de Archivo</td><td><p>
+<tt>.scss</tt>
 </p>
-<p>
-Las <a
-href="http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#options">opciones
-de Scss</a> pueden ser ajustadas globalmente a través de las
-configuraciones de Sinatra, ver <a
-href="http://www.sinatrarb.com/configuration.html">Opciones y
-Configuraciones</a>, y reemplazadas individualmente.
+</td></tr>
+<tr><td valign="top">Ejemplo</td><td><p>
+<tt>scss :stylesheet, :style =&gt; :expanded</tt>
 </p>
-<pre>
-  set :scss, :style =&gt; :compact # el estilo por defecto de Sass es :nested
-
-  get '/stylesheet.css' do
-    scss :stylesheet, :style =&gt; :expanded # reemplazado
-  end
-</pre>
+</td></tr>
+</table>
 <a name='Plantillas%20Less'></a>
 <h3>Plantillas Less</h3>
-<p>
-La gem/librería <tt>less</tt> es necesaria para renderizar plantillas Less:
+<table>
+<tr><td valign="top">Dependencias</td><td><p>
+<a href="http://www.lesscss.org/">less</a>
 </p>
-<pre>
-  # Vas a necesitar requerir less en tu app
-  require 'less'
-
-  get '/stylesheet.css' do
-    less :stylesheet
-  end
-</pre>
-<p>
-Renderiza <tt>./views/stylesheet.less</tt>.
+</td></tr>
+<tr><td valign="top">Extensiones de Archivo</td><td><p>
+<tt>.less</tt>
 </p>
+</td></tr>
+<tr><td valign="top">Ejemplo</td><td><p>
+<tt>less :stylesheet</tt>
+</p>
+</td></tr>
+</table>
 <a name='Plantillas%20Liquid'></a>
 <h3>Plantillas Liquid</h3>
-<p>
-La gem/librería <tt>liquid</tt> es necesaria para renderizar plantillas
-Liquid:
+<table>
+<tr><td valign="top">Dependencias</td><td><p>
+<a href="http://www.liquidmarkup.org/">liquid</a>
 </p>
-<pre>
-  # Vas a necesitar requerir liquid en tu app
-  require 'liquid'
-
-  get '/' do
-    liquid :index
-  end
-</pre>
-<p>
-Renderiza <tt>./views/index.liquid</tt>.
+</td></tr>
+<tr><td valign="top">Extensiones de Archivo</td><td><p>
+<tt>.liquid</tt>
 </p>
-<p>
-Como no vas a poder llamar a métodos de Ruby (excepto a <tt>yield</tt>)
-desde una plantilla Liquid, casi siempre vas a querer pasarle locales:
+</td></tr>
+<tr><td valign="top">Ejemplo</td><td><p>
+<tt>liquid :index, :locals =&gt; { :clave =&gt; 'valor' }</tt>
 </p>
-<pre>
-  liquid :index, :locals =&gt; { :clave =&gt; 'valor' }
-</pre>
+</td></tr>
+</table>
+<p>
+Como no vas a poder llamar a métodos de Ruby (excepto por <tt>yield</tt>)
+desde una plantilla Liquid, casi siempre vas a querer pasarle locales.
+</p>
 <a name='Plantillas%20Markdown'></a>
 <h3>Plantillas Markdown</h3>
-<p>
-La gem/librería <tt>rdiscount</tt> es necesaria para renderizar plantillas
-Markdown:
+<table>
+<tr><td valign="top">Dependencias</td><td><p>
+<a href="https://github.com/rtomayko/rdiscount">rdiscount</a>, <a
+href="https://github.com/tanoku/redcarpet">redcarpet</a>, <a
+href="http://deveiate.org/projects/BlueCloth">bluecloth</a>, <a
+href="http://kramdown.rubyforge.org/">kramdown</a> <b>o</b> <a
+href="http://maruku.rubyforge.org/">maruku</a>
 </p>
-<pre>
-  # Vas a necesitar requerir rdiscount en tu app
-  require &quot;rdiscount&quot;
-
-  get '/' do
-    markdown :index
-  end
-</pre>
-<p>
-Renderiza <tt>./views/index.markdown</tt> (<tt>md</tt> y <tt>mkd</tt>
-también son extensiones de archivo válidas).
+</td></tr>
+<tr><td valign="top">Extensiones de Archivo</td><td><p>
+<tt>.markdown</tt>, <tt>.mkd</tt> y <tt>.md</tt>
 </p>
+</td></tr>
+<tr><td valign="top">Ejemplo</td><td><p>
+<tt>markdown :index, :layout_engine =&gt; :erb</tt>
+</p>
+</td></tr>
+</table>
 <p>
 No es posible llamar métodos desde markdown, ni pasarle locales. Por lo
 tanto, generalmente vas a usarlo en combinación con otro motor de
@@ -622,65 +726,24 @@ otras plantillas:
 Como no podés utilizar Ruby desde Markdown, no podés usar layouts escritos
 en Markdown. De todos modos, es posible usar un motor de renderizado para
 el layout distinto al de la plantilla pasando la opción
-<tt>:layout_engine</tt>:
-</p>
-<pre>
-  get '/' do
-    markdown :index, :layout_engine =&gt; :erb
-  end
-</pre>
-<p>
-Renderiza <tt>./views/index.md</tt> con el layout
-<tt>./views/layout.erb</tt>.
-</p>
-<p>
-Recordá que podés asignar las opciones de renderizado globalmente:
-</p>
-<pre>
-  set :markdown, :layout_engine =&gt; :haml, :layout =&gt; :post
-
-  get '/' do
-    markdown :index
-  end
-</pre>
-<p>
-Renderiza <tt>./views/index.md</tt> (o cualquier otra plantilla Markdown)
-con el layout <tt>./views/post.haml</tt>.
-</p>
-<p>
-También es posible parsear Markdown con BlueCloth en lugar de RDiscount:
-</p>
-<pre>
-  require 'bluecloth'
-
-  Tilt.register 'markdown', BlueClothTemplate
-  Tilt.register 'mkd',      BlueClothTemplate
-  Tilt.register 'md',       BlueClothTemplate
-
-  get '/' do
-    markdown :index
-  end
-</pre>
-<p>
-Renderiza <tt>./views/index.md</tt> con BlueCloth.
+<tt>:layout_engine</tt>.
 </p>
 <a name='Plantillas%20Textile'></a>
 <h3>Plantillas Textile</h3>
-<p>
-La gem/librería <tt>RedCloth</tt> es necesaria para renderizar plantillas
-Textile:
+<table>
+<tr><td valign="top">Dependencias</td><td><p>
+<a href="http://redcloth.org/">RedCloth</a>
 </p>
-<pre>
-  # Vas a necesitar requerir redcloth en tu app
-  require &quot;redcloth&quot;
-
-  get '/' do
-    textile :index
-  end
-</pre>
-<p>
-Renderiza <tt>./views/index.textile</tt>.
+</td></tr>
+<tr><td valign="top">Extensiones de Archivo</td><td><p>
+<tt>.textile</tt>
 </p>
+</td></tr>
+<tr><td valign="top">Ejemplo</td><td><p>
+<tt>textile :index, :layout_engine =&gt; :erb</tt>
+</p>
+</td></tr>
+</table>
 <p>
 No es posible llamar métodos desde textile, ni pasarle locales. Por lo
 tanto, generalmente vas a usarlo en combinación con otro motor de
@@ -701,47 +764,24 @@ otras plantillas:
 Como no podés utilizar Ruby desde Textile, no podés usar layouts escritos
 en Textile. De todos modos, es posible usar un motor de renderizado para el
 layout distinto al de la plantilla pasando la opción
-<tt>:layout_engine</tt>:
-</p>
-<pre>
-  get '/' do
-    textile :index, :layout_engine =&gt; :erb
-  end
-</pre>
-<p>
-Renderiza <tt>./views/index.textile</tt> con el layout
-<tt>./views/layout.erb</tt>.
-</p>
-<p>
-Recordá que podés asignar las opciones de renderizado globalmente:
-</p>
-<pre>
-  set :textile, :layout_engine =&gt; :haml, :layout =&gt; :post
-
-  get '/' do
-    textile :index
-  end
-</pre>
-<p>
-Renderiza <tt>./views/index.textile</tt> (o cualquier otra plantilla
-Textile) con el layout <tt>./views/post.haml</tt>.
+<tt>:layout_engine</tt>.
 </p>
 <a name='Plantillas%20RDoc'></a>
 <h3>Plantillas RDoc</h3>
-<p>
-La gem/librería <tt>rdoc</tt> es necesaria para renderizar plantillas RDoc:
+<table>
+<tr><td valign="top">Dependencias</td><td><p>
+<a href="http://rdoc.rubyforge.org/">rdoc</a>
 </p>
-<pre>
-  # Vas a necesitar requerir rdoc/markup/to_html en tu app
-  require &quot;rdoc/markup/to_html&quot;
-
-  get '/' do
-    rdoc :index
-  end
-</pre>
-<p>
-Renderiza <tt>./views/index.rdoc</tt>.
+</td></tr>
+<tr><td valign="top">Extensiones de Archivo</td><td><p>
+<tt>.rdoc</tt>
 </p>
+</td></tr>
+<tr><td valign="top">Ejemplo</td><td><p>
+<tt>rdoc :LEEME, :layout_engine =&gt; :erb</tt>
+</p>
+</td></tr>
+</table>
 <p>
 No es posible llamar métodos desde rdoc, ni pasarle locales. Por lo tanto,
 generalmente vas a usarlo en combinación con otro motor de renderizado:
@@ -761,130 +801,121 @@ plantillas:
 Como no podés utilizar Ruby desde RDoc, no podés usar layouts escritos en
 RDoc. De todos modos, es posible usar un motor de renderizado para el
 layout distinto al de la plantilla pasando la opción
-<tt>:layout_engine</tt>:
-</p>
-<pre>
-  get '/' do
-    rdoc :index, :layout_engine =&gt; :erb
-  end
-</pre>
-<p>
-Renderiza <tt>./views/index.rdoc</tt> con el layout
-<tt>./views/layout.erb</tt>.
-</p>
-<p>
-Recordá que podés asignar las opciones de renderizado globalmente:
-</p>
-<pre>
-  set :rdoc, :layout_engine =&gt; :haml, :layout =&gt; :post
-
-  get '/' do
-    rdoc :index
-  end
-</pre>
-<p>
-Renderiza <tt>./views/index.rdoc</tt> (o cualquier otra plantilla RDoc) con
-el layout <tt>./views/post.haml</tt>.
+<tt>:layout_engine</tt>.
 </p>
 <a name='Plantillas%20Radius'></a>
 <h3>Plantillas Radius</h3>
-<p>
-La gem/librería <tt>radius</tt> es necesaria para renderizar plantillas
-Radius:
+<table>
+<tr><td valign="top">Dependencias</td><td><p>
+<a href="http://radius.rubyforge.org/">radius</a>
 </p>
-<pre>
-  # Vas a necesitar requerir radius en tu app
-  require 'radius'
-
-  get '/' do
-    radius :index
-  end
-</pre>
-<p>
-Renderiza <tt>./views/index.radius</tt>.
+</td></tr>
+<tr><td valign="top">Extensiones de Archivo</td><td><p>
+<tt>.radius</tt>
 </p>
-<p>
-Como no vas a poder llamar a métodos de Ruby (excepto a <tt>yield</tt>)
-desde una plantilla Radius, casi siempre vas a querer pasarle locales:
+</td></tr>
+<tr><td valign="top">Ejemplo</td><td><p>
+<tt>radius :index, :locals =&gt; { :clave =&gt; 'valor' }</tt>
 </p>
-<pre>
-  radius :index, :locals =&gt; { :clave =&gt; 'valor' }
-</pre>
+</td></tr>
+</table>
+<p>
+Como no vas a poder llamar a métodos de Ruby (excepto por <tt>yield</tt>)
+desde una plantilla Radius, casi siempre vas a querer pasarle locales.
+</p>
 <a name='Plantillas%20Markaby'></a>
 <h3>Plantillas Markaby</h3>
-<p>
-La gem/librería <tt>markaby</tt> es necesaria para renderizar plantillas
-Markaby:
+<table>
+<tr><td valign="top">Dependencias</td><td><p>
+<a href="http://markaby.github.com/">markaby</a>
 </p>
-<pre>
-  # Vas a necesitar requerir markaby en tu app
-  require 'markaby'
-
-  get '/' do
-    markaby :index
-  end
-</pre>
-<p>
-Renderiza <tt>./views/index.mab</tt>.
+</td></tr>
+<tr><td valign="top">Extensiones de Archivo</td><td><p>
+<tt>.mab</tt>
 </p>
-<p>
-También podés usar Markaby inline:
+</td></tr>
+<tr><td valign="top">Ejemplos</td><td><p>
+<tt>markaby { h1 &quot;Bienvenido!&quot; }</tt>
 </p>
-<pre>
-  get '/' do
-    markaby { h1 &quot;Bienvenido!&quot; }
-  end
-</pre>
+</td></tr>
+</table>
+<p>
+Además, acepta un bloque con la definición de la plantilla (ver el
+ejemplo).
+</p>
 <a name='Plantillas%20Slim'></a>
 <h3>Plantillas Slim</h3>
+<table>
+<tr><td valign="top">Dependencias</td><td><p>
+<a href="http://slim-lang.com/">slim</a>
+</p>
+</td></tr>
+<tr><td valign="top">Extensiones de Archivo</td><td><p>
+<tt>.slim</tt>
+</p>
+</td></tr>
+<tr><td valign="top">Ejemplo</td><td><p>
+<tt>slim :index</tt>
+</p>
+</td></tr>
+</table>
+<a name='Plantillas%20Creole'></a>
+<h3>Plantillas Creole</h3>
+<table>
+<tr><td valign="top">Dependencias</td><td><p>
+<a href="https://github.com/minad/creole">creole</a>
+</p>
+</td></tr>
+<tr><td valign="top">Extensiones de Archivo</td><td><p>
+<tt>.creole</tt>
+</p>
+</td></tr>
+<tr><td valign="top">Ejemplo</td><td><p>
+<tt>creole :wiki, :layout_engine =&gt; :erb</tt>
+</p>
+</td></tr>
+</table>
 <p>
-La gem/librería <tt>slim</tt> es necesaria para renderizar plantillas Slim:
+No es posible llamar métodos desde creole, ni pasarle locales. Por lo
+tanto, generalmente vas a usarlo en combinación con otro motor de
+renderizado:
 </p>
 <pre>
-  # Vas a necesitar requerir slim en tu app
-  require 'slim'
-
-  get '/' do
-    slim :index
-  end
+  erb :resumen, :locals =&gt; { :texto =&gt; cerole(:introduccion) }
 </pre>
 <p>
-Renderiza <tt>./views/index.slim</tt>.
+Tené en cuenta que también podés llamar al método <tt>creole</tt> desde
+otras plantillas:
+</p>
+<pre>
+  %h1 Hola Desde Haml!
+  %p= creole(:saludos)
+</pre>
+<p>
+Como no podés utilizar Ruby desde Creole, no podés usar layouts escritos en
+Creloe.  De todos modos, es posible usar un motor de renderizado para el
+layout distinto al de la plantilla pasando la opción
+<tt>:layout_engine</tt>.
 </p>
 <a name='Plantillas%20CoffeeScript'></a>
 <h3>Plantillas CoffeeScript</h3>
-<p>
-La gem/librería <tt>coffee-script</tt> y al menos <b>una</b> de las
-siguientes opciones para ejecutar JavaScript:
+<table>
+<tr><td valign="top">Dependencias</td><td><p>
+<a href="https://github.com/josh/ruby-coffee-script">coffee-script</a> y un
+<a
+href="https://github.com/sstephenson/execjs/blob/master/README.md#readme">mecanismo
+para ejecutar javascript</a>
 </p>
-<ul>
-<li><p>
-<tt>node</tt> (de Node.js) en tu path
+</td></tr>
+<tr><td valign="top">Extensiones de Archivo</td><td><p>
+<tt>.coffee</tt>
 </p>
-</li>
-<li><p>
-utilizar OSX
+</td></tr>
+<tr><td valign="top">Ejemplo</td><td><p>
+<tt>coffee :index</tt>
 </p>
-</li>
-<li><p>
-la gem/librería <tt>therubyracer</tt>
-</p>
-</li>
-</ul>
-<p>
-son necesarios para renderizar plantillas CoffeeScript:
-</p>
-<pre>
-  # Vas a necesitar requerir coffee-script en tu app
-  require 'coffee-script'
-
-  get '/application.js' do
-    coffee :application
-  end
-</pre>
-<p>
-Renderiza <tt>./views/application.coffee</tt>.
-</p>
+</td></tr>
+</table>
 <a name='Plantillas%20Embebidas'></a>
 <h3>Plantillas Embebidas</h3>
 <pre>
@@ -914,7 +945,7 @@ O es posible especificar un Hash de variables locales explícitamente:
 <pre>
   get '/:id' do
     foo = Foo.find(params[:id])
-    haml '%h1= foo.nombre', :locals =&gt; { :foo =&gt; foo }
+    haml '%h1= bar.nombre', :locals =&gt; { :bar =&gt; foo }
   end
 </pre>
 <p>
@@ -1137,6 +1168,13 @@ secreto, tenés que definirlo vos:
 <pre>
   set :session_secret, 'super secreto'
 </pre>
+<p>
+Si necesitás una configuración más específica, <tt>sessions</tt> acepta un
+Hash con opciones:
+</p>
+<pre>
+  set :sessions, :domain =&gt; 'foo.com'
+</pre>
 <a name='Interrupci%C3%B3n'></a>
 <h3>Interrupción</h3>
 <p>
@@ -1257,7 +1295,7 @@ De manera similar, también podés asignar el código de estado y encabezados:
   get '/foo' do
     status 418
     headers \
-      &quot;Allow&quot;   =&gt; &quot;BREW, POST, GET, PROPFIND, WHEN&quot;
+      &quot;Allow&quot;   =&gt; &quot;BREW, POST, GET, PROPFIND, WHEN&quot;,
       &quot;Refresh&quot; =&gt; &quot;Refresh: 20; http://www.ietf.org/rfc/rfc2324.txt&quot;
     body &quot;I'm a tea pot!&quot;
   end
@@ -1267,6 +1305,95 @@ También, al igual que <tt>body</tt>, tanto <tt>status</tt> como
 <tt>headers</tt> pueden utilizarse para obtener sus valores cuando no se
 les pasa argumentos.
 </p>
+<a name='Streaming%20De%20Respuestas'></a>
+<h3>Streaming De Respuestas</h3>
+<p>
+A veces vas a querer empezar a enviar la respuesta a pesar de que todavía
+no terminaste de generar su cuerpo.  También es posible que, en algunos
+casos, quieras seguir enviando información hasta que el cliente cierre la
+conexión. Cuando esto ocurra, el <tt>stream</tt> helper te va a ser de gran
+ayuda:
+</p>
+<pre>
+  get '/' do
+    stream do |out|
+      out &lt;&lt; &quot;Esto va a ser legen -\n&quot;
+      sleep 0.5
+      out &lt;&lt; &quot; (esperalo) \n&quot;
+      sleep 1
+      out &lt;&lt; &quot;- dario!\n&quot;
+    end
+  end
+</pre>
+<p>
+Podés implementar APIs de streaming, <a
+href="http://dev.w3.org/html5/eventsource/">Server-Sent Events</a> y puede
+ser usado como base para <a
+href="http://es.wikipedia.org/wiki/WebSockets">WebSockets</a>.  También
+puede ser usado para incrementar el throughput si solo una parte del
+contenido depende de un recurso lento.
+</p>
+<p>
+Hay que tener en cuenta que el comportamiento del streaming, especialmente
+el número de peticiones concurrentes, depende del servidor web utilizado
+para servir la aplicación.  Puede que algunos servidores, como es el caso
+de WEBRick, no soporten streaming directamente, así el cuerpo de la
+respuesta será enviado completamente de una vez cuando el bloque pasado a
+<tt>stream</tt> finalice su ejecución.
+</p>
+<p>
+Cuando se pasa <tt>keep_open</tt> como parámetro, no se va a enviar el
+mensaje <tt>close</tt> al objeto de stream. Queda en vos cerrarlo en el
+punto de ejecución que quieras. Nuevamente, hay que tener en cuenta que
+este comportamiento es posible solo en servidores que soporten eventos,
+como Thin o Rainbows. El resto de los servidores van a cerrar el stream de
+todos modos:
+</p>
+<pre>
+  set :server, :thin
+  conexiones = []
+
+  get '/' do
+    # mantenemos abierto el stream
+    stream(:keep_open) { |salida| conexiones &lt;&lt; salida }
+  end
+
+  post '/' do
+    # escribimos a todos los streams abiertos
+    conexiones.each { |salida| salida &lt;&lt; params[:mensaje] &lt;&lt; &quot;\n&quot; }
+    &quot;mensaje enviado&quot;
+  end
+</pre>
+<a name='Log%20(Registro)'></a>
+<h3>Log (Registro)</h3>
+<p>
+En el ámbito de la petición, el helper <tt>logger</tt> (registrador) expone
+una instancia de <tt>Logger</tt>:
+</p>
+<pre>
+  get '/' do
+    logger.info &quot;cargando datos&quot;
+    # ...
+  end
+</pre>
+<p>
+Este logger tiene en cuenta la configuración de logueo de tu Rack handler. 
+Si el logueo está desactivado, este método va a devolver un objeto que se
+comporta como un logger pero que en realidad no hace nada.  Así, no vas a
+tener que preocuparte por esta situación.
+</p>
+<p>
+Tené en cuenta que el logueo está habilitado por defecto únicamente para
+<tt>Sinatra::Application</tt>.  Si heredaste de <tt>Sinatra::Base</tt>,
+probablemente quieras habilitarlo manualmente:
+</p>
+<pre>
+  class MiApp &lt; Sinatra::Base
+    configure(:production, :development) do
+      enable :logging
+    end
+  end
+</pre>
 <a name='Tipos%20Mime'></a>
 <h3>Tipos Mime</h3>
 <p>
@@ -1275,7 +1402,9 @@ mime que Sinatra no entiende. Usá <tt>mime_type</tt> para registrarlos a
 través de la extensión de archivo:
 </p>
 <pre>
-  mime_type :foo, 'text/foo'
+  configure do
+    mime_type :foo, 'text/foo'
+  end
 </pre>
 <p>
 También lo podés usar con el ayudante <tt>content_type</tt>:
@@ -1346,7 +1475,7 @@ búsqueda:
 O usar una sesión:
 </p>
 <pre>
-  enable :session
+  enable :sessions
 
   get '/foo' do
     session[:secreto] = 'foo'
@@ -1390,7 +1519,7 @@ correspondiente, <tt>Cache-Control</tt> se va a definir automáticamente:
   end
 </pre>
 <p>
-Para usar cachés adecuadamente, deberías considerar usar <tt>etag</tt> y
+Para usar cachés adecuadamente, deberías considerar usar <tt>etag</tt> o
 <tt>last_modified</tt>.  Es recomendable que llames a estos helpers
 <b>antes</b> de hacer cualquier trabajo pesado, ya que van a enviar la
 respuesta inmediatamente si el cliente ya tiene la versión actual en su
@@ -1415,7 +1544,7 @@ ETag</a>:
 <p>
 Estos helpers no van a cachear nada por vos, sino que van a facilitar la
 información necesaria para poder hacerlo.  Si estás buscando soluciones
-rápidas de cacheo, mirá <a
+rápidas de cacheo con proxys inversos, mirá <a
 href="http://rtomayko.github.com/rack-cache/">rack-cache</a>:
 </p>
 <pre>
@@ -1429,6 +1558,33 @@ href="http://rtomayko.github.com/rack-cache/">rack-cache</a>:
     sleep 5
     &quot;hola&quot;
   end
+</pre>
+<p>
+Usá la configuración <tt>:static_cache_control</tt> para agregar el
+encabezado <tt>Cache-Control</tt> a archivos estáticos (ver la sección de
+configuración para más detalles).
+</p>
+<p>
+De acuerdo con la RFC 2616 tu aplicación debería comportarse diferente si a
+las cabeceras If-Match o If-None-Match se le asigna el valor <tt>*</tt>
+cuando el recurso solicitado ya existe.  Sinatra asume para peticiones
+seguras (como get) e idempotentes (como put) que el recurso existe,
+mientras que para el resto (como post), que no.  Podes cambiar este
+comportamiento con la opción <tt>:new_resource</tt>:
+</p>
+<pre>
+  get '/crear' do
+    etag '', :new_resource =&gt; true
+    Articulo.create
+    erb :nuevo_articulo
+  end
+</pre>
+<p>
+Si querés seguir usando una weak ETag, indicalo con la opción
+<tt>:kind</tt>:
+</p>
+<pre>
+  etag '', :new_resource =&gt; true, :kind =&gt; :weak
 </pre>
 <a name='Enviando%20Archivos'></a>
 <h3>Enviando Archivos</h3>
@@ -1490,29 +1646,33 @@ petición (filtros, rutas y manejadores de errores) a través del método
 <pre>
   # app corriendo en http://ejemplo.com/ejemplo
   get '/foo' do
-    request.body              # cuerpo de la petición enviado por el cliente (ver más abajo)
-    request.scheme            # &quot;http&quot;
-    request.script_name       # &quot;/ejemplo&quot;
-    request.path_info         # &quot;/foo&quot;
-    request.port              # 80
-    request.request_method    # &quot;GET&quot;
-    request.query_string      # &quot;&quot;
-    request.content_length    # longitud de request.body
-    request.media_type        # tipo de medio de request.body
-    request.host              # &quot;ejemplo.com&quot;
-    request.get?              # verdadero (hay métodos análogos para los otros verbos)
-    request.form_data?        # falso
-    request[&quot;UNA_CABECERA&quot;]   # valor de la cabecera UNA_CABECERA
-    request.referrer          # la referencia del cliente o '/'
-    request.user_agent        # user agent (usado por la condición :agent)
-    request.cookies           # hash de las cookies del browser
-    request.xhr?              # es una petición ajax?
-    request.url               # &quot;http://ejemplo.com/ejemplo/foo&quot;
-    request.path              # &quot;/ejemplo/foo&quot;
-    request.ip                # dirección IP del cliente
-    request.secure?           # falso (sería verdadero sobre ssl)
-    request.forwarded?        # verdadero (si se está corriendo atrás de un proxy inverso)
-    requuest.env              # hash de entorno directamente entregado por Rack
+    t = %w[text/css text/html application/javascript]
+    request.accept              # ['text/html', '*/*']
+    request.accept? 'text/xml'  # true
+    request.preferred_type(t)   # 'text/html'
+    request.body                # cuerpo de la petición enviado por el cliente (ver más abajo)
+    request.scheme              # &quot;http&quot;
+    request.script_name         # &quot;/ejemplo&quot;
+    request.path_info           # &quot;/foo&quot;
+    request.port                # 80
+    request.request_method      # &quot;GET&quot;
+    request.query_string        # &quot;&quot;
+    request.content_length      # longitud de request.body
+    request.media_type          # tipo de medio de request.body
+    request.host                # &quot;ejemplo.com&quot;
+    request.get?                # true (hay métodos análogos para los otros verbos)
+    request.form_data?          # false
+    request[&quot;UNA_CABECERA&quot;]     # valor de la cabecera UNA_CABECERA
+    request.referrer            # la referencia del cliente o '/'
+    request.user_agent          # user agent (usado por la condición :agent)
+    request.cookies             # hash de las cookies del browser
+    request.xhr?                # es una petición ajax?
+    request.url                 # &quot;http://ejemplo.com/ejemplo/foo&quot;
+    request.path                # &quot;/ejemplo/foo&quot;
+    request.ip                  # dirección IP del cliente
+    request.secure?             # false (sería true sobre ssl)
+    request.forwarded?          # true (si se está corriendo atrás de un proxy inverso)
+    requuest.env                # hash de entorno directamente entregado por Rack
   end
 </pre>
 <p>
@@ -1555,6 +1715,43 @@ También podés pasarle un nombre de archivo:
   get '/' do
     attachment &quot;info.txt&quot;
     &quot;guardalo!&quot;
+  end
+</pre>
+<a name='Fecha%20y%20Hora'></a>
+<h3>Fecha y Hora</h3>
+<p>
+Sinatra pone a tu disposición el helper <tt>time_for</tt>, que genera un
+objeto <tt>Time</tt> a partir del valor que recibe como argumento.  Este
+valor puede ser un <tt>String</tt>, pero también es capaz de convertir
+objetos <tt>DateTime</tt>, <tt>Date</tt> y de otras clases similares:
+</p>
+<pre>
+  get '/' do
+    pass if Time.now &gt; time_for('Dec 23, 2012')
+    &quot;todavía hay tiempo&quot;
+  end
+</pre>
+<p>
+Este método es usado internamente por métodos como <tt>expires</tt> y
+<tt>last_modified</tt>, entre otros.  Por lo tanto, es posible extender el
+comportamiento de estos métodos sobreescribiendo <tt>time_for</tt> en tu
+aplicación:
+</p>
+<pre>
+  helpers do
+    def time_for(value)
+      case value
+      when :ayer then Time.now - 24*60*60
+      when :mañana then Time.now + 24*60*60
+      else super
+      end
+    end
+  end
+
+  get '/' do
+    last_modified :ayer
+    expires :mañana
+    &quot;hola&quot;
   end
 </pre>
 <a name='Buscando%20los%20Archivos%20de%20las%20Plantillas'></a>
@@ -1663,6 +1860,31 @@ Podés acceder a estas opciones utilizando el método <tt>settings</tt>:
     ...
   end
 </pre>
+<a name='Configurando%20la%20Protecci%C3%B3n%20de%20Ataques'></a>
+<h4>Configurando la Protección de Ataques</h4>
+<p>
+Sinatra usa <a
+href="https://github.com/rkh/rack-protection#readme">Rack::Protection</a>
+para defender a tu aplicación de los ataques más comunes.  Tenés que tener
+en cuenta que como consecuencia de esto puede venir asociada una
+disminución del rendimiento de tu aplicación.  Si por este, o algún otro
+motivo, querés desactivar está funcionalidad, podés hacerlo:
+</p>
+<pre>
+  disable :protection
+</pre>
+<p>
+También es posible desactivar una única capa de defensa:
+</p>
+<pre>
+  set :protection, :except =&gt; :path_traversal
+</pre>
+<p>
+O varias:
+</p>
+<pre>
+  set :protections, :except =&gt; [:path_traversal, :session_hijacking]
+</pre>
 <a name='Configuraciones%20Disponibles'></a>
 <h3>Configuraciones Disponibles</h3>
 <dl>
@@ -1746,7 +1968,13 @@ no se proporciona un path absoluto. De esta manera, cuando está habilitada,
 to('/foo')</tt>.  Se encuentra deshabilitada por defecto.
 </p>
 </dd>
-<dt>public</dt><dd><p>
+<dt>protection</dt><dd><p>
+define si deben activarse las protecciones para los ataques web más
+comunes.  Para más detalles mirá la sección sobre la configuración de
+protección de ataques más arriba.
+</p>
+</dd>
+<dt>public_folder</dt><dd><p>
 directorio desde donde se sirven los archivos públicos.
 </p>
 </dd>
@@ -1754,8 +1982,7 @@ directorio desde donde se sirven los archivos públicos.
 define si se recargan las plantillas entre peticiones.
 </p>
 <p>
-Se encuentra activado en el entorno de desarrollo y en Ruby 1.8.6 (para
-compoensar un bug en Ruby que provoca una pérdida de memoria).
+Se encuentra activado en el entorno de desarrollo.
 </p>
 </dd>
 <dt>root</dt><dd><p>
@@ -1797,6 +2024,15 @@ define si Sinatra debe encargarse de servir archivos estáticos.
 Deshabilitala cuando usés un servidor capaz de hacerlo por sí solo, porque
 mejorará el rendimiento.  Se encuentra habilitada por defecto en el estilo
 clásico y desactivado en el el modular.
+</p>
+</dd>
+<dt>static_cache_control</dt><dd><p>
+cuando Sinatra está sirviendo archivos estáticos, y está opción está
+habilitada, les va a agregar encabezados <tt>Cache-Control</tt> a las
+respuestas.  Para esto utiliza el helper <tt>cache_control</tt>.  Se
+encuentra deshabilitada por defecto.  Notar que es necesario utilizar un
+array cuando se asignan múltiples valores:  <tt>set :static_cache_control,
+[:public, :max_age =&gt; 300]</tt>.
 </p>
 </dd>
 <dt>views</dt><dd><p>
@@ -1925,12 +2161,20 @@ usa muchos de estos componentes automáticamente de acuerdo a su
 configuración para que típicamente no tengas que usarlas (con <tt>use</tt>)
 explícitamente.
 </p>
+<p>
+Podés encontrar middleware útil en <a
+href="https://github.com/rack/rack/tree/master/lib/rack">rack</a>, <a
+href="https://github.com/rack/rack-contrib#readme">rack-contrib</a>, con <a
+href="http://coderack.org/">CodeRack</a> o en la <a
+href="https://github.com/rack/rack/wiki/List-of-Middleware">Rack wiki</a>.
+</p>
 <a name='Pruebas'></a>
 <h2>Pruebas</h2>
 <p>
 Las pruebas para las aplicaciones Sinatra pueden ser escritas utilizando
 cualquier framework o librería de pruebas basada en Rack. Se recomienda
-usar <a href="http://gitrdoc.com/brynary/rack-test">Rack::Test</a>:
+usar <a
+href="http://rdoc.info/github/brynary/rack-test/master/frames">Rack::Test</a>:
 </p>
 <pre>
   require 'mi_app_sinatra'
@@ -1960,10 +2204,6 @@ usar <a href="http://gitrdoc.com/brynary/rack-test">Rack::Test</a>:
     end
   end
 </pre>
-<p>
-NOTA: El módulo Sinatra::Test y la clase Sinatra::TestHarness están
-deprecados a partir de la versión 0.9.2.
-</p>
 <a name='Sinatra::Base%20-%20Middleware,%20Librer%C3%ADas,%20y%20Aplicaciones%20Modulares'></a>
 <h2>Sinatra::Base - Middleware, Librerías, y Aplicaciones Modulares</h2>
 <p>
@@ -1973,9 +2213,9 @@ reutilizables como Rack middleware, Rails metal, simple librerías con un
 componente de servidor, o incluso extensiones de Sinatra. El DSL de
 top-level contamina el espacio de nombres de Object y asume una
 configuración apropiada para micro-aplicaciones (por ejemplo, un único
-archivo de aplicación, los directorios ./public y ./views, logging, página
-con detalles de excepción, etc.). Ahí es donde Sinatra::Base entra en el
-juego:
+archivo de aplicación, los directorios <tt>./public</tt> y
+<tt>./views</tt>, logging, página con detalles de excepción, etc.). Ahí es
+donde <tt>Sinatra::Base</tt> entra en el juego:
 </p>
 <pre>
   require 'sinatra/base'
@@ -1990,10 +2230,10 @@ juego:
   end
 </pre>
 <p>
-Las subclases de Sinatra::Base tienen disponibles exactamente los mismos
-métodos que los provistos por el DSL de top-level. La mayoría de las
-aplicaciones top-level se pueden convertir en componentes Sinatra::Base con
-dos modificaciones:
+Las subclases de <tt>Sinatra::Base</tt> tienen disponibles exactamente los
+mismos métodos que los provistos por el DSL de top-level. La mayoría de las
+aplicaciones top-level se pueden convertir en componentes
+<tt>Sinatra::Base</tt> con dos modificaciones:
 </p>
 <ul>
 <li><p>
@@ -2004,7 +2244,7 @@ importados dentro del espacio de nombres principal.
 </li>
 <li><p>
 Poné las rutas, manejadores de errores, filtros y opciones de tu aplicación
-en una subclase de Sinatra::Base.
+en una subclase de <tt>Sinatra::Base</tt>.
 </p>
 </li>
 </ul>
@@ -2049,7 +2289,7 @@ entre sus configuraciones:
 <pre>
   Configuración       Clásica                      Modular
 
-  app_file            archivo que carga sinatra    nil
+  app_file            archivo que carga sinatra    archivo con la subclase de Sinatra::Base
   run                 $0 == app_file               false
   logging             true                         false
   method_override     true                         false
@@ -2085,7 +2325,7 @@ Rack:
 </p>
 <pre>
   # config.ru
-  require 'mi_app'
+  require './mi_app'
   run MiApp
 </pre>
 <p>
@@ -2111,7 +2351,7 @@ Escribí el archivo de tu aplicación:
 Y el <tt>config.ru</tt> correspondiente:
 </p>
 <pre>
-  require 'app'
+  require './app'
   run Sinatra::Application
 </pre>
 <a name='%C2%BFCu%C3%A1ndo%20Usar%20config.ru?'></a>
@@ -2156,7 +2396,7 @@ cualquier aplicación basada en Rack (Rails/Ramaze/Camping/&#8230;):
     get('/login') { haml :login }
 
     post('/login') do
-      if params[:nombre] = 'admin' and params[:password] = 'admin'
+      if params[:nombre] == 'admin' &amp;&amp; params[:password] == 'admin'
         session['nombre_de_usuario'] = params[:nombre]
       else
         redirect '/login'
@@ -2193,6 +2433,7 @@ de ejecución sin tener que asignarlas a una constante.  Para esto tenés
 Acepta como argumento opcional una aplicación desde la que se heredará:
 </p>
 <pre>
+  # config.ru
   require 'sinatra/base'
 
   controller = Sinatra.new do
@@ -2233,13 +2474,13 @@ disponibles.
 <a name='%C3%81mbito%20de%20Aplicaci%C3%B3n/Clase'></a>
 <h3>Ámbito de Aplicación/Clase</h3>
 <p>
-Cada aplicación Sinatra es una subclase de Sinatra::Base. Si estás usando
-el DSL de top-level (<tt>require 'sinatra'</tt>), entonces esta clase es
-Sinatra::Application, de otra manera es la subclase que creaste
-explícitamente. Al nivel de la clase tenés métodos como <tt>get</tt> o
-<tt>before</tt>, pero no podés acceder a los objetos <tt>request</tt> o
-<tt>session</tt>, ya que hay una única clase de la aplicación para todas
-las peticiones.
+Cada aplicación Sinatra es una subclase de <tt>Sinatra::Base</tt>. Si estás
+usando el DSL de top-level (<tt>require 'sinatra'</tt>), entonces esta
+clase es <tt>Sinatra::Application</tt>, de otra manera es la subclase que
+creaste explícitamente.  Al nivel de la clase tenés métodos como
+<tt>get</tt> o <tt>before</tt>, pero no podés acceder a los objetos
+<tt>request</tt> o <tt>session</tt>, ya que hay una única clase de la
+aplicación para todas las peticiones.
 </p>
 <p>
 Las opciones creadas utilizando <tt>set</tt> son métodos al nivel de la
@@ -2388,49 +2629,43 @@ Las opciones son:
   -s # especifica el servidor/manejador rack (thin es usado por defecto)
   -x # activa el mutex lock (está desactivado por defecto)
 </pre>
-<a name='Requerimientos'></a>
-<h2>Requerimientos</h2>
-<p>
-Se recomienda instalar Sinatra en Ruby 1.8.7, 1.9.2, JRuby o Rubinius.
-</p>
+<a name='Versiones%20de%20Ruby%20Soportadas'></a>
+<h2>Versiones de Ruby Soportadas</h2>
 <p>
 Las siguientes versiones de Ruby son soportadas oficialmente:
 </p>
 <dl>
-<dt> Ruby 1.8.6 </dt><dd><p>
-No se recomienda utilizar Sinatra en 1.8.6. Sin embargo, esta versión será
-soportada oficialmente hasta que se libere Sinatra 1.3.0.  RDoc y
-CoffeeScript no son soportadas por esta versión de Ruby. 1.8.6 contiene una
-falla importante de pérdida de memoria en su implementación de Hash, que
-afecta a las versiones de Sinatra anteriores a 1.1.1.  La versión actual
-evita explícitamente esta falla a expensas de una disminución del
-rendimiento.  Por último, Rack >= 1.2 dejó de soportar 1.8.6, por lo que
-vas a tener que usar alguna versión 1.1.x.
-</p>
-</dd>
 <dt> Ruby 1.8.7 </dt><dd><p>
 1.8.7 es soportado completamente.  Sin embargo, si no hay nada que te lo
-prohíba, te recomendamos que usés 1.9.2 o cambies a JRuby o Rubinius.
+prohíba, te recomendamos que usés 1.9.2 o cambies a JRuby o Rubinius.  No
+se dejará de dar soporte a 1.8.7 hasta Sinatra 2.0 y Ruby 2.0, aunque si se
+libera la versión 1.8.8 de Ruby las cosas podrían llegar a cambiar.  Sin
+embargo, que eso ocurra es muy poco probable, e incluso el caso de que lo
+haga, puede que se siga dando soporte a 1.8.7.  <b>Hemos dejado de soportar
+Ruby 1.8.6.</b> Si querés ejecutar Sinatra sobre 1.8.6, podés utilizar la
+versión 1.2, pero tené en cuenta que una vez que Sinatra 1.4.0 sea
+liberado, ya no se corregirán errores por más que se reciban reportes de
+los mismos.
 </p>
 </dd>
 <dt> Ruby 1.9.2 </dt><dd><p>
 1.9.2 es soportado y recomendado.  Tené en cuenta que Radius y Markaby no
 son compatibles con 1.9 actualmente.  Además, no usés 1.9.2p0, porque
-produce fallos de segmentación cuando se utiliza Sinatra.
+produce fallos de segmentación cuando se ejecuta Sinatra.
 </p>
 </dd>
 <dt> Rubinius </dt><dd><p>
-Rubinius es soportado oficialmente (Rubinius >= 1.2.3).  Todo funciona
+Rubinius es soportado oficialmente (Rubinius >= 1.2.4).  Todo funciona
 correctamente, incluyendo los lenguajes de plantillas.
 </p>
 </dd>
 <dt> JRuby </dt><dd><p>
-JRuby es soportado oficialmente (JRuby >= 1.6.0).  No se conocen problemas
+JRuby es soportado oficialmente (JRuby >= 1.6.3).  No se conocen problemas
 con librerías de plantillas de terceras partes.  Sin embargo, si elegís
 usar JRuby, deberías examinar sus Rack handlers porque el servidor web Thin
 no es soportado completamente.  El soporte de JRuby para extensiones C se
-encuentra en una etapa experimental, sin embargo, de momento solo RDiscount
-se ve afectada.
+encuentra en una etapa experimental, sin embargo, de momento solamente
+RDiscount y Redcarpted se ven afectadas.
 </p>
 </dd>
 </dl>
@@ -2447,11 +2682,15 @@ Versiones anteriores de JRuby y Rubinius
 </p>
 </li>
 <li><p>
+Ruby Enterprise Edition
+</p>
+</li>
+<li><p>
 MacRuby, Maglev e IronRuby
 </p>
 </li>
 <li><p>
-Ruby 1.9.0 y 1.9.1
+Ruby 1.9.0 y 1.9.1 (pero no te recomendamos que los usés)
 </p>
 </li>
 </ul>
@@ -2462,12 +2701,16 @@ problema sino el suyo.
 </p>
 <p>
 Nuestro servidor CI también se ejecuta sobre ruby-head (que será la próxima
-versión 1.9.3).  Como está en movimiento constante, no podemos garantizar
-nada.  De todas formas, podés contar con que 1.9.3-p0 sea soportada.
+versión 1.9.4).  Como está en movimiento constante, no podemos garantizar
+nada.  De todas formas, podés contar con que 1.9.4-p0 sea soportada.
 </p>
 <p>
 Sinatra debería funcionar en cualquier sistema operativo soportado por la
 implementación de Ruby elegida.
+</p>
+<p>
+En este momento, no vas a poder ejecutar Sinatra en Cardinal, SmallRuby,
+BlueRuby o cualquier versión de Ruby anterior a 1.8.7.
 </p>
 <a name='A%20la%20Vanguardia'></a>
 <h2>A la Vanguardia</h2>
@@ -2592,10 +2835,24 @@ href="http://freenode.net">freenode.net</a>
 </p>
 </li>
 <li><p>
+<a href="http://sinatra-book.gittr.com">Sinatra Book</a> Tutorial (en
+inglés).
+</p>
+</li>
+<li><p>
+<a href="http://sinatra-book-contrib.com/">Sinatra Book Contrib</a> Recetas
+contribuidas por la comunidad (en inglés).
+</p>
+</li>
+<li><p>
 Documentación de la API para la <a
 href="http://rubydoc.info/gems/sinatra">última versión liberada</a> o para
 la <a href="http://rubydoc.info/github/sinatra/sinatra">rama de desarrollo
 actual</a> en <a href="http://rubydoc.info">rubydoc.info</a>/
+</p>
+</li>
+<li><p>
+<a href="http://ci.rkh.im/view/Sinatra/">Servidor de IC</a>
 </p>
 </li>
 </ul>
