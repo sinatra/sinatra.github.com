@@ -1,0 +1,73 @@
+<h1>Sinatra::Reloader</h1>
+<p>
+Extension to reload modified files.  Useful during development, since it
+will automatically require files defining routes, filters, error handlers
+and inline templates, with every incoming request, but only if they have
+been updated.
+</p>
+<h2>Usage</h2>
+<h3>Classic Application</h3>
+<p>
+To enable the realoader in a classic application all you need to do is
+require it:
+</p>
+<pre>
+    require &quot;sinatra&quot;
+    require &quot;sinatra/reloader&quot; if development?
+
+    # Your classic application code goes here...
+</pre>
+<h3>Modular Application</h3>
+<p>
+To enable the realoader in a modular application all you need to do is
+require it, and then, register it:
+</p>
+<pre>
+    require &quot;sinatra/base&quot;
+    require &quot;sinatra/reloader&quot;
+
+    class MyApp &lt; Sinatra::Base
+      configure :development do
+        register Sinatra::Reloader
+      end
+
+      # Your modular application code goes here...
+    end
+</pre>
+<h2>Changing the Reloading Policy</h2>
+<p>
+You can refine the reloading policy with <tt>also_reload</tt> and
+<tt>dont_reload</tt>, to customize which files should, and should not, be
+reloaded, respectively.
+</p>
+<h3>Classic Application</h3>
+<p>
+Simply call the methods:
+</p>
+<pre>
+    require &quot;sinatra&quot;
+    require &quot;sinatra/reloader&quot; if development?
+
+    also_reload '/path/to/some/file'
+    dont_reload '/path/to/other/file'
+
+    # Your classic application code goes here...
+</pre>
+<h3>Modular Application</h3>
+<p>
+Call the methods inside the <tt>configure</tt> block:
+</p>
+<pre>
+    require &quot;sinatra/base&quot;
+    require &quot;sinatra/reloader&quot;
+
+    class MyApp &lt; Sinatra::Base
+      configure :development do
+        register Sinatra::Reloader
+        also_reload '/path/to/some/file'
+        dont_reload '/path/to/other/file'
+      end
+
+      # Your modular application code goes here...
+    end
+</pre>

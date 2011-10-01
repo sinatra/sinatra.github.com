@@ -1,0 +1,99 @@
+<h1>Sinatra::JSON</h1>
+<p>
+<tt>Sinatra::JSON</tt> adds a helper method, called <tt>json</tt>, for
+(obviously) json generation.
+</p>
+<h2>Usage</h2>
+<h3>Classic Application</h3>
+<p>
+In a classic application simply require the helper, and start using it:
+</p>
+<pre>
+    require &quot;sinatra&quot;
+    require &quot;sinatra/json&quot;
+
+    # define a route that uses the helper
+    get '/' do
+      json :foo =&gt; 'bar'
+    end
+
+    # The rest of your classic application code goes here...
+</pre>
+<h3>Modular Application</h3>
+<p>
+In a modular application you need to require the helper, and then tell the
+application you will use it:
+</p>
+<pre>
+    require &quot;sinatra/base&quot;
+    require &quot;sinatra/json&quot;
+
+    class MyApp &lt; Sinatra::Base
+      helpers Sinatra::JSON
+
+      # define a route that uses the helper
+      get '/' do
+        json :foo =&gt; 'bar'
+      end
+
+      # The rest of your modular application code goes here...
+    end
+</pre>
+<h3>Encoders</h3>
+<p>
+Per default it will try to call <tt>to_json</tt> on the object, but if it
+doesn&#8217;t respond to that message, will use its own, rather simple
+encoder.  You can easily change that anyways. To use <tt>JSON</tt>, simply
+require it:
+</p>
+<pre>
+  require 'json'
+</pre>
+<p>
+The same goes for <tt>Yajl::Encoder</tt>:
+</p>
+<pre>
+  require 'yajl'
+</pre>
+<p>
+For other encoders, besides requiring them, you need to define the
+<tt>:json_encoder</tt> setting.  For instance, for the <tt>Whatever</tt>
+encoder:
+</p>
+<pre>
+  require 'whatever'
+  set :json_encoder, Whatever
+</pre>
+<p>
+To force <tt>json</tt> to simply call <tt>to_json</tt> on the object:
+</p>
+<pre>
+  set :json_encoder, :to_json
+</pre>
+<p>
+Actually, it can call any method:
+</p>
+<pre>
+  set :json_encoder, :my_fancy_json_method
+</pre>
+<h3>Content-Type</h3>
+<p>
+It will automatically set the content type to
+&#8220;application/json&#8221;.  As usual, you can easily change that, with
+the <tt>:json_content_type</tt> setting:
+</p>
+<pre>
+  set :json_content_type, :js
+</pre>
+<h3>Overriding the Encoder and the Content-Type</h3>
+<p>
+The <tt>json</tt> helper will also take two options <tt>:encoder</tt> and
+<tt>:content_type</tt>.  The values of this options are the same as the
+<tt>:json_encoder</tt> and <tt>:json_content_type</tt> settings,
+respectively.  You can also pass those to the json method:
+</p>
+<pre>
+  get '/'  do
+    json({:foo =&gt; 'bar'}, :encoder =&gt; :to_json, :content_type =&gt; :js)
+  end
+</pre>

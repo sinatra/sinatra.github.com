@@ -23,6 +23,7 @@
 			<li><a href='#Radius%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>Radius テンプレート</a></li>
 			<li><a href='#Markaby%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>Markaby テンプレート</a></li>
 			<li><a href='#Slim%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>Slim テンプレート</a></li>
+			<li><a href='#Creole%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>Creole テンプレート</a></li>
 			<li><a href='#CoffeeScript%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>CoffeeScript テンプレート</a></li>
 			<li><a href='#%E3%82%A4%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>インラインテンプレート</a></li>
 			<li><a href='#%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E5%86%85%E3%81%A7%E5%A4%89%E6%95%B0%E3%81%AB%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E3%81%99%E3%82%8B'>テンプレート内で変数にアクセスする</a></li>
@@ -253,10 +254,10 @@ Rackレスポンス、Rackボディオブジェクト、HTTPステータスコ�
 <h2>静的ファイル</h2>
 <p>
 静的ファイルは<tt>./public</tt>ディレクトリから配信されます。
-<tt>:public</tt>オプションを指定することで別の場所を指定することができます。
+<tt>:public_folder</tt>オプションを指定することで別の場所を指定することができます。
 </p>
 <pre>
-  set :public, File.dirname(__FILE__) + '/static'
+  set :public_folder, File.dirname(__FILE__) + '/static'
 </pre>
 <p>
 注意: この静的ファイル用のディレクトリ名はURL中に含まれません。
@@ -609,6 +610,22 @@ Slimテンプレートを使うにはslimライブラリが必要です:
 </pre>
 <p>
 <tt>./views/index.slim</tt>を表示します。
+</p>
+<a name='Creole%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
+<h3>Creole テンプレート</h3>
+<p>
+Creoleテンプレートを使うにはcreoleライブラリが必要です:
+</p>
+<pre>
+  # creoleを読み込みます
+  require 'creole'
+
+  get '/' do
+    creole :index
+  end
+</pre>
+<p>
+<tt>./views/index.creole</tt>を表示します。
 </p>
 <a name='CoffeeScript%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h3>CoffeeScript テンプレート</h3>
@@ -1325,7 +1342,7 @@ Sinatraの開発版を使いたい場合は、ローカルに開発版を落と�
   ruby -Isinatra/lib myapp.rb
 </pre>
 <p>
-<tt>sinatra/lib</tt>ディレクトリをto the<tt>LOAD_PATH</tt>に追加する方法もあります。
+<tt>sinatra/lib</tt>ディレクトリをアプリケーションの<tt>LOAD_PATH</tt>に追加する方法もあります。
 </p>
 <pre>
   $LOAD_PATH.unshift File.dirname(__FILE__) + '/sinatra/lib'

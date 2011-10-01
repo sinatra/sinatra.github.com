@@ -19,6 +19,11 @@ Detailed documentation on all of Sinatra's built-in settings and using `set`,
 
 Guide to testing Sinatra apps.
 
+### [Sinatra::Contrib](contrib/index.html)
+
+A collection of common Sinatra extensions, that tries to include the stuff
+developers ask for a lot and isn't part of Sinatra.
+
 ### [Using Extensions](/extensions-wild.html)
 
 How to use Sinatra extensions in your application and links to
@@ -40,6 +45,10 @@ in `#sinatra`.
 
 See the `CHANGES` file included for release notes about each release:
 
+ * [1.3.0](http://github.com/sinatra/sinatra/blob/1.3.0/CHANGES)
+   September 30, 2011
+ * [1.2.7](http://github.com/sinatra/sinatra/blob/1.2.7/CHANGES)
+   September 30, 2011
  * [1.2.6](http://github.com/sinatra/sinatra/blob/1.2.6/CHANGES)
    May 1, 2011
  * [1.2.5](http://github.com/sinatra/sinatra/blob/1.2.5/CHANGES)
