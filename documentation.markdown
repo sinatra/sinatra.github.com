@@ -124,9 +124,9 @@ An in-depth look at building and deploying Sinatra applications.
 Maintained by [Chris Schneider][cschneid] and [Zachary Scott][zzak].
 
 [cschneid]: http://github.com/cschneid
-[zzak]: http://github.com/zacharyscott
+[zzak]: http://github.com/zzak
 
-### [Sinatra Book Contrib](http://sinatra-book-contrib.com/)
+### [Sinatra Recipes](http://recipes.sinatrarb.com/)
 
 Community contributed recipes and tutorials for Sinatra.
 

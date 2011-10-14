@@ -66,10 +66,10 @@ GitHub to track patch requests.
   repository](http://github.com/sinatra/sinatra-book/) and build process but is
   managed the same as the website and project codebase.
 
-* [Sinatra Book Contrib](http://sinatra-book-contrib.com/) is a community
+* [Sinatra Recipes](http://recipes.sinatrarb.com/) is a community
   project where anyone is free to contribute ideas, recipes and tutorials. Which
   also has its own [git
-  repository](http://github.com/sinatra/sinatra-book-contrib).
+  repository](http://github.com/sinatra/sinatra-recipes).
 
 * [The Introduction](intro.html) is generated from Sinatra's
   [README file](http://github.com/sinatra/sinatra/blob/master/README.rdoc).
