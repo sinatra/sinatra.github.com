@@ -96,7 +96,7 @@ All extensions:
 * [Sinatra::Namespace](namespace.html): Adds namespaces to Sinatra.
 
 * [Sinatra::RespondWith](respond_with.html): Choose action and/or template
-  depending automatically depending on the incoming request.
+  depending on the incoming request.
 
 * [Sinatra::Streaming](streaming.html): Improves the streaming API by making
   the *stream* object immitate an IO object.
