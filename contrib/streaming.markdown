@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: contrib
 title: Sinatra::Streaming (part of Sinatra::Contrib)
 ---
 

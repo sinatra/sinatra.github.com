@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: contrib
 title: Sinatra::RespondWith (part of Sinatra::Contrib)
 ---
 

@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: contrib
 title: Sinatra::Extension (part of Sinatra::Contrib)
 ---
 

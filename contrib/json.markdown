@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: contrib
 title: Sinatra::JSON (part of Sinatra::Contrib)
 ---
 

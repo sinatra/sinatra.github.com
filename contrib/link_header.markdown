@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: contrib
 title: Sinatra::LinkHeader (part of Sinatra::Contrib)
 ---
 

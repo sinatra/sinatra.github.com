@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: contrib
 title: Sinatra::Reloader (part of Sinatra::Contrib)
 ---
 
