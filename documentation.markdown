@@ -19,7 +19,7 @@ Detailed documentation on all of Sinatra's built-in settings and using `set`,
 
 Guide to testing Sinatra apps.
 
-### [Sinatra::Contrib](contrib/index.html)
+### [Sinatra::Contrib](/contrib)
 
 A collection of common Sinatra extensions, that tries to include the stuff
 developers ask for a lot and isn't part of Sinatra.
