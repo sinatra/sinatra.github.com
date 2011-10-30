@@ -14,40 +14,13 @@ What happened to reloading in Sinatra 0.9.2? {#reloading}
 
 Source file reloading was removed in the 0.9.2 due to excess complexity.
 
-For reloading Sinatra you can use [shotgun](http://rtomayko.github.com/shotgun/),
-[Rack::Reloader](http://github.com/rack/rack/blob/master/lib/rack/reloader.rb), or
-[Sinatra::Reloader](http://github.com/rkh/sinatra-reloader).
+For reloading Sinatra we recommend either using the
+[reloader](/contrib/reloader) or
+[shotgun](http://rtomayko.github.com/shotgun/).
 
-Shotgun is the cleanest, but slowest of all options, as it forks a new ruby process loading
-your code for every request. That way you got no conflicts between old and new code. As it uses
-`fork`, it does work neither on JRuby nor on Windows.
-
-Install shotgun via gem and run your app as follows, if your application is the default, "classic" style
-application (as shown eg. in README):
-
-    $ sudo gem install shotgun
-    $ shotgun myapp.rb
-
-When your application is a "modular" application (where you define your own class
-and inherit eg. from `Sinatra::Base`), you have to create a `config.ru` file for
-your application:
-
-    $ cat config.ru
-    require 'app'
-    run App
-
-and then point shotgun to the config ru file:
-
-    $ shotgun config.ru -p 4567
-
-Rack::Reloader is a Rack middleware that reloads all files on every request. This normally does not
-play well with Sinatra, due to its internals.
-
-Sinatra::Reloader is a Sinatra extension. It reloads only files that have changed and automatically
-detects orphaned routes that have to be removed. Most other implementations delete all routes and
-reload all code if one file changed, which takes way more time than reloading only one file,
-especially in larger projects. Files defining routes will be added to the reload list per default.
-You can add and remove files to the reload list at runtime. For more information, see its [README](http://github.com/rkh/sinatra-reloader/blob/master/README.md).
+The reloader will reload single files that changed, whereas shotgun will
+restart the HTTP server on every request. See ["Reloading Ruby
+Code"](http://rkh.im/code-reloading) to learn more about the differences.
 
 What are my deployment options? {#deploy}
 -------------------------------
