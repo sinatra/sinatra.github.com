@@ -187,7 +187,7 @@ That should give you an exception and backtrace on `stderr`.
 How do I send Email from Sinatra? {#email}
 ---------------------------------
 
-How about a [Pony](http://adam.blog.heroku.com/past/2008/11/2/pony_the_express_way_to_send_email_from_ruby/)
+How about a [Pony](http://adam.heroku.com/past/2008/11/2/pony_the_express_way_to_send_email_from_ruby/)
 (`sudo gem install pony`):
 
     require 'pony'
