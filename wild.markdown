@@ -89,6 +89,7 @@ Applications {#apps}
 - [funFUUU](http://funfuuu.com) - A friendly fun sharing community
 - [GitHub High Scores](http://github.com/leereilly/github-high-scores) - A fun way to rank Github repository contributors in a 8-bit, 80's-tastic aracdey viewing environment.
 - [Git-Webby](http://github.com/codigorama/git-webby) - Git Smart HTTP Ruby/Sinatra implementation with useful features.
+- [Trudy](http://github.com/quimarche/trudy) - A Nabaztag server.
 
 Libraries and extensions {#libs}
 ------------------------
