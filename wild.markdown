@@ -258,3 +258,4 @@ Companies using Sinatra {#biz}
 - [Mu Dynamics](http://www.mudynamics.com)
 - [Scribble Squad](http://www.scribblesquad.com)
 - [Stanford](http://www.stanford.edu)
+- [Hiboux](http://www.hiboux.ca)
