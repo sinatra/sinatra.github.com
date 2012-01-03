@@ -259,3 +259,5 @@ Companies using Sinatra {#biz}
 - [Scribble Squad](http://www.scribblesquad.com)
 - [Stanford](http://www.stanford.edu)
 - [Hiboux](http://www.hiboux.ca)
+- [PentesterLab](http://www.pentesterlab.com)
+
