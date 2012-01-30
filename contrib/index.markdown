@@ -19,6 +19,14 @@ Sinatra::Contrib.  *Custom extensions*, on the other hand, may add additional
 dependencies and enhance the behavior of the existing APIs.
 
 
+## Installation
+
+All Sinatra::Contrib extensions are bundled in the `sinatra-contrib` gem.
+
+    gem install sinatra-contrib
+
+
+
 ## Usage
 
 ### In Classic Style Applications
