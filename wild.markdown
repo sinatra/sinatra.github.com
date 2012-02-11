@@ -28,7 +28,7 @@ Applications {#apps}
   an one click development environment built on Shoes
 - [Marley](http://github.com/karmi/marley) the blog engine
   without &lt;textareas&gt;
-- [Postview](http://github.com/hallison/postview) a simple blog-engine that
+- [Postview](http://github.com/codigorama/postview) a simple blog-engine that
   render text files written in [Markdown](http://daringfireball.net/projects/markdown).
 - [Scanty](http://github.com/adamwiggins/scanty) an even more minimalist
   blogging engine
