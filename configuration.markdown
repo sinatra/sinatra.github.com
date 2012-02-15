@@ -131,7 +131,7 @@ The POST `_method` hack is implemented by inserting the
 The directory used as a base for the application. By default, this is
 assumed to be the directory containing the main application file
 (`:app_file` setting). The root directory is used to construct the default
-`:public_directory` and `:views` settings. A common idiom is to set the `:root` setting
+`:public_folder` and `:views` settings. A common idiom is to set the `:root` setting
 explicitly in the main application file as follows:
 
     set :root, File.dirname(__FILE__)
@@ -139,26 +139,26 @@ explicitly in the main application file as follows:
 ### `:static` - enable/disable static file routes
 
 Boolean that determines whether static files should be served from the
-application's public directory (see the `:public_directory` setting). When `:static` is
+application's public directory (see the `:public_folder` setting). When `:static` is
 truthy, Sinatra will check if a static file exists and serve it before
 checking for a matching route.
 
 The `:static` setting is enabled by default when the `public` directory
 exists.
 
-### `:public_directory` - static files directory
+### `:public_folder` - static files directory
 
 A string specifying the directory where static files should be served from.
 By default, this is assumed to be a directory named "public" within the root
 directory (see the `:root` setting). You can set the public directory
 explicitly with:
 
-    set :public_directory, '/var/www'
+    set :public_folder, '/var/www'
 
 The best way to specify an alternative directory name within the root of the
 application is to use a deferred value that references the `:root` setting:
 
-    set :public_directory, Proc.new { File.join(root, "static") }
+    set :public_folder, Proc.new { File.join(root, "static") }
 
 ### `:views` - view template directory
 
@@ -207,7 +207,7 @@ explicitly:
 ### `:app_file` - main application file
 
 The `:app_file` setting is used to calculate the default `:root`,
-`:public_directory`, and `:views` setting values. A common idiom is to override the
+`:public_folder`, and `:views` setting values. A common idiom is to override the
 default detection heuristic by setting the `:app_file` explicitly from
 within the main application file:
 
