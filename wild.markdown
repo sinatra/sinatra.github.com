@@ -263,4 +263,5 @@ Companies using Sinatra {#biz}
 - [Hiboux](http://www.hiboux.ca)
 - [PentesterLab](http://www.pentesterlab.com)
 - [Cedar Creek IT Solutions](http://cedarcreekit.com)
+- [Animoto](http://www.animoto.com)
 
