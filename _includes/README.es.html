@@ -58,6 +58,7 @@
 			<li><a href='#Configurando%20la%20Protecci%C3%B3n%20de%20Ataques'>Configurando la Protección de Ataques</a></li>
 			<li><a href='#Configuraciones%20Disponibles'>Configuraciones Disponibles</a></li>
 		</ol>
+		<li><a href='#Entornos'>Entornos</a></li>
 		<li><a href='#Manejo%20de%20Errores'>Manejo de Errores</a></li>
 		<ol class='level-2'>
 			<li><a href='#No%20encontrado%20%3Cem%3E(Not%20Found)%3C/em%3E'>No encontrado <em>(Not Found)</em></a></li>
@@ -95,8 +96,8 @@
 
 
 
-<p><em>Atención: Este documento es una traducción de la versión en inglés y
-puede estar desactualizado.</em></p>
+<p><em>Atención: Este documento es una traducción de la versión en inglés
+y puede estar desactualizado.</em></p>
 
 <p>Sinatra es un DSL para crear aplicaciones web rápidamente en Ruby con un
 mínimo esfuerzo:</p>
@@ -121,8 +122,8 @@ lo va a utilizar cuando esté disponible.</p>
 <a name='Rutas'></a>
 <h2>Rutas</h2>
 
-<p>En Sinatra, una ruta está compuesta por un método HTTP y un patrón de una
-URL. Cada ruta se asocia con un bloque:</p>
+<p>En Sinatra, una ruta está compuesta por un método HTTP y un patrón de
+una URL. Cada ruta se asocia con un bloque:</p>
 
 <pre>get '/' do
   .. mostrar algo ..
@@ -151,8 +152,8 @@ end</pre>
 <p>Las rutas son comparadas en el orden en el que son definidas. La primer
 ruta que coincide con la petición es invocada.</p>
 
-<p>Los patrones de las rutas pueden incluir parámetros nombrados, accesibles a
-través de el hash <tt>params</tt>:</p>
+<p>Los patrones de las rutas pueden incluir parámetros nombrados, accesibles
+a través de el hash <tt>params</tt>:</p>
 
 <pre>get '/hola/:nombre' do
   # coincide con &quot;GET /hola/foo&quot; y &quot;GET /hola/bar&quot;
@@ -167,8 +168,8 @@ bloque:</p>
   &quot;Hola #{n}!&quot;
 end</pre>
 
-<p>Los patrones de ruta también pueden incluir parámetros splat (o wildcard),
-accesibles a través del arreglo <tt>params[:splat]</tt>:</p>
+<p>Los patrones de ruta también pueden incluir parámetros splat (o
+wildcard), accesibles a través del arreglo <tt>params[:splat]</tt>:</p>
 
 <pre>get '/decir/*/al/*' do
   # coincide con /decir/hola/al/mundo
@@ -205,15 +206,15 @@ end</pre>
   # ejemplo, &quot;GET /posts.json&quot;, &quot;GET /posts.xml&quot;, etc.
 end</pre>
 
-<p>A propósito, a menos que desactivés la protección para el ataque <em>path
-traversal</em> (ver más abajo), el path de la petición puede ser modificado
-antes de que se compare con los de tus rutas.</p>
+<p>A propósito, a menos que desactivés la protección para el ataque
+<em>path traversal</em> (ver más abajo), el path de la petición puede ser
+modificado antes de que se compare con los de tus rutas.</p>
 
 <a name='Condiciones'></a>
 <h3>Condiciones</h3>
 
-<p>Las rutas pueden incluir una variedad de condiciones de selección, como por
-ejemplo el user agent:</p>
+<p>Las rutas pueden incluir una variedad de condiciones de selección, como
+por ejemplo el user agent:</p>
 
 <pre>get '/foo', :agent =&gt; /Songbird (\d\.\d)[\d\/]*?/ do
   &quot;Estás usando la versión de Songbird #{params[:agent][0]}&quot;
@@ -249,8 +250,8 @@ get '/gana_un_auto' do
   &quot;Lo siento, perdiste.&quot;
 end</pre>
 
-<p>Si tu condición acepta más de un argumento, podés pasarle un arreglo.  Al
-definir la condición puede resultarte conveniente utilizar el operador
+<p>Si tu condición acepta más de un argumento, podés pasarle un arreglo. 
+Al definir la condición puede resultarte conveniente utilizar el operador
 splat en la lista de parámetros:</p>
 
 <pre>set(:autorizar) do |*roles|   # &lt;- mirá el splat
@@ -278,8 +279,8 @@ pila de Rack. Lo más común es que sea un string, como en los ejemplos
 anteriores. Sin embargo, otros valor también son aceptados.</p>
 
 <p>Podés devolver cualquier objeto que sea una respuesta Rack válida, un
-objeto que represente el cuerpo de una respuesta Rack o un código de estado
-HTTP:</p>
+objeto que represente el cuerpo de una respuesta Rack o un código de
+estado HTTP:</p>
 <ul><li>
 <p>Un arreglo con tres elementos: <tt>[estado (Fixnum), cabeceras (Hash),
 cuerpo de la respuesta (responde a #each)]</tt></p>
@@ -287,8 +288,8 @@ cuerpo de la respuesta (responde a #each)]</tt></p>
 <p>Un arreglo con dos elementos: <tt>[estado (Fixnum), cuerpo de la respuesta
 (responde a #each)]</tt></p>
 </li><li>
-<p>Un objeto que responde a <tt>#each</tt> y que le pasa únicamente strings al
-bloque dado</p>
+<p>Un objeto que responde a <tt>#each</tt> y que le pasa únicamente strings
+al bloque dado</p>
 </li><li>
 <p>Un Fixnum representando el código de estado</p>
 </li></ul>
@@ -354,13 +355,13 @@ opción <tt>:public_folder</tt>:</p>
 
 <pre>set :public_folder, File.dirname(__FILE__) + '/estaticos'</pre>
 
-<p>Notá que el nombre del directorio público no está incluido en la URL. Por
-ejemplo, el archivo <tt>./public/css/style.css</tt> se accede a través de
-<tt>http://ejemplo.com/css/style.css</tt>.</p>
+<p>Notá que el nombre del directorio público no está incluido en la URL.
+Por ejemplo, el archivo <tt>./public/css/style.css</tt> se accede a través
+de <tt>http://ejemplo.com/css/style.css</tt>.</p>
 
 <p>Usá la configuración <tt>:static_cache_control</tt> para agregar el
-encabezado <tt>Cache-Control</tt> (ver la sección de configuración para más
-detalles).</p>
+encabezado <tt>Cache-Control</tt> (ver la sección de configuración para
+más detalles).</p>
 
 <a name='Vistas%20/%20Plantillas'></a>
 <h2>Vistas / Plantillas</h2>
@@ -382,8 +383,8 @@ contenido de la misma:</p>
   erb codigo
 end</pre>
 
-<p>Los métodos de renderizado, aceptan además un segundo argumento, el hash de
-opciones:</p>
+<p>Los métodos de renderizado, aceptan además un segundo argumento, el hash
+de opciones:</p>
 
 <pre>get '/' do
   erb :index, :layout =&gt; :post
@@ -429,8 +430,9 @@ valor de <tt>settings.default_encoding</tt>.</p>
 </dd><dt>layout</dt>
 <dd>
 <p>Si es <tt>true</tt> o <tt>false</tt> indica que se debe usar, o nó, un
-layout, respectivamente.  También puede ser un símbolo que especifique qué
-plantilla usar.  Ejemplo: <tt>erb :index, :layout =&gt; !request.xhr?</tt></p>
+layout, respectivamente.  También puede ser un símbolo que especifique
+qué plantilla usar.  Ejemplo: <tt>erb :index, :layout =&gt;
+!request.xhr?</tt></p>
 </dd><dt>content_type</dt>
 <dd>
 <p>Content-Type que produce la plantilla.  El valor por defecto depende de
@@ -438,8 +440,8 @@ cada lenguaje de plantillas.</p>
 </dd><dt>scope</dt>
 <dd>
 <p>Ámbito en el que se renderiza la plantilla.  Por defecto utiliza la
-instancia de la aplicación.  Tené en cuenta que si cambiás esta opción las
-variables de instancia y los helpers van a dejar de estar disponibles.</p>
+instancia de la aplicación.  Tené en cuenta que si cambiás esta opción
+las variables de instancia y los helpers van a dejar de estar disponibles.</p>
 </dd><dt>layout_engine</dt>
 <dd>
 <p>Motor de renderizado de plantillas que usa para el layout.  Resulta
@@ -456,15 +458,15 @@ valor del motor usado para renderizar la plantilla. Ejemplo: <tt>set :rdoc,
 <p>Es importante acordarse que siempre tenés que referenciar a las plantillas
 con símbolos, incluso cuando se encuentran en un subdirectorio (en este
 caso tenés que usar <tt>:'subdir/plantilla'</tt>). Tenés que usar un
-símbolo porque los métodos de renderización van a renderizar directamente
-cualquier string que se les pase como argumento.</p>
+símbolo porque los métodos de renderización van a renderizar
+directamente cualquier string que se les pase como argumento.</p>
 
 <a name='Lenguajes%20de%20Plantillas%20Disponibles'></a>
 <h3>Lenguajes de Plantillas Disponibles</h3>
 
 <p>Algunos lenguajes tienen varias implementaciones.  Para especificar que
-implementación usar (y para ser thread-safe), deberías requerirla antes de
-usarla:</p>
+implementación usar (y para ser thread-safe), deberías requerirla antes
+de usarla:</p>
 
 <pre>require 'rdiscount' # o require 'bluecloth'
 get('/') { markdown :index }</pre>
@@ -606,15 +608,15 @@ renderizado:</p>
 
 <pre>erb :resumen, :locals =&gt; { :texto =&gt; markdown(:introduccion) }</pre>
 
-<p>Tené en cuenta que también podés llamar al método <tt>markdown</tt> desde
-otras plantillas:</p>
+<p>Tené en cuenta que también podés llamar al método <tt>markdown</tt>
+desde otras plantillas:</p>
 
 <pre>%h1 Hola Desde Haml!
 %p= markdown(:saludos)</pre>
 
-<p>Como no podés utilizar Ruby desde Markdown, no podés usar layouts escritos
-en Markdown. De todos modos, es posible usar un motor de renderizado para
-el layout distinto al de la plantilla pasando la opción
+<p>Como no podés utilizar Ruby desde Markdown, no podés usar layouts
+escritos en Markdown. De todos modos, es posible usar un motor de
+renderizado para el layout distinto al de la plantilla pasando la opción
 <tt>:layout_engine</tt>.</p>
 
 <a name='Plantillas%20Textile'></a>
@@ -636,8 +638,8 @@ renderizado:</p>
 
 <pre>erb :resumen, :locals =&gt; { :texto =&gt; textile(:introduccion) }</pre>
 
-<p>Tené en cuenta que también podés llamar al método <tt>textile</tt> desde
-otras plantillas:</p>
+<p>Tené en cuenta que también podés llamar al método <tt>textile</tt>
+desde otras plantillas:</p>
 
 <pre>%h1 Hola Desde Haml!
 %p= textile(:saludos)</pre>
@@ -665,8 +667,8 @@ generalmente vas a usarlo en combinación con otro motor de renderizado:</p>
 
 <pre>erb :resumen, :locals =&gt; { :texto =&gt; rdoc(:introduccion) }</pre>
 
-<p>Tené en cuenta que también podés llamar al método <tt>rdoc</tt> desde otras
-plantillas:</p>
+<p>Tené en cuenta que también podés llamar al método <tt>rdoc</tt> desde
+otras plantillas:</p>
 
 <pre>%h1 Hola Desde Haml!
 %p= rdoc(:saludos)</pre>
@@ -746,8 +748,8 @@ otras plantillas:</p>
 <pre>%h1 Hola Desde Haml!
 %p= creole(:saludos)</pre>
 
-<p>Como no podés utilizar Ruby desde Creole, no podés usar layouts escritos en
-Creloe.  De todos modos, es posible usar un motor de renderizado para el
+<p>Como no podés utilizar Ruby desde Creole, no podés usar layouts escritos
+en Creloe.  De todos modos, es posible usar un motor de renderizado para el
 layout distinto al de la plantilla pasando la opción
 <tt>:layout_engine</tt>.</p>
 
@@ -842,7 +844,7 @@ get '/' do
   haml :index
 end</pre>
 
-<p>Si existe una plantilla con el nombre “layout”, va a ser usada cada vez que
+<p>Si existe una plantilla con el nombre "layout", va a ser usada cada vez que
 una plantilla es renderizada. Podés desactivar los layouts individualmente
 pasando <tt>:layout =&gt; false</tt> o globalmente con <tt>set :haml,
 :layout =&gt; false</tt>:</p>
@@ -883,10 +885,10 @@ aprender más de Tilt.</p>
 <a name='Filtros'></a>
 <h2>Filtros</h2>
 
-<p>Los filtros <tt>before</tt> son evaluados antes de cada petición dentro del
-mismo contexto que las rutas. Pueden modificar la petición y la respuesta. 
-Las variables de instancia asignadas en los filtros son accesibles por las
-rutas y las plantillas:</p>
+<p>Los filtros <tt>before</tt> son evaluados antes de cada petición dentro
+del mismo contexto que las rutas. Pueden modificar la petición y la
+respuesta.  Las variables de instancia asignadas en los filtros son
+accesibles por las rutas y las plantillas:</p>
 
 <pre>before do
   @nota = 'Hey!'
@@ -899,7 +901,7 @@ get '/foo/*' do
 end</pre>
 
 <p>Los filtros <tt>after</tt> son evaluados después de cada petición dentro
-del mismo contexto y también pueden modificar la petición y la respuesta. 
+del mismo contexto y también pueden modificar la petición y la respuesta.
 Las variables de instancia asignadas en los filtros <tt>before</tt> y en
 las rutas son accesibles por los filtros <tt>after</tt>:</p>
 
@@ -911,9 +913,9 @@ end</pre>
 devolver un string desde una ruta, el cuerpo de la respuesta no va a estar
 disponible en un filtro after, debido a que todavía no se ha generado.</p>
 
-<p>Los filtros aceptan un patrón opcional, que cuando está presente causa que
-los mismos sean evaluados únicamente si el path de la petición coincide con
-ese patrón:</p>
+<p>Los filtros aceptan un patrón opcional, que cuando está presente causa
+que los mismos sean evaluados únicamente si el path de la petición
+coincide con ese patrón:</p>
 
 <pre>before '/protegido/*' do
   autenticar!
@@ -936,8 +938,9 @@ end</pre>
 <a name='Ayudantes'></a>
 <h2>Ayudantes</h2>
 
-<p>Usá el método top-level <tt>helpers</tt> para definir métodos ayudantes que
-pueden ser utilizados dentro de los manejadores de rutas y las plantillas:</p>
+<p>Usá el método top-level <tt>helpers</tt> para definir métodos ayudantes
+que pueden ser utilizados dentro de los manejadores de rutas y las
+plantillas:</p>
 
 <pre>helpers do
   def bar(nombre)
@@ -948,6 +951,22 @@ end
 get '/:nombre' do
   bar(params[:nombre])
 end</pre>
+
+<p>Por cuestiones organizativas, puede resultar conveniente organizar los
+métodos ayudantes en distintos módulos:</p>
+
+<pre>module FooUtils
+  def foo(nombre) &quot;#{nombre}foo&quot; end
+end
+
+module BarUtils
+  def bar(nombre) &quot;#{nombre}bar&quot; end
+end
+
+helpers FooUtils, BarUtils</pre>
+
+<p>El efecto de utilizar <tt>helpers</tt> de esta manera es el mismo que
+resulta de incluir los módulos en la clase de la aplicación.</p>
 
 <a name='Usando%20Sesiones'></a>
 <h3>Usando Sesiones</h3>
@@ -986,14 +1005,14 @@ end</pre>
 <p>Para incrementar la seguridad, los datos de la sesión almacenados en la
 cookie son firmados con un secreto de sesión.  Este secreto, es generado
 aleatoriamente por Sinatra.  De cualquier manera, hay que tener en cuenta
-que cada vez que inicies la aplicación se va a generar uno nuevo.  Así, si
-querés que todas las instancias de tu aplicación compartan un único
+que cada vez que inicies la aplicación se va a generar uno nuevo.  Así,
+si querés que todas las instancias de tu aplicación compartan un único
 secreto, tenés que definirlo vos:</p>
 
 <pre>set :session_secret, 'super secreto'</pre>
 
-<p>Si necesitás una configuración más específica, <tt>sessions</tt> acepta un
-Hash con opciones:</p>
+<p>Si necesitás una configuración más específica, <tt>sessions</tt> acepta
+un Hash con opciones:</p>
 
 <pre>set :sessions, :domain =&gt; 'foo.com'</pre>
 
@@ -1064,8 +1083,9 @@ end</pre>
 <tt>/bar</tt>.  Así, vas a simplificar las pruebas y a mejorar el
 rendimiento.</p>
 
-<p>Si querés que la petición se envíe a la misma instancia de la aplicación en
-lugar de a otra, usá <tt>call!</tt> en lugar de <tt>call</tt>.</p>
+<p>Si querés que la petición se envíe a la misma instancia de la
+aplicación en lugar de a otra, usá <tt>call!</tt> en lugar de
+<tt>call</tt>.</p>
 
 <p>En la especificación de Rack podés encontrar más información sobre
 <tt>call</tt>.</p>
@@ -1073,11 +1093,12 @@ lugar de a otra, usá <tt>call!</tt> en lugar de <tt>call</tt>.</p>
 <a name='Asignando%20el%20C%C3%B3digo%20de%20Estado,%20los%20Encabezados%20y%20el%20Cuerpo%20de%20una%20Respuesta'></a>
 <h3>Asignando el Código de Estado, los Encabezados y el Cuerpo de una Respuesta</h3>
 
-<p>Es posible, y se recomienda, asignar el código de estado y el cuerpo de una
-respuesta con el valor de retorno de una ruta.  De cualquier manera, en
+<p>Es posible, y se recomienda, asignar el código de estado y el cuerpo de
+una respuesta con el valor de retorno de una ruta.  De cualquier manera, en
 varios escenarios, puede que sea conveniente asignar el cuerpo en un punto
-arbitrario del flujo de ejecución con el método <tt>body</tt>.  A partir de
-ahí, podés usar ese mismo método para acceder al cuerpo de la respuesta:</p>
+arbitrario del flujo de ejecución con el método <tt>body</tt>.  A partir
+de ahí, podés usar ese mismo método para acceder al cuerpo de la
+respuesta:</p>
 
 <pre>get '/foo' do
   body &quot;bar&quot;
@@ -1089,9 +1110,10 @@ end</pre>
 
 <p>También es posible pasarle un bloque a <tt>body</tt>, que será ejecutado
 por el Rack handler (podés usar esto para implementar streaming, mirá
-“Valores de retorno”).</p>
+"Valores de retorno").</p>
 
-<p>De manera similar, también podés asignar el código de estado y encabezados:</p>
+<p>De manera similar, también podés asignar el código de estado y
+encabezados:</p>
 
 <pre>get '/foo' do
   status 418
@@ -1111,8 +1133,8 @@ les pasa argumentos.</p>
 <p>A veces vas a querer empezar a enviar la respuesta a pesar de que todavía
 no terminaste de generar su cuerpo.  También es posible que, en algunos
 casos, quieras seguir enviando información hasta que el cliente cierre la
-conexión. Cuando esto ocurra, el <tt>stream</tt> helper te va a ser de gran
-ayuda:</p>
+conexión. Cuando esto ocurra, el <tt>stream</tt> helper te va a ser de
+gran ayuda:</p>
 
 <pre>get '/' do
   stream do |out|
@@ -1163,15 +1185,15 @@ end</pre>
 <a name='Log%20(Registro)'></a>
 <h3>Log (Registro)</h3>
 
-<p>En el ámbito de la petición, el helper <tt>logger</tt> (registrador) expone
-una instancia de <tt>Logger</tt>:</p>
+<p>En el ámbito de la petición, el helper <tt>logger</tt> (registrador)
+expone una instancia de <tt>Logger</tt>:</p>
 
 <pre>get '/' do
   logger.info &quot;cargando datos&quot;
   # ...
 end</pre>
 
-<p>Este logger tiene en cuenta la configuración de logueo de tu Rack handler. 
+<p>Este logger tiene en cuenta la configuración de logueo de tu Rack handler.
 Si el logueo está desactivado, este método va a devolver un objeto que se
 comporta como un logger pero que en realidad no hace nada.  Así, no vas a
 tener que preocuparte por esta situación.</p>
@@ -1188,8 +1210,8 @@ end</pre>
 
 <p>Para evitar que se inicialice cualquier middleware de logging, configurá
 <tt>logging</tt> a <tt>nil</tt>.  Tené en cuenta que, cuando hagas esto,
-<tt>logger</tt> va a devolver <tt>nil</tt>.  Un caso común es cuando querés
-usar tu propio logger. Sinatra va a usar lo que encuentre en
+<tt>logger</tt> va a devolver <tt>nil</tt>.  Un caso común es cuando
+querés usar tu propio logger. Sinatra va a usar lo que encuentre en
 <tt>env['rack.logger']</tt>.</p>
 
 <a name='Tipos%20Mime'></a>
@@ -1221,8 +1243,8 @@ Haml:</p>
 <p>Tiene en cuenta proxies inversos y encaminadores de Rack, si están
 presentes.</p>
 
-<p>Este método también puede invocarse mediante su alias <tt>to</tt>  (mirá un
-ejemplo a continuación).</p>
+<p>Este método también puede invocarse mediante su alias <tt>to</tt>  (mirá
+un ejemplo a continuación).</p>
 
 <a name='Redirecci%C3%B3n%20del%20Navegador'></a>
 <h3>Redirección del Navegador</h3>
@@ -1251,8 +1273,8 @@ get '/bar' do
   redirect back
 end</pre>
 
-<p>Para pasar argumentos con una redirección, podés agregarlos a la cadena de
-búsqueda:</p>
+<p>Para pasar argumentos con una redirección, podés agregarlos a la cadena
+de búsqueda:</p>
 
 <pre>redirect to('/bar?suma=42')</pre>
 
@@ -1334,8 +1356,8 @@ end</pre>
 encabezado <tt>Cache-Control</tt> a archivos estáticos (ver la sección de
 configuración para más detalles).</p>
 
-<p>De acuerdo con la RFC 2616 tu aplicación debería comportarse diferente si a
-las cabeceras If-Match o If-None-Match se le asigna el valor <tt>*</tt>
+<p>De acuerdo con la RFC 2616 tu aplicación debería comportarse diferente si
+a las cabeceras If-Match o If-None-Match se le asigna el valor <tt>*</tt>
 cuando el recurso solicitado ya existe.  Sinatra asume para peticiones
 seguras (como get) e idempotentes (como put) que el recurso existe,
 mientras que para el resto (como post), que no.  Podes cambiar este
@@ -1368,7 +1390,7 @@ end</pre>
 <p>Estas opciones son:</p>
 <dl class="rdoc-list"><dt>filename</dt>
 <dd>
-<p>nombre del archivo respondido, por defecto es el nombre real del archivo.</p>
+<p>nombre del archivo devuelto, por defecto es el nombre real del archivo.</p>
 </dd><dt>last_modified</dt>
 <dd>
 <p>valor para el encabezado Last-Modified, por defecto toma el mtime del
@@ -1449,8 +1471,9 @@ end</pre>
 <a name='Archivos%20Adjuntos'></a>
 <h3>Archivos Adjuntos</h3>
 
-<p>Podés usar el método helper <tt>attachment</tt> para indicarle al navegador
-que almacene la respuesta en el disco en lugar de mostrarla en pantalla:</p>
+<p>Podés usar el método helper <tt>attachment</tt> para indicarle al
+navegador que almacene la respuesta en el disco en lugar de mostrarla en
+pantalla:</p>
 
 <pre>get '/' do
   attachment
@@ -1508,9 +1531,9 @@ las plantillas que se van a renderizar:</p>
   puts &quot;podría ser #{archivo}&quot;
 end</pre>
 
-<p>Si bien esto no es muy útil, lo interesante es que podés sobreescribir este
-método, y así enganchar tu propio mecanismo de búsqueda.  Por ejemplo, para
-poder utilizar más de un directorio de vistas:</p>
+<p>Si bien esto no es muy útil, lo interesante es que podés sobreescribir
+este método, y así enganchar tu propio mecanismo de búsqueda.  Por
+ejemplo, para poder utilizar más de un directorio de vistas:</p>
 
 <pre>set :views, ['vistas', 'plantillas']
 
@@ -1535,13 +1558,13 @@ end</pre>
 
 <p>¡Es muy fácil convertir estos ejemplos en una extensión y compartirla!.</p>
 
-<p>Notá que <tt>find_template</tt> no verifica si un archivo existe realmente,
-sino que llama al bloque que recibe para cada path posible.  Esto no
-representa un problema de rendimiento debido a que <tt>render</tt> va a
-usar <tt>break</tt> ni bien encuentre un archivo que exista.  Además, las
-ubicaciones de las plantillas (y su contenido) se cachean cuando no estás
-en el modo de desarrollo.  Es bueno tener en cuenta lo anteiror si escribís
-un método medio loco.</p>
+<p>Notá que <tt>find_template</tt> no verifica si un archivo existe
+realmente, sino que llama al bloque que recibe para cada path posible. 
+Esto no representa un problema de rendimiento debido a que <tt>render</tt>
+va a usar <tt>break</tt> ni bien encuentre un archivo que exista.  Además,
+las ubicaciones de las plantillas (y su contenido) se cachean cuando no
+estás en el modo de desarrollo.  Es bueno tener en cuenta lo anteiror si
+escribís un método medio loco.</p>
 
 <a name='Configuraci%C3%B3n'></a>
 <h2>Configuración</h2>
@@ -1595,8 +1618,8 @@ end</pre>
 
 <p>Sinatra usa <a
 href="https://github.com/rkh/rack-protection#readme">Rack::Protection</a>
-para defender a tu aplicación de los ataques más comunes.  Tenés que tener
-en cuenta que como consecuencia de esto puede venir asociada una
+para defender a tu aplicación de los ataques más comunes.  Tenés que
+tener en cuenta que como consecuencia de esto puede venir asociada una
 disminución del rendimiento de tu aplicación.  Si por este, o algún otro
 motivo, querés desactivar está funcionalidad, podés hacerlo:</p>
 
@@ -1618,10 +1641,10 @@ motivo, querés desactivar está funcionalidad, podés hacerlo:</p>
 embargo, como consecuencia de esto, va a dejar de cumplir con el RFC 2616
 (HTTP 1.1), que solamente permite redirecciones absolutas.</p>
 
-<p>Activalo si tu apliación está corriendo atrás de un proxy inverso que no se
-ha configurado adecuadamente.  Notá que el helper <tt>url</tt> va a seguir
-produciendo URLs absolutas, a menos que le pasés <tt>false</tt> como
-segundo parámetro.</p>
+<p>Activalo si tu apliación está corriendo atrás de un proxy inverso que no
+se ha configurado adecuadamente.  Notá que el helper <tt>url</tt> va a
+seguir produciendo URLs absolutas, a menos que le pasés <tt>false</tt>
+como segundo parámetro.</p>
 
 <p>Deshabilitada por defecto.</p>
 </dd><dt>add_charsets</dt>
@@ -1629,15 +1652,15 @@ segundo parámetro.</p>
 <p>tipos mime a los que el helper <tt>content_type</tt> les añade
 automáticamente el charset.</p>
 
-<p>En general, no deberías asignar directamente esta opción, sino añadirle los
-charsets que quieras:</p>
+<p>En general, no deberías asignar directamente esta opción, sino añadirle
+los charsets que quieras:</p>
 
 <pre>settings.add_charsets &lt;&lt; &quot;application/foobar&quot;</pre>
 </dd><dt>app_file</dt>
 <dd>
 <p>path del archivo principal de la aplicación, se utiliza para detectar la
-raíz del proyecto, el directorio de las vistas y el público, así como las
-plantillas inline.</p>
+raíz del proyecto, el directorio de las vistas y el público, así como
+las plantillas inline.</p>
 </dd><dt>bind</dt>
 <dd>
 <p>dirección IP que utilizará el servidor integrado (por defecto: 0.0.0.0).</p>
@@ -1672,9 +1695,9 @@ en navegadores que no los soportan.</p>
 </dd><dt>prefixed_redirects</dt>
 <dd>
 <p>define si inserta <tt>request.script_name</tt> en las redirecciones cuando
-no se proporciona un path absoluto. De esta manera, cuando está habilitada,
-<tt>redirect '/foo'</tt> se comporta de la misma manera que <tt>redirect
-to('/foo')</tt>.  Se encuentra deshabilitada por defecto.</p>
+no se proporciona un path absoluto. De esta manera, cuando está
+habilitada, <tt>redirect '/foo'</tt> se comporta de la misma manera que
+<tt>redirect to('/foo')</tt>.  Se encuentra deshabilitada por defecto.</p>
 </dd><dt>protection</dt>
 <dd>
 <p>define si deben activarse las protecciones para los ataques web más
@@ -1693,8 +1716,8 @@ utiliza cuando se sirven archivos estáticos (ver la opción
 <p>Se encuentra activado en el entorno de desarrollo.</p>
 </dd><dt>root</dt>
 <dd>
-<p>path del directorio raíz del proyecto.  Si no está presente, se infiere del
-valor de la opción <tt>app_file</tt>.</p>
+<p>path del directorio raíz del proyecto.  Si no está presente, se infiere
+del valor de la opción <tt>app_file</tt>.</p>
 </dd><dt>raise_errors</dt>
 <dd>
 <p>elevar excepciones (detiene la aplicación).  Se encuentra activada por
@@ -1711,12 +1734,12 @@ configuración!.</p>
 </dd><dt>server</dt>
 <dd>
 <p>servidor, o lista de servidores, para usar como servidor integrado.  Por
-defecto: [‘thin’, ‘mongrel’, ‘webrick’], el orden establece la prioridad.</p>
+defecto: ['thin', 'mongrel', 'webrick'], el orden establece la prioridad.</p>
 </dd><dt>sessions</dt>
 <dd>
 <p>habilita el soporte de sesiones basadas en cookies a través de
-<tt>Rack::Session::Cookie</tt>.  Ver la sección ‘Usando Sesiones’ para más
-información.</p>
+<tt>Rack::Session::Cookie</tt>.  Ver la sección 'Usando Sesiones' para
+más información.</p>
 </dd><dt>show_exceptions</dt>
 <dd>
 <p>muestra un stack trace en el navegador cuando ocurre una excepción.  Se
@@ -1726,9 +1749,9 @@ encuentra activada por defecto cuando el valor de <tt>environment</tt> es
 <dd>
 <p>define si Sinatra debe encargarse de servir archivos estáticos.</p>
 
-<p>Deshabilitala cuando usés un servidor capaz de hacerlo por sí solo, porque
-mejorará el rendimiento.  Se encuentra habilitada por defecto en el estilo
-clásico y desactivado en el el modular.</p>
+<p>Deshabilitala cuando usés un servidor capaz de hacerlo por sí solo,
+porque mejorará el rendimiento.  Se encuentra habilitada por defecto en el
+estilo clásico y desactivado en el el modular.</p>
 </dd><dt>static_cache_control</dt>
 <dd>
 <p>cuando Sinatra está sirviendo archivos estáticos, y está opción está
@@ -1742,6 +1765,33 @@ array cuando se asignan múltiples valores:  <tt>set :static_cache_control,
 <p>path del directorio de las vistas.  Si no está presente, se infiere del
 valor de la opción <tt>app_file</tt>.</p>
 </dd></dl>
+
+<a name='Entornos'></a>
+<h2>Entornos</h2>
+
+<p>Existen tres entornos (<tt>environments</tt>) predefinidos:
+<tt>development</tt>, <tt>production</tt> y <tt>test</tt>.  El entorno por
+defecto es <tt>development</tt> y tiene algunas particularidades:</p>
+<ul><li>
+<p>Se recargan las plantillas entre una petición y la siguiente, a diferencia</p>
+</li></ul>
+
+<p>de <tt>production</tt> y <tt>test</tt>, donde se cachean.</p>
+<ul><li>
+<p>Se instalan manejadores de errores <tt>not_found</tt> y <tt>error</tt></p>
+</li></ul>
+
+<p>especiales que muestran un stack trace en el navegador cuando son
+disparados.</p>
+
+<p>Para utilizar alguno de los otros entornos puede asignarse el valor
+correspondiente a la variable de entorno <tt>RACK_ENV</tt>, o bien utilizar
+la opción <tt>-e</tt> al ejecutar la aplicación:</p>
+
+<pre>ruby mi_app.rb -e &lt;ENTORNO&gt;</pre>
+
+<p>Los métodos <tt>development?</tt>, <tt>test?</tt> y <tt>production?</tt>
+te permiten conocer el entorno actual.</p>
 
 <a name='Manejo%20de%20Errores'></a>
 <h2>Manejo de Errores</h2>
@@ -1787,7 +1837,8 @@ end</pre>
 
 <pre>Lo que pasó fue... algo malo</pre>
 
-<p>También, podés instalar un manejador de errores para un código de estado:</p>
+<p>También, podés instalar un manejador de errores para un código de
+estado:</p>
 
 <pre>error 403 do
   'Acceso prohibido'
@@ -1805,7 +1856,7 @@ end</pre>
 
 <p>Sinatra instala manejadores <tt>not_found</tt> y
 &lt;tt&gt;error&lt;/ttt&gt; especiales cuando se ejecuta dentro del entorno
-de desarrollo “development”.</p>
+de desarrollo "development".</p>
 
 <a name='Rack%20Middleware'></a>
 <h2>Rack Middleware</h2>
@@ -1813,10 +1864,10 @@ de desarrollo “development”.</p>
 <p>Sinatra corre sobre <a href="http://rack.rubyforge.org/">Rack</a>, una
 interfaz minimalista que es un estándar para frameworks webs escritos en
 Ruby. Una de las capacidades más interesantes de Rack para los
-desarrolladores de aplicaciones es el soporte de “middleware” – componentes
-que se ubican entre el servidor y tu aplicación, supervisando y/o
-manipulando la petición/respuesta HTTP para proporcionar varios tipos de
-funcionalidades comunes.</p>
+desarrolladores de aplicaciones es el soporte de "middleware" --
+componentes que se ubican entre el servidor y tu aplicación, supervisando
+y/o manipulando la petición/respuesta HTTP para proporcionar varios tipos
+de funcionalidades comunes.</p>
 
 <p>Sinatra hace muy sencillo construir tuberías de Rack middleware a través
 del método top-level <tt>use</tt>:</p>
@@ -1831,7 +1882,8 @@ get '/hola' do
   'Hola Mundo'
 end</pre>
 
-<p>Las semánticas de <tt>use</tt> son idénticas a las definidas para el DSL <a
+<p>Las semánticas de <tt>use</tt> son idénticas a las definidas para el DSL
+<a
 href="http://rack.rubyforge.org/doc/classes/Rack/Builder.html">Rack::Builder</a>
 (más frecuentemente usado desde archivos rackup). Por ejemplo, el método
 <tt>use</tt> acepta argumentos múltiples/variables así como bloques:</p>
@@ -1843,8 +1895,8 @@ end</pre>
 <p>Rack es distribuido con una variedad de middleware estándar para logging,
 debugging, enrutamiento URL, autenticación, y manejo de sesiones. Sinatra
 usa muchos de estos componentes automáticamente de acuerdo a su
-configuración para que típicamente no tengas que usarlas (con <tt>use</tt>)
-explícitamente.</p>
+configuración para que típicamente no tengas que usarlas (con
+<tt>use</tt>) explícitamente.</p>
 
 <p>Podés encontrar middleware útil en <a
 href="https://github.com/rack/rack/tree/master/lib/rack">rack</a>, <a
@@ -1890,15 +1942,15 @@ end</pre>
 <a name='Sinatra::Base%20-%20Middleware,%20Librer%C3%ADas,%20y%20Aplicaciones%20Modulares'></a>
 <h2>Sinatra::Base - Middleware, Librerías, y Aplicaciones Modulares</h2>
 
-<p>Definir tu aplicación en el top-level funciona bien para micro-aplicaciones
-pero trae inconvenientes considerables a la hora de construir componentes
-reutilizables como Rack middleware, Rails metal, simple librerías con un
-componente de servidor, o incluso extensiones de Sinatra. El DSL de
-top-level contamina el espacio de nombres de Object y asume una
-configuración apropiada para micro-aplicaciones (por ejemplo, un único
-archivo de aplicación, los directorios <tt>./public</tt> y
-<tt>./views</tt>, logging, página con detalles de excepción, etc.). Ahí es
-donde <tt>Sinatra::Base</tt> entra en el juego:</p>
+<p>Definir tu aplicación en el top-level funciona bien para
+micro-aplicaciones pero trae inconvenientes considerables a la hora de
+construir componentes reutilizables como Rack middleware, Rails metal,
+simple librerías con un componente de servidor, o incluso extensiones de
+Sinatra. El DSL de top-level contamina el espacio de nombres de Object y
+asume una configuración apropiada para micro-aplicaciones (por ejemplo, un
+único archivo de aplicación, los directorios <tt>./public</tt> y
+<tt>./views</tt>, logging, página con detalles de excepción, etc.). Ahí
+es donde <tt>Sinatra::Base</tt> entra en el juego:</p>
 
 <pre>require 'sinatra/base'
 
@@ -1912,20 +1964,21 @@ class MiApp &lt; Sinatra::Base
 end</pre>
 
 <p>Las subclases de <tt>Sinatra::Base</tt> tienen disponibles exactamente los
-mismos métodos que los provistos por el DSL de top-level. La mayoría de las
-aplicaciones top-level se pueden convertir en componentes
+mismos métodos que los provistos por el DSL de top-level. La mayoría de
+las aplicaciones top-level se pueden convertir en componentes
 <tt>Sinatra::Base</tt> con dos modificaciones:</p>
 <ul><li>
 <p>Tu archivo debe requerir <tt>sinatra/base</tt> en lugar de
 <tt>sinatra</tt>; de otra manera, todos los métodos del DSL de sinatra son
 importados dentro del espacio de nombres principal.</p>
 </li><li>
-<p>Poné las rutas, manejadores de errores, filtros y opciones de tu aplicación
-en una subclase de <tt>Sinatra::Base</tt>.</p>
+<p>Poné las rutas, manejadores de errores, filtros y opciones de tu
+aplicación en una subclase de <tt>Sinatra::Base</tt>.</p>
 </li></ul>
 
-<p><tt>Sinatra::Base</tt> es una pizarra en blanco. La mayoría de las opciones
-están desactivadas por defecto, incluyendo el servidor incorporado. Mirá <a
+<p><tt>Sinatra::Base</tt> es una pizarra en blanco. La mayoría de las
+opciones están desactivadas por defecto, incluyendo el servidor
+incorporado. Mirá <a
 href="http://sinatra.github.com/configuration.html">Opciones y
 Configuraciones</a> para detalles sobre las opciones disponibles y su
 comportamiento.</p>
@@ -1934,8 +1987,8 @@ comportamiento.</p>
 <h3>Estilo Modular vs. Clásico</h3>
 
 <p>Contrariamente a la creencia popular, no hay nada de malo con el estilo
-clásico. Si se ajusta a tu aplicación, no es necesario que la cambies a una
-modular.</p>
+clásico. Si se ajusta a tu aplicación, no es necesario que la cambies a
+una modular.</p>
 
 <p>Existen tan solo dos desventajas en comparación con el estilo modular:</p>
 <ul><li>
@@ -1943,15 +1996,15 @@ modular.</p>
 planificado usar más, cambiá al estilo modular.</p>
 </li><li>
 <p>El estilo clásico contamina Object con métodos delegadores - si tenés
-planificado empaquetar tu aplicación en una librería/gem, cambiá al estilo
-modular.</p>
+planificado empaquetar tu aplicación en una librería/gem, cambiá al
+estilo modular.</p>
 </li></ul>
 
 <p>No hay ninguna razón por la cuál no puedas mezclar los estilos modular y
 clásico.</p>
 
-<p>Cuando cambiés de un estilo al otro, tené en cuenta las sutiles diferencias
-entre sus configuraciones:</p>
+<p>Cuando cambiés de un estilo al otro, tené en cuenta las sutiles
+diferencias entre sus configuraciones:</p>
 
 <pre>Configuración       Clásica                      Modular
 
@@ -2015,8 +2068,8 @@ run Sinatra::Application</pre>
 
 <p>Indicadores de que probablemente querés usar <tt>config.ru</tt>:</p>
 <ul><li>
-<p>Querés realizar el deploy con un hanlder Rack distinto (Passenger, Unicorn,
-Heroku, …).</p>
+<p>Querés realizar el deploy con un hanlder Rack distinto (Passenger,
+Unicorn, Heroku, ...).</p>
 </li><li>
 <p>Querés usar más de una subclase de <tt>Sinatra::Base</tt>.</p>
 </li><li>
@@ -2031,9 +2084,9 @@ aplicación modular para iniciarla con <tt>config.ru</tt>.</b></p>
 <h3>Utilizando Sinatra como Middleware</h3>
 
 <p>Sinatra no solo es capaz de usar otro Rack middleware, sino que a su vez,
-cualquier aplicación Sinatra puede ser agregada delante de un endpoint Rack
-como middleware. Este endpoint puede ser otra aplicación Sinatra, o
-cualquier aplicación basada en Rack (Rails/Ramaze/Camping/…):</p>
+cualquier aplicación Sinatra puede ser agregada delante de un endpoint
+Rack como middleware. Este endpoint puede ser otra aplicación Sinatra, o
+cualquier aplicación basada en Rack (Rails/Ramaze/Camping/...):</p>
 
 <pre>require 'sinatra/base'
 
@@ -2109,16 +2162,16 @@ run ProyectoRails::Application</pre>
 <a name='%C3%81mbitos%20y%20Ligaduras'></a>
 <h2>Ámbitos y Ligaduras</h2>
 
-<p>El ámbito en el que te encontrás determina que métodos y variables están
-disponibles.</p>
+<p>El ámbito en el que te encontrás determina que métodos y variables
+están disponibles.</p>
 
 <a name='%C3%81mbito%20de%20Aplicaci%C3%B3n/Clase'></a>
 <h3>Ámbito de Aplicación/Clase</h3>
 
-<p>Cada aplicación Sinatra es una subclase de <tt>Sinatra::Base</tt>. Si estás
-usando el DSL de top-level (<tt>require 'sinatra'</tt>), entonces esta
-clase es <tt>Sinatra::Application</tt>, de otra manera es la subclase que
-creaste explícitamente.  Al nivel de la clase tenés métodos como
+<p>Cada aplicación Sinatra es una subclase de <tt>Sinatra::Base</tt>. Si
+estás usando el DSL de top-level (<tt>require 'sinatra'</tt>), entonces
+esta clase es <tt>Sinatra::Application</tt>, de otra manera es la subclase
+que creaste explícitamente.  Al nivel de la clase tenés métodos como
 <tt>get</tt> o <tt>before</tt>, pero no podés acceder a los objetos
 <tt>request</tt> o <tt>session</tt>, ya que hay una única clase de la
 aplicación para todas las peticiones.</p>
@@ -2149,8 +2202,8 @@ end</pre>
 
 <p>Este ámbito puede alcanzarse de las siguientes maneras:</p>
 <ul><li>
-<p>A través del objeto pasado a los bloques de configuración (<tt>configure {
-|c| ...}</tt>)</p>
+<p>A través del objeto pasado a los bloques de configuración (<tt>configure
+{ |c| ...}</tt>)</p>
 </li><li>
 <p>Llamando a <tt>settings</tt> desde dentro del ámbito de la petición</p>
 </li></ul>
@@ -2161,9 +2214,9 @@ end</pre>
 <p>Para cada petición entrante, una nueva instancia de la clase de tu
 aplicación es creada y todos los bloques de rutas son ejecutados en ese
 ámbito. Desde este ámbito podés acceder a los objetos <tt>request</tt> y
-<tt>session</tt> o llamar a los métodos de renderización como <tt>erb</tt>
-o <tt>haml</tt>. Podés acceder al ámbito de la aplicación desde el ámbito
-de la petición utilizando <tt>settings</tt>:</p>
+<tt>session</tt> o llamar a los métodos de renderización como
+<tt>erb</tt> o <tt>haml</tt>. Podés acceder al ámbito de la aplicación
+desde el ámbito de la petición utilizando <tt>settings</tt>:</p>
 
 <pre>class MiApp &lt; Sinatra::Base
   # Ey, estoy en el ámbito de la aplicación!
@@ -2196,11 +2249,11 @@ end</pre>
 
 <p>El ámbito de delegación solo reenvía métodos al ámbito de clase. De
 cualquier manera, no se comporta 100% como el ámbito de clase porque no
-tenés la ligadura de la clase: únicamente métodos marcados explícitamente
-para delegación están disponibles y no compartís variables/estado con el
-ámbito de clase (léase: tenés un <tt>self</tt> diferente). Podés agregar
-delegaciones de método llamando a <tt>Sinatra::Delegator.delegate
-:nombre_del_metodo</tt>.</p>
+tenés la ligadura de la clase: únicamente métodos marcados
+explícitamente para delegación están disponibles y no compartís
+variables/estado con el ámbito de clase (léase: tenés un <tt>self</tt>
+diferente). Podés agregar delegaciones de método llamando a
+<tt>Sinatra::Delegator.delegate :nombre_del_metodo</tt>.</p>
 
 <p>Tenés la ligadura al ámbito de delegación dentro de:</p>
 <ul><li>
@@ -2239,14 +2292,14 @@ en el espacio de nombres principal</a>.</p>
 <dd>
 <p>1.8.7 es soportado completamente.  Sin embargo, si no hay nada que te lo
 prohíba, te recomendamos que usés 1.9.2 o cambies a JRuby o Rubinius.  No
-se dejará de dar soporte a 1.8.7 hasta Sinatra 2.0 y Ruby 2.0, aunque si se
-libera la versión 1.8.8 de Ruby las cosas podrían llegar a cambiar.  Sin
-embargo, que eso ocurra es muy poco probable, e incluso el caso de que lo
-haga, puede que se siga dando soporte a 1.8.7.  <b>Hemos dejado de soportar
-Ruby 1.8.6.</b> Si querés ejecutar Sinatra sobre 1.8.6, podés utilizar la
-versión 1.2, pero tené en cuenta que una vez que Sinatra 1.4.0 sea
-liberado, ya no se corregirán errores por más que se reciban reportes de
-los mismos.</p>
+se dejará de dar soporte a 1.8.7 hasta Sinatra 2.0 y Ruby 2.0, aunque si
+se libera la versión 1.8.8 de Ruby las cosas podrían llegar a cambiar. 
+Sin embargo, que eso ocurra es muy poco probable, e incluso el caso de que
+lo haga, puede que se siga dando soporte a 1.8.7.  <b>Hemos dejado de
+soportar Ruby 1.8.6.</b> Si querés ejecutar Sinatra sobre 1.8.6, podés
+utilizar la versión 1.2, pero tené en cuenta que una vez que Sinatra
+1.4.0 sea liberado, ya no se corregirán errores por más que se reciban
+reportes de los mismos.</p>
 </dd><dt> Ruby 1.9.2 </dt>
 <dd>
 <p>1.9.2 es soportado y recomendado.  Tené en cuenta que Radius y Markaby no
@@ -2259,13 +2312,13 @@ haga el core team de Ruby.</p>
 <dd>
 <p>1.9.3 es soportado completamente.  De todas maneras, recomendamos esperar a
 que se liberen niveles de parche superiores (el actual es p0) antes de
-usarlo en producción.  Es importante notar que el cambio desde una versión
-anterior a 1.9.3 va a invalidar todas las sesiones.</p>
+usarlo en producción.  Es importante notar que el cambio desde una
+versión anterior a 1.9.3 va a invalidar todas las sesiones.</p>
 </dd><dt> Rubinius </dt>
 <dd>
 <p>Rubinius es soportado oficialmente (Rubinius &gt;= 1.2.4).  Todo funciona
-correctamente, incluyendo los lenguajes de plantillas.  La próxima versión,
-2.0, también es soportada.</p>
+correctamente, incluyendo los lenguajes de plantillas.  La próxima
+versión, 2.0, también es soportada.</p>
 </dd><dt> JRuby </dt>
 <dd>
 <p>JRuby es soportado oficialmente (JRuby &gt;= 1.6.5).  No se conocen
@@ -2294,10 +2347,10 @@ oficialmente.  De cualquier manera, pueden ejecutar Sinatra:</p>
 rompen ahí y no en una plataforma soportada, asumimos que no es nuestro
 problema sino el suyo.</p>
 
-<p>Nuestro servidor CI también se ejecuta sobre ruby-head (que será la próxima
-versión 2.0.0) y la rama 1.9.4.  Como están en movimiento constante, no
-podemos garantizar nada.  De todas formas, podés contar con que tanto
-1.9.4-p0 como 2.0.0-p0 sea soportadas.</p>
+<p>Nuestro servidor CI también se ejecuta sobre ruby-head (que será la
+próxima versión 2.0.0) y la rama 1.9.4.  Como están en movimiento
+constante, no podemos garantizar nada.  De todas formas, podés contar con
+que tanto 1.9.4-p0 como 2.0.0-p0 sea soportadas.</p>
 
 <p>Sinatra debería funcionar en cualquier sistema operativo soportado por la
 implementación de Ruby elegida.</p>
@@ -2308,8 +2361,9 @@ BlueRuby o cualquier versión de Ruby anterior a 1.8.7.</p>
 <a name='A%20la%20Vanguardia'></a>
 <h2>A la Vanguardia</h2>
 
-<p>Si querés usar el código de Sinatra más reciente, sentite libre de ejecutar
-tu aplicación sobre la rama master, en general es bastante estable.</p>
+<p>Si querés usar el código de Sinatra más reciente, sentite libre de
+ejecutar tu aplicación sobre la rama master, en general es bastante
+estable.</p>
 
 <p>También liberamos prereleases de vez en cuando, así, podés hacer</p>
 
@@ -2327,7 +2381,8 @@ versión de Sinatra usando <a href="http://gembundler.com/">Bundler</a>.</p>
 
 <pre>gem install bundler</pre>
 
-<p>Después, en el directorio de tu proyecto, creá un archivo <tt>Gemfile</tt>:</p>
+<p>Después, en el directorio de tu proyecto, creá un archivo
+<tt>Gemfile</tt>:</p>
 
 <pre>source :rubygems
 gem 'sinatra', :git =&gt; &quot;git://github.com/sinatra/sinatra.git&quot;
@@ -2347,8 +2402,8 @@ Tilt) porque Bundler las agrega directamente.</p>
 <a name='Con%20Git'></a>
 <h3>Con Git</h3>
 
-<p>Cloná el repositorio localmente y ejecutá tu aplicación, asegurándote que
-el directorio <tt>sinatra/lib</tt> esté en el <tt>$LOAD_PATH</tt>:</p>
+<p>Cloná el repositorio localmente y ejecutá tu aplicación, asegurándote
+que el directorio <tt>sinatra/lib</tt> esté en el <tt>$LOAD_PATH</tt>:</p>
 
 <pre>cd miapp
 git clone git://github.com/sinatra/sinatra.git
@@ -2406,9 +2461,9 @@ inglés).</p>
 contribuidas por la comunidad (en inglés).</p>
 </li><li>
 <p>Documentación de la API para la <a
-href="http://rubydoc.info/gems/sinatra">última versión liberada</a> o para
-la <a href="http://rubydoc.info/github/sinatra/sinatra">rama de desarrollo
-actual</a> en <a href="http://rubydoc.info">rubydoc.info</a>/</p>
+href="http://rubydoc.info/gems/sinatra">última versión liberada</a> o
+para la <a href="http://rubydoc.info/github/sinatra/sinatra">rama de
+desarrollo actual</a> en <a href="http://rubydoc.info">rubydoc.info</a>/</p>
 </li><li>
 <p><a href="http://ci.rkh.im/view/Sinatra/">Servidor de IC</a></p>
 </li></ul>

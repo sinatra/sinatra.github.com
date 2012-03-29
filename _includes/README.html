@@ -250,7 +250,7 @@ end</pre>
 <pre>set(:auth) do |*roles|   # &lt;- notice the splat here
   condition do
     unless logged_in? &amp;&amp; roles.any? {|role| current_user.in_role? role }
-      redirect &quot;/login/&quot;, 303 
+      redirect &quot;/login/&quot;, 303
     end
   end
 end
@@ -418,7 +418,7 @@ end</pre>
 <p>Views folder to load templates from. Defaults to <tt>settings.views</tt>.</p>
 </dd><dt>layout</dt>
 <dd>
-<p>Whether to use a layout (<tt>true</tt> or <tt>false</tt>), if it’s a
+<p>Whether to use a layout (<tt>true</tt> or <tt>false</tt>), if it's a
 Symbol, specifies what template to use. Example: <tt>erb :index, :layout
 =&gt; !request.xhr?</tt></p>
 </dd><dt>content_type</dt>
@@ -442,7 +442,7 @@ directory. To use a different views directory:</p>
 <pre>set :views, settings.root + '/templates'</pre>
 
 <p>One important thing to remember is that you always have to reference
-templates with symbols, even if they’re in a subdirectory (in this case,
+templates with symbols, even if they're in a subdirectory (in this case,
 use <tt>:'subdir/template'</tt>). You must use a symbol because otherwise
 rendering methods will render any strings passed to them directly.</p>
 
@@ -795,7 +795,7 @@ __END__
   = yield
 
 @@ index
-%div.title Hello world!!!!!</pre>
+%div.title Hello world.</pre>
 
 <p>NOTE: Inline templates defined in the source file that requires sinatra are
 automatically loaded. Call <tt>enable :inline_templates</tt> explicitly if
@@ -818,9 +818,9 @@ get '/' do
   haml :index
 end</pre>
 
-<p>If a template named “layout” exists, it will be used each time a template
-is rendered. You can individually disable layouts by passing  <tt>:layout
-=&gt; false</tt> or disable them by default via  <tt>set :haml, :layout
+<p>If a template named "layout" exists, it will be used each time a template
+is rendered. You can individually disable layouts by passing <tt>:layout
+=&gt; false</tt> or disable them by default via <tt>set :haml, :layout
 =&gt; false</tt>:</p>
 
 <pre>get '/' do
@@ -920,6 +920,20 @@ end
 get '/:name' do
   bar(params[:name])
 end</pre>
+
+<p>Alternatively, helper methods can be separately defined in a module:</p>
+
+<pre>module FooUtils
+  def foo(name) &quot;#{name}foo&quot; end
+end
+
+module BarUtils
+  def bar(name) &quot;#{name}bar&quot; end
+end
+
+helpers FooUtils, BarUtils</pre>
+
+<p>The effect is the same as including the modules in the application class.</p>
 
 <a name='Using%20Sessions'></a>
 <h3>Using Sessions</h3>
@@ -1054,8 +1068,8 @@ after do
 end</pre>
 
 <p>It is also possible to pass a block to <tt>body</tt>, which will be
-executed by the  Rack handler (this can be used to implement streaming, see
-“Return Values”).</p>
+executed by the Rack handler (this can be used to implement streaming, see
+"Return Values").</p>
 
 <p>Similar to the body, you can also set the status code and headers:</p>
 
@@ -1132,7 +1146,7 @@ instance:</p>
   # ...
 end</pre>
 
-<p>This logger will automatically take your Rack handler’s logging settings
+<p>This logger will automatically take your Rack handler's logging settings
 into account. If logging is disabled, this method will return a dummy
 object, so you do not have to worry in your routes and filters about it.</p>
 
@@ -1156,7 +1170,7 @@ your own logger. Sinatra will use whatever it will find in
 <h3>Mime Types</h3>
 
 <p>When using <tt>send_file</tt> or static files you may have mime types
-Sinatra doesn’t understand. Use <tt>mime_type</tt> to register them by file
+Sinatra doesn't understand. Use <tt>mime_type</tt> to register them by file
 extension:</p>
 
 <pre>configure do
@@ -1272,7 +1286,7 @@ ETag</a>:</p>
 
 <p>These helpers will not do any caching for you, but rather feed the
 necessary information to your cache. If you are looking for a quick
-reverse-proxy caching solution,  try <a
+reverse-proxy caching solution, try <a
 href="http://rtomayko.github.com/rack-cache/">rack-cache</a>:</p>
 
 <pre>require &quot;rack/cache&quot;
@@ -1326,7 +1340,7 @@ end</pre>
 <p>file name, in response, defaults to the real file name.</p>
 </dd><dt>last_modified</dt>
 <dd>
-<p>value for Last-Modified header, defaults to the file’s mtime.</p>
+<p>value for Last-Modified header, defaults to the file's mtime.</p>
 </dd><dt>type</dt>
 <dd>
 <p>content type to use, guessed from the file extension if missing.</p>
@@ -1605,7 +1619,7 @@ Ruby process concurrently.</p>
 <p>Enabled if your app is not thread-safe. Disabled per default.</p>
 </dd><dt>method_override</dt>
 <dd>
-<p>use <tt>_method</tt> magic to allow put/delete forms in browsers that don’t
+<p>use <tt>_method</tt> magic to allow put/delete forms in browsers that don't
 support it.</p>
 </dd><dt>port</dt>
 <dd>
@@ -1646,12 +1660,12 @@ using rackup or other means.</p>
 <p>is the built-in server running now? do not change this setting!</p>
 </dd><dt>server</dt>
 <dd>
-<p>server or list of servers to use for built-in server. defaults to [‘thin’,
-‘mongrel’, ‘webrick’], order indicates priority.</p>
+<p>server or list of servers to use for built-in server. defaults to ['thin',
+'mongrel', 'webrick'], order indicates priority.</p>
 </dd><dt>sessions</dt>
 <dd>
 <p>enable cookie based sessions support using <tt>Rack::Session::Cookie</tt>.
-See ‘Using Sessions’ section for more information.</p>
+See 'Using Sessions' section for more information.</p>
 </dd><dt>show_exceptions</dt>
 <dd>
 <p>show a stack trace in the browser when an exception happens. Enabled by
@@ -1682,22 +1696,22 @@ set.</p>
 <a name='Environments'></a>
 <h2>Environments</h2>
 
-<p>There are three predefined <tt>environments</tt>: <tt>development</tt>, 
-<tt>production</tt> and <tt>test</tt>. Environment can be set by RACK_ENV
-environment variable, and default value is <tt>development</tt>.</p>
+<p>There are three predefined <tt>environments</tt>:
+<tt>&quot;development&quot;</tt>, <tt>&quot;production&quot;</tt> and
+<tt>&quot;test&quot;</tt>. Environments can be set through the
+<tt>RACK_ENV</tt> environment variable. The default value is
+<tt>&quot;development&quot;</tt>. In this mode, all templates are reloaded
+between requests. Special <tt>not_found</tt> and <tt>error</tt> handlers
+are installed for this environment so you will see a stack trace in your
+browser. In <tt>&quot;production&quot;</tt> and <tt>&quot;test&quot;</tt>
+templates are cached by default.</p>
 
-<p>You can also run different environemnt using <tt>-e</tt> option:</p>
+<p>To run different environments use the <tt>-e</tt> option:</p>
 
 <pre>ruby my_app.rb -e [ENVIRONMENT]</pre>
 
-<p>You can use predefinied methods: <tt>development?</tt>, <tt>test?</tt> and
-<tt>production?</tt>, to check which enviroment is set.</p>
-
-<p><tt>Developemnt</tt> is default setting. In this mode, all templates are
-being reloaded between requests. Special <tt>not_found</tt> and
-<tt>error</tt> handlers are installed for this enviroment, so you will see
-nice error page. In <tt>production</tt> and <tt>test</tt> templates are
-being cached.</p>
+<p>You can use predefined methods: <tt>development?</tt>, <tt>test?</tt> and
+<tt>production?</tt> to check which enviroment is currently set.</p>
 
 <a name='Error%20Handling'></a>
 <h2>Error Handling</h2>
@@ -1709,7 +1723,7 @@ which means you get all the goodies it has to offer, like <tt>haml</tt>,
 <a name='Not%20Found'></a>
 <h3>Not Found</h3>
 
-<p>When a <tt>Sinatra::NotFound</tt> exception is raised, or the response’s
+<p>When a <tt>Sinatra::NotFound</tt> exception is raised, or the response's
 status code is 404, the <tt>not_found</tt> handler is invoked:</p>
 
 <pre>not_found do
@@ -1766,8 +1780,8 @@ when running under the development environment.</p>
 <h2>Rack Middleware</h2>
 
 <p>Sinatra rides on <a href="http://rack.rubyforge.org/">Rack</a>, a minimal
-standard interface for Ruby web frameworks. One of Rack’s most interesting
-capabilities for application developers is support for “middleware” –
+standard interface for Ruby web frameworks. One of Rack's most interesting
+capabilities for application developers is support for "middleware" --
 components that sit between the server and your application monitoring
 and/or manipulating the HTTP request/response to provide various types of
 common functionality.</p>
@@ -1797,7 +1811,7 @@ end</pre>
 <p>Rack is distributed with a variety of standard middleware for logging,
 debugging, URL routing, authentication, and session handling. Sinatra uses
 many of these components automatically based on configuration so you
-typically don’t have to <tt>use</tt> them explicitly.</p>
+typically don't have to <tt>use</tt> them explicitly.</p>
 
 <p>You can find useful middleware in <a
 href="https://github.com/rack/rack/tree/master/lib/rack">rack</a>, <a
@@ -1849,7 +1863,7 @@ middleware, Rails metal, simple libraries with a server component, or even
 Sinatra extensions. The top-level DSL pollutes the Object namespace and
 assumes a micro-app style configuration (e.g., a single application file,
 <tt>./public</tt> and <tt>./views</tt> directories, logging, exception
-detail page, etc.). That’s where <tt>Sinatra::Base</tt> comes into play:</p>
+detail page, etc.). That's where <tt>Sinatra::Base</tt> comes into play:</p>
 
 <pre>require 'sinatra/base'
 
@@ -1867,10 +1881,10 @@ those available via the top-level DSL. Most top-level apps can be converted
 to <tt>Sinatra::Base</tt> components with two modifications:</p>
 <ul><li>
 <p>Your file should require <tt>sinatra/base</tt> instead of <tt>sinatra</tt>;
-otherwise, all of Sinatra’s DSL methods are imported into the main
+otherwise, all of Sinatra's DSL methods are imported into the main
 namespace.</p>
 </li><li>
-<p>Put your app’s routes, error handlers, filters, and options in a subclass
+<p>Put your app's routes, error handlers, filters, and options in a subclass
 of <tt>Sinatra::Base</tt>.</p>
 </li></ul>
 
@@ -1961,7 +1975,7 @@ run Sinatra::Application</pre>
 <p>Good signs you probably want to use a <tt>config.ru</tt>:</p>
 <ul><li>
 <p>You want to deploy with a different Rack handler (Passenger, Unicorn,
-Heroku, …).</p>
+Heroku, ...).</p>
 </li><li>
 <p>You want to use more than one subclass of <tt>Sinatra::Base</tt>.</p>
 </li><li>
@@ -1978,7 +1992,7 @@ running with a <tt>config.ru</tt>.</b></p>
 <p>Not only is Sinatra able to use other Rack middleware, any Sinatra
 application can in turn be added in front of any Rack endpoint as
 middleware itself. This endpoint could be another Sinatra application, or
-any other Rack-based application (Rails/Ramaze/Camping/…):</p>
+any other Rack-based application (Rails/Ramaze/Camping/...):</p>
 
 <pre>require 'sinatra/base'
 
@@ -2061,10 +2075,10 @@ available.</p>
 
 <p>Every Sinatra application corresponds to a subclass of
 <tt>Sinatra::Base</tt>. If you are using the top-level DSL (<tt>require
-'sinatra'</tt>), then this  class is <tt>Sinatra::Application</tt>,
-otherwise it is the subclass you  created explicitly. At class level you
+'sinatra'</tt>), then this class is <tt>Sinatra::Application</tt>,
+otherwise it is the subclass you created explicitly. At class level you
 have methods like <tt>get</tt> or <tt>before</tt>, but you cannot access
-the <tt>request</tt> object or the <tt>session</tt>, as there only is a 
+the <tt>request</tt> object or the <tt>session</tt>, as there only is a
 single application class for all requests.</p>
 
 <p>Options created via <tt>set</tt> are methods at class level:</p>
@@ -2152,7 +2166,7 @@ calling <tt>Sinatra::Delegator.delegate :method_name</tt>.</p>
 <p>An object extended with the <tt>Sinatra::Delegator</tt> mixin</p>
 </li></ul>
 
-<p>Have a look at the code for yourself: here’s the <a
+<p>Have a look at the code for yourself: here's the <a
 href="http://github.com/sinatra/sinatra/blob/ceac46f0bc129a6e994a06100aa854f606fe5992/lib/sinatra/base.rb#L1128">Sinatra::Delegator
 mixin</a> being <a
 href="http://github.com/sinatra/sinatra/blob/ceac46f0bc129a6e994a06100aa854f606fe5992/lib/sinatra/main.rb#L28">included
@@ -2189,29 +2203,28 @@ with 1.8.6, downgrade to Sinatra 1.2, which will receive bug fixes until
 Sinatra 1.4.0 is released.</p>
 </dd><dt> Ruby 1.9.2 </dt>
 <dd>
-<p>1.9.2 is fully supported and recommended. Note that Radius and Markaby are
-currently not 1.9 compatible. Do not use 1.9.2p0, it is known to cause
-segmentation faults when running Sinatra. Support will continue at least
-until the release of Ruby 1.9.4/2.0 and support for the latest 1.9 release
-will continue as long as it is still supported by the Ruby core team.</p>
+<p>1.9.2 is fully supported and recommended. Do not use 1.9.2p0, it is known
+to cause segmentation faults when running Sinatra. Support will continue at
+least until the release of Ruby 1.9.4/2.0 and support for the latest 1.9
+release will continue as long as it is still supported by the Ruby core
+team.</p>
 </dd><dt> Ruby 1.9.3 </dt>
 <dd>
-<p>1.9.3 is fully supported. We recommend waiting for higher patch levels to
-be released (current one is p0) before using it in production. Please note
-that switching to 1.9.3 from an earlier version will invalidate all
-sessions.</p>
+<p>1.9.3 is fully supported and recommended. Please note that switching to
+1.9.3 from an earlier version will invalidate all sessions.</p>
 </dd><dt> Rubinius </dt>
 <dd>
 <p>Rubinius is officially supported (Rubinius &gt;= 1.2.4), everything,
 including all template languages, works. The upcoming 2.0 release is
-supported as well.</p>
+supported as well, including 1.9 mode.</p>
 </dd><dt> JRuby </dt>
 <dd>
-<p>JRuby is officially supported (JRuby &gt;= 1.6.5). No issues with third
+<p>JRuby is officially supported (JRuby &gt;= 1.6.7). No issues with third
 party template libraries are known, however, if you choose to use JRuby,
 please look into JRuby rack handlers, as the Thin web server is not fully
-supported on JRuby. JRuby’s support for C extensions is still experimental,
-which only affects RDiscount, Redcarpet and RedCloth at the moment.</p>
+supported on JRuby. JRuby's support for C extensions is still experimental,
+which only affects RDiscount, Redcarpet, RedCloth and Yajl templates as
+well as Thin and Mongrel at the moment.</p>
 </dd></dl>
 
 <p>We also keep an eye on upcoming Ruby versions.</p>
@@ -2229,10 +2242,10 @@ are known to run Sinatra:</p>
 </li></ul>
 
 <p>Not being officially supported means if things only break there and not on
-a supported platform, we assume it’s not our issue but theirs.</p>
+a supported platform, we assume it's not our issue but theirs.</p>
 
 <p>We also run our CI against ruby-head (the upcoming 2.0.0) and the 1.9.4
-branch, but we can’t guarantee anything, since it is constantly moving.
+branch, but we can't guarantee anything, since it is constantly moving.
 Expect both 1.9.4p0 and 2.0.0p0 to be supported.</p>
 
 <p>Sinatra should work on any operating system supported by the chosen Ruby
@@ -2244,7 +2257,7 @@ Ruby version prior to 1.8.7 as of the time being.</p>
 <a name='The%20Bleeding%20Edge'></a>
 <h2>The Bleeding Edge</h2>
 
-<p>If you would like to use Sinatra’s latest bleeding code, feel free to run
+<p>If you would like to use Sinatra's latest bleeding code, feel free to run
 your application against the master branch, it should be rather stable.</p>
 
 <p>We also push out prerelease gems from time to time, so you can do a</p>
@@ -2259,7 +2272,7 @@ your application against the master branch, it should be rather stable.</p>
 <p>If you want to run your application with the latest Sinatra, using <a
 href="http://gembundler.com/">Bundler</a> is the recommended way.</p>
 
-<p>First, install bundler, if you haven’t:</p>
+<p>First, install bundler, if you haven't:</p>
 
 <pre>gem install bundler</pre>
 
@@ -2273,7 +2286,7 @@ gem 'haml'                    # for instance, if you use haml
 gem 'activerecord', '~&gt; 3.0'  # maybe you also need ActiveRecord 3.x</pre>
 
 <p>Note that you will have to list all your applications dependencies in
-there. Sinatra’s direct dependencies (Rack and Tilt) will, however, be
+there. Sinatra's direct dependencies (Rack and Tilt) will, however, be
 automatically fetched and added by Bundler.</p>
 
 <p>Now you can run your app like this:</p>
@@ -2335,7 +2348,7 @@ href="http://freenode.net">freenode.net</a></p>
 </li><li>
 <p><a href="http://sinatra-book.gittr.com">Sinatra Book</a> Cookbook Tutorial</p>
 </li><li>
-<p><a href="http://recipes.sinatrarb.com/">Sinatra Recipes</a> Community 
+<p><a href="http://recipes.sinatrarb.com/">Sinatra Recipes</a> Community
 contributed recipes</p>
 </li><li>
 <p>API documentation for the <a href="http://rubydoc.info/gems/sinatra">latest

@@ -89,9 +89,11 @@
 
 
 
-<p><em>注：本文档仅仅是英文版的翻译，会出现内容没有及时更新的情况发生。 如有不一致的地方，请以英文版为准。</em></p>
+<p><em>注：本文档仅仅是英文版的翻译，会出现内容没有及时更新的情况发生。
+如有不一致的地方，请以英文版为准。</em></p>
 
-<p>Sinatra是一个基于Ruby语言，以最小精力为代价快速创建web应用为目的的DSL（ 领域专属语言）：</p>
+<p>Sinatra是一个基于Ruby语言，以最小精力为代价快速创建web应用为目的的DSL（
+领域专属语言）：</p>
 
 <pre># myapp.rb
 require 'sinatra'
@@ -107,12 +109,14 @@ ruby -rubygems myapp.rb</pre>
 
 <p>在该地址查看： <a href="http://localhost:4567">localhost:4567</a></p>
 
-<p>推荐同时运行<tt>gem install thin</tt>，Sinatra会优先选择thin作为服务器。</p>
+<p>推荐同时运行<tt>gem install
+thin</tt>，Sinatra会优先选择thin作为服务器。</p>
 
 <a name='%E8%B7%AF%E7%94%B1'></a>
 <h2>路由</h2>
 
-<p>在Sinatra中，一个路由是一个HTTP方法与URL匹配范式的配对。 每个路由都与一个代码块关联：</p>
+<p>在Sinatra中，一个路由是一个HTTP方法与URL匹配范式的配对。
+每个路由都与一个代码块关联：</p>
 
 <pre>get '/' do
   .. 显示一些事物 ..
@@ -134,7 +138,8 @@ options '/' do
   .. 满足一些事物 ..
 end</pre>
 
-<p>路由按照它们被定义的顺序进行匹配。 第一个与请求匹配的路由会被调用。</p>
+<p>路由按照它们被定义的顺序进行匹配。
+第一个与请求匹配的路由会被调用。</p>
 
 <p>路由范式可以包括具名参数，可通过<tt>params</tt>哈希表获得：</p>
 
@@ -150,7 +155,8 @@ end</pre>
   &quot;Hello #{n}!&quot;
 end</pre>
 
-<p>路由范式也可以包含通配符参数， <a href="http://:splat">可以通过params</a> 数组获得。</p>
+<p>路由范式也可以包含通配符参数，
+可以通过<tt>params[:splat]</tt> 数组获得。</p>
 
 <pre>get '/say/*/to/*' do
   # 匹配 /say/hello/to/world
@@ -216,14 +222,19 @@ end</pre>
 <a name='%E8%BF%94%E5%9B%9E%E5%80%BC'></a>
 <h3>返回值</h3>
 
-<p>路由代码块的返回值至少决定了返回给HTTP客户端的响应体， 或者至少决定了在Rack堆栈中的下一个中间件。
-大多数情况下，将是一个字符串，就像上面的例子中的一样。 但是其他值也是可以接受的。</p>
+<p>路由代码块的返回值至少决定了返回给HTTP客户端的响应体，
+或者至少决定了在Rack堆栈中的下一个中间件。
+大多数情况下，将是一个字符串，就像上面的例子中的一样。
+但是其他值也是可以接受的。</p>
 
-<p>你可以返回任何对象，或者是一个合理的Rack响应， Rack body对象或者HTTP状态码：</p>
+<p>你可以返回任何对象，或者是一个合理的Rack响应， Rack
+body对象或者HTTP状态码：</p>
 <ul><li>
-<p>一个包含三个元素的数组: <tt>[状态 (Fixnum), 头 (Hash), 响应体 (回应 #each)]</tt></p>
+<p>一个包含三个元素的数组: <tt>[状态 (Fixnum), 头 (Hash),
+响应体 (回应 #each)]</tt></p>
 </li><li>
-<p>一个包含两个元素的数组: <tt>[状态 (Fixnum), 响应体 (回应 #each)]</tt></p>
+<p>一个包含两个元素的数组: <tt>[状态 (Fixnum), 响应体 (回应
+#each)]</tt></p>
 </li><li>
 <p>一个能够回应 <tt>#each</tt> ，只传回字符串的对象</p>
 </li><li>
@@ -243,7 +254,9 @@ get('/') { Stream.new }</pre>
 <a name='%E8%87%AA%E5%AE%9A%E4%B9%89%E8%B7%AF%E7%94%B1%E5%8C%B9%E9%85%8D%E5%99%A8'></a>
 <h3>自定义路由匹配器</h3>
 
-<p>如上显示，Sinatra内置了对于使用字符串和正则表达式作为路由匹配的支持。 但是，它并没有只限于此。 你可以非常容易地定义你自己的匹配器:</p>
+<p>如上显示，Sinatra内置了对于使用字符串和正则表达式作为路由匹配的支持。
+但是，它并没有只限于此。
+你可以非常容易地定义你自己的匹配器:</p>
 
 <pre>class AllButPattern
   Match = Struct.new(:captures)
@@ -266,7 +279,8 @@ get all_but(&quot;/index&quot;) do
   # ...
 end</pre>
 
-<p>请注意上面的例子可能超工程了， 因为它也可以用更简单的方式表述:</p>
+<p>请注意上面的例子可能超工程了，
+因为它也可以用更简单的方式表述:</p>
 
 <pre>get // do
   pass if request.path_info == &quot;/index&quot;
@@ -282,22 +296,28 @@ end</pre>
 <a name='%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6'></a>
 <h2>静态文件</h2>
 
-<p>静态文件是从 <tt>./public_folder</tt> 目录提供服务。你可以通过设置<tt>:public</tt> 选项设定一个不同的位置：</p>
+<p>静态文件是从 <tt>./public_folder</tt>
+目录提供服务。你可以通过设置<tt>:public</tt>
+选项设定一个不同的位置：</p>
 
 <pre>set :public_folder, File.dirname(__FILE__) + '/static'</pre>
 
-<p>请注意public目录名并没有被包含在URL之中。文件 <tt>./public/css/style.css</tt>是通过
+<p>请注意public目录名并没有被包含在URL之中。文件
+<tt>./public/css/style.css</tt>是通过
 <tt>http://example.com/css/style.css</tt>地址访问的。</p>
 
 <a name='%E8%A7%86%E5%9B%BE%20/%20%E6%A8%A1%E6%9D%BF'></a>
 <h2>视图 / 模板</h2>
 
-<p>模板被假定直接位于<tt>./views</tt>目录。 要使用不同的视图目录：</p>
+<p>模板被假定直接位于<tt>./views</tt>目录。
+要使用不同的视图目录：</p>
 
 <pre>set :views, File.dirname(__FILE__) + '/templates'</pre>
 
-<p>请记住一件非常重要的事情，你只可以通过符号引用模板， 即使它们在子目录下 （在这种情况下，使用
-<tt>:'subdir/template'</tt>）。 你必须使用一个符号， 因为渲染方法会直接地渲染任何传入的字符串。</p>
+<p>请记住一件非常重要的事情，你只可以通过符号引用模板，
+即使它们在子目录下 （在这种情况下，使用
+<tt>:'subdir/template'</tt>）。 你必须使用一个符号，
+因为渲染方法会直接地渲染任何传入的字符串。</p>
 
 <a name='Haml%E6%A8%A1%E6%9D%BF'></a>
 <h3>Haml模板</h3>
@@ -316,7 +336,8 @@ end</pre>
 <p><a
 href="http://haml-lang.com/docs/yardoc/file.HAML_REFERENCE.html#options">Haml的选项</a>
 可以通过Sinatra的配置全局设定， 参见 <a
-href="http://www.sinatrarb.com/configuration.html">选项和配置</a>， 也可以个别的被覆盖。</p>
+href="http://www.sinatrarb.com/configuration.html">选项和配置</a>，
+也可以个别的被覆盖。</p>
 
 <pre>set :haml, {:format =&gt; :html5 } # 默认的Haml输出格式是 :xhtml
 
@@ -392,7 +413,8 @@ end</pre>
 <a name='Sass%20%E6%A8%A1%E6%9D%BF'></a>
 <h3>Sass 模板 </h3>
 
-<p>需要引入 <tt>haml</tt> 或者 <tt>sass</tt> gem/library 以渲染 Sass 模板：</p>
+<p>需要引入 <tt>haml</tt> 或者 <tt>sass</tt> gem/library 以渲染 Sass
+模板：</p>
 
 <pre># 需要在你的应用中引入 haml 或者 sass 
 require 'sass'
@@ -418,7 +440,8 @@ end</pre>
 <a name='Scss%20%E6%A8%A1%E6%9D%BF'></a>
 <h3>Scss 模板 </h3>
 
-<p>需要引入 <tt>haml</tt> 或者 <tt>sass</tt> gem/library 来渲染 Scss templates：</p>
+<p>需要引入 <tt>haml</tt> 或者 <tt>sass</tt> gem/library 来渲染 Scss
+templates：</p>
 
 <pre># 需要在你的应用中引入 haml 或者 sass
 require 'sass'
@@ -469,7 +492,8 @@ end</pre>
 
 <p>渲染 <tt>./views/index.liquid</tt>。</p>
 
-<p>因为你不能在Liquid 模板中调用 Ruby 方法 (除了 <tt>yield</tt>) ， 你几乎总是需要传递locals给它：</p>
+<p>因为你不能在Liquid 模板中调用 Ruby 方法 (除了
+<tt>yield</tt>) ， 你几乎总是需要传递locals给它：</p>
 
 <pre>liquid :index, :locals =&gt; { :key =&gt; 'value' }</pre>
 
@@ -488,7 +512,9 @@ end</pre>
 <p>渲染 <tt>./views/index.markdown</tt>  (<tt>md</tt> 和 <tt>mkd</tt>
 也是合理的文件扩展名)。</p>
 
-<p>在markdown中是不可以调用方法的，也不可以传递 locals给它。 你因此一般会结合其他的渲染引擎来使用它：</p>
+<p>在markdown中是不可以调用方法的，也不可以传递
+locals给它。
+你因此一般会结合其他的渲染引擎来使用它：</p>
 
 <pre>erb :overview, :locals =&gt; { :text =&gt; markdown(:introduction) }</pre>
 
@@ -497,14 +523,16 @@ end</pre>
 <pre>%h1 Hello From Haml!
 %p= markdown(:greetings)</pre>
 
-<p>既然你不能在Markdown中调用Ruby，你不能使用Markdown编写的布局。 不过，使用其他渲染引擎作为模版的布局是可能的，
+<p>既然你不能在Markdown中调用Ruby，你不能使用Markdown编写的布局。
+不过，使用其他渲染引擎作为模版的布局是可能的，
 通过传递<tt>:layout_engine</tt>选项:</p>
 
 <pre>get '/' do
   markdown :index, :layout_engine =&gt; :erb
 end</pre>
 
-<p>这将会渲染 <tt>./views/index.md</tt> 并使用 <tt>./views/layout.erb</tt> 作为布局。</p>
+<p>这将会渲染 <tt>./views/index.md</tt> 并使用
+<tt>./views/layout.erb</tt> 作为布局。</p>
 
 <p>请记住你可以全局设定这个选项:</p>
 
@@ -514,8 +542,8 @@ get '/' do
   markdown :index
 end</pre>
 
-<p>这将会渲染 <tt>./views/index.markdown</tt> (和任何其他的 Markdown 模版) 并使用
-<tt>./views/post.haml</tt> 作为布局.</p>
+<p>这将会渲染 <tt>./views/index.markdown</tt> (和任何其他的
+Markdown 模版) 并使用 <tt>./views/post.haml</tt> 作为布局.</p>
 
 <p>也可能使用BlueCloth而不是RDiscount来解析Markdown文件:</p>
 
@@ -545,7 +573,9 @@ end</pre>
 
 <p>渲染 <tt>./views/index.textile</tt>。</p>
 
-<p>在textile中是不可以调用方法的，也不可以传递 locals给它。 你因此一般会结合其他的渲染引擎来使用它：</p>
+<p>在textile中是不可以调用方法的，也不可以传递
+locals给它。
+你因此一般会结合其他的渲染引擎来使用它：</p>
 
 <pre>erb :overview, :locals =&gt; { :text =&gt; textile(:introduction) }</pre>
 
@@ -554,14 +584,16 @@ end</pre>
 <pre>%h1 Hello From Haml!
 %p= textile(:greetings)</pre>
 
-<p>既然你不能在Textile中调用Ruby，你不能使用Textile编写的布局。 不过，使用其他渲染引擎作为模版的布局是可能的，
+<p>既然你不能在Textile中调用Ruby，你不能使用Textile编写的布局。
+不过，使用其他渲染引擎作为模版的布局是可能的，
 通过传递<tt>:layout_engine</tt>选项:</p>
 
 <pre>get '/' do
   textile :index, :layout_engine =&gt; :erb
 end</pre>
 
-<p>这将会渲染 <tt>./views/index.textile</tt> 并使用 <tt>./views/layout.erb</tt> 作为布局。</p>
+<p>这将会渲染 <tt>./views/index.textile</tt> 并使用
+<tt>./views/layout.erb</tt> 作为布局。</p>
 
 <p>请记住你可以全局设定这个选项:</p>
 
@@ -571,8 +603,8 @@ get '/' do
   textile :index
 end</pre>
 
-<p>这将会渲染 <tt>./views/index.textile</tt> (和任何其他的 Textile 模版) 并使用
-<tt>./views/post.haml</tt> 作为布局.</p>
+<p>这将会渲染 <tt>./views/index.textile</tt> (和任何其他的 Textile
+模版) 并使用 <tt>./views/post.haml</tt> 作为布局.</p>
 
 <a name='RDoc%20%E6%A8%A1%E6%9D%BF'></a>
 <h3>RDoc 模板</h3>
@@ -589,7 +621,8 @@ end</pre>
 
 <p>渲染 <tt>./views/index.rdoc</tt>。</p>
 
-<p>在rdoc中是不可以调用方法的，也不可以传递locals给它。 你因此一般会结合其他的渲染引擎来使用它：</p>
+<p>在rdoc中是不可以调用方法的，也不可以传递locals给它。
+你因此一般会结合其他的渲染引擎来使用它：</p>
 
 <pre>erb :overview, :locals =&gt; { :text =&gt; rdoc(:introduction) }</pre>
 
@@ -598,14 +631,16 @@ end</pre>
 <pre>%h1 Hello From Haml!
 %p= rdoc(:greetings)</pre>
 
-<p>既然你不能在RDoc中调用Ruby，你不能使用RDoc编写的布局。 不过，使用其他渲染引擎作为模版的布局是可能的，
+<p>既然你不能在RDoc中调用Ruby，你不能使用RDoc编写的布局。
+不过，使用其他渲染引擎作为模版的布局是可能的，
 通过传递<tt>:layout_engine</tt>选项:</p>
 
 <pre>get '/' do
   rdoc :index, :layout_engine =&gt; :erb
 end</pre>
 
-<p>这将会渲染 <tt>./views/index.rdoc</tt> 并使用 <tt>./views/layout.erb</tt> 作为布局。</p>
+<p>这将会渲染 <tt>./views/index.rdoc</tt> 并使用
+<tt>./views/layout.erb</tt> 作为布局。</p>
 
 <p>请记住你可以全局设定这个选项:</p>
 
@@ -615,8 +650,8 @@ get '/' do
   rdoc :index
 end</pre>
 
-<p>这将会渲染 <tt>./views/index.rdoc</tt> (和任何其他的 RDoc 模版) 并使用
-<tt>./views/post.haml</tt> 作为布局.</p>
+<p>这将会渲染 <tt>./views/index.rdoc</tt> (和任何其他的 RDoc
+模版) 并使用 <tt>./views/post.haml</tt> 作为布局.</p>
 
 <a name='Radius%20%E6%A8%A1%E6%9D%BF'></a>
 <h3>Radius 模板</h3>
@@ -632,7 +667,8 @@ end</pre>
 
 <p>渲染 <tt>./views/index.radius</tt>。</p>
 
-<p>因为你不能在Radius 模板中调用 Ruby 方法 (除了 <tt>yield</tt>) ， 你几乎总是需要传递locals给它：</p>
+<p>因为你不能在Radius 模板中调用 Ruby 方法 (除了
+<tt>yield</tt>) ， 你几乎总是需要传递locals给它：</p>
 
 <pre>radius :index, :locals =&gt; { :key =&gt; 'value' }</pre>
 
@@ -687,7 +723,8 @@ end</pre>
 <a name='CoffeeScript%20%E6%A8%A1%E6%9D%BF'></a>
 <h3>CoffeeScript 模板</h3>
 
-<p>需要引入 <tt>coffee-script</tt> gem/library 并至少满足下面条件一项 以执行Javascript:</p>
+<p>需要引入 <tt>coffee-script</tt> gem/library
+并至少满足下面条件一项 以执行Javascript:</p>
 <ul><li>
 <p><tt>node</tt> (来自 Node.js) 在你的路径中</p>
 </li><li>
@@ -723,7 +760,8 @@ end</pre>
 <a name='%E5%9C%A8%E6%A8%A1%E6%9D%BF%E4%B8%AD%E8%AE%BF%E9%97%AE%E5%8F%98%E9%87%8F'></a>
 <h3>在模板中访问变量</h3>
 
-<p>模板和路由执行器在同样的上下文求值。 在路由执行器中赋值的实例变量可以直接被模板访问。</p>
+<p>模板和路由执行器在同样的上下文求值。
+在路由执行器中赋值的实例变量可以直接被模板访问。</p>
 
 <pre>get '/:id' do
   @foo = Foo.find(params[:id])
@@ -759,8 +797,9 @@ __END__
 @@ index
 %div.title Hello world!!!!!</pre>
 
-<p>注意：引入sinatra的源文件中定义的内联模板才能被自动载入。 如果你在其他源文件中有内联模板， 需要显式执行调用<tt>enable
-:inline_templates</tt>。</p>
+<p>注意：引入sinatra的源文件中定义的内联模板才能被自动载入。
+如果你在其他源文件中有内联模板，
+需要显式执行调用<tt>enable :inline_templates</tt>。</p>
 
 <a name='%E5%85%B7%E5%90%8D%E6%A8%A1%E6%9D%BF'></a>
 <h3>具名模板</h3>
@@ -779,8 +818,9 @@ get '/' do
   haml :index
 end</pre>
 
-<p>如果存在名为“layout”的模板，该模板会在每个模板渲染的时候被使用。 你可以单独地通过传送 <tt>:layout =&gt;
-false</tt>来禁用， 或者通过<tt>set :haml, :layout =&gt; false</tt>来禁用他们。</p>
+<p>如果存在名为"layout"的模板，该模板会在每个模板渲染的时候被使用。
+你可以单独地通过传送 <tt>:layout =&gt; false</tt>来禁用，
+或者通过<tt>set :haml, :layout =&gt; false</tt>来禁用他们。</p>
 
 <pre>get '/' do
   haml :index, :layout =&gt; !request.xhr?
@@ -789,7 +829,8 @@ end</pre>
 <a name='%E5%85%B3%E8%81%94%E6%96%87%E4%BB%B6%E6%89%A9%E5%B1%95%E5%90%8D'></a>
 <h3>关联文件扩展名</h3>
 
-<p>为了关联一个文件扩展名到一个模版引擎，使用 <tt>Tilt.register</tt>。比如，如果你喜欢使用 <tt>tt</tt>
+<p>为了关联一个文件扩展名到一个模版引擎，使用
+<tt>Tilt.register</tt>。比如，如果你喜欢使用 <tt>tt</tt>
 作为Textile模版的扩展名，你可以这样做:</p>
 
 <pre>Tilt.register :tt, Tilt[:textile]</pre>
@@ -816,7 +857,9 @@ href="https://github.com/rtomayko/tilt">github.com/rtomayko/tilt</a>
 <a name='%E8%BF%87%E6%BB%A4%E5%99%A8'></a>
 <h2>过滤器</h2>
 
-<p>前置过滤器在每个请求前，在请求的上下文环境中被执行， 而且可以修改请求和响应。 在过滤器中设定的实例变量可以被路由和模板访问：</p>
+<p>前置过滤器在每个请求前，在请求的上下文环境中被执行，
+而且可以修改请求和响应。
+在过滤器中设定的实例变量可以被路由和模板访问：</p>
 
 <pre>before do
   @note = 'Hi!'
@@ -828,15 +871,21 @@ get '/foo/*' do
   params[:splat] #=&gt; 'bar/baz'
 end</pre>
 
-<p>后置过滤器在每个请求之后，在请求的上下文环境中执行， 而且可以修改请求和响应。 在前置过滤器和路由中设定的实例变量可以被后置过滤器访问：</p>
+<p>后置过滤器在每个请求之后，在请求的上下文环境中执行，
+而且可以修改请求和响应。
+在前置过滤器和路由中设定的实例变量可以被后置过滤器访问：</p>
 
 <pre>after do
   puts response.status
 end</pre>
 
-<p>请注意：除非你显式使用 <tt>body</tt> 方法，而不是在路由中直接返回字符串， 消息体在后置过滤器是不可用的， 因为它在之后才会生成。</p>
+<p>请注意：除非你显式使用 <tt>body</tt>
+方法，而不是在路由中直接返回字符串，
+消息体在后置过滤器是不可用的，
+因为它在之后才会生成。</p>
 
-<p>过滤器可以可选地带有范式， 只有请求路径满足该范式时才会执行：</p>
+<p>过滤器可以可选地带有范式，
+只有请求路径满足该范式时才会执行：</p>
 
 <pre>before '/protected/*' do
   authenticate!
@@ -859,7 +908,8 @@ end</pre>
 <a name='%E8%BE%85%E5%8A%A9%E6%96%B9%E6%B3%95'></a>
 <h2>辅助方法</h2>
 
-<p>使用顶层的 <tt>helpers</tt> 方法来定义辅助方法， 以便在路由处理器和模板中使用：</p>
+<p>使用顶层的 <tt>helpers</tt> 方法来定义辅助方法，
+以便在路由处理器和模板中使用：</p>
 
 <pre>helpers do
   def bar(name)
@@ -874,7 +924,8 @@ end</pre>
 <a name='%E4%BD%BF%E7%94%A8%20Sessions'></a>
 <h3>使用 Sessions</h3>
 
-<p>Session被用来在请求之间保持状态。如果被激活，每一个用户会话 对应有一个session哈希:</p>
+<p>Session被用来在请求之间保持状态。如果被激活，每一个用户会话
+对应有一个session哈希:</p>
 
 <pre>enable :sessions
 
@@ -886,9 +937,12 @@ get '/:value' do
   session[:value] = params[:value]
 end</pre>
 
-<p>请注意 <tt>enable :sessions</tt> 实际上保存所有的数据在一个cookie之中。
-这可能不会总是做你想要的（比如，保存大量的数据会增加你的流量）。 你可以使用任何的Rack session中间件，为了这么做， *不要*调用
-<tt>enable :sessions</tt>，而是 按照自己的需要引入你的中间件：</p>
+<p>请注意 <tt>enable :sessions</tt>
+实际上保存所有的数据在一个cookie之中。
+这可能不会总是做你想要的（比如，保存大量的数据会增加你的流量）。
+你可以使用任何的Rack session中间件，为了这么做，
+*不要*调用 <tt>enable :sessions</tt>，而是
+按照自己的需要引入你的中间件：</p>
 
 <pre>use Rack::Session::Pool, :expire_after =&gt; 2592000
 
@@ -926,7 +980,8 @@ end</pre>
 <a name='%E8%AE%A9%E8%B7%AF'></a>
 <h3>让路</h3>
 
-<p>一个路由可以放弃处理，将处理让给下一个匹配的路由，使用 <tt>pass</tt>：</p>
+<p>一个路由可以放弃处理，将处理让给下一个匹配的路由，使用
+<tt>pass</tt>：</p>
 
 <pre>get '/guess/:who' do
   pass unless params[:who] == 'Frank'
@@ -937,12 +992,15 @@ get '/guess/*' do
   'You missed!'
 end</pre>
 
-<p>路由代码块被直接退出，控制流继续前进到下一个匹配的路由。 如果没有匹配的路由，将返回404。</p>
+<p>路由代码块被直接退出，控制流继续前进到下一个匹配的路由。
+如果没有匹配的路由，将返回404。</p>
 
 <a name='%E8%A7%A6%E5%8F%91%E5%8F%A6%E4%B8%80%E4%B8%AA%E8%B7%AF%E7%94%B1'></a>
 <h3>触发另一个路由</h3>
 
-<p>有些时候，<tt>pass</tt> 并不是你想要的，你希望得到的是另一个路由的结果 。简单的使用 <tt>call</tt> 可以做到这一点:</p>
+<p>有些时候，<tt>pass</tt>
+并不是你想要的，你希望得到的是另一个路由的结果
+。简单的使用 <tt>call</tt> 可以做到这一点:</p>
 
 <pre>get '/foo' do
   status, headers, body = call env.merge(&quot;PATH_INFO&quot; =&gt; '/bar')
@@ -959,15 +1017,19 @@ end</pre>
 
 <p>和 <tt>/bar</tt>同时使用的helper。</p>
 
-<p>如果你希望请求被发送到同一个应用，而不是副本， 使用 <tt>call!</tt> 而不是 <tt>call</tt>.</p>
+<p>如果你希望请求被发送到同一个应用，而不是副本，
+使用 <tt>call!</tt> 而不是 <tt>call</tt>.</p>
 
 <p>察看 Rack specification 如果你想更多了解 <tt>call</tt>.</p>
 
 <a name='%E8%AE%BE%E5%AE%9A%20%E6%B6%88%E6%81%AF%E4%BD%93%EF%BC%8C%E7%8A%B6%E6%80%81%E7%A0%81%E5%92%8C%E6%B6%88%E6%81%AF%E5%A4%B4'></a>
 <h3>设定 消息体，状态码和消息头</h3>
 
-<p>通过路由代码块的返回值来设定状态码和消息体不仅是可能的，而且是推荐的。 但是，在某些场景中你可能想在作业流程中的特定点上设置消息体。 你可以通过
-<tt>body</tt> 辅助方法这么做。 如果你这样做了， 你可以在那以后使用该方法获得消息体:</p>
+<p>通过路由代码块的返回值来设定状态码和消息体不仅是可能的，而且是推荐的。
+但是，在某些场景中你可能想在作业流程中的特定点上设置消息体。
+你可以通过 <tt>body</tt> 辅助方法这么做。
+如果你这样做了，
+你可以在那以后使用该方法获得消息体:</p>
 
 <pre>get '/foo' do
   body &quot;bar&quot;
@@ -977,7 +1039,9 @@ after do
   puts body
 end</pre>
 
-<p>也可以传一个代码块给 <tt>body</tt>，它将会被Rack处理器执行（ 这将可以被用来实现streaming，参见“返回值”）。</p>
+<p>也可以传一个代码块给
+<tt>body</tt>，它将会被Rack处理器执行（
+这将可以被用来实现streaming，参见“返回值”）。</p>
 
 <p>和消息体类似，你也可以设定状态码和消息头:</p>
 
@@ -989,12 +1053,15 @@ end</pre>
   body &quot;I'm a tea pot!&quot;
 end</pre>
 
-<p>如同 <tt>body</tt>, 不带参数的 <tt>headers</tt> 和 <tt>status</tt> 可以用来访问 他们你的当前值.</p>
+<p>如同 <tt>body</tt>, 不带参数的 <tt>headers</tt> 和 <tt>status</tt>
+可以用来访问 他们你的当前值.</p>
 
 <a name='%E5%AA%92%E4%BD%93%E7%B1%BB%E5%9E%8B'></a>
 <h3>媒体类型</h3>
 
-<p>当使用 <tt>send_file</tt> 或者静态文件的场合，你的媒体类型可能 Sinatra并不理解。使用 <tt>mime_type</tt>
+<p>当使用 <tt>send_file</tt>
+或者静态文件的场合，你的媒体类型可能
+Sinatra并不理解。使用 <tt>mime_type</tt>
 通过文件扩展名来注册它们：</p>
 
 <pre>mime_type :foo, 'text/foo'</pre>
@@ -1009,7 +1076,8 @@ end</pre>
 <a name='%E7%94%9F%E6%88%90%20URL'></a>
 <h3>生成 URL</h3>
 
-<p>为了生成URL，你需要使用 <tt>url</tt> 辅助方法， 例如，在Haml中:</p>
+<p>为了生成URL，你需要使用 <tt>url</tt> 辅助方法，
+例如，在Haml中:</p>
 
 <pre>%a{:href =&gt; url('/foo')} foo</pre>
 
@@ -1031,7 +1099,8 @@ end</pre>
 <pre>redirect to('/bar'), 303
 redirect 'http://google.com', 'wrong place, buddy'</pre>
 
-<p>你可以方便的通过 <tt>redirect back</tt>把用户重定向到来自的页面:</p>
+<p>你可以方便的通过 <tt>redirect
+back</tt>把用户重定向到来自的页面:</p>
 
 <pre>get '/foo' do
   &quot;&lt;a href='/bar'&gt;do something&lt;/a&gt;&quot;
@@ -1077,14 +1146,17 @@ end</pre>
   cache_control :public, :must_revalidate, :max_age =&gt; 60
 end</pre>
 
-<p>如果你正在用 <tt>expires</tt> 辅助方法设定对应的消息头 <tt>Cache-Control</tt> 会自动设定：</p>
+<p>如果你正在用 <tt>expires</tt> 辅助方法设定对应的消息头
+<tt>Cache-Control</tt> 会自动设定：</p>
 
 <pre>before do
   expires 500, :public, :must_revalidate
 end</pre>
 
-<p>为了合适地使用缓存，你应该考虑使用 <tt>etag</tt> 和 <tt>last_modified</tt>方法。.
-推荐在执行繁重任务*之前*使用这些helpers， 他们会立刻发送响应，如果客户端在缓存中已经有了当前版本。</p>
+<p>为了合适地使用缓存，你应该考虑使用 <tt>etag</tt> 和
+<tt>last_modified</tt>方法。.
+推荐在执行繁重任务*之前*使用这些helpers，
+他们会立刻发送响应，如果客户端在缓存中已经有了当前版本。</p>
 
 <pre>get '/article/:id' do
   @article = Article.find params[:id]
@@ -1099,7 +1171,8 @@ ETag</a> 也是有可能的:</p>
 
 <pre>etag @article.sha1, :weak</pre>
 
-<p>这些辅助方法并不会为你做任何缓存，而是将必要的信息传送给你的缓存 如果你在寻找缓存的快速解决方案，试试 <a
+<p>这些辅助方法并不会为你做任何缓存，而是将必要的信息传送给你的缓存
+如果你在寻找缓存的快速解决方案，试试 <a
 href="http://rtomayko.github.com/rack-cache/">rack-cache</a>:</p>
 
 <pre>require &quot;rack/cache&quot;
@@ -1132,25 +1205,28 @@ end</pre>
 <p>响应中的文件名，默认是真实文件的名字。</p>
 </dd><dt>last_modified</dt>
 <dd>
-<p>Last-Modified 消息头的值，默认是文件的mtime（修改时间）。</p>
+<p>Last-Modified
+消息头的值，默认是文件的mtime（修改时间）。</p>
 </dd><dt>type</dt>
 <dd>
 <p>使用的内容类型，如果没有会从文件扩展名猜测。</p>
 </dd><dt>disposition</dt>
 <dd>
-<p>用于 Content-Disposition，可能的包括： <tt>nil</tt> (默认), <tt>:attachment</tt> 和
-<tt>:inline</tt></p>
+<p>用于 Content-Disposition，可能的包括： <tt>nil</tt> (默认),
+<tt>:attachment</tt> 和 <tt>:inline</tt></p>
 </dd><dt>length</dt>
 <dd>
 <p>Content-Length 的值，默认是文件的大小。</p>
 </dd></dl>
 
-<p>如果Rack处理器支持，Ruby进程除streaming以外的方式会被使用。 如果你使用这个辅助方法， Sinatra会自动处理range请求。</p>
+<p>如果Rack处理器支持，Ruby进程除streaming以外的方式会被使用。
+如果你使用这个辅助方法， Sinatra会自动处理range请求。</p>
 
 <a name='%E8%AE%BF%E9%97%AE%E8%AF%B7%E6%B1%82%E5%AF%B9%E8%B1%A1'></a>
 <h3>访问请求对象</h3>
 
-<p>传入的请求对象可以在请求层（过滤器，路由，错误处理） 通过 <tt>request</tt> 方法被访问：</p>
+<p>传入的请求对象可以在请求层（过滤器，路由，错误处理）
+通过 <tt>request</tt> 方法被访问：</p>
 
 <pre># 在 http://example.com/example 上运行的应用
 get '/foo' do
@@ -1179,7 +1255,8 @@ get '/foo' do
   request.env               # Rack中使用的未处理的env哈希
 end</pre>
 
-<p>一些选项，例如 <tt>script_name</tt> 或者 <tt>path_info</tt>  也是可写的：</p>
+<p>一些选项，例如 <tt>script_name</tt> 或者 <tt>path_info</tt> 
+也是可写的：</p>
 
 <pre>before { request.path_info = &quot;/&quot; }
 
@@ -1198,7 +1275,8 @@ end</pre>
 <a name='%E9%99%84%E4%BB%B6'></a>
 <h3>附件</h3>
 
-<p>你可以使用 <tt>attachment</tt> 辅助方法来告诉浏览器响应 应当被写入磁盘而不是在浏览器中显示。</p>
+<p>你可以使用 <tt>attachment</tt> 辅助方法来告诉浏览器响应
+应当被写入磁盘而不是在浏览器中显示。</p>
 
 <pre>get '/' do
   attachment
@@ -1221,7 +1299,9 @@ end</pre>
   puts &quot;could be #{file}&quot;
 end</pre>
 
-<p>这并不是很有用。但是在你需要重载这个方法 来实现你自己的查找机制的时候有用。 比如，如果你想支持多于一个视图目录:</p>
+<p>这并不是很有用。但是在你需要重载这个方法
+来实现你自己的查找机制的时候有用。
+比如，如果你想支持多于一个视图目录:</p>
 
 <pre>set :views, ['views', 'templates']
 
@@ -1245,9 +1325,13 @@ end</pre>
 
 <p>你可以很容易地包装成一个扩展然后与他人分享！</p>
 
-<p>请注意 <tt>find_template</tt> 并不会检查文件真的存在， 而是对任何可能的路径调用给入的代码块。这并不会带来性能问题， 因为
-<tt>render</tt> 会在找到文件的时候马上使用 <tt>break</tt> 。 同样的，模板的路径（和内容）会在除development
-mode以外的场合 被缓存。你应该时刻提醒自己这一点， 如果你真的想写一个非常疯狂的方法。</p>
+<p>请注意 <tt>find_template</tt> 并不会检查文件真的存在，
+而是对任何可能的路径调用给入的代码块。这并不会带来性能问题，
+因为 <tt>render</tt> 会在找到文件的时候马上使用
+<tt>break</tt> 。
+同样的，模板的路径（和内容）会在除development
+mode以外的场合 被缓存。你应该时刻提醒自己这一点，
+如果你真的想写一个非常疯狂的方法。</p>
 
 <a name='%E9%85%8D%E7%BD%AE'></a>
 <h2>配置</h2>
@@ -1271,13 +1355,15 @@ mode以外的场合 被缓存。你应该时刻提醒自己这一点， 如果�
   set(:css_dir) { File.join(views, 'css') }
 end</pre>
 
-<p>只当环境 (RACK_ENV environment 变量) 被设定为 <tt>:production</tt>的时候运行：</p>
+<p>只当环境 (RACK_ENV environment 变量) 被设定为
+<tt>:production</tt>的时候运行：</p>
 
 <pre>configure :production do
   ...
 end</pre>
 
-<p>当环境被设定为 <tt>:production</tt> 或者 <tt>:test</tt>的时候运行：</p>
+<p>当环境被设定为 <tt>:production</tt> 或者
+<tt>:test</tt>的时候运行：</p>
 
 <pre>configure :production, :test do
   ...
@@ -1299,26 +1385,32 @@ end</pre>
 <h3>可选的设置</h3>
 <dl class="rdoc-list"><dt>absolute_redirects</dt>
 <dd>
-<p>如果被禁用，Sinatra会允许使用相对路径重定向， 但是，Sinatra就不再遵守 RFC 2616标准 (HTTP 1.1),
+<p>如果被禁用，Sinatra会允许使用相对路径重定向，
+但是，Sinatra就不再遵守 RFC 2616标准 (HTTP 1.1),
 该标准只允许绝对路径重定向。</p>
 
-<p>如果你的应用运行在一个未恰当设置的反向代理之后， 你需要启用这个选项。注意 <tt>url</tt> 辅助方法 仍然会生成绝对 URL，除非你传入
-<tt>false</tt> 作为第二参数。</p>
+<p>如果你的应用运行在一个未恰当设置的反向代理之后，
+你需要启用这个选项。注意 <tt>url</tt> 辅助方法
+仍然会生成绝对 URL，除非你传入 <tt>false</tt>
+作为第二参数。</p>
 
 <p>默认禁用。</p>
 </dd><dt>add_charsets</dt>
 <dd>
-<p>设定 <tt>content_type</tt> 辅助方法会 自动加上字符集信息的多媒体类型。</p>
+<p>设定 <tt>content_type</tt> 辅助方法会
+自动加上字符集信息的多媒体类型。</p>
 
 <p>你应该添加而不是覆盖这个选项:</p>
 
 <pre>settings.add_charsets &lt;&lt; &quot;application/foobar&quot;</pre>
 </dd><dt>app_file</dt>
 <dd>
-<p>主应用文件，用来检测项目的根路径， views和public文件夹和内联模板。</p>
+<p>主应用文件，用来检测项目的根路径，
+views和public文件夹和内联模板。</p>
 </dd><dt>bind</dt>
 <dd>
-<p>绑定的IP 地址 (默认: 0.0.0.0)。 仅对于内置的服务器有用。</p>
+<p>绑定的IP 地址 (默认: 0.0.0.0)。
+仅对于内置的服务器有用。</p>
 </dd><dt>default_encoding</dt>
 <dd>
 <p>默认编码 (默认为 <tt>&quot;utf-8&quot;</tt>)。</p>
@@ -1327,8 +1419,8 @@ end</pre>
 <p>在log中显示错误。</p>
 </dd><dt>environment</dt>
 <dd>
-<p>当前环境，默认是 <tt>ENV['RACK_ENV']</tt>， 或者 <tt>&quot;development&quot;</tt>
-如果不可用。</p>
+<p>当前环境，默认是 <tt>ENV['RACK_ENV']</tt>， 或者
+<tt>&quot;development&quot;</tt> 如果不可用。</p>
 </dd><dt>logging</dt>
 <dd>
 <p>使用logger</p>
@@ -1339,20 +1431,24 @@ end</pre>
 <p>如果你的应用不是线程安全则需启动。 默认禁用。</p>
 </dd><dt>method_override</dt>
 <dd>
-<p>使用 <tt>_method</tt> 魔法以允许在旧的浏览器中在 表单中使用 put/delete 方法</p>
+<p>使用 <tt>_method</tt> 魔法以允许在旧的浏览器中在
+表单中使用 put/delete 方法</p>
 </dd><dt>port</dt>
 <dd>
 <p>监听的端口号。只对内置服务器有用。</p>
 </dd><dt>prefixed_redirects</dt>
 <dd>
-<p>是否添加 <tt>request.script_name</tt> 到 重定向请求，如果没有设定绝对路径。那样的话 <tt>redirect
-'/foo'</tt> 会和 <tt>redirect to('/foo')</tt>起相同作用。默认禁用。</p>
+<p>是否添加 <tt>request.script_name</tt> 到
+重定向请求，如果没有设定绝对路径。那样的话
+<tt>redirect '/foo'</tt> 会和 <tt>redirect
+to('/foo')</tt>起相同作用。默认禁用。</p>
 </dd><dt>public_folder</dt>
 <dd>
 <p>public文件夹的位置。</p>
 </dd><dt>reload_templates</dt>
 <dd>
-<p>是否每个请求都重新载入模板。 在development mode和 Ruby 1.8.6 中被企业（用来 消除一个Ruby内存泄漏的bug）。</p>
+<p>是否每个请求都重新载入模板。 在development mode和 Ruby
+1.8.6 中被企业（用来 消除一个Ruby内存泄漏的bug）。</p>
 </dd><dt>root</dt>
 <dd>
 <p>项目的根目录。</p>
@@ -1361,13 +1457,15 @@ end</pre>
 <p>抛出异常（应用会停下）。</p>
 </dd><dt>run</dt>
 <dd>
-<p>如果启用，Sinatra会开启web服务器。 如果使用rackup或其他方式则不要启用。</p>
+<p>如果启用，Sinatra会开启web服务器。
+如果使用rackup或其他方式则不要启用。</p>
 </dd><dt>running</dt>
 <dd>
 <p>内置的服务器在运行吗？ 不要修改这个设置！</p>
 </dd><dt>server</dt>
 <dd>
-<p>服务器，或用于内置服务器的列表。 默认是 [‘thin’, ‘mongrel’, ‘webrick’], 顺序表明了 优先级。</p>
+<p>服务器，或用于内置服务器的列表。 默认是 ['thin',
+'mongrel', 'webrick'], 顺序表明了 优先级。</p>
 </dd><dt>sessions</dt>
 <dd>
 <p>开启基于cookie的sesson。</p>
@@ -1376,7 +1474,8 @@ end</pre>
 <p>在浏览器中显示一个stack trace。</p>
 </dd><dt>static</dt>
 <dd>
-<p>Sinatra是否处理静态文件。 当服务器能够处理则禁用。 禁用会增强性能。 默认开启。</p>
+<p>Sinatra是否处理静态文件。 当服务器能够处理则禁用。
+禁用会增强性能。 默认开启。</p>
 </dd><dt>views</dt>
 <dd>
 <p>views 文件夹。</p>
@@ -1385,14 +1484,15 @@ end</pre>
 <a name='%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86'></a>
 <h2>错误处理</h2>
 
-<p>错误处理在与路由和前置过滤器相同的上下文中运行， 这意味着你可以使用许多好东西，比如 <tt>haml</tt>, <tt>erb</tt>,
-<tt>halt</tt>，等等。</p>
+<p>错误处理在与路由和前置过滤器相同的上下文中运行，
+这意味着你可以使用许多好东西，比如 <tt>haml</tt>,
+<tt>erb</tt>, <tt>halt</tt>，等等。</p>
 
 <a name='%E6%9C%AA%E6%89%BE%E5%88%B0'></a>
 <h3>未找到</h3>
 
-<p>当一个 <tt>Sinatra::NotFound</tt> 错误被抛出的时候， 或者响应状态码是404，<tt>not_found</tt>
-处理器会被调用：</p>
+<p>当一个 <tt>Sinatra::NotFound</tt> 错误被抛出的时候，
+或者响应状态码是404，<tt>not_found</tt> 处理器会被调用：</p>
 
 <pre>not_found do
   'This is nowhere to be found'
@@ -1401,7 +1501,8 @@ end</pre>
 <a name='%E9%94%99%E8%AF%AF'></a>
 <h3>错误</h3>
 
-<p><tt>error</tt> 处理器，在任何路由代码块或者过滤器抛出异常的时候会被调用。 
+<p><tt>error</tt>
+处理器，在任何路由代码块或者过滤器抛出异常的时候会被调用。
 异常对象可以通过<tt>sinatra.error</tt> Rack 变量获得：</p>
 
 <pre>error do
@@ -1440,16 +1541,20 @@ end</pre>
   'Boom'
 end</pre>
 
-<p>在运行在development环境下时，Sinatra会安装特殊的 <tt>not_found</tt> 和 <tt>error</tt> 处理器。</p>
+<p>在运行在development环境下时，Sinatra会安装特殊的
+<tt>not_found</tt> 和 <tt>error</tt> 处理器。</p>
 
 <a name='Rack%20%E4%B8%AD%E9%97%B4%E4%BB%B6'></a>
 <h2>Rack 中间件</h2>
 
-<p>Sinatra 依靠 <a href="http://rack.rubyforge.org/">Rack</a>,  一个面向Ruby
-web框架的最小标准接口。 Rack的一个最有趣的面向应用开发者的能力是支持“中间件”——坐落在服务器和你的应用之间， 监视 并/或
-操作HTTP请求/响应以 提供多样类型的常用功能。</p>
+<p>Sinatra 依靠 <a href="http://rack.rubyforge.org/">Rack</a>, 
+一个面向Ruby web框架的最小标准接口。
+Rack的一个最有趣的面向应用开发者的能力是支持“中间件”——坐落在服务器和你的应用之间，
+监视 并/或 操作HTTP请求/响应以
+提供多样类型的常用功能。</p>
 
-<p>Sinatra 让建立Rack中间件管道异常简单， 通过顶层的 <tt>use</tt> 方法：</p>
+<p>Sinatra 让建立Rack中间件管道异常简单， 通过顶层的
+<tt>use</tt> 方法：</p>
 
 <pre>require 'sinatra'
 require 'my_custom_middleware'
@@ -1463,20 +1568,24 @@ end</pre>
 
 <p><tt>use</tt> 的语义和在 <a
 href="http://rack.rubyforge.org/doc/classes/Rack/Builder.html">Rack::Builder</a>
-DSL(在rack文件中最频繁使用)中定义的完全一样。例如，<tt>use</tt> 方法接受 多个/可变 参数，包括代码块：</p>
+DSL(在rack文件中最频繁使用)中定义的完全一样。例如，<tt>use</tt>
+方法接受 多个/可变 参数，包括代码块：</p>
 
 <pre>use Rack::Auth::Basic do |username, password|
   username == 'admin' &amp;&amp; password == 'secret'
 end</pre>
 
-<p>Rack中分布有多样的标准中间件，针对日志， 调试，URL路由，认证和session处理。 Sinatra会自动使用这里面的大部分组件，
+<p>Rack中分布有多样的标准中间件，针对日志，
+调试，URL路由，认证和session处理。
+Sinatra会自动使用这里面的大部分组件，
 所以你一般不需要显示地 <tt>use</tt> 他们。</p>
 
 <a name='%E6%B5%8B%E8%AF%95'></a>
 <h2>测试</h2>
 
-<p>Sinatra的测试可以使用任何基于Rack的测试程序库或者框架来编写。 <a
-href="http://gitrdoc.com/brynary/rack-test">Rack::Test</a> 是推荐候选：</p>
+<p>Sinatra的测试可以使用任何基于Rack的测试程序库或者框架来编写。
+<a href="http://gitrdoc.com/brynary/rack-test">Rack::Test</a>
+是推荐候选：</p>
 
 <pre>require 'my_sinatra_app'
 require 'test/unit'
@@ -1505,15 +1614,21 @@ class MyAppTest &lt; Test::Unit::TestCase
   end
 end</pre>
 
-<p>请注意: 内置的 Sinatra::Test 模块和 Sinatra::TestHarness 类 在 0.9.2 版本已废弃。</p>
+<p>请注意: 内置的 Sinatra::Test 模块和 Sinatra::TestHarness 类 在
+0.9.2 版本已废弃。</p>
 
 <a name='Sinatra::Base%20-%20%E4%B8%AD%E9%97%B4%E4%BB%B6%EF%BC%8C%E7%A8%8B%E5%BA%8F%E5%BA%93%E5%92%8C%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BA%94%E7%94%A8'></a>
 <h2>Sinatra::Base - 中间件，程序库和模块化应用</h2>
 
-<p>把你的应用定义在顶层，对于微型应用这会工作得很好， 但是在构建可复用的组件时候会带来客观的不利， 比如构建Rack中间件，Rails
-metal，带有服务器组件的简单程序库， 或者甚至是Sinatra扩展。顶层的DSL污染了Object命名空间， 并假定了一个微型应用风格的配置
-(例如, 单一的应用文件， ./public 和 ./views 目录，日志，异常细节页面，等等）。 这时应该让 Sinatra::Base
-走到台前了：</p>
+<p>把你的应用定义在顶层，对于微型应用这会工作得很好，
+但是在构建可复用的组件时候会带来客观的不利，
+比如构建Rack中间件，Rails
+metal，带有服务器组件的简单程序库，
+或者甚至是Sinatra扩展。顶层的DSL污染了Object命名空间，
+并假定了一个微型应用风格的配置 (例如,
+单一的应用文件， ./public 和 ./views
+目录，日志，异常细节页面，等等）。 这时应该让
+Sinatra::Base 走到台前了：</p>
 
 <pre>require 'sinatra/base'
 
@@ -1526,33 +1641,43 @@ class MyApp &lt; Sinatra::Base
   end
 end</pre>
 
-<p>Sinatra::Base子类可用的方法实际上就是通过顶层 DSL 可用的方法。 大部分顶层应用可以通过两个改变转换成Sinatra::Base组件：</p>
+<p>Sinatra::Base子类可用的方法实际上就是通过顶层 DSL
+可用的方法。
+大部分顶层应用可以通过两个改变转换成Sinatra::Base组件：</p>
 <ul><li>
-<p>你的文件应当引入 <tt>sinatra/base</tt> 而不是 <tt>sinatra</tt>; 否则，所有的Sinatra的 DSL
-方法将会被引进到 主命名空间。</p>
+<p>你的文件应当引入 <tt>sinatra/base</tt> 而不是 <tt>sinatra</tt>;
+否则，所有的Sinatra的 DSL 方法将会被引进到
+主命名空间。</p>
 </li><li>
-<p>把你的应用的路由，错误处理，过滤器和选项放在 一个Sinatra::Base的子类中。</p>
+<p>把你的应用的路由，错误处理，过滤器和选项放在
+一个Sinatra::Base的子类中。</p>
 </li></ul>
 
-<p><tt>+Sinatra::Base+</tt> 是一张白纸。大部分的选项默认是禁用的， 包含内置的服务器。参见 <a
+<p><tt>+Sinatra::Base+</tt>
+是一张白纸。大部分的选项默认是禁用的，
+包含内置的服务器。参见 <a
 href="http://sinatra.github.com/configuration.html">选项和配置</a>
 查看可用选项的具体细节和他们的行为。</p>
 
 <a name='%E6%A8%A1%E5%9D%97%E5%8C%96%20vs.%20%E4%BC%A0%E7%BB%9F%E7%9A%84%E6%96%B9%E5%BC%8F'></a>
 <h3>模块化 vs. 传统的方式</h3>
 
-<p>与通常的认识相反，传统的方式没有任何错误。 如果它适合你的应用，你不需要转换到模块化的应用。</p>
+<p>与通常的认识相反，传统的方式没有任何错误。
+如果它适合你的应用，你不需要转换到模块化的应用。</p>
 
 <p>和模块化方式相比只有两个缺点:</p>
 <ul><li>
-<p>你对每个Ruby进程只能定义一个Sinatra应用，如果你需要更多， 切换到模块化方式。</p>
+<p>你对每个Ruby进程只能定义一个Sinatra应用，如果你需要更多，
+切换到模块化方式。</p>
 </li><li>
-<p>传统方式使用代理方法污染了 Object 。如果你打算 把你的应用封装进一个 library/gem，转换到模块化方式。</p>
+<p>传统方式使用代理方法污染了 Object 。如果你打算
+把你的应用封装进一个 library/gem，转换到模块化方式。</p>
 </li></ul>
 
 <p>没有任何原因阻止你混合模块化和传统方式。</p>
 
-<p>如果从一种转换到另一种，你需要注意settings中的 一些微小的不同:</p>
+<p>如果从一种转换到另一种，你需要注意settings中的
+一些微小的不同:</p>
 
 <pre>Setting             Classic                 Modular
 
@@ -1613,21 +1738,25 @@ run Sinatra::Application</pre>
 
 <p>以下情况你可能需要使用 <tt>config.ru</tt>:</p>
 <ul><li>
-<p>你要使用不同的 Rack 处理器部署 (Passenger, Unicorn, Heroku, …).</p>
+<p>你要使用不同的 Rack 处理器部署 (Passenger, Unicorn, Heroku,
+...).</p>
 </li><li>
 <p>你想使用一个或者多个 <tt>Sinatra::Base</tt>的子类.</p>
 </li><li>
 <p>你只想把Sinatra当作中间件使用，而不是端点。</p>
 </li></ul>
 
-<p><b>你并不需要切换到<tt>config.ru</tt>仅仅因为你切换到模块化方式， 你同样不需要切换到模块化方式， 仅仅因为要运行
+<p><b>你并不需要切换到<tt>config.ru</tt>仅仅因为你切换到模块化方式，
+你同样不需要切换到模块化方式， 仅仅因为要运行
 <tt>config.ru</tt>.</b></p>
 
 <a name='%E6%8A%8ASinatra%E5%BD%93%E6%88%90%E4%B8%AD%E9%97%B4%E4%BB%B6%E6%9D%A5%E4%BD%BF%E7%94%A8'></a>
 <h3>把Sinatra当成中间件来使用</h3>
 
-<p>不仅Sinatra有能力使用其他的Rack中间件，任何Sinatra 应用程序都可以反过来自身被当作中间件，被加在任何Rack端点前面。
-这个端点可以是任何Sinatra应用，或者任何基于Rack的应用程序 (Rails/Ramaze/Camping/…)。</p>
+<p>不仅Sinatra有能力使用其他的Rack中间件，任何Sinatra
+应用程序都可以反过来自身被当作中间件，被加在任何Rack端点前面。
+这个端点可以是任何Sinatra应用，或者任何基于Rack的应用程序
+(Rails/Ramaze/Camping/...)。</p>
 
 <pre>require 'sinatra/base'
 
@@ -1666,9 +1795,12 @@ end</pre>
 <a name='%E5%BA%94%E7%94%A8/%E7%B1%BB%20%E5%8F%98%E9%87%8F%E5%9F%9F'></a>
 <h3>应用/类 变量域</h3>
 
-<p>每个Sinatra应用相当与Sinatra::Base的一个子类。 如果你在使用顶层DSL(<tt>require
-'sinatra'</tt>)，那么这个类就是 Sinatra::Application，或者这个类就是你显式创建的子类。
-在类层面，你具有的方法类似于 `get` 或者 `before`，但是你不能访问 `request` 对象或者 `session`,
+<p>每个Sinatra应用相当与Sinatra::Base的一个子类。
+如果你在使用顶层DSL(<tt>require
+'sinatra'</tt>)，那么这个类就是
+Sinatra::Application，或者这个类就是你显式创建的子类。
+在类层面，你具有的方法类似于 `get` 或者
+`before`，但是你不能访问 `request` 对象或者 `session`,
 因为对于所有的请求， 只有单一的应用类。</p>
 
 <p>通过 `set` 创建的选项是类层面的方法：</p>
@@ -1704,8 +1836,11 @@ end</pre>
 <a name='%E8%AF%B7%E6%B1%82/%E5%AE%9E%E4%BE%8B%20%E5%8F%98%E9%87%8F%E5%9F%9F'></a>
 <h3>请求/实例 变量域</h3>
 
-<p>对于每个进入的请求，一个新的应用类的实例会被创建 所有的处理器代码块在该变量域被运行。在这个变量域中， 你可以访问 `request` 和
-`session` 对象，或者调用渲染方法比如 `erb` 或者 `haml`。你可以在请求变量域当中通过`settings`辅助方法
+<p>对于每个进入的请求，一个新的应用类的实例会被创建
+所有的处理器代码块在该变量域被运行。在这个变量域中，
+你可以访问 `request` 和 `session`
+对象，或者调用渲染方法比如 `erb` 或者
+`haml`。你可以在请求变量域当中通过`settings`辅助方法
 访问应用变量域：</p>
 
 <pre>class MyApp &lt; Sinatra::Base
@@ -1737,9 +1872,13 @@ end</pre>
 <a name='%E4%BB%A3%E7%90%86%E5%8F%98%E9%87%8F%E5%9F%9F'></a>
 <h3>代理变量域</h3>
 
-<p>代理变量域只是把方法转送到类变量域。可是， 他并非表现得100%类似于类变量域, 因为你并不能获得类的绑定: 
-只有显式地标记为供代理使用的方法才是可用的， 而且你不能和类变量域共享变量/状态。(解释：你有了一个不同的 `self`)。
-你可以显式地增加方法代理，通过调用 <tt>Sinatra::Delegator.delegate :method_name</tt>。</p>
+<p>代理变量域只是把方法转送到类变量域。可是，
+他并非表现得100%类似于类变量域,
+因为你并不能获得类的绑定: 
+只有显式地标记为供代理使用的方法才是可用的，
+而且你不能和类变量域共享变量/状态。(解释：你有了一个不同的
+`self`)。 你可以显式地增加方法代理，通过调用
+<tt>Sinatra::Delegator.delegate :method_name</tt>。</p>
 
 <p>在以下情况将获得代理变量域：</p>
 <ul><li>
@@ -1777,29 +1916,37 @@ href="http://github.com/sinatra/sinatra/blob/ceac46f0bc129a6e994a06100aa854f606f
 <p>下面的Ruby版本是官方支持的:</p>
 <dl class="rdoc-list"><dt> Ruby 1.8.6 </dt>
 <dd>
-<p>不推荐在1.8.6上安装Sinatra， 但是直到Sinatra 1.3.0发布才会放弃对它的支持。 RDoc 和
-CoffeScript模板不被这个Ruby版本支持。 1.8.6在它的Hash实现中包含一个内存泄漏问题，
-该问题会被1.1.1版本之前的Sinatra引发。 当前版本使用性能下降的代价排除了这个问题。你需要把Rack降级到1.1.x， 因为Rack
-&gt;= 1.2不再支持1.8.6。</p>
+<p>不推荐在1.8.6上安装Sinatra， 但是直到Sinatra
+1.3.0发布才会放弃对它的支持。 RDoc 和
+CoffeScript模板不被这个Ruby版本支持。
+1.8.6在它的Hash实现中包含一个内存泄漏问题，
+该问题会被1.1.1版本之前的Sinatra引发。
+当前版本使用性能下降的代价排除了这个问题。你需要把Rack降级到1.1.x，
+因为Rack &gt;= 1.2不再支持1.8.6。</p>
 </dd><dt> Ruby 1.8.7 </dt>
 <dd>
-<p>1.8.7 被完全支持，但是，如果没有特别原因， 我们推荐你升级到 1.9.2 或者切换到 JRuby 或者 Rubinius.</p>
+<p>1.8.7 被完全支持，但是，如果没有特别原因，
+我们推荐你升级到 1.9.2 或者切换到 JRuby 或者 Rubinius.</p>
 </dd><dt> Ruby 1.9.2 </dt>
 <dd>
-<p>1.9.2 被支持而且推荐。注意 Radius 和 Markaby 模板并不和1.9兼容。不要使用 1.9.2p0, 它被已知会产生
+<p>1.9.2 被支持而且推荐。注意 Radius 和 Markaby
+模板并不和1.9兼容。不要使用 1.9.2p0, 它被已知会产生
 segmentation faults.</p>
 </dd><dt> Rubinius </dt>
 <dd>
 <p>Rubinius 被官方支持 (Rubinius &gt;= 1.2.2)， 除了Textile模板。</p>
 </dd><dt> JRuby </dt>
 <dd>
-<p>JRuby 被官方支持 (JRuby &gt;= 1.5.6)。 目前未知和第三方模板库有关的问题，
-但是，如果你选择了JRuby，请查看一下JRuby rack 处理器， 因为 Thin web 服务器还没有在JRuby上获得支持。</p>
+<p>JRuby 被官方支持 (JRuby &gt;= 1.5.6)。
+目前未知和第三方模板库有关的问题，
+但是，如果你选择了JRuby，请查看一下JRuby rack 处理器，
+因为 Thin web 服务器还没有在JRuby上获得支持。</p>
 </dd></dl>
 
 <p>我们也会时刻关注新的Ruby版本。</p>
 
-<p>下面的 Ruby 实现没有被官方支持， 但是已知可以运行 Sinatra:</p>
+<p>下面的 Ruby 实现没有被官方支持， 但是已知可以运行
+Sinatra:</p>
 <ul><li>
 <p>JRuby 和 Rubinius 老版本</p>
 </li><li>
@@ -1812,14 +1959,16 @@ segmentation faults.</p>
 <p>Ruby 1.9.0 and 1.9.1</p>
 </li></ul>
 
-<p>不被官方支持的意思是，如果在不被支持的平台上有运行错误， 我们假定不是我们的问题，而是平台的问题。</p>
+<p>不被官方支持的意思是，如果在不被支持的平台上有运行错误，
+我们假定不是我们的问题，而是平台的问题。</p>
 
 <p>Sinatra应该会运行在任何支持上述Ruby实现的操作系统。</p>
 
 <a name='%E7%B4%A7%E8%BF%BD%E5%89%8D%E6%B2%BF'></a>
 <h2>紧追前沿</h2>
 
-<p>如果你喜欢使用 Sinatra 的最新鲜的代码，请放心的使用 master 分支来运行你的程序，它会非常的稳定。</p>
+<p>如果你喜欢使用 Sinatra 的最新鲜的代码，请放心的使用
+master 分支来运行你的程序，它会非常的稳定。</p>
 
 <pre>cd myapp
 git clone git://github.com/sinatra/sinatra.git
@@ -1834,8 +1983,8 @@ ruby -Isinatra/lib myapp.rb</pre>
 <a name='%E9%80%9A%E8%BF%87Bundler'></a>
 <h3>通过Bundler</h3>
 
-<p>如果你想使用最新的Sinatra运行你的应用，通过 <a href="http://gembundler.com/">Bundler</a>
-是推荐的方式。</p>
+<p>如果你想使用最新的Sinatra运行你的应用，通过 <a
+href="http://gembundler.com/">Bundler</a> 是推荐的方式。</p>
 
 <p>首先，安装bundler，如果你还没有安装:</p>
 
@@ -1850,7 +1999,9 @@ gem 'sinatra', :git =&gt; &quot;git://github.com/sinatra/sinatra.git&quot;
 gem 'haml'                    # 举例，如果你想用haml
 gem 'activerecord', '~&gt; 3.0'  # 也许你还需要 ActiveRecord 3.x</pre>
 
-<p>请注意在这里你需要列出你的应用的所有依赖关系。 Sinatra的直接依赖关系 (Rack and Tilt) 将会， 自动被Bundler获取和添加。</p>
+<p>请注意在这里你需要列出你的应用的所有依赖关系。
+Sinatra的直接依赖关系 (Rack and Tilt) 将会，
+自动被Bundler获取和添加。</p>
 
 <p>现在你可以像这样运行你的应用:</p>
 
@@ -1859,7 +2010,8 @@ gem 'activerecord', '~&gt; 3.0'  # 也许你还需要 ActiveRecord 3.x</pre>
 <a name='%E4%BD%BF%E7%94%A8%E8%87%AA%E5%B7%B1%E7%9A%84'></a>
 <h3>使用自己的</h3>
 
-<p>创建一个本地克隆并通过 <tt>sinatra/lib</tt> 目录运行你的应用， 通过 <tt>$LOAD_PATH</tt>:</p>
+<p>创建一个本地克隆并通过 <tt>sinatra/lib</tt>
+目录运行你的应用， 通过 <tt>$LOAD_PATH</tt>:</p>
 
 <pre>cd myapp
 git clone git://github.com/sinatra/sinatra.git
@@ -1887,10 +2039,11 @@ rake install</pre>
 <a name='%E6%9B%B4%E5%A4%9A'></a>
 <h2>更多</h2>
 <ul><li>
-<p><a href="http://www.sinatrarb.com/">项目主页（英文）</a> - 更多的文档， 新闻，和其他资源的链接。</p>
+<p><a href="http://www.sinatrarb.com/">项目主页（英文）</a> -
+更多的文档， 新闻，和其他资源的链接。</p>
 </li><li>
-<p><a href="http://www.sinatrarb.com/contributing">贡献</a> - 找到了一个bug？
-需要帮助？有了一个 patch?</p>
+<p><a href="http://www.sinatrarb.com/contributing">贡献</a> -
+找到了一个bug？ 需要帮助？有了一个 patch?</p>
 </li><li>
 <p><a href="http://github.com/sinatra/sinatra/issues">问题追踪</a></p>
 </li><li>
