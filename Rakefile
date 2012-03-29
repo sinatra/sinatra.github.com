@@ -1,3 +1,4 @@
+# encoding: binary
 require 'rake/clean'
 require 'rdoc/markup/to_html'
 require 'uri'
@@ -86,7 +87,7 @@ readme do |fn|
   file "_includes/#{fn}.html" => ["_sinatra/#{fn}.rdoc", "Rakefile"] do |f|
     html =
       RDoc::Markup::ToHtml.new.
-      convert(File.read("_sinatra/#{fn}.rdoc")).
+      convert(File.binread("_sinatra/#{fn}.rdoc")).
       sub("<h1>Sinatra</h1>", "")
     File.open(f.name, 'wb') { |io| io.write with_toc(html) }
   end
