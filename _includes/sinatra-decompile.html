@@ -1,43 +1,40 @@
+
 <h1>Sinatra::Decompile</h1>
-<p>
-<tt>Sinatra::Decompile</tt> is an extension that provides a method,
+
+<p><tt>Sinatra::Decompile</tt> is an extension that provides a method,
 conveniently called <tt>decompile</tt>, that will generate a String pattern
-for a given route.
-</p>
+for a given route.</p>
+
 <h2>Usage</h2>
+
 <h3>Classic Application</h3>
-<p>
-To use the extension in a classic application all you need to do is require
-it:
-</p>
-<pre>
-    require &quot;sinatra&quot;
-    require &quot;sinatra/decompile&quot;
 
-    # Your classic application code goes here...
-</pre>
-<p>
-This will add the <tt>decompile</tt> method to the application/class scope,
-but you can also call it as <tt>Sinatra::Decompile.decompile</tt>.
-</p>
+<p>To use the extension in a classic application all you need to do is require
+it:</p>
+
+<pre>require &quot;sinatra&quot;
+require &quot;sinatra/decompile&quot;
+
+# Your classic application code goes here...</pre>
+
+<p>This will add the <tt>decompile</tt> method to the application/class scope,
+but you can also call it as <tt>Sinatra::Decompile.decompile</tt>.</p>
+
 <h3>Modular Application</h3>
-<p>
-To use the extension in a modular application you need to require it, and
-then, tell the application you will use it:
-</p>
-<pre>
-    require &quot;sinatra/base&quot;
-    require &quot;sinatra/decompile&quot;
 
-    class MyApp &lt; Sinatra::Base
-      register Sinatra::Decompile
+<p>To use the extension in a modular application you need to require it, and
+then, tell the application you will use it:</p>
 
-      # The rest of your modular application code goes here...
-    end
-</pre>
-<p>
-This will add the <tt>decompile</tt> method to the application/class scope.
+<pre>require &quot;sinatra/base&quot;
+require &quot;sinatra/decompile&quot;
+
+class MyApp &lt; Sinatra::Base
+  register Sinatra::Decompile
+
+  # The rest of your modular application code goes here...
+end</pre>
+
+<p>This will add the <tt>decompile</tt> method to the application/class scope.
 You can choose not to register the extension, but instead of calling
 <tt>decompile</tt>, you will need to call
-<tt>Sinatra::Decompile.decompile</tt>.
-</p>
+<tt>Sinatra::Decompile.decompile</tt>.</p>

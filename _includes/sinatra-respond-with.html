@@ -1,104 +1,88 @@
-<h1>Sinatra::RespondWith</h1>
-<p>
-This extensions lets Sinatra automatically choose what template to render
-or action to perform depending on the request&#8217;s Accept header.
-</p>
-<p>
-Example:
-</p>
-<pre>
-  # Without Sinatra::RespondWith
-  get '/' do
-    data = { :name =&gt; 'example' }
-    request.accept.each do |type|
-      case type
-      when 'text/html'
-        halt haml(:index, :locals =&gt; data)
-      when 'application/json'
-        halt data.to_json
-      when 'application/atom+xml'
-        halt nokogiri(:'index.atom', :locals =&gt; data)
-      when 'application/xml', 'text/xml'
-        halt nokogiri(:'index.xml', :locals =&gt; data)
-      when 'text/plain'
-        halt 'just an example'
-      end
-    end
-    error 406
-  end
 
-  # With Sinatra::RespondWith
-  get '/' do
-    respond_with :index, :name =&gt; 'example' do |f|
-      f.txt { 'just an example' }
+<h1>Sinatra::RespondWith</h1>
+
+<p>This extensions lets Sinatra automatically choose what template to render
+or action to perform depending on the request's Accept header.</p>
+
+<p>Example:</p>
+
+<pre># Without Sinatra::RespondWith
+get '/' do
+  data = { :name =&gt; 'example' }
+  request.accept.each do |type|
+    case type
+    when 'text/html'
+      halt haml(:index, :locals =&gt; data)
+    when 'text/json'
+      halt data.to_json
+    when 'application/atom+xml'
+      halt nokogiri(:'index.atom', :locals =&gt; data)
+    when 'application/xml', 'text/xml'
+      halt nokogiri(:'index.xml', :locals =&gt; data)
+    when 'text/plain'
+      halt 'just an example'
     end
   end
-</pre>
-<p>
-Both helper methods <tt>respond_to</tt> and <tt>respond_with</tt> let you
+  error 406
+end
+
+# With Sinatra::RespondWith
+get '/' do
+  respond_with :index, :name =&gt; 'example' do |f|
+    f.txt { 'just an example' }
+  end
+end</pre>
+
+<p>Both helper methods <tt>respond_to</tt> and <tt>respond_with</tt> let you
 define custom handlers like the one above for <tt>text/plain</tt>.
 <tt>respond_with</tt> additionally takes a template name and/or an object
-to offer the following default behavior:
-</p>
-<ul>
-<li><p>
-If a template name is given, search for a template called
+to offer the following default behavior:</p>
+<ul><li>
+<p>If a template name is given, search for a template called
 <tt>name.format.engine</tt> (<tt>index.xml.nokogiri</tt> in the above
-example).
-</p>
-</li>
-<li><p>
-If a template name is given, search for a templated called
+example).</p>
+</li><li>
+<p>If a template name is given, search for a templated called
 <tt>name.engine</tt> for engines known to result in the requested format
-(<tt>index.haml</tt>).
-</p>
-</li>
-<li><p>
-If a file extension associated with the mime type is known to Sinatra, and
+(<tt>index.haml</tt>).</p>
+</li><li>
+<p>If a file extension associated with the mime type is known to Sinatra, and
 the object responds to <tt>to_extension</tt>, call that method and use the
-result (<tt>data.to_json</tt>).
-</p>
-</li>
-</ul>
+result (<tt>data.to_json</tt>).</p>
+</li></ul>
+
 <h2>Security</h2>
-<p>
-Since methods are triggered based on client input, this can lead to
-security issues (but not as severe as those might appear in the first
+
+<p>Since methods are triggered based on client input, this can lead to
+security issues (but not as seviere as those might apear in the first
 place: keep in mind that only known file extensions are used). You
-therefore should limit the possible formats you serve.
-</p>
-<p>
-This is possible with the <tt>provides</tt> condition:
-</p>
-<pre>
-  get '/', :provides =&gt; [:html, :json, :xml, :atom] do
-    respond_with :index, :name =&gt; 'example'
-  end
-</pre>
-<p>
-However, since you have to set <tt>provides</tt> for every route, this
-extension adds a app global (class method) `respond_to`, that let&#8217;s
-you define content types for all routes:
-</p>
-<pre>
-  respond_to :html, :json, :xml, :atom
-  get('/a') { respond_with :index, :name =&gt; 'a' }
-  get('/b') { respond_with :index, :name =&gt; 'b' }
-</pre>
+therefore should limit the possible formats you serve.</p>
+
+<p>This is possible with the <tt>provides</tt> condition:</p>
+
+<pre>get '/', :provides =&gt; [:html, :json, :xml, :atom] do
+  respond_with :index, :name =&gt; 'example'
+end</pre>
+
+<p>However, since you have to set <tt>provides</tt> for every route, this
+extension adds a app global (class method) `respond_to`, that let's you
+define content types for all routes:</p>
+
+<pre>respond_to :html, :json, :xml, :atom
+get('/a') { respond_with :index, :name =&gt; 'a' }
+get('/b') { respond_with :index, :name =&gt; 'b' }</pre>
+
 <h2>Custom Types</h2>
-<p>
-Use the <tt>on</tt> method for defining actions for custom types:
-</p>
-<pre>
-  get '/' do
-    respond_to do |f|
-      f.xml { nokogiri :index }
-      f.on('application/custom') { custom_action }
-      f.on('text/*') { data.to_s }
-      f.on('*/*') { &quot;matches everything&quot; }
-    end
+
+<p>Use the <tt>on</tt> method for defining actions for custom types:</p>
+
+<pre>get '/' do
+  respond_to do |f|
+    f.xml { nokogiri :index }
+    f.on('application/custom') { custom_action }
+    f.on('text/*') { data.to_s }
+    f.on('*/*') { &quot;matches everything&quot; }
   end
-</pre>
-<p>
-Definition order does not matter.
-</p>
+end</pre>
+
+<p>Definition order does not matter.</p>

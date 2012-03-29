@@ -1,98 +1,90 @@
+
 <h1>Sinatra::Streaming</h1>
-<p>
-Sinatra 1.3 introduced the <tt>stream</tt> helper. This addon improves the
+
+<p>Sinatra 1.3 introduced the <tt>stream</tt> helper. This addon improves the
 streaming API by making the stream object immitate an IO object, turing it
 into a real Deferrable and making the body play nicer with middleware
-unaware of streaming.
-</p>
+unaware of streaming.</p>
+
 <h2>IO-like behavior</h2>
-<p>
-This is useful when passing the stream object to a library expecting an IO
-or StringIO object.
-</p>
-<pre>
-  get '/' do
-    stream do |out|
-      out.puts &quot;Hello World!&quot;, &quot;How are you?&quot;
-      out.write &quot;Written #{out.pos} bytes so far!\n&quot;
-      out.putc(65) unless out.closed?
-      out.flush
-    end
+
+<p>This is useful when passing the stream object to a library expecting an IO
+or StringIO object.</p>
+
+<pre>get '/' do
+  stream do |out|
+    out.puts &quot;Hello World!&quot;, &quot;How are you?&quot;
+    out.write &quot;Written #{out.pos} bytes so far!\n&quot;
+    out.putc(65) unless out.closed?
+    out.flush
   end
-</pre>
+end</pre>
+
 <h2>Proper Deferrable</h2>
-<p>
-Handy when using EventMachine.
-</p>
-<pre>
-  list = []
 
-  get '/' do
-    stream(:keep_open) do |out|
-      list &lt;&lt; out
-      out.callback { list.delete out }
-      out.errback do
-        logger.warn &quot;lost connection&quot;
-        list.delete out
-      end
+<p>Handy when using EventMachine.</p>
+
+<pre>list = []
+
+get '/' do
+  stream(:keep_open) do |out|
+    list &lt;&lt; out
+    out.callback { list.delete out }
+    out.errback do
+      logger.warn &quot;lost connection&quot;
+      list.delete out
     end
   end
-</pre>
+end</pre>
+
 <h2>Better Middleware Handling</h2>
-<p>
-Blocks passed to #map! or #map will actually be applied while streaming (as
+
+<p>Blocks passed to #map! or #map will actually be applied while streaming (as
 you might suspect, #map! applies modifications to the current body, #map
-creates a new one):
-</p>
-<pre>
-  class StupidMiddleware
-    def initialize(app) @app = app end
+creates a new one):</p>
 
-    def call(env)
-      status, headers, body = @app.call(env)
-      body.map! { |e| e.upcase }
-      [status, headers, body]
-    end
-  end
+<pre>class StupidMiddleware
+  def initialize(app) @app = app end
 
-  use StupidMiddleware
-
-  get '/' do
-    stream do |out|
-      out.puts &quot;still&quot;
-      sleep 1
-      out.puts &quot;streaming&quot;
-    end
-  end
-</pre>
-<p>
-Even works if #each is used to generate an Enumerator:
-</p>
-<pre>
   def call(env)
     status, headers, body = @app.call(env)
-    body = body.each.map { |s| s.upcase }
+    body.map! { |e| e.upcase }
     [status, headers, body]
   end
-</pre>
-<p>
-Note that both examples violate the Rack specification.
-</p>
+end
+
+use StupidMiddleware
+
+get '/' do
+  stream do |out|
+    out.puts &quot;still&quot;
+    sleep 1
+    out.puts &quot;streaming&quot;
+  end
+end</pre>
+
+<p>Even works if #each is used to generate an Enumerator:</p>
+
+<pre>def call(env)
+  status, headers, body = @app.call(env)
+  body = body.each.map { |s| s.upcase }
+  [status, headers, body]
+end</pre>
+
+<p>Note that both examples violate the Rack specification.</p>
+
 <h2>Setup</h2>
-<p>
-In a classic application:
-</p>
-<pre>
-  require &quot;sinatra&quot;
-  require &quot;sinatra/streaming&quot;
-</pre>
-<p>
-In a modular application:
-</p>
-<pre>
-  require &quot;sinatra/base&quot;
-  require &quot;sinatra/streaming&quot;
-  
-  class MyApp &lt; Sinatra::Base
-    helpers Sinatra::Streaming
-  end</pre>
+
+<p>In a classic application:</p>
+
+<pre>require &quot;sinatra&quot;
+require &quot;sinatra/streaming&quot;</pre>
+
+<p>In a modular application:</p>
+
+<pre>require &quot;sinatra/base&quot;
+require &quot;sinatra/streaming&quot;
+
+class MyApp &lt; Sinatra::Base
+  helpers Sinatra::Streaming
+end</pre>

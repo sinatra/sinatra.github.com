@@ -1,55 +1,48 @@
+
 <h1>Sinatra::MultiRoute</h1>
-<p>
-Create multiple routes with one statement.
-</p>
+
+<p>Create multiple routes with one statement.</p>
+
 <h2>Usage</h2>
-<p>
-Use this extension to create a handler for multiple routes:
-</p>
-<pre>
-  get '/foo', '/bar' do
-    # ...
-  end
-</pre>
-<p>
-Or for multiple verbs:
-</p>
-<pre>
-  route :get, :post, '/' do
-    # ...
-  end
-</pre>
-<p>
-Or even for custom verbs:
-</p>
-<pre>
-  route 'LIST', '/' do
-    # ...
-  end
-</pre>
+
+<p>Use this extension to create a handler for multiple routes:</p>
+
+<pre>get '/foo', '/bar' do
+  # ...
+end</pre>
+
+<p>Or for multiple verbs:</p>
+
+<pre>route :get, :post, '/' do
+  # ...
+end</pre>
+
+<p>Or even for custom verbs:</p>
+
+<pre>route 'LIST', '/' do
+  # ...
+end</pre>
+
 <h3>Classic Application</h3>
-<p>
-To use the extension in a classic application all you need to do is require
-it:
-</p>
-<pre>
-    require &quot;sinatra&quot;
-    require &quot;sinatra/multi_route&quot;
 
-    # Your classic application code goes here...
-</pre>
+<p>To use the extension in a classic application all you need to do is require
+it:</p>
+
+<pre>require &quot;sinatra&quot;
+require &quot;sinatra/multi_route&quot;
+
+# Your classic application code goes here...</pre>
+
 <h3>Modular Application</h3>
-<p>
-To use the extension in a modular application you need to require it, and
-then, tell the application you will use it:
-</p>
-<pre>
-    require &quot;sinatra/base&quot;
-    require &quot;sinatra/multi_route&quot;
 
-    class MyApp &lt; Sinatra::Base
-      register Sinatra::MultiRoute
+<p>To use the extension in a modular application you need to require it, and
+then, tell the application you will use it:</p>
 
-      # The rest of your modular application code goes here...
-    end
-</pre>
+<pre>require &quot;sinatra/base&quot;
+require &quot;sinatra/multi_route&quot;
+
+class MyApp &lt; Sinatra::Base
+  register Sinatra::MultiRoute
+
+  # The rest of your modular application code goes here...
+end</pre>

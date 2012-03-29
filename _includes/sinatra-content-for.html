@@ -1,63 +1,57 @@
+
 <h1>Sinatra::ContentFor</h1>
-<p>
-<tt>Sinatra::ContentFor</tt> is a set of helpers that allows you to capture
+
+<p><tt>Sinatra::ContentFor</tt> is a set of helpers that allows you to capture
 blocks inside views to be rendered later during the request. The most
-common use is to populate different parts of your layout from your view.
-</p>
-<p>
-The currently supported engines are: Erb, Erubis, Haml and Slim.
-</p>
+common use is to populate different parts of your layout from your view.</p>
+
+<p>The currently supported engines are: Erb, Erubis, Haml and Slim.</p>
+
 <h2>Usage</h2>
-<p>
-You call <tt>content_for</tt>, generally from a view, to capture a block of
-markup giving it an identifier:
-</p>
-<pre>
-    # index.erb
-    &lt;% content_for :some_key do %&gt;
-      &lt;chunk of=&quot;html&quot;&gt;...&lt;/chunk&gt;
-    &lt;% end %&gt;
-</pre>
-<p>
-Then, you call <tt>yield_content</tt> with that identifier, generally from
-a layout, to render the captured block:
-</p>
-<pre>
-    # layout.erb
-    &lt;%= yield_content :some_key %&gt;
-</pre>
+
+<p>You call <tt>content_for</tt>, generally from a view, to capture a block of
+markup giving it an identifier:</p>
+
+<pre># index.erb
+&lt;% content_for :some_key do %&gt;
+  &lt;chunk of=&quot;html&quot;&gt;...&lt;/chunk&gt;
+&lt;% end %&gt;</pre>
+
+<p>Then, you call <tt>yield_content</tt> with that identifier, generally from
+a layout, to render the captured block:</p>
+
+<pre># layout.erb
+&lt;%= yield_content :some_key %&gt;</pre>
+
 <h3>Classic Application</h3>
-<p>
-To use the helpers in a classic application all you need to do is require
-them:
-</p>
-<pre>
-    require &quot;sinatra&quot;
-    require &quot;sinatra/content_for&quot;
 
-    # Your classic application code goes here...
-</pre>
+<p>To use the helpers in a classic application all you need to do is require
+them:</p>
+
+<pre>require &quot;sinatra&quot;
+require &quot;sinatra/content_for&quot;
+
+# Your classic application code goes here...</pre>
+
 <h3>Modular Application</h3>
-<p>
-To use the helpers in a modular application you need to require them, and
-then, tell the application you will use them:
-</p>
-<pre>
-    require &quot;sinatra/base&quot;
-    require &quot;sinatra/content_for&quot;
 
-    class MyApp &lt; Sinatra::Base
-      helpers Sinatra::ContentFor
+<p>To use the helpers in a modular application you need to require them, and
+then, tell the application you will use them:</p>
 
-      # The rest of your modular application code goes here...
-    end
-</pre>
+<pre>require &quot;sinatra/base&quot;
+require &quot;sinatra/content_for&quot;
+
+class MyApp &lt; Sinatra::Base
+  helpers Sinatra::ContentFor
+
+  # The rest of your modular application code goes here...
+end</pre>
+
 <h2>And How Is This Useful?</h2>
-<p>
-For example, some of your views might need a few javascript tags and
-stylesheets, but you don&#8217;t want to force this files in all your
-pages. Then you can put <tt>&lt;% yield_content :scripts_and_styles
-%&gt;</tt> on your layout, inside the <head> tag, and each view can call
+
+<p>For example, some of your views might need a few javascript tags and
+stylesheets, but you don't want to force this files in all your pages. Then
+you can put <tt>&lt;% yield_content :scripts_and_styles %&gt;</tt> on your
+layout, inside the &lt;head&gt; tag, and each view can call
 <tt>content_for</tt> setting the appropriate set of tags that should be
-added to the layout.
-</p>
+added to the layout.</p>
