@@ -117,20 +117,33 @@ follows:
 
     <%= erb :mypartial, :layout => false %>
 
-See [Sam Elliott](http://www.lenary.co.uk/)'s
-[partials.rb](http://gist.github.com/119874)
-for a more robust partials implementation. It even supports rendering
-collections and partials in subdirectories. It was adapted from [Chris Schneider](http://www.gittr.com/)'s
-[partials.rb](http://github.com/cschneid/irclogger/blob/master/lib/partials.rb) implementation to remove dependency on `#extract_options!` and add subdirectory support. 
+See [Sam Elliott](http://www.lenary.co.uk/) and [Iain Barnett](http://iainbarnett.me.uk/)'s
+[Sinatra-Partial extension](https://github.com/yb66/Sinatra-Partial)
+for a more robust partials implementation. It also supports rendering
+collections and partials in subdirectories.
 
-Use it as follows to render the `_mypartial.erb`(1) or the `admin/_mypartial.erb`(2) partials, or with a collection (3) & (4):
+The code used to live in a [gist](https://gist.github.com/119874),
+but we have put it in a gem so we can maintain it properly and
+provide an easier way for developers to include its behaviour.
+It was adapted from [Chris Schneider](http://www.gittr.com/)'s
+original [partials.rb](http://github.com/cschneid/irclogger/blob/master/lib/partials.rb)
+implementation.
+
+Use it as follows to render the `mypartial.haml`(1) or the `admin/mypartial.haml`(2)
+partials, or with a collection (3) & (4):
 
     <%= partial(:mypartial) %> <!--(1)-->
     <%= partial(:'admin/mypartial') %> <!--(2)-->
     <%= partial(:object, :collection => @objects) %> <!--(3)-->
     <%= partial(:'admin/object', :collection => @objects) %> <!--(4)-->
 
-In (1) & (2), the partial will be rendered plain from their files, with no local variables (specify them with a hash passed into `:locals`). In (3) & (4), the partials will be rendered, populating the local variable `object` with each of the objects from the collection. 
+In (1) & (2), the partial will be rendered plain from their files, with no
+local variables (specify them with a hash passed into `:locals`).
+In (3) & (4), the partials will be rendered, populating the local
+variable `object` with each of the objects from the collection.
+
+It is also possible to enable using underscores, a la Rails, and
+to choose a different rendering engine from haml.
 
 
 Can I have multiple URLs trigger the same route/handler? {#multiroute}
