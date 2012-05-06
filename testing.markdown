@@ -221,7 +221,7 @@ Testing with Bacon is similar to `test/unit` and RSpec:
     set :environment, :test
 
     describe 'The HelloWorld App' do
-      include Rack::Test::Methods
+      extend Rack::Test::Methods
 
       def app
         Sinatra::Application
