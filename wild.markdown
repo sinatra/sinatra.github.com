@@ -91,6 +91,7 @@ Applications {#apps}
 - [GitHub High Scores](http://github.com/leereilly/github-high-scores) - A fun way to rank Github repository contributors in a 8-bit, 80's-tastic aracdey viewing environment.
 - [Git-Webby](http://github.com/codigorama/git-webby) - Git Smart HTTP Ruby/Sinatra implementation with useful features.
 - [Trudy](http://github.com/quimarche/trudy) - A Nabaztag server.
+- [Markdown Tree](https://github.com/mil/markdown-tree) - Serve a Hierarchy of Markdown files simply (like mksite or other site generators, only dynamic)
 
 Libraries and extensions {#libs}
 ------------------------
