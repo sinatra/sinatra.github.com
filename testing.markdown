@@ -184,7 +184,7 @@ Sinatra can be tested under plain RSpec. The `Rack::Test` module should be
 included within the `describe` block:
 
     require 'hello_world'  # <-- your sinatra app
-    require 'spec'
+    require 'rspec'
     require 'rack/test'
 
     set :environment, :test
@@ -206,7 +206,7 @@ included within the `describe` block:
 Make `Rack::Test` available to all spec contexts by including it via
 `RSpec`:
 
-    require 'spec'
+    require 'rspec'
     require 'rack/test'
 
     RSpec.configure do |conf|
