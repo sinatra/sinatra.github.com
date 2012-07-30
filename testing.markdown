@@ -315,7 +315,7 @@ From `Webrat`'s wiki where you'll find more [examples][].
     require 'test/unit'
 
     class HelloWorldTest < Test::Unit::TestCase
-      include Capybara
+      include Capybara::DSL
       # Capybara.default_driver = :selenium # <-- use Selenium driver
 
       def setup
