@@ -235,7 +235,7 @@ in your helpers and create an `h` alias as follows:
 
     helpers do
       include Rack::Utils
-      alias_method :h, :escape
+      alias_method :h, :escape_html
     end
 
 Now you can escape html in your templates like this:
