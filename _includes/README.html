@@ -359,7 +359,7 @@ specify a different location by setting the <tt>:public_folder</tt> option:</p>
 <a name='Views%20/%20Templates'></a>
 <h2>Views / Templates</h2>
 
-<p>Each template language is exposed as via its own rendering method. These
+<p>Each template language is exposed via its own rendering method. These
 methods simply return a string:</p>
 
 <pre>get '/' do
@@ -460,7 +460,7 @@ get('/') { markdown :index }</pre>
 <h3>Haml Templates</h3>
 <table class="rdoc-list"><tr><td class="rdoc-term"><p>Dependency</p></td>
 <td>
-<p><a href="http://haml-lang.com/">haml</a></p>
+<p><a href="http://haml.info/">haml</a></p>
 </td></tr><tr><td class="rdoc-term"><p>File Extensions</p></td>
 <td>
 <p><tt>.haml</tt></p>
@@ -968,7 +968,7 @@ get '/:value' do
 end</pre>
 
 <p>To improve security, the session data in the cookie is signed with a
-session secret. A random secret is generate for you by Sinatra. However,
+session secret. A random secret is generated for you by Sinatra. However,
 since this secret will change with every start of your application, you
 might want to set the secret yourself, so all your application instances
 share it:</p>
@@ -1104,16 +1104,16 @@ end</pre>
 
 <p>This allows you to implement streaming APIs, <a
 href="http://dev.w3.org/html5/eventsource/">Server Sent Events</a> and can
-be used as basis for <a
+be used as the basis for <a
 href="http://en.wikipedia.org/wiki/WebSocket">WebSockets</a>. It can also
 be used to increase throughput if some but not all content depends on a
 slow resource.</p>
 
 <p>Note that the streaming behavior, especially the number of concurrent
-request, highly depends on the web server used to serve the application.
+requests, highly depends on the web server used to serve the application.
 Some servers, like WEBRick, might not even support streaming at all. If the
 server does not support streaming, the body will be sent all at once after
-the block passed to <tt>stream</tt> finished executing. Streaming does not
+the block passed to <tt>stream</tt> finishes executing. Streaming does not
 work at all with Shotgun.</p>
 
 <p>If the optional parameter is set to <tt>keep_open</tt>, it will not call
@@ -1558,7 +1558,8 @@ end</pre>
 <p>Sinatra is using <a
 href="https://github.com/rkh/rack-protection#readme">Rack::Protection</a>
 to defend you application against common, opportunistic attacks. You can
-disable this behavior if needed:</p>
+easily disable this behavior (which will open your application to tons of
+common vulnerabilities):</p>
 
 <pre>disable :protection</pre>
 
@@ -1670,7 +1671,9 @@ See 'Using Sessions' section for more information.</p>
 <dd>
 <p>show a stack trace in the browser when an exception happens. Enabled by
 default when <tt>environment</tt> is set to
-<tt>&quot;development&quot;</tt>, disabled otherwise.</p>
+<tt>&quot;development&quot;</tt>, disabled otherwise. Can also be set to
+<tt>:after_handler</tt> to trigger app-specified error handling before
+showing a stack trace in the browser.</p>
 </dd><dt>static</dt>
 <dd>
 <p>Whether Sinatra should handle serving static files. Disable when using a
