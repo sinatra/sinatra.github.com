@@ -8,11 +8,13 @@ About
 =====
 
 Sinatra was designed and developed by __Blake Mizerany__ (bmizerany) in
-California. Continued development would not be possible without the ongoing
-financial support provided by [Heroku](http://heroku.com) and the emotional
-support provided by [Adam Wiggins](http://adam.blog.heroku.com/) of Heroku,
-[Chris Wanstrath](http://defunkt.github.com/), [PJ Hyett](http://pjhyett.github.com),
-and the rest of the GitHub crew.
+California.
+
+Sinatra would not have been possible whithout strong company backing.
+In the past, financial and emotional support have been provided mainly by
+[Heroku](http://heroku.com), [GitHub](http://github.com) and
+[Engine Yard](http://www.engineyard.com/), and is now taken care of by
+[Travis CI](http://travis-ci.com/).
 
 Special thanks to the following extraordinary individuals, without whom
 Sinatra would not be possible:
