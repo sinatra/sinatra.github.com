@@ -92,6 +92,7 @@ Applications {#apps}
 - [Git-Webby](http://github.com/codigorama/git-webby) - Git Smart HTTP Ruby/Sinatra implementation with useful features.
 - [Trudy](http://github.com/quimarche/trudy) - A Nabaztag server.
 - [Markdown Tree](https://github.com/mil/markdown-tree) - Serve a Hierarchy of Markdown files simply (like mksite or other site generators, only dynamic)
+- [Fracture.it](http://fracture.it) URL shortening service [[Source](http://github.com/michaelminter/fracture-url)]
 
 Libraries and extensions {#libs}
 ------------------------
