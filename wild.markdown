@@ -266,4 +266,4 @@ Companies using Sinatra {#biz}
 - [PentesterLab](http://www.pentesterlab.com)
 - [Cedar Creek IT Solutions](http://cedarcreekit.com)
 - [Animoto](http://www.animoto.com)
-
+- [Red Hat](http://www.redhat.com)
