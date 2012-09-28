@@ -55,7 +55,7 @@ If you need to set additional parameters for sessions, like expiration date, use
 How do I use session-based flash? {#flash}
 --------------------------------
 
-Use [Rack::Flash](http://github.com/nakajima/rack-flash).
+Use [Rack::Flash](https://github.com/treeder/rack-flash).
 
 Can I run Sinatra under Ruby 1.9? {#ruby19}
 ---------------------------------
