@@ -13,7 +13,7 @@ Applications {#apps}
 - [Flip Text](http://cedarcreekit.com/labs/flip_text) A simple app used to flip text upside down.
 - [SequenceServer](http://www.sequenceserver.com/) An easy-to-setup BLAST sequence search server
 - [Flickr Group Viewer](http://gv.vqvz.com) is a (nicer?) way to view photos in a flickr group -- [on GitHub](http://github.com/funkaoshi/gv.vqvz.com).
-- [OnBoard](http://dev.vemarsas.it/onboard/) a web interface to manage Linux-based network appliances. 
+- [OnBoard](http://dev.vemarsas.it/onboard/) a web interface to manage Linux-based network appliances.
 - [Tweetrad.io](http://tweetrad.io/sinatra) text to speech conversion for twitter
 - [Tweeps](http://tweeps.webdirections.org) conference app to aggregate
   tweets by attendees
@@ -93,12 +93,13 @@ Applications {#apps}
 - [Trudy](http://github.com/quimarche/trudy) - A Nabaztag server.
 - [Markdown Tree](https://github.com/mil/markdown-tree) - Serve a Hierarchy of Markdown files simply (like mksite or other site generators, only dynamic)
 - [Fracture.it](http://fracture.it) URL shortening service [[Source](http://github.com/michaelminter/fracture-url)]
+- [streetart.io](http://itunes.com/app/streetartio) streetart.io allows you to share and discover interesting street art, public art and sculptures around you and your city. API is powered by Sinatra and Redis.
 
 Libraries and extensions {#libs}
 ------------------------
 - [Sinatra::SimpleNavigation](http://github.com/andi/sinatra-simple-navigation) Easy creation of navigations (with multiple levels)
   with sinatra and the simple-navigation gem
-- [sinatra\_more](http://github.com/nesquena/sinatra_more) Library with agnostic 
+- [sinatra\_more](http://github.com/nesquena/sinatra_more) Library with agnostic
    generators, form builders, named route mappings, easy mailer support, and more.
 - [Sinatra's Hat](http://github.com/nakajima/sinatras-hat) Mount models as web
   services in Sinatra with ease
@@ -150,7 +151,7 @@ Libraries and extensions {#libs}
 - [Sinatra::WebInspector](http://github.com/rkh/sinatra-web-inspector) Allows you to inspect a running app
 - [Yard::Sinatra](http://github.com/rkh/yard-sinatra) Displays Sinatra routes (including comments) in YARD output
 - [BigBand](http://github.com/rkh/big_band) Pre-configured replacement for Sinatra::Base setting up useful extensions
-- [Sinatra::Jsonp](http://github.com/shtirlic/sinatra-jsonp) JSONP output helper for Sinatra. 
+- [Sinatra::Jsonp](http://github.com/shtirlic/sinatra-jsonp) JSONP output helper for Sinatra.
 - [Bowtie](http://github.com/tomas/bowtie) Admin generator for DataMapper models, on Sinatra.
 
 Websites {#sites}
@@ -220,6 +221,7 @@ Websites {#sites}
 - [Conker Software](http://conkersoftware.co.uk) Micro-company of Tom Philip that makes Web, Android and Boxee apps.
 - [Similander](http://similar.heroku.com) extracts keywords from a given URL to find similar pages ([Source](http://github.com/ema/similander)).
 - [Sombras de Papel](http://sombrasdepapel.com/en/) Website of a pop-rock band from Barcelona (Spain) entirely made using Sinatra + HTML5. There's also a [mobile site](http://m.sombrasdepapel.com/en/).
+- [streetart.io](http://streetart.io) streetart.io allows you to share and discover interesting street art, public art and sculptures around you and your city. The website is a sinatra app which pulls data via the API.
 
 Companies using Sinatra {#biz}
 -----------------------
@@ -228,7 +230,7 @@ Companies using Sinatra {#biz}
 - [Apple](http://www.apple.com/)
 - [BBC](http://www.bbc.co.uk/)
 - [LinkedIn](http://www.linkedin.com/)
-- [Zenbe](http://zenbe.com) 
+- [Zenbe](http://zenbe.com)
 - [Agency Rainford](http://agencyrainford.com)
 - [Songbird](http://getsongbird.com)
 - [Curbed Network](http://curbed.com)
