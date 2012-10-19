@@ -1,4 +1,5 @@
 require "fileutils"
+require "shellwords"
 
 class Blog < Thor
   TEMPLATE = (<<-TEXT).gsub(/^ +/, '')
@@ -21,7 +22,17 @@ class Blog < Thor
     date = Time.now.strftime('%Y-%m-%d')
     file = "_posts/#{date}-#{title.downcase.gsub(/[!.,;:+=-]/, '').gsub(/\W+/, '-')}.markdown"
     File.open(file, 'wb') { |f| f.write(post) }
-    system "$EDITOR #{file}"
+    editor = ENV['VISUAL'] || ENV['EDITOR']
+    if !editor
+      abort("Either set $VISUAL or $EDITOR")
+    else
+      commands = Shellwords.shellwords(editor)
+      commands << file
+      success = system(*commands)
+      if !success
+        abort("Could not run '#{editor} #{file}', exit code: #{$?.exitstatus}")
+      end
+    end
   end
 end
 
