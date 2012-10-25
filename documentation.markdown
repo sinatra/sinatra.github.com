@@ -171,6 +171,10 @@ By [Nicolás Sanguinetti](http://github.com/foca), April 2009.
 
 The first episode in [screencasts.org's Sinatra series](http://screencasts.org/topics/sinatra).
 
+An introduction to [sinatra as a rest server](http://www.slideshare.net/emadb/sinatra-for-rest-services) from [WebNet Conference](http://webnetconf.eu/)
+
+[Sinatra autopsy](http://vimeo.com/album/2121090/video/51898788) by Aleksander Dabrowski
+
 Around The Web
 --------------
 
