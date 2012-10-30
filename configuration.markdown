@@ -17,7 +17,7 @@ provided by the framework.
 Using `set`, `enable`, and `disable`
 ------------------------------------
 
-In its simplest form, the `set` method takes an setting name and value and
+In its simplest form, the `set` method takes a setting name and value and
 creates an attribute on the application. Settings can be accessed within
 requests via the `settings` object:
 
