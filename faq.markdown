@@ -197,7 +197,7 @@ Try starting Thin with the `--debug` argument:
 
 That should give you an exception and backtrace on `stderr`.
 
-How do I send Email from Sinatra? {#email}
+How do I send email from Sinatra? {#email}
 ---------------------------------
 
 How about a [Pony](http://adam.heroku.com/past/2008/11/2/pony_the_express_way_to_send_email_from_ruby/)
@@ -227,7 +227,7 @@ And in `mailerapp.rb`:
                 :body => erb(:email)
     end
 
-How do I escape html? {#escape_html}
+How do I escape HTML? {#escape_html}
 ---------------------
 
 Include [Rack::Utils](http://rack.rubyforge.org/doc/classes/Rack/Utils.html)
@@ -238,14 +238,14 @@ in your helpers and create an `h` alias as follows:
       alias_method :h, :escape_html
     end
 
-Now you can escape html in your templates like this:
+Now you can escape HTML in your templates like this:
 
     <%= h scary_output %>
 
 Thanks to [Chris Schneider](http://www.gittr.com/index.php/archive/using-rackutils-in-sinatra-escape_html-h-in-rails/)
 for the tip!
 
-How do I automatically escape html? {#auto_escape_html}
+How do I automatically escape HTML? {#auto_escape_html}
 ---------------------
 
 Require [Erubis](http://rubygems.org/gems/erubis) and set `escape_html` to `true`:

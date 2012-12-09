@@ -74,7 +74,7 @@ Applications {#apps}
 - [Hancock Client](http://github.com/atmos/hancock-client/tree/master) Rack
   middleware client for the Hancock server, written in Sinatra
 - [Rails Searchable API Doc](http://railsapi.com/) runs on Sinatra
-- [Sinatra Saucer](http://github.com/angelic/sinatra_saucer) JRuby web application frontend for Flying Saucer, which converts xhtml into a pdf
+- [Sinatra Saucer](http://github.com/angelic/sinatra_saucer) JRuby web application frontend for Flying Saucer, which converts XHTML into a PDF
 - [Wink](http://github.com/rtomayko/wink) minimalist blogging engine
 - [WineAdds](http://wineadds.com) micro-app that calculates common additions to wine
 - [Deltacloud](http://www.deltacloud.org) Deltacloud protects your apps from cloud API changes and incompatibilies. REST API is written using Sinatra
@@ -82,7 +82,7 @@ Applications {#apps}
 - [Jaconda](http://jaconda.im) A simple team collaboration service that allows you to create chat rooms for groups through Gtalk/Jabber protocol. REST API is written in Sinatra
 - [Soxer](http://soxer.mutsu.org/) Soxer is a lean but infinitely extensible web publishing tool.
 - [SinMagick](http://blog.50projects.com/p/sinmagick-image-processing.html) a front-end for image processing and thumbnailing with flexible storage options.
-- [Brakes](http://github.com/rdnck76/brakes) a simple sinatra app for hosting static html on heroku.
+- [Brakes](http://github.com/rdnck76/brakes) a simple sinatra app for hosting static HTML on heroku.
 - [Fundry - Crowdfunding for Software Development](http://fundry.com) - Fundry is designed around software projects, helping developers get paid for developing new features, and enabling your community to pledge to get the features they want. The site and API (coming soon) is all written in Sinatra.
 - [Picky](http://github.com/floere/picky) - a fast &amp; clever semantic search engine.
 - [Headhunter](http://headhunter.heroku.com) - giving Twitter profile pics a permanent URL
