@@ -30,9 +30,9 @@ and requiring a file. Consult these steps if you run into problems:
 These extensions add helper methods to the request context:
 
 1. [sinatra-prawn](http://github.com/sbfaulkner/sinatra-prawn/)
-   adds support for pdf rendering with Prawn templates.
+   adds support for PDF rendering with Prawn templates.
 1. [sinatra-markaby](http://github.com/sbfaulkner/sinatra-markaby/)
-   enables rendering of html files using markaby templates.
+   enables rendering of HTML files using markaby templates.
 1. [sinatra-maruku](http://github.com/wbzyl/sinatra-maruku/)
    provides Maruku templates for a Sinatra application.
 1. [sinatra-rdiscount](http://github.com/wbzyl/sinatra-rdiscount/)
