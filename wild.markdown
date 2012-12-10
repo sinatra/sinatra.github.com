@@ -19,13 +19,7 @@ Applications {#apps}
   tweets by attendees
 - [Integrity](http://integrityapp.com) the easy and fun
   Continuous Integration server
-- [Pearson Reader UAE](http://uae.pearsonreader.com) online textbooks for the
-  Ministry of Education, Abu Dhabi
-- [Healthy Communities](http://healthycommunities.lgsa.org.au) preventative
-  health grant applications for Government
 - [Sum](https://sumapp.com) is an email-based budgeting application
-- [Shoes and a Shotgun](http://github.com/hansineffect/shoes-and-a-shotgun/)
-  an one click development environment built on Shoes
 - [Marley](http://github.com/karmi/marley) the blog engine
   without &lt;textareas&gt;
 - [Postview](http://github.com/codigorama/postview) a simple blog-engine that
@@ -47,8 +41,6 @@ Applications {#apps}
 - [Dash Sinatra](http://github.com/fiveruns/dash-sinatra) provides a Ruby API
   to push metrics from an app to the
   [FiveRuns Dash service](http://dash.fiveruns.com/)
-- [Gaze](http://github.com/ichverstehe/gaze) tiny app that serves up your
-  Markdown files
 - [Giftsmas](http://github.com/jeremyevans/giftsmas) Gift Tracking Website
   using Sinatra, Sequel, and Scaffolding Extensions
 - [Toopaste](http://github.com/zapnap/toopaste) Pastebin site created with
@@ -62,33 +54,27 @@ Applications {#apps}
 - [weaky](http://github.com/benatkin/weaky) a basic CouchDB wiki
 - [Amnesia](http://github.com/benschwarz/amnesia) an app that presents
   memcached server stats
-- [Rash](http://github.com/webs/rash), Ruby, Twitter &amp; Hashtags
 - [So Nice](http://github.com/sunny/so-nice) is a Small web interface to
   control iTunes, Rhythmbox or MPD
 - [sinatra-rubygems](http://github.com/jnewland/sinatra-rubygems) A complete
   reimplementation of the gem server command as a Sinatra application
-- [Nesta](http://effectif.com/nesta) is an SEO oriented CMS/blog for developers
-- [Mogo](http://github.com/zapnap/mogo) A planet-style feed aggregator
+- [Nesta](http://nestacms.com/) is an SEO oriented CMS/blog for developers
 - [Hancock](http://github.com/atmos/hancock/tree/master) A Single Sign On
   provider based on OpenID
 - [Hancock Client](http://github.com/atmos/hancock-client/tree/master) Rack
   middleware client for the Hancock server, written in Sinatra
 - [Rails Searchable API Doc](http://railsapi.com/) runs on Sinatra
 - [Sinatra Saucer](http://github.com/angelic/sinatra_saucer) JRuby web application frontend for Flying Saucer, which converts XHTML into a PDF
-- [Wink](http://github.com/rtomayko/wink) minimalist blogging engine
 - [WineAdds](http://wineadds.com) micro-app that calculates common additions to wine
 - [Deltacloud](http://www.deltacloud.org) Deltacloud protects your apps from cloud API changes and incompatibilies. REST API is written using Sinatra
-- [jamMm.in](http://jammm.in) a music collaboration application
 - [Jaconda](http://jaconda.im) A simple team collaboration service that allows you to create chat rooms for groups through Gtalk/Jabber protocol. REST API is written in Sinatra
 - [Soxer](http://soxer.mutsu.org/) Soxer is a lean but infinitely extensible web publishing tool.
 - [SinMagick](http://blog.50projects.com/p/sinmagick-image-processing.html) a front-end for image processing and thumbnailing with flexible storage options.
-- [Brakes](http://github.com/rdnck76/brakes) a simple sinatra app for hosting static HTML on heroku.
 - [Fundry - Crowdfunding for Software Development](http://fundry.com) - Fundry is designed around software projects, helping developers get paid for developing new features, and enabling your community to pledge to get the features they want. The site and API (coming soon) is all written in Sinatra.
 - [Picky](http://github.com/floere/picky) - a fast &amp; clever semantic search engine.
 - [Headhunter](http://headhunter.heroku.com) - giving Twitter profile pics a permanent URL
 - [blitz.io](http://blitz.io) - Making load and performance testing a fun sport
-- [funFUUU](http://funfuuu.com) - A friendly fun sharing community
-- [GitHub High Scores](http://github.com/leereilly/github-high-scores) - A fun way to rank Github repository contributors in a 8-bit, 80's-tastic aracdey viewing environment.
+- [GitHub High Scores](http://github.com/leereilly/github-high-scores) - A fun way to rank GitHub repository contributors in a 8-bit, 80's-tastic aracdey viewing environment.
 - [Git-Webby](http://github.com/codigorama/git-webby) - Git Smart HTTP Ruby/Sinatra implementation with useful features.
 - [Trudy](http://github.com/quimarche/trudy) - A Nabaztag server.
 - [Markdown Tree](https://github.com/mil/markdown-tree) - Serve a Hierarchy of Markdown files simply (like mksite or other site generators, only dynamic)
@@ -103,9 +89,8 @@ Libraries and extensions {#libs}
    generators, form builders, named route mappings, easy mailer support, and more.
 - [Sinatra's Hat](http://github.com/nakajima/sinatras-hat) Mount models as web
   services in Sinatra with ease
-- [Classy Resources](http://github.com/giraffesoft/classy_resources) Think
-  [resources controller](http://plugins.ardes.com/doc/resources_controller),
-  except for sinatra
+- [Classy Resources](https://github.com/jamesgolick/classy_resources) Think
+  resources controller, except for sinatra
 - [Sinatra Ditties](http://github.com/foca/sinatra-ditties) A collection of
   plugins and useful helpers
 - [Chicago](http://github.com/thumblemonks/chicago) runtime and testing
@@ -135,9 +120,9 @@ Libraries and extensions {#libs}
   client.
 - [content\_for](http://github.com/foca/sinatra-content-for) Rails-like `content_for`
   helper for your views (supports ERB and Haml.)
-- [Sinatra Effigy](http://github.com/dancroak/sinatra-effigy) Sinatra extension
+- [Sinatra Effigy](https://github.com/croaky/sinatra-effigy) Sinatra extension
   for Effigy (HTML in .html files, Ruby in .rb files) views.
-- [Sinatra Mongoid](http://github.com/dancroak/sinatra-mongoid) Sinatra extension
+- [Sinatra Mongoid](https://github.com/croaky/sinatra-mongoid) Sinatra extension
   for Mongoid (MongoDB ORM).
 - [Haml::More](http://github.com/rkh/haml-more) Adds more functionality to Haml and Sass
 - [Sinatra::AdvancedRoutes](http://github.com/rkh/sinatra-advanced-routes) Makes routes first class objects
@@ -170,43 +155,30 @@ Websites {#sites}
   for hackers
 - [irclogger](http://irclogger.com) Logging urz IRC channel
   [#sinatra](http://irclogger.com/sinatra)
-- [Follow Cost](http://followcost.com) Is that Twitter celebrity worth
-  the pain?
-- [Is LOST on yet?](http://islostonyet.com/)
 - [URL Unwind](http://urlunwind.com) Don't get RickRolled again
 - [Tweetdreams](http://tweetdreams.org) Twitter dream journal
 - [Does Follow](http://doesfollow.com) Twitter tool for figuring out who
   follows whom
 - [portfolio.quirkey.com](http://portfolio.quirkey.com/)
-- [go get me some](http://go-get-me-so.me/) Our new favorite timesink
-- [Chargd](http://www.chargd.com/) The quick way to get paid
 - [Gusg.us](http://gusg.us/) Blog - Ridding the long bus
 - [Deleanotes](http://delanotes.com/)
-- [Pagestacker](http://pagestacker.com)
 - [themoviedb.org](http://api.themoviedb.org/) The name says it all :)
 - [columnlog](http://github.com/quirkey/columnlog) Tiny feed fetching app
 - [Your Fiveruns Dashboard](http://dash.fiveruns.com)
 - [IronRuby](http://ironruby.info) Watch their great stats here
-- [beeing.com](http://beeing.com/) Explore, Discover, Create
-- [ZapText](http://zaptxt.com/) Never miss critical time sensitive data
-  (API uses Sinatra)
 - [MooURL](http://moourl.com/) The web's cutest URL shortening service
 - [FlexCode](http://flexcode.com.br/) iPhone development
 - [California PATH program - UC Berkley](http://www.path.berkeley.edu/)
   In-vehicle applications on their Vehicle-Infrastructure Integration server
 - [TweepDiff](http://tweepdiff.com) Compare friends/followers of two Twitter
   users
-- [CSptRun](http://csptrun.com/) Minimal URL shortening service
 - [Effectif Development](http://effectif.com)
-- [Six-Word Tweets](http://sixwordtweets.com) Stories told in only six words.
 - [Chirp-chirp](http://blog.saush.com/2009/04/write-a-sinatra-based-twitter-clone-in-200-lines-of-ruby-code/) Write a Sinatra-based Twitter clone in 200 lines of Ruby code
 - [Rdoc.info](http://rdoc.info/) Auto-generate and host Ruby library documentation using GitHub web hooks
 - [All Sorts](http://all-sorts.org/) An aggregator for novel *collective nouns*, driven by Twitter
-- [The Setup](http://usesthis.com/) Interviews with nerds about their computer setups.
 - [Congrelate](http://congrelate.com) Congress data mashup visualization tool.
 - [Scholas](http://schol.as) Social file-sharing for academics.
 - [Gemcutter](http://gemcutter.org) Awesome gem hosting.
-- [UKOfficeAdvisers](http://ukofficeadviser.co.uk/) Find serviced offices in the UK.
 - [SavvyFranchises](http://www.savvyfranchises.com/) Franchise Search + Discovery for the Savvy Entrepreneur.
 - [The Setup](http://usesthis.com/) The setup is a bunch of nerdy interviews ([Source](http://github.com/waferbaby/usesthis/))
 - [A Good Company](http://www.weareagoodcompany.com/) An awesome little portfolio for a great design company.
@@ -217,7 +189,7 @@ Websites {#sites}
 - [happens.co.za](http://www.happens.co.za/) Add countdown times for any "happening" or event and share it with others.
 - [DarkArts Studios](http://www.darkarts.co.za/) Projects and source code of Clive Crous
 - [Ant genome database](http://fourmidable.unil.ch)
-- [GitHub High Scores](http://github-high-scores.heroku.com) A fun way to rank Github repository contributors in a 8-bit, 80's-tastic aracdey viewing environment.
+- [GitHub High Scores](http://github-high-scores.heroku.com) A fun way to rank GitHub repository contributors in a 8-bit, 80's-tastic aracdey viewing environment.
 - [Conker Software](http://conkersoftware.co.uk) Micro-company of Tom Philip that makes Web, Android and Boxee apps.
 - [Similander](http://similar.heroku.com) extracts keywords from a given URL to find similar pages ([Source](http://github.com/ema/similander)).
 - [Sombras de Papel](http://sombrasdepapel.com/en/) Website of a pop-rock band from Barcelona (Spain) entirely made using Sinatra + HTML5. There's also a [mobile site](http://m.sombrasdepapel.com/en/).
@@ -230,7 +202,6 @@ Companies using Sinatra {#biz}
 - [Apple](http://www.apple.com/)
 - [BBC](http://www.bbc.co.uk/)
 - [LinkedIn](http://www.linkedin.com/)
-- [Zenbe](http://zenbe.com)
 - [Agency Rainford](http://agencyrainford.com)
 - [Songbird](http://getsongbird.com)
 - [Curbed Network](http://curbed.com)
@@ -239,7 +210,6 @@ Companies using Sinatra {#biz}
 - [Solutious](http://solutious.com/)
 - [Centro](http://www.centro.net/)
 - [Apartment Therapy](http://www.apartmenttherapy.com)
-- [Nitobi](http://nitobi.com)
 - [Inventive Labs](http://inventivelabs.com.au/)
 - [ENTP](http://entp.com)
 - [FiveRuns](http://fiveruns.com)
@@ -256,11 +226,9 @@ Companies using Sinatra {#biz}
 - [Idealist Digital](http://idealistdigital.fi)
 - [A Good Company](http://www.weareagoodcompany.com)
 - [Ylastic](http://ylastic.com)
-- [SPB Software](http://spb.com)
-- [Formalibre](http://www.formalibre.si)
 - [Fork](http://usefork.com)
 - [Tractor Feed](http://tractorfeed.org)
-- [University of Lausanne](http://fourmidable.unil.ch)
+- [Ant genomics database - Fourmidable](http://antgenomes.org/)
 - [Mu Dynamics](http://www.mudynamics.com)
 - [Scribble Squad](http://www.scribblesquad.com)
 - [Stanford](http://www.stanford.edu)
