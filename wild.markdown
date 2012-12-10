@@ -4,7 +4,7 @@ layout: default
 ---
 
 *NOTE:* Feel free to fork
-[Sinatra's website on GitHub](http://github.com/sinatra/sinatra.github.com)
+[Sinatra's website on GitHub](https://github.com/sinatra/sinatra.github.com)
 and add your own entry to the `wild.markdown` file. Just push and send a pull request.
 We'll take care of the rest.
 
@@ -12,7 +12,7 @@ Applications {#apps}
 ------------
 - [Flip Text](http://cedarcreekit.com/labs/flip_text) A simple app used to flip text upside down.
 - [SequenceServer](http://www.sequenceserver.com/) An easy-to-setup BLAST sequence search server
-- [Flickr Group Viewer](http://gv.vqvz.com) is a (nicer?) way to view photos in a flickr group -- [on GitHub](http://github.com/funkaoshi/gv.vqvz.com).
+- [Flickr Group Viewer](http://gv.vqvz.com) is a (nicer?) way to view photos in a flickr group -- [on GitHub](https://github.com/funkaoshi/gv.vqvz.com).
 - [OnBoard](http://dev.vemarsas.it/onboard/) a web interface to manage Linux-based network appliances.
 - [Tweetrad.io](http://tweetrad.io/sinatra) text to speech conversion for twitter
 - [Tweeps](http://tweeps.webdirections.org) conference app to aggregate
@@ -20,129 +20,129 @@ Applications {#apps}
 - [Integrity](http://integrityapp.com) the easy and fun
   Continuous Integration server
 - [Sum](https://sumapp.com) is an email-based budgeting application
-- [Marley](http://github.com/karmi/marley) the blog engine
+- [Marley](https://github.com/karmi/marley) the blog engine
   without &lt;textareas&gt;
-- [Postview](http://github.com/codigorama/postview) a simple blog-engine that
+- [Postview](https://github.com/codigorama/postview) a simple blog-engine that
   render text files written in [Markdown](http://daringfireball.net/projects/markdown).
-- [Scanty](http://github.com/adamwiggins/scanty) an even more minimalist
+- [Scanty](https://github.com/adamwiggins/scanty) an even more minimalist
   blogging engine
-- [Scanty using CouchDB](http://github.com/jtulloch/scanty/tree/master)
-- [Scanty using CouchDB 0.9.0a and CouchRest 0.16](http://github.com/norr/scanty/tree/master)
-- [Haze](http://github.com/madx/haze) a lightweight and minimalist blogging
+- [Scanty using CouchDB](https://github.com/jtulloch/scanty/tree/master)
+- [Scanty using CouchDB 0.9.0a and CouchRest 0.16](https://github.com/norr/scanty/tree/master)
+- [Haze](https://github.com/madx/haze) a lightweight and minimalist blogging
   engine using flat text files.
-- [Wind](http://github.com/wagnerandrade/wind) HTML5 blog engine focused in a easy, extensible and fast admin.
-- [git-wiki](http://github.com/sr/git-wiki) a git-powered wiki
-- [Wordnatra](http://github.com/gnugeek/wordnatra) an interface to Princeton's
+- [Wind](https://github.com/wagnerandrade/wind) HTML5 blog engine focused in a easy, extensible and fast admin.
+- [git-wiki](https://github.com/sr/git-wiki) a git-powered wiki
+- [Wordnatra](https://github.com/gnugeek/wordnatra) an interface to Princeton's
   WordNet lexical dictionary
-- [GitHub-FogBuz](http://github.com/johnreilly/github-fogbugz) logs your GitHub
+- [GitHub-FogBuz](https://github.com/johnreilly/github-fogbugz) logs your GitHub
   commits with FogBuz
-- [Notable](http://github.com/namelessjon/notable) listens on Jabber to take
+- [Notable](https://github.com/namelessjon/notable) listens on Jabber to take
   your notes and then displays them back to you
-- [Dash Sinatra](http://github.com/fiveruns/dash-sinatra) provides a Ruby API
+- [Dash Sinatra](https://github.com/fiveruns/dash-sinatra) provides a Ruby API
   to push metrics from an app to the
   [FiveRuns Dash service](http://dash.fiveruns.com/)
-- [Giftsmas](http://github.com/jeremyevans/giftsmas) Gift Tracking Website
+- [Giftsmas](https://github.com/jeremyevans/giftsmas) Gift Tracking Website
   using Sinatra, Sequel, and Scaffolding Extensions
-- [Toopaste](http://github.com/zapnap/toopaste) Pastebin site created with
+- [Toopaste](https://github.com/zapnap/toopaste) Pastebin site created with
   Sinatra and DataMapper
-- [Columnlog](http://github.com/quirkey/columnlog) Tiny feed fetching app
+- [Columnlog](https://github.com/quirkey/columnlog) Tiny feed fetching app
 - [Kapow](http://code.google.com/p/kapow/) Comics on your iPhone
-- [Knapsack](http://github.com/joseph/knapsack/tree/master) Pack pages into
+- [Knapsack](https://github.com/joseph/knapsack/tree/master) Pack pages into
   data URIs
-- [Thumblmonks](http://github.com/thumblemonks/evoke/tree/master) Delayed HTTP
+- [Thumblmonks](https://github.com/thumblemonks/evoke/tree/master) Delayed HTTP
   Requests
-- [weaky](http://github.com/benatkin/weaky) a basic CouchDB wiki
-- [Amnesia](http://github.com/benschwarz/amnesia) an app that presents
+- [weaky](https://github.com/benatkin/weaky) a basic CouchDB wiki
+- [Amnesia](https://github.com/benschwarz/amnesia) an app that presents
   memcached server stats
-- [So Nice](http://github.com/sunny/so-nice) is a Small web interface to
+- [So Nice](https://github.com/sunny/so-nice) is a Small web interface to
   control iTunes, Rhythmbox or MPD
-- [sinatra-rubygems](http://github.com/jnewland/sinatra-rubygems) A complete
+- [sinatra-rubygems](https://github.com/jnewland/sinatra-rubygems) A complete
   reimplementation of the gem server command as a Sinatra application
 - [Nesta](http://nestacms.com/) is an SEO oriented CMS/blog for developers
-- [Hancock](http://github.com/atmos/hancock/tree/master) A Single Sign On
+- [Hancock](https://github.com/atmos/hancock/tree/master) A Single Sign On
   provider based on OpenID
-- [Hancock Client](http://github.com/atmos/hancock-client/tree/master) Rack
+- [Hancock Client](https://github.com/atmos/hancock-client/tree/master) Rack
   middleware client for the Hancock server, written in Sinatra
 - [Rails Searchable API Doc](http://railsapi.com/) runs on Sinatra
-- [Sinatra Saucer](http://github.com/angelic/sinatra_saucer) JRuby web application frontend for Flying Saucer, which converts XHTML into a PDF
+- [Sinatra Saucer](https://github.com/angelic/sinatra_saucer) JRuby web application frontend for Flying Saucer, which converts XHTML into a PDF
 - [WineAdds](http://wineadds.com) micro-app that calculates common additions to wine
 - [Deltacloud](http://www.deltacloud.org) Deltacloud protects your apps from cloud API changes and incompatibilies. REST API is written using Sinatra
 - [Jaconda](http://jaconda.im) A simple team collaboration service that allows you to create chat rooms for groups through Gtalk/Jabber protocol. REST API is written in Sinatra
 - [Soxer](http://soxer.mutsu.org/) Soxer is a lean but infinitely extensible web publishing tool.
 - [SinMagick](http://blog.50projects.com/p/sinmagick-image-processing.html) a front-end for image processing and thumbnailing with flexible storage options.
 - [Fundry - Crowdfunding for Software Development](http://fundry.com) - Fundry is designed around software projects, helping developers get paid for developing new features, and enabling your community to pledge to get the features they want. The site and API (coming soon) is all written in Sinatra.
-- [Picky](http://github.com/floere/picky) - a fast &amp; clever semantic search engine.
+- [Picky](https://github.com/floere/picky) - a fast &amp; clever semantic search engine.
 - [Headhunter](http://headhunter.heroku.com) - giving Twitter profile pics a permanent URL
 - [blitz.io](http://blitz.io) - Making load and performance testing a fun sport
-- [GitHub High Scores](http://github.com/leereilly/github-high-scores) - A fun way to rank GitHub repository contributors in a 8-bit, 80's-tastic aracdey viewing environment.
-- [Git-Webby](http://github.com/codigorama/git-webby) - Git Smart HTTP Ruby/Sinatra implementation with useful features.
-- [Trudy](http://github.com/quimarche/trudy) - A Nabaztag server.
+- [GitHub High Scores](https://github.com/leereilly/github-high-scores) - A fun way to rank GitHub repository contributors in a 8-bit, 80's-tastic aracdey viewing environment.
+- [Git-Webby](https://github.com/codigorama/git-webby) - Git Smart HTTP Ruby/Sinatra implementation with useful features.
+- [Trudy](https://github.com/quimarche/trudy) - A Nabaztag server.
 - [Markdown Tree](https://github.com/mil/markdown-tree) - Serve a Hierarchy of Markdown files simply (like mksite or other site generators, only dynamic)
-- [Fracture.it](http://fracture.it) URL shortening service [[Source](http://github.com/michaelminter/fracture-url)]
+- [Fracture.it](http://fracture.it) URL shortening service [[Source](https://github.com/michaelminter/fracture-url)]
 - [streetart.io](http://itunes.com/app/streetartio) streetart.io allows you to share and discover interesting street art, public art and sculptures around you and your city. API is powered by Sinatra and Redis.
 
 Libraries and extensions {#libs}
 ------------------------
-- [Sinatra::SimpleNavigation](http://github.com/andi/sinatra-simple-navigation) Easy creation of navigations (with multiple levels)
+- [Sinatra::SimpleNavigation](https://github.com/andi/sinatra-simple-navigation) Easy creation of navigations (with multiple levels)
   with sinatra and the simple-navigation gem
-- [sinatra\_more](http://github.com/nesquena/sinatra_more) Library with agnostic
+- [sinatra\_more](https://github.com/nesquena/sinatra_more) Library with agnostic
    generators, form builders, named route mappings, easy mailer support, and more.
-- [Sinatra's Hat](http://github.com/nakajima/sinatras-hat) Mount models as web
+- [Sinatra's Hat](https://github.com/nakajima/sinatras-hat) Mount models as web
   services in Sinatra with ease
 - [Classy Resources](https://github.com/jamesgolick/classy_resources) Think
   resources controller, except for sinatra
-- [Sinatra Ditties](http://github.com/foca/sinatra-ditties) A collection of
+- [Sinatra Ditties](https://github.com/foca/sinatra-ditties) A collection of
   plugins and useful helpers
-- [Chicago](http://github.com/thumblemonks/chicago) runtime and testing
+- [Chicago](https://github.com/thumblemonks/chicago) runtime and testing
   helpers, extensions, and macros commonly used by
-  [Thumblemonks](http://github.com/thumblemonks)
-- [Capinatra](http://github.com/nakajima/capinatra) Quickly deploy Sinatra
+  [Thumblemonks](https://github.com/thumblemonks)
+- [Capinatra](https://github.com/nakajima/capinatra) Quickly deploy Sinatra
   apps to Passenger.
-- [Frankie](http://github.com/deadprogrammer/frankie) Easy creation of Facebook
+- [Frankie](https://github.com/deadprogrammer/frankie) Easy creation of Facebook
   applications with Sinatra and the Facebook gem
-- [Sinatra Application Template](http://github.com/zapnap/sinatra-template)
+- [Sinatra Application Template](https://github.com/zapnap/sinatra-template)
   Base app with DataMapper, Haml and RSpec. Fork and build.
-- [Sinatra OAuth Provider](http://github.com/eddanger/sinatra-oauth-provider)
+- [Sinatra OAuth Provider](https://github.com/eddanger/sinatra-oauth-provider)
   an [OAuth](http://oauth.net) provider implemented with Sinatra
-- [Spork](http://github.com/deadprogrammer/spork) Executes some aynchronous
+- [Spork](https://github.com/deadprogrammer/spork) Executes some aynchronous
   code using Sinatra running under Passenger
-- [Retweet](http://github.com/zapnap/retweet) Create Twitter apps like
+- [Retweet](https://github.com/zapnap/retweet) Create Twitter apps like
   tweetdreams.org with ease
-- [Rack Flash](http://github.com/nakajima/rack-flash) Simple flash hash
+- [Rack Flash](https://github.com/nakajima/rack-flash) Simple flash hash
   implementation for Rack with extra sugar for Sinatra.
-- [Sinatra-REST](http://github.com/blindgaenger/sinatra-rest) generates RESTful
+- [Sinatra-REST](https://github.com/blindgaenger/sinatra-rest) generates RESTful
   routes for your models (ActiveRecord, DataMapper, Stone)
 - [R18n](http://r18n.rubyforge.org/#sinatra) Agnostic i18n library with Sinatra
   extension.
-- [url\_for](http://github.com/emk/sinatra-url-for/) Construct absolute paths
+- [url\_for](https://github.com/emk/sinatra-url-for/) Construct absolute paths
   and full URLs for current application.
-- [WebIRC](http://github.com/andyherbert/WebIRC) Web-based IRC
+- [WebIRC](https://github.com/andyherbert/WebIRC) Web-based IRC
   client.
-- [content\_for](http://github.com/foca/sinatra-content-for) Rails-like `content_for`
+- [content\_for](https://github.com/foca/sinatra-content-for) Rails-like `content_for`
   helper for your views (supports ERB and Haml.)
 - [Sinatra Effigy](https://github.com/croaky/sinatra-effigy) Sinatra extension
   for Effigy (HTML in .html files, Ruby in .rb files) views.
 - [Sinatra Mongoid](https://github.com/croaky/sinatra-mongoid) Sinatra extension
   for Mongoid (MongoDB ORM).
-- [Haml::More](http://github.com/rkh/haml-more) Adds more functionality to Haml and Sass
-- [Sinatra::AdvancedRoutes](http://github.com/rkh/sinatra-advanced-routes) Makes routes first class objects
-- [Sinatra::Compass](http://github.com/rkh/sinatra-compass) Integrates the Compass stylesheet framework
-- [Sinatra::ConfigFile](http://github.com/rkh/sinatra-config-file) Adds YAML config file support
-- [Sinatra::MoreServer](http://github.com/rkh/sinatra-more-server) Adds support for more web servers to Sinatra::Base#run!
+- [Haml::More](https://github.com/rkh/haml-more) Adds more functionality to Haml and Sass
+- [Sinatra::AdvancedRoutes](https://github.com/rkh/sinatra-advanced-routes) Makes routes first class objects
+- [Sinatra::Compass](https://github.com/rkh/sinatra-compass) Integrates the Compass stylesheet framework
+- [Sinatra::ConfigFile](https://github.com/rkh/sinatra-config-file) Adds YAML config file support
+- [Sinatra::MoreServer](https://github.com/rkh/sinatra-more-server) Adds support for more web servers to Sinatra::Base#run!
 - [Sinatra::Namespace](https://github.com/rkh/sinatra-namespace) Adds namespaces, allows namespaces to have local helpers.
-- [Sinatra::Reloader](http://github.com/rkh/sinatra-reloader) Advanced and fast code reloader
-- [Sinatra::Sugar](http://github.com/rkh/sinatra-sugar) Extensions for Sinatra's standard methods, like #set or #register
-- [Sinatra::TestHelper](http://github.com/rkh/sinatra-test-helper) Adds helper methods and better integration for various testing frameworks
-- [Sinatra::WebInspector](http://github.com/rkh/sinatra-web-inspector) Allows you to inspect a running app
-- [Yard::Sinatra](http://github.com/rkh/yard-sinatra) Displays Sinatra routes (including comments) in YARD output
-- [BigBand](http://github.com/rkh/big_band) Pre-configured replacement for Sinatra::Base setting up useful extensions
-- [Sinatra::Jsonp](http://github.com/shtirlic/sinatra-jsonp) JSONP output helper for Sinatra.
-- [Bowtie](http://github.com/tomas/bowtie) Admin generator for DataMapper models, on Sinatra.
+- [Sinatra::Reloader](https://github.com/rkh/sinatra-reloader) Advanced and fast code reloader
+- [Sinatra::Sugar](https://github.com/rkh/sinatra-sugar) Extensions for Sinatra's standard methods, like #set or #register
+- [Sinatra::TestHelper](https://github.com/rkh/sinatra-test-helper) Adds helper methods and better integration for various testing frameworks
+- [Sinatra::WebInspector](https://github.com/rkh/sinatra-web-inspector) Allows you to inspect a running app
+- [Yard::Sinatra](https://github.com/rkh/yard-sinatra) Displays Sinatra routes (including comments) in YARD output
+- [BigBand](https://github.com/rkh/big_band) Pre-configured replacement for Sinatra::Base setting up useful extensions
+- [Sinatra::Jsonp](https://github.com/shtirlic/sinatra-jsonp) JSONP output helper for Sinatra.
+- [Bowtie](https://github.com/tomas/bowtie) Admin generator for DataMapper models, on Sinatra.
 
 Websites {#sites}
 --------
 - [LinkedIn](http://www.linkedin.com/) is a social network for business contacts
-- [I Shoot Film](http://film.vqvz.com) presents Funkaoshi's film photography posted to Flickr organized by film rolls -- [on GitHub](http://github.com/funkaoshi/I-Shoot-Film).
+- [I Shoot Film](http://film.vqvz.com) presents Funkaoshi's film photography posted to Flickr organized by film rolls -- [on GitHub](https://github.com/funkaoshi/I-Shoot-Film).
 - [Speed of Animals](http://www.speedofanimals.com/): imagine being a spotted hyena...
 - [Bloor and Lansdowne is Blansdowne](http://blansdowne.ca) is a photoblog about a neighbourhood in Toronto.
 - [NYLS Upload Tool](http://upload.citylaw.org) Web-based replacement of FTP
@@ -163,7 +163,7 @@ Websites {#sites}
 - [Gusg.us](http://gusg.us/) Blog - Ridding the long bus
 - [Deleanotes](http://delanotes.com/)
 - [themoviedb.org](http://api.themoviedb.org/) The name says it all :)
-- [columnlog](http://github.com/quirkey/columnlog) Tiny feed fetching app
+- [columnlog](https://github.com/quirkey/columnlog) Tiny feed fetching app
 - [Your Fiveruns Dashboard](http://dash.fiveruns.com)
 - [IronRuby](http://ironruby.info) Watch their great stats here
 - [MooURL](http://moourl.com/) The web's cutest URL shortening service
@@ -180,9 +180,9 @@ Websites {#sites}
 - [Scholas](http://schol.as) Social file-sharing for academics.
 - [Gemcutter](http://gemcutter.org) Awesome gem hosting.
 - [SavvyFranchises](http://www.savvyfranchises.com/) Franchise Search + Discovery for the Savvy Entrepreneur.
-- [The Setup](http://usesthis.com/) The setup is a bunch of nerdy interviews ([Source](http://github.com/waferbaby/usesthis/))
+- [The Setup](http://usesthis.com/) The setup is a bunch of nerdy interviews ([Source](https://github.com/waferbaby/usesthis/))
 - [A Good Company](http://www.weareagoodcompany.com/) An awesome little portfolio for a great design company.
-- [dbpedia lite](http://dbpedialite.org/) takes some of the structured data in Wikipedia and presents it as Linked Data ([Source](http://github.com/njh/dbpedialite/)).
+- [dbpedia lite](http://dbpedialite.org/) takes some of the structured data in Wikipedia and presents it as Linked Data ([Source](https://github.com/njh/dbpedialite/)).
 - [Evan Lecklider](http://lecklider.com/) Website showing off work, code examples and experiments built with Sinatra and Compass.
 - [Brightspoke.com](http://www.brightspoke.com/) matches people with bicycles.
 - [Kittygram](http://kittygram.heroku.com/) shows cute cat photos from around the world.
@@ -191,14 +191,14 @@ Websites {#sites}
 - [Ant genome database](http://fourmidable.unil.ch)
 - [GitHub High Scores](http://github-high-scores.heroku.com) A fun way to rank GitHub repository contributors in a 8-bit, 80's-tastic aracdey viewing environment.
 - [Conker Software](http://conkersoftware.co.uk) Micro-company of Tom Philip that makes Web, Android and Boxee apps.
-- [Similander](http://similar.heroku.com) extracts keywords from a given URL to find similar pages ([Source](http://github.com/ema/similander)).
+- [Similander](http://similar.heroku.com) extracts keywords from a given URL to find similar pages ([Source](https://github.com/ema/similander)).
 - [Sombras de Papel](http://sombrasdepapel.com/en/) Website of a pop-rock band from Barcelona (Spain) entirely made using Sinatra + HTML5. There's also a [mobile site](http://m.sombrasdepapel.com/en/).
 - [streetart.io](http://streetart.io) streetart.io allows you to share and discover interesting street art, public art and sculptures around you and your city. The website is a sinatra app which pulls data via the API.
 
 Companies using Sinatra {#biz}
 -----------------------
 - [Heroku](http://heroku.com)
-- [GitHub](http://github.com/blog/53-github-services-ipo)
+- [GitHub](https://github.com/blog/53-github-services-ipo)
 - [Apple](http://www.apple.com/)
 - [BBC](http://www.bbc.co.uk/)
 - [LinkedIn](http://www.linkedin.com/)
