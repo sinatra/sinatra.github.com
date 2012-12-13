@@ -9,18 +9,33 @@ Frequently Asked Questions
 * this will become the toc
 {:toc}
 
-What happened to reloading in Sinatra 0.9.2? {#reloading}
---------------------------------------------
+How do I make my Sinatra app reload on changes? {#reloading}
+-----------------------------------------------
 
-Source file reloading was removed in the 0.9.2 due to excess complexity.
+First off, in-process code reloading in Ruby [is hard](http://rkh.im/code-reloading)
+and having a solution that works for every scenario is technically impossible.
 
-For reloading Sinatra we recommend either using the
-[reloader](/contrib/reloader) or
-[shotgun](http://rtomayko.github.com/shotgun/).
+Which is why we recommend you to do out-of-process reloading.
 
-The reloader will reload single files that changed, whereas shotgun will
-restart the HTTP server on every request. See ["Reloading Ruby
-Code"](http://rkh.im/code-reloading) to learn more about the differences.
+First you need to install [rerun](https://github.com/alexch/rerun) if you haven't already:
+
+    $ gem install rerun
+
+Now if you start your Sinatra app like this:
+
+    $ ruby app.rb
+
+All you have to do for reloading is instead do this:
+
+    $ rerun 'ruby app.rb'
+
+If you are for instance using `rackup`, instead do the following:
+
+    $ rerun 'rackup'
+
+You get the idea.
+
+If you still want in-process reloading, check out [Sinatra::Reloader](/contrib/reloader).
 
 What are my deployment options? {#deploy}
 -------------------------------
