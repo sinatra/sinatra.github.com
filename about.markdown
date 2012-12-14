@@ -12,14 +12,14 @@ California.
 
 Sinatra would not have been possible whithout strong company backing.
 In the past, financial and emotional support have been provided mainly by
-[Heroku](http://heroku.com), [GitHub](http://github.com) and
+[Heroku](http://heroku.com), [GitHub](https://github.com) and
 [Engine Yard](http://www.engineyard.com/), and is now taken care of by
 [Travis CI](http://travis-ci.com/).
 
 Special thanks to the following extraordinary individuals, without whom
 Sinatra would not be possible:
 
-* [Ryan Tomayko](http://tomayko.com/about) (rtomayko) for constantly fixing
+* [Ryan Tomayko](http://tomayko.com/) (rtomayko) for constantly fixing
   whitespace errors __60d5006__
 * [Ezra Zygmuntowicz](http://brainspl.at/) (ezmobius) for initial help and
   letting Blake steal some of merbs internal code.
@@ -38,16 +38,16 @@ Sinatra would not be possible:
   Thin/Passenger.
 * [Jon Crosby](http://joncrosby.me/) (jcrosby) for coffee breaks, doc fixes, and
   just because, man.
-* [Karel Minarik](http://github.com/karmi) (karmi) for screaming until the
+* [Karel Minarik](https://github.com/karmi) (karmi) for screaming until the
   website came back up.
 * [Jeremy Evans](http://code.jeremyevans.net/) (jeremyevans) for unbreaking
   optional path params (twice!)
-* [The GitHub guys](http://github.com/) for stealing Blake's table.
+* [The GitHub guys](https://github.com/) for stealing Blake's table.
 * [Nickolas Means](http://nmeans.org/) (nmeans) for Sass template support.
-* [Victor Hugo Borja](http://github.com/vic) (vic) for splat'n routes specs and
+* [Victor Hugo Borja](https://github.com/vic) (vic) for splat'n routes specs and
   doco.
 * [Avdi Grimm](http://avdi.org/) (avdi) for basic RSpec support.
-* [Jack Danger Canty](http://6brand.com/) for a more accurate root directory
+* [Jack Danger Canty](http://jåck.com/) for a more accurate root directory
   and for making me watch [this](http://www.youtube.com/watch?v=ueaHLHgskkw) just
   now.
 * **Mathew Walker** for making escaped paths work with static files.
@@ -68,7 +68,7 @@ Sinatra would not be possible:
 * **Vasily Polovnyov**, **Nickolay Schwarz**, **Luciano Sousa**, **Wu Jiang**,
   **Mickael Riga**, **Bernhard Essl**, **Janos Hardi**, **Kouhei Yanagita** and
   **"burningTyger"** for willingly translating whatever ends up in the README.
-* [Wordy](http://www.wordy.com/) for proofreading our README. **73e137d**
+* [Wordy](https://wordy.com/) for proofreading our README. **73e137d**
 * **cactus** for digging through code and specs, multiple times.
 * **Nicolás Sanguinetti** (foca) for strong demand of karma and shaping
   helpers/register.

@@ -236,7 +236,7 @@ handler or Rack middleware, such as [`Rack::ShowExceptions`][se] or
 [`Rack::MailExceptions`][me].
 
 [se]: http://rack.rubyforge.org/doc/classes/Rack/ShowExceptions.html
-[me]: http://github.com/rack/rack-contrib/blob/master/lib/rack/contrib/mailexceptions.rb
+[me]: https://github.com/rack/rack-contrib/blob/master/lib/rack/contrib/mailexceptions.rb
 
 ### `:lock` - ensure single request concurrency with a mutex lock
 

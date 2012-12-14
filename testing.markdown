@@ -7,7 +7,7 @@ id: testing
 Testing Sinatra with Rack::Test
 ===============================
 
-All examples in the following  sections assume that `Test::Unit` is being
+All examples in the following  sections assume that [`Test::Unit`][Test::Unit] is being
 used in an attempt to be as general as possible. See the [Test Framework
 Examples](#frameworks) for information on using the test helpers in
 other testing environments. To use `Rack::Test` library used when you require `rack/test`, you'll need to install the `rack-test` gem.
@@ -336,15 +336,12 @@ more information on `get`, `post`, `put`, `delete` and friends.
 
 [Test::Unit]: http://www.ruby-doc.org/stdlib/libdoc/test/unit/rdoc/classes/Test/Unit.html
 [RSpec]: http://rspec.info
-[Bacon]: http://github.com/chneukirchen/bacon
+[Bacon]: https://github.com/chneukirchen/bacon
 [Test::Spec]: http://rubyforge.org/projects/test-spec/
-[Sinatra::Test]: http://github.com/sinatra/sinatra/blob/987d622a52f3eaf28f8f6beb7451c3e43c23f075/test/test_test.rb
-[Rack::Test]: http://github.com/brynary/rack-test/
-[test]: http://github.com/sinatra/sinatra/blob/master/test/test_test.rb
-[wild]: /wild.html
+[Rack::Test]: https://github.com/brynary/rack-test/
 [spec]: http://rack.rubyforge.org/doc/files/SPEC.html
 [Rack::MockRequest]: http://rack.rubyforge.org/doc/classes/Rack/MockRequest.html
 [Rack::MockResponse]: http://rack.rubyforge.org/doc/classes/Rack/MockResponse.html
-[Webrat]: http://github.com/brynary/webrat
-[examples]: http://wiki.github.com/brynary/webrat/sinatra
-[Capybara]: http://github.com/jnicklas/capybara
+[Webrat]: https://github.com/brynary/webrat
+[examples]: https://github.com/brynary/webrat/wiki/sinatra
+[Capybara]: https://github.com/jnicklas/capybara

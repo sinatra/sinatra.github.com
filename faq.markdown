@@ -141,7 +141,7 @@ The code used to live in a [gist](https://gist.github.com/119874),
 but we have put it in a gem so we can maintain it properly and
 provide an easier way for developers to include its behaviour.
 It was adapted from [Chris Schneider](http://www.gittr.com/)'s
-original [partials.rb](http://github.com/cschneid/irclogger/blob/master/lib/partials.rb)
+original [partials.rb](https://github.com/cschneid/irclogger/blob/master/lib/partials.rb)
 implementation.
 
 Use it as follows to render the `mypartial.haml`(1) or the `admin/mypartial.haml`(2)
