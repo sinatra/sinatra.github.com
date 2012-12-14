@@ -45,53 +45,53 @@ in `#sinatra`.
 
 See the `CHANGES` file included for release notes about each release:
 
- * [1.3.3](http://github.com/sinatra/sinatra/blob/1.3.3/CHANGES)
+ * [1.3.3](https://github.com/sinatra/sinatra/blob/1.3.3/CHANGES)
    August 19, 2012
- * [1.3.2](http://github.com/sinatra/sinatra/blob/1.3.2/CHANGES)
+ * [1.3.2](https://github.com/sinatra/sinatra/blob/1.3.2/CHANGES)
    December 30, 2011
- * [1.3.1](http://github.com/sinatra/sinatra/blob/47c11e5f624f0018e961dc3e0628a8d732b683a5/CHANGES)
+ * [1.3.1](https://github.com/sinatra/sinatra/blob/47c11e5f624f0018e961dc3e0628a8d732b683a5/CHANGES)
    October 4, 2011
- * [1.3.0](http://github.com/sinatra/sinatra/blob/1.3.0/CHANGES)
+ * [1.3.0](https://github.com/sinatra/sinatra/blob/1.3.0/CHANGES)
    September 30, 2011
- * [1.2.8](http://github.com/sinatra/sinatra/blob/1.2.8/CHANGES)
+ * [1.2.8](https://github.com/sinatra/sinatra/blob/1.2.8/CHANGES)
    December 30, 2011
- * [1.2.7](http://github.com/sinatra/sinatra/blob/1.2.7/CHANGES)
+ * [1.2.7](https://github.com/sinatra/sinatra/blob/1.2.7/CHANGES)
    September 30, 2011
- * [1.2.6](http://github.com/sinatra/sinatra/blob/1.2.6/CHANGES)
+ * [1.2.6](https://github.com/sinatra/sinatra/blob/1.2.6/CHANGES)
    May 1, 2011
- * [1.2.5](http://github.com/sinatra/sinatra/blob/1.2.5/CHANGES)
+ * [1.2.5](https://github.com/sinatra/sinatra/blob/1.2.5/CHANGES)
    April 30, 2011
- * [1.2.4](http://github.com/sinatra/sinatra/blob/1.2.4/CHANGES)
+ * [1.2.4](https://github.com/sinatra/sinatra/blob/1.2.4/CHANGES)
    April 30, 2011
- * [1.2.3](http://github.com/sinatra/sinatra/blob/1.2.3/CHANGES)
+ * [1.2.3](https://github.com/sinatra/sinatra/blob/1.2.3/CHANGES)
    April 13, 2011
- * [1.2.2](http://github.com/sinatra/sinatra/blob/1.2.2/CHANGES)
+ * [1.2.2](https://github.com/sinatra/sinatra/blob/1.2.2/CHANGES)
    April 08, 2011
- * [1.2.1](http://github.com/sinatra/sinatra/blob/1.2.1/CHANGES)
+ * [1.2.1](https://github.com/sinatra/sinatra/blob/1.2.1/CHANGES)
    March 17, 2011
- * [1.2.0](http://github.com/sinatra/sinatra/blob/1.2.0/CHANGES)
+ * [1.2.0](https://github.com/sinatra/sinatra/blob/1.2.0/CHANGES)
    March 03, 2011
- * [1.1.3](http://github.com/sinatra/sinatra/blob/1.1.3/CHANGES)
+ * [1.1.3](https://github.com/sinatra/sinatra/blob/1.1.3/CHANGES)
    February 20, 2011
- * [1.1.2](http://github.com/sinatra/sinatra/blob/1.1.2/CHANGES)
+ * [1.1.2](https://github.com/sinatra/sinatra/blob/1.1.2/CHANGES)
    December 25, 2010
- * [1.1.0](http://github.com/sinatra/sinatra/blob/1.1.0/CHANGES)
+ * [1.1.0](https://github.com/sinatra/sinatra/blob/1.1.0/CHANGES)
    October 24, 2010
- * [1.0.0](http://github.com/sinatra/sinatra/blob/1.0/CHANGES)
+ * [1.0.0](https://github.com/sinatra/sinatra/blob/1.0/CHANGES)
    March 23, 2010
- * [0.9.6](http://github.com/sinatra/sinatra/blob/0.9.6/CHANGES)
+ * [0.9.6](https://github.com/sinatra/sinatra/blob/0.9.6/CHANGES)
    March 07, 2010
- * [0.9.5](http://github.com/sinatra/sinatra/blob/0.9.5/CHANGES)
+ * [0.9.5](https://github.com/sinatra/sinatra/blob/0.9.5/CHANGES)
    March 05, 2010
- * [0.9.4](http://github.com/sinatra/sinatra/blob/0.9.4/CHANGES)
+ * [0.9.4](https://github.com/sinatra/sinatra/blob/0.9.4/CHANGES)
    July 26, 2009
- * [0.9.3](http://github.com/sinatra/sinatra/blob/0.9.3/CHANGES)
+ * [0.9.3](https://github.com/sinatra/sinatra/blob/0.9.3/CHANGES)
    June 08, 2009
- * [0.9.2](http://github.com/sinatra/sinatra/blob/0.9.2/CHANGES)
+ * [0.9.2](https://github.com/sinatra/sinatra/blob/0.9.2/CHANGES)
    March 18, 2009
- * [0.9.1](http://github.com/sinatra/sinatra/blob/0.9.1/CHANGES)
+ * [0.9.1](https://github.com/sinatra/sinatra/blob/0.9.1/CHANGES)
    March 02, 2009
- * [0.9.0](http://github.com/sinatra/sinatra/blob/0.9.0/CHANGES)
+ * [0.9.0](https://github.com/sinatra/sinatra/blob/0.9.0/CHANGES)
    January 18, 2009
  * [0.3.3](https://github.com/sinatra/sinatra/blob/0.3.3/ChangeLog)
    November 2, 2008
@@ -101,19 +101,19 @@ See the `CHANGES` file included for release notes about each release:
    September 8, 2008
  * [0.3.0](https://github.com/sinatra/sinatra/blob/0.3.0/ChangeLog)
    August 31, 2008
- * [0.2.2](http://github.com/sinatra/sinatra/blob/0.2.2/CHANGELOG)
+ * [0.2.2](https://github.com/sinatra/sinatra/blob/0.2.2/CHANGELOG)
    April 15, 2008
- * [0.2.1](http://github.com/sinatra/sinatra/blob/0.2.1/CHANGELOG)
+ * [0.2.1](https://github.com/sinatra/sinatra/blob/0.2.1/CHANGELOG)
    April 15, 2008
- * [0.2.0](http://github.com/sinatra/sinatra/blob/0.2.0/CHANGELOG)
+ * [0.2.0](https://github.com/sinatra/sinatra/blob/0.2.0/CHANGELOG)
    April 11, 2008
- * [0.1.7](http://github.com/sinatra/sinatra/blob/0.1.6/CHANGELOG)
+ * [0.1.7](https://github.com/sinatra/sinatra/blob/0.1.6/CHANGELOG)
    October 23, 2007
- * [0.1.6](http://github.com/sinatra/sinatra/blob/0.1.6/CHANGELOG)
+ * [0.1.6](https://github.com/sinatra/sinatra/blob/0.1.6/CHANGELOG)
    October 15, 2007
- * [0.1.5](http://github.com/sinatra/sinatra/blob/0.1.5/CHANGELOG)
+ * [0.1.5](https://github.com/sinatra/sinatra/blob/0.1.5/CHANGELOG)
    October 7, 2007
- * [0.1.0](http://github.com/sinatra/sinatra/blob/0.1.0/CHANGELOG)
+ * [0.1.0](https://github.com/sinatra/sinatra/blob/0.1.0/CHANGELOG)
    October 4, 2007
  * [0.0.1](https://github.com/sinatra/sinatra/tree/0.0.1)
    September 09, 2007
@@ -131,8 +131,8 @@ List of applications, libraries, websites and companies using Sinatra.
 An in-depth look at building and deploying Sinatra applications.
 Maintained by [Chris Schneider][cschneid] and [Zachary Scott][zzak].
 
-[cschneid]: http://github.com/cschneid
-[zzak]: http://github.com/zzak
+[cschneid]: https://github.com/cschneid
+[zzak]: https://github.com/zzak
 
 ### [Sinatra Recipes](http://recipes.sinatrarb.com/)
 
@@ -149,15 +149,15 @@ rack and rack middlware at Melbourne RORO shortly after Railsconf (US).
 ### [RubyConf 08: Lightweight Web Services](http://rubyconf2008.confreaks.com/lightweight-web-services.html)
 
 Adam Wiggins and Blake Mizerany present Sinatra and
-[RestClient](http://github.com/adamwiggins/rest-client/tree/master)
+[RestClient](https://github.com/adamwiggins/rest-client)
 at RubyConf 2008. The talk details Sinatra's underlying philosophy and
 reflects on using Sinatra to build real world applications.
 
-### [Meet Sinatra](http://peepcode.com/products/sinatra) (PeepCode)
+### [Meet Sinatra](https://peepcode.com/products/sinatra) (PeepCode)
 
 Dan Benjamin introduces Sinatra in an hour-long screencast. Build an ad server with DataMapper, JavaScript, HAML, and Sinatra. In collaboration with Sinatra creator Blake Mizerany. Only $9.
 
-### [Classy Web Development with Sinatra](http://www.pragprog.com/screencasts/v-aksinatra/classy-web-development-with-sinatra) (Prag's Screencast Series)
+### [Classy Web Development with Sinatra](http://pragprog.com/screencasts/v-aksinatra/classy-web-development-with-sinatra) (Prag's Screencast Series)
 
 Adam Keys and The Pragmatic Programmers have started a series of screencasts
 on Sinatra. The first two episodes cover creating a tiny web app and creating
@@ -165,7 +165,7 @@ a REST service. <em>$5 a pop.</em>
 
 ### [Sinatra at Locos x Rails](http://www.slideshare.net/godfoca/sinatra-1282891), in Buenos Aires
 
-By [Nicolás Sanguinetti](http://github.com/foca), April 2009.
+By [Nicolás Sanguinetti](https://github.com/foca), April 2009.
 
 ### [Introduction to Sinatra](http://screencasts.org/episodes/introduction-to-sinatra) (screencasts.org)
 
@@ -188,4 +188,4 @@ applications, and presentations.
 Christopher's blog is a treasure-trove of useful Sinatra related
 information.
 
-### [Using Compass for CSS in your Sinatra application](http://log.openmonkey.com/post/73462983/using-compass-for-css-in-your-sinatra-application)
+### [Using Compass for CSS in your Sinatra application](http://openmonkey.com/blog/2009/01/27/using-compass-for-css-in-your-sinatra-application/)
