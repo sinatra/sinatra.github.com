@@ -245,12 +245,13 @@ And in `mailerapp.rb`:
 How do I escape HTML? {#escape_html}
 ---------------------
 
-Include [Rack::Utils](http://rack.rubyforge.org/doc/classes/Rack/Utils.html)
-in your helpers and create an `h` alias as follows:
+Use [Rack::Utils](http://rack.rubyforge.org/doc/classes/Rack/Utils.html)
+in your helpers as follows:
 
     helpers do
-      include Rack::Utils
-      alias_method :h, :escape_html
+      def h(text)
+        Rack::Utils.escape_html(text)
+      end
     end
 
 Now you can escape HTML in your templates like this:
