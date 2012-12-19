@@ -12,5 +12,5 @@ logs and mailing list threads to compile the initial set of entries and
 we'll be adding to the list considerably over the coming weeks.
 
 Have an idea for a FAQ entry? Fork the
-[sinatra.github.com repository](http://github.com/sinatra/sinatra.github.com/),
+[sinatra.github.com repository](https://github.com/sinatra/sinatra.github.com),
 add the entry to `faq.markdown`, and push. We'll take care of the rest.
