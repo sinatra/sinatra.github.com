@@ -7,7 +7,7 @@ at [http://sinatra.github.com/](http://sinatra.github.com/).
 Working Locally
 ---------------
 
-Grab the sources from github:
+Grab the sources from GitHub:
 
     $ git clone git://github.com/sinatra/sinatra.github.com.git
     $ cd sinatra.github.com
@@ -28,7 +28,7 @@ Changes are immediately available at:
 Contributing
 ------------
 
-[See GitHub's "Forking a project" for more information](https://github.com/guides/fork-a-project-and-submit-your-modifications "Forking a project").
+See GitHub's ["Fork A Repo"](https://help.github.com/articles/fork-a-repo "Forking a project") for more information.
 
 Creating Blog Posts
 -------------------
@@ -53,8 +53,8 @@ and the API docs:
     $ gem install haml -v 2.0.4
     $ gem install mislav-hanna --source=http://gems.github.com/
 
-The prebuilt file sources are maintained under the sinatra and sinatra-book
-projects. To pull in the latest versions and build them:
+The prebuilt file sources are maintained under the [sinatra](https://github.com/sinatra/sinatra) and
+[sinatra-book](https://github.com/sinatra/sinatra-book) projects. To pull in the latest versions and build them:
 
     rake pull build
 
