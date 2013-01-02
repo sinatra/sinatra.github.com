@@ -81,6 +81,8 @@ Applications {#apps}
 - [Fracture.it](http://fracture.it) URL shortening service [[Source](https://github.com/michaelminter/fracture-url)]
 - [streetart.io](http://itunes.com/app/streetartio) streetart.io allows you to share and discover interesting street art, public art and sculptures around you and your city. API is powered by Sinatra and Redis.
 - [TaskwarriorWeb](http://theunraveler.github.com/taskwarrior-web/) - A Sinatra-based web interface for the Taskwarrior todo application. Because being a neck-beard is only fun sometimes.
+- [Travis CI](https://travis-ci.org/) - Free Hosted Continuous Integration Platform for the Open Source Community
+
 
 Libraries and extensions {#libs}
 ------------------------
@@ -238,3 +240,4 @@ Companies using Sinatra {#biz}
 - [Cedar Creek IT Solutions](http://cedarcreekit.com)
 - [Animoto](http://www.animoto.com)
 - [Red Hat](http://www.redhat.com)
+- [Travis CI](https://travis-ci.com)
