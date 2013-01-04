@@ -241,3 +241,4 @@ Companies using Sinatra {#biz}
 - [Animoto](http://www.animoto.com)
 - [Red Hat](http://www.redhat.com)
 - [Travis CI](https://travis-ci.com)
+- [Clearhaus](https://www.clearhaus.com)
