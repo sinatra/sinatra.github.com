@@ -10,7 +10,7 @@ About
 Sinatra was designed and developed by __Blake Mizerany__ (bmizerany) in
 California.
 
-Sinatra would not have been possible whithout strong company backing.
+Sinatra would not have been possible without strong company backing.
 In the past, financial and emotional support have been provided mainly by
 [Heroku](http://heroku.com), [GitHub](https://github.com) and
 [Engine Yard](http://www.engineyard.com/), and is now taken care of by
