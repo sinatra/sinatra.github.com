@@ -195,7 +195,7 @@ Websites {#sites}
 - [GitHub High Scores](http://github-high-scores.heroku.com) A fun way to rank GitHub repository contributors in a 8-bit, 80's-tastic aracdey viewing environment.
 - [Conker Software](http://conkersoftware.co.uk) Micro-company of Tom Philip that makes Web, Android and Boxee apps.
 - [Similander](http://similar.heroku.com) extracts keywords from a given URL to find similar pages ([Source](https://github.com/ema/similander)).
-- [Sombras de Papel](http://sombrasdepapel.com/en/) Website of a pop-rock band from Barcelona (Spain) entirely made using Sinatra + HTML5. There's also a [mobile site](http://m.sombrasdepapel.com/en/).
+- [Sombras de Papel](http://sombrasdepapel.com/en/) Website of a pop-rock band from Barcelona (Spain) entirely made using Sinatra + HTML5. There's also an automatic mobile site.
 - [streetart.io](http://streetart.io) streetart.io allows you to share and discover interesting street art, public art and sculptures around you and your city. The website is a sinatra app which pulls data via the API.
 
 Companies using Sinatra {#biz}
