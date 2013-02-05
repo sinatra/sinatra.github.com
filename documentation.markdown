@@ -6,6 +6,13 @@ layout: default
 Documentation
 =============
 
+<div style="float: right; margin: 0  0 20px 20px">
+<h3>Book</h3>
+<iframe src="http://cdn.oreillystatic.com/widgets/author/61.html" height="500px" width="200px" scrolling="no" frameborder="0" style="margin-top:10px">
+  ...
+</iframe>
+</div>
+
 ### [README](intro.html)
 
 A whirlwind tour of Sinatra's most interesting features.
