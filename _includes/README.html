@@ -1121,18 +1121,33 @@ work at all with Shotgun.</p>
 point in the execution flow. This only works on evented servers, like Thin
 and Rainbows. Other servers will still close the stream:</p>
 
-<pre>set :server, :thin
+<pre># long polling
+
+set :server, :thin
 connections = []
 
-get '/' do
-  # keep stream open
+get '/subscribe' do
+  # register a client's interest in server events
   stream(:keep_open) { |out| connections &lt;&lt; out }
+
+  # purge dead connections
+  connections.reject!(&amp;:closed?)
+
+  # acknowledge
+  &quot;subscribed&quot;
 end
 
-post '/' do
-  # write to all open streams
-  connections.each { |out| out &lt;&lt; params[:message] &lt;&lt; &quot;\n&quot; }
-  &quot;message sent&quot;
+post '/message' do
+  connections.each do |out|
+    # notify client that a new message has arrived
+    out &lt;&lt; params[:message] &lt;&lt; &quot;\n&quot;
+
+    # indicate client to connect again
+    out.close
+  end
+
+  # acknowledge
+  &quot;message received&quot;
 end</pre>
 
 <a name='Logging'></a>
@@ -1381,7 +1396,7 @@ get '/foo' do
   request.host                # &quot;example.com&quot;
   request.get?                # true (similar methods for other verbs)
   request.form_data?          # false
-  request[&quot;SOME_HEADER&quot;]      # value of SOME_HEADER header
+  request[&quot;some_param&quot;]       # value of some_param parameter. [] is a shortcut to the params hash.
   request.referrer            # the referrer of the client or '/'
   request.user_agent          # user agent (used by :agent condition)
   request.cookies             # hash of browser cookies
@@ -1558,8 +1573,8 @@ end</pre>
 <p>Sinatra is using <a
 href="https://github.com/rkh/rack-protection#readme">Rack::Protection</a>
 to defend your application against common, opportunistic attacks. You can
-easily disable this behavior (which will open your application to tons of
-common vulnerabilities):</p>
+easily disable this behavior (which will open up your application to tons
+of common vulnerabilities):</p>
 
 <pre>disable :protection</pre>
 
@@ -1947,7 +1962,7 @@ end</pre>
 
 <p>Or with a <tt>config.ru</tt>, which allows using any Rack handler:</p>
 
-<pre># config.ru
+<pre># config.ru (run with rackup)
 require './my_app'
 run MyApp</pre>
 
@@ -2038,7 +2053,7 @@ my_app.run!</pre>
 
 <p>It takes the application to inherit from as optional argument:</p>
 
-<pre># config.ru
+<pre># config.ru (run with rackup)
 require 'sinatra/base'
 
 controller = Sinatra.new do
