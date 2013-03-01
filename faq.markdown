@@ -426,6 +426,7 @@ A little configuration need to be done on I18n module so that:
 * all the transalations are read from YAML files located in the
   `locales` directory
 
+
     configure
         I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)
         I18n.load_path, Dir[File.join(settings.root, 'locales', '*.yml')]
@@ -437,10 +438,10 @@ solutions (and some can even be mixed together): browser preference,
 spefic URL, dedicated subdomain, cookies or session management. 
 Only the first three will be shown below:
 
-* Browser preference
+* Browser preference (will require `rack-contrib` gem)
 
-    # Requires: rack-contrib
     use Rack::Locale
+
 
 * Specific URL
 
@@ -449,7 +450,9 @@ Only the first three will be shown below:
         request.path_info = '/' + params[:splat ][0]
     end
 
+
 * Dedicated subdomain
+
 
     before do
         if (locale = request.host.split('.')[0]) != 'www'
@@ -470,8 +473,8 @@ use of standard methods from the `i18n` module
 
 For rendering the templates matching the desired locale, 
 we will need to extend the `find_template` method. 
-Indeed it will to select the first template matching
-one of the prefered locale, template being suffixed by
+Indeed it will need to select the first template matching
+one of the prefered user locale, templateq being suffixed by
 the name of the locale
 
     helpers do
