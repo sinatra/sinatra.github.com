@@ -421,17 +421,18 @@ of string and object, and to manage fallbacks on available locales
 
 A little configuration need to be done on I18n module so that:
 
-* it can fallbacks on others locales if the requested one is not
-  available (ie: translation as not been done).
-* all the transalations are read from YAML files located in the
-  `locales` directory
+  * it can fallbacks on others locales if the requested one is not
+    available (ie: translation as not been done).
+  * all the transalations are read from YAML files located in the
+    `locales` directory
 
-
+````
     configure
         I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)
         I18n.load_path, Dir[File.join(settings.root, 'locales', '*.yml')]
         I18n.backend.load_translations
     end
+````
 
 Now we need to choose the locale that the user want. There are severals
 solutions (and some can even be mixed together): browser preference,
@@ -440,26 +441,26 @@ Only the first three will be shown below:
 
 * Browser preference (will require `rack-contrib` gem)
 
-    use Rack::Locale
-
+````use Rack::Locale
+````
 
 * Specific URL
 
-    before '/:locale/*' do
+````before '/:locale/*' do
         I18n.locale       =       params[:locale]
         request.path_info = '/' + params[:splat ][0]
     end
-
+````
 
 * Dedicated subdomain
 
-
+````
     before do
         if (locale = request.host.split('.')[0]) != 'www'
             I18n.locale = locale
         end
     end    
-
+````
 
 We have all the necessary information to deliver to the user
 texts/pages in its native language. And for that we will need to
