@@ -414,14 +414,14 @@ How can I internationalise my application? {#i18n}
 ------------------------------------------
 
 We will rely on the `i18n` gem to handle internationalisation
-of string and object, and to manage fallbacks on available locales
+of strings and objects, and to manage fallbacks on available locales
 
     require 'i18n'
     require 'i18n/backend/fallbacks'
 
-A little configuration need to be done on I18n module so that:
+A little configuration need to be done on I18n so that:
 
-  * it can fallbacks on others locales if the requested one is not
+  * it can fallback on other locales if the requested one is not
     available (ie: translation as not been done).
   * all the transalations are read from YAML files located in the
     `locales` directory
@@ -436,17 +436,19 @@ A little configuration need to be done on I18n module so that:
 
 Now we need to choose the locale that the user want. There are severals
 solutions (and some can even be mixed together): browser preference,
-spefic URL, dedicated subdomain, cookies or session management. 
+spefic URL, dedicated subdomain, cookies/session management. 
 Only the first three will be shown below:
 
-* Browser preference (will require `rack-contrib` gem)
+* Browser preference (will need `rack-contrib`)
 
-````use Rack::Locale
+````
+    use Rack::Locale
 ````
 
 * Specific URL
 
-````before '/:locale/*' do
+````
+    before '/:locale/*' do
         I18n.locale       =       params[:locale]
         request.path_info = '/' + params[:splat ][0]
     end
@@ -464,19 +466,19 @@ Only the first three will be shown below:
 
 We have all the necessary information to deliver to the user
 texts/pages in its native language. And for that we will need to
-select string and templates according to the locale.
+select strings and templates according to the desired locale.
 
-Selection of localised string/object is easy as it only requires
-use of standard methods from the `i18n` module
+Selection of localised strings/objects is easy as it only requires
+use of standard methods from `I18n` 
 
     I18n.t(:token)
     I18n.l(Time.now)
 
-For rendering the templates matching the desired locale, 
-we will need to extend the `find_template` method. 
-Indeed it will need to select the first template matching
-one of the prefered user locale, templateq being suffixed by
-the name of the locale
+For rendering the templates matching the desired locale, we need to
+extend the `find_template` method.  It need to select the first
+template matching the user locale (or at least one acceptable
+fallback). To help in the selection process templates stored 
+in the `views` directory are suffixed by the name of the locale.
 
     helpers do
         def find_template(views, name, engine, &block)
