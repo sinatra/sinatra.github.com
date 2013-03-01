@@ -409,6 +409,80 @@ You can test it like this with [_Rack::Test_](https://github.com/brynary/rack-te
     end
 
 
+
+How can I internationalise my application? {#i18n}
+------------------------------------------
+
+We will rely on the `i18n` gem to handle internationalisation
+of string and object, and to manage fallbacks on available locales
+
+    require 'i18n'
+    require 'i18n/backend/fallbacks'
+
+A little configuration need to be done on I18n module so that:
+
+* it can fallbacks on others locales if the requested one is not
+  available (ie: translation as not been done).
+* all the transalations are read from YAML files located in the
+  `locales` directory
+
+    configure
+        I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)
+        I18n.load_path, Dir[File.join(settings.root, 'locales', '*.yml')]
+        I18n.backend.load_translations
+    end
+
+Now we need to choose the locale that the user want. There are severals
+solutions (and some can even be mixed together): browser preference,
+spefic URL, dedicated subdomain, cookies or session management. 
+Only the first three will be shown below:
+
+* Browser preference
+
+    # Requires: rack-contrib
+    use Rack::Locale
+
+* Specific URL
+
+    before '/:locale/*' do
+        I18n.locale       =       params[:locale]
+        request.path_info = '/' + params[:splat ][0]
+    end
+
+* Dedicated subdomain
+
+    before do
+        if (locale = request.host.split('.')[0]) != 'www'
+            I18n.locale = locale
+        end
+    end    
+
+
+We have all the necessary information to deliver to the user
+texts/pages in its native language. And for that we will need to
+select string and templates according to the locale.
+
+Selection of localised string/object is easy as it only requires
+use of standard methods from the `i18n` module
+
+    I18n.t(:token)
+    I18n.l(Time.now)
+
+For rendering the templates matching the desired locale, 
+we will need to extend the `find_template` method. 
+Indeed it will to select the first template matching
+one of the prefered locale, template being suffixed by
+the name of the locale
+
+    helpers do
+        def find_template(views, name, engine, &block)
+            I18n.fallbacks[I18n.locale].each { |locale|
+              super(views, "#{name}.#{locale}", engine, &block) }
+            super(views, name, engine, &block)
+        end
+    end
+
+
 <!--
 
 ### <a id='queue' href='#queue'>How do I process jobs in the background?</a>
