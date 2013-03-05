@@ -141,6 +141,7 @@ Libraries and extensions {#libs}
 - [BigBand](https://github.com/rkh/big_band) Pre-configured replacement for Sinatra::Base setting up useful extensions
 - [Sinatra::Jsonp](https://github.com/shtirlic/sinatra-jsonp) JSONP output helper for Sinatra.
 - [Bowtie](https://github.com/tomas/bowtie) Admin generator for DataMapper models, on Sinatra.
+- [Sinatra::Kittens](https://github.com/tbuehlmann/sinatra-kittens) Random kitten pictures for Sinatra not_found pages.
 
 Websites {#sites}
 --------
