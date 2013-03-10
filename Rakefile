@@ -84,17 +84,11 @@ desc 'Convert Sinatra READMEs to HTML'
 task 'convert:sinatra' do
   readme do |fn|
     file "_includes/#{fn}.html" => ["_sinatra/#{fn}", "Rakefile"] do |f|
-      if %w{es hu jp ko pt-br pt-pt zh}.include?(fn.split(".").last) 
-        html =
-        RDoc::Markup::ToHtml.new.
-        convert(RDoc::Encoding.read_file("_sinatra/#{fn}.rdoc", Encoding::UTF_8)).
-        sub("<h1>Sinatra</h1>", "")
-      else
-        rndr = Redcarpet::Render::HTML.new(:safe_links_only => true)
-        markdown = Redcarpet::Markdown.new(rndr, :lax_spacing => true, :fenced_code_blocks => true)
-        markdown_string = File.read("_sinatra/#{fn}.md").encode('UTF-16le', :invalid => :replace, :replace => "").encode("UTF-8")
-        html = markdown.render(markdown_string).sub("<h1>Sinatra</h1>", "")
-      end
+      rndr = Redcarpet::Render::HTML.new(:safe_links_only => true)
+      markdown = Redcarpet::Markdown.new(rndr, :lax_spacing => true, :fenced_code_blocks => true)
+      markdown_string = File.read("_sinatra/#{fn}.md").encode('UTF-16le', :invalid => :replace, :replace => "").encode("UTF-8")
+      markdown_string.sub!(/##[^#]*\[Sinatra\]((?!\n#).)+/m, '') # remove ToC
+      html = markdown.render(markdown_string).sub("<h1>Sinatra</h1>", "")
       File.open(f.name, 'w') { |io| io.write with_toc(html) }
     end
     CLEAN.include "_includes/#{fn}.html"
