@@ -102,21 +102,17 @@
 <p>Sinatra es un
 <a href="http://es.wikipedia.org/wiki/Lenguaje_especfico_del_dominio">DSL</a> para
 crear aplicaciones web rpidamente en Ruby con un mnimo esfuerzo:</p>
+<pre class="highlight ruby"><span class="c1"># miapp.rb</span>
+<span class="nb">require</span> <span class="s1">'sinatra'</span>
 
-<pre><code class="ruby"># miapp.rb
-require &#39;sinatra&#39;
-
-get &#39;/&#39; do
-  &#39;Hola mundo!&#39;
-end
-</code></pre>
-
+<span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="s1">'Hola mundo!'</span>
+<span class="k">end</span>
+</pre>
 <p>Instal la gem y ejecut la aplicacin con:</p>
-
-<pre><code class="shell">gem install sinatra
+<pre class="highlight shell">gem install sinatra
 ruby miapp.rb
-</code></pre>
-
+</pre>
 <p>Pods verla en: http://localhost:4567</p>
 
 <p>Es recomendable adems ejecutar <code>gem install thin</code>, ya que Sinatra lo va
@@ -127,95 +123,79 @@ a utilizar cuando est disponible.</p>
 
 <p>En Sinatra, una ruta est compuesta por un mtodo HTTP y un patrn de una URL.
 Cada ruta se asocia con un bloque:</p>
+<pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="nf">..</span> <span class="n">mostrar</span> <span class="n">algo</span> <span class="nf">..</span>
+<span class="k">end</span>
 
-<pre><code class="ruby">get &#39;/&#39; do
-  .. mostrar algo ..
-end
+<span class="n">post</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="nf">..</span> <span class="n">crear</span> <span class="n">algo</span> <span class="nf">..</span>
+<span class="k">end</span>
 
-post &#39;/&#39; do
-  .. crear algo ..
-end
+<span class="n">put</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="nf">..</span> <span class="n">reemplazar</span> <span class="n">algo</span> <span class="nf">..</span>
+<span class="k">end</span>
 
-put &#39;/&#39; do
-  .. reemplazar algo ..
-end
+<span class="n">patch</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="nf">..</span> <span class="n">modificar</span> <span class="n">algo</span> <span class="nf">..</span>
+<span class="k">end</span>
 
-patch &#39;/&#39; do
-  .. modificar algo ..
-end
+<span class="n">delete</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="nf">..</span> <span class="n">aniquilar</span> <span class="n">algo</span> <span class="nf">..</span>
+<span class="k">end</span>
 
-delete &#39;/&#39; do
-  .. aniquilar algo ..
-end
-
-options &#39;/&#39; do
-  .. informar algo ..
-end
-</code></pre>
-
+<span class="n">options</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="nf">..</span> <span class="n">informar</span> <span class="n">algo</span> <span class="nf">..</span>
+<span class="k">end</span>
+</pre>
 <p>Las rutas son comparadas en el orden en el que son definidas. La primer ruta
 que coincide con la peticin es invocada.</p>
 
 <p>Los patrones de las rutas pueden incluir parmetros nombrados, accesibles a
 travs de el hash <code>params</code>:</p>
-
-<pre><code class="ruby">get &#39;/hola/:nombre&#39; do
-  # coincide con &quot;GET /hola/foo&quot; y &quot;GET /hola/bar&quot;
-  # params[:nombre] es &#39;foo&#39; o &#39;bar&#39;
-  &quot;Hola #{params[:nombre]}!&quot;
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/hola/:nombre'</span> <span class="k">do</span>
+  <span class="c1"># coincide con &quot;GET /hola/foo&quot; y &quot;GET /hola/bar&quot;</span>
+  <span class="c1"># params[:nombre] es 'foo' o 'bar'</span>
+  <span class="s2">&quot;Hola </span><span class="si">#{</span><span class="n">params</span><span class="o">[</span><span class="ss">:nombre</span><span class="o">]</span><span class="si">}</span><span class="s2">!&quot;</span>
+<span class="k">end</span>
+</pre>
 <p>Tambin pods acceder a los parmetros nombrados usando parmetros de bloque:</p>
-
-<pre><code class="ruby">get &#39;/hola/:nombre&#39; do |n|
-  &quot;Hola #{n}!&quot;
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/hola/:nombre'</span> <span class="k">do</span> <span class="o">|</span><span class="n">n</span><span class="o">|</span>
+  <span class="s2">&quot;Hola </span><span class="si">#{</span><span class="n">n</span><span class="si">}</span><span class="s2">!&quot;</span>
+<span class="k">end</span>
+</pre>
 <p>Los patrones de ruta tambin pueden incluir parmetros splat (o wildcard),
 accesibles a travs del arreglo <code>params[:splat]</code>:</p>
+<pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/decir/*/al/*'</span> <span class="k">do</span>
+  <span class="c1"># coincide con /decir/hola/al/mundo</span>
+  <span class="n">params</span><span class="o">[</span><span class="ss">:splat</span><span class="o">]</span> <span class="c1"># =&gt; [&quot;hola&quot;, &quot;mundo&quot;]</span>
+<span class="k">end</span>
 
-<pre><code class="ruby">get &#39;/decir/*/al/*&#39; do
-  # coincide con /decir/hola/al/mundo
-  params[:splat] # =&gt; [&quot;hola&quot;, &quot;mundo&quot;]
-end
-
-get &#39;/descargar/*.*&#39; do
-  # coincide con /descargar/path/al/archivo.xml
-  params[:splat] # =&gt; [&quot;path/al/archivo&quot;, &quot;xml&quot;]
-end
-</code></pre>
-
+<span class="n">get</span> <span class="s1">'/descargar/*.*'</span> <span class="k">do</span>
+  <span class="c1"># coincide con /descargar/path/al/archivo.xml</span>
+  <span class="n">params</span><span class="o">[</span><span class="ss">:splat</span><span class="o">]</span> <span class="c1"># =&gt; [&quot;path/al/archivo&quot;, &quot;xml&quot;]</span>
+<span class="k">end</span>
+</pre>
 <p>O, con parmetros de bloque:</p>
-
-<pre><code class="ruby">get &#39;/descargar/*.*&#39; do |path, ext|
-  [path, ext] # =&gt; [&quot;path/al/archivo&quot;, &quot;xml&quot;]
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/descargar/*.*'</span> <span class="k">do</span> <span class="o">|</span><span class="n">path</span><span class="p">,</span> <span class="n">ext</span><span class="o">|</span>
+  <span class="o">[</span><span class="n">path</span><span class="p">,</span> <span class="n">ext</span><span class="o">]</span> <span class="c1"># =&gt; [&quot;path/al/archivo&quot;, &quot;xml&quot;]</span>
+<span class="k">end</span>
+</pre>
 <p>Rutas con Expresiones Regulares:</p>
-
-<pre><code class="ruby">get %r{/hola/([\w]+)} do
-  &quot;Hola, #{params[:captures].first}!&quot;
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">get</span> <span class="sr">%r{/hola/([</span><span class="se">\w</span><span class="sr">]+)}</span> <span class="k">do</span>
+  <span class="s2">&quot;Hola, </span><span class="si">#{</span><span class="n">params</span><span class="o">[</span><span class="ss">:captures</span><span class="o">]</span><span class="nf">.first</span><span class="si">}</span><span class="s2">!&quot;</span>
+<span class="k">end</span>
+</pre>
 <p>O con un parmetro de bloque:</p>
-
-<pre><code class="ruby">get %r{/hola/([\w]+)} do |c|
-  &quot;Hola, #{c}!&quot;
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">get</span> <span class="sr">%r{/hola/([</span><span class="se">\w</span><span class="sr">]+)}</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span>
+  <span class="s2">&quot;Hola, </span><span class="si">#{</span><span class="n">c</span><span class="si">}</span><span class="s2">!&quot;</span>
+<span class="k">end</span>
+</pre>
 <p>Los patrones de ruta pueden contener parmetros opcionales:</p>
-
-<pre><code class="ruby">get &#39;/posts.?:formato?&#39; do
-  # coincide con &quot;GET /posts&quot; y adems admite cualquier extensin, por
-  # ejemplo, &quot;GET /posts.json&quot;, &quot;GET /posts.xml&quot;, etc.
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/posts.?:formato?'</span> <span class="k">do</span>
+  <span class="c1"># coincide con &quot;GET /posts&quot; y adems admite cualquier extensin, por</span>
+  <span class="c1"># ejemplo, &quot;GET /posts.json&quot;, &quot;GET /posts.xml&quot;, etc.</span>
+<span class="k">end</span>
+</pre>
 <p>A propsito, a menos que desactivs la proteccin para el ataque <em>path
 traversal</em> (ver ms abajo), el path de la peticin puede ser modificado
 antes de que se compare con los de tus rutas.</p>
@@ -225,65 +205,57 @@ antes de que se compare con los de tus rutas.</p>
 
 <p>Las rutas pueden incluir una variedad de condiciones de seleccin, como por
 ejemplo el user agent:</p>
+<pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/foo'</span><span class="p">,</span> <span class="ss">:agent</span> <span class="o">=&gt;</span> <span class="sr">/Songbird (\d\.\d)[\d\/]*?/</span> <span class="k">do</span>
+  <span class="s2">&quot;Ests usando la versin de Songbird </span><span class="si">#{</span><span class="n">params</span><span class="o">[</span><span class="ss">:agent</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="k">end</span>
 
-<pre><code class="ruby">get &#39;/foo&#39;, :agent =&gt; /Songbird (\d\.\d)[\d\/]*?/ do
-  &quot;Ests usando la versin de Songbird #{params[:agent][0]}&quot;
-end
-
-get &#39;/foo&#39; do
-  # Coincide con browsers que no sean songbird
-end
-</code></pre>
-
+<span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
+  <span class="c1"># Coincide con browsers que no sean songbird</span>
+<span class="k">end</span>
+</pre>
 <p>Otras condiciones disponibles son <code>host_name</code> y <code>provides</code>:</p>
+<pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/'</span><span class="p">,</span> <span class="ss">:host_name</span> <span class="o">=&gt;</span> <span class="sr">/^admin\./</span> <span class="k">do</span>
+  <span class="s2">&quot;rea de Administracin, Acceso denegado!&quot;</span>
+<span class="k">end</span>
 
-<pre><code class="ruby">get &#39;/&#39;, :host_name =&gt; /^admin\./ do
-  &quot;rea de Administracin, Acceso denegado!&quot;
-end
+<span class="n">get</span> <span class="s1">'/'</span><span class="p">,</span> <span class="ss">:provides</span> <span class="o">=&gt;</span> <span class="s1">'html'</span> <span class="k">do</span>
+  <span class="n">haml</span> <span class="ss">:index</span>
+<span class="k">end</span>
 
-get &#39;/&#39;, :provides =&gt; &#39;html&#39; do
-  haml :index
-end
-
-get &#39;/&#39;, :provides =&gt; [&#39;rss&#39;, &#39;atom&#39;, &#39;xml&#39;] do
-  builder :feed
-end
-</code></pre>
-
+<span class="n">get</span> <span class="s1">'/'</span><span class="p">,</span> <span class="ss">:provides</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="s1">'rss'</span><span class="p">,</span> <span class="s1">'atom'</span><span class="p">,</span> <span class="s1">'xml'</span><span class="o">]</span> <span class="k">do</span>
+  <span class="n">builder</span> <span class="ss">:feed</span>
+<span class="k">end</span>
+</pre>
 <p>Pods definir tus propias condiciones fcilmente:</p>
+<pre class="highlight ruby"><span class="n">set</span><span class="p">(</span><span class="ss">:probabilidad</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">valor</span><span class="o">|</span> <span class="n">condition</span> <span class="p">{</span> <span class="nb">rand</span> <span class="o">&lt;=</span> <span class="n">valor</span> <span class="p">}</span> <span class="p">}</span>
 
-<pre><code class="ruby">set(:probabilidad) { |valor| condition { rand &lt;= valor } }
+<span class="n">get</span> <span class="s1">'/gana_un_auto'</span><span class="p">,</span> <span class="ss">:probabilidad</span> <span class="o">=&gt;</span> <span class="mi">0</span><span class="o">.</span><span class="mi">1</span> <span class="k">do</span>
+  <span class="s2">&quot;Ganaste!&quot;</span>
+<span class="k">end</span>
 
-get &#39;/gana_un_auto&#39;, :probabilidad =&gt; 0.1 do
-  &quot;Ganaste!&quot;
-end
-
-get &#39;/gana_un_auto&#39; do
-  &quot;Lo siento, perdiste.&quot;
-end
-</code></pre>
-
+<span class="n">get</span> <span class="s1">'/gana_un_auto'</span> <span class="k">do</span>
+  <span class="s2">&quot;Lo siento, perdiste.&quot;</span>
+<span class="k">end</span>
+</pre>
 <p>Si tu condicin acepta ms de un argumento, pods pasarle un arreglo. Al
 definir la condicin puede resultarte conveniente utilizar el operador splat en
 la lista de parmetros:</p>
+<pre class="highlight ruby"><span class="n">set</span><span class="p">(</span><span class="ss">:autorizar</span><span class="p">)</span> <span class="k">do</span> <span class="o">|*</span><span class="n">roles</span><span class="o">|</span>   <span class="c1"># &lt;- mir el splat</span>
+  <span class="n">condition</span> <span class="k">do</span>
+    <span class="k">unless</span> <span class="n">sesion_iniciada?</span> <span class="o">&amp;&amp;</span> <span class="n">roles</span><span class="nf">.any?</span> <span class="p">{</span><span class="o">|</span><span class="n">rol</span><span class="o">|</span> <span class="n">usuario_actual</span><span class="nf">.tiene_rol?</span> <span class="n">rol</span> <span class="p">}</span>
+      <span class="n">redirect</span> <span class="s2">&quot;/iniciar_sesion/&quot;</span><span class="p">,</span> <span class="mi">303</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-<pre><code class="ruby">set(:autorizar) do |*roles|   # &lt;- mir el splat
-  condition do
-    unless sesion_iniciada? &amp;&amp; roles.any? {|rol| usuario_actual.tiene_rol? rol }
-      redirect &quot;/iniciar_sesion/&quot;, 303
-    end
-  end
-end
+<span class="n">get</span> <span class="s2">&quot;/mi/cuenta/&quot;</span><span class="p">,</span> <span class="ss">:autorizar</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:usuario</span><span class="p">,</span> <span class="ss">:administrador</span><span class="o">]</span> <span class="k">do</span>
+  <span class="s2">&quot;Detalles de mi cuenta&quot;</span>
+<span class="k">end</span>
 
-get &quot;/mi/cuenta/&quot;, :autorizar =&gt; [:usuario, :administrador] do
-  &quot;Detalles de mi cuenta&quot;
-end
-
-get &quot;/solo/administradores/&quot;, :autorizar =&gt; :administrador do
-  &quot;nicamente para administradores!&quot;
-end
-</code></pre>
-
+<span class="n">get</span> <span class="s2">&quot;/solo/administradores/&quot;</span><span class="p">,</span> <span class="ss">:autorizar</span> <span class="o">=&gt;</span> <span class="ss">:administrador</span> <span class="k">do</span>
+  <span class="s2">&quot;nicamente para administradores!&quot;</span>
+<span class="k">end</span>
+</pre>
 <a name='Valores%20de%20Retorno'></a>
 <h3>Valores de Retorno</h3>
 
@@ -306,71 +278,61 @@ dado</li>
 </ul>
 
 <p>De esa manera podemos, por ejemplo, implementar fcilmente un streaming:</p>
+<pre class="highlight ruby"><span class="k">class</span> <span class="nc">Stream</span>
+  <span class="k">def</span> <span class="nf">each</span>
+    <span class="mi">100</span><span class="nf">.times</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="k">yield</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">i</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-<pre><code class="ruby">class Stream
-  def each
-    100.times { |i| yield &quot;#{i}\n&quot; }
-  end
-end
-
-get(&#39;/&#39;) { Stream.new }
-</code></pre>
-
+<span class="n">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)</span> <span class="p">{</span> <span class="no">Stream</span><span class="nf">.new</span> <span class="p">}</span>
+</pre>
 <a name='Comparadores%20de%20Rutas%20Personalizados'></a>
 <h3>Comparadores de Rutas Personalizados</h3>
 
 <p>Como se mostr anteriormente, Sinatra permite utilizar Strings y expresiones
 regulares para definir las rutas. Sin embargo, la cosa no termina ah. Pods
 definir tus propios comparadores muy fcilmente:</p>
+<pre class="highlight ruby"><span class="k">class</span> <span class="nc">PattronCualquieraMenos</span>
+  <span class="nc">Match</span> <span class="o">=</span> <span class="no">Struct</span><span class="nf">.new</span><span class="p">(</span><span class="ss">:captures</span><span class="p">)</span>
 
-<pre><code class="ruby">class PattronCualquieraMenos
-  Match = Struct.new(:captures)
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">excepto</span><span class="p">)</span>
+    <span class="vi">@excepto</span>  <span class="o">=</span> <span class="n">excepto</span>
+    <span class="vi">@capturas</span> <span class="o">=</span> <span class="no">Match</span><span class="nf">.new</span><span class="p">(</span><span class="o">[]</span><span class="p">)</span>
+  <span class="k">end</span>
 
-  def initialize(excepto)
-    @excepto  = excepto
-    @capturas = Match.new([])
-  end
+  <span class="k">def</span> <span class="nf">match</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
+    <span class="vi">@capturas</span> <span class="k">unless</span> <span class="vi">@excepto</span> <span class="o">===</span> <span class="n">str</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-  def match(str)
-    @capturas unless @excepto === str
-  end
-end
+<span class="k">def</span> <span class="nf">cualquiera_menos</span><span class="p">(</span><span class="n">patron</span><span class="p">)</span>
+  <span class="no">PatronCualquieraMenos</span><span class="nf">.new</span><span class="p">(</span><span class="n">patron</span><span class="p">)</span>
+<span class="k">end</span>
 
-def cualquiera_menos(patron)
-  PatronCualquieraMenos.new(patron)
-end
-
-get cualquiera_menos(&quot;/index&quot;) do
-  # ...
-end
-</code></pre>
-
+<span class="n">get</span> <span class="n">cualquiera_menos</span><span class="p">(</span><span class="s2">&quot;/index&quot;</span><span class="p">)</span> <span class="k">do</span>
+  <span class="c1"># ...</span>
+<span class="k">end</span>
+</pre>
 <p>Ten en cuenta que el ejemplo anterior es un poco rebuscado. Un resultado
 similar puede conseguirse ms sencillamente:</p>
-
-<pre><code class="ruby">get // do
-  pass if request.path_info == &quot;/index&quot;
-  # ...
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">get</span> <span class="sr">//</span> <span class="k">do</span>
+  <span class="n">pass</span> <span class="k">if</span> <span class="n">request</span><span class="nf">.path_info</span> <span class="o">==</span> <span class="s2">&quot;/index&quot;</span>
+  <span class="c1"># ...</span>
+<span class="k">end</span>
+</pre>
 <p>O, usando un lookahead negativo:</p>
-
-<pre><code class="ruby">get %r{^(?!/index$)} do
-  # ...
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">get</span> <span class="sr">%r{^(?!/index$)}</span> <span class="k">do</span>
+  <span class="c1"># ...</span>
+<span class="k">end</span>
+</pre>
 <a name='Archivos%20Estticos'></a>
 <h3>Archivos Estticos</h3>
 
 <p>Los archivos estticos son servidos desde el directorio pblico
 <code>./public</code>. Pods especificar una ubicacin diferente ajustando la
 opcin <code>:public_folder</code>:</p>
-
-<pre><code class="ruby">set :public_folder, File.dirname(__FILE__) + &#39;/estaticos&#39;
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">set</span> <span class="ss">:public_folder</span><span class="p">,</span> <span class="no">File</span><span class="nf">.dirname</span><span class="p">(</span><span class="kp">__FILE__</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'/estaticos'</span>
+</pre>
 <p>Not que el nombre del directorio pblico no est incluido en la URL. Por
 ejemplo, el archivo <code>./public/css/style.css</code> se accede a travs de
 <code>http://ejemplo.com/css/style.css</code>.</p>
@@ -383,53 +345,43 @@ ejemplo, el archivo <code>./public/css/style.css</code> se accede a travs de
 
 <p>Cada lenguaje de plantilla se expone a travs de un mtodo de renderizado que
 lleva su nombre. Estos mtodos simplemente devuelven un string:</p>
-
-<pre><code class="ruby">get &#39;/&#39; do
-  erb :index
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">erb</span> <span class="ss">:index</span>
+<span class="k">end</span>
+</pre>
 <p>Renderiza <code>views/index.erb</code>.</p>
 
 <p>En lugar del nombre de la plantilla pods proporcionar directamente el
 contenido de la misma:</p>
-
-<pre><code class="ruby">get &#39;/&#39; do
-  codigo = &quot;&lt;%= Time.now %&gt;&quot;
-  erb codigo
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">codigo</span> <span class="o">=</span> <span class="s2">&quot;&lt;%= Time.now %&gt;&quot;</span>
+  <span class="n">erb</span> <span class="n">codigo</span>
+<span class="k">end</span>
+</pre>
 <p>Los mtodos de renderizado, aceptan adems un segundo argumento, el hash de
 opciones:</p>
-
-<pre><code class="ruby">get &#39;/&#39; do
-  erb :index, :layout =&gt; :post
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">erb</span> <span class="ss">:index</span><span class="p">,</span> <span class="ss">:layout</span> <span class="o">=&gt;</span> <span class="ss">:post</span>
+<span class="k">end</span>
+</pre>
 <p>Renderiza <code>views/index.erb</code> embebido en <code>views/post.erb</code> (por
 defecto, la plantilla <code>:index</code> es embebida en <code>views/layout.erb</code> siempre y
 cuando este ltimo archivo exista).</p>
 
 <p>Cualquier opcin que Sinatra no entienda le ser pasada al motor de renderizado
 de la plantilla:</p>
-
-<pre><code class="ruby">get &#39;/&#39; do
-  haml :index, :format =&gt; :html5
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">haml</span> <span class="ss">:index</span><span class="p">,</span> <span class="ss">:format</span> <span class="o">=&gt;</span> <span class="ss">:html5</span>
+<span class="k">end</span>
+</pre>
 <p>Adems pods definir las opciones para un lenguaje de plantillas de forma
 general:</p>
+<pre class="highlight ruby"><span class="n">set</span> <span class="ss">:haml</span><span class="p">,</span> <span class="ss">:format</span> <span class="o">=&gt;</span> <span class="ss">:html5</span>
 
-<pre><code class="ruby">set :haml, :format =&gt; :html5
-
-get &#39;/&#39; do
-  haml :index
-end
-</code></pre>
-
+<span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">haml</span> <span class="ss">:index</span>
+<span class="k">end</span>
+</pre>
 <p>Las opciones pasadas al mtodo de renderizado tienen precedencia sobre las
 definidas mediante <code>set</code>.</p>
 
@@ -505,11 +457,9 @@ definidas mediante <code>set</code>.</p>
 <p>Algunos lenguajes tienen varias implementaciones. Para especificar que
 implementacin usar (y para ser thread-safe), deberas requerirla antes de
 usarla:</p>
-
-<pre><code class="ruby">require &#39;rdiscount&#39; # o require &#39;bluecloth&#39;
-get(&#39;/&#39;) { markdown :index }
-</code></pre>
-
+<pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'rdiscount'</span> <span class="c1"># o require 'bluecloth'</span>
+<span class="n">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)</span> <span class="p">{</span> <span class="n">markdown</span> <span class="ss">:index</span> <span class="p">}</span>
+</pre>
 <a name='Plantillas%20Haml'></a>
 <h3>Plantillas Haml</h3>
 
@@ -692,17 +642,13 @@ plantilla Liquid, casi siempre vas a querer pasarle locales.</p>
 
 <p>No es posible llamar mtodos desde markdown, ni pasarle locales. Por lo tanto,
 generalmente vas a usarlo en combinacin con otro motor de renderizado:</p>
-
-<pre><code class="ruby">erb :resumen, :locals =&gt; { :texto =&gt; markdown(:introduccion) }
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">erb</span> <span class="ss">:resumen</span><span class="p">,</span> <span class="ss">:locals</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:texto</span> <span class="o">=&gt;</span> <span class="n">markdown</span><span class="p">(</span><span class="ss">:introduccion</span><span class="p">)</span> <span class="p">}</span>
+</pre>
 <p>Ten en cuenta que tambin pods llamar al mtodo <code>markdown</code> desde otras
 plantillas:</p>
-
-<pre><code class="ruby">%h1 Hola Desde Haml!
-%p= markdown(:saludos)
-</code></pre>
-
+<pre class="highlight ruby"><span class="o">%</span><span class="n">h1</span> <span class="no">Hola</span> <span class="no">Desde</span> <span class="no">Haml</span><span class="o">!</span>
+<span class="o">%</span><span class="nb">p</span><span class="o">=</span> <span class="n">markdown</span><span class="p">(</span><span class="ss">:saludos</span><span class="p">)</span>
+</pre>
 <p>Como no pods utilizar Ruby desde Markdown, no pods usar layouts escritos en
 Markdown. De todos modos, es posible usar un motor de renderizado para el
 layout distinto al de la plantilla pasando la opcin <code>:layout_engine</code>.</p>
@@ -727,17 +673,13 @@ layout distinto al de la plantilla pasando la opcin <code>:layout_engine</code>.
 
 <p>No es posible llamar mtodos desde textile, ni pasarle locales. Por lo tanto,
 generalmente vas a usarlo en combinacin con otro motor de renderizado:</p>
-
-<pre><code class="ruby">erb :resumen, :locals =&gt; { :texto =&gt; textile(:introduccion) }
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">erb</span> <span class="ss">:resumen</span><span class="p">,</span> <span class="ss">:locals</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:texto</span> <span class="o">=&gt;</span> <span class="n">textile</span><span class="p">(</span><span class="ss">:introduccion</span><span class="p">)</span> <span class="p">}</span>
+</pre>
 <p>Ten en cuenta que tambin pods llamar al mtodo <code>textile</code> desde otras
 plantillas:</p>
-
-<pre><code class="ruby">%h1 Hola Desde Haml!
-%p= textile(:saludos)
-</code></pre>
-
+<pre class="highlight ruby"><span class="o">%</span><span class="n">h1</span> <span class="no">Hola</span> <span class="no">Desde</span> <span class="no">Haml</span><span class="o">!</span>
+<span class="o">%</span><span class="nb">p</span><span class="o">=</span> <span class="n">textile</span><span class="p">(</span><span class="ss">:saludos</span><span class="p">)</span>
+</pre>
 <p>Como no pods utilizar Ruby desde Textile, no pods usar layouts escritos en
 Textile. De todos modos, es posible usar un motor de renderizado para el
 layout distinto al de la plantilla pasando la opcin <code>:layout_engine</code>.</p>
@@ -762,17 +704,13 @@ layout distinto al de la plantilla pasando la opcin <code>:layout_engine</code>.
 
 <p>No es posible llamar mtodos desde rdoc, ni pasarle locales. Por lo tanto,
 generalmente vas a usarlo en combinacin con otro motor de renderizado:</p>
-
-<pre><code class="ruby">erb :resumen, :locals =&gt; { :texto =&gt; rdoc(:introduccion) }
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">erb</span> <span class="ss">:resumen</span><span class="p">,</span> <span class="ss">:locals</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:texto</span> <span class="o">=&gt;</span> <span class="n">rdoc</span><span class="p">(</span><span class="ss">:introduccion</span><span class="p">)</span> <span class="p">}</span>
+</pre>
 <p>Ten en cuenta que tambin pods llamar al mtodo <code>rdoc</code> desde otras
 plantillas:</p>
-
-<pre><code class="ruby">%h1 Hola Desde Haml!
-%p= rdoc(:saludos)
-</code></pre>
-
+<pre class="highlight ruby"><span class="o">%</span><span class="n">h1</span> <span class="no">Hola</span> <span class="no">Desde</span> <span class="no">Haml</span><span class="o">!</span>
+<span class="o">%</span><span class="nb">p</span><span class="o">=</span> <span class="n">rdoc</span><span class="p">(</span><span class="ss">:saludos</span><span class="p">)</span>
+</pre>
 <p>Como no pods utilizar Ruby desde RDoc, no pods usar layouts escritos en RDoc.
 De todos modos, es posible usar un motor de renderizado para el layout distinto
 al de la plantilla pasando la opcin <code>:layout_engine</code>.</p>
@@ -874,17 +812,13 @@ plantilla Radius, casi siempre vas a querer pasarle locales.</p>
 
 <p>No es posible llamar mtodos desde creole, ni pasarle locales. Por lo tanto,
 generalmente vas a usarlo en combinacin con otro motor de renderizado:</p>
-
-<pre><code class="ruby">erb :resumen, :locals =&gt; { :texto =&gt; cerole(:introduccion) }
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">erb</span> <span class="ss">:resumen</span><span class="p">,</span> <span class="ss">:locals</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:texto</span> <span class="o">=&gt;</span> <span class="n">cerole</span><span class="p">(</span><span class="ss">:introduccion</span><span class="p">)</span> <span class="p">}</span>
+</pre>
 <p>Ten en cuenta que tambin pods llamar al mtodo <code>creole</code> desde otras
 plantillas:</p>
-
-<pre><code class="ruby">%h1 Hola Desde Haml!
-%p= creole(:saludos)
-</code></pre>
-
+<pre class="highlight ruby"><span class="o">%</span><span class="n">h1</span> <span class="no">Hola</span> <span class="no">Desde</span> <span class="no">Haml</span><span class="o">!</span>
+<span class="o">%</span><span class="nb">p</span><span class="o">=</span> <span class="n">creole</span><span class="p">(</span><span class="ss">:saludos</span><span class="p">)</span>
+</pre>
 <p>Como no pods utilizar Ruby desde Creole, no pods usar layouts escritos en
 Creloe. De todos modos, es posible usar un motor de renderizado para el layout
 distinto al de la plantilla pasando la opcin <code>:layout_engine</code>.</p>
@@ -965,16 +899,12 @@ distinto al de la plantilla pasando la opcin <code>:layout_engine</code>.</p>
 </table>
 
 <p>El contenido de La plantilla se evala como cdigo Ruby, y la variable <code>json</code> es convertida a JSON mediante <code>#to_json</code>.</p>
-
-<pre><code class="ruby">json = { :foo =&gt; &#39;bar&#39; }
-json[:baz] = key
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">json</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">:foo</span> <span class="o">=&gt;</span> <span class="s1">'bar'</span> <span class="p">}</span>
+<span class="n">json</span><span class="o">[</span><span class="ss">:baz</span><span class="o">]</span> <span class="o">=</span> <span class="n">key</span>
+</pre>
 <p>Las opciones <code>:callback</code> y <code>:variable</code> se pueden utilizar para decorar el objeto renderizado:</p>
-
-<pre><code class="ruby">var resource = {&quot;foo&quot;:&quot;bar&quot;,&quot;baz&quot;:&quot;qux&quot;}; present(resource);
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">var</span> <span class="n">resource</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;foo&quot;</span><span class="ss">:&quot;bar&quot;</span><span class="p">,</span><span class="s2">&quot;baz&quot;</span><span class="ss">:&quot;qux&quot;</span><span class="p">};</span> <span class="n">present</span><span class="p">(</span><span class="n">resource</span><span class="p">);</span>
+</pre>
 <a name='Plantillas%20WLang'></a>
 <h3>Plantillas WLang</h3>
 
@@ -998,12 +928,10 @@ plantilla WLang, casi siempre vas a querer pasarle locales.</p>
 
 <a name='Plantillas%20Embebidas'></a>
 <h3>Plantillas Embebidas</h3>
-
-<pre><code class="ruby">get &#39;/&#39; do
-  haml &#39;%div.titulo Hola Mundo&#39;
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">haml</span> <span class="s1">'%div.titulo Hola Mundo'</span>
+<span class="k">end</span>
+</pre>
 <p>Renderiza el template embebido en el string.</p>
 
 <a name='Accediendo%20a%20Variables%20en%20Plantillas'></a>
@@ -1012,21 +940,17 @@ end
 <p>Las plantillas son evaluadas dentro del mismo contexto que los manejadores de
 ruta. Las variables de instancia asignadas en los manejadores de ruta son
 accesibles directamente por las plantillas:</p>
-
-<pre><code class="ruby">get &#39;/:id&#39; do
-  @foo = Foo.find(params[:id])
-  haml &#39;%h1= @foo.nombre&#39;
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/:id'</span> <span class="k">do</span>
+  <span class="vi">@foo</span> <span class="o">=</span> <span class="no">Foo</span><span class="nf">.find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
+  <span class="n">haml</span> <span class="s1">'%h1= @foo.nombre'</span>
+<span class="k">end</span>
+</pre>
 <p>O es posible especificar un Hash de variables locales explcitamente:</p>
-
-<pre><code class="ruby">get &#39;/:id&#39; do
-  foo = Foo.find(params[:id])
-  haml &#39;%h1= bar.nombre&#39;, :locals =&gt; { :bar =&gt; foo }
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/:id'</span> <span class="k">do</span>
+  <span class="n">foo</span> <span class="o">=</span> <span class="no">Foo</span><span class="nf">.find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
+  <span class="n">haml</span> <span class="s1">'%h1= bar.nombre'</span><span class="p">,</span> <span class="ss">:locals</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:bar</span> <span class="o">=&gt;</span> <span class="n">foo</span> <span class="p">}</span>
+<span class="k">end</span>
+</pre>
 <p>Esto es usado tpicamente cuando se renderizan plantillas como parciales desde
 adentro de otras plantillas.</p>
 
@@ -1034,15 +958,14 @@ adentro de otras plantillas.</p>
 <h3>Plantillas Inline</h3>
 
 <p>Las plantillas pueden ser definidas al final del archivo fuente:</p>
+<pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'rubygems'</span>
+<span class="nb">require</span> <span class="s1">'sinatra'</span>
 
-<pre><code class="ruby">require &#39;rubygems&#39;
-require &#39;sinatra&#39;
+<span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">haml</span> <span class="ss">:index</span>
+<span class="k">end</span>
 
-get &#39;/&#39; do
-  haml :index
-end
-
-__END__
+<span class="cp">__END__
 
 @@ layout
 %html
@@ -1050,8 +973,7 @@ __END__
 
 @@ index
 %div.titulo Hola mundo!!!!!
-</code></pre>
-
+</span></pre>
 <p>NOTA: nicamente las plantillas inline definidas en el archivo fuente que
 requiere sinatra son cargadas automticamente. Llam <code>enable
 :inline_templates</code> explcitamente si tens plantillas inline en otros
@@ -1062,56 +984,48 @@ archivos fuente.</p>
 
 <p>Las plantillas tambin pueden ser definidas usando el mtodo top-level
 <code>template</code>:</p>
+<pre class="highlight ruby"><span class="n">template</span> <span class="ss">:layout</span> <span class="k">do</span>
+  <span class="s2">&quot;%html</span><span class="se">\n</span><span class="s2">  =yield</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="k">end</span>
 
-<pre><code class="ruby">template :layout do
-  &quot;%html\n  =yield\n&quot;
-end
+<span class="n">template</span> <span class="ss">:index</span> <span class="k">do</span>
+  <span class="s1">'%div.titulo Hola Mundo!'</span>
+<span class="k">end</span>
 
-template :index do
-  &#39;%div.titulo Hola Mundo!&#39;
-end
-
-get &#39;/&#39; do
-  haml :index
-end
-</code></pre>
-
+<span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">haml</span> <span class="ss">:index</span>
+<span class="k">end</span>
+</pre>
 <p>Si existe una plantilla con el nombre &quot;layout&quot;, va a ser usada cada vez que
 una plantilla es renderizada. Pods desactivar los layouts individualmente
 pasando <code>:layout =&gt; false</code> o globalmente con
 <code>set :haml, :layout =&gt; false</code>:</p>
-
-<pre><code class="ruby">get &#39;/&#39; do
-  haml :index, :layout =&gt; !request.xhr?
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">haml</span> <span class="ss">:index</span><span class="p">,</span> <span class="ss">:layout</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="n">request</span><span class="nf">.xhr?</span>
+<span class="k">end</span>
+</pre>
 <a name='Asociando%20Extensiones%20de%20Archivo'></a>
 <h3>Asociando Extensiones de Archivo</h3>
 
 <p>Para asociar una extensin de archivo con un motor de renderizado, us
 <code>Tilt.register</code>. Por ejemplo, si quers usar la extensin <code>tt</code> para
 las plantillas Textile, pods hacer lo siguiente:</p>
-
-<pre><code class="ruby">Tilt.register :tt, Tilt[:textile]
-</code></pre>
-
+<pre class="highlight ruby"><span class="no">Tilt</span><span class="nf">.register</span> <span class="ss">:tt</span><span class="p">,</span> <span class="no">Tilt</span><span class="o">[</span><span class="ss">:textile</span><span class="o">]</span>
+</pre>
 <a name='Agregando%20Tu%20Propio%20Motor%20de%20Renderizado'></a>
 <h3>Agregando Tu Propio Motor de Renderizado</h3>
 
 <p>Primero, registr tu motor con Tilt, y despus, cre tu mtodo de renderizado:</p>
+<pre class="highlight ruby"><span class="no">Tilt</span><span class="nf">.register</span> <span class="ss">:mipg</span><span class="p">,</span> <span class="no">MiMotorParaPlantillaGenial</span>
 
-<pre><code class="ruby">Tilt.register :mipg, MiMotorParaPlantillaGenial
+<span class="n">helpers</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="nf">mypg</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span> <span class="n">render</span><span class="p">(</span><span class="ss">:mypg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span> <span class="k">end</span>
+<span class="k">end</span>
 
-helpers do
-  def mypg(*args) render(:mypg, *args) end
-end
-
-get &#39;/&#39; do
-  mypg :index
-end
-</code></pre>
-
+<span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">mypg</span> <span class="ss">:index</span>
+<span class="k">end</span>
+</pre>
 <p>Renderiza <code>./views/index.mypg</code>. Mir https://github.com/rtomayko/tilt
 para aprender ms de Tilt.</p>
 
@@ -1122,28 +1036,24 @@ para aprender ms de Tilt.</p>
 contexto que las rutas. Pueden modificar la peticin y la respuesta. Las
 variables de instancia asignadas en los filtros son accesibles por las rutas y
 las plantillas:</p>
+<pre class="highlight ruby"><span class="n">before</span> <span class="k">do</span>
+  <span class="vi">@nota</span> <span class="o">=</span> <span class="s1">'Hey!'</span>
+  <span class="n">request</span><span class="nf">.path_info</span> <span class="o">=</span> <span class="s1">'/foo/bar/baz'</span>
+<span class="k">end</span>
 
-<pre><code class="ruby">before do
-  @nota = &#39;Hey!&#39;
-  request.path_info = &#39;/foo/bar/baz&#39;
-end
-
-get &#39;/foo/*&#39; do
-  @nota #=&gt; &#39;Hey!&#39;
-  params[:splat] #=&gt; &#39;bar/baz&#39;
-end
-</code></pre>
-
+<span class="n">get</span> <span class="s1">'/foo/*'</span> <span class="k">do</span>
+  <span class="vi">@nota</span> <span class="c1">#=&gt; 'Hey!'</span>
+  <span class="n">params</span><span class="o">[</span><span class="ss">:splat</span><span class="o">]</span> <span class="c1">#=&gt; 'bar/baz'</span>
+<span class="k">end</span>
+</pre>
 <p>Los filtros <code>after</code> son evaluados despus de cada peticin dentro del mismo
 contexto y tambin pueden modificar la peticin y la respuesta. Las variables
 de instancia asignadas en los filtros <code>before</code> y en las rutas son accesibles por
 los filtros <code>after</code>:</p>
-
-<pre><code class="ruby">after do
-  puts response.status
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">after</span> <span class="k">do</span>
+  <span class="nb">puts</span> <span class="n">response</span><span class="nf">.status</span>
+<span class="k">end</span>
+</pre>
 <p>Nota: A menos que uss el mtodo <code>body</code> en lugar de simplemente devolver un
 string desde una ruta, el cuerpo de la respuesta no va a estar disponible en
 un filtro after, debido a que todava no se ha generado.</p>
@@ -1151,58 +1061,50 @@ un filtro after, debido a que todava no se ha generado.</p>
 <p>Los filtros aceptan un patrn opcional, que cuando est presente causa que los
 mismos sean evaluados nicamente si el path de la peticin coincide con ese
 patrn:</p>
+<pre class="highlight ruby"><span class="n">before</span> <span class="s1">'/protegido/*'</span> <span class="k">do</span>
+  <span class="n">autenticar!</span>
+<span class="k">end</span>
 
-<pre><code class="ruby">before &#39;/protegido/*&#39; do
-  autenticar!
-end
-
-after &#39;/crear/:slug&#39; do |slug|
-  session[:ultimo_slug] = slug
-end
-</code></pre>
-
+<span class="n">after</span> <span class="s1">'/crear/:slug'</span> <span class="k">do</span> <span class="o">|</span><span class="n">slug</span><span class="o">|</span>
+  <span class="n">session</span><span class="o">[</span><span class="ss">:ultimo_slug</span><span class="o">]</span> <span class="o">=</span> <span class="n">slug</span>
+<span class="k">end</span>
+</pre>
 <p>Al igual que las rutas, los filtros tambin pueden aceptar condiciones:</p>
+<pre class="highlight ruby"><span class="n">before</span> <span class="ss">:agent</span> <span class="o">=&gt;</span> <span class="sr">/Songbird/</span> <span class="k">do</span>
+  <span class="c1"># ...</span>
+<span class="k">end</span>
 
-<pre><code class="ruby">before :agent =&gt; /Songbird/ do
-  # ...
-end
-
-after &#39;/blog/*&#39;, :host_name =&gt; &#39;ejemplo.com&#39; do
-  # ...
-end
-</code></pre>
-
+<span class="n">after</span> <span class="s1">'/blog/*'</span><span class="p">,</span> <span class="ss">:host_name</span> <span class="o">=&gt;</span> <span class="s1">'ejemplo.com'</span> <span class="k">do</span>
+  <span class="c1"># ...</span>
+<span class="k">end</span>
+</pre>
 <a name='Ayudantes'></a>
 <h2>Ayudantes</h2>
 
 <p>Us el mtodo top-level <em>helpers</em> para definir mtodos ayudantes que
 pueden ser utilizados dentro de los manejadores de rutas y las plantillas:</p>
+<pre class="highlight ruby"><span class="n">helpers</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span>
+    <span class="s2">&quot;</span><span class="si">#{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">bar&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-<pre><code class="ruby">helpers do
-  def bar(nombre)
-    &quot;#{nombre}bar&quot;
-  end
-end
-
-get &#39;/:nombre&#39; do
-  bar(params[:nombre])
-end
-</code></pre>
-
+<span class="n">get</span> <span class="s1">'/:nombre'</span> <span class="k">do</span>
+  <span class="n">bar</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:nombre</span><span class="o">]</span><span class="p">)</span>
+<span class="k">end</span>
+</pre>
 <p>Por cuestiones organizativas, puede resultar conveniente organizar los mtodos
 ayudantes en distintos mdulos:</p>
+<pre class="highlight ruby"><span class="k">module</span> <span class="nn">FooUtils</span>
+  <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">foo&quot;</span> <span class="k">end</span>
+<span class="k">end</span>
 
-<pre><code class="ruby">module FooUtils
-  def foo(nombre) &quot;#{nombre}foo&quot; end
-end
+<span class="k">module</span> <span class="nn">BarUtils</span>
+  <span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">bar&quot;</span> <span class="k">end</span>
+<span class="k">end</span>
 
-module BarUtils
-  def bar(nombre) &quot;#{nombre}bar&quot; end
-end
-
-helpers FooUtils, BarUtils
-</code></pre>
-
+<span class="n">helpers</span> <span class="no">FooUtils</span><span class="p">,</span> <span class="no">BarUtils</span>
+</pre>
 <p>El efecto de utilizar <em>helpers</em> de esta manera es el mismo que resulta de
 incluir los mdulos en la clase de la aplicacin.</p>
 
@@ -1211,100 +1113,78 @@ incluir los mdulos en la clase de la aplicacin.</p>
 
 <p>Una sesin es usada para mantener el estado a travs de distintas peticiones.
 Cuando estn activadas, tens un hash de sesin para cada sesin de usuario:</p>
+<pre class="highlight ruby"><span class="n">enable</span> <span class="ss">:sessions</span>
 
-<pre><code class="ruby">enable :sessions
+<span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="s2">&quot;valor = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">session</span><span class="o">[</span><span class="ss">:valor</span><span class="o">]</span><span class="nf">.inspect</span>
+<span class="k">end</span>
 
-get &#39;/&#39; do
-  &quot;valor = &quot; &lt;&lt; session[:valor].inspect
-end
-
-get &#39;/:valor&#39; do
-  session[:valor] = params[:valor]
-end
-</code></pre>
-
+<span class="n">get</span> <span class="s1">'/:valor'</span> <span class="k">do</span>
+  <span class="n">session</span><span class="o">[</span><span class="ss">:valor</span><span class="o">]</span> <span class="o">=</span> <span class="n">params</span><span class="o">[</span><span class="ss">:valor</span><span class="o">]</span>
+<span class="k">end</span>
+</pre>
 <p>Ten en cuenta que <code>enable :sessions</code> guarda todos los datos en una
 cookie, lo que no es siempre deseable (guardar muchos datos va a incrementar
 tu trfico, por citar un ejemplo). Pods usar cualquier middleware Rack para
 manejar sesiones, de la misma manera que usaras cualquier otro middleware,
 pero con la salvedad de que <em>no</em> tens que llamar a <code>enable :sessions</code>:</p>
+<pre class="highlight ruby"><span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Session</span><span class="o">::</span><span class="no">Pool</span><span class="p">,</span> <span class="ss">:expire_after</span> <span class="o">=&gt;</span> <span class="mi">2592000</span>
 
-<pre><code class="ruby">use Rack::Session::Pool, :expire_after =&gt; 2592000
+<span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="s2">&quot;valor = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">session</span><span class="o">[</span><span class="ss">:valor</span><span class="o">]</span><span class="nf">.inspect</span>
+<span class="k">end</span>
 
-get &#39;/&#39; do
-  &quot;valor = &quot; &lt;&lt; session[:valor].inspect
-end
-
-get &#39;/:valor&#39; do
-  session[:valor] = params[:valor]
-end
-</code></pre>
-
+<span class="n">get</span> <span class="s1">'/:valor'</span> <span class="k">do</span>
+  <span class="n">session</span><span class="o">[</span><span class="ss">:valor</span><span class="o">]</span> <span class="o">=</span> <span class="n">params</span><span class="o">[</span><span class="ss">:valor</span><span class="o">]</span>
+<span class="k">end</span>
+</pre>
 <p>Para incrementar la seguridad, los datos de la sesin almacenados en
 la cookie son firmados con un secreto de sesin. Este secreto, es
 generado aleatoriamente por Sinatra. De cualquier manera, hay que
 tener en cuenta que cada vez que inicies la aplicacin se va a generar
 uno nuevo. As, si quers que todas las instancias de tu aplicacin
 compartan un nico secreto, tens que definirlo vos:</p>
-
-<pre><code class="ruby">set :session_secret, &#39;super secreto&#39;
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">set</span> <span class="ss">:session_secret</span><span class="p">,</span> <span class="s1">'super secreto'</span>
+</pre>
 <p>Si necesits una configuracin ms especfica, <code>sessions</code> acepta un
 Hash con opciones:</p>
-
-<pre><code class="ruby">set :sessions, :domain =&gt; &#39;foo.com&#39;
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">set</span> <span class="ss">:sessions</span><span class="p">,</span> <span class="ss">:domain</span> <span class="o">=&gt;</span> <span class="s1">'foo.com'</span>
+</pre>
 <a name='Interrupcin'></a>
 <h3>Interrupcin</h3>
 
 <p>Para detener inmediatamente una peticin dentro de un filtro o una ruta us:</p>
-
-<pre><code class="ruby">halt
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">halt</span>
+</pre>
 <p>Tambin pods especificar el estado:</p>
-
-<pre><code class="ruby">halt 410
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">halt</span> <span class="mi">410</span>
+</pre>
 <p>O el cuerpo:</p>
-
-<pre><code class="ruby">halt &#39;esto va a ser el cuerpo&#39;
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">halt</span> <span class="s1">'esto va a ser el cuerpo'</span>
+</pre>
 <p>O los dos:</p>
-
-<pre><code class="ruby">halt 401, &#39;sal de ac!&#39;
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">halt</span> <span class="mi">401</span><span class="p">,</span> <span class="s1">'sal de ac!'</span>
+</pre>
 <p>Con cabeceras:</p>
-
-<pre><code class="ruby">halt 402, { &#39;Content-Type&#39; =&gt; &#39;text/plain&#39; }, &#39;venganza&#39;
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">halt</span> <span class="mi">402</span><span class="p">,</span> <span class="p">{</span> <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'text/plain'</span> <span class="p">},</span> <span class="s1">'venganza'</span>
+</pre>
 <p>Obviamente, es posible utilizar <code>halt</code> con una plantilla:</p>
-
-<pre><code class="ruby">halt erb(:error)
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">halt</span> <span class="n">erb</span><span class="p">(</span><span class="ss">:error</span><span class="p">)</span>
+</pre>
 <a name='Paso'></a>
 <h3>Paso</h3>
 
 <p>Una ruta puede pasarle el procesamiento a la siguiente ruta que coincida con
 la peticin usando <code>pass</code>:</p>
+<pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/adivina/:quien'</span> <span class="k">do</span>
+  <span class="n">pass</span> <span class="k">unless</span> <span class="n">params</span><span class="o">[</span><span class="ss">:quien</span><span class="o">]</span> <span class="o">==</span> <span class="s1">'Franco'</span>
+  <span class="s1">'Adivinaste!'</span>
+<span class="k">end</span>
 
-<pre><code class="ruby">get &#39;/adivina/:quien&#39; do
-  pass unless params[:quien] == &#39;Franco&#39;
-  &#39;Adivinaste!&#39;
-end
-
-get &#39;/adivina/*&#39; do
-  &#39;Erraste!&#39;
-end
-</code></pre>
-
+<span class="n">get</span> <span class="s1">'/adivina/*'</span> <span class="k">do</span>
+  <span class="s1">'Erraste!'</span>
+<span class="k">end</span>
+</pre>
 <p>Se sale inmediatamente del bloque de la ruta y se le pasa el control a la
 siguiente ruta que coincida. Si no coincide ninguna ruta, se devuelve un 404.</p>
 
@@ -1313,17 +1193,15 @@ siguiente ruta que coincida. Si no coincide ninguna ruta, se devuelve un 404.</p
 
 <p>Cuando quers obtener el resultado de la llamada a una ruta, <code>pass</code> no te va a
 servir. Para lograr esto, pods usar <code>call</code>:</p>
+<pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
+  <span class="n">status</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">body</span> <span class="o">=</span> <span class="n">call</span> <span class="n">env</span><span class="nf">.merge</span><span class="p">(</span><span class="s2">&quot;PATH_INFO&quot;</span> <span class="o">=&gt;</span> <span class="s1">'/bar'</span><span class="p">)</span>
+  <span class="o">[</span><span class="n">status</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">body</span><span class="nf">.map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:upcase</span><span class="p">)</span><span class="o">]</span>
+<span class="k">end</span>
 
-<pre><code class="ruby">get &#39;/foo&#39; do
-  status, headers, body = call env.merge(&quot;PATH_INFO&quot; =&gt; &#39;/bar&#39;)
-  [status, headers, body.map(&amp;:upcase)]
-end
-
-get &#39;/bar&#39; do
-  &quot;bar&quot;
-end
-</code></pre>
-
+<span class="n">get</span> <span class="s1">'/bar'</span> <span class="k">do</span>
+  <span class="s2">&quot;bar&quot;</span>
+<span class="k">end</span>
+</pre>
 <p>Not que en el ejemplo anterior, es conveniente mover <code>&quot;bar&quot;</code> a un
 helper, y llamarlo desde <code>/foo</code> y <code>/bar</code>. As, vas a simplificar
 las pruebas y a mejorar el rendimiento.</p>
@@ -1342,30 +1220,26 @@ respuesta con el valor de retorno de una ruta. De cualquier manera, en varios
 escenarios, puede que sea conveniente asignar el cuerpo en un punto arbitrario
 del flujo de ejecucin con el mtodo <code>body</code>. A partir de ah, pods usar ese
 mismo mtodo para acceder al cuerpo de la respuesta:</p>
+<pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
+  <span class="n">body</span> <span class="s2">&quot;bar&quot;</span>
+<span class="k">end</span>
 
-<pre><code class="ruby">get &#39;/foo&#39; do
-  body &quot;bar&quot;
-end
-
-after do
-  puts body
-end
-</code></pre>
-
+<span class="n">after</span> <span class="k">do</span>
+  <span class="nb">puts</span> <span class="n">body</span>
+<span class="k">end</span>
+</pre>
 <p>Tambin es posible pasarle un bloque a <code>body</code>, que ser ejecutado por el Rack
 handler (pods usar esto para implementar streaming, mir &quot;Valores de retorno&quot;).</p>
 
 <p>De manera similar, tambin pods asignar el cdigo de estado y encabezados:</p>
-
-<pre><code class="ruby">get &#39;/foo&#39; do
-  status 418
-  headers \
-    &quot;Allow&quot;   =&gt; &quot;BREW, POST, GET, PROPFIND, WHEN&quot;,
-    &quot;Refresh&quot; =&gt; &quot;Refresh: 20; http://www.ietf.org/rfc/rfc2324.txt&quot;
-  body &quot;I&#39;m a tea pot!&quot;
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
+  <span class="n">status</span> <span class="mi">418</span>
+  <span class="n">headers</span> <span class="p">\</span>
+    <span class="s2">&quot;Allow&quot;</span>   <span class="o">=&gt;</span> <span class="s2">&quot;BREW, POST, GET, PROPFIND, WHEN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Refresh&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Refresh: 20; http://www.ietf.org/rfc/rfc2324.txt&quot;</span>
+  <span class="n">body</span> <span class="s2">&quot;I'm a tea pot!&quot;</span>
+<span class="k">end</span>
+</pre>
 <p>Tambin, al igual que <code>body</code>, tanto <code>status</code> como <code>headers</code> pueden utilizarse
 para obtener sus valores cuando no se les pasa argumentos.</p>
 
@@ -1376,18 +1250,16 @@ para obtener sus valores cuando no se les pasa argumentos.</p>
 terminaste de generar su cuerpo. Tambin es posible que, en algunos casos,
 quieras seguir enviando informacin hasta que el cliente cierre la conexin.
 Cuando esto ocurra, el <code>stream</code> helper te va a ser de gran ayuda:</p>
-
-<pre><code class="ruby">get &#39;/&#39; do
-  stream do |out|
-    out &lt;&lt; &quot;Esto va a ser legen -\n&quot;
-    sleep 0.5
-    out &lt;&lt; &quot; (esperalo) \n&quot;
-    sleep 1
-    out &lt;&lt; &quot;- dario!\n&quot;
-  end
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">stream</span> <span class="k">do</span> <span class="o">|</span><span class="n">out</span><span class="o">|</span>
+    <span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Esto va a ser legen -</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="nb">sleep</span> <span class="mi">0</span><span class="o">.</span><span class="mi">5</span>
+    <span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot; (esperalo) </span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="nb">sleep</span> <span class="mi">1</span>
+    <span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;- dario!</span><span class="se">\n</span><span class="s2">&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
 <p>Pods implementar APIs de streaming,
 <a href="http://dev.w3.org/html5/eventsource/">Server-Sent Events</a> y puede ser usado
 como base para <a href="http://es.wikipedia.org/wiki/WebSockets">WebSockets</a>. Tambin
@@ -1406,34 +1278,30 @@ ejecucin. Si ests usando Shotgun, el streaming no va a funcionar.</p>
 que quieras. Nuevamente, hay que tener en cuenta que este comportamiento es
 posible solo en servidores que soporten eventos, como Thin o Rainbows. El
 resto de los servidores van a cerrar el stream de todos modos:</p>
+<pre class="highlight ruby"><span class="n">set</span> <span class="ss">:server</span><span class="p">,</span> <span class="ss">:thin</span>
+<span class="n">conexiones</span> <span class="o">=</span> <span class="o">[]</span>
 
-<pre><code class="ruby">set :server, :thin
-conexiones = []
+<span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="c1"># mantenemos abierto el stream</span>
+  <span class="n">stream</span><span class="p">(</span><span class="ss">:keep_open</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">salida</span><span class="o">|</span> <span class="n">conexiones</span> <span class="o">&lt;&lt;</span> <span class="n">salida</span> <span class="p">}</span>
+<span class="k">end</span>
 
-get &#39;/&#39; do
-  # mantenemos abierto el stream
-  stream(:keep_open) { |salida| conexiones &lt;&lt; salida }
-end
-
-post &#39;/&#39; do
-  # escribimos a todos los streams abiertos
-  conexiones.each { |salida| salida &lt;&lt; params[:mensaje] &lt;&lt; &quot;\n&quot; }
-  &quot;mensaje enviado&quot;
-end
-</code></pre>
-
+<span class="n">post</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="c1"># escribimos a todos los streams abiertos</span>
+  <span class="n">conexiones</span><span class="nf">.each</span> <span class="p">{</span> <span class="o">|</span><span class="n">salida</span><span class="o">|</span> <span class="n">salida</span> <span class="o">&lt;&lt;</span> <span class="n">params</span><span class="o">[</span><span class="ss">:mensaje</span><span class="o">]</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="p">}</span>
+  <span class="s2">&quot;mensaje enviado&quot;</span>
+<span class="k">end</span>
+</pre>
 <a name='Log%20(Registro)'></a>
 <h3>Log (Registro)</h3>
 
 <p>En el mbito de la peticin, el helper <code>logger</code> (registrador) expone
 una instancia de <code>Logger</code>:</p>
-
-<pre><code class="ruby">get &#39;/&#39; do
-  logger.info &quot;cargando datos&quot;
-  # ...
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">logger</span><span class="nf">.info</span> <span class="s2">&quot;cargando datos&quot;</span>
+  <span class="c1"># ...</span>
+<span class="k">end</span>
+</pre>
 <p>Este logger tiene en cuenta la configuracin de logueo de tu Rack
 handler. Si el logueo est desactivado, este mtodo va a devolver un
 objeto que se comporta como un logger pero que en realidad no hace
@@ -1442,14 +1310,12 @@ nada. As, no vas a tener que preocuparte por esta situacin.</p>
 <p>Ten en cuenta que el logueo est habilitado por defecto nicamente
 para <code>Sinatra::Application</code>. Si heredaste de
 <code>Sinatra::Base</code>, probablemente quieras habilitarlo manualmente:</p>
-
-<pre><code class="ruby">class MiApp &lt; Sinatra::Base
-  configure :production, :development do
-    enable :logging
-  end
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="k">class</span> <span class="nc">MiApp</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">configure</span> <span class="ss">:production</span><span class="p">,</span> <span class="ss">:development</span> <span class="k">do</span>
+    <span class="n">enable</span> <span class="ss">:logging</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
 <p>Para evitar que se inicialice cualquier middleware de logging, configur
 <code>logging</code> a <code>nil</code>. Ten en cuenta que, cuando hagas esto, <code>logger</code> va a
 devolver <code>nil</code>. Un caso comn es cuando quers usar tu propio logger. Sinatra
@@ -1461,28 +1327,22 @@ va a usar lo que encuentre en <code>env[&#39;rack.logger&#39;]</code>.</p>
 <p>Cuando uss <code>send_file</code> o archivos estticos tal vez tengas tipos mime
 que Sinatra no entiende. Us <code>mime_type</code> para registrarlos a travs de la
 extensin de archivo:</p>
-
-<pre><code class="ruby">configure do
-  mime_type :foo, &#39;text/foo&#39;
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">configure</span> <span class="k">do</span>
+  <span class="n">mime_type</span> <span class="ss">:foo</span><span class="p">,</span> <span class="s1">'text/foo'</span>
+<span class="k">end</span>
+</pre>
 <p>Tambin lo pods usar con el ayudante <code>content_type</code>:</p>
-
-<pre><code class="ruby">get &#39;/&#39; do
-  content_type :foo
-  &quot;foo foo foo&quot;
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">content_type</span> <span class="ss">:foo</span>
+  <span class="s2">&quot;foo foo foo&quot;</span>
+<span class="k">end</span>
+</pre>
 <a name='Generando%20URLs'></a>
 <h3>Generando URLs</h3>
 
 <p>Para generar URLs deberas usar el mtodo <code>url</code>. Por ejemplo, en Haml:</p>
-
-<pre><code class="ruby">%a{:href =&gt; url(&#39;/foo&#39;)} foo
-</code></pre>
-
+<pre class="highlight ruby"><span class="o">%</span><span class="n">a</span><span class="p">{</span><span class="ss">:href</span> <span class="o">=&gt;</span> <span class="n">url</span><span class="p">(</span><span class="s1">'/foo'</span><span class="p">)}</span> <span class="n">foo</span>
+</pre>
 <p>Tiene en cuenta proxies inversos y encaminadores de Rack, si estn presentes.</p>
 
 <p>Este mtodo tambin puede invocarse mediante su alias <code>to</code>  (mir un ejemplo
@@ -1492,52 +1352,42 @@ a continuacin).</p>
 <h3>Redireccin del Navegador</h3>
 
 <p>Pods redireccionar al navegador con el mtodo <code>redirect</code>:</p>
-
-<pre><code class="ruby">get &#39;/foo&#39; do
-  redirect to(&#39;/bar&#39;)
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
+  <span class="n">redirect</span> <span class="n">to</span><span class="p">(</span><span class="s1">'/bar'</span><span class="p">)</span>
+<span class="k">end</span>
+</pre>
 <p>Cualquier parmetro adicional se utiliza de la misma manera que los argumentos
 pasados a <code>halt</code>:</p>
-
-<pre><code class="ruby">redirect to(&#39;/bar&#39;), 303
-redirect &#39;http://google.com&#39;, &#39;te confundiste de lugar, compaero&#39;
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">redirect</span> <span class="n">to</span><span class="p">(</span><span class="s1">'/bar'</span><span class="p">),</span> <span class="mi">303</span>
+<span class="n">redirect</span> <span class="s1">'http://google.com'</span><span class="p">,</span> <span class="s1">'te confundiste de lugar, compaero'</span>
+</pre>
 <p>Tambin pods redireccionar fcilmente de vuelta hacia la pgina desde donde
 vino el usuario con <code>redirect back</code>:</p>
+<pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
+  <span class="s2">&quot;&lt;a href='/bar'&gt;hacer algo&lt;/a&gt;&quot;</span>
+<span class="k">end</span>
 
-<pre><code class="ruby">get &#39;/foo&#39; do
-  &quot;&lt;a href=&#39;/bar&#39;&gt;hacer algo&lt;/a&gt;&quot;
-end
-
-get &#39;/bar&#39; do
-  hacer_algo
-  redirect back
-end
-</code></pre>
-
+<span class="n">get</span> <span class="s1">'/bar'</span> <span class="k">do</span>
+  <span class="n">hacer_algo</span>
+  <span class="n">redirect</span> <span class="n">back</span>
+<span class="k">end</span>
+</pre>
 <p>Para pasar argumentos con una redireccin, pods agregarlos a la cadena de
 bsqueda:</p>
-
-<pre><code class="ruby">redirect to(&#39;/bar?suma=42&#39;)
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">redirect</span> <span class="n">to</span><span class="p">(</span><span class="s1">'/bar?suma=42'</span><span class="p">)</span>
+</pre>
 <p>O usar una sesin:</p>
+<pre class="highlight ruby"><span class="n">enable</span> <span class="ss">:sessions</span>
 
-<pre><code class="ruby">enable :sessions
+<span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
+  <span class="n">session</span><span class="o">[</span><span class="ss">:secreto</span><span class="o">]</span> <span class="o">=</span> <span class="s1">'foo'</span>
+  <span class="n">redirect</span> <span class="n">to</span><span class="p">(</span><span class="s1">'/bar'</span><span class="p">)</span>
+<span class="k">end</span>
 
-get &#39;/foo&#39; do
-  session[:secreto] = &#39;foo&#39;
-  redirect to(&#39;/bar&#39;)
-end
-
-get &#39;/bar&#39; do
-  session[:secreto]
-end
-</code></pre>
-
+<span class="n">get</span> <span class="s1">'/bar'</span> <span class="k">do</span>
+  <span class="n">session</span><span class="o">[</span><span class="ss">:secreto</span><span class="o">]</span>
+<span class="k">end</span>
+</pre>
 <a name='Cache%20Control'></a>
 <h3>Cache Control</h3>
 
@@ -1545,64 +1395,52 @@ end
 HTTP correcto.</p>
 
 <p>Pods asignar el encabezado Cache-Control fcilmente:</p>
-
-<pre><code class="ruby">get &#39;/&#39; do
-  cache_control :public
-  &quot;cachealo!&quot;
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">cache_control</span> <span class="ss">:public</span>
+  <span class="s2">&quot;cachealo!&quot;</span>
+<span class="k">end</span>
+</pre>
 <p>Pro tip: configurar el cacheo en un filtro <code>before</code>:</p>
-
-<pre><code class="ruby">before do
-  cache_control :public, :must_revalidate, :max_age =&gt; 60
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">before</span> <span class="k">do</span>
+  <span class="n">cache_control</span> <span class="ss">:public</span><span class="p">,</span> <span class="ss">:must_revalidate</span><span class="p">,</span> <span class="ss">:max_age</span> <span class="o">=&gt;</span> <span class="mi">60</span>
+<span class="k">end</span>
+</pre>
 <p>Si ests usando el helper <code>expires</code> para definir el encabezado correspondiente,
 <code>Cache-Control</code> se va a definir automticamente:</p>
-
-<pre><code class="ruby">before do
-  expires 500, :public, :must_revalidate
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">before</span> <span class="k">do</span>
+  <span class="n">expires</span> <span class="mi">500</span><span class="p">,</span> <span class="ss">:public</span><span class="p">,</span> <span class="ss">:must_revalidate</span>
+<span class="k">end</span>
+</pre>
 <p>Para usar cachs adecuadamente, deberas considerar usar <code>etag</code> o
 <code>last_modified</code>. Es recomendable que llames a estos helpers <em>antes</em> de hacer
 cualquier trabajo pesado, ya que van a enviar la respuesta inmediatamente si
 el cliente ya tiene la versin actual en su cach:</p>
-
-<pre><code class="ruby">get &#39;/articulo/:id&#39; do
-  @articulo = Articulo.find params[:id]
-  last_modified @articulo.updated_at
-  etag @articulo.sha1
-  erb :articulo
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/articulo/:id'</span> <span class="k">do</span>
+  <span class="vi">@articulo</span> <span class="o">=</span> <span class="no">Articulo</span><span class="nf">.find</span> <span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span>
+  <span class="n">last_modified</span> <span class="vi">@articulo</span><span class="nf">.updated_at</span>
+  <span class="n">etag</span> <span class="vi">@articulo</span><span class="nf">.sha1</span>
+  <span class="n">erb</span> <span class="ss">:articulo</span>
+<span class="k">end</span>
+</pre>
 <p>Tambin es posible usar una
 <a href="http://en.wikipedia.org/wiki/HTTP_ETag#Strong_and_weak_validation">weak ETag</a>:</p>
-
-<pre><code class="ruby">etag @articulo.sha1, :weak
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">etag</span> <span class="vi">@articulo</span><span class="nf">.sha1</span><span class="p">,</span> <span class="ss">:weak</span>
+</pre>
 <p>Estos helpers no van a cachear nada por vos, sino que van a facilitar la
 informacin necesaria para poder hacerlo. Si ests buscando soluciones rpidas
 de cacheo con proxys inversos, mir
 <a href="https://github.com/rtomayko/rack-cache">rack-cache</a>:</p>
+<pre class="highlight ruby"><span class="nb">require</span> <span class="s2">&quot;rack/cache&quot;</span>
+<span class="nb">require</span> <span class="s2">&quot;sinatra&quot;</span>
 
-<pre><code class="ruby">require &quot;rack/cache&quot;
-require &quot;sinatra&quot;
+<span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Cache</span>
 
-use Rack::Cache
-
-get &#39;/&#39; do
-  cache_control :public, :max_age =&gt; 36000
-  sleep 5
-  &quot;hola&quot;
-end
-</code></pre>
-
+<span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">cache_control</span> <span class="ss">:public</span><span class="p">,</span> <span class="ss">:max_age</span> <span class="o">=&gt;</span> <span class="mi">36000</span>
+  <span class="nb">sleep</span> <span class="mi">5</span>
+  <span class="s2">&quot;hola&quot;</span>
+<span class="k">end</span>
+</pre>
 <p>Us la configuracin <code>:static_cache_control</code> para agregar el encabezado
 <code>Cache-Control</code> a archivos estticos (ver la seccin de configuracin
 para ms detalles).</p>
@@ -1613,34 +1451,26 @@ recurso solicitado ya existe. Sinatra asume para peticiones seguras (como get)
 e idempotentes (como put) que el recurso existe, mientras que para el resto
 (como post), que no. Podes cambiar este comportamiento con la opcin
 <code>:new_resource</code>:</p>
-
-<pre><code class="ruby">get &#39;/crear&#39; do
-  etag &#39;&#39;, :new_resource =&gt; true
-  Articulo.create
-  erb :nuevo_articulo
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/crear'</span> <span class="k">do</span>
+  <span class="n">etag</span> <span class="s1">''</span><span class="p">,</span> <span class="ss">:new_resource</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+  <span class="no">Articulo</span><span class="nf">.create</span>
+  <span class="n">erb</span> <span class="ss">:nuevo_articulo</span>
+<span class="k">end</span>
+</pre>
 <p>Si quers seguir usando una weak ETag, indicalo con la opcin <code>:kind</code>:</p>
-
-<pre><code class="ruby">etag &#39;&#39;, :new_resource =&gt; true, :kind =&gt; :weak
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">etag</span> <span class="s1">''</span><span class="p">,</span> <span class="ss">:new_resource</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">:kind</span> <span class="o">=&gt;</span> <span class="ss">:weak</span>
+</pre>
 <a name='Enviando%20Archivos'></a>
 <h3>Enviando Archivos</h3>
 
 <p>Para enviar archivos, pods usar el mtodo <code>send_file</code>:</p>
-
-<pre><code class="ruby">get &#39;/&#39; do
-  send_file &#39;foo.png&#39;
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">send_file</span> <span class="s1">'foo.png'</span>
+<span class="k">end</span>
+</pre>
 <p>Adems acepta un par de opciones:</p>
-
-<pre><code class="ruby">send_file &#39;foo.png&#39;, :type =&gt; :jpg
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">send_file</span> <span class="s1">'foo.png'</span><span class="p">,</span> <span class="ss">:type</span> <span class="o">=&gt;</span> <span class="ss">:jpg</span>
+</pre>
 <p>Estas opciones son:</p>
 
 <p>[filename]
@@ -1675,78 +1505,68 @@ peticiones de rango.</p>
 <p>El objeto de la peticin entrante puede ser accedido desde el nivel de la
 peticin (filtros, rutas y manejadores de errores) a travs del mtodo
 <code>request</code>:</p>
-
-<pre><code class="ruby"># app corriendo en http://ejemplo.com/ejemplo
-get &#39;/foo&#39; do
-  t = %w[text/css text/html application/javascript]
-  request.accept              # [&#39;text/html&#39;, &#39;*/*&#39;]
-  request.accept? &#39;text/xml&#39;  # true
-  request.preferred_type(t)   # &#39;text/html&#39;
-  request.body                # cuerpo de la peticin enviado por el cliente (ver ms abajo)
-  request.scheme              # &quot;http&quot;
-  request.script_name         # &quot;/ejemplo&quot;
-  request.path_info           # &quot;/foo&quot;
-  request.port                # 80
-  request.request_method      # &quot;GET&quot;
-  request.query_string        # &quot;&quot;
-  request.content_length      # longitud de request.body
-  request.media_type          # tipo de medio de request.body
-  request.host                # &quot;ejemplo.com&quot;
-  request.get?                # true (hay mtodos anlogos para los otros verbos)
-  request.form_data?          # false
-  request[&quot;UNA_CABECERA&quot;]     # valor de la cabecera UNA_CABECERA
-  request.referrer            # la referencia del cliente o &#39;/&#39;
-  request.user_agent          # user agent (usado por la condicin :agent)
-  request.cookies             # hash de las cookies del browser
-  request.xhr?                # es una peticin ajax?
-  request.url                 # &quot;http://ejemplo.com/ejemplo/foo&quot;
-  request.path                # &quot;/ejemplo/foo&quot;
-  request.ip                  # direccin IP del cliente
-  request.secure?             # false (sera true sobre ssl)
-  request.forwarded?          # true (si se est corriendo atrs de un proxy inverso)
-  requuest.env                # hash de entorno directamente entregado por Rack
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="c1"># app corriendo en http://ejemplo.com/ejemplo</span>
+<span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
+  <span class="n">t</span> <span class="o">=</span> <span class="sx">%w[text/css text/html application/javascript]</span>
+  <span class="n">request</span><span class="nf">.accept</span>              <span class="c1"># ['text/html', '*/*']</span>
+  <span class="n">request</span><span class="nf">.accept?</span> <span class="s1">'text/xml'</span>  <span class="c1"># true</span>
+  <span class="n">request</span><span class="nf">.preferred_type</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>   <span class="c1"># 'text/html'</span>
+  <span class="n">request</span><span class="nf">.body</span>                <span class="c1"># cuerpo de la peticin enviado por el cliente (ver ms abajo)</span>
+  <span class="n">request</span><span class="nf">.scheme</span>              <span class="c1"># &quot;http&quot;</span>
+  <span class="n">request</span><span class="nf">.script_name</span>         <span class="c1"># &quot;/ejemplo&quot;</span>
+  <span class="n">request</span><span class="nf">.path_info</span>           <span class="c1"># &quot;/foo&quot;</span>
+  <span class="n">request</span><span class="nf">.port</span>                <span class="c1"># 80</span>
+  <span class="n">request</span><span class="nf">.request_method</span>      <span class="c1"># &quot;GET&quot;</span>
+  <span class="n">request</span><span class="nf">.query_string</span>        <span class="c1"># &quot;&quot;</span>
+  <span class="n">request</span><span class="nf">.content_length</span>      <span class="c1"># longitud de request.body</span>
+  <span class="n">request</span><span class="nf">.media_type</span>          <span class="c1"># tipo de medio de request.body</span>
+  <span class="n">request</span><span class="nf">.host</span>                <span class="c1"># &quot;ejemplo.com&quot;</span>
+  <span class="n">request</span><span class="nf">.get?</span>                <span class="c1"># true (hay mtodos anlogos para los otros verbos)</span>
+  <span class="n">request</span><span class="nf">.form_data?</span>          <span class="c1"># false</span>
+  <span class="n">request</span><span class="o">[</span><span class="s2">&quot;UNA_CABECERA&quot;</span><span class="o">]</span>     <span class="c1"># valor de la cabecera UNA_CABECERA</span>
+  <span class="n">request</span><span class="nf">.referrer</span>            <span class="c1"># la referencia del cliente o '/'</span>
+  <span class="n">request</span><span class="nf">.user_agent</span>          <span class="c1"># user agent (usado por la condicin :agent)</span>
+  <span class="n">request</span><span class="nf">.cookies</span>             <span class="c1"># hash de las cookies del browser</span>
+  <span class="n">request</span><span class="nf">.xhr?</span>                <span class="c1"># es una peticin ajax?</span>
+  <span class="n">request</span><span class="nf">.url</span>                 <span class="c1"># &quot;http://ejemplo.com/ejemplo/foo&quot;</span>
+  <span class="n">request</span><span class="nf">.path</span>                <span class="c1"># &quot;/ejemplo/foo&quot;</span>
+  <span class="n">request</span><span class="nf">.ip</span>                  <span class="c1"># direccin IP del cliente</span>
+  <span class="n">request</span><span class="nf">.secure?</span>             <span class="c1"># false (sera true sobre ssl)</span>
+  <span class="n">request</span><span class="nf">.forwarded?</span>          <span class="c1"># true (si se est corriendo atrs de un proxy inverso)</span>
+  <span class="n">requuest</span><span class="nf">.env</span>                <span class="c1"># hash de entorno directamente entregado por Rack</span>
+<span class="k">end</span>
+</pre>
 <p>Algunas opciones, como <code>script_name</code> o <code>path_info</code> pueden
 tambin ser escritas:</p>
+<pre class="highlight ruby"><span class="n">before</span> <span class="p">{</span> <span class="n">request</span><span class="nf">.path_info</span> <span class="o">=</span> <span class="s2">&quot;/&quot;</span> <span class="p">}</span>
 
-<pre><code class="ruby">before { request.path_info = &quot;/&quot; }
-
-get &quot;/&quot; do
-  &quot;todas las peticiones llegan ac&quot;
-end
-</code></pre>
-
+<span class="n">get</span> <span class="s2">&quot;/&quot;</span> <span class="k">do</span>
+  <span class="s2">&quot;todas las peticiones llegan ac&quot;</span>
+<span class="k">end</span>
+</pre>
 <p>El objeto <code>request.body</code> es una instancia de IO o StringIO:</p>
-
-<pre><code class="ruby">post &quot;/api&quot; do
-  request.body.rewind  # en caso de que alguien ya lo haya ledo
-  datos = JSON.parse request.body.read
-  &quot;Hola #{datos[&#39;nombre&#39;]}!&quot;
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">post</span> <span class="s2">&quot;/api&quot;</span> <span class="k">do</span>
+  <span class="n">request</span><span class="nf">.body.rewind</span>  <span class="c1"># en caso de que alguien ya lo haya ledo</span>
+  <span class="n">datos</span> <span class="o">=</span> <span class="no">JSON</span><span class="nf">.parse</span> <span class="n">request</span><span class="nf">.body.read</span>
+  <span class="s2">&quot;Hola </span><span class="si">#{</span><span class="n">datos</span><span class="o">[</span><span class="s1">'nombre'</span><span class="o">]</span><span class="si">}</span><span class="s2">!&quot;</span>
+<span class="k">end</span>
+</pre>
 <a name='Archivos%20Adjuntos'></a>
 <h3>Archivos Adjuntos</h3>
 
 <p>Pods usar el mtodo helper <code>attachment</code> para indicarle al navegador que
 almacene la respuesta en el disco en lugar de mostrarla en pantalla:</p>
-
-<pre><code class="ruby">get &#39;/&#39; do
-  attachment
-  &quot;guardalo!&quot;
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">attachment</span>
+  <span class="s2">&quot;guardalo!&quot;</span>
+<span class="k">end</span>
+</pre>
 <p>Tambin pods pasarle un nombre de archivo:</p>
-
-<pre><code class="ruby">get &#39;/&#39; do
-  attachment &quot;info.txt&quot;
-  &quot;guardalo!&quot;
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">attachment</span> <span class="s2">&quot;info.txt&quot;</span>
+  <span class="s2">&quot;guardalo!&quot;</span>
+<span class="k">end</span>
+</pre>
 <a name='Fecha%20y%20Hora'></a>
 <h3>Fecha y Hora</h3>
 
@@ -1754,72 +1574,62 @@ end
 a partir del valor que recibe como argumento. Este valor puede ser un
 <code>String</code>, pero tambin es capaz de convertir objetos <code>DateTime</code>, <code>Date</code> y de
 otras clases similares:</p>
-
-<pre><code class="ruby">get &#39;/&#39; do
-  pass if Time.now &gt; time_for(&#39;Dec 23, 2012&#39;)
-  &quot;todava hay tiempo&quot;
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">pass</span> <span class="k">if</span> <span class="no">Time</span><span class="nf">.now</span> <span class="o">&gt;</span> <span class="n">time_for</span><span class="p">(</span><span class="s1">'Dec 23, 2012'</span><span class="p">)</span>
+  <span class="s2">&quot;todava hay tiempo&quot;</span>
+<span class="k">end</span>
+</pre>
 <p>Este mtodo es usado internamente por mtodos como <code>expires</code> y <code>last_modified</code>,
 entre otros. Por lo tanto, es posible extender el comportamiento de estos
 mtodos sobreescribiendo <code>time_for</code> en tu aplicacin:</p>
+<pre class="highlight ruby"><span class="n">helpers</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="nf">time_for</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">case</span> <span class="n">value</span>
+    <span class="k">when</span> <span class="ss">:ayer</span> <span class="k">then</span> <span class="no">Time</span><span class="nf">.now</span> <span class="o">-</span> <span class="mi">24</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span>
+    <span class="k">when</span> <span class="ss">:maana</span> <span class="k">then</span> <span class="no">Time</span><span class="nf">.now</span> <span class="o">+</span> <span class="mi">24</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span>
+    <span class="k">else</span> <span class="k">super</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-<pre><code class="ruby">helpers do
-  def time_for(value)
-    case value
-    when :ayer then Time.now - 24*60*60
-    when :maana then Time.now + 24*60*60
-    else super
-    end
-  end
-end
-
-get &#39;/&#39; do
-  last_modified :ayer
-  expires :maana
-  &quot;hola&quot;
-end
-</code></pre>
-
+<span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">last_modified</span> <span class="ss">:ayer</span>
+  <span class="n">expires</span> <span class="ss">:maana</span>
+  <span class="s2">&quot;hola&quot;</span>
+<span class="k">end</span>
+</pre>
 <a name='Buscando%20los%20Archivos%20de%20las%20Plantillas'></a>
 <h3>Buscando los Archivos de las Plantillas</h3>
 
 <p>El helper <code>find_template</code> se utiliza para encontrar los archivos de las
 plantillas que se van a renderizar:</p>
-
-<pre><code class="ruby">find_template settings.views, &#39;foo&#39;, Tilt[:haml] do |archivo|
-  puts &quot;podra ser #{archivo}&quot;
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">find_template</span> <span class="n">settings</span><span class="nf">.views</span><span class="p">,</span> <span class="s1">'foo'</span><span class="p">,</span> <span class="no">Tilt</span><span class="o">[</span><span class="ss">:haml</span><span class="o">]</span> <span class="k">do</span> <span class="o">|</span><span class="n">archivo</span><span class="o">|</span>
+  <span class="nb">puts</span> <span class="s2">&quot;podra ser </span><span class="si">#{</span><span class="n">archivo</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="k">end</span>
+</pre>
 <p>Si bien esto no es muy til, lo interesante es que pods sobreescribir este
 mtodo, y as enganchar tu propio mecanismo de bsqueda. Por ejemplo, para
 poder utilizar ms de un directorio de vistas:</p>
+<pre class="highlight ruby"><span class="n">set</span> <span class="ss">:views</span><span class="p">,</span> <span class="o">[</span><span class="s1">'vistas'</span><span class="p">,</span> <span class="s1">'plantillas'</span><span class="o">]</span>
 
-<pre><code class="ruby">set :views, [&#39;vistas&#39;, &#39;plantillas&#39;]
-
-helpers do
-  def find_template(views, name, engine, &amp;block)
-    Array(views).each { |v| super(v, name, engine, &amp;block) }
-  end
-end
-</code></pre>
-
+<span class="n">helpers</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="nf">find_template</span><span class="p">(</span><span class="n">views</span><span class="p">,</span> <span class="nb">name</span><span class="p">,</span> <span class="n">engine</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+    <span class="nb">Array</span><span class="p">(</span><span class="n">views</span><span class="p">)</span><span class="nf">.each</span> <span class="p">{</span> <span class="o">|</span><span class="n">v</span><span class="o">|</span> <span class="k">super</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">name</span><span class="p">,</span> <span class="n">engine</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
 <p>Otro ejemplo consiste en usar directorios diferentes para los distintos motores
 de renderizado:</p>
+<pre class="highlight ruby"><span class="n">set</span> <span class="ss">:views</span><span class="p">,</span> <span class="ss">:sass</span> <span class="o">=&gt;</span> <span class="s1">'vistas/sass'</span><span class="p">,</span> <span class="ss">:haml</span> <span class="o">=&gt;</span> <span class="s1">'plantillas'</span><span class="p">,</span> <span class="ss">:defecto</span> <span class="o">=&gt;</span> <span class="s1">'vistas'</span>
 
-<pre><code class="ruby">set :views, :sass =&gt; &#39;vistas/sass&#39;, :haml =&gt; &#39;plantillas&#39;, :defecto =&gt; &#39;vistas&#39;
-
-helpers do
-  def find_template(views, name, engine, &amp;block)
-    _, folder = views.detect { |k,v| engine == Tilt[k] }
-    folder ||= views[:defecto]
-    super(folder, name, engine, &amp;block)
-  end
-end
-</code></pre>
-
+<span class="n">helpers</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="nf">find_template</span><span class="p">(</span><span class="n">views</span><span class="p">,</span> <span class="nb">name</span><span class="p">,</span> <span class="n">engine</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">folder</span> <span class="o">=</span> <span class="n">views</span><span class="nf">.detect</span> <span class="p">{</span> <span class="o">|</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="o">|</span> <span class="n">engine</span> <span class="o">==</span> <span class="no">Tilt</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="p">}</span>
+    <span class="n">folder</span> <span class="o">||=</span> <span class="n">views</span><span class="o">[</span><span class="ss">:defecto</span><span class="o">]</span>
+    <span class="k">super</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="nb">name</span><span class="p">,</span> <span class="n">engine</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
 <p>Es muy fcil convertir estos ejemplos en una extensin y compartirla!.</p>
 
 <p>Not que <code>find_template</code> no verifica si un archivo existe realmente, sino
@@ -1833,53 +1643,45 @@ tener en cuenta lo anteiror si escribs un mtodo medio loco.</p>
 <h2>Configuracin</h2>
 
 <p>Ejecutar una vez, en el inicio, en cualquier entorno:</p>
+<pre class="highlight ruby"><span class="n">configure</span> <span class="k">do</span>
+  <span class="c1"># asignando una opcin</span>
+  <span class="n">set</span> <span class="ss">:opcion</span><span class="p">,</span> <span class="s1">'valor'</span>
 
-<pre><code class="ruby">configure do
-  # asignando una opcin
-  set :opcion, &#39;valor&#39;
+  <span class="c1"># asignando varias opciones</span>
+  <span class="n">set</span> <span class="ss">:a</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="ss">:b</span> <span class="o">=&gt;</span> <span class="mi">2</span>
 
-  # asignando varias opciones
-  set :a =&gt; 1, :b =&gt; 2
+  <span class="c1"># atajo para `set :opcion, true`</span>
+  <span class="n">enable</span> <span class="ss">:opcion</span>
 
-  # atajo para `set :opcion, true`
-  enable :opcion
+  <span class="c1"># atajo para `set :opcion, false`</span>
+  <span class="n">disable</span> <span class="ss">:opcion</span>
 
-  # atajo para `set :opcion, false`
-  disable :opcion
-
-  # tambin pods tener configuraciones dinmicas usando bloques
-  set(:css_dir) { File.join(views, &#39;css&#39;) }
-end
-</code></pre>
-
+  <span class="c1"># tambin pods tener configuraciones dinmicas usando bloques</span>
+  <span class="n">set</span><span class="p">(</span><span class="ss">:css_dir</span><span class="p">)</span> <span class="p">{</span> <span class="no">File</span><span class="nf">.join</span><span class="p">(</span><span class="n">views</span><span class="p">,</span> <span class="s1">'css'</span><span class="p">)</span> <span class="p">}</span>
+<span class="k">end</span>
+</pre>
 <p>Ejecutar nicamente cuando el entorno (la variable de entorno RACK_ENV) es
 <code>:production</code>:</p>
-
-<pre><code class="ruby">configure :production do
-  ...
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">configure</span> <span class="ss">:production</span> <span class="k">do</span>
+  <span class="nf">..</span><span class="o">.</span>
+<span class="k">end</span>
+</pre>
 <p>Ejecutar cuando el entorno es <code>:production</code> o <code>:test</code>:</p>
-
-<pre><code class="ruby">configure :production, :test do
-  ...
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">configure</span> <span class="ss">:production</span><span class="p">,</span> <span class="ss">:test</span> <span class="k">do</span>
+  <span class="nf">..</span><span class="o">.</span>
+<span class="k">end</span>
+</pre>
 <p>Pods acceder a estas opciones utilizando el mtodo <code>settings</code>:</p>
+<pre class="highlight ruby"><span class="n">configure</span> <span class="k">do</span>
+  <span class="n">set</span> <span class="ss">:foo</span><span class="p">,</span> <span class="s1">'bar'</span>
+<span class="k">end</span>
 
-<pre><code class="ruby">configure do
-  set :foo, &#39;bar&#39;
-end
-
-get &#39;/&#39; do
-  settings.foo? # =&gt; true
-  settings.foo  # =&gt; &#39;bar&#39;
-  ...
-end
-</code></pre>
-
+<span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">settings</span><span class="nf">.foo?</span> <span class="c1"># =&gt; true</span>
+  <span class="n">settings</span><span class="nf">.foo</span>  <span class="c1"># =&gt; 'bar'</span>
+  <span class="nf">..</span><span class="o">.</span>
+<span class="k">end</span>
+</pre>
 <a name='Configurando%20la%20Proteccin%20de%20Ataques'></a>
 <h3>Configurando la Proteccin de Ataques</h3>
 
@@ -1888,20 +1690,14 @@ para defender a tu aplicacin de los ataques ms comunes. Si por algn motivo,
 quers desactivar esta funcionalidad, pods hacerlo como se indica a
 continuacin (ten en cuenta que tu aplicacin va a quedar expuesta a un
 montn de vulnerabilidades bien conocidas):</p>
-
-<pre><code class="ruby">disable :protection
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">disable</span> <span class="ss">:protection</span>
+</pre>
 <p>Tambin es posible desactivar una nica capa de defensa:</p>
-
-<pre><code class="ruby">set :protection, :except =&gt; :path_traversal
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">set</span> <span class="ss">:protection</span><span class="p">,</span> <span class="ss">:except</span> <span class="o">=&gt;</span> <span class="ss">:path_traversal</span>
+</pre>
 <p>O varias:</p>
-
-<pre><code class="ruby">set :protection, :except =&gt; [:path_traversal, :session_hijacking]
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">set</span> <span class="ss">:protection</span><span class="p">,</span> <span class="ss">:except</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:path_traversal</span><span class="p">,</span> <span class="ss">:session_hijacking</span><span class="o">]</span>
+</pre>
 <a name='Configuraciones%20Disponibles'></a>
 <h3>Configuraciones Disponibles</h3>
 
@@ -2125,10 +1921,8 @@ especiales que muestran un stack trace en el navegador cuando son disparados.</l
 <p>Para utilizar alguno de los otros entornos puede asignarse el valor
 correspondiente a la variable de entorno <code>RACK_ENV</code>, o bien utilizar la opcin
 <code>-e</code> al ejecutar la aplicacin:</p>
-
-<pre><code class="shell">ruby mi_app.rb -e &lt;ENTORNO&gt;
-</code></pre>
-
+<pre class="highlight shell">ruby mi_app.rb -e &lt;ENTORNO&gt;
+</pre>
 <p>Los mtodos <code>development?</code>, <code>test?</code> y <code>production?</code> te permiten conocer el
 entorno actual.</p>
 
@@ -2144,60 +1938,48 @@ y los filtros <code>before</code>, lo que significa que pods usar, por ejemplo,
 
 <p>Cuando se eleva una excepcin <code>Sinatra::NotFound</code>, o el cdigo de
 estado de la respuesta es 404, el manejador <code>not_found</code> es invocado:</p>
-
-<pre><code class="ruby">not_found do
-  &#39;No existo&#39;
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">not_found</span> <span class="k">do</span>
+  <span class="s1">'No existo'</span>
+<span class="k">end</span>
+</pre>
 <a name='Error'></a>
 <h3>Error</h3>
 
 <p>El manejador <code>error</code> es invocado cada vez que una excepcin es elevada
 desde un bloque de ruta o un filtro. El objeto de la excepcin se puede
 obtener de la variable Rack <code>sinatra.error</code>:</p>
-
-<pre><code class="ruby">error do
-  &#39;Disculp, ocurri un error horrible - &#39; + env[&#39;sinatra.error&#39;].name
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">error</span> <span class="k">do</span>
+  <span class="s1">'Disculp, ocurri un error horrible - '</span> <span class="o">+</span> <span class="n">env</span><span class="o">[</span><span class="s1">'sinatra.error'</span><span class="o">]</span><span class="nf">.name</span>
+<span class="k">end</span>
+</pre>
 <p>Errores personalizados:</p>
-
-<pre><code class="ruby">error MiErrorPersonalizado do
-  &#39;Lo que pas fue...&#39; + env[&#39;sinatra.error&#39;].message
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">error</span> <span class="no">MiErrorPersonalizado</span> <span class="k">do</span>
+  <span class="s1">'Lo que pas fue...'</span> <span class="o">+</span> <span class="n">env</span><span class="o">[</span><span class="s1">'sinatra.error'</span><span class="o">]</span><span class="nf">.message</span>
+<span class="k">end</span>
+</pre>
 <p>Entonces, si pasa esto:</p>
-
-<pre><code class="ruby">get &#39;/&#39; do
-  raise MiErrorPersonalizado, &#39;algo malo&#39;
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="k">raise</span> <span class="no">MiErrorPersonalizado</span><span class="p">,</span> <span class="s1">'algo malo'</span>
+<span class="k">end</span>
+</pre>
 <p>Obtens esto:</p>
 
 <p>Lo que pas fue... algo malo</p>
 
 <p>Tambin, pods instalar un manejador de errores para un cdigo de estado:</p>
+<pre class="highlight ruby"><span class="n">error</span> <span class="mi">403</span> <span class="k">do</span>
+  <span class="s1">'Acceso prohibido'</span>
+<span class="k">end</span>
 
-<pre><code class="ruby">error 403 do
-  &#39;Acceso prohibido&#39;
-end
-
-get &#39;/secreto&#39; do
-  403
-end
-</code></pre>
-
+<span class="n">get</span> <span class="s1">'/secreto'</span> <span class="k">do</span>
+  <span class="mi">403</span>
+<span class="k">end</span>
+</pre>
 <p>O un rango:</p>
-
-<pre><code class="ruby">error 400..510 do
-  &#39;Boom&#39;
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">error</span> <span class="mi">400</span><span class="nf">..</span><span class="mi">510</span> <span class="k">do</span>
+  <span class="s1">'Boom'</span>
+<span class="k">end</span>
+</pre>
 <p>Sinatra instala manejadores <code>not_found</code> y <code>error</code> especiales
 cuando se ejecuta dentro del entorno de desarrollo &quot;development&quot;.</p>
 
@@ -2213,28 +1995,24 @@ proporcionar varios tipos de funcionalidades comunes.</p>
 
 <p>Sinatra hace muy sencillo construir tuberas de Rack middleware a travs del
 mtodo top-level <code>use</code>:</p>
+<pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'sinatra'</span>
+<span class="nb">require</span> <span class="s1">'mi_middleware_personalizado'</span>
 
-<pre><code class="ruby">require &#39;sinatra&#39;
-require &#39;mi_middleware_personalizado&#39;
+<span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Lint</span>
+<span class="n">use</span> <span class="no">MiMiddlewarePersonalizado</span>
 
-use Rack::Lint
-use MiMiddlewarePersonalizado
-
-get &#39;/hola&#39; do
-  &#39;Hola Mundo&#39;
-end
-</code></pre>
-
+<span class="n">get</span> <span class="s1">'/hola'</span> <span class="k">do</span>
+  <span class="s1">'Hola Mundo'</span>
+<span class="k">end</span>
+</pre>
 <p>Las semnticas de <code>use</code> son idnticas a las definidas para el DSL
 Rack::Builder[http://rack.rubyforge.org/doc/classes/Rack/Builder.html] (ms
 frecuentemente usado desde archivos rackup). Por ejemplo, el mtodo <code>use</code>
 acepta argumentos mltiples/variables as como bloques:</p>
-
-<pre><code class="ruby">use Rack::Auth::Basic do |nombre_de_usuario, password|
-  nombre_de_usuario == &#39;admin&#39; &amp;&amp; password == &#39;secreto&#39;
-end
-</code></pre>
-
+<pre class="highlight ruby"><span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Auth</span><span class="o">::</span><span class="no">Basic</span> <span class="k">do</span> <span class="o">|</span><span class="n">nombre_de_usuario</span><span class="p">,</span> <span class="n">password</span><span class="o">|</span>
+  <span class="n">nombre_de_usuario</span> <span class="o">==</span> <span class="s1">'admin'</span> <span class="o">&amp;&amp;</span> <span class="n">password</span> <span class="o">==</span> <span class="s1">'secreto'</span>
+<span class="k">end</span>
+</pre>
 <p>Rack es distribuido con una variedad de middleware estndar para logging,
 debugging, enrutamiento URL, autenticacin, y manejo de sesiones. Sinatra
 usa muchos de estos componentes automticamente de acuerdo a su configuracin
@@ -2252,35 +2030,33 @@ con <a href="http://coderack.org/">CodeRack</a> o en la
 <p>Las pruebas para las aplicaciones Sinatra pueden ser escritas utilizando
 cualquier framework o librera de pruebas basada en Rack. Se recomienda usar
 <a href="http://rdoc.info/github/brynary/rack-test/master/frames">Rack::Test</a>:</p>
+<pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'mi_app_sinatra'</span>
+<span class="nb">require</span> <span class="s1">'test/unit'</span>
+<span class="nb">require</span> <span class="s1">'rack/test'</span>
 
-<pre><code class="ruby">require &#39;mi_app_sinatra&#39;
-require &#39;test/unit&#39;
-require &#39;rack/test&#39;
+<span class="k">class</span> <span class="nc">MiAppTest</span> <span class="o">&lt;</span> <span class="no">Test</span><span class="o">::</span><span class="no">Unit</span><span class="o">::</span><span class="no">TestCase</span>
+  <span class="kp">include</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Test</span><span class="o">::</span><span class="no">Methods</span>
 
-class MiAppTest &lt; Test::Unit::TestCase
-  include Rack::Test::Methods
+  <span class="k">def</span> <span class="nf">app</span>
+    <span class="no">Sinatra</span><span class="o">::</span><span class="no">Application</span>
+  <span class="k">end</span>
 
-  def app
-    Sinatra::Application
-  end
+  <span class="k">def</span> <span class="nf">test_mi_defecto</span>
+    <span class="n">get</span> <span class="s1">'/'</span>
+    <span class="n">assert_equal</span> <span class="s1">'Hola Mundo!'</span><span class="p">,</span> <span class="n">last_response</span><span class="nf">.body</span>
+  <span class="k">end</span>
 
-  def test_mi_defecto
-    get &#39;/&#39;
-    assert_equal &#39;Hola Mundo!&#39;, last_response.body
-  end
+  <span class="k">def</span> <span class="nf">test_con_parametros</span>
+    <span class="n">get</span> <span class="s1">'/saludar'</span><span class="p">,</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s1">'Franco'</span>
+    <span class="n">assert_equal</span> <span class="s1">'Hola Frank!'</span><span class="p">,</span> <span class="n">last_response</span><span class="nf">.body</span>
+  <span class="k">end</span>
 
-  def test_con_parametros
-    get &#39;/saludar&#39;, :name =&gt; &#39;Franco&#39;
-    assert_equal &#39;Hola Frank!&#39;, last_response.body
-  end
-
-  def test_con_entorno_rack
-    get &#39;/&#39;, {}, &#39;HTTP_USER_AGENT&#39; =&gt; &#39;Songbird&#39;
-    assert_equal &quot;Ests usando Songbird!&quot;, last_response.body
-  end
-end
-</code></pre>
-
+  <span class="k">def</span> <span class="nf">test_con_entorno_rack</span>
+    <span class="n">get</span> <span class="s1">'/'</span><span class="p">,</span> <span class="p">{},</span> <span class="s1">'HTTP_USER_AGENT'</span> <span class="o">=&gt;</span> <span class="s1">'Songbird'</span>
+    <span class="n">assert_equal</span> <span class="s2">&quot;Ests usando Songbird!&quot;</span><span class="p">,</span> <span class="n">last_response</span><span class="nf">.body</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
 <a name='Sinatra::Base%20-%20Middleware,%20Libreras,%20y%20Aplicaciones%20Modulares'></a>
 <h2>Sinatra::Base - Middleware, Libreras, y Aplicaciones Modulares</h2>
 
@@ -2292,19 +2068,17 @@ asume una configuracin apropiada para micro-aplicaciones (por ejemplo, un
 nico archivo de aplicacin, los directorios <code>./public</code> y
 <code>./views</code>, logging, pgina con detalles de excepcin, etc.). Ah es
 donde <code>Sinatra::Base</code> entra en el juego:</p>
+<pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'sinatra/base'</span>
 
-<pre><code class="ruby">require &#39;sinatra/base&#39;
+<span class="k">class</span> <span class="nc">MiApp</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">set</span> <span class="ss">:sessions</span><span class="p">,</span> <span class="kp">true</span>
+  <span class="n">set</span> <span class="ss">:foo</span><span class="p">,</span> <span class="s1">'bar'</span>
 
-class MiApp &lt; Sinatra::Base
-  set :sessions, true
-  set :foo, &#39;bar&#39;
-
-  get &#39;/&#39; do
-    &#39;Hola Mundo!&#39;
-  end
-end
-</code></pre>
-
+  <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="s1">'Hola Mundo!'</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
 <p>Las subclases de <code>Sinatra::Base</code> tienen disponibles exactamente los
 mismos mtodos que los provistos por el DSL de top-level. La mayora de las
 aplicaciones top-level se pueden convertir en componentes
@@ -2387,54 +2161,42 @@ de ambos estilos:</p>
 
 <p>Las dos opciones ms comunes para iniciar una aplicacin modular son, iniciarla
 activamente con <code>run!</code>:</p>
+<pre class="highlight ruby"><span class="c1"># mi_app.rb</span>
+<span class="nb">require</span> <span class="s1">'sinatra/base'</span>
 
-<pre><code class="ruby"># mi_app.rb
-require &#39;sinatra/base&#39;
+<span class="k">class</span> <span class="nc">MiApp</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+  <span class="c1"># ... cdigo de la app  ...</span>
 
-class MiApp &lt; Sinatra::Base
-  # ... cdigo de la app  ...
-
-  # iniciar el servidor si el archivo fue ejecutado directamente
-  run! if app_file == $0
-end
-</code></pre>
-
+  <span class="c1"># iniciar el servidor si el archivo fue ejecutado directamente</span>
+  <span class="n">run!</span> <span class="k">if</span> <span class="n">app_file</span> <span class="o">==</span> <span class="vg">$0</span>
+<span class="k">end</span>
+</pre>
 <p>Iniciar con:</p>
-
-<pre><code class="shell">ruby mi_app.rb
-</code></pre>
-
+<pre class="highlight shell">ruby mi_app.rb
+</pre>
 <p>O, con un archivo <code>config.ru</code>, que permite usar cualquier handler Rack:</p>
-
-<pre><code class="ruby"># config.ru
-require &#39;./mi_app&#39;
-run MiApp
-</code></pre>
-
+<pre class="highlight ruby"><span class="c1"># config.ru</span>
+<span class="nb">require</span> <span class="s1">'./mi_app'</span>
+<span class="n">run</span> <span class="no">MiApp</span>
+</pre>
 <p>Despus ejecutar:</p>
-
-<pre><code class="shell">rackup -p 4567
-</code></pre>
-
+<pre class="highlight shell">rackup -p 4567
+</pre>
 <a name='Usando%20una%20Aplicacin%20Clsica%20con%20un%20Archivo%20config.ru'></a>
 <h3>Usando una Aplicacin Clsica con un Archivo config.ru</h3>
 
 <p>Escrib el archivo de tu aplicacin:</p>
+<pre class="highlight ruby"><span class="c1"># app.rb</span>
+<span class="nb">require</span> <span class="s1">'sinatra'</span>
 
-<pre><code class="ruby"># app.rb
-require &#39;sinatra&#39;
-
-get &#39;/&#39; do
-  &#39;Hola mundo!&#39;
-end
-</code></pre>
-
+<span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="s1">'Hola mundo!'</span>
+<span class="k">end</span>
+</pre>
 <p>Y el <code>config.ru</code> correspondiente:</p>
-
-<pre><code class="ruby">require &#39;./app&#39;
-run Sinatra::Application
-</code></pre>
-
+<pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'./app'</span>
+<span class="n">run</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Application</span>
+</pre>
 <a name='Cundo%20Usar%20config.ru?'></a>
 <h3>Cundo Usar config.ru?</h3>
 
@@ -2458,84 +2220,76 @@ iniciarla con <code>config.ru</code>.</b></p>
 cualquier aplicacin Sinatra puede ser agregada delante de un endpoint Rack
 como middleware. Este endpoint puede ser otra aplicacin Sinatra, o cualquier
 aplicacin basada en Rack (Rails/Ramaze/Camping/...):</p>
+<pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'sinatra/base'</span>
 
-<pre><code class="ruby">require &#39;sinatra/base&#39;
+<span class="k">class</span> <span class="nc">PantallaDeLogin</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">enable</span> <span class="ss">:sessions</span>
 
-class PantallaDeLogin &lt; Sinatra::Base
-  enable :sessions
+  <span class="n">get</span><span class="p">(</span><span class="s1">'/login'</span><span class="p">)</span> <span class="p">{</span> <span class="n">haml</span> <span class="ss">:login</span> <span class="p">}</span>
 
-  get(&#39;/login&#39;) { haml :login }
+  <span class="n">post</span><span class="p">(</span><span class="s1">'/login'</span><span class="p">)</span> <span class="k">do</span>
+    <span class="k">if</span> <span class="n">params</span><span class="o">[</span><span class="ss">:nombre</span><span class="o">]</span> <span class="o">==</span> <span class="s1">'admin'</span> <span class="o">&amp;&amp;</span> <span class="n">params</span><span class="o">[</span><span class="ss">:password</span><span class="o">]</span> <span class="o">==</span> <span class="s1">'admin'</span>
+      <span class="n">session</span><span class="o">[</span><span class="s1">'nombre_de_usuario'</span><span class="o">]</span> <span class="o">=</span> <span class="n">params</span><span class="o">[</span><span class="ss">:nombre</span><span class="o">]</span>
+    <span class="k">else</span>
+      <span class="n">redirect</span> <span class="s1">'/login'</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-  post(&#39;/login&#39;) do
-    if params[:nombre] == &#39;admin&#39; &amp;&amp; params[:password] == &#39;admin&#39;
-      session[&#39;nombre_de_usuario&#39;] = params[:nombre]
-    else
-      redirect &#39;/login&#39;
-    end
-  end
-end
+<span class="k">class</span> <span class="nc">MiApp</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+  <span class="c1"># el middleware se ejecutar antes que los filtros</span>
+  <span class="n">use</span> <span class="no">PantallaDeLogin</span>
 
-class MiApp &lt; Sinatra::Base
-  # el middleware se ejecutar antes que los filtros
-  use PantallaDeLogin
+  <span class="n">before</span> <span class="k">do</span>
+    <span class="k">unless</span> <span class="n">session</span><span class="o">[</span><span class="s1">'nombre_de_usuario'</span><span class="o">]</span>
+      <span class="n">halt</span> <span class="s2">&quot;Acceso denegado, por favor &lt;a href='/login'&gt;inici sesin&lt;/a&gt;.&quot;</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
 
-  before do
-    unless session[&#39;nombre_de_usuario&#39;]
-      halt &quot;Acceso denegado, por favor &lt;a href=&#39;/login&#39;&gt;inici sesin&lt;/a&gt;.&quot;
-    end
-  end
-
-  get(&#39;/&#39;) { &quot;Hola #{session[&#39;nombre_de_usuario&#39;]}.&quot; }
-end
-</code></pre>
-
+  <span class="n">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)</span> <span class="p">{</span> <span class="s2">&quot;Hola </span><span class="si">#{</span><span class="n">session</span><span class="o">[</span><span class="s1">'nombre_de_usuario'</span><span class="o">]</span><span class="si">}</span><span class="s2">.&quot;</span> <span class="p">}</span>
+<span class="k">end</span>
+</pre>
 <a name='Creacin%20Dinmica%20de%20Aplicaciones'></a>
 <h3>Creacin Dinmica de Aplicaciones</h3>
 
 <p>Puede que en algunas ocasiones quieras crear nuevas aplicaciones en
 tiempo de ejecucin sin tener que asignarlas a una constante. Para
 esto tens <code>Sinatra.new</code>:</p>
-
-<pre><code class="ruby">require &#39;sinatra/base&#39;
-mi_app = Sinatra.new { get(&#39;/&#39;) { &quot;hola&quot; } }
-mi_app.run!
-</code></pre>
-
+<pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'sinatra/base'</span>
+<span class="n">mi_app</span> <span class="o">=</span> <span class="no">Sinatra</span><span class="nf">.new</span> <span class="p">{</span> <span class="n">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)</span> <span class="p">{</span> <span class="s2">&quot;hola&quot;</span> <span class="p">}</span> <span class="p">}</span>
+<span class="n">mi_app</span><span class="nf">.run!</span>
+</pre>
 <p>Acepta como argumento opcional una aplicacin desde la que se
 heredar:</p>
+<pre class="highlight ruby"><span class="c1"># config.ru</span>
+<span class="nb">require</span> <span class="s1">'sinatra/base'</span>
 
-<pre><code class="ruby"># config.ru
-require &#39;sinatra/base&#39;
+<span class="n">controller</span> <span class="o">=</span> <span class="no">Sinatra</span><span class="nf">.new</span> <span class="k">do</span>
+  <span class="n">enable</span> <span class="ss">:logging</span>
+  <span class="n">helpers</span> <span class="no">MisHelpers</span>
+<span class="k">end</span>
 
-controller = Sinatra.new do
-  enable :logging
-  helpers MisHelpers
-end
+<span class="n">map</span><span class="p">(</span><span class="s1">'/a'</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">run</span> <span class="no">Sinatra</span><span class="nf">.new</span><span class="p">(</span><span class="n">controller</span><span class="p">)</span> <span class="p">{</span> <span class="n">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)</span> <span class="p">{</span> <span class="s1">'a'</span> <span class="p">}</span> <span class="p">}</span>
+<span class="k">end</span>
 
-map(&#39;/a&#39;) do
-  run Sinatra.new(controller) { get(&#39;/&#39;) { &#39;a&#39; } }
-end
-
-map(&#39;/b&#39;) do
-  run Sinatra.new(controller) { get(&#39;/&#39;) { &#39;b&#39; } }
-end
-</code></pre>
-
+<span class="n">map</span><span class="p">(</span><span class="s1">'/b'</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">run</span> <span class="no">Sinatra</span><span class="nf">.new</span><span class="p">(</span><span class="n">controller</span><span class="p">)</span> <span class="p">{</span> <span class="n">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)</span> <span class="p">{</span> <span class="s1">'b'</span> <span class="p">}</span> <span class="p">}</span>
+<span class="k">end</span>
+</pre>
 <p>Construir aplicaciones de esta forma resulta especialmente til para
 testear extensiones Sinatra o para usar Sinatra en tus libreras.</p>
 
 <p>Por otro lado, hace extremadamente sencillo usar Sinatra como
 middleware:</p>
+<pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'sinatra/base'</span>
 
-<pre><code class="ruby">require &#39;sinatra/base&#39;
+<span class="n">use</span> <span class="no">Sinatra</span> <span class="k">do</span>
+  <span class="n">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)</span> <span class="p">{</span> <span class="nf">..</span><span class="o">.</span> <span class="p">}</span>
+<span class="k">end</span>
 
-use Sinatra do
-  get(&#39;/&#39;) { ... }
-end
-
-run ProyectoRails::Application
-</code></pre>
-
+<span class="n">run</span> <span class="no">ProyectoRails</span><span class="o">::</span><span class="no">Application</span>
+</pre>
 <a name='mbitos%20y%20Ligaduras'></a>
 <h2>mbitos y Ligaduras</h2>
 
@@ -2553,18 +2307,16 @@ no pods acceder a los objetos <code>request</code> o <code>session</code>, ya qu
 clase de la aplicacin para todas las peticiones.</p>
 
 <p>Las opciones creadas utilizando <code>set</code> son mtodos al nivel de la clase:</p>
+<pre class="highlight ruby"><span class="k">class</span> <span class="nc">MiApp</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+  <span class="c1"># Ey, estoy en el mbito de la aplicacin!</span>
+  <span class="n">set</span> <span class="ss">:foo</span><span class="p">,</span> <span class="mi">42</span>
+  <span class="n">foo</span> <span class="c1"># =&gt; 42</span>
 
-<pre><code class="ruby">class MiApp &lt; Sinatra::Base
-  # Ey, estoy en el mbito de la aplicacin!
-  set :foo, 42
-  foo # =&gt; 42
-
-  get &#39;/foo&#39; do
-    # Hey, ya no estoy en el mbito de la aplicacin!
-  end
-end
-</code></pre>
-
+  <span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
+    <span class="c1"># Hey, ya no estoy en el mbito de la aplicacin!</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
 <p>Tens la ligadura al mbito de la aplicacin dentro de:</p>
 
 <ul>
@@ -2589,23 +2341,21 @@ es creada y todos los bloques de rutas son ejecutados en ese mbito. Desde este
 mbito pods acceder a los objetos <code>request</code> y <code>session</code> o llamar a los mtodos
 de renderizacin como <code>erb</code> o <code>haml</code>. Pods acceder al mbito de la aplicacin
 desde el mbito de la peticin utilizando <code>settings</code>:</p>
+<pre class="highlight ruby"><span class="k">class</span> <span class="nc">MiApp</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+  <span class="c1"># Ey, estoy en el mbito de la aplicacin!</span>
+  <span class="n">get</span> <span class="s1">'/definir_ruta/:nombre'</span> <span class="k">do</span>
+    <span class="c1"># mbito de peticin para '/definir_ruta/:nombre'</span>
+    <span class="vi">@valor</span> <span class="o">=</span> <span class="mi">42</span>
 
-<pre><code class="ruby">class MiApp &lt; Sinatra::Base
-  # Ey, estoy en el mbito de la aplicacin!
-  get &#39;/definir_ruta/:nombre&#39; do
-    # mbito de peticin para &#39;/definir_ruta/:nombre&#39;
-    @valor = 42
+    <span class="n">settings</span><span class="nf">.get</span><span class="p">(</span><span class="s2">&quot;/</span><span class="si">#{</span><span class="n">params</span><span class="o">[</span><span class="ss">:nombre</span><span class="o">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="k">do</span>
+      <span class="c1"># mbito de peticin para &quot;/#{params[:nombre]}&quot;</span>
+      <span class="vi">@valor</span> <span class="c1"># =&gt; nil (no es la misma peticin)</span>
+    <span class="k">end</span>
 
-    settings.get(&quot;/#{params[:nombre]}&quot;) do
-      # mbito de peticin para &quot;/#{params[:nombre]}&quot;
-      @valor # =&gt; nil (no es la misma peticin)
-    end
-
-    &quot;Ruta definida!&quot;
-  end
-end
-</code></pre>
-
+    <span class="s2">&quot;Ruta definida!&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
 <p>Tens la ligadura al mbito de la peticin dentro de:</p>
 
 <ul>
@@ -2640,20 +2390,16 @@ que <a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/main.rb
 <h2>Lnea de Comandos</h2>
 
 <p>Las aplicaciones Sinatra pueden ser ejecutadas directamente:</p>
-
-<pre><code class="shell">ruby miapp.rb [-h] [-x] [-e ENTORNO] [-p PUERTO] [-o HOST] [-s MANEJADOR]
-</code></pre>
-
+<pre class="highlight shell">ruby miapp.rb <span class="o">[</span>-h] <span class="o">[</span>-x] <span class="o">[</span>-e ENTORNO] <span class="o">[</span>-p PUERTO] <span class="o">[</span>-o HOST] <span class="o">[</span>-s MANEJADOR]
+</pre>
 <p>Las opciones son:</p>
-
-<pre><code>-h # ayuda
+<pre class="highlight text">-h # ayuda
 -p # asigna el puerto (4567 es usado por defecto)
 -o # asigna el host (0.0.0.0 es usado por defecto)
 -e # asigna el entorno (development es usado por defecto)
 -s # especifica el servidor/manejador rack (thin es usado por defecto)
 -x # activa el mutex lock (est desactivado por defecto)
-</code></pre>
-
+</pre>
 <a name='Versiones%20de%20Ruby%20Soportadas'></a>
 <h2>Versiones de Ruby Soportadas</h2>
 
@@ -2739,10 +2485,8 @@ BlueRuby o cualquier versin de Ruby anterior a 1.8.7.</p>
 tu aplicacin sobre la rama master, en general es bastante estable.</p>
 
 <p>Tambin liberamos prereleases de vez en cuando, as, pods hacer</p>
-
-<pre><code class="shell">gem install sinatra --pre
-</code></pre>
-
+<pre class="highlight shell">gem install sinatra --pre
+</pre>
 <p>Para obtener algunas de las ltimas caractersticas.</p>
 
 <a name='Con%20Bundler'></a>
@@ -2752,62 +2496,48 @@ tu aplicacin sobre la rama master, en general es bastante estable.</p>
 versin de Sinatra usando <a href="http://gembundler.com/">Bundler</a>.</p>
 
 <p>Primero, instal bundler si no lo hiciste todava:</p>
-
-<pre><code class="shell">gem install bundler
-</code></pre>
-
+<pre class="highlight shell">gem install bundler
+</pre>
 <p>Despus, en el directorio de tu proyecto, cre un archivo <code>Gemfile</code>:</p>
+<pre class="highlight ruby"><span class="n">source</span> <span class="ss">:rubygems</span>
+<span class="n">gem</span> <span class="s1">'sinatra'</span><span class="p">,</span> <span class="ss">:git</span> <span class="o">=&gt;</span> <span class="s2">&quot;git://github.com/sinatra/sinatra.git&quot;</span>
 
-<pre><code class="ruby">source :rubygems
-gem &#39;sinatra&#39;, :git =&gt; &quot;git://github.com/sinatra/sinatra.git&quot;
-
-# otras dependencias
-gem &#39;haml&#39;                    # por ejemplo, si uss haml
-gem &#39;activerecord&#39;, &#39;~&gt; 3.0&#39;  # quizs tambin necesits ActiveRecord 3.x
-</code></pre>
-
+<span class="c1"># otras dependencias</span>
+<span class="n">gem</span> <span class="s1">'haml'</span>                    <span class="c1"># por ejemplo, si uss haml</span>
+<span class="n">gem</span> <span class="s1">'activerecord'</span><span class="p">,</span> <span class="s1">'~&gt; 3.0'</span>  <span class="c1"># quizs tambin necesits ActiveRecord 3.x</span>
+</pre>
 <p>Ten en cuenta que tens que listar todas las dependencias directas de tu
 aplicacin. No es necesario listar las dependencias de Sinatra (Rack y Tilt)
 porque Bundler las agrega directamente.</p>
 
 <p>Ahora pods arrancar tu aplicacin as:</p>
-
-<pre><code class="shell">bundle exec ruby miapp.rb
-</code></pre>
-
+<pre class="highlight shell">bundle <span class="nb">exec </span>ruby miapp.rb
+</pre>
 <a name='Con%20Git'></a>
 <h3>Con Git</h3>
 
 <p>Clon el repositorio localmente y ejecut tu aplicacin, asegurndote que el
 directorio <code>sinatra/lib</code> est en el <code>$LOAD_PATH</code>:</p>
-
-<pre><code class="shell">cd miapp
+<pre class="highlight shell"><span class="nb">cd </span>miapp
 git clone git://github.com/sinatra/sinatra.git
 ruby -Isinatra/lib miapp.rb
-</code></pre>
-
+</pre>
 <p>Para actualizar el cdigo fuente de Sinatra en el futuro:</p>
-
-<pre><code class="shell">cd miapp/sinatra
+<pre class="highlight shell"><span class="nb">cd </span>miapp/sinatra
 git pull
-</code></pre>
-
+</pre>
 <a name='Instalacin%20Global'></a>
 <h3>Instalacin Global</h3>
 
 <p>Pods construir la gem vos mismo:</p>
-
-<pre><code class="shell">git clone git://github.com/sinatra/sinatra.git
-cd sinatra
+<pre class="highlight shell">git clone git://github.com/sinatra/sinatra.git
+<span class="nb">cd </span>sinatra
 rake sinatra.gemspec
 rake install
-</code></pre>
-
+</pre>
 <p>Si instals tus gems como root, el ltimo paso debera ser</p>
-
-<pre><code class="shell">sudo rake install
-</code></pre>
-
+<pre class="highlight shell">sudo rake install
+</pre>
 <a name='Versionado'></a>
 <h2>Versionado</h2>
 

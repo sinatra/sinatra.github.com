@@ -3,7 +3,13 @@ require 'rake/clean'
 require 'rdoc/encoding'
 require 'rdoc/markup/to_html'
 require 'redcarpet'
+require 'rouge'
+require 'rouge/plugins/redcarpet'
 require 'uri'
+
+class HTML < Redcarpet::Render::HTML
+  include Rouge::Plugins::Redcarpet # yep, that's it.
+end
 
 def readme(pattern = "%s", &block)
   return readme(pattern).each(&block) if block_given?
@@ -84,7 +90,7 @@ desc 'Convert Sinatra READMEs to HTML'
 task 'convert:sinatra' do
   readme do |fn|
     file "_includes/#{fn}.html" => ["_sinatra/#{fn}", "Rakefile"] do |f|
-      rndr = Redcarpet::Render::HTML.new(:safe_links_only => true)
+      rndr = HTML.new(:safe_links_only => true)
       markdown = Redcarpet::Markdown.new(rndr, :lax_spacing => true, :fenced_code_blocks => true)
       markdown_string = File.read("_sinatra/#{fn}.md").encode('UTF-16le', :invalid => :replace, :replace => "").encode("UTF-8")
       markdown_string.sub!(/##[^#]*\[Sinatra\]((?!\n#).)+/m, '') # remove ToC

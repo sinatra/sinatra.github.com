@@ -40,122 +40,100 @@
 *</p>
 
 <p>SinatraRubyweb<a href="http://en.wikipedia.org/wiki/Domain-specific_language">DSL</a></p>
+<pre class="highlight text"># myapp.rb
+require 'sinatra'
 
-<pre><code class="ruby"># myapp.rb
-require &#39;sinatra&#39;
-
-get &#39;/&#39; do
-  &#39;Hello world!&#39;
+get '/' do
+  'Hello world!'
 end
-</code></pre>
-
+</pre>
 <p>gem</p>
-
-<pre><code class="shell">gem install sinatra
+<pre class="highlight text">gem install sinatra
 ruby myapp.rb
-</code></pre>
-
+</pre>
 <p><a href="http://localhost:4567">localhost:4567</a></p>
 
 <p><code>gem install thin</code>Sinatrathin</p>
 
 <p>SinatraHTTPURL</p>
-
-<pre><code class="ruby">get &#39;/&#39; do
+<pre class="highlight text">get '/' do
   ..  ..
 end
 
-post &#39;/&#39; do
+post '/' do
   ..  ..
 end
 
-put &#39;/&#39; do
+put '/' do
   ..  ..
 end
 
-delete &#39;/&#39; do
+delete '/' do
   ..  ..
 end
 
-options &#39;/&#39; do
+options '/' do
   ..  ..
 end
-</code></pre>
-
+</pre>
 <p><code>params</code></p>
-
-<pre><code class="ruby">get &#39;/hello/:name&#39; do
+<pre class="highlight text">get '/hello/:name' do
   #  &quot;GET /hello/foo&quot;  &quot;GET /hello/bar&quot;
-  # params[:name]  &#39;foo&#39;  &#39;bar&#39;
+  # params[:name]  'foo'  'bar'
   &quot;Hello #{params[:name]}!&quot;
 end
-</code></pre>
-
-<pre><code class="ruby">get &#39;/hello/:name&#39; do |n|
+</pre><pre class="highlight text">get '/hello/:name' do |n|
   &quot;Hello #{n}!&quot;
 end
-</code></pre>
-
+</pre>
 <p><code>params[:splat]</code></p>
-
-<pre><code class="ruby">get &#39;/say/*/to/*&#39; do
+<pre class="highlight text">get '/say/*/to/*' do
   #  /say/hello/to/world
   params[:splat] # =&gt; [&quot;hello&quot;, &quot;world&quot;]
 end
 
-get &#39;/download/*.*&#39; do
+get '/download/*.*' do
   #  /download/path/to/file.xml
   params[:splat] # =&gt; [&quot;path/to/file&quot;, &quot;xml&quot;]
 end
-</code></pre>
-
-<pre><code class="ruby">get %r{/hello/([\w]+)} do
+</pre><pre class="highlight text">get %r{/hello/([\w]+)} do
   &quot;Hello, #{params[:captures].first}!&quot;
 end
-</code></pre>
-
-<pre><code class="ruby">get %r{/hello/([\w]+)} do |c|
+</pre><pre class="highlight text">get %r{/hello/([\w]+)} do |c|
   &quot;Hello, #{c}!&quot;
 end
-</code></pre>
-
+</pre>
 <p>user agent</p>
-
-<pre><code class="ruby">get &#39;/foo&#39;, :agent =&gt; /Songbird (\d\.\d)[\d\/]*?/ do
+<pre class="highlight text">get '/foo', :agent =&gt; /Songbird (\d\.\d)[\d\/]*?/ do
   &quot;Songbird #{params[:agent][0]}&quot;
 end
 
-get &#39;/foo&#39; do
+get '/foo' do
   # Songbird
 end
-</code></pre>
-
+</pre>
 <p><code>host_name</code>  <code>provides</code></p>
-
-<pre><code class="ruby">get &#39;/&#39;, :host_name =&gt; /^admin\./ do
+<pre class="highlight text">get '/', :host_name =&gt; /^admin\./ do
   &quot;&quot;
 end
 
-get &#39;/&#39;, :provides =&gt; &#39;html&#39; do
+get '/', :provides =&gt; 'html' do
   haml :index
 end
 
-get &#39;/&#39;, :provides =&gt; [&#39;rss&#39;, &#39;atom&#39;, &#39;xml&#39;] do
+get '/', :provides =&gt; ['rss', 'atom', 'xml'] do
   builder :feed
 end
-</code></pre>
+</pre><pre class="highlight text">set(:probability) { |value| condition { rand &lt;= value } }
 
-<pre><code class="ruby">set(:probability) { |value| condition { rand &lt;= value } }
-
-get &#39;/win_a_car&#39;, :probability =&gt; 0.1 do
+get '/win_a_car', :probability =&gt; 0.1 do
   &quot;You won!&quot;
 end
 
-get &#39;/win_a_car&#39; do
+get '/win_a_car' do
   &quot;Sorry, you lost.&quot;
 end
-</code></pre>
-
+</pre>
 <p>HTTP
 Rack</p>
 
@@ -169,20 +147,17 @@ bodyHTTP</p>
 <li><p><code>#each</code> </p></li>
 <li></li>
 </ul>
-
-<pre><code class="ruby">class Stream
+<pre class="highlight text">class Stream
   def each
     100.times { |i| yield &quot;#{i}\n&quot; }
   end
 end
 
-get(&#39;/&#39;) { Stream.new }
-</code></pre>
-
+get('/') { Stream.new }
+</pre>
 <p>Sinatra
  :</p>
-
-<pre><code class="ruby">class AllButPattern
+<pre class="highlight text">class AllButPattern
   Match = Struct.new(:captures)
 
   def initialize(except)
@@ -202,28 +177,21 @@ end
 get all_but(&quot;/index&quot;) do
   # ...
 end
-</code></pre>
-
+</pre>
 <p>:</p>
-
-<pre><code class="ruby">get // do
+<pre class="highlight text">get // do
   pass if request.path_info == &quot;/index&quot;
   # ...
 end
-</code></pre>
-
+</pre>
 <p>:</p>
-
-<pre><code class="ruby">get %r{^(?!/index$)} do
+<pre class="highlight text">get %r{^(?!/index$)} do
   # ...
 end
-</code></pre>
-
+</pre>
 <p><code>./public_folder</code> <code>:public</code></p>
-
-<pre><code class="ruby">set :public_folder, File.dirname(__FILE__) + &#39;/static&#39;
-</code></pre>
-
+<pre class="highlight text">set :public_folder, File.dirname(__FILE__) + '/static'
+</pre>
 <p>publicURL
 <code>./public/css/style.css</code>
 <code>http://example.com/css/style.css</code></p>
@@ -232,307 +200,255 @@ end
 <h2>/</h2>
 
 <p><code>./views</code> </p>
-
-<pre><code class="ruby">set :views, File.dirname(__FILE__) + &#39;/templates&#39;
-</code></pre>
-
+<pre class="highlight text">set :views, File.dirname(__FILE__) + '/templates'
+</pre>
 <p><code>:&#39;subdir/template&#39;</code> </p>
 
 <a name='Haml'></a>
 <h3>Haml</h3>
 
 <p><code>haml</code> gem/library HAML </p>
+<pre class="highlight text">#  haml
+require 'haml'
 
-<pre><code class="ruby">#  haml
-require &#39;haml&#39;
-
-get &#39;/&#39; do
+get '/' do
   haml :index
 end
-</code></pre>
-
+</pre>
 <p><code>./views/index.haml</code></p>
 
 <p><a href="http://haml.info/docs/yardoc/file.HAML_REFERENCE.html#options">Haml</a>
 Sinatra 
 <a href="http://www.sinatrarb.com/configuration.html"></a></p>
+<pre class="highlight text">set :haml, {:format =&gt; :html5 } # Haml :xhtml
 
-<pre><code class="ruby">set :haml, {:format =&gt; :html5 } # Haml :xhtml
-
-get &#39;/&#39; do
+get '/' do
   haml :index, :haml_options =&gt; {:format =&gt; :html4 } # :html4
 end
-</code></pre>
-
+</pre>
 <a name='Erb'></a>
 <h3>Erb</h3>
+<pre class="highlight text">#  erb
+require 'erb'
 
-<pre><code class="ruby">#  erb
-require &#39;erb&#39;
-
-get &#39;/&#39; do
+get '/' do
   erb :index
 end
-</code></pre>
-
+</pre>
 <p><code>./views/index.erb</code></p>
 
 <a name='Erubis'></a>
 <h3>Erubis</h3>
 
 <p><code>erubis</code> gem/library erubis </p>
+<pre class="highlight text">#  erubis
+require 'erubis'
 
-<pre><code class="ruby">#  erubis
-require &#39;erubis&#39;
-
-get &#39;/&#39; do
+get '/' do
   erubis :index
 end
-</code></pre>
-
+</pre>
 <p><code>./views/index.erubis</code></p>
 
 <p>ErubisErb:</p>
-
-<pre><code class="ruby">require &#39;erubis&#39;
+<pre class="highlight text">require 'erubis'
 Tilt.register :erb, Tilt[:erubis]
 
-get &#39;/&#39; do
+get '/' do
   erb :index
 end
-</code></pre>
-
+</pre>
 <p>Erubis <code>./views/index.erb</code></p>
 
 <a name='Builder'></a>
 <h3>Builder</h3>
 
 <p><code>builder</code> gem/library  builder templates</p>
+<pre class="highlight text"># builder
+require 'builder'
 
-<pre><code class="ruby"># builder
-require &#39;builder&#39;
-
-get &#39;/&#39; do
+get '/' do
   builder :index
 end
-</code></pre>
-
+</pre>
 <p><code>./views/index.builder</code></p>
 
 <a name='Nokogiri'></a>
 <h3>Nokogiri</h3>
 
 <p><code>nokogiri</code> gem/library  nokogiri </p>
+<pre class="highlight text">#  nokogiri
+require 'nokogiri'
 
-<pre><code class="ruby">#  nokogiri
-require &#39;nokogiri&#39;
-
-get &#39;/&#39; do
+get '/' do
   nokogiri :index
 end
-</code></pre>
-
+</pre>
 <p><code>./views/index.nokogiri</code></p>
 
 <a name='Sass'></a>
 <h3>Sass</h3>
 
 <p><code>haml</code>  <code>sass</code> gem/library  Sass </p>
+<pre class="highlight text">#  haml  sass
+require 'sass'
 
-<pre><code class="ruby">#  haml  sass
-require &#39;sass&#39;
-
-get &#39;/stylesheet.css&#39; do
+get '/stylesheet.css' do
   sass :stylesheet
 end
-</code></pre>
-
+</pre>
 <p><code>./views/stylesheet.sass</code></p>
 
 <p><a href="http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#options">Sass
 </a>
 Sinatra 
 <a href="http://www.sinatrarb.com/configuration.html"></a>,</p>
+<pre class="highlight text">set :sass, {:style =&gt; :compact } #  Sass  :nested
 
-<pre><code class="ruby">set :sass, {:style =&gt; :compact } #  Sass  :nested
-
-get &#39;/stylesheet.css&#39; do
+get '/stylesheet.css' do
   sass :stylesheet, :style =&gt; :expanded # 
 end
-</code></pre>
-
+</pre>
 <a name='Scss'></a>
 <h3>Scss</h3>
 
 <p><code>haml</code>  <code>sass</code> gem/library  Scss templates</p>
+<pre class="highlight text">#  haml  sass
+require 'sass'
 
-<pre><code class="ruby">#  haml  sass
-require &#39;sass&#39;
-
-get &#39;/stylesheet.css&#39; do
+get '/stylesheet.css' do
   scss :stylesheet
 end
-</code></pre>
-
+</pre>
 <p><code>./views/stylesheet.scss</code></p>
 
 <p><a href="http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#options">Scss</a>
 Sinatra 
 <a href="http://www.sinatrarb.com/configuration.html"></a>,</p>
+<pre class="highlight text">set :scss, :style =&gt; :compact # default Scss style is :nested
 
-<pre><code class="ruby">set :scss, :style =&gt; :compact # default Scss style is :nested
-
-get &#39;/stylesheet.css&#39; do
+get '/stylesheet.css' do
   scss :stylesheet, :style =&gt; :expanded # overridden
 end
-</code></pre>
-
+</pre>
 <a name='Less'></a>
 <h3>Less</h3>
 
 <p><code>less</code> gem/library  Less </p>
+<pre class="highlight text">#  less
+require 'less'
 
-<pre><code class="ruby">#  less
-require &#39;less&#39;
-
-get &#39;/stylesheet.css&#39; do
+get '/stylesheet.css' do
   less :stylesheet
 end
-</code></pre>
-
+</pre>
 <p><code>./views/stylesheet.less</code></p>
 
 <a name='Liquid'></a>
 <h3>Liquid</h3>
 
 <p><code>liquid</code> gem/library  Liquid </p>
+<pre class="highlight text">#  liquid
+require 'liquid'
 
-<pre><code class="ruby">#  liquid
-require &#39;liquid&#39;
-
-get &#39;/&#39; do
+get '/' do
   liquid :index
 end
-</code></pre>
-
+</pre>
 <p><code>./views/index.liquid</code></p>
 
 <p>Liquid  Ruby  ( <code>yield</code>) 
 locals</p>
-
-<pre><code class="ruby">liquid :index, :locals =&gt; { :key =&gt; &#39;value&#39; }
-</code></pre>
-
+<pre class="highlight text">liquid :index, :locals =&gt; { :key =&gt; 'value' }
+</pre>
 <a name='Markdown'></a>
 <h3>Markdown</h3>
 
 <p><code>rdiscount</code> gem/library  Markdown </p>
-
-<pre><code class="ruby"># rdiscount
+<pre class="highlight text"># rdiscount
 require &quot;rdiscount&quot;
 
-get &#39;/&#39; do
+get '/' do
   markdown :index
 end
-</code></pre>
-
+</pre>
 <p><code>./views/index.markdown</code> (<code>md</code>  <code>mkd</code> )</p>
 
 <p>markdown locals</p>
-
-<pre><code class="ruby">erb :overview, :locals =&gt; { :text =&gt; markdown(:introduction) }
-</code></pre>
-
+<pre class="highlight text">erb :overview, :locals =&gt; { :text =&gt; markdown(:introduction) }
+</pre>
 <p>markdown </p>
-
-<pre><code class="ruby">%h1 Hello From Haml!
+<pre class="highlight text">%h1 Hello From Haml!
 %p= markdown(:greetings)
-</code></pre>
-
+</pre>
 <p>MarkdownRubyMarkdown</p>
 
 <p><code>:layout_engine</code>:</p>
-
-<pre><code class="ruby">get &#39;/&#39; do
+<pre class="highlight text">get '/' do
   markdown :index, :layout_engine =&gt; :erb
 end
-</code></pre>
-
+</pre>
 <p><code>./views/index.md</code>  <code>./views/layout.erb</code> </p>
 
 <p>:</p>
+<pre class="highlight text">set :markdown, :layout_engine =&gt; :haml, :layout =&gt; :post
 
-<pre><code class="ruby">set :markdown, :layout_engine =&gt; :haml, :layout =&gt; :post
-
-get &#39;/&#39; do
+get '/' do
   markdown :index
 end
-</code></pre>
-
+</pre>
 <p><code>./views/index.markdown</code> ( Markdown ) 
 <code>./views/post.haml</code> .</p>
 
 <p>BlueClothRDiscountMarkdown:</p>
+<pre class="highlight text">require 'bluecloth'
 
-<pre><code class="ruby">require &#39;bluecloth&#39;
+Tilt.register 'markdown', BlueClothTemplate
+Tilt.register 'mkd',      BlueClothTemplate
+Tilt.register 'md',       BlueClothTemplate
 
-Tilt.register &#39;markdown&#39;, BlueClothTemplate
-Tilt.register &#39;mkd&#39;,      BlueClothTemplate
-Tilt.register &#39;md&#39;,       BlueClothTemplate
-
-get &#39;/&#39; do
+get '/' do
   markdown :index
 end
-</code></pre>
-
+</pre>
 <p>BlueCloth <code>./views/index.md</code> </p>
 
 <a name='Textile'></a>
 <h3>Textile</h3>
 
 <p><code>RedCloth</code> gem/library  Textile </p>
-
-<pre><code class="ruby"># redcloth
+<pre class="highlight text"># redcloth
 require &quot;redcloth&quot;
 
-get &#39;/&#39; do
+get '/' do
   textile :index
 end
-</code></pre>
-
+</pre>
 <p><code>./views/index.textile</code></p>
 
 <p>textile locals</p>
-
-<pre><code class="ruby">erb :overview, :locals =&gt; { :text =&gt; textile(:introduction) }
-</code></pre>
-
+<pre class="highlight text">erb :overview, :locals =&gt; { :text =&gt; textile(:introduction) }
+</pre>
 <p><code>textile</code></p>
-
-<pre><code class="ruby">%h1 Hello From Haml!
+<pre class="highlight text">%h1 Hello From Haml!
 %p= textile(:greetings)
-</code></pre>
-
+</pre>
 <p>TextileRubyTextile</p>
 
 <p><code>:layout_engine</code>:</p>
-
-<pre><code class="ruby">get &#39;/&#39; do
+<pre class="highlight text">get '/' do
   textile :index, :layout_engine =&gt; :erb
 end
-</code></pre>
-
+</pre>
 <p><code>./views/index.textile</code>  <code>./views/layout.erb</code></p>
 
 <p>:</p>
+<pre class="highlight text">set :textile, :layout_engine =&gt; :haml, :layout =&gt; :post
 
-<pre><code class="ruby">set :textile, :layout_engine =&gt; :haml, :layout =&gt; :post
-
-get &#39;/&#39; do
+get '/' do
   textile :index
 end
-</code></pre>
-
+</pre>
 <p><code>./views/index.textile</code> ( Textile ) 
 <code>./views/post.haml</code> .</p>
 
@@ -540,49 +456,39 @@ end
 <h3>RDoc</h3>
 
 <p><code>RDoc</code> gem/library RDoc</p>
-
-<pre><code class="ruby"># rdoc/markup/to_html
+<pre class="highlight text"># rdoc/markup/to_html
 require &quot;rdoc&quot;
 require &quot;rdoc/markup/to_html&quot;
 
-get &#39;/&#39; do
+get '/' do
   rdoc :index
 end
-</code></pre>
-
+</pre>
 <p><code>./views/index.rdoc</code></p>
 
 <p>rdoclocals</p>
-
-<pre><code class="ruby">erb :overview, :locals =&gt; { :text =&gt; rdoc(:introduction) }
-</code></pre>
-
+<pre class="highlight text">erb :overview, :locals =&gt; { :text =&gt; rdoc(:introduction) }
+</pre>
 <p><code>rdoc</code></p>
-
-<pre><code class="ruby">%h1 Hello From Haml!
+<pre class="highlight text">%h1 Hello From Haml!
 %p= rdoc(:greetings)
-</code></pre>
-
+</pre>
 <p>RDocRubyRDoc</p>
 
 <p><code>:layout_engine</code>:</p>
-
-<pre><code class="ruby">get &#39;/&#39; do
+<pre class="highlight text">get '/' do
   rdoc :index, :layout_engine =&gt; :erb
 end
-</code></pre>
-
+</pre>
 <p><code>./views/index.rdoc</code>  <code>./views/layout.erb</code> </p>
 
 <p>:</p>
+<pre class="highlight text">set :rdoc, :layout_engine =&gt; :haml, :layout =&gt; :post
 
-<pre><code class="ruby">set :rdoc, :layout_engine =&gt; :haml, :layout =&gt; :post
-
-get &#39;/&#39; do
+get '/' do
   rdoc :index
 end
-</code></pre>
-
+</pre>
 <p><code>./views/index.rdoc</code> ( RDoc ) 
 <code>./views/post.haml</code> .</p>
 
@@ -590,73 +496,61 @@ end
 <h3>Radius</h3>
 
 <p><code>radius</code> gem/library  Radius </p>
+<pre class="highlight text"># radius
+require 'radius'
 
-<pre><code class="ruby"># radius
-require &#39;radius&#39;
-
-get &#39;/&#39; do
+get '/' do
   radius :index
 end
-</code></pre>
-
+</pre>
 <p><code>./views/index.radius</code></p>
 
 <p>Radius  Ruby  ( <code>yield</code>) 
 locals</p>
-
-<pre><code class="ruby">radius :index, :locals =&gt; { :key =&gt; &#39;value&#39; }
-</code></pre>
-
+<pre class="highlight text">radius :index, :locals =&gt; { :key =&gt; 'value' }
+</pre>
 <a name='Markaby'></a>
 <h3>Markaby</h3>
 
 <p><code>markaby</code> gem/libraryMarkaby</p>
+<pre class="highlight text"># markaby
+require 'markaby'
 
-<pre><code class="ruby"># markaby
-require &#39;markaby&#39;
-
-get &#39;/&#39; do
+get '/' do
   markaby :index
 end
-</code></pre>
-
+</pre>
 <p><code>./views/index.mab</code></p>
 
 <p>Markaby:</p>
-
-<pre><code class="ruby">get &#39;/&#39; do
+<pre class="highlight text">get '/' do
   markaby { h1 &quot;Welcome!&quot; }
 end
-</code></pre>
-
+</pre>
 <a name='Slim'></a>
 <h3>Slim</h3>
 
 <p><code>slim</code> gem/library  Slim </p>
+<pre class="highlight text">#  slim
+require 'slim'
 
-<pre><code class="ruby">#  slim
-require &#39;slim&#39;
-
-get &#39;/&#39; do
+get '/' do
   slim :index
 end
-</code></pre>
-
+</pre>
 <p><code>./views/index.slim</code></p>
 
 <a name='Creole'></a>
 <h3>Creole</h3>
 
 <p><code>creole</code> gem/library  Creole </p>
+<pre class="highlight text">#  creole
+require 'creole'
 
-<pre><code class="ruby">#  creole
-require &#39;creole&#39;
-
-get &#39;/&#39; do
+get '/' do
   creole :index
 end
-</code></pre>
-
+</pre>
 <p><code>./views/index.creole</code></p>
 
 <a name='CoffeeScript'></a>
@@ -674,37 +568,28 @@ Javascript:</p>
 <p><a href="http://github.com/josh/ruby-coffee-script">github.com/josh/ruby-coffee-script</a></p>
 
 <p>CoffeeScript :</p>
+<pre class="highlight text"># coffee-script
+require 'coffee-script'
 
-<pre><code class="ruby"># coffee-script
-require &#39;coffee-script&#39;
-
-get &#39;/application.js&#39; do
+get '/application.js' do
   coffee :application
 end
-</code></pre>
-
+</pre>
 <p><code>./views/application.coffee</code></p>
-
-<pre><code class="ruby">get &#39;/&#39; do
-  haml &#39;%div.title Hello World&#39;
+<pre class="highlight text">get '/' do
+  haml '%div.title Hello World'
 end
-</code></pre>
-
-<pre><code class="ruby">get &#39;/:id&#39; do
+</pre><pre class="highlight text">get '/:id' do
   @foo = Foo.find(params[:id])
-  haml &#39;%h1= @foo.name&#39;
+  haml '%h1= @foo.name'
 end
-</code></pre>
-
-<pre><code class="ruby">get &#39;/:id&#39; do
+</pre><pre class="highlight text">get '/:id' do
   foo = Foo.find(params[:id])
-  haml &#39;%h1= foo.name&#39;, :locals =&gt; { :foo =&gt; foo }
+  haml '%h1= foo.name', :locals =&gt; { :foo =&gt; foo }
 end
-</code></pre>
+</pre><pre class="highlight text">require 'sinatra'
 
-<pre><code class="ruby">require &#39;sinatra&#39;
-
-get &#39;/&#39; do
+get '/' do
   haml :index
 end
 
@@ -716,190 +601,151 @@ __END__
 
 @@ index
 %div.title Hello world!!!!!
-</code></pre>
-
+</pre>
 <p>sinatra</p>
 
 <p><code>enable :inline_templates</code></p>
 
 <p><code>template</code> </p>
-
-<pre><code class="ruby">template :layout do
+<pre class="highlight text">template :layout do
   &quot;%html\n  =yield\n&quot;
 end
 
 template :index do
-  &#39;%div.title Hello World!&#39;
+  '%div.title Hello World!'
 end
 
-get &#39;/&#39; do
+get '/' do
   haml :index
 end
-</code></pre>
-
+</pre>
 <p>layout
  <code>:layout =&gt; false</code>
 <code>set :haml, :layout =&gt; false</code></p>
-
-<pre><code class="ruby">get &#39;/&#39; do
+<pre class="highlight text">get '/' do
   haml :index, :layout =&gt; !request.xhr?
 end
-</code></pre>
-
+</pre>
 <p><code>Tilt.register</code> <code>tt</code>
 Textile:</p>
-
-<pre><code class="ruby">Tilt.register :tt, Tilt[:textile]
-</code></pre>
-
+<pre class="highlight text">Tilt.register :tt, Tilt[:textile]
+</pre>
 <p>Tilt:</p>
-
-<pre><code class="ruby">Tilt.register :myat, MyAwesomeTemplateEngine
+<pre class="highlight text">Tilt.register :myat, MyAwesomeTemplateEngine
 
 helpers do
   def myat(*args) render(:myat, *args) end
 end
 
-get &#39;/&#39; do
+get '/' do
   myat :index
 end
-</code></pre>
-
+</pre>
 <p><code>./views/index.myat</code>
 <a href="https://github.com/rtomayko/tilt">github.com/rtomayko/tilt</a>
 Tilt.</p>
-
-<pre><code class="ruby">before do
-  @note = &#39;Hi!&#39;
-  request.path_info = &#39;/foo/bar/baz&#39;
+<pre class="highlight text">before do
+  @note = 'Hi!'
+  request.path_info = '/foo/bar/baz'
 end
 
-get &#39;/foo/*&#39; do
-  @note #=&gt; &#39;Hi!&#39;
-  params[:splat] #=&gt; &#39;bar/baz&#39;
+get '/foo/*' do
+  @note #=&gt; 'Hi!'
+  params[:splat] #=&gt; 'bar/baz'
 end
-</code></pre>
-
-<pre><code class="ruby">after do
+</pre><pre class="highlight text">after do
   puts response.status
 end
-</code></pre>
-
+</pre>
 <p><code>body</code> </p>
-
-<pre><code class="ruby">before &#39;/protected/*&#39; do
+<pre class="highlight text">before '/protected/*' do
   authenticate!
 end
 
-after &#39;/create/:slug&#39; do |slug|
+after '/create/:slug' do |slug|
   session[:last_slug] = slug
 end
-</code></pre>
-
+</pre>
 <p>:</p>
-
-<pre><code class="ruby">before :agent =&gt; /Songbird/ do
+<pre class="highlight text">before :agent =&gt; /Songbird/ do
   # ...
 end
 
-after &#39;/blog/*&#39;, :host_name =&gt; &#39;example.com&#39; do
+after '/blog/*', :host_name =&gt; 'example.com' do
   # ...
 end
-</code></pre>
-
+</pre>
 <p><code>helpers</code>  </p>
-
-<pre><code class="ruby">helpers do
+<pre class="highlight text">helpers do
   def bar(name)
     &quot;#{name}bar&quot;
   end
 end
 
-get &#39;/:name&#39; do
+get '/:name' do
   bar(params[:name])
 end
-</code></pre>
-
+</pre>
 <a name='Sessions'></a>
 <h3>Sessions</h3>
 
 <p>Session
 session:</p>
+<pre class="highlight text">enable :sessions
 
-<pre><code class="ruby">enable :sessions
-
-get &#39;/&#39; do
+get '/' do
   &quot;value = &quot; &lt;&lt; session[:value].inspect
 end
 
-get &#39;/:value&#39; do
+get '/:value' do
   session[:value] = params[:value]
 end
-</code></pre>
-
+</pre>
 <p><code>enable :sessions</code> cookie</p>
 
 <p>Rack session **
 <code>enable :sessions</code> </p>
+<pre class="highlight text">use Rack::Session::Pool, :expire_after =&gt; 2592000
 
-<pre><code class="ruby">use Rack::Session::Pool, :expire_after =&gt; 2592000
-
-get &#39;/&#39; do
+get '/' do
   &quot;value = &quot; &lt;&lt; session[:value].inspect
 end
 
-get &#39;/:value&#39; do
+get '/:value' do
   session[:value] = params[:value]
 end
-</code></pre>
-
-<pre><code class="ruby">halt
-</code></pre>
-
-<pre><code class="ruby">halt 410
-</code></pre>
-
-<pre><code class="ruby">halt &#39;this will be the body&#39;
-</code></pre>
-
+</pre><pre class="highlight text">halt
+</pre><pre class="highlight text">halt 410
+</pre><pre class="highlight text">halt 'this will be the body'
+</pre>
 <p>;</p>
-
-<pre><code class="ruby">halt 401, &#39;go away!&#39;
-</code></pre>
-
-<pre><code class="ruby">halt 402, {&#39;Content-Type&#39; =&gt; &#39;text/plain&#39;}, &#39;revenge&#39;
-</code></pre>
-
+<pre class="highlight text">halt 401, 'go away!'
+</pre><pre class="highlight text">halt 402, {'Content-Type' =&gt; 'text/plain'}, 'revenge'
+</pre>
 <p><code>pass</code></p>
-
-<pre><code class="ruby">get &#39;/guess/:who&#39; do
-  pass unless params[:who] == &#39;Frank&#39;
-  &#39;You got me!&#39;
+<pre class="highlight text">get '/guess/:who' do
+  pass unless params[:who] == 'Frank'
+  'You got me!'
 end
 
-get &#39;/guess/*&#39; do
-  &#39;You missed!&#39;
+get '/guess/*' do
+  'You missed!'
 end
-</code></pre>
-
+</pre>
 <p>404</p>
 
 <p><code>pass</code> 
  <code>call</code> :</p>
-
-<pre><code class="ruby">get &#39;/foo&#39; do
-  status, headers, body = call env.merge(&quot;PATH_INFO&quot; =&gt; &#39;/bar&#39;)
+<pre class="highlight text">get '/foo' do
+  status, headers, body = call env.merge(&quot;PATH_INFO&quot; =&gt; '/bar')
   [status, headers, body.map(&amp;:upcase)]
 end
 
-get &#39;/bar&#39; do
+get '/bar' do
   &quot;bar&quot;
 end
-</code></pre>
-
-<pre><code>&lt;tt&gt;&quot;bar&quot;&lt;/tt&gt;&lt;tt&gt;/foo&lt;/tt&gt;
-</code></pre>
-
+</pre><pre class="highlight text">&lt;tt&gt;&quot;bar&quot;&lt;/tt&gt;&lt;tt&gt;/foo&lt;/tt&gt;
+</pre>
 <p><code>/bar</code>helper</p>
 
 <p><code>call!</code> 
@@ -909,171 +755,135 @@ end
 
 <p><code>body</code><br>
 :</p>
-
-<pre><code class="ruby">get &#39;/foo&#39; do
+<pre class="highlight text">get '/foo' do
   body &quot;bar&quot;
 end
 
 after do
   puts body
 end
-</code></pre>
-
+</pre>
 <p><code>body</code>Rack
 streaming</p>
 
 <p>:</p>
-
-<pre><code class="ruby">get &#39;/foo&#39; do
+<pre class="highlight text">get '/foo' do
   status 418
   headers \
     &quot;Allow&quot;   =&gt; &quot;BREW, POST, GET, PROPFIND, WHEN&quot;,
     &quot;Refresh&quot; =&gt; &quot;Refresh: 20; http://www.ietf.org/rfc/rfc2324.txt&quot;
-  body &quot;I&#39;m a tea pot!&quot;
+  body &quot;I'm a tea pot!&quot;
 end
-</code></pre>
-
+</pre>
 <p><code>body</code>,  <code>headers</code>  <code>status</code> 
 .</p>
 
 <p><code>send_file</code> 
 Sinatra <code>mime_type</code> </p>
-
-<pre><code class="ruby">mime_type :foo, &#39;text/foo&#39;
-</code></pre>
-
+<pre class="highlight text">mime_type :foo, 'text/foo'
+</pre>
 <p><code>content_type</code> </p>
-
-<pre><code class="ruby">get &#39;/&#39; do
+<pre class="highlight text">get '/' do
   content_type :foo
   &quot;foo foo foo&quot;
 end
-</code></pre>
-
+</pre>
 <a name='URL'></a>
 <h3>URL</h3>
 
 <p>URL <code>url</code>  Haml:</p>
-
-<pre><code class="ruby">%a{:href =&gt; url(&#39;/foo&#39;)} foo
-</code></pre>
-
+<pre class="highlight text">%a{:href =&gt; url('/foo')} foo
+</pre>
 <p>RackURL</p>
 
 <p><code>to</code> ().</p>
 
 <p><code>redirect</code> :</p>
-
-<pre><code class="ruby">get &#39;/foo&#39; do
-  redirect to(&#39;/bar&#39;)
+<pre class="highlight text">get '/foo' do
+  redirect to('/bar')
 end
-</code></pre>
-
+</pre>
 <p><code>halt</code>:</p>
-
-<pre><code class="ruby">redirect to(&#39;/bar&#39;), 303
-redirect &#39;http://google.com&#39;, &#39;wrong place, buddy&#39;
-</code></pre>
-
+<pre class="highlight text">redirect to('/bar'), 303
+redirect 'http://google.com', 'wrong place, buddy'
+</pre>
 <p><code>redirect back</code>:</p>
-
-<pre><code class="ruby">get &#39;/foo&#39; do
-  &quot;&lt;a href=&#39;/bar&#39;&gt;do something&lt;/a&gt;&quot;
+<pre class="highlight text">get '/foo' do
+  &quot;&lt;a href='/bar'&gt;do something&lt;/a&gt;&quot;
 end
 
-get &#39;/bar&#39; do
+get '/bar' do
   do_something
   redirect back
 end
-</code></pre>
-
+</pre>
 <p>redirectquery:</p>
-
-<pre><code class="ruby">redirect to(&#39;/bar?sum=42&#39;)
-</code></pre>
-
+<pre class="highlight text">redirect to('/bar?sum=42')
+</pre>
 <p>session:</p>
+<pre class="highlight text">enable :sessions
 
-<pre><code class="ruby">enable :sessions
-
-get &#39;/foo&#39; do
-  session[:secret] = &#39;foo&#39;
-  redirect to(&#39;/bar&#39;)
+get '/foo' do
+  session[:secret] = 'foo'
+  redirect to('/bar')
 end
 
-get &#39;/bar&#39; do
+get '/bar' do
   session[:secret]
 end
-</code></pre>
-
+</pre>
 <p>HTTP</p>
 
 <p>Cache-Control :</p>
-
-<pre><code class="ruby">get &#39;/&#39; do
+<pre class="highlight text">get '/' do
   cache_control :public
   &quot;cache it!&quot;
 end
-</code></pre>
-
+</pre>
 <p>: .</p>
-
-<pre><code class="ruby">before do
+<pre class="highlight text">before do
   cache_control :public, :must_revalidate, :max_age =&gt; 60
 end
-</code></pre>
-
+</pre>
 <p><code>expires</code>  <code>Cache-Control</code></p>
-
-<pre><code class="ruby">before do
+<pre class="highlight text">before do
   expires 500, :public, :must_revalidate
 end
-</code></pre>
-
+</pre>
 <p><code>etag</code>  <code>last_modified</code>.
 **helpers</p>
-
-<pre><code class="ruby">get &#39;/article/:id&#39; do
+<pre class="highlight text">get '/article/:id' do
   @article = Article.find params[:id]
   last_modified @article.updated_at
   etag @article.sha1
   erb :article
 end
-</code></pre>
-
+</pre>
 <p><a href="http://en.wikipedia.org/wiki/HTTP_ETag#Strong_and_weak_validation">weak
 ETag</a>
 :</p>
-
-<pre><code class="ruby">etag @article.sha1, :weak
-</code></pre>
-
+<pre class="highlight text">etag @article.sha1, :weak
+</pre>
 <p><a href="https://github.com/rtomayko/rack-cache">rack-cache</a>:</p>
-
-<pre><code class="ruby">require &quot;rack/cache&quot;
+<pre class="highlight text">require &quot;rack/cache&quot;
 require &quot;sinatra&quot;
 
 use Rack::Cache
 
-get &#39;/&#39; do
+get '/' do
   cache_control :public, :max_age =&gt; 36000
   sleep 5
   &quot;hello&quot;
 end
-</code></pre>
-
+</pre>
 <p><code>send_file</code> :</p>
-
-<pre><code class="ruby">get &#39;/&#39; do
-  send_file &#39;foo.png&#39;
+<pre class="highlight text">get '/' do
+  send_file 'foo.png'
 end
-</code></pre>
-
+</pre>
 <p>:</p>
-
-<pre><code class="ruby">send_file &#39;foo.png&#39;, :type =&gt; :jpg
-</code></pre>
-
+<pre class="highlight text">send_file 'foo.png', :type =&gt; :jpg
+</pre>
 <p>:</p>
 
 <dl>
@@ -1100,9 +910,8 @@ end
  Sinatrarange</p>
 
 <p><code>request</code></p>
-
-<pre><code class="ruby">#  http://example.com/example 
-get &#39;/foo&#39; do
+<pre class="highlight text">#  http://example.com/example 
+get '/foo' do
   request.body              # 
   request.scheme            # &quot;http&quot;
   request.script_name       # &quot;/example&quot;
@@ -1116,7 +925,7 @@ get &#39;/foo&#39; do
   request.get?              # true ()
   request.form_data?        # false
   request[&quot;SOME_HEADER&quot;]    # SOME_HEADER header
-  request.referrer          # referrer  &#39;/&#39;
+  request.referrer          # referrer  '/'
   request.user_agent        # user agent ( :agent )
   request.cookies           #  cookies 
   request.xhr?              # ajax
@@ -1127,63 +936,49 @@ get &#39;/foo&#39; do
   request.forwarded?        # true 
   request.env               # Rackenv
 end
-</code></pre>
-
+</pre>
 <p><code>script_name</code>  <code>path_info</code> </p>
-
-<pre><code class="ruby">before { request.path_info = &quot;/&quot; }
+<pre class="highlight text">before { request.path_info = &quot;/&quot; }
 
 get &quot;/&quot; do
   &quot;all requests end up here&quot;
 end
-</code></pre>
-
+</pre>
 <p><code>request.body</code> IOStringIO</p>
-
-<pre><code class="ruby">post &quot;/api&quot; do
+<pre class="highlight text">post &quot;/api&quot; do
   request.body.rewind  # 
   data = JSON.parse request.body.read
-  &quot;Hello #{data[&#39;name&#39;]}!&quot;
+  &quot;Hello #{data['name']}!&quot;
 end
-</code></pre>
-
+</pre>
 <p><code>attachment</code> </p>
-
-<pre><code class="ruby">get &#39;/&#39; do
+<pre class="highlight text">get '/' do
   attachment
   &quot;store it!&quot;
 end
-</code></pre>
-
+</pre>
 <p>:</p>
-
-<pre><code class="ruby">get &#39;/&#39; do
+<pre class="highlight text">get '/' do
   attachment &quot;info.txt&quot;
   &quot;store it!&quot;
 end
-</code></pre>
-
+</pre>
 <p><code>find_template</code> :</p>
-
-<pre><code class="ruby">find_template settings.views, &#39;foo&#39;, Tilt[:haml] do |file|
+<pre class="highlight text">find_template settings.views, 'foo', Tilt[:haml] do |file|
   puts &quot;could be #{file}&quot;
 end
-</code></pre>
-
+</pre>
 <p>:</p>
-
-<pre><code class="ruby">set :views, [&#39;views&#39;, &#39;templates&#39;]
+<pre class="highlight text">set :views, ['views', 'templates']
 
 helpers do
   def find_template(views, name, engine, &amp;block)
     Array(views).each { |v| super(v, name, engine, &amp;block) }
   end
 end
-</code></pre>
-
+</pre>
 <p>:</p>
-
-<pre><code class="ruby">set :views, :sass =&gt; &#39;views/sass&#39;, :haml =&gt; &#39;templates&#39;, :default =&gt; &#39;views&#39;
+<pre class="highlight text">set :views, :sass =&gt; 'views/sass', :haml =&gt; 'templates', :default =&gt; 'views'
 
 helpers do
   def find_template(views, name, engine, &amp;block)
@@ -1192,16 +987,14 @@ helpers do
     super(folder, name, engine, &amp;block)
   end
 end
-</code></pre>
-
+</pre>
 <p><code>find_template</code> </p>
 
 <p><code>render</code>  <code>break</code> 
 development mode</p>
-
-<pre><code class="ruby">configure do
+<pre class="highlight text">configure do
   # setting one option
-  set :option, &#39;value&#39;
+  set :option, 'value'
 
   # setting multiple options
   set :a =&gt; 1, :b =&gt; 2
@@ -1213,37 +1006,30 @@ development mode</p>
   disable :option
 
   # you can also have dynamic settings with blocks
-  set(:css_dir) { File.join(views, &#39;css&#39;) }
+  set(:css_dir) { File.join(views, 'css') }
 end
-</code></pre>
-
+</pre>
 <p>(RACK_ENV environment )  <code>:production</code></p>
-
-<pre><code class="ruby">configure :production do
+<pre class="highlight text">configure :production do
   ...
 end
-</code></pre>
-
+</pre>
 <p><code>:production</code>  <code>:test</code></p>
-
-<pre><code class="ruby">configure :production, :test do
+<pre class="highlight text">configure :production, :test do
   ...
 end
-</code></pre>
-
+</pre>
 <p><code>settings</code> :</p>
-
-<pre><code class="ruby">configure do
-  set :foo, &#39;bar&#39;
+<pre class="highlight text">configure do
+  set :foo, 'bar'
 end
 
-get &#39;/&#39; do
+get '/' do
   settings.foo? # =&gt; true
-  settings.foo  # =&gt; &#39;bar&#39;
+  settings.foo  # =&gt; 'bar'
   ...
 end
-</code></pre>
-
+</pre>
 <dl>
     <dt>absolute_redirects</dt>
     <dd>
@@ -1393,47 +1179,33 @@ end
 
 <p><code>Sinatra::NotFound</code> 
 404<code>not_found</code> </p>
-
-<pre><code class="ruby">not_found do
-  &#39;This is nowhere to be found&#39;
+<pre class="highlight text">not_found do
+  'This is nowhere to be found'
 end
-</code></pre>
-
+</pre>
 <p><code>error</code> 
 <code>sinatra.error</code> Rack </p>
-
-<pre><code class="ruby">error do
-  &#39;Sorry there was a nasty error - &#39; + env[&#39;sinatra.error&#39;].name
+<pre class="highlight text">error do
+  'Sorry there was a nasty error - ' + env['sinatra.error'].name
 end
-</code></pre>
-
-<pre><code class="ruby">error MyCustomError do
-  &#39;So what happened was...&#39; + env[&#39;sinatra.error&#39;].message
+</pre><pre class="highlight text">error MyCustomError do
+  'So what happened was...' + env['sinatra.error'].message
 end
-</code></pre>
-
-<pre><code class="ruby">get &#39;/&#39; do
-  raise MyCustomError, &#39;something bad&#39;
+</pre><pre class="highlight text">get '/' do
+  raise MyCustomError, 'something bad'
 end
-</code></pre>
-
-<pre><code>So what happened was... something bad
-</code></pre>
-
-<pre><code class="ruby">error 403 do
-  &#39;Access forbidden&#39;
+</pre><pre class="highlight text">So what happened was... something bad
+</pre><pre class="highlight text">error 403 do
+  'Access forbidden'
 end
 
-get &#39;/secret&#39; do
+get '/secret' do
   403
 end
-</code></pre>
-
-<pre><code class="ruby">error 400..510 do
-  &#39;Boom&#39;
+</pre><pre class="highlight text">error 400..510 do
+  'Boom'
 end
-</code></pre>
-
+</pre>
 <p>developmentSinatra <code>not_found</code>  <code>error</code></p>
 
 <a name='Rack'></a>
@@ -1445,38 +1217,33 @@ Rack
  / HTTP/ </p>
 
 <p>Sinatra Rack  <code>use</code> </p>
-
-<pre><code class="ruby">require &#39;sinatra&#39;
-require &#39;my_custom_middleware&#39;
+<pre class="highlight text">require 'sinatra'
+require 'my_custom_middleware'
 
 use Rack::Lint
 use MyCustomMiddleware
 
-get &#39;/hello&#39; do
-  &#39;Hello World&#39;
+get '/hello' do
+  'Hello World'
 end
-</code></pre>
-
+</pre>
 <p><code>use</code> 
 <a href="http://rack.rubyforge.org/doc/classes/Rack/Builder.html">Rack::Builder</a>
 DSL(rack)<code>use</code> 
 / </p>
-
-<pre><code class="ruby">use Rack::Auth::Basic do |username, password|
-  username == &#39;admin&#39; &amp;&amp; password == &#39;secret&#39;
+<pre class="highlight text">use Rack::Auth::Basic do |username, password|
+  username == 'admin' &amp;&amp; password == 'secret'
 end
-</code></pre>
-
+</pre>
 <p>Rack
 URLsession Sinatra
  <code>use</code> </p>
 
 <p>SinatraRack
 <a href="http://gitrdoc.com/brynary/rack-test">Rack::Test</a> </p>
-
-<pre><code class="ruby">require &#39;my_sinatra_app&#39;
-require &#39;test/unit&#39;
-require &#39;rack/test&#39;
+<pre class="highlight text">require 'my_sinatra_app'
+require 'test/unit'
+require 'rack/test'
 
 class MyAppTest &lt; Test::Unit::TestCase
   include Rack::Test::Methods
@@ -1486,22 +1253,21 @@ class MyAppTest &lt; Test::Unit::TestCase
   end
 
   def test_my_default
-    get &#39;/&#39;
-    assert_equal &#39;Hello World!&#39;, last_response.body
+    get '/'
+    assert_equal 'Hello World!', last_response.body
   end
 
   def test_with_params
-    get &#39;/meet&#39;, :name =&gt; &#39;Frank&#39;
-    assert_equal &#39;Hello Frank!&#39;, last_response.body
+    get '/meet', :name =&gt; 'Frank'
+    assert_equal 'Hello Frank!', last_response.body
   end
 
   def test_with_rack_env
-    get &#39;/&#39;, {}, &#39;HTTP_USER_AGENT&#39; =&gt; &#39;Songbird&#39;
-    assert_equal &quot;You&#39;re using Songbird!&quot;, last_response.body
+    get '/', {}, 'HTTP_USER_AGENT' =&gt; 'Songbird'
+    assert_equal &quot;You're using Songbird!&quot;, last_response.body
   end
 end
-</code></pre>
-
+</pre>
 <p>:  Sinatra::Test  Sinatra::TestHarness   0.9.2</p>
 
 <a name='Sinatra::Base%20-'></a>
@@ -1512,19 +1278,17 @@ metal
 SinatraDSLObject
  (,  ./public 
 ./views   Sinatra::Base</p>
-
-<pre><code class="ruby">require &#39;sinatra/base&#39;
+<pre class="highlight text">require 'sinatra/base'
 
 class MyApp &lt; Sinatra::Base
   set :sessions, true
-  set :foo, &#39;bar&#39;
+  set :foo, 'bar'
 
-  get &#39;/&#39; do
-    &#39;Hello world!&#39;
+  get '/' do
+    'Hello world!'
   end
 end
-</code></pre>
-
+</pre>
 <p>Sinatra::Base DSL 
 Sinatra::Base</p>
 
@@ -1550,20 +1314,17 @@ library/gem</p></li>
 </ul>
 
 <p>settings :</p>
-
-<pre><code>Setting             Classic                 Modular
+<pre class="highlight text">Setting             Classic                 Modular
 
 app_file            file loading sinatra    nil
 run                 $0 == app_file          false
 logging             true                    false
 method_override     true                    false
 inline_templates    true                    false
-</code></pre>
-
+</pre>
 <p><code>run!</code>:</p>
-
-<pre><code class="ruby"># my_app.rb
-require &#39;sinatra/base&#39;
+<pre class="highlight text"># my_app.rb
+require 'sinatra/base'
 
 class MyApp &lt; Sinatra::Base
   # ... app code here ...
@@ -1571,44 +1332,33 @@ class MyApp &lt; Sinatra::Base
   # start the server if ruby file executed directly
   run! if app_file == $0
 end
-</code></pre>
-
+</pre>
 <p>:</p>
-
-<pre><code>ruby my_app.rb
-</code></pre>
-
+<pre class="highlight text">ruby my_app.rb
+</pre>
 <p><code>config.ru</code>Rack:</p>
-
-<pre><code class="ruby"># config.ru
-require &#39;./my_app&#39;
+<pre class="highlight text"># config.ru
+require './my_app'
 run MyApp
-</code></pre>
-
+</pre>
 <p>:</p>
-
-<pre><code>rackup -p 4567
-</code></pre>
-
+<pre class="highlight text">rackup -p 4567
+</pre>
 <a name='config.ru'></a>
 <h3>config.ru</h3>
 
 <p>:</p>
+<pre class="highlight text"># app.rb
+require 'sinatra'
 
-<pre><code class="ruby"># app.rb
-require &#39;sinatra&#39;
-
-get &#39;/&#39; do
-  &#39;Hello world!&#39;
+get '/' do
+  'Hello world!'
 end
-</code></pre>
-
+</pre>
 <p><code>config.ru</code>:</p>
-
-<pre><code class="ruby">require &#39;./app&#39;
+<pre class="highlight text">require './app'
 run Sinatra::Application
-</code></pre>
-
+</pre>
 <a name='config.ru?'></a>
 <h3>config.ru?</h3>
 
@@ -1630,19 +1380,18 @@ run Sinatra::Application
 Rack
 SinatraRack
 (Rails/Ramaze/Camping/)</p>
-
-<pre><code class="ruby">require &#39;sinatra/base&#39;
+<pre class="highlight text">require 'sinatra/base'
 
 class LoginScreen &lt; Sinatra::Base
   enable :sessions
 
-  get(&#39;/login&#39;) { haml :login }
+  get('/login') { haml :login }
 
-  post(&#39;/login&#39;) do
-    if params[:name] = &#39;admin&#39; and params[:password] = &#39;admin&#39;
-      session[&#39;user_name&#39;] = params[:name]
+  post('/login') do
+    if params[:name] = 'admin' and params[:password] = 'admin'
+      session['user_name'] = params[:name]
     else
-      redirect &#39;/login&#39;
+      redirect '/login'
     end
   end
 end
@@ -1652,15 +1401,14 @@ class MyApp &lt; Sinatra::Base
   use LoginScreen
 
   before do
-    unless session[&#39;user_name&#39;]
-      halt &quot;Access denied, please &lt;a href=&#39;/login&#39;&gt;login&lt;/a&gt;.&quot;
+    unless session['user_name']
+      halt &quot;Access denied, please &lt;a href='/login'&gt;login&lt;/a&gt;.&quot;
     end
   end
 
-  get(&#39;/&#39;) { &quot;Hello #{session[&#39;user_name&#39;]}.&quot; }
+  get('/') { &quot;Hello #{session['user_name']}.&quot; }
 end
-</code></pre>
-
+</pre>
 <a name='/'></a>
 <h3>/</h3>
 
@@ -1671,18 +1419,16 @@ Sinatra::Application
 `request`  `session`, </p>
 
 <p>`set` </p>
-
-<pre><code class="ruby">class MyApp &lt; Sinatra::Base
+<pre class="highlight text">class MyApp &lt; Sinatra::Base
   # 
   set :foo, 42
   foo # =&gt; 42
 
-  get &#39;/foo&#39; do
+  get '/foo' do
     # 
   end
 end
-</code></pre>
-
+</pre>
 <ul>
 <li></li>
 <li></li>
@@ -1697,11 +1443,10 @@ end
 
 <p>`request`  `session`  `erb` 
 `haml``settings`</p>
-
-<pre><code class="ruby">class MyApp &lt; Sinatra::Base
+<pre class="highlight text">class MyApp &lt; Sinatra::Base
   # !
-  get &#39;/define_route/:name&#39; do
-    #  &#39;/define_route/:name&#39; 
+  get '/define_route/:name' do
+    #  '/define_route/:name' 
     @value = 42
 
     settings.get(&quot;/#{params[:name]}&quot;) do
@@ -1712,8 +1457,7 @@ end
     &quot;Route defined!&quot;
   end
 end
-</code></pre>
-
+</pre>
 <ul>
 <li><p>get/head/post/put/delete </p></li>
 <li><p>/ </p></li>
@@ -1738,8 +1482,7 @@ mixin</a></p>
 <p><a href="http://github.com/sinatra/sinatra/blob/ceac46f0bc129a6e994a06100aa854f606fe5992/lib/sinatra/main.rb#L28"></a></p>
 
 <p>Sinatra </p>
-
-<pre><code>ruby myapp.rb [-h] [-x] [-e ENVIRONMENT] [-p PORT] [-o HOST] [-s HANDLER]
+<pre class="highlight text">ruby myapp.rb [-h] [-x] [-e ENVIRONMENT] [-p PORT] [-o HOST] [-s HANDLER]
 
 
 
@@ -1749,8 +1492,7 @@ mixin</a></p>
 -e #  ( development)
 -s #  rack / ( thin)
 -x #  ( off)
-</code></pre>
-
+</pre>
 <p>Ruby 1.8.7, 1.9.2, JRuby  Rubinius Sinatra</p>
 
 <p>Ruby:</p>
@@ -1807,17 +1549,13 @@ mixin</a></p>
 <p>SinatraRuby</p>
 
 <p>Sinatra  master</p>
-
-<pre><code>cd myapp
+<pre class="highlight text">cd myapp
 git clone git://github.com/sinatra/sinatra.git
 ruby -Isinatra/lib myapp.rb
-</code></pre>
-
+</pre>
 <p>gems</p>
-
-<pre><code>gem install sinatra --pre
-</code></pre>
-
+<pre class="highlight text">gem install sinatra --pre
+</pre>
 <a name='Bundler'></a>
 <h3>Bundler</h3>
 
@@ -1825,55 +1563,41 @@ ruby -Isinatra/lib myapp.rb
 <a href="http://gembundler.com/">Bundler</a> </p>
 
 <p>bundler:</p>
-
-<pre><code>gem install bundler
-</code></pre>
-
+<pre class="highlight text">gem install bundler
+</pre>
 <p><code>Gemfile</code>:</p>
-
-<pre><code class="ruby">source :rubygems
-gem &#39;sinatra&#39;, :git =&gt; &quot;git://github.com/sinatra/sinatra.git&quot;
+<pre class="highlight text">source :rubygems
+gem 'sinatra', :git =&gt; &quot;git://github.com/sinatra/sinatra.git&quot;
 
 # 
-gem &#39;haml&#39;                    # haml
-gem &#39;activerecord&#39;, &#39;~&gt; 3.0&#39;  #  ActiveRecord 3.x
-</code></pre>
-
+gem 'haml'                    # haml
+gem 'activerecord', '~&gt; 3.0'  #  ActiveRecord 3.x
+</pre>
 <p>Sinatra
 (Rack and Tilt)  Bundler</p>
 
 <p>:</p>
-
-<pre><code>bundle exec ruby myapp.rb
-</code></pre>
-
+<pre class="highlight text">bundle exec ruby myapp.rb
+</pre>
 <p><code>sinatra/lib</code><br>
 <code>$LOAD_PATH</code>:</p>
-
-<pre><code>cd myapp
+<pre class="highlight text">cd myapp
 git clone git://github.com/sinatra/sinatra.git
 ruby -Isinatra/lib myapp.rb
-</code></pre>
-
+</pre>
 <p>Sinatra :</p>
-
-<pre><code>cd myapp/sinatra
+<pre class="highlight text">cd myapp/sinatra
 git pull
-</code></pre>
-
+</pre>
 <p>gem :</p>
-
-<pre><code>git clone git://github.com/sinatra/sinatra.git
+<pre class="highlight text">git clone git://github.com/sinatra/sinatra.git
 cd sinatra
 rake sinatra.gemspec
 rake install
-</code></pre>
-
+</pre>
 <p>root gems</p>
-
-<pre><code>sudo rake install
-</code></pre>
-
+<pre class="highlight text">sudo rake install
+</pre>
 <ul>
 <li><p><a href="http://www.sinatrarb.com/"></a> - </p></li>
 <li><p><a href="http://www.sinatrarb.com/contributing"></a> - bug

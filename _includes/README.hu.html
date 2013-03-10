@@ -40,20 +40,16 @@ vltozat, s lehet, hogy nem napraksz.</em></p>
 <p>A Sinatra egy <a href="http://en.wikipedia.org/wiki/Domain-specific_language">DSL</a>
 webalkalmazsok Ruby nyelven trtn fejlesztshez, minimlis
 energiabefektetssel:</p>
-
-<pre><code class="ruby">  # myapp.rb
-  require &#39;sinatra&#39;
-  get &#39;/&#39; do
-    &#39;Hell Vilg!&#39;
-  end
-</code></pre>
-
+<pre class="highlight ruby">  <span class="c1"># myapp.rb</span>
+  <span class="nb">require</span> <span class="s1">'sinatra'</span>
+  <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="s1">'Hell Vilg!'</span>
+  <span class="k">end</span>
+</pre>
 <p>Teleptsd a gem-et s indtsd el az alkalmazst a kvetkezkppen:</p>
-
-<pre><code class="ruby">  sudo gem install sinatra
-  ruby myapp.rb
-</code></pre>
-
+<pre class="highlight ruby">  <span class="n">sudo</span> <span class="n">gem</span> <span class="n">install</span> <span class="n">sinatra</span>
+  <span class="n">ruby</span> <span class="n">myapp</span><span class="nf">.rb</span>
+</pre>
 <p>Az alkalmazs elrhet lesz itt: <code>http://localhost:4567</code></p>
 
 <a name='tvonalak%20(routes)'></a>
@@ -61,86 +57,72 @@ energiabefektetssel:</p>
 
 <p>A Sinatrban az tvonalat egy HTTP metdus s egy URL-re illeszked minta
 prosa alkotja. Minden egyes tvonalhoz tartozik egy blokk:</p>
+<pre class="highlight ruby">  <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="nf">..</span> <span class="n">megjelentnk</span> <span class="n">valamit</span> <span class="nf">..</span>
+  <span class="k">end</span>
 
-<pre><code class="ruby">  get &#39;/&#39; do
-    .. megjelentnk valamit ..
-  end
+  <span class="n">post</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="nf">..</span> <span class="n">ltrehozunk</span> <span class="n">valamit</span> <span class="nf">..</span>
+  <span class="k">end</span>
 
-  post &#39;/&#39; do
-    .. ltrehozunk valamit ..
-  end
+  <span class="n">put</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="nf">..</span> <span class="n">frisstnk</span> <span class="n">valamit</span> <span class="nf">..</span>
+  <span class="k">end</span>
 
-  put &#39;/&#39; do
-    .. frisstnk valamit ..
-  end
-
-  delete &#39;/&#39; do
-    .. trlnk valamit ..
-  end
-</code></pre>
-
+  <span class="n">delete</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="nf">..</span> <span class="n">trlnk</span> <span class="n">valamit</span> <span class="nf">..</span>
+  <span class="k">end</span>
+</pre>
 <p>Az tvonalak illeszkedst a rendszer a definilsuk sorrendjben
 ellenrzi. Sorrendben mindig az els illeszked tvonalhoz tartoz metdus kerl
 meghvsra.</p>
 
 <p>Az tvonalmintk tartalmazhatnak paramtereket is, melyeket a <code>params</code>
 hash-bl rhetnk el:</p>
-
-<pre><code class="ruby">  get &#39;/hello/:name&#39; do
-    # illeszkedik a &quot;GET /hello/foo&quot; s a &quot;GET /hello/bar&quot; tvonalakra
-    # ekkor params[:name] rtke &#39;foo&#39; vagy &#39;bar&#39; lesz
-    &quot;Hell #{params[:name]}!&quot;
-  end
-</code></pre>
-
+<pre class="highlight ruby">  <span class="n">get</span> <span class="s1">'/hello/:name'</span> <span class="k">do</span>
+    <span class="c1"># illeszkedik a &quot;GET /hello/foo&quot; s a &quot;GET /hello/bar&quot; tvonalakra</span>
+    <span class="c1"># ekkor params[:name] rtke 'foo' vagy 'bar' lesz</span>
+    <span class="s2">&quot;Hell </span><span class="si">#{</span><span class="n">params</span><span class="o">[</span><span class="ss">:name</span><span class="o">]</span><span class="si">}</span><span class="s2">!&quot;</span>
+  <span class="k">end</span>
+</pre>
 <p>A kulcsszavas argumentumokat (named parameters) blokk paramterek tjn
 is el tudod rni:</p>
-
-<pre><code class="ruby">  get &#39;/hello/:name&#39; do |n|
-    &quot;Hell #{n}!&quot;
-  end
-</code></pre>
-
+<pre class="highlight ruby">  <span class="n">get</span> <span class="s1">'/hello/:name'</span> <span class="k">do</span> <span class="o">|</span><span class="n">n</span><span class="o">|</span>
+    <span class="s2">&quot;Hell </span><span class="si">#{</span><span class="n">n</span><span class="si">}</span><span class="s2">!&quot;</span>
+  <span class="k">end</span>
+</pre>
 <p>Az tvonalmintkban szerepelhetnek joker paramterek is, melyeket a 
 <code>params[:splat]</code> tmbn keresztl tudunk elrni.</p>
+<pre class="highlight ruby">  <span class="n">get</span> <span class="s1">'/say/*/to/*'</span> <span class="k">do</span>
+    <span class="c1"># illeszkedik a /say/hello/to/world mintra</span>
+    <span class="n">params</span><span class="o">[</span><span class="ss">:splat</span><span class="o">]</span> <span class="c1"># =&gt; [&quot;hello&quot;, &quot;world&quot;]</span>
+  <span class="k">end</span>
 
-<pre><code class="ruby">  get &#39;/say/*/to/*&#39; do
-    # illeszkedik a /say/hello/to/world mintra
-    params[:splat] # =&gt; [&quot;hello&quot;, &quot;world&quot;]
-  end
-
-  get &#39;/download/*.*&#39; do
-    # illeszkedik a /download/path/to/file.xml mintra
-    params[:splat] # =&gt; [&quot;path/to/file&quot;, &quot;xml&quot;]
-  end
-</code></pre>
-
+  <span class="n">get</span> <span class="s1">'/download/*.*'</span> <span class="k">do</span>
+    <span class="c1"># illeszkedik a /download/path/to/file.xml mintra</span>
+    <span class="n">params</span><span class="o">[</span><span class="ss">:splat</span><span class="o">]</span> <span class="c1"># =&gt; [&quot;path/to/file&quot;, &quot;xml&quot;]</span>
+  <span class="k">end</span>
+</pre>
 <p>Regulris kifejezseket is felvehetnk az tvonalba:</p>
-
-<pre><code class="ruby">  get %r{/hello/([\w]+)} do
-    &quot;Hell, #{params[:captures].first}!&quot;
-  end
-</code></pre>
-
+<pre class="highlight ruby">  <span class="n">get</span> <span class="sr">%r{/hello/([</span><span class="se">\w</span><span class="sr">]+)}</span> <span class="k">do</span>
+    <span class="s2">&quot;Hell, </span><span class="si">#{</span><span class="n">params</span><span class="o">[</span><span class="ss">:captures</span><span class="o">]</span><span class="nf">.first</span><span class="si">}</span><span class="s2">!&quot;</span>
+  <span class="k">end</span>
+</pre>
 <p>Vagy blokk paramtereket:</p>
-
-<pre><code class="ruby">  get %r{/hello/([\w]+)} do |c|
-    &quot;Hell, #{c}!&quot;
-  end
-</code></pre>
-
+<pre class="highlight ruby">  <span class="n">get</span> <span class="sr">%r{/hello/([</span><span class="se">\w</span><span class="sr">]+)}</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span>
+    <span class="s2">&quot;Hell, </span><span class="si">#{</span><span class="n">c</span><span class="si">}</span><span class="s2">!&quot;</span>
+  <span class="k">end</span>
+</pre>
 <p>Az tvonalak azonban szmos egyb illeszkedsi felttel szerint is
 tervezhetk, gy pldul az user agent karakterlncot alapul vve:</p>
+<pre class="highlight ruby">  <span class="n">get</span> <span class="s1">'/foo'</span><span class="p">,</span> <span class="ss">:agent</span> <span class="o">=&gt;</span> <span class="sr">/Songbird (\d\.\d)[\d\/]*?/</span> <span class="k">do</span>
+    <span class="s2">&quot;A Songbird </span><span class="si">#{</span><span class="n">params</span><span class="o">[</span><span class="ss">:agent</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span><span class="si">}</span><span class="s2"> verzijt hasznlod&quot;</span>
+  <span class="k">end</span>
 
-<pre><code class="ruby">  get &#39;/foo&#39;, :agent =&gt; /Songbird (\d\.\d)[\d\/]*?/ do
-    &quot;A Songbird #{params[:agent][0]} verzijt hasznlod&quot;
-  end
-
-  get &#39;/foo&#39; do
-    # illeszkedik az egyb user agentekre
-  end
-</code></pre>
-
+  <span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
+    <span class="c1"># illeszkedik az egyb user agentekre</span>
+  <span class="k">end</span>
+</pre>
 <a name='Statikus%20llomnyok'></a>
 <h2>Statikus llomnyok</h2>
 
@@ -171,41 +153,35 @@ metdusok minden, nekik kzvetlenl tadott karakterlncot megjelentenek.</p>
 <h3>Haml sablonok</h3>
 
 <p>HAML sablonok renderelshez szksgnk lesz a haml gem-re vagy knyvtrra:</p>
+<pre class="highlight ruby">  <span class="c1"># Importljuk be a haml-t az alkalmazsba</span>
+  <span class="nb">require</span> <span class="s1">'haml'</span>
 
-<pre><code class="ruby">  # Importljuk be a haml-t az alkalmazsba
-  require &#39;haml&#39;
-
-  get &#39;/&#39; do
-    haml :index
-  end
-</code></pre>
-
+  <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="n">haml</span> <span class="ss">:index</span>
+  <span class="k">end</span>
+</pre>
 <p>Ez szpen lerendereli a <code>./views/index.haml</code> sablont.</p>
 
 <p>A <a href="http://haml.hamptoncatlin.com/docs/rdoc/classes/Haml.html">Haml kapcsoli</a>
 globlisan is bellthatk a Sinatra konfigurcii kztt, lsd az
 <a href="http://www.sinatrarb.com/configuration.html">Options and Configurations</a> lapot.
 A globlis belltsokat lehetsgnk van fellrni metdus szinten is.</p>
+<pre class="highlight ruby">  <span class="n">set</span> <span class="ss">:haml</span><span class="p">,</span> <span class="p">{</span><span class="ss">:format</span> <span class="o">=&gt;</span> <span class="ss">:html5</span> <span class="p">}</span> <span class="c1"># az alaprtelmezett Haml formtum az :xhtml</span>
 
-<pre><code class="ruby">  set :haml, {:format =&gt; :html5 } # az alaprtelmezett Haml formtum az :xhtml
-
-  get &#39;/&#39; do
-    haml :index, :haml_options =&gt; {:format =&gt; :html4 } # immr fellrva
-  end
-</code></pre>
-
+  <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="n">haml</span> <span class="ss">:index</span><span class="p">,</span> <span class="ss">:haml_options</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:format</span> <span class="o">=&gt;</span> <span class="ss">:html4</span> <span class="p">}</span> <span class="c1"># immr fellrva</span>
+  <span class="k">end</span>
+</pre>
 <a name='Erb%20sablonok'></a>
 <h3>Erb sablonok</h3>
 
 <p># Importljuk be az erb-t az alkalmazsba</p>
+<pre class="highlight ruby">  <span class="nb">require</span> <span class="s1">'erb'</span>
 
-<pre><code class="ruby">  require &#39;erb&#39;
-
-  get &#39;/&#39; do
-    erb :index
-  end
-</code></pre>
-
+  <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="n">erb</span> <span class="ss">:index</span>
+  <span class="k">end</span>
+</pre>
 <p>Ez a <code>./views/index.erb</code> sablont fogja lerenderelni.</p>
 
 <a name='Builder%20sablonok'></a>
@@ -215,14 +191,12 @@ A globlis belltsokat lehetsgnk van fellrni metdus szinten is.</p>
 renderelshez:</p>
 
 <p># Importljuk be a builder-t az alkalmazsba</p>
+<pre class="highlight ruby">  <span class="nb">require</span> <span class="s1">'builder'</span>
 
-<pre><code class="ruby">  require &#39;builder&#39;
-
-  get &#39;/&#39; do
-    builder :index
-  end
-</code></pre>
-
+  <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="n">builder</span> <span class="ss">:index</span>
+  <span class="k">end</span>
+</pre>
 <p>Ez pedig a <code>./views/index.builder</code> llomnyt fogja renderelni.</p>
 
 <a name='Sass%20sablonok'></a>
@@ -231,36 +205,30 @@ renderelshez:</p>
 <p>Sass sablonok hasznlathoz szksg lesz a haml gem-re vagy knyvtrra:</p>
 
 <p># Be kell importlni a haml, vagy a sass knyvtrat</p>
+<pre class="highlight ruby">  <span class="nb">require</span> <span class="s1">'sass'</span>
 
-<pre><code class="ruby">  require &#39;sass&#39;
-
-  get &#39;/stylesheet.css&#39; do
-    sass :stylesheet
-  end
-</code></pre>
-
+  <span class="n">get</span> <span class="s1">'/stylesheet.css'</span> <span class="k">do</span>
+    <span class="n">sass</span> <span class="ss">:stylesheet</span>
+  <span class="k">end</span>
+</pre>
 <p>gy a <code>./views/stylesheet.sass</code> fjl mris renderelhet.</p>
 
 <p>A <a href="http://haml.hamptoncatlin.com/docs/rdoc/classes/Sass.html">Sass kapcsoli</a>
 globlisan is bellthatk a Sinatra konfigurcii kztt, lsd az
 <a href="http://www.sinatrarb.com/configuration.html">Options and Configurations</a> lapot.
 A globlis belltsokat lehetsgnk van fellrni metdus szinten is.</p>
+<pre class="highlight ruby">  <span class="n">set</span> <span class="ss">:sass</span><span class="p">,</span> <span class="p">{</span><span class="ss">:style</span> <span class="o">=&gt;</span> <span class="ss">:compact</span> <span class="p">}</span> <span class="c1"># az alaprtelmezett Sass stlus a :nested</span>
 
-<pre><code class="ruby">  set :sass, {:style =&gt; :compact } # az alaprtelmezett Sass stlus a :nested
-
-  get &#39;/stylesheet.css&#39; do
-    sass :stylesheet, :sass_options =&gt; {:style =&gt; :expanded } # fellrva
-  end
-</code></pre>
-
+  <span class="n">get</span> <span class="s1">'/stylesheet.css'</span> <span class="k">do</span>
+    <span class="n">sass</span> <span class="ss">:stylesheet</span><span class="p">,</span> <span class="ss">:sass_options</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:style</span> <span class="o">=&gt;</span> <span class="ss">:expanded</span> <span class="p">}</span> <span class="c1"># fellrva</span>
+  <span class="k">end</span>
+</pre>
 <a name='Begyazott%20sablonok'></a>
 <h3>Begyazott sablonok</h3>
-
-<pre><code class="ruby">  get &#39;/&#39; do
-    haml &#39;%div.title Hell Vilg&#39;
-  end
-</code></pre>
-
+<pre class="highlight ruby">  <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="n">haml</span> <span class="s1">'%div.title Hell Vilg'</span>
+  <span class="k">end</span>
+</pre>
 <p>Lerendereli a begyazott sablon karakerlnct.</p>
 
 <a name='Vltozk%20elrse%20a%20sablonokban'></a>
@@ -269,21 +237,17 @@ A globlis belltsokat lehetsgnk van fellrni metdus szinten is.</p>
 <p>A sablonok ugyanabban a kontextusban kerlnek kirtkelsre, mint az
 tvonal metdusok (route handlers). Az tvonal metdusokban megadott
 vltozk kzvetlenl elrhetek lesznek a sablonokban:</p>
-
-<pre><code class="ruby">  get &#39;/:id&#39; do
-    @foo = Foo.find(params[:id])
-    haml &#39;%h1= @foo.name&#39;
-  end
-</code></pre>
-
+<pre class="highlight ruby">  <span class="n">get</span> <span class="s1">'/:id'</span> <span class="k">do</span>
+    <span class="vi">@foo</span> <span class="o">=</span> <span class="no">Foo</span><span class="nf">.find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
+    <span class="n">haml</span> <span class="s1">'%h1= @foo.name'</span>
+  <span class="k">end</span>
+</pre>
 <p>De megadhatod egy loklis vltozkat tartalmaz explicit hash-ben is:</p>
-
-<pre><code class="ruby">  get &#39;/:id&#39; do
-    foo = Foo.find(params[:id])
-    haml &#39;%h1= foo.name&#39;, :locals =&gt; { :foo =&gt; foo }
-  end
-</code></pre>
-
+<pre class="highlight ruby">  <span class="n">get</span> <span class="s1">'/:id'</span> <span class="k">do</span>
+    <span class="n">foo</span> <span class="o">=</span> <span class="no">Foo</span><span class="nf">.find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
+    <span class="n">haml</span> <span class="s1">'%h1= foo.name'</span><span class="p">,</span> <span class="ss">:locals</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:foo</span> <span class="o">=&gt;</span> <span class="n">foo</span> <span class="p">}</span>
+  <span class="k">end</span>
+</pre>
 <p>Ezt leginkbb akkor rdemes megtenni, ha partial-eket akarunk renderelni
 valamely ms sablonbl.</p>
 
@@ -292,15 +256,14 @@ valamely ms sablonbl.</p>
 
 <p>Sablonokat gy is megadhatunk, hogy egyszeren az alkalmazs fjl
 vgre begpeljk ket:</p>
+<pre class="highlight ruby">  <span class="nb">require</span> <span class="s1">'rubygems'</span>
+  <span class="nb">require</span> <span class="s1">'sinatra'</span>
 
-<pre><code class="ruby">  require &#39;rubygems&#39;
-  require &#39;sinatra&#39;
+  <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="n">haml</span> <span class="ss">:index</span>
+  <span class="k">end</span>
 
-  get &#39;/&#39; do
-    haml :index
-  end
-
-  __END__
+  <span class="cp">__END__
 
   @@ layout
   %html
@@ -308,8 +271,7 @@ vgre begpeljk ket:</p>
 
   @@ index
   %div.title Hell Vilg!!!!!
-</code></pre>
-
+</span></pre>
 <p>Megjegyzs: azok a fjlon belli sablonok, amelyek az alkalmazs fjl vgre
 kerlnek s fggnek a sinatra knyvtrtl, automatikusan betltdnek.
 Ha ugyanezt ms alkalmazsfjlban is szeretnd megtenni, hvd meg 
@@ -320,47 +282,41 @@ a <tt>use<em>in</em>file_templates!</tt> metdust az adott fjlban.</p>
 
 <p>Sablonokat vgl a felsszint <tt>template</tt> metdussal is 
 definilhatunk: </p>
+<pre class="highlight ruby">  <span class="n">template</span> <span class="ss">:layout</span> <span class="k">do</span>
+    <span class="s2">&quot;%html</span><span class="se">\n</span><span class="s2">  =yield</span><span class="se">\n</span><span class="s2">&quot;</span>
+  <span class="k">end</span>
 
-<pre><code class="ruby">  template :layout do
-    &quot;%html\n  =yield\n&quot;
-  end
+  <span class="n">template</span> <span class="ss">:index</span> <span class="k">do</span>
+    <span class="s1">'%div.title Hell Vilg!'</span>
+  <span class="k">end</span>
 
-  template :index do
-    &#39;%div.title Hell Vilg!&#39;
-  end
-
-  get &#39;/&#39; do
-    haml :index
-  end
-</code></pre>
-
+  <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="n">haml</span> <span class="ss">:index</span>
+  <span class="k">end</span>
+</pre>
 <p>Ha ltezik &quot;layout&quot; nev sablon, akkor az minden esetben meghvdik, amikor
 csak egy sablon renderelsre kerl. A layoutokat ki lehet kapcsolni a
 <code>:layout =&gt; false</code> meghvsval.</p>
-
-<pre><code class="ruby">  get &#39;/&#39; do
-    haml :index, :layout =&gt; !request.xhr?
-  end
-</code></pre>
-
+<pre class="highlight ruby">  <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="n">haml</span> <span class="ss">:index</span><span class="p">,</span> <span class="ss">:layout</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="n">request</span><span class="nf">.xhr?</span>
+  <span class="k">end</span>
+</pre>
 <a name='Helperek'></a>
 <h2>Helperek</h2>
 
 <p>Hasznld a fels szint <tt>helpers</tt> metdust azokhoz a helper
 fggvnyekhez, amiket az tvonal metdusokban s a sablonokban akarsz
 hasznlni:</p>
+<pre class="highlight ruby">  <span class="n">helpers</span> <span class="k">do</span>
+    <span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+      <span class="s2">&quot;</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">bar&quot;</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
 
-<pre><code class="ruby">  helpers do
-    def bar(name)
-      &quot;#{name}bar&quot;
-    end
-  end
-
-  get &#39;/:name&#39; do
-    bar(params[:name])
-  end
-</code></pre>
-
+  <span class="n">get</span> <span class="s1">'/:name'</span> <span class="k">do</span>
+    <span class="n">bar</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:name</span><span class="o">]</span><span class="p">)</span>
+  <span class="k">end</span>
+</pre>
 <a name='Szrk%20(filters)'></a>
 <h2>Szrk (filters)</h2>
 
@@ -368,28 +324,24 @@ hasznlni:</p>
 krs alkalmval kirtkeldnek, gy mdosthatjk a krst s a
 vlaszt egyarnt. A szrkbe felvett pldnyvltozk elrhetek lesznek
 az tvonalakban s a sablonokban is:</p>
-
-<pre><code class="rubu">  before do
-    @note = &#39;Cs!&#39;
-    request.path_info = &#39;/foo/bar/baz&#39;
+<pre class="highlight text">  before do
+    @note = 'Cs!'
+    request.path_info = '/foo/bar/baz'
   end
 
-  get &#39;/foo/*&#39; do
-    @note #=&gt; &#39;Szeva!&#39;
-    params[:splat] #=&gt; &#39;bar/baz&#39;
+  get '/foo/*' do
+    @note #=&gt; 'Szeva!'
+    params[:splat] #=&gt; 'bar/baz'
   end
-</code></pre>
-
+</pre>
 <p>Az utszrk az egyes krsek utn, az adott krs kontextusban kerlnek
 kirtkelsre, gy ezek is kpesek mdostani a krst s a vlaszt egyarnt.
 Az elszrkben s vonalakban ltrehozott pldnyvltozk elrhetek lesznek
 az utszrk szmra:</p>
-
-<pre><code class="ruby">  after do
-    puts response.status
-  end
-</code></pre>
-
+<pre class="highlight ruby">  <span class="n">after</span> <span class="k">do</span>
+    <span class="nb">puts</span> <span class="n">response</span><span class="nf">.status</span>
+  <span class="k">end</span>
+</pre>
 <a name='Megllts'></a>
 <h2>Megllts</h2>
 
@@ -411,17 +363,15 @@ hasznld a kvetkez parancsot:</p>
 
 <p>Az tvonalak tovbbadhatjk a vgrehajtst egy msik tvonalnak 
 a <code>pass</code> fggvnyhvssal:</p>
+<pre class="highlight ruby">  <span class="n">get</span> <span class="s1">'/guess/:who'</span> <span class="k">do</span>
+    <span class="n">pass</span> <span class="k">unless</span> <span class="n">params</span><span class="o">[</span><span class="ss">:who</span><span class="o">]</span> <span class="o">==</span> <span class="s1">'Frici'</span>
+    <span class="s2">&quot;Elkaptl!&quot;</span>
+  <span class="k">end</span>
 
-<pre><code class="ruby">  get &#39;/guess/:who&#39; do
-    pass unless params[:who] == &#39;Frici&#39;
-    &quot;Elkaptl!&quot;
-  end
-
-  get &#39;/guess/*&#39; do
-    &quot;Elhibztl!&quot;
-  end
-</code></pre>
-
+  <span class="n">get</span> <span class="s1">'/guess/*'</span> <span class="k">do</span>
+    <span class="s2">&quot;Elhibztl!&quot;</span>
+  <span class="k">end</span>
+</pre>
 <p>Az tvonal blokkja azonnal kilp s tadja a vezrlst a kvetkez
 illeszked tvonalnak. Ha nem tall megfelel tvonalat, a Sinatra
 egy 404-es hibval tr vissza.</p>
@@ -430,27 +380,21 @@ egy 404-es hibval tr vissza.</p>
 <h2>Belltsok</h2>
 
 <p>Csak indtskor, de minden krnyezetre rvnyesen fusson le:</p>
-
-<pre><code class="ruby">  configure do
-    ...
-  end
-</code></pre>
-
+<pre class="highlight ruby">  <span class="n">configure</span> <span class="k">do</span>
+    <span class="nf">..</span><span class="o">.</span>
+  <span class="k">end</span>
+</pre>
 <p>Csak akkor fusson le, ha a krnyezet (a RACK_ENV krnyezeti vltozban)
 <code>:production</code>-ra van lltva:</p>
-
-<pre><code class="ruby">  configure :production do
-    ...
-  end
-</code></pre>
-
+<pre class="highlight ruby">  <span class="n">configure</span> <span class="ss">:production</span> <span class="k">do</span>
+    <span class="nf">..</span><span class="o">.</span>
+  <span class="k">end</span>
+</pre>
 <p>Csak akkor fusson le, ha a krnyezet <tt>:production</tt> vagy <tt>:test</tt>:</p>
-
-<pre><code class="ruby">  configure :production, :test do
-    ...
-  end
-</code></pre>
-
+<pre class="highlight ruby">  <span class="n">configure</span> <span class="ss">:production</span><span class="p">,</span> <span class="ss">:test</span> <span class="k">do</span>
+    <span class="nf">..</span><span class="o">.</span>
+  <span class="k">end</span>
+</pre>
 <a name='Hibakezels'></a>
 <h2>Hibakezels</h2>
 
@@ -464,38 +408,30 @@ az <code>erb</code>, a <code>halt</code> stb.</p>
 
 <p>Amikor a <code>Sinatra::NotFound</code> kivtel fellp, vagy a vlasz HTTP
 sttuszkdja 404-es, mindig a <code>not_found</code> metdus hvdik meg.</p>
-
-<pre><code class="ruby">  not_found do
-    &#39;Sehol sem tallom, amit keresel&#39;
-  end
-</code></pre>
-
+<pre class="highlight ruby">  <span class="n">not_found</span> <span class="k">do</span>
+    <span class="s1">'Sehol sem tallom, amit keresel'</span>
+  <span class="k">end</span>
+</pre>
 <a name='Hiba'></a>
 <h3>Hiba</h3>
 
 <p>Az <code>error</code> metdus hvdik meg olyankor, amikor egy tvonal, blokk vagy
 elszr kivtelt vlt ki. A kivtel objektum lehvhat a
 <code>sinatra.error</code> Rack vltoztl:</p>
-
-<pre><code class="ruby">  error do
-    &#39;Elnzst, de valami szrny hiba lpett fel - &#39; + env[&#39;sinatra.error&#39;].name
-  end
-</code></pre>
-
+<pre class="highlight ruby">  <span class="n">error</span> <span class="k">do</span>
+    <span class="s1">'Elnzst, de valami szrny hiba lpett fel - '</span> <span class="o">+</span> <span class="n">env</span><span class="o">[</span><span class="s1">'sinatra.error'</span><span class="o">]</span><span class="nf">.name</span>
+  <span class="k">end</span>
+</pre>
 <p>Egyni hibakezels:</p>
-
-<pre><code class="ruby">  error MyCustomError do
-    &#39;Szval az van, hogy...&#39; + env[&#39;sinatra.error&#39;].message
-  end
-</code></pre>
-
+<pre class="highlight ruby">  <span class="n">error</span> <span class="no">MyCustomError</span> <span class="k">do</span>
+    <span class="s1">'Szval az van, hogy...'</span> <span class="o">+</span> <span class="n">env</span><span class="o">[</span><span class="s1">'sinatra.error'</span><span class="o">]</span><span class="nf">.message</span>
+  <span class="k">end</span>
+</pre>
 <p>s amikor fellp:</p>
-
-<pre><code class="ruby">  get &#39;/&#39; do
-    raise MyCustomError, &#39;valami nem stimmel!&#39;
-  end
-</code></pre>
-
+<pre class="highlight ruby">  <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="k">raise</span> <span class="no">MyCustomError</span><span class="p">,</span> <span class="s1">'valami nem stimmel!'</span>
+  <span class="k">end</span>
+</pre>
 <p>Ez fog megjelenni:</p>
 
 <p>Szval az van, hogy... valami nem stimmel!</p>
@@ -510,10 +446,8 @@ hasznl, amikor a futtatsi krnyezet fejleszti mdba van kapcsolva.</p>
 kiszolglsakor elfordulhat, hogy a Sinatra nem ismeri fel a fjlok
 mime tpust. Ilyenkor hasznld a +mime_type+ kapcsolt a fjlkiterjeszts
 bevezetshez:</p>
-
-<pre><code class="ruby">  mime_type :foo, &#39;text/foo&#39;
-</code></pre>
-
+<pre class="highlight ruby">  <span class="n">mime_type</span> <span class="ss">:foo</span><span class="p">,</span> <span class="s1">'text/foo'</span>
+</pre>
 <a name='Rack%20Middleware'></a>
 <h2>Rack Middleware</h2>
 
@@ -527,29 +461,25 @@ funkcikat pthetnk be rendszernkbe.</p>
 
 <p>A Sinatra keretrendszerben gyerekjtk a Rack middleware-ek behzsa a
 <code>use</code> metdus segtsgvel:</p>
+<pre class="highlight ruby">  <span class="nb">require</span> <span class="s1">'sinatra'</span>
+  <span class="nb">require</span> <span class="s1">'my_custom_middleware'</span>
 
-<pre><code class="ruby">  require &#39;sinatra&#39;
-  require &#39;my_custom_middleware&#39;
+  <span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Lint</span>
+  <span class="n">use</span> <span class="no">MyCustomMiddleware</span>
 
-  use Rack::Lint
-  use MyCustomMiddleware
-
-  get &#39;/hello&#39; do
-    &#39;Hell Vilg&#39;
-  end
-</code></pre>
-
+  <span class="n">get</span> <span class="s1">'/hello'</span> <span class="k">do</span>
+    <span class="s1">'Hell Vilg'</span>
+  <span class="k">end</span>
+</pre>
 <p>A <code>use</code> metdus szemantikja megegyezik a 
 <a href="http://rack.rubyforge.org/doc/classes/Rack/Builder.html">Rack::Builder</a> DSL-ben
 hasznlt +use+ metdusval (az emltett DSL-t leginkbb rackup llomnyokban
 hasznljk). Hogy egy pldt emltsnk, a <code>use</code> metdus elfogad 
 vltozkat s blokkokat egyarnt, akr kombinlva is ezeket:</p>
-
-<pre><code class="ruby">  use Rack::Auth::Basic do |username, password|
-    username == &#39;admin&#39; &amp;&amp; password == &#39;titkos&#39;
-  end
-</code></pre>
-
+<pre class="highlight ruby">  <span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Auth</span><span class="o">::</span><span class="no">Basic</span> <span class="k">do</span> <span class="o">|</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">|</span>
+    <span class="n">username</span> <span class="o">==</span> <span class="s1">'admin'</span> <span class="o">&amp;&amp;</span> <span class="n">password</span> <span class="o">==</span> <span class="s1">'titkos'</span>
+  <span class="k">end</span>
+</pre>
 <p>A Rack terjesztssel egy csom alap middleware komponens is rkezik,
 amelyekkel a naplzs, URL tvonalak megadsa, autentikci s 
 munkamenet-kezels knnyen megvalsthat. A Sinatra ezek kzl elg
@@ -562,34 +492,32 @@ explicit betltsvel (+use+) nem kell bajldnod.</p>
 <p>Sinatra teszteket brmely Rack alap tesztel knyvtrral vagy
 keretrendszerrel kszthetsz. Mi a <a href="http://gitrdoc.com/brynary/rack-test">Rack::Test</a>
 knyvtrat ajnljuk:</p>
+<pre class="highlight ruby">  <span class="nb">require</span> <span class="s1">'my_sinatra_app'</span>
+  <span class="nb">require</span> <span class="s1">'rack/test'</span>
 
-<pre><code class="ruby">  require &#39;my_sinatra_app&#39;
-  require &#39;rack/test&#39;
+  <span class="k">class</span> <span class="nc">MyAppTest</span> <span class="o">&lt;</span> <span class="no">Test</span><span class="o">::</span><span class="no">Unit</span><span class="o">::</span><span class="no">TestCase</span>
+    <span class="kp">include</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Test</span><span class="o">::</span><span class="no">Methods</span>
 
-  class MyAppTest &lt; Test::Unit::TestCase
-    include Rack::Test::Methods
+    <span class="k">def</span> <span class="nf">app</span>
+      <span class="no">Sinatra</span><span class="o">::</span><span class="no">Application</span>
+    <span class="k">end</span>
 
-    def app
-      Sinatra::Application
-    end
+    <span class="k">def</span> <span class="nf">test_my_default</span>
+      <span class="n">get</span> <span class="s1">'/'</span>
+      <span class="n">assert_equal</span> <span class="s1">'Hell Vilg!'</span><span class="p">,</span> <span class="n">last_response</span><span class="nf">.body</span>
+    <span class="k">end</span>
 
-    def test_my_default
-      get &#39;/&#39;
-      assert_equal &#39;Hell Vilg!&#39;, last_response.body
-    end
+    <span class="k">def</span> <span class="nf">test_with_params</span>
+      <span class="n">get</span> <span class="s1">'/meet'</span><span class="p">,</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s1">'Frici'</span>
+      <span class="n">assert_equal</span> <span class="s1">'Hell Frici!'</span><span class="p">,</span> <span class="n">last_response</span><span class="nf">.body</span>
+    <span class="k">end</span>
 
-    def test_with_params
-      get &#39;/meet&#39;, :name =&gt; &#39;Frici&#39;
-      assert_equal &#39;Hell Frici!&#39;, last_response.body
-    end
-
-    def test_with_rack_env
-      get &#39;/&#39;, {}, &#39;HTTP_USER_AGENT&#39; =&gt; &#39;Songbird&#39;
-      assert_equal &quot;Songbird-t hasznlsz!&quot;, last_response.body
-    end
-  end
-</code></pre>
-
+    <span class="k">def</span> <span class="nf">test_with_rack_env</span>
+      <span class="n">get</span> <span class="s1">'/'</span><span class="p">,</span> <span class="p">{},</span> <span class="s1">'HTTP_USER_AGENT'</span> <span class="o">=&gt;</span> <span class="s1">'Songbird'</span>
+      <span class="n">assert_equal</span> <span class="s2">&quot;Songbird-t hasznlsz!&quot;</span><span class="p">,</span> <span class="n">last_response</span><span class="nf">.body</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+</pre>
 <p>Megjegyzs: A beptett Sinatra::Test s Sinatra::TestHarness osztlyok
 a 0.9.2-es kiadstl kezdve elavultnak szmtanak.</p>
 
@@ -606,28 +534,24 @@ belltsokat felttelez (gy pldul egyetlen alkalmazsfjl,
 <code>./public</code>
 s <code>./views</code> knyvtr megltt, naplzst, kivtelkezel oldalt stb.).
 Itt jn a kpbe a Sinatra::Base osztly:</p>
+<pre class="highlight ruby">  <span class="nb">require</span> <span class="s1">'sinatra/base'</span>
 
-<pre><code class="ruby">  require &#39;sinatra/base&#39;
+  <span class="k">class</span> <span class="nc">MyApp</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+    <span class="n">set</span> <span class="ss">:sessions</span><span class="p">,</span> <span class="kp">true</span>
+    <span class="n">set</span> <span class="ss">:foo</span><span class="p">,</span> <span class="s1">'bar'</span>
 
-  class MyApp &lt; Sinatra::Base
-    set :sessions, true
-    set :foo, &#39;bar&#39;
-
-    get &#39;/&#39; do
-      &#39;Hell Vilg!&#39;
-    end
-  end
-</code></pre>
-
+    <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+      <span class="s1">'Hell Vilg!'</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+</pre>
 <p>A MyApp osztly immr nll Rack komponensknt, mondjuk Rack middleware-knt
 vagy alkalmazsknt, esetleg Rails metal-knt is tud mkdni. Kzvetlenl
 hasznlhatod (<code>use</code>) vagy futtathatod (<code>run</code>) az osztlyodat egy rackup
 konfigurcis llomnyban (<code>config.ru</code>), vagy egy szerverkomponenst
 tartalmaz knyvtr vezrlsekor:</p>
-
-<pre><code class="ruby">   MyApp.run! :host =&gt; &#39;localhost&#39;, :port =&gt; 9090
-</code></pre>
-
+<pre class="highlight ruby">   <span class="no">MyApp</span><span class="nf">.run!</span> <span class="ss">:host</span> <span class="o">=&gt;</span> <span class="s1">'localhost'</span><span class="p">,</span> <span class="ss">:port</span> <span class="o">=&gt;</span> <span class="mi">9090</span>
+</pre>
 <p>A Sinatra::Base gyermekosztlyaiban elrhet metdusok egyttal a fels
 szint DSL-en keresztl is hozzfrhetk. A legtbb fels szint
 alkalmazs talakthat Sinatra::Base alap komponensekk kt lpsben:</p>
@@ -659,10 +583,8 @@ a f nvtrbe.</p>
 <h2>Parancssori lehetsgek</h2>
 
 <p>Sinatra alkalmazsokat kzvetlenl futtathatunk:</p>
-
-<pre><code>  ruby myapp.rb [-h] [-x] [-e ENVIRONMENT] [-p PORT] [-s HANDLER]
-</code></pre>
-
+<pre class="highlight text">  ruby myapp.rb [-h] [-x] [-e ENVIRONMENT] [-p PORT] [-s HANDLER]
+</pre>
 <p>Az albbi kapcsolkat ismeri fel a rendszer:</p>
 
 <p>-h # segtsg
@@ -678,30 +600,24 @@ a f nvtrbe.</p>
 kszts egy helyi msolatot s indtsd az alkalmazsodat gy,
 hogy a <code>sinatra/lib</code> knyvtr elrhet legyen a 
 <code>LOAD_PATH</code>-on:</p>
-
-<pre><code>  cd myapp
+<pre class="highlight text">  cd myapp
   git clone git://github.com/sinatra/sinatra.git
   ruby -Isinatra/lib myapp.rb
-</code></pre>
-
+</pre>
 <p>De hozz is adhatod a <tt>sinatra/lib</tt> knyvtrat a <tt>LOAD_PATH</tt>-hoz
 az alkalmazsodban:</p>
+<pre class="highlight ruby">  <span class="vg">$LOAD_PATH</span><span class="nf">.unshift</span> <span class="no">File</span><span class="nf">.dirname</span><span class="p">(</span><span class="kp">__FILE__</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'/sinatra/lib'</span>
+  <span class="nb">require</span> <span class="s1">'rubygems'</span>
+  <span class="nb">require</span> <span class="s1">'sinatra'</span>
 
-<pre><code class="ruby">  $LOAD_PATH.unshift File.dirname(__FILE__) + &#39;/sinatra/lib&#39;
-  require &#39;rubygems&#39;
-  require &#39;sinatra&#39;
-
-  get &#39;/about&#39; do
-    &quot;A kvetkez vltozatot futtatom &quot; + Sinatra::VERSION
-  end
-</code></pre>
-
+  <span class="n">get</span> <span class="s1">'/about'</span> <span class="k">do</span>
+    <span class="s2">&quot;A kvetkez vltozatot futtatom &quot;</span> <span class="o">+</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">VERSION</span>
+  <span class="k">end</span>
+</pre>
 <p>A Sinatra frisstst ksbb gy vgezheted el:</p>
-
-<pre><code>  cd myproject/sinatra
+<pre class="highlight text">  cd myproject/sinatra
   git pull
-</code></pre>
-
+</pre>
 <a name='Tovbbi%20informcik'></a>
 <h2>Tovbbi informcik</h2>
 
