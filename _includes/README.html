@@ -2,14 +2,12 @@
 	<ol class='level-1'>
 		<li><a href='#Routes'>Routes</a></li>
 		<li><a href='#Conditions'>Conditions</a></li>
+		<li><a href='#Return%20Values'>Return Values</a></li>
+		<li><a href='#Custom%20Route%20Matchers'>Custom Route Matchers</a></li>
+		<li><a href='#Static%20Files'>Static Files</a></li>
+		<li><a href='#Views%20/%20Templates'>Views / Templates</a></li>
 		<ol class='level-2'>
-			<li><a href='#Return%20Values'>Return Values</a></li>
-			<li><a href='#Custom%20Route%20Matchers'>Custom Route Matchers</a></li>
-			<li><a href='#Static%20Files'>Static Files</a></li>
-			<li><a href='#Views%20/%20Templates'>Views / Templates</a></li>
-			<ol class='level-3'>
-				<li><a href='#Literal%20Templates'>Literal Templates</a></li>
-			</ol>
+			<li><a href='#Literal%20Templates'>Literal Templates</a></li>
 			<li><a href='#Available%20Template%20Languages'>Available Template Languages</a></li>
 			<ol class='level-3'>
 				<li><a href='#Haml%20Templates'>Haml Templates</a></li>
@@ -262,7 +260,7 @@ the request path might be modified before matching against your routes.</p>
 <span class="k">end</span>
 </pre>
 <a name='Return%20Values'></a>
-<h3>Return Values</h3>
+<h2>Return Values</h2>
 
 <p>The return value of a route block determines at least the response body passed
 on to the HTTP client, or at least the next middleware in the Rack stack.
@@ -295,7 +293,7 @@ the given block</li>
 plate and embed the streaming logic in the route.</p>
 
 <a name='Custom%20Route%20Matchers'></a>
-<h3>Custom Route Matchers</h3>
+<h2>Custom Route Matchers</h2>
 
 <p>As shown above, Sinatra ships with built-in support for using String patterns
 and regular expressions as route matches. However, it does not stop there. You
@@ -334,7 +332,7 @@ expressed as:</p>
 <span class="k">end</span>
 </pre>
 <a name='Static%20Files'></a>
-<h3>Static Files</h3>
+<h2>Static Files</h2>
 
 <p>Static files are served from the <code>./public</code> directory. You can specify
 a different location by setting the <code>:public_folder</code> option:</p>
@@ -348,7 +346,7 @@ a different location by setting the <code>:public_folder</code> option:</p>
 <code>Cache-Control</code> header info.</p>
 
 <a name='Views%20/%20Templates'></a>
-<h3>Views / Templates</h3>
+<h2>Views / Templates</h2>
 
 <p>Each template language is exposed via its own rendering method. These
 methods simply return a string:</p>
@@ -450,7 +448,7 @@ with symbols, even if they&#39;re in a subdirectory (in this case, use:
 methods will render any strings passed to them directly.</p>
 
 <a name='Literal%20Templates'></a>
-<h4>Literal Templates</h4>
+<h3>Literal Templates</h3>
 <pre class="highlight ruby"><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
   <span class="n">haml</span> <span class="s1">'%div.title Hello World'</span>
 <span class="k">end</span>
