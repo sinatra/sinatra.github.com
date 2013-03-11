@@ -22,6 +22,7 @@
 			<li><a href='#RDoc%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>RDoc テンプレート</a></li>
 			<li><a href='#Radius%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>Radius テンプレート</a></li>
 			<li><a href='#Markaby%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>Markaby テンプレート</a></li>
+			<li><a href='#RABL%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>RABL テンプレート</a></li>
 			<li><a href='#Slim%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>Slim テンプレート</a></li>
 			<li><a href='#Creole%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>Creole テンプレート</a></li>
 			<li><a href='#CoffeeScript%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>CoffeeScript テンプレート</a></li>
@@ -61,22 +62,23 @@
 </div>
 
 
-
 <p><em>注）
 本文書は英語から翻訳したものであり、その内容が最新でない場合もあります。最新の情報はオリジナルの英語版を参照して下さい。</em></p>
 
-<p>SinatraはRubyで下記のような最小労力で手早くウェブアプリケーションを作成するためのDSLです。</p>
+<p><a href="http://ja.wikipedia.org/wiki/%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E5%9B%BA%E6%9C%89%E8%A8%80%E8%AA%9E">DSL</a>です。</p>
 
-<pre># myapp.rb
-require 'sinatra'
-get '/' do
-  'Hello world!'
-end</pre>
+<pre><code># myapp.rb
+require &#39;sinatra&#39;
+get &#39;/&#39; do
+  &#39;Hello world!&#39;
+end
+</code></pre>
 
 <p>gemをインストールして動かしてみる。</p>
 
-<pre>gem install sinatra
-ruby -rubygems myapp.rb</pre>
+<pre><code>gem install sinatra
+ruby myapp.rb
+</code></pre>
 
 <p><a href="http://localhost:4567">localhost:4567</a> を見る。</p>
 
@@ -86,109 +88,119 @@ ruby -rubygems myapp.rb</pre>
 <p>Sinatraでは、ルートはHTTPメソッドとURLマッチングパターンがペアになっています。
 ルートはブロックに結び付けられています。</p>
 
-<pre>get '/' do
+<pre><code>get &#39;/&#39; do
   .. 何か見せる ..
 end
 
-post '/' do
+post &#39;/&#39; do
   .. 何か生成する ..
 end
 
-put '/' do
+put &#39;/&#39; do
   .. 何か更新する ..
 end
 
-delete '/' do
+delete &#39;/&#39; do
   .. 何か削除する ..
-end</pre>
+end
+</code></pre>
 
 <p>ルートは定義された順番にマッチします。
 リクエストに最初にマッチしたルートが呼び出されます。</p>
 
 <p>ルートのパターンは名前付きパラメータを含むことができ、
-<tt>params</tt>ハッシュで取得できます。</p>
+<code>params</code>ハッシュで取得できます。</p>
 
-<pre>get '/hello/:name' do
+<pre><code>get &#39;/hello/:name&#39; do
   # matches &quot;GET /hello/foo&quot; and &quot;GET /hello/bar&quot;
-  # params[:name] is 'foo' or 'bar'
+  # params[:name] is &#39;foo&#39; or &#39;bar&#39;
   &quot;Hello #{params[:name]}!&quot;
-end</pre>
+end
+</code></pre>
 
 <p>また、ブロックパラメータで名前付きパラメータにアクセスすることもできます。</p>
 
-<pre>get '/hello/:name' do |n|
+<pre><code>get &#39;/hello/:name&#39; do |n|
   &quot;Hello #{n}!&quot;
-end</pre>
+end
+</code></pre>
 
 <p>ルートパターンはsplat(またはワイルドカード)を含むこともでき、
-<tt>params[:splat]</tt> で取得できます。</p>
+<code>params[:splat]</code> で取得できます。</p>
 
-<pre>get '/say/*/to/*' do
+<pre><code>get &#39;/say/*/to/*&#39; do
   # matches /say/hello/to/world
   params[:splat] # =&gt; [&quot;hello&quot;, &quot;world&quot;]
 end
 
-get '/download/*.*' do
+get &#39;/download/*.*&#39; do
   # matches /download/path/to/file.xml
   params[:splat] # =&gt; [&quot;path/to/file&quot;, &quot;xml&quot;]
-end</pre>
+end
+</code></pre>
 
 <p>ブロックパラーメータを使用した場合:</p>
 
-<pre>get '/download/*.*' do |path, ext|
+<pre><code>get &#39;/download/*.*&#39; do |path, ext|
   [path, ext] # =&gt; [&quot;path/to/file&quot;, &quot;xml&quot;]
-end</pre>
+end
+</code></pre>
 
 <p>正規表現を使ったルート:</p>
 
-<pre>get %r{/hello/([\w]+)} do
+<pre><code>get %r{/hello/([\w]+)} do
   &quot;Hello, #{params[:captures].first}!&quot;
-end</pre>
+end
+</code></pre>
 
 <p>ブロックパラーメータを使用した場合:</p>
 
-<pre>get %r{/hello/([\w]+)} do |c|
+<pre><code>get %r{/hello/([\w]+)} do |c|
   &quot;Hello, #{c}!&quot;
-end</pre>
+end
+</code></pre>
 
 <a name='%E6%9D%A1%E4%BB%B6'></a>
 <h3>条件</h3>
 
 <p>ルートにはユーザエージェントのようなさまざまな条件を含めることができます。</p>
 
-<pre>get '/foo', :agent =&gt; /Songbird (\d\.\d)[\d\/]*?/ do
-  &quot;You're using Songbird version #{params[:agent][0]}&quot;
+<pre><code>get &#39;/foo&#39;, :agent =&gt; /Songbird (\d\.\d)[\d\/]*?/ do
+  &quot;You&#39;re using Songbird version #{params[:agent][0]}&quot;
 end
 
-get '/foo' do
+get &#39;/foo&#39; do
   # Matches non-songbird browsers
-end</pre>
+end
+</code></pre>
 
-<p>ほかに<tt>host_name</tt>と<tt>provides</tt>条件が利用可能です:</p>
+<p>ほかに<code>host_name</code>と<code>provides</code>条件が利用可能です:</p>
 
-<pre>get '/', :host_name =&gt; /^admin\./ do
+<pre><code>get &#39;/&#39;, :host_name =&gt; /^admin\./ do
   &quot;Admin Area, Access denied!&quot;
 end
 
-get '/', :provides =&gt; 'html' do
+get &#39;/&#39;, :provides =&gt; &#39;html&#39; do
   haml :index
 end
 
-get '/', :provides =&gt; ['rss', 'atom', 'xml'] do
+get &#39;/&#39;, :provides =&gt; [&#39;rss&#39;, &#39;atom&#39;, &#39;xml&#39;] do
   builder :feed
-end</pre>
+end
+</code></pre>
 
 <p>独自の条件を定義することも簡単にできます:</p>
 
-<pre>set(:probability) { |value| condition { rand &lt;= value } }
+<pre><code>set(:probability) { |value| condition { rand &lt;= value } }
 
-get '/win_a_car', :probability =&gt; 0.1 do
+get &#39;/win_a_car&#39;, :probability =&gt; 0.1 do
   &quot;You won!&quot;
 end
 
-get '/win_a_car' do
+get &#39;/win_a_car&#39; do
   &quot;Sorry, you lost.&quot;
-end</pre>
+end
+</code></pre>
 
 <a name='%E6%88%BB%E3%82%8A%E5%80%A4'></a>
 <h3>戻り値</h3>
@@ -199,50 +211,50 @@ end</pre>
 
 <p>Rackレスポンス、Rackボディオブジェクト、HTTPステータスコードのいずれかとして
 妥当なオブジェクトであればどのようなオブジェクトでも返すことができます:</p>
-<ul><li>
-<p>3要素の配列: <tt>[ステータス(Fixnum), ヘッダ(Hash),
-レスポンスボディ(#eachに応答する)]</tt></p>
-</li><li>
-<p>2要素の配列: <tt>[ステータス(Fixnum),
-レスポンスボディ(#eachに応答する)]</tt></p>
-</li><li>
-<p><tt>#each</tt>に応答し、与えられたブロックに文字列を渡すオブジェクト</p>
-</li><li>
-<p>ステータスコードを表現するFixnum</p>
-</li></ul>
+
+<ul>
+<li><p>3要素の配列:
+<code>[ステータス(Fixnum), ヘッダ(Hash), レスポンスボディ(#eachに応答する)]</code></p></li>
+<li><p>2要素の配列:
+<code>[ステータス(Fixnum), レスポンスボディ(#eachに応答する)]</code></p></li>
+<li><p><code>#each</code>に応答し、与えられたブロックに文字列を渡すオブジェクト</p></li>
+<li><p>ステータスコードを表現するFixnum</p></li>
+</ul>
 
 <p>そのように、例えばストリーミングの例を簡単に実装することができます:</p>
 
-<pre>class Stream
+<pre><code>class Stream
   def each
     100.times { |i| yield &quot;#{i}\n&quot; }
   end
 end
 
-get('/') { Stream.new }</pre>
+get(&#39;/&#39;) { Stream.new }
+</code></pre>
 
 <a name='%E9%9D%99%E7%9A%84%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB'></a>
 <h2>静的ファイル</h2>
 
-<p>静的ファイルは<tt>./public</tt>ディレクトリから配信されます。
-<tt>:public_folder</tt>オプションを指定することで別の場所を指定することができます。</p>
+<p>静的ファイルは<code>./public</code>ディレクトリから配信されます。
+<code>:public_folder</code>オプションを指定することで別の場所を指定することができます。</p>
 
-<pre>set :public_folder, File.dirname(__FILE__) + '/static'</pre>
+<pre><code>set :public_folder, File.dirname(__FILE__) + &#39;/static&#39;
+</code></pre>
 
-<p>注意:
-この静的ファイル用のディレクトリ名はURL中に含まれません。
-例えば、<tt>./public/css/style.css</tt>は<tt>http://example.com/css/style.css</tt>でアクセスできます。</p>
+<p>注意: この静的ファイル用のディレクトリ名はURL中に含まれません。
+例えば、<code>./public/css/style.css</code>は<code>http://example.com/css/style.css</code>でアクセスできます。</p>
 
 <a name='%E3%83%93%E3%83%A5%E3%83%BC%20/%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h2>ビュー / テンプレート</h2>
 
-<p>テンプレートは<tt>./views</tt>ディレクトリ下に配置されています。
+<p>テンプレートは<code>./views</code>ディレクトリ下に配置されています。
 他のディレクトリを使用する場合の例:</p>
 
-<pre>set :views, File.dirname(__FILE__) + '/templates'</pre>
+<pre><code>set :views, File.dirname(__FILE__) + &#39;/templates&#39;
+</code></pre>
 
 <p>テンプレートはシンボルを使用して参照させることを覚えておいて下さい。
-サブデレクトリでもこの場合は<tt>:'subdir/template'</tt>のようにします。
+サブデレクトリでもこの場合は<code>:&#39;subdir/template&#39;</code>のようにします。
 レンダリングメソッドは文字列が渡されると、そのまま文字列を出力します。</p>
 
 <a name='Haml%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
@@ -250,326 +262,364 @@ get('/') { Stream.new }</pre>
 
 <p>hamlを使うにはhamlライブラリが必要です:</p>
 
-<pre># hamlを読み込みます
-require 'haml'
+<pre><code># hamlを読み込みます
+require &#39;haml&#39;
 
-get '/' do
+get &#39;/&#39; do
   haml :index
-end</pre>
+end
+</code></pre>
 
-<p><tt>./views/index.haml</tt>を表示します。</p>
+<p><code>./views/index.haml</code>を表示します。</p>
 
-<p><a
-href="http://haml.info/docs/yardoc/file.HAML_REFERENCE.html#options">Haml's
+<p><a href="http://haml.info/docs/yardoc/file.HAML_REFERENCE.html#options">Haml’s
 options</a>
-はSinatraの設定でグローバルに設定することができます。
-<a href="http://www.sinatrarb.com/configuration.html">Options and
+はSinatraの設定でグローバルに設定することができます。 <a href="http://www.sinatrarb.com/configuration.html">Options and
 Configurations</a>,
 を参照してそれぞれ設定を上書きして下さい。</p>
 
-<pre>set :haml, {:format =&gt; :html5 } # デフォルトのフォーマットは:xhtml
+<pre><code>set :haml, {:format =&gt; :html5 } # デフォルトのフォーマットは:xhtml
 
-get '/' do
+get &#39;/&#39; do
   haml :index, :haml_options =&gt; {:format =&gt; :html4 } # 上書き
-end</pre>
+end
+</code></pre>
 
 <a name='Erb%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h3>Erb テンプレート</h3>
 
-<pre># erbを読み込みます
-require 'erb'
+<pre><code># erbを読み込みます
+require &#39;erb&#39;
 
-get '/' do
+get &#39;/&#39; do
   erb :index
-end</pre>
+end
+</code></pre>
 
-<p><tt>./views/index.erb</tt>を表示します。</p>
+<p><code>./views/index.erb</code>を表示します。</p>
 
 <a name='Erubis'></a>
 <h3>Erubis</h3>
 
 <p>erubisテンプレートを表示するには、erubisライブラリが必要です:</p>
 
-<pre># erubisを読み込みます
-require 'erubis'
+<pre><code># erubisを読み込みます
+require &#39;erubis&#39;
 
-get '/' do
+get &#39;/&#39; do
   erubis :index
-end</pre>
+end
+</code></pre>
 
-<p><tt>./views/index.erubis</tt>を表示します。</p>
+<p><code>./views/index.erubis</code>を表示します。</p>
 
 <a name='Builder%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h3>Builder テンプレート</h3>
 
 <p>builderを使うにはbuilderライブラリが必要です:</p>
 
-<pre># builderを読み込みます
-require 'builder'
+<pre><code># builderを読み込みます
+require &#39;builder&#39;
 
-get '/' do
+get &#39;/&#39; do
   builder :index
-end</pre>
+end
+</code></pre>
 
-<p><tt>./views/index.builder</tt>を表示します。</p>
+<p><code>./views/index.builder</code>を表示します。</p>
 
 <a name='%E9%8B%B8%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h3>鋸 テンプレート</h3>
 
 <p>鋸を使うには鋸ライブラリが必要です:</p>
 
-<pre># 鋸を読み込みます
-require 'nokogiri'
+<pre><code># 鋸を読み込みます
+require &#39;nokogiri&#39;
 
-get '/' do
+get &#39;/&#39; do
   nokogiri :index
-end</pre>
+end
+</code></pre>
 
-<p><tt>./views/index.nokogiri</tt>を表示します。</p>
+<p><code>./views/index.nokogiri</code>を表示します。</p>
 
 <a name='Sass%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h3>Sass テンプレート</h3>
 
 <p>Sassテンプレートを使うにはsassライブラリが必要です:</p>
 
-<pre># hamlかsassを読み込みます
-require 'sass'
+<pre><code># hamlかsassを読み込みます
+require &#39;sass&#39;
 
-get '/stylesheet.css' do
+get &#39;/stylesheet.css&#39; do
   sass :stylesheet
-end</pre>
+end
+</code></pre>
 
-<p><tt>./views/stylesheet.sass</tt>を表示します。</p>
+<p><code>./views/stylesheet.sass</code>を表示します。</p>
 
-<p><a
-href="http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#options">Sass'
+<p><a href="http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#options">Sass’
 options</a>
-はSinatraの設定でグローバルに設定することができます。
-see <a href="http://www.sinatrarb.com/configuration.html">Options and
+はSinatraの設定でグローバルに設定することができます。 see <a href="http://www.sinatrarb.com/configuration.html">Options and
 Configurations</a>,
 を参照してそれぞれ設定を上書きして下さい。</p>
 
-<pre>set :sass, {:style =&gt; :compact } # デフォルトのSass styleは :nested
+<pre><code>set :sass, {:style =&gt; :compact } # デフォルトのSass styleは :nested
 
-get '/stylesheet.css' do
+get &#39;/stylesheet.css&#39; do
   sass :stylesheet, :sass_options =&gt; {:style =&gt; :expanded } # 上書き
-end</pre>
+end
+</code></pre>
 
 <a name='Scss%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h3>Scss テンプレート</h3>
 
 <p>Scssテンプレートを使うにはsassライブラリが必要です:</p>
 
-<pre># hamlかsassを読み込みます
-require 'sass'
+<pre><code># hamlかsassを読み込みます
+require &#39;sass&#39;
 
-get '/stylesheet.css' do
+get &#39;/stylesheet.css&#39; do
   scss :stylesheet
-end</pre>
+end
+</code></pre>
 
-<p><tt>./views/stylesheet.scss</tt>を表示します。</p>
+<p><code>./views/stylesheet.scss</code>を表示します。</p>
 
-<p><a
-href="http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#options">Sass'
+<p><a href="http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#options">Sass’
 options</a>
-はSinatraの設定でグローバルに設定することができます。
-see <a href="http://www.sinatrarb.com/configuration.html">Options and
+はSinatraの設定でグローバルに設定することができます。 see <a href="http://www.sinatrarb.com/configuration.html">Options and
 Configurations</a>,
 を参照してそれぞれ設定を上書きして下さい。</p>
 
-<pre>set :scss, :style =&gt; :compact # デフォルトのScss styleは:nested
+<pre><code>set :scss, :style =&gt; :compact # デフォルトのScss styleは:nested
 
-get '/stylesheet.css' do
+get &#39;/stylesheet.css&#39; do
   scss :stylesheet, :style =&gt; :expanded # 上書き
-end</pre>
+end
+</code></pre>
 
 <a name='Less%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h3>Less テンプレート</h3>
 
 <p>Lessテンプレートを使うにはlessライブラリが必要です:</p>
 
-<pre># lessを読み込みます
-require 'less'
+<pre><code># lessを読み込みます
+require &#39;less&#39;
 
-get '/stylesheet.css' do
+get &#39;/stylesheet.css&#39; do
   less :stylesheet
-end</pre>
+end
+</code></pre>
 
-<p><tt>./views/stylesheet.less</tt>を表示します。</p>
+<p><code>./views/stylesheet.less</code>を表示します。</p>
 
 <a name='Liquid%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h3>Liquid テンプレート</h3>
 
 <p>Liquidテンプレートを使うにはliquidライブラリが必要です:</p>
 
-<pre># liquidを読み込みます
-require 'liquid'
+<pre><code># liquidを読み込みます
+require &#39;liquid&#39;
 
-get '/' do
+get &#39;/&#39; do
   liquid :index
-end</pre>
+end
+</code></pre>
 
-<p><tt>./views/index.liquid</tt>を表示します。</p>
+<p><code>./views/index.liquid</code>を表示します。</p>
 
-<p>LiquidテンプレートからRubyのメソッド(<tt>yield</tt>を除く)を呼び出すことができないため、
+<p>LiquidテンプレートからRubyのメソッド(<code>yield</code>を除く)を呼び出すことができないため、
 ほぼ全ての場合にlocalsを指定する必要があるでしょう:</p>
 
-<pre>liquid :index, :locals =&gt; { :key =&gt; 'value' }</pre>
+<pre><code>liquid :index, :locals =&gt; { :key =&gt; &#39;value&#39; }
+</code></pre>
 
 <a name='Markdown%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h3>Markdown テンプレート</h3>
 
 <p>Markdownテンプレートを使うにはrdiscountライブラリが必要です:</p>
 
-<pre># rdiscountを読み込みます
+<pre><code># rdiscountを読み込みます
 require &quot;rdiscount&quot;
 
-get '/' do
+get &#39;/&#39; do
   markdown :index
-end</pre>
+end
+</code></pre>
 
-<p><tt>./views/index.markdown</tt>を表示します。(<tt>md</tt>と<tt>mkd</tt>も妥当な拡張子です)</p>
+<p><code>./views/index.markdown</code>を表示します。(<code>md</code>と<code>mkd</code>も妥当な拡張子です)</p>
 
 <p>markdownからメソッドを呼び出すことも、localsに変数を渡すこともできません。
 それゆえ、他のレンダリングエンジンとの組み合わせで使うのが普通です:</p>
 
-<pre>erb :overview, :locals =&gt; { :text =&gt; markdown(:introduction) }</pre>
+<pre><code>erb :overview, :locals =&gt; { :text =&gt; markdown(:introduction) }
+</code></pre>
 
 <p>他のテンプレートからmarkdownメソッドを呼び出してもよいことに注意してください:</p>
 
-<pre>%h1 Hello From Haml!
-%p= markdown(:greetings)</pre>
+<pre><code>%h1 Hello From Haml!
+%p= markdown(:greetings)
+</code></pre>
 
 <a name='Textile%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h3>Textile テンプレート</h3>
 
 <p>Textileテンプレートを使うにはRedClothライブラリが必要です:</p>
 
-<pre># redclothを読み込みます
+<pre><code># redclothを読み込みます
 require &quot;redcloth&quot;
 
-get '/' do
+get &#39;/&#39; do
   textile :index
-end</pre>
+end
+</code></pre>
 
-<p><tt>./views/index.textile</tt>を表示します。</p>
+<p><code>./views/index.textile</code>を表示します。</p>
 
 <p>textileからメソッドを呼び出すことも、localsに変数を渡すこともできません。
 それゆえ、他のレンダリングエンジンとの組み合わせで使うのが普通です:</p>
 
-<pre>erb :overview, :locals =&gt; { :text =&gt; textile(:introduction) }</pre>
+<pre><code>erb :overview, :locals =&gt; { :text =&gt; textile(:introduction) }
+</code></pre>
 
 <p>他のテンプレートからtextileメソッドを呼び出してもよいことに注意してください:</p>
 
-<pre>%h1 Hello From Haml!
-%p= textile(:greetings)</pre>
+<pre><code>%h1 Hello From Haml!
+%p= textile(:greetings)
+</code></pre>
 
 <a name='RDoc%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h3>RDoc テンプレート</h3>
 
 <p>RDocテンプレートを使うにはRDocライブラリが必要です:</p>
 
-<pre># rdoc/markup/to_htmlを読み込みます
+<pre><code># rdoc/markup/to_htmlを読み込みます
 require &quot;rdoc&quot;
 require &quot;rdoc/markup/to_html&quot;
 
-get '/' do
+get &#39;/&#39; do
   rdoc :index
-end</pre>
+end
+</code></pre>
 
-<p><tt>./views/index.rdoc</tt>を表示します。</p>
+<p><code>./views/index.rdoc</code>を表示します。</p>
 
 <p>rdocからメソッドを呼び出すことも、localsに変数を渡すこともできません。
 それゆえ、他のレンダリングエンジンとの組み合わせで使うのが普通です:</p>
 
-<pre>erb :overview, :locals =&gt; { :text =&gt; rdoc(:introduction) }</pre>
+<pre><code>erb :overview, :locals =&gt; { :text =&gt; rdoc(:introduction) }
+</code></pre>
 
 <p>他のテンプレートからrdocメソッドを呼び出してもよいことに注意してください:</p>
 
-<pre>%h1 Hello From Haml!
-%p= rdoc(:greetings)</pre>
+<pre><code>%h1 Hello From Haml!
+%p= rdoc(:greetings)
+</code></pre>
 
 <a name='Radius%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h3>Radius テンプレート</h3>
 
 <p>Radiusテンプレートを使うにはradiusライブラリが必要です:</p>
 
-<pre># radiusを読み込みます
-require 'radius'
+<pre><code># radiusを読み込みます
+require &#39;radius&#39;
 
-get '/' do
+get &#39;/&#39; do
   radius :index
-end</pre>
+end
+</code></pre>
 
-<p><tt>./views/index.radius</tt>を表示します。</p>
+<p><code>./views/index.radius</code>を表示します。</p>
 
-<p>RadiusテンプレートからRubyのメソッド(<tt>yield</tt>を除く)を呼び出すことができないため、
+<p>RadiusテンプレートからRubyのメソッド(<code>yield</code>を除く)を呼び出すことができないため、
 ほぼ全ての場合にlocalsを指定する必要があるでしょう:</p>
 
-<pre>radius :index, :locals =&gt; { :key =&gt; 'value' }</pre>
+<pre><code>radius :index, :locals =&gt; { :key =&gt; &#39;value&#39; }
+</code></pre>
 
 <a name='Markaby%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h3>Markaby テンプレート</h3>
 
 <p>Markabyテンプレートを使うにはmarkabyライブラリが必要です:</p>
 
-<pre># markabyを読み込みます
-require 'markaby'
+<pre><code># markabyを読み込みます
+require &#39;markaby&#39;
 
-get '/' do
+get &#39;/&#39; do
   markaby :index
-end</pre>
+end
+</code></pre>
 
-<p><tt>./views/index.mab</tt>を表示します。</p>
+<p><code>./views/index.mab</code>を表示します。</p>
+
+<a name='RABL%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
+<h3>RABL テンプレート</h3>
+
+<p>RABLテンプレートを使うにはrablライブラリが必要です:</p>
+
+<pre><code># rablを読み込みます
+require &#39;rabl&#39;
+
+get &#39;/&#39; do
+  rabl :index
+end
+</code></pre>
+
+<p><code>./views/index.rabl</code>を表示します。</p>
 
 <a name='Slim%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h3>Slim テンプレート</h3>
 
 <p>Slimテンプレートを使うにはslimライブラリが必要です:</p>
 
-<pre># slimを読み込みます
-require 'slim'
+<pre><code># slimを読み込みます
+require &#39;slim&#39;
 
-get '/' do
+get &#39;/&#39; do
   slim :index
-end</pre>
+end
+</code></pre>
 
-<p><tt>./views/index.slim</tt>を表示します。</p>
+<p><code>./views/index.slim</code>を表示します。</p>
 
 <a name='Creole%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h3>Creole テンプレート</h3>
 
 <p>Creoleテンプレートを使うにはcreoleライブラリが必要です:</p>
 
-<pre># creoleを読み込みます
-require 'creole'
+<pre><code># creoleを読み込みます
+require &#39;creole&#39;
 
-get '/' do
+get &#39;/&#39; do
   creole :index
-end</pre>
+end
+</code></pre>
 
-<p><tt>./views/index.creole</tt>を表示します。</p>
+<p><code>./views/index.creole</code>を表示します。</p>
 
 <a name='CoffeeScript%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h3>CoffeeScript テンプレート</h3>
 
 <p>CoffeeScriptテンプレートを表示するにはcoffee-scriptライブラリと`coffee`バイナリが必要です:</p>
 
-<pre># coffee-scriptを読み込みます
-require 'coffee-script'
+<pre><code># coffee-scriptを読み込みます
+require &#39;coffee-script&#39;
 
-get '/application.js' do
+get &#39;/application.js&#39; do
   coffee :application
-end</pre>
+end
+</code></pre>
 
-<p><tt>./views/application.coffee</tt>を表示します。</p>
+<p><code>./views/application.coffee</code>を表示します。</p>
 
 <a name='%E3%82%A4%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h3>インラインテンプレート</h3>
 
-<pre>get '/' do
-  haml '%div.title Hello World'
-end</pre>
+<pre><code>get &#39;/&#39; do
+  haml &#39;%div.title Hello World&#39;
+end
+</code></pre>
 
 <p>文字列をテンプレートとして表示します。</p>
 
@@ -580,17 +630,19 @@ end</pre>
 ルートハンドラでセットされたインスタンス変数は
 テンプレート内で直接使うことができます。</p>
 
-<pre>get '/:id' do
+<pre><code>get &#39;/:id&#39; do
   @foo = Foo.find(params[:id])
-  haml '%h1= @foo.name'
-end</pre>
+  haml &#39;%h1= @foo.name&#39;
+end
+</code></pre>
 
 <p>ローカル変数を明示的に定義することもできます。</p>
 
-<pre>get '/:id' do
+<pre><code>get &#39;/:id&#39; do
   foo = Foo.find(params[:id])
-  haml '%h1= foo.name', :locals =&gt; { :foo =&gt; foo }
-end</pre>
+  haml &#39;%h1= foo.name&#39;, :locals =&gt; { :foo =&gt; foo }
+end
+</code></pre>
 
 <p>このやり方は他のテンプレート内で部分テンプレートとして表示する時に典型的に使用されます。</p>
 
@@ -599,10 +651,10 @@ end</pre>
 
 <p>テンプレートはソースファイルの最後で定義することもできます。</p>
 
-<pre>require 'rubygems'
-require 'sinatra'
+<pre><code>require &#39;rubygems&#39;
+require &#39;sinatra&#39;
 
-get '/' do
+get &#39;/&#39; do
   haml :index
 end
 
@@ -613,53 +665,56 @@ __END__
   = yield
 
 @@ index
-%div.title Hello world!!!!!</pre>
+%div.title Hello world!!!!!
+</code></pre>
 
 <p>注意:
 sinatraをrequireするファイル内で定義されたファイル内テンプレートは自動的に読み込まれます。
 他のファイルで定義されているテンプレートを使うには
-<tt>enable :inline_templates</tt>を明示的に呼んでください。</p>
+<code>enable :inline_templates</code>を明示的に呼んでください。</p>
 
 <a name='%E5%90%8D%E5%89%8D%E4%BB%98%E3%81%8D%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h3>名前付きテンプレート</h3>
 
-<p>テンプレートはトップレベルの<tt>template</tt>メソッドで定義することができます。</p>
+<p>テンプレートはトップレベルの<code>template</code>メソッドで定義することができます。</p>
 
-<pre>template :layout do
+<pre><code>template :layout do
   &quot;%html\n  =yield\n&quot;
 end
 
 template :index do
-  '%div.title Hello World!'
+  &#39;%div.title Hello World!&#39;
 end
 
-get '/' do
+get &#39;/&#39; do
   haml :index
-end</pre>
+end
+</code></pre>
 
 <p>「layout」というテンプレートが存在する場合、そのテンプレートファイルは他のテンプレートが
-表示される度に使用されます。<tt>:layout =&gt;
-false</tt>することでlayoutsを無効にできます。</p>
+表示される度に使用されます。<code>:layout =&gt; false</code>することでlayoutsを無効にできます。</p>
 
-<pre>get '/' do
+<pre><code>get &#39;/&#39; do
   haml :index, :layout =&gt; !request.xhr?
-end</pre>
+end
+</code></pre>
 
 <a name='%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC'></a>
 <h2>ヘルパー</h2>
 
-<p>トップレベルの<tt>helpers</tt>を使用してルートハンドラやテンプレートで使うヘルパメソッドを
+<p>トップレベルの<code>helpers</code>を使用してルートハンドラやテンプレートで使うヘルパメソッドを
 定義できます。</p>
 
-<pre>helpers do
+<pre><code>helpers do
   def bar(name)
     &quot;#{name}bar&quot;
   end
 end
 
-get '/:name' do
+get &#39;/:name&#39; do
   bar(params[:name])
-end</pre>
+end
+</code></pre>
 
 <a name='%E3%83%95%E3%82%A3%E3%83%AB%E3%82%BF'></a>
 <h2>フィルタ</h2>
@@ -668,72 +723,81 @@ end</pre>
 リクエストとレスポンスを変更することができます。フィルタ内でセットされた
 インスタンス変数はルーティングとテンプレートで使用できます。</p>
 
-<pre>before do
-  @note = 'Hi!'
-  request.path_info = '/foo/bar/baz'
+<pre><code>before do
+  @note = &#39;Hi!&#39;
+  request.path_info = &#39;/foo/bar/baz&#39;
 end
 
-get '/foo/*' do
-  @note #=&gt; 'Hi!'
-  params[:splat] #=&gt; 'bar/baz'
-end</pre>
+get &#39;/foo/*&#39; do
+  @note #=&gt; &#39;Hi!&#39;
+  params[:splat] #=&gt; &#39;bar/baz&#39;
+end
+</code></pre>
 
 <p>afterフィルタは同じコンテキストにあるリクエストの後に評価され、
 同じくリクエストとレスポンスを変更することができます。
 beforeフィルタとルートで設定されたインスタンス変数は、
 afterフィルタからアクセスすることができます:</p>
 
-<pre>after do
+<pre><code>after do
   puts response.status
-end</pre>
+end
+</code></pre>
 
 <p>フィルタにはオプションとしてパターンを渡すことができ、
 この場合はリクエストのパスがパターンにマッチした場合のみフィルタが評価されます:</p>
 
-<pre>before '/protected/*' do
+<pre><code>before &#39;/protected/*&#39; do
   authenticate!
 end
 
-after '/create/:slug' do |slug|
+after &#39;/create/:slug&#39; do |slug|
   session[:last_slug] = slug
-end</pre>
+end
+</code></pre>
 
 <a name='%E5%BC%B7%E5%88%B6%E7%B5%82%E4%BA%86'></a>
 <h2>強制終了</h2>
 
 <p>ルートかbeforeフィルタ内で直ちに実行を終了する方法:</p>
 
-<pre>halt</pre>
+<pre><code>halt
+</code></pre>
 
 <p>ステータスを指定することができます:</p>
 
-<pre>halt 410</pre>
+<pre><code>halt 410
+</code></pre>
 
-<p>body部を指定することもできます ...</p>
+<p>body部を指定することもできます …</p>
 
-<pre>halt 'ここにbodyを書く'</pre>
+<pre><code>halt &#39;ここにbodyを書く&#39;
+</code></pre>
 
-<p>ステータスとbody部を指定する ...</p>
+<p>ステータスとbody部を指定する …</p>
 
-<pre>halt 401, '立ち去れ!'</pre>
+<pre><code>halt 401, &#39;立ち去れ!&#39;
+</code></pre>
 
 <p>ヘッダを指定:</p>
 
-<pre>halt 402, {'Content-Type' =&gt; 'text/plain'}, 'リベンジ'</pre>
+<pre><code>halt 402, {&#39;Content-Type&#39; =&gt; &#39;text/plain&#39;}, &#39;リベンジ&#39;
+</code></pre>
 
 <a name='%E3%83%91%E3%83%83%E3%82%B7%E3%83%B3%E3%82%B0(Passing)'></a>
 <h2>パッシング(Passing)</h2>
 
-<p>ルートは<tt>pass</tt>を使って次のルートに飛ばすことができます:</p>
+<p>ルートは<code>pass</code>を使って次のルートに飛ばすことができます:</p>
 
-<pre>get '/guess/:who' do
-  pass unless params[:who] == 'Frank'
+<pre><code>get &#39;/guess/:who&#39; do
+  pass unless params[:who] == &#39;Frank&#39;
   &quot;見つかっちゃった!&quot;
 end
 
-get '/guess/*' do
+get &#39;/guess/*&#39; do
   &quot;はずれです!&quot;
-end</pre>
+end
+</code></pre>
 
 <p>ルートブロックからすぐに抜け出し、次にマッチするルートを実行します。
 マッチするルートが見当たらない場合は404が返されます。</p>
@@ -743,8 +807,8 @@ end</pre>
 
 <p>受信するリクエストオブジェクトは、`request`メソッドを通じてリクエストレベル(フィルタ、ルート、エラーハンドラ)からアクセスすることができます:</p>
 
-<pre># アプリケーションが http://example.com/example で動作している場合
-get '/foo' do
+<pre><code># アプリケーションが http://example.com/example で動作している場合
+get &#39;/foo&#39; do
   request.body              # クライアントによって送信されたリクエストボディ(下記参照)
   request.scheme            # &quot;http&quot;
   request.script_name       # &quot;/example&quot;
@@ -758,7 +822,7 @@ get '/foo' do
   request.get?              # true (他の動詞についても同様のメソッドあり)
   request.form_data?        # false
   request[&quot;SOME_HEADER&quot;]    # SOME_HEADERヘッダの値
-  request.referer           # クライアントのリファラまたは'/'
+  request.referer           # クライアントのリファラまたは&#39;/&#39;
   request.user_agent        # ユーザエージェント (:agent 条件によって使用される)
   request.cookies           # ブラウザクッキーのハッシュ
   request.xhr?              # Ajaxリクエストかどうか
@@ -767,156 +831,169 @@ get '/foo' do
   request.ip                # クライアントのIPアドレス
   request.secure?           # false
   request.env               # Rackによって渡された生のenvハッシュ
-end</pre>
+end
+</code></pre>
 
-<p><tt>script_name</tt>や<tt>path_info</tt>などのオプションは次のように利用することもできます:</p>
+<p><code>script_name</code>や<code>path_info</code>などのオプションは次のように利用することもできます:</p>
 
-<pre>before { request.path_info = &quot;/&quot; }
+<pre><code>before { request.path_info = &quot;/&quot; }
 
 get &quot;/&quot; do
   &quot;全てのリクエストはここに来る&quot;
-end</pre>
+end
+</code></pre>
 
-<p><tt>request.body</tt>はIOまたはStringIOのオブジェクトです:</p>
+<p><code>request.body</code>はIOまたはStringIOのオブジェクトです:</p>
 
-<pre>post &quot;/api&quot; do
+<pre><code>post &quot;/api&quot; do
   request.body.rewind  # 既に読まれているときのため
   data = JSON.parse request.body.read
-  &quot;Hello #{data['name']}!&quot;
-end</pre>
+  &quot;Hello #{data[&#39;name&#39;]}!&quot;
+end
+</code></pre>
 
 <a name='%E8%A8%AD%E5%AE%9A'></a>
 <h2>設定</h2>
 
 <p>どの環境でも起動時に１回だけ実行されます。</p>
 
-<pre>configure do
+<pre><code>configure do
   ...
-end</pre>
+end
+</code></pre>
 
-<p>環境(RACK_ENV環境変数)が<tt>:production</tt>に設定されている時だけ実行する方法:</p>
+<p>環境(RACK_ENV環境変数)が<code>:production</code>に設定されている時だけ実行する方法:</p>
 
-<pre>configure :production do
+<pre><code>configure :production do
   ...
-end</pre>
+end
+</code></pre>
 
-<p>環境が<tt>:production</tt>か<tt>:test</tt>の場合に設定する方法:</p>
+<p>環境が<code>:production</code>か<code>:test</code>の場合に設定する方法:</p>
 
-<pre>configure :production, :test do
+<pre><code>configure :production, :test do
   ...
-end</pre>
+end
+</code></pre>
 
 <a name='%E3%82%A8%E3%83%A9%E3%83%BC%E3%83%8F%E3%83%B3%E3%83%89%E3%83%AA%E3%83%B3%E3%82%B0'></a>
 <h2>エラーハンドリング</h2>
 
 <p>エラーハンドラーはルートコンテキストとbeforeフィルタ内で実行します。
-<tt>haml</tt>、<tt>erb</tt>、<tt>halt</tt>などを使うこともできます。</p>
+<code>haml</code>、<code>erb</code>、<code>halt</code>などを使うこともできます。</p>
 
 <a name='Not%20Found'></a>
 <h3>Not Found</h3>
 
-<p><tt>Sinatra::NotFound</tt>が起きた時か
-レスポンスのステータスコードが
-404の時に<tt>not_found</tt>ハンドラーが発動します。</p>
+<p><code>Sinatra::NotFound</code>が起きた時か レスポンスのステータスコードが
+404の時に<code>not_found</code>ハンドラーが発動します。</p>
 
-<pre>not_found do
-  'ファイルが存在しません'
-end</pre>
+<pre><code>not_found do
+  &#39;ファイルが存在しません&#39;
+end
+</code></pre>
 
 <a name='%E3%82%A8%E3%83%A9%E3%83%BC'></a>
 <h3>エラー</h3>
 
-<p><tt>error</tt>
+<p><code>error</code>
 ハンドラーはルートブロックかbeforeフィルタ内で例外が発生した時はいつでも発動します。
-例外オブジェクトはRack変数<tt>sinatra.error</tt>から取得できます。</p>
+例外オブジェクトはRack変数<code>sinatra.error</code>から取得できます。</p>
 
-<pre>error do
-  'エラーが発生しました。 - ' + env['sinatra.error'].name
-end</pre>
+<pre><code>error do
+  &#39;エラーが発生しました。 - &#39; + env[&#39;sinatra.error&#39;].name
+end
+</code></pre>
 
 <p>エラーをカスタマイズする場合は、</p>
 
-<pre>error MyCustomError do
-  'エラーメッセージ...' + env['sinatra.error'].message
-end</pre>
+<pre><code>error MyCustomError do
+  &#39;エラーメッセージ...&#39; + env[&#39;sinatra.error&#39;].message
+end
+</code></pre>
 
 <p>と書いておいて,下記のように呼び出します。</p>
 
-<pre>get '/' do
-  raise MyCustomError, '何かがまずかったようです'
-end</pre>
+<pre><code>get &#39;/&#39; do
+  raise MyCustomError, &#39;何かがまずかったようです&#39;
+end
+</code></pre>
 
 <p>そうするとこうなります:</p>
 
-<pre>エラーメッセージ... 何かがまずかったようです</pre>
+<pre><code>エラーメッセージ... 何かがまずかったようです
+</code></pre>
 
 <p>あるいは、ステータスコードに対応するエラーハンドラを設定することもできます:</p>
 
-<pre>error 403 do
-  'Access forbidden'
+<pre><code>error 403 do
+  &#39;Access forbidden&#39;
 end
 
-get '/secret' do
+get &#39;/secret&#39; do
   403
-end</pre>
+end
+</code></pre>
 
 <p>範囲指定もできます:</p>
 
-<pre>error 400..510 do
-  'Boom'
-end</pre>
+<pre><code>error 400..510 do
+  &#39;Boom&#39;
+end
+</code></pre>
 
-<p>開発環境として実行している場合、Sinatraは特別な<tt>not_found</tt>と<tt>error</tt>ハンドラーを
+<p>開発環境として実行している場合、Sinatraは特別な<code>not_found</code>と<code>error</code>ハンドラーを
 インストールしています。</p>
 
 <a name='MIME%E3%82%BF%E3%82%A4%E3%83%97'></a>
 <h2>MIMEタイプ</h2>
 
-<p><tt>send_file</tt>か静的ファイルを使う時、Sinatraが理解でいないMIMEタイプがある場合があります。
-その時は <tt>mime_type</tt>
-を使ってファイル拡張子毎に登録して下さい。</p>
+<p><code>send_file</code>か静的ファイルを使う時、Sinatraが理解でいないMIMEタイプがある場合があります。
+その時は <code>mime_type</code> を使ってファイル拡張子毎に登録して下さい。</p>
 
-<pre>mime_type :foo, 'text/foo'</pre>
+<pre><code>mime_type :foo, &#39;text/foo&#39;
+</code></pre>
 
 <p>これはcontent_typeヘルパで利用することができます:</p>
 
-<pre>content_type :foo</pre>
+<pre><code>content_type :foo
+</code></pre>
 
 <a name='Rack%E3%83%9F%E3%83%89%E3%83%AB%E3%82%A6%E3%82%A7%E3%82%A2'></a>
 <h2>Rackミドルウェア</h2>
 
-<p><a
-href="http://rack.rubyforge.org/">SinatraはRack</a>フレームワーク用の
+<p><a href="http://rack.rubyforge.org/">SinatraはRack</a>フレームワーク用の
 最小限の標準インターフェース
 上で動作しています。Rack中でもアプリケーションデベロッパー
 向けに一番興味深い機能はミドルウェア(サーバとアプリケーション間に介在し、モニタリング、HTTPリクエストとレスポンス
 の手動操作ができるなど、一般的な機能のいろいろなことを提供するもの)をサポートすることです。</p>
 
-<p>Sinatraではトップレベルの<tt>user</tt>
+<p>Sinatraではトップレベルの<code>use</code>
 メソッドを使ってRackにパイプラインを構築します。</p>
 
-<pre>require 'sinatra'
-require 'my_custom_middleware'
+<pre><code>require &#39;sinatra&#39;
+require &#39;my_custom_middleware&#39;
 
 use Rack::Lint
 use MyCustomMiddleware
 
-get '/hello' do
-  'Hello World'
-end</pre>
+get &#39;/hello&#39; do
+  &#39;Hello World&#39;
+end
+</code></pre>
 
-<p><tt>use</tt> の意味は<a
-href="http://rack.rubyforge.org/doc/classes/Rack/Builder.html">Rack::Builder</a>
-DSLで定義されていることと全て一致します。 例えば
-<tt>use</tt>
+<p><code>use</code>
+<a href="http://rack.rubyforge.org/doc/classes/Rack/Builder.html">Rack::Builder</a>
+DSLで定義されていることと全て一致します。 例えば <code>use</code>
 メソッドはブロック構文のように複数の引数を受け取ることができます。</p>
 
-<pre>use Rack::Auth::Basic do |username, password|
-  username == 'admin' &amp;&amp; password == 'secret'
-end</pre>
+<pre><code>use Rack::Auth::Basic do |username, password|
+  username == &#39;admin&#39; &amp;&amp; password == &#39;secret&#39;
+end
+</code></pre>
 
 <p>Rackはログ、デバッギング、URLルーティング、認証、セッションなどいろいろな機能を備えた標準的ミドルウェアです。
-Sinatraはその多くのコンポーネントを自動で使うよう基本設定されているため、<tt>use</tt>で明示的に指定する必要はありません。</p>
+Sinatraはその多くのコンポーネントを自動で使うよう基本設定されているため、<code>use</code>で明示的に指定する必要はありません。</p>
 
 <a name='%E3%83%86%E3%82%B9%E3%83%88'></a>
 <h2>テスト</h2>
@@ -925,8 +1002,8 @@ Sinatraはその多くのコンポーネントを自動で使うよう基本設�
 <a href="http://gitrdoc.com/brynary/rack-test">Rack::Test</a>
 をおすすめします。やり方:</p>
 
-<pre>require 'my_sinatra_app'
-require 'rack/test'
+<pre><code>require &#39;my_sinatra_app&#39;
+require &#39;rack/test&#39;
 
 class MyAppTest &lt; Test::Unit::TestCase
   include Rack::Test::Methods
@@ -936,81 +1013,82 @@ class MyAppTest &lt; Test::Unit::TestCase
   end
 
   def test_my_default
-    get '/'
-    assert_equal 'Hello World!', last_response.body
+    get &#39;/&#39;
+    assert_equal &#39;Hello World!&#39;, last_response.body
   end
 
   def test_with_params
-    get '/meet', :name =&gt; 'Frank'
-    assert_equal 'Hello Frank!', last_response.body
+    get &#39;/meet&#39;, :name =&gt; &#39;Frank&#39;
+    assert_equal &#39;Hello Frank!&#39;, last_response.body
   end
 
   def test_with_rack_env
-    get '/', {}, 'HTTP_USER_AGENT' =&gt; 'Songbird'
+    get &#39;/&#39;, {}, &#39;HTTP_USER_AGENT&#39; =&gt; &#39;Songbird&#39;
     assert_equal &quot;あなたはSongbirdを使ってますね!&quot;, last_response.body
   end
-end</pre>
+end
+</code></pre>
 
-<p>注意:
-ビルトインのSinatra::TestモジュールとSinatra::TestHarnessクラスは
+<p>注意: ビルトインのSinatra::TestモジュールとSinatra::TestHarnessクラスは
 0.9.2リリース以降、廃止予定になっています。</p>
 
 <a name='Sinatra::Base%20-%20%E3%83%9F%E3%83%89%E3%83%AB%E3%82%A6%E3%82%A7%E3%82%A2%E3%80%81%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA%E3%80%81%20%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%A9%E3%83%BC%E3%82%A2%E3%83%97%E3%83%AA'></a>
 <h2>Sinatra::Base - ミドルウェア、ライブラリ、 モジュラーアプリ</h2>
 
 <p>トップレベル(グローバル領域)上でいろいろ定義していくのは軽量アプリならうまくいきますが、
-RackミドルウェアやRails
-metal、サーバのコンポーネントを含んだシンプルな
+RackミドルウェアやRails metal、サーバのコンポーネントを含んだシンプルな
 ライブラリやSinatraの拡張プログラムを考慮するような場合はそうとは限りません。
 トップレベルのDSLがネームスペースを汚染したり、設定を変えてしまうこと(例:./publicや./view)がありえます。
 そこでSinatra::Baseの出番です。</p>
 
-<pre>require 'sinatra/base'
+<pre><code>require &#39;sinatra/base&#39;
 
 class MyApp &lt; Sinatra::Base
   set :sessions, true
-  set :foo, 'bar'
+  set :foo, &#39;bar&#39;
 
-  get '/' do
-    'Hello world!'
+  get &#39;/&#39; do
+    &#39;Hello world!&#39;
   end
-end</pre>
+end
+</code></pre>
 
 <p>このMyAppは独立したRackコンポーネントで、RackミドルウェアやRackアプリケーション
-Rails
-metalとして使用することができます。<tt>config.ru</tt>ファイル内で
-<tt>use</tt> か、または <tt>run</tt>
+Rails metalとして使用することができます。<code>config.ru</code>ファイル内で <code>use</code>
+か、または <code>run</code>
 でこのクラスを指定するか、ライブラリとしてサーバコンポーネントをコントロールします。</p>
 
-<pre>MyApp.run! :host =&gt; 'localhost', :port =&gt; 9090</pre>
+<pre><code>MyApp.run! :host =&gt; &#39;localhost&#39;, :port =&gt; 9090
+</code></pre>
 
 <p>Sinatra::Baseのサブクラスで使えるメソッドはトップレベルのDSLを経由して確実に使うことができます。
 ほとんどのトップレベルで記述されたアプリは、以下の２点を修正することでSinatra::Baseコンポーネントに変えることができます。</p>
-<ul><li>
-<p><tt>sinatra</tt>の代わりに<tt>sinatra/base</tt>を読み込む</p>
-</li></ul>
+
+<ul>
+<li>  <code>sinatra</code>の代わりに<code>sinatra/base</code>を読み込む</li>
+</ul>
 
 <p>(そうしない場合、SinatraのDSLメソッドの全てがメインネームスペースにインポートされます)</p>
-<ul><li>
-<p>ルート、エラーハンドラー、フィルター、オプションをSinatra::Baseのサブクラスに書く</p>
-</li></ul>
 
-<p><tt>Sinatra::Base</tt>
+<ul>
+<li>  ルート、エラーハンドラー、フィルター、オプションをSinatra::Baseのサブクラスに書く</li>
+</ul>
+
+<p><code>Sinatra::Base</code>
 はまっさらです。ビルトインサーバを含む、ほとんどのオプションがデフォルト
-で無効になっています。オプション詳細については<a
-href="http://sinatra.github.com/configuration.html">Options and
-Configuration</a> をご覧下さい。</p>
+で無効になっています。オプション詳細については<a href="http://sinatra.github.com/configuration.html">Options and
+Configuration</a>
+をご覧下さい。</p>
 
 <p>補足:
 SinatraのトップレベルDSLはシンプルな委譲(delgation)システムで実装されています。
-<tt>Sinatra::Application</tt>クラス(Sinatra::Baseの特別なサブクラス)は、トップレベルに送られる
+<code>Sinatra::Application</code>クラス(Sinatra::Baseの特別なサブクラス)は、トップレベルに送られる
 :get、 :put、 :post、:delete、 :before、:error、:not_found、
 :configure、:set messagesのこれら 全てを受け取ります。
-詳細を閲覧されたい方はこちら(英語): <a
-href="http://github.com/sinatra/sinatra/blob/master/lib/sinatra/base.rb#L1064">Sinatra::Delegator
-mixin</a> <a
-href="http://github.com/sinatra/sinatra/blob/master/lib/sinatra/main.rb#L25">included
-into the main namespace</a>.</p>
+詳細を閲覧されたい方はこちら(英語): <a href="http://github.com/sinatra/sinatra/blob/master/lib/sinatra/base.rb#L1064">Sinatra::Delegator
+mixin</a>
+<a href="http://github.com/sinatra/sinatra/blob/master/lib/sinatra/main.rb#L25">included into the main
+namespace</a>.</p>
 
 <a name='Sinatra%E3%82%92%E3%83%9F%E3%83%89%E3%83%AB%E3%82%A6%E3%82%A7%E3%82%A2%E3%81%A8%E3%81%97%E3%81%A6%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B'></a>
 <h3>Sinatraをミドルウェアとして利用する</h3>
@@ -1018,20 +1096,20 @@ into the main namespace</a>.</p>
 <p>Sinatraは他のRackミドルウェアを利用することができるだけでなく、
 全てのSinatraアプリケーションは、それ自体ミドルウェアとして別のRackエンドポイントの前に追加することが可能です。</p>
 
-<p>このエンドポイントには、別のSinatraアプリケーションまたは他のRackベースのアプリケーション(Rails/Ramaze/Camping/...)が用いられるでしょう。</p>
+<p>このエンドポイントには、別のSinatraアプリケーションまたは他のRackベースのアプリケーション(Rails/Ramaze/Camping/…)が用いられるでしょう。</p>
 
-<pre>require 'sinatra/base'
+<pre><code>require &#39;sinatra/base&#39;
 
 class LoginScreen &lt; Sinatra::Base
   enable :sessions
 
-  get('/login') { haml :login }
+  get(&#39;/login&#39;) { haml :login }
 
-  post('/login') do
-    if params[:name] = 'admin' and params[:password] = 'admin'
-      session['user_name'] = params[:name]
+  post(&#39;/login&#39;) do
+    if params[:name] = &#39;admin&#39; and params[:password] = &#39;admin&#39;
+      session[&#39;user_name&#39;] = params[:name]
     else
-      redirect '/login'
+      redirect &#39;/login&#39;
     end
   end
 end
@@ -1041,13 +1119,14 @@ class MyApp &lt; Sinatra::Base
   use LoginScreen
 
   before do
-    unless session['user_name']
-      halt &quot;Access denied, please &lt;a href='/login'&gt;login&lt;/a&gt;.&quot;
+    unless session[&#39;user_name&#39;]
+      halt &quot;Access denied, please &lt;a href=&#39;/login&#39;&gt;login&lt;/a&gt;.&quot;
     end
   end
 
-  get('/') { &quot;Hello #{session['user_name']}.&quot; }
-end</pre>
+  get(&#39;/&#39;) { &quot;Hello #{session[&#39;user_name&#39;]}.&quot; }
+end
+</code></pre>
 
 <a name='%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97%E3%81%A8%E3%83%90%E3%82%A4%E3%83%B3%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0'></a>
 <h2>スコープとバインディング</h2>
@@ -1058,42 +1137,39 @@ end</pre>
 <h3>アプリケーション/クラスのスコープ</h3>
 
 <p>全てのSinatraアプリケーションはSinatra::Baseのサブクラスに相当します。
-もしトップレベルDSLを利用しているならば(<tt>require
-'sinatra'</tt>)このクラスはSinatra::Applicationであり、
+もしトップレベルDSLを利用しているならば(<code>require &#39;sinatra&#39;</code>)このクラスはSinatra::Applicationであり、
 そうでなければ、あなたが明示的に作成したサブクラスです。
 クラスレベルでは`get`や`before`のようなメソッドを持っています。
 しかし`request`オブジェクトや`session`には、全てのリクエストのために1つのアプリケーションクラスが存在するためアクセスできません。</p>
 
 <p>`set`によって作られたオプションはクラスレベルのメソッドです:</p>
 
-<pre>class MyApp &lt; Sinatra::Base
-  # Hey, I'm in the application scope!
+<pre><code>class MyApp &lt; Sinatra::Base
+  # Hey, I&#39;m in the application scope!
   set :foo, 42
   foo # =&gt; 42
 
-  get '/foo' do
-    # Hey, I'm no longer in the application scope!
+  get &#39;/foo&#39; do
+    # Hey, I&#39;m no longer in the application scope!
   end
-end</pre>
+end
+</code></pre>
 
 <p>次の場所ではアプリケーションスコープバインディングを持ちます:</p>
-<ul><li>
-<p>アプリケーションのクラス本体</p>
-</li><li>
-<p>拡張によって定義されたメソッド</p>
-</li><li>
-<p>`helpers`に渡されたブロック</p>
-</li><li>
-<p>`set`の値として使われるProcまたはブロック</p>
-</li></ul>
+
+<ul>
+<li><p>アプリケーションのクラス本体</p></li>
+<li><p>拡張によって定義されたメソッド</p></li>
+<li><p>`helpers`に渡されたブロック</p></li>
+<li><p>`set`の値として使われるProcまたはブロック</p></li>
+</ul>
 
 <p>このスコープオブジェクト(クラス)は次のように利用できます:</p>
-<ul><li>
-<p>configureブロックに渡されたオブジェクト経由(<tt>configure
-{ |c| ... }</tt>)</p>
-</li><li>
-<p>リクエストスコープの中での`settings`</p>
-</li></ul>
+
+<ul>
+<li><p>configureブロックに渡されたオブジェクト経由(<code>configure { |c| ... }</code>)</p></li>
+<li><p>リクエストスコープの中での`settings`</p></li>
+</ul>
 
 <a name='%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88/%E3%82%A4%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%B3%E3%82%B9%E3%81%AE%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97'></a>
 <h3>リクエスト/インスタンスのスコープ</h3>
@@ -1102,10 +1178,10 @@ end</pre>
 このスコープの内側からは`request`や`session`オブジェクトにアクセスすることができ、`erb`や`haml`のような表示メソッドを呼び出すことができます。
 リクエストスコープの内側からは、`settings`ヘルパによってアプリケーションスコープにアクセスすることができます。</p>
 
-<pre>class MyApp &lt; Sinatra::Base
-  # Hey, I'm in the application scope!
-  get '/define_route/:name' do
-    # Request scope for '/define_route/:name'
+<pre><code>class MyApp &lt; Sinatra::Base
+  # Hey, I&#39;m in the application scope!
+  get &#39;/define_route/:name&#39; do
+    # Request scope for &#39;/define_route/:name&#39;
     @value = 42
 
     settings.get(&quot;/#{params[:name]}&quot;) do
@@ -1115,18 +1191,17 @@ end</pre>
 
     &quot;Route defined!&quot;
   end
-end</pre>
+end
+</code></pre>
 
 <p>次の場所ではリクエストスコープバインディングを持ちます:</p>
-<ul><li>
-<p>get/head/post/put/delete ブロック</p>
-</li><li>
-<p>before/after フィルタ</p>
-</li><li>
-<p>helper メソッド</p>
-</li><li>
-<p>テンプレート/ビュー</p>
-</li></ul>
+
+<ul>
+<li><p>get/head/post/put/delete ブロック</p></li>
+<li><p>before/after フィルタ</p></li>
+<li><p>helper メソッド</p></li>
+<li><p>テンプレート/ビュー</p></li>
+</ul>
 
 <a name='%E3%83%87%E3%83%AA%E3%82%B2%E3%83%BC%E3%83%88%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97'></a>
 <h3>デリゲートスコープ</h3>
@@ -1134,21 +1209,19 @@ end</pre>
 <p>デリゲートスコープは、単にクラススコープにメソッドを転送します。
 しかしながら、クラスのバインディングを持っていないため、クラススコープと全く同じふるまいをするわけではありません:
 委譲すると明示的に示されたメソッドのみが利用可能であり、またクラススコープと変数/状態を共有することはできません(注:
-異なった`self`を持っています)。 <tt>Sinatra::Delegator.delegate
-:method_name</tt>を呼び出すことによってデリゲートするメソッドを明示的に追加することができます。</p>
+異なった`self`を持っています)。
+<code>Sinatra::Delegator.delegate :method_name</code>を呼び出すことによってデリゲートするメソッドを明示的に追加することができます。</p>
 
 <p>次の場所ではデリゲートスコープを持ちます:</p>
-<ul><li>
-<p>もし<tt>require
-&quot;sinatra&quot;</tt>しているならば、トップレベルバインディング</p>
-</li><li>
-<p>`Sinatra::Delegator` mixinでextendされたオブジェクト</p>
-</li></ul>
 
-<p>コードをご覧ください: ここでは <a
-href="http://github.com/sinatra/sinatra/blob/ceac46f0bc129a6e994a06100aa854f606fe5992/lib/sinatra/base.rb#L1128">Sinatra::Delegator
-mixin</a> は<a
-href="http://github.com/sinatra/sinatra/blob/ceac46f0bc129a6e994a06100aa854f606fe5992/lib/sinatra/main.rb#L28">main
+<ul>
+<li><p>もし<code>require &quot;sinatra&quot;</code>しているならば、トップレベルバインディング</p></li>
+<li><p>`Sinatra::Delegator` mixinでextendされたオブジェクト</p></li>
+</ul>
+
+<p>コードをご覧ください: ここでは <a href="http://github.com/sinatra/sinatra/blob/ceac46f0bc129a6e994a06100aa854f606fe5992/lib/sinatra/base.rb#L1128">Sinatra::Delegator
+mixin</a>
+は<a href="http://github.com/sinatra/sinatra/blob/ceac46f0bc129a6e994a06100aa854f606fe5992/lib/sinatra/main.rb#L28">main
 名前空間にincludeされています</a>.</p>
 
 <a name='%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%83%A9%E3%82%A4%E3%83%B3'></a>
@@ -1156,70 +1229,75 @@ href="http://github.com/sinatra/sinatra/blob/ceac46f0bc129a6e994a06100aa854f606f
 
 <p>Sinatraアプリケーションは直接実行できます。</p>
 
-<pre>ruby myapp.rb [-h] [-x] [-e ENVIRONMENT] [-p PORT] [-o HOST] [-s HANDLER]</pre>
+<pre><code>ruby myapp.rb [-h] [-x] [-e ENVIRONMENT] [-p PORT] [-o HOST] [-s HANDLER]
+</code></pre>
 
 <p>オプション:</p>
 
-<pre>-h # ヘルプ
+<pre><code>-h # ヘルプ
 -p # ポート指定(デフォルトは4567)
 -o # ホスト指定(デフォルトは0.0.0.0)
 -e # 環境を指定 (デフォルトはdevelopment)
 -s # rackserver/handlerを指定 (デフォルトはthin)
--x # mutex lockを付ける (デフォルトはoff)</pre>
+-x # mutex lockを付ける (デフォルトはoff)
+</code></pre>
 
 <a name='%E6%9C%80%E6%96%B0%E9%96%8B%E7%99%BA%E7%89%88%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6'></a>
 <h2>最新開発版について</h2>
 
 <p>Sinatraの開発版を使いたい場合は、ローカルに開発版を落として、
-<tt>LOAD_PATH</tt>の<tt>sinatra/lib</tt>ディレクトリを指定して実行して下さい。</p>
+<code>LOAD_PATH</code>の<code>sinatra/lib</code>ディレクトリを指定して実行して下さい。</p>
 
-<pre>cd myapp
+<pre><code>cd myapp
 git clone git://github.com/sinatra/sinatra.git
-ruby -Isinatra/lib myapp.rb</pre>
+ruby -Isinatra/lib myapp.rb
+</code></pre>
 
-<p><tt>sinatra/lib</tt>ディレクトリをアプリケーションの<tt>LOAD_PATH</tt>に追加する方法もあります。</p>
+<p><code>sinatra/lib</code>ディレクトリをアプリケーションの<code>LOAD_PATH</code>に追加する方法もあります。</p>
 
-<pre>$LOAD_PATH.unshift File.dirname(__FILE__) + '/sinatra/lib'
-require 'rubygems'
-require 'sinatra'
+<pre><code>$LOAD_PATH.unshift File.dirname(__FILE__) + &#39;/sinatra/lib&#39;
+require &#39;rubygems&#39;
+require &#39;sinatra&#39;
 
-get '/about' do
+get &#39;/about&#39; do
   &quot;今使ってるバージョンは&quot; + Sinatra::VERSION
-end</pre>
+end
+</code></pre>
 
 <p>Sinatraのソースを更新する方法:</p>
 
-<pre>cd myproject/sinatra
-git pull</pre>
+<pre><code>cd myproject/sinatra
+git pull
+</code></pre>
 
 <a name='%E3%81%9D%E3%81%AE%E4%BB%96'></a>
 <h2>その他</h2>
 
 <p>日本語サイト</p>
-<ul><li>
-<p><a href="http://mono.kmc.gr.jp/~yhara/w/?RackReferenceJa">Greenbear
-Laboratory Rack日本語マニュアル</a> -
-Rackの日本語マニュアル</p>
-</li></ul>
+
+<ul>
+<li>  <a href="http://mono.kmc.gr.jp/%7Eyhara/w/?RackReferenceJa">Greenbear Laboratory
+Rack日本語マニュアル</a>
+
+<ul>
+<li>Rackの日本語マニュアル</li>
+</ul></li>
+</ul>
 
 <p>英語サイト</p>
-<ul><li>
-<p><a href="http://sinatra.github.com/">プロジェクトサイト</a> -
-ドキュメント、
-ニュース、他のリソースへのリンクがあります。</p>
-</li><li>
-<p><a
-href="http://sinatra.github.com/contributing.html">プロジェクトに参加(貢献)する</a>
-- バグレポート パッチの送信、サポートなど</p>
-</li><li>
-<p><a href="http://github.com/sinatra/sinatra/issues">Issue tracker</a> -
-チケット管理とリリース計画</p>
-</li><li>
-<p><a href="http://twitter.com/sinatra">Twitter</a></p>
-</li><li>
-<p><a
-href="http://groups.google.com/group/sinatrarb">メーリングリスト</a></p>
-</li><li>
-<p><a href="irc://chat.freenode.net/#sinatra">IRC: #sinatra</a> on <a
-href="http://freenode.net">freenode.net</a></p>
-</li></ul>
+
+<ul>
+<li><p><a href="http://sinatra.github.com/">プロジェクトサイト</a> - ドキュメント、
+ニュース、他のリソースへのリンクがあります。</p></li>
+<li><p><a href="http://sinatra.github.com/contributing.html">プロジェクトに参加(貢献)する</a></p>
+
+<ul>
+<li>バグレポート パッチの送信、サポートなど</li>
+</ul></li>
+<li><p><a href="http://github.com/sinatra/sinatra/issues">Issue tracker</a> -
+チケット管理とリリース計画</p></li>
+<li><p><a href="http://twitter.com/sinatra">Twitter</a></p></li>
+<li><p><a href="http://groups.google.com/group/sinatrarb">メーリングリスト</a></p></li>
+<li><p><a href="irc://chat.freenode.net/#sinatra">IRC: #sinatra</a> on
+<a href="http://freenode.net">freenode.net</a></p></li>
+</ul>

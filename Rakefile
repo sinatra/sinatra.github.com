@@ -1,6 +1,7 @@
 # encoding: binary
 require 'rake/clean'
 require 'rdoc/markup/to_html'
+require 'redcarpet'
 require 'uri'
 
 def readme(pattern = "%s", &block)
@@ -66,61 +67,54 @@ end
 desc 'Pull in the latest from the sinatra and sinatra-contrib repos'
 task :pull => ['pull:sinatra', 'pull:contrib']
 
-desc 'Pull in the latest from the sinatra repo'
-task 'pull:sinatra' do
-  if File.directory?("_sinatra")
-    puts 'Pulling sinatra.git'
-    sh "cd _sinatra && git pull &>/dev/null"
-    touch '_sinatra', :verbose => false
-  else
-    puts 'Cloning sinatra repo'
-    sh "git clone git://github.com/sinatra/sinatra.git _sinatra" 
-  end
+directory "_sinatra" do
+  puts 'Cloning sinatra repo'
+  sh "git clone git://github.com/sinatra/sinatra.git _sinatra" 
 end
-file('_sinatra') { Rake::Task['pull:sinatra'].invoke }
-CLOBBER.include '_sinatra'
+
+desc 'Pull in the latest from the sinatra repo'
+task 'pull:sinatra' => "_sinatra" do
+  puts 'Pulling sinatra.git'
+  sh "cd _sinatra && git pull &>/dev/null"
+end
 
 readme("_sinatra/%s.rdoc") { |fn| file fn => '_sinatra' }
 file 'AUTHORS' => '_sinatra'
 
 readme do |fn|
-  file "_includes/#{fn}.html" => ["_sinatra/#{fn}.rdoc", "Rakefile"] do |f|
-    html =
-      RDoc::Markup::ToHtml.new.
-      convert(File.binread("_sinatra/#{fn}.rdoc")).
-      sub("<h1>Sinatra</h1>", "")
+  file "_includes/#{fn}.html" => ["_sinatra/#{fn}.md", "Rakefile"] do |f|
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :fenced_code_blocks => true)
+    html = markdown.render(File.binread("_sinatra/#{fn}.md")).sub("<h1>Sinatra</h1>", "")
     File.open(f.name, 'wb') { |io| io.write with_toc(html) }
   end
-  CLEAN.include "_includes/#{fn}.html"
 end
 
+directory "_contrib" do
+  puts 'Cloning sinatra-contrib repo'
+  sh "git clone git://github.com/sinatra/sinatra-contrib.git _contrib" 
+end
+
+
 desc 'Pull in the latest from the sinatra-contrib repo'
-task 'pull:contrib' do
-  if File.directory?("_contrib")
-    puts 'Pulling sinatra-contrib.git'
-    sh "cd _contrib && git pull &>/dev/null"
-    touch '_contrib', :verbose => false
-  else
-    puts 'Cloning sinatra-contrib repo'
-    sh "git clone git://github.com/sinatra/sinatra-contrib.git _contrib" 
-  end
+task 'pull:contrib' => "_contrib" do
+  puts 'Pulling sinatra-contrib.git'
+  sh "cd _contrib && git pull &>/dev/null"
+end
+
+task 'build:contrib:docs' do
   puts 'Building sinatra-contrib docs'
   sh "cd _contrib && rake doc &>/dev/null"
 end
 
-file('_contrib') { Rake::Task['pull:contrib'].invoke }
-CLOBBER.include '_contrib'
-
 contrib("_contrib/doc/%s.rdoc") { |fn| file fn => '_contrib' }
 
 contrib do |fn|
-  file "_includes/#{fn}.html" => ["_contrib/doc/#{fn}.rdoc", "Rakefile"] do |f|
+  file "_includes/#{fn}.html" => ["build:contrib:docs", "_contrib/doc/#{fn}.rdoc", "Rakefile"] do |f|
     html =
       RDoc::Markup::ToHtml.new.
       convert(File.read("_contrib/doc/#{fn}.rdoc"))
     File.open(f.name, 'wb') { |io| io.write html }
   end
-  CLEAN.include "_includes/#{fn}.html"
 end
 
 desc 'Rebuild site under _site with Jekyll'
@@ -135,4 +129,6 @@ task :server do
   puts 'jekyll --pygments --auto --server'
   exec 'jekyll --pygments --auto --server'
 end
-CLEAN.include '_site'
+
+CLEAN.include '_site', "_includes/*.html"
+CLOBBER.include "_contrib", "_sinatra"
