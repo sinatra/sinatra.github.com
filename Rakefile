@@ -49,7 +49,7 @@ def with_toc(src)
   toc + src
 end
 
-task :default => ['_sinatra', :build]
+task :default => ['_sinatra', '_contrib', :build]
 
 desc "Build outdated static files and API docs"
 task :build => ['build:static']
