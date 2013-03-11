@@ -3,6 +3,8 @@ require 'rake/clean'
 require 'rdoc/markup/to_html'
 require 'redcarpet'
 require 'uri'
+require 'nokogiri'
+
 
 def readme(pattern = "%s", &block)
   return readme(pattern).each(&block) if block_given?
@@ -49,6 +51,16 @@ def with_toc(src)
   toc + src
 end
 
+# Remove the Github TOC and h1 tag
+def clean_up(html)
+  html_doc = Nokogiri::HTML(html)
+  html_doc.xpath("//h1").first.remove
+  toc_header = html_doc.xpath("//h2").first
+  toc_header.remove if toc_header.inner_html == "Table of Contents"
+  html_doc.xpath("//ul").first.remove
+  html_doc.to_html
+end
+
 task :default => ['_sinatra', '_contrib', :build]
 
 desc "Build outdated static files and API docs"
@@ -83,8 +95,9 @@ file 'AUTHORS' => '_sinatra'
 
 readme do |fn|
   file "_includes/#{fn}.html" => ["_sinatra/#{fn}.md", "Rakefile"] do |f|
-    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :fenced_code_blocks => true)
-    html = markdown.render(File.binread("_sinatra/#{fn}.md")).sub("<h1>Sinatra</h1>", "")
+    rndr = Redcarpet::Render::HTML.new()
+    markdown = Redcarpet::Markdown.new(rndr, :fenced_code_blocks => true)
+    html = clean_up(markdown.render(File.binread("_sinatra/#{fn}.md")))
     File.open(f.name, 'wb') { |io| io.write with_toc(html) }
   end
 end
