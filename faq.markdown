@@ -267,12 +267,12 @@ How do I automatically escape HTML? {#auto_escape_html}
 Require [Erubis](http://rubygems.org/gems/erubis) and set `escape_html` to `true`:
 
     require 'erubis'
-    set :erubis, :escape_html => true
+    set :erb, :escape_html => true
 
 Then, any templates rendered with Erubis will be automatically escaped:
 
     get '/' do
-      erubis :index
+      erb :index
     end
 
 Read more on the [Tilt Google Group](https://groups.google.com/forum/#!topic/tiltrb/PPm-sMz6Swc) and see [this example app](http://flowcoder.com/177) for details.
