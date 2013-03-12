@@ -6,10 +6,23 @@ require 'redcarpet'
 require 'rouge'
 require 'rouge/plugins/redcarpet'
 require 'uri'
+require 'nokogiri'
+
 
 class HTML < Redcarpet::Render::HTML
   include Rouge::Plugins::Redcarpet # yep, that's it.
 end
+
+
+def cleanup(html)
+  html_doc = Nokogiri::HTML(html)
+  html_doc.xpath("//h1").first.remove # Removes Sinatra Heading
+  html_doc.xpath("//ul").first.remove # Removes the ToC in Markdown
+  toc_header = html_doc.xpath("//h2").first
+  toc_header.remove if toc_header.inner_html == "Table of Contents"
+  html_doc.to_html
+end
+
 
 def readme(pattern = "%s", &block)
   return readme(pattern).each(&block) if block_given?
@@ -56,7 +69,7 @@ def with_toc(src)
   toc + src
 end
 
-task :default => ['_sinatra', :build]
+task :default => ['_sinatra', '_contrib', :build]
 
 desc "Build outdated static files and API docs"
 task :build => ['build:static']
@@ -74,57 +87,58 @@ end
 desc 'Pull in the latest from the sinatra and sinatra-contrib repos'
 task :pull => ['pull:sinatra', 'pull:contrib']
 
-desc 'Pull in the latest from the sinatra repo'
-task 'pull:sinatra' do
-  if File.directory?("_sinatra")
-    puts 'Pulling sinatra.git'
-    sh "cd _sinatra && git pull &>/dev/null"
-    touch '_sinatra', :verbose => false
-  else
-    puts 'Cloning sinatra repo'
-    sh "git clone git://github.com/sinatra/sinatra.git _sinatra" 
-  end
+directory "_sinatra" do
+  puts 'Cloning sinatra repo'
+  sh "git clone git://github.com/sinatra/sinatra.git _sinatra" 
 end
 
-desc 'Convert Sinatra READMEs to HTML'
-task 'convert:sinatra' do
-  readme do |fn|
-    file "_includes/#{fn}.html" => ["_sinatra/#{fn}", "Rakefile"] do |f|
-      rndr = HTML.new(:safe_links_only => true)
-      markdown = Redcarpet::Markdown.new(rndr, :lax_spacing => true, :fenced_code_blocks => true)
-      markdown_string = File.read("_sinatra/#{fn}.md").encode('UTF-16le', :invalid => :replace, :replace => "").encode("UTF-8")
-      markdown_string.sub!(/##[^#]*\[Sinatra\]((?!\n#).)+/m, '') # remove ToC
-      html = markdown.render(markdown_string).sub("<h1>Sinatra</h1>", "")
-      File.open(f.name, 'w') { |io| io.write with_toc(html) }
-    end
-    CLEAN.include "_includes/#{fn}.html"
-  end
+desc 'Pull in the latest from the sinatra repo'
+task 'pull:sinatra' => "_sinatra" do
+    puts 'Pulling sinatra.git'
+    sh "cd _sinatra && git pull &>/dev/null"
+end
+
+directory "_contrib" do
+  puts 'Cloning sinatra-contrib repo'
+  sh "git clone git://github.com/sinatra/sinatra-contrib.git _contrib" 
 end
 
 desc 'Pull in the latest from the sinatra-contrib repo'
-task 'pull:contrib' do
-  if File.directory?("_contrib")
+task 'pull:contrib' => "_contrib" do
     puts 'Pulling sinatra-contrib.git'
     sh "cd _contrib && git pull &>/dev/null"
-    touch '_contrib', :verbose => false
-  else
-    puts 'Cloning sinatra-contrib repo'
-    sh "git clone git://github.com/sinatra/sinatra-contrib.git _contrib" 
+end
+
+readme("_sinatra/%s") { |fn| file fn => '_sinatra' }
+file 'AUTHORS' => '_sinatra'
+
+
+readme do |fn|
+  file "_includes/#{fn}.html" => ["_sinatra/#{fn}", "Rakefile"] do |f|
+    rndr = HTML.new(:safe_links_only => true)
+    markdown = Redcarpet::Markdown.new(rndr, :lax_spacing => true, :fenced_code_blocks => true)
+    markdown_string = File.read("_sinatra/#{fn}.md").encode('UTF-16le', :invalid => :replace, :replace => "").encode("UTF-8")
+    html = cleanup(markdown.render(markdown_string))
+    File.open(f.name, 'w') { |io| io.write with_toc(html) }
   end
+end
+
+
+desc 'Build contrib docs'
+task 'build:contrib_docs' => 'pull:contrib' do
   puts 'Building sinatra-contrib docs'
   sh "cd _contrib && rake doc &>/dev/null"
 end
 
-desc 'Convert contrib files from RDoc to html'
-task 'convert:contrib' do
-  contrib do |fn|
-    file "_includes/#{fn}.html" => ["_contrib/doc/#{fn}.rdoc", "Rakefile"] do |f|
-      html =
-        RDoc::Markup::ToHtml.new.
-        convert(File.read("_contrib/doc/#{fn}.rdoc"))
-      File.open(f.name, 'wb') { |io| io.write html }
-    end
-    CLEAN.include "_includes/#{fn}.html"
+
+contrib("_contrib/doc/%s.rdoc") { |fn| file fn => '_contrib' }
+
+contrib do |fn|
+  file "_includes/#{fn}.html" => ["build:contrib_docs", "_contrib/doc/#{fn}.rdoc", "Rakefile"] do |f|
+    html =
+      RDoc::Markup::ToHtml.new.
+      convert(File.read("_contrib/doc/#{fn}.rdoc"))
+    File.open(f.name, 'wb') { |io| io.write html }
   end
 end
 
@@ -141,21 +155,5 @@ task :server do
   exec 'jekyll --pygments --auto --server'
 end
 
-
-file('_sinatra') { Rake::Task['pull:sinatra'].invoke }
-CLOBBER.include '_sinatra'
-
-readme("_sinatra/%s") { |fn| file fn => '_sinatra' }
-file 'AUTHORS' => '_sinatra'
-
-Rake::Task['convert:sinatra'].invoke
-
-file('_contrib') { Rake::Task['pull:contrib'].invoke }
-CLOBBER.include '_contrib'
-
-contrib("_contrib/doc/%s.rdoc") { |fn| file fn => '_contrib' }
-
-
-Rake::Task['convert:contrib'].invoke
-
-CLEAN.include '_site'
+CLEAN.include '_site', "_includes/*.html"
+CLOBBER.include "_contrib", "_sinatra"
