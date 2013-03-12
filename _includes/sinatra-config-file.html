@@ -6,9 +6,9 @@ application's configuration from YAML files.  It automatically detects if
 the files contains specific environment settings and it will use the
 corresponding to the current one.</p>
 
-<p>Within the application you can access those options through
-<tt>settings</tt>.  If you try to get the value for a setting that hasn't
-been defined in the config file for the current environment, you will get
+<p>You can access those options through <tt>settings</tt> within the
+application. If you try to get the value for a setting that hasn’t been
+defined in the config file for the current environment, you will get
 whatever it was set to in the application.</p>
 
 <h2>Usage</h2>
@@ -90,6 +90,20 @@ bar: bar</pre>
 
 <p>Be aware that if you have a different environment, besides development,
 test and production, you will also need to adjust the <tt>environments</tt>
-setting.  For instance, when you also have a staging environment:</p>
+setting, otherwise the settings will not load.  For instance, when you also
+have a staging environment:</p>
 
 <pre>set :environments, %w{development test production staging}</pre>
+
+<p>If you wish to provide defaults that may be shared among all the
+environments, this can be done by using one of the existing environments as
+the default using the YAML alias, and then overwriting values in the other
+environments:</p>
+
+<pre>development: &amp;common_settings
+  foo: 'foo'
+  bar: 'bar'
+
+production:
+  &lt;&lt;: *common_settings
+  bar: 'baz' # override the default value</pre>
