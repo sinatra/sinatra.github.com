@@ -3,15 +3,9 @@ require 'rake/clean'
 require 'rdoc/encoding'
 require 'rdoc/markup/to_html'
 require 'redcarpet'
-require 'rouge'
-require 'rouge/plugins/redcarpet'
 require 'uri'
 require 'nokogiri'
-
-
-class HTML < Redcarpet::Render::HTML
-  include Rouge::Plugins::Redcarpet # yep, that's it.
-end
+require 'kramdown'
 
 
 def cleanup(html)
@@ -72,7 +66,7 @@ end
 task :default => ['_sinatra', '_contrib', :build]
 
 desc "Build outdated static files and API docs"
-task :build => ['build:static']
+task :build => [:pull, 'build:static']
 
 desc "Build outdated static files"
 task 'build:static' => readme("_includes/%s.html") + contrib("_includes/%s.html")
@@ -109,16 +103,17 @@ task 'pull:contrib' => "_contrib" do
     sh "cd _contrib && git pull &>/dev/null"
 end
 
-readme("_sinatra/%s") { |fn| file fn => '_sinatra' }
+readme("_sinatra/%s.md") { |fn| file fn => '_sinatra' }
 file 'AUTHORS' => '_sinatra'
 
-
 readme do |fn|
-  file "_includes/#{fn}.html" => ["_sinatra/#{fn}", "Rakefile"] do |f|
-    rndr = HTML.new(:safe_links_only => true)
-    markdown = Redcarpet::Markdown.new(rndr, :lax_spacing => true, :fenced_code_blocks => true)
+  file "_includes/#{fn}.html" => ["_sinatra/#{fn}.md", "Rakefile"] do |f|
     markdown_string = File.read("_sinatra/#{fn}.md").encode('UTF-16le', :invalid => :replace, :replace => "").encode("UTF-8")
-    html = cleanup(markdown.render(markdown_string))
+    markdown_string.gsub!(/```(\s?(\w+\n))?/) do |match|
+      match =~ /```\s?\n/ ? "~~~~~\n" : match.sub(/```\s?/, "~~~~")
+    end
+    markdown = Kramdown::Document.new(markdown_string, :fenced_code_blocks => true, :coderay_line_numbers => nil, :auto_ids => false)
+    html = cleanup(markdown.to_html)
     File.open(f.name, 'w') { |io| io.write with_toc(html) }
   end
 end
