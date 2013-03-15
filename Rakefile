@@ -1,7 +1,22 @@
-# encoding: binary
+# encoding: utf-8
 require 'rake/clean'
+require 'rdoc/encoding'
 require 'rdoc/markup/to_html'
+require 'redcarpet'
 require 'uri'
+require 'nokogiri'
+require 'kramdown'
+
+
+def cleanup(html)
+  html_doc = Nokogiri::HTML(html)
+  html_doc.xpath("//h1").first.remove # Removes Sinatra Heading
+  html_doc.xpath("//ul").first.remove # Removes the ToC in Markdown
+  toc_header = html_doc.xpath("//h2").first
+  toc_header.remove if toc_header.inner_html == "Table of Contents"
+  html_doc.to_html
+end
+
 
 def readme(pattern = "%s", &block)
   return readme(pattern).each(&block) if block_given?
@@ -48,10 +63,10 @@ def with_toc(src)
   toc + src
 end
 
-task :default => ['_sinatra', :build]
+task :default => ['_sinatra', '_contrib', :build]
 
 desc "Build outdated static files and API docs"
-task :build => ['build:static']
+task :build => [:pull, 'build:static']
 
 desc "Build outdated static files"
 task 'build:static' => readme("_includes/%s.html") + contrib("_includes/%s.html")
@@ -66,61 +81,60 @@ end
 desc 'Pull in the latest from the sinatra and sinatra-contrib repos'
 task :pull => ['pull:sinatra', 'pull:contrib']
 
+directory "_sinatra" do
+  puts 'Cloning sinatra repo'
+  sh "git clone git://github.com/sinatra/sinatra.git _sinatra" 
+end
+
 desc 'Pull in the latest from the sinatra repo'
-task 'pull:sinatra' do
-  if File.directory?("_sinatra")
+task 'pull:sinatra' => "_sinatra" do
     puts 'Pulling sinatra.git'
     sh "cd _sinatra && git pull &>/dev/null"
-    touch '_sinatra', :verbose => false
-  else
-    puts 'Cloning sinatra repo'
-    sh "git clone git://github.com/sinatra/sinatra.git _sinatra" 
-  end
 end
-file('_sinatra') { Rake::Task['pull:sinatra'].invoke }
-CLOBBER.include '_sinatra'
 
-readme("_sinatra/%s.rdoc") { |fn| file fn => '_sinatra' }
-file 'AUTHORS' => '_sinatra'
-
-readme do |fn|
-  file "_includes/#{fn}.html" => ["_sinatra/#{fn}.rdoc", "Rakefile"] do |f|
-    html =
-      RDoc::Markup::ToHtml.new.
-      convert(File.binread("_sinatra/#{fn}.rdoc")).
-      sub("<h1>Sinatra</h1>", "")
-    File.open(f.name, 'wb') { |io| io.write with_toc(html) }
-  end
-  CLEAN.include "_includes/#{fn}.html"
+directory "_contrib" do
+  puts 'Cloning sinatra-contrib repo'
+  sh "git clone git://github.com/sinatra/sinatra-contrib.git _contrib" 
 end
 
 desc 'Pull in the latest from the sinatra-contrib repo'
-task 'pull:contrib' do
-  if File.directory?("_contrib")
+task 'pull:contrib' => "_contrib" do
     puts 'Pulling sinatra-contrib.git'
     sh "cd _contrib && git pull &>/dev/null"
-    touch '_contrib', :verbose => false
-  else
-    puts 'Cloning sinatra-contrib repo'
-    sh "git clone git://github.com/sinatra/sinatra-contrib.git _contrib" 
+end
+
+readme("_sinatra/%s.md") { |fn| file fn => '_sinatra' }
+file 'AUTHORS' => '_sinatra'
+
+readme do |fn|
+  file "_includes/#{fn}.html" => ["_sinatra/#{fn}.md", "Rakefile"] do |f|
+    markdown_string = File.read("_sinatra/#{fn}.md").encode('UTF-16le', :invalid => :replace, :replace => "").encode("UTF-8")
+    markdown_string.gsub!(/```(\s?(\w+\n))?/) do |match|
+      match =~ /```\s?\n/ ? "~~~~~\n" : match.sub(/```\s?/, "~~~~")
+    end
+    markdown = Kramdown::Document.new(markdown_string, :fenced_code_blocks => true, :coderay_line_numbers => nil, :auto_ids => false)
+    html = cleanup(markdown.to_html)
+    File.open(f.name, 'w') { |io| io.write with_toc(html) }
   end
+end
+
+
+desc 'Build contrib docs'
+task 'build:contrib_docs' => 'pull:contrib' do
   puts 'Building sinatra-contrib docs'
   sh "cd _contrib && rake doc &>/dev/null"
 end
 
-file('_contrib') { Rake::Task['pull:contrib'].invoke }
-CLOBBER.include '_contrib'
 
 contrib("_contrib/doc/%s.rdoc") { |fn| file fn => '_contrib' }
 
 contrib do |fn|
-  file "_includes/#{fn}.html" => ["_contrib/doc/#{fn}.rdoc", "Rakefile"] do |f|
+  file "_includes/#{fn}.html" => ["build:contrib_docs", "_contrib/doc/#{fn}.rdoc", "Rakefile"] do |f|
     html =
       RDoc::Markup::ToHtml.new.
       convert(File.read("_contrib/doc/#{fn}.rdoc"))
     File.open(f.name, 'wb') { |io| io.write html }
   end
-  CLEAN.include "_includes/#{fn}.html"
 end
 
 desc 'Rebuild site under _site with Jekyll'
@@ -135,4 +149,6 @@ task :server do
   puts 'jekyll --pygments --auto --server'
   exec 'jekyll --pygments --auto --server'
 end
-CLEAN.include '_site'
+
+CLEAN.include '_site', "_includes/*.html"
+CLOBBER.include "_contrib", "_sinatra"
