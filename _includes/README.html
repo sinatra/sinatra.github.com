@@ -92,6 +92,7 @@
 		<ol class='level-2'>
 			<li><a href='#With%20Bundler'>With Bundler</a></li>
 			<li><a href='#Roll%20Your%20Own'>Roll Your Own</a></li>
+			<li><a href='#Install%20Globally'>Install Globally</a></li>
 		</ol>
 		<li><a href='#Versioning'>Versioning</a></li>
 		<li><a href='#Further%20Reading'>Further Reading</a></li>
@@ -115,12 +116,20 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>Install the gem and run with:</p>
+<p>Install the gem:</p>
 
 <div>
 <div class="CodeRay">
   <div class="code"><pre>gem install sinatra
-ruby myapp.rb
+</pre></div>
+</div>
+</div>
+
+<p>And run with:</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>ruby myapp.rb
 </pre></div>
 </div>
 </div>
@@ -197,6 +206,9 @@ matches the request is invoked.</p>
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/hello/:name</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span> |n|
+  <span style="color:#777"># matches "GET /hello/foo" and "GET /hello/bar"</span>
+  <span style="color:#777"># params[:name] is 'foo' or 'bar'</span>
+  <span style="color:#777"># n stores params[:name]</span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hello </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>n<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
@@ -585,12 +597,13 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </dl>
 <p>Templates are assumed to be located directly under the <code>./views</code> directory. To 
 use a different views directory: 
-<tt>set :views, settings.root + ‘/templates’</tt></p>
+<code>set :views, settings.root + '/templates'</code></p>
 
 <p>One important thing to remember is that you always have to reference templates 
 with symbols, even if they’re in a subdirectory (in this case, use:
-<tt>‘subdir/template’</tt>). You must use a symbol because otherwise rendering
-methods will render any strings passed to them directly.</p>
+<code>:'subdir/template'</code> or <code>'subdir/template'.to_sym</code>). You must use a symbol
+because otherwise rendering methods will render any strings passed to them
+directly.</p>
 
 <a name='Literal%20Templates'></a>
 <h3>Literal Templates</h3>
@@ -1180,7 +1193,7 @@ other templates.</p>
 <h3>Templates with <code>yield</code> and nested layouts</h3>
 
 <p>A layout is usually just a template that calls <code>yield</code>.
-Such a template can by used either through the <code>:template</code> option as
+Such a template can be used either through the <code>:template</code> option as
 described above, or it can be rendered with a block as follows:</p>
 
 <div>
@@ -2368,7 +2381,7 @@ set <span style="color:#A60">:protection</span>, <span style="color:#A60">:sessi
     properly. Note that the <tt>url</tt> helper will still produce absolute URLs, unless you
     pass in <tt>false</tt> as the second parameter.
   </dd>
-  <dd>Disabled per default.</dd>
+  <dd>Disabled by default.</dd>
 
   <dt>add_charsets</dt>
   <dd>
@@ -2384,7 +2397,7 @@ set <span style="color:#A60">:protection</span>, <span style="color:#A60">:sessi
   </dd>
 
   <dt>bind</dt>
-  <dd>IP address to bind to (default: <tt>0.0.0.0</tt>). Only used for built-in server.</dd>
+  <dd>IP address to bind to (default: <tt>0.0.0.0</tt> <em>or</em> <tt>localhost</tt> if your `environment` is set to development.). Only used for built-in server.</dd>
 
   <dt>default_encoding</dt>
   <dd>encoding to assume if unknown (defaults to <tt>"utf-8"</tt>).</dd>
@@ -3200,14 +3213,14 @@ being <a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/main.
   <dt>Rubinius</dt>
   <dd>
     Rubinius is officially supported (Rubinius &gt;= 2.x). It is recommendended to
-    `gem install puma`.
+    <tt>gem install puma</tt>.
   </dd>
 
   <dt>JRuby</dt>
   <dd>
     The latest stable release of JRuby is officially supported. It is not
     recommended to use C extensions with JRuby. It is recommended to
-    `gem install trinidad`.
+    <tt>gem install trinidad</tt>.
   </dd>
 </dl>
 <p>We also keep an eye on upcoming Ruby versions.</p>
@@ -3319,7 +3332,9 @@ git pull
 </pre></div>
 </div>
 </div>
-<p>### Install Globally</p>
+
+<a name='Install%20Globally'></a>
+<h3>Install Globally</h3>
 
 <p>You can build the gem on your own:</p>
 

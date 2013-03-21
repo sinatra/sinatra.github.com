@@ -115,7 +115,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>Instalá la gem y ejecutá la aplicación con:</p>
+<p>Instalá el gem y corré la aplicación con:</p>
 
 <div>
 <div class="CodeRay">
@@ -165,11 +165,11 @@ options <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:
 </div>
 </div>
 
-<p>Las rutas son comparadas en el orden en el que son definidas. La primer ruta
+<p>Las rutas son comparadas en el orden en el que son definidas. La primera ruta
 que coincide con la petición es invocada.</p>
 
 <p>Los patrones de las rutas pueden incluir parámetros nombrados, accesibles a
-través de el hash <code>params</code>:</p>
+través del hash <code>params</code>:</p>
 
 <div>
 <div class="CodeRay">
@@ -187,6 +187,9 @@ través de el hash <code>params</code>:</p>
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/hola/:nombre</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span> |n|
+  <span style="color:#777"># coincide con "GET /hola/foo" y "GET /hola/bar"</span>
+  <span style="color:#777"># params[:nombre] es 'foo' o 'bar'</span>
+  <span style="color:#777"># n almacena params[:nombre]</span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hola </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>n<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
@@ -256,7 +259,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>A propósito, a menos que desactivés la protección para el ataque <em>path
+<p>A propósito, a menos que desactives la protección para el ataque <em>path
 traversal</em> (ver más abajo), el path de la petición puede ser modificado
 antes de que se compare con los de tus rutas.</p>
 
@@ -343,10 +346,10 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <a name='Valores%20de%20Retorno'></a>
 <h3>Valores de Retorno</h3>
 
-<p>El valor de retorno de un bloque de ruta determina al menos el cuerpo de la
+<p>El valor de retorno de un bloque de ruta que determina al menos el cuerpo de la
 respuesta que se le pasa al cliente HTTP o al siguiente middleware en la pila
 de Rack. Lo más común es que sea un string, como en los ejemplos anteriores.
-Sin embargo, otros valor también son aceptados.</p>
+Sin embargo, otros valores también son aceptados.</p>
 
 <p>Podés devolver cualquier objeto que sea una respuesta Rack válida, un objeto
 que represente el cuerpo de una respuesta Rack o un código de estado HTTP:</p>
@@ -543,7 +546,7 @@ definidas mediante <code>set</code>.</p>
 
   <dt>layout</dt>
   <dd>
-    Si es <tt>true</tt> o <tt>false</tt> indica que se debe usar, o nó, un layout,
+    Si es <tt>true</tt> o <tt>false</tt> indica que se debe usar, o no, un layout,
     respectivamente. También puede ser un símbolo que especifique qué plantilla
     usar. Ejemplo: <tt>erb :index, :layout =&gt; !request.xhr?</tt>
   </dd>
@@ -578,9 +581,9 @@ definidas mediante <code>set</code>.</p>
   <dd>
     Es importante acordarse que siempre tenés que referenciar a las plantillas con
     símbolos, incluso cuando se encuentran en un subdirectorio (en este caso
-    tenés que usar: <tt>'subdir/plantilla'</tt>). Tenés que usar un símbolo porque los
-    métodos de renderización van a renderizar directamente cualquier string que se
-    les pase como argumento.
+    tenés que usar: `:'subdir/plantilla'` o `'subdir/plantilla'.to_sym`). Tenés que
+    usar un símbolo porque los métodos de renderización van a renderizar
+    directamente cualquier string que se les pase como argumento.
   </dd>
 </dl>
 <a name='Lenguajes%20de%20Plantillas%20Disponibles'></a>
@@ -1295,7 +1298,7 @@ los filtros <code>after</code>:</p>
 </div>
 </div>
 
-<p>Nota: A menos que usés el método <code>body</code> en lugar de simplemente devolver un
+<p>Nota: A menos que uses el método <code>body</code> en lugar de simplemente devolver un
 string desde una ruta, el cuerpo de la respuesta no va a estar disponible en
 un filtro after, debido a que todavía no se ha generado.</p>
 
@@ -1377,7 +1380,7 @@ incluir los módulos en la clase de la aplicación.</p>
 <h3>Usando Sesiones</h3>
 
 <p>Una sesión es usada para mantener el estado a través de distintas peticiones.
-Cuando están activadas, tenés un hash de sesión para cada sesión de usuario:</p>
+Cuando están activadas, proporciona un hash de sesión para cada sesión de usuario:</p>
 
 <div>
 <div class="CodeRay">
@@ -1395,8 +1398,8 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 
 <p>Tené en cuenta que <code>enable :sessions</code> guarda todos los datos en una
-cookie, lo que no es siempre deseable (guardar muchos datos va a incrementar
-tu tráfico, por citar un ejemplo). Podés usar cualquier middleware Rack para
+cookie, lo cual no es siempre deseable (guardar muchos datos va a incrementar
+el tráfico, por citar un ejemplo). Podés usar cualquier middleware Rack para
 manejar sesiones, de la misma manera que usarías cualquier otro middleware,
 pero con la salvedad de que <em>no</em> tenés que llamar a <code>enable :sessions</code>:</p>
 
@@ -1517,7 +1520,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 
 <p>Se sale inmediatamente del bloque de la ruta y se le pasa el control a la
-siguiente ruta que coincida. Si no coincide ninguna ruta, se devuelve un 404.</p>
+siguiente ruta que coincida. Si no coincide ninguna ruta, se devuelve 404.</p>
 
 <a name='Ejecutando%20Otra%20Ruta'></a>
 <h3>Ejecutando Otra Ruta</h3>
@@ -1736,7 +1739,7 @@ extensión de archivo:</p>
 
 <p>Tiene en cuenta proxies inversos y encaminadores de Rack, si están presentes.</p>
 
-<p>Este método también puede invocarse mediante su alias <code>to</code>  (mirá un ejemplo
+<p>Este método también puede invocarse mediante su alias <code>to</code> (mirá un ejemplo
 a continuación).</p>
 
 <a name='Redirecci%C3%B3n%20del%20Navegador'></a>
@@ -1879,7 +1882,7 @@ el cliente ya tiene la versión actual en su caché:</p>
 
 <p>Estos helpers no van a cachear nada por vos, sino que van a facilitar la
 información necesaria para poder hacerlo. Si estás buscando soluciones rápidas
-de cacheo con proxys inversos, mirá
+de cacheo con proxys reversos, mirá
 <a href="https://github.com/rtomayko/rack-cache">rack-cache</a>:</p>
 
 <div>
@@ -1906,7 +1909,7 @@ para más detalles).</p>
 cabeceras If-Match o If-None-Match se le asigna el valor <code>*</code> cuando el
 recurso solicitado ya existe. Sinatra asume para peticiones seguras (como get)
 e idempotentes (como put) que el recurso existe, mientras que para el resto
-(como post), que no. Podes cambiar este comportamiento con la opción
+(como post) asume que no. Podes cambiar este comportamiento con la opción
 <code>:new_resource</code>:</p>
 
 <div>
@@ -2016,7 +2019,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
   request.path                <span style="color:#777"># "/ejemplo/foo"</span>
   request.ip                  <span style="color:#777"># dirección IP del cliente</span>
   request.secure?             <span style="color:#777"># false (sería true sobre ssl)</span>
-  request.forwarded?          <span style="color:#777"># true (si se está corriendo atrás de un proxy inverso)</span>
+  request.forwarded?          <span style="color:#777"># true (si se está corriendo atrás de un proxy reverso)</span>
   requuest.env                <span style="color:#777"># hash de entorno directamente entregado por Rack</span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
@@ -2171,7 +2174,7 @@ helpers <span style="color:#080;font-weight:bold">do</span>
 </div>
 </div>
 
-<p>¡Es muy fácil convertir estos ejemplos en una extensión y compartirla!.</p>
+<p>¡Es muy fácil convertir estos ejemplos en una extensión y compartirla!</p>
 
 <p>Notá que <code>find_template</code> no verifica si un archivo existe realmente, sino
 que llama al bloque que recibe para cada path posible. Esto no representa un
@@ -2293,7 +2296,7 @@ montón de vulnerabilidades bien conocidas):</p>
     1.1), que solamente permite redirecciones absolutas.
 
     Activalo si tu apliación está corriendo atrás de un proxy
-    inverso que no se ha configurado adecuadamente. Notá que
+    reverso que no se ha configurado adecuadamente. Notá que
     el helper <tt>url</tt> va a seguir produciendo URLs absolutas, a
     menos que le pasés <tt>false</tt> como segundo parámetro.
 
@@ -2425,7 +2428,7 @@ montón de vulnerabilidades bien conocidas):</p>
   <dt>run</dt>
   <dd>
     Cuando está habilitada, Sinatra se va a encargar de
-    iniciar el servidor web, no la habilités cuando estés
+    iniciar el servidor web, no la habilites cuando estés
     usando rackup o algún otro medio.
   </dd>
 
@@ -2462,7 +2465,7 @@ montón de vulnerabilidades bien conocidas):</p>
     Define si Sinatra debe encargarse de servir archivos
     estáticos.
 
-    Deshabilitala cuando usés un servidor capaz de
+    Deshabilitala cuando uses un servidor capaz de
     hacerlo por sí solo, porque mejorará el
     rendimiento. Se encuentra habilitada por
     defecto en el estilo clásico y desactivado en el
@@ -2611,7 +2614,7 @@ cuando se ejecuta dentro del entorno de desarrollo “development”.</p>
 
 <p>Sinatra corre sobre Rack[http://rack.rubyforge.org/], una interfaz minimalista
 que es un estándar para frameworks webs escritos en Ruby. Una de las
-capacidades más interesantes de Rack para los desarrolladores de aplicaciones
+características más interesantes de Rack para los desarrolladores de aplicaciones
 es el soporte de “middleware” – componentes que se ubican entre el servidor y
 tu aplicación, supervisando y/o manipulando la petición/respuesta HTTP para
 proporcionar varios tipos de funcionalidades comunes.</p>
@@ -2634,9 +2637,9 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>Las semánticas de <code>use</code> son idénticas a las definidas para el DSL
+<p>La semántica de <code>use</code> es idéntica a la definida para el DSL
 Rack::Builder[http://rack.rubyforge.org/doc/classes/Rack/Builder.html] (más
-frecuentemente usado desde archivos rackup). Por ejemplo, el método <code>use</code>
+frecuentemente usado en archivos rackup). Por ejemplo, el método <code>use</code>
 acepta argumentos múltiples/variables así como bloques:</p>
 
 <div>
@@ -2703,7 +2706,7 @@ require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:
 
 <p>Definir tu aplicación en el top-level funciona bien para micro-aplicaciones
 pero trae inconvenientes considerables a la hora de construir componentes
-reutilizables como Rack middleware, Rails metal, simple librerías con un
+reutilizables como Rack middleware, Rails metal, librerías simples con un
 componente de servidor, o incluso extensiones de Sinatra. El DSL de top-level
 asume una configuración apropiada para micro-aplicaciones (por ejemplo, un
 único archivo de aplicación, los directorios <code>./public</code> y
@@ -3092,7 +3095,7 @@ tenés un <code>self</code> diferente). Podés agregar delegaciones de método l
   <li>Un objeto extendido con el mixin <code>Sinatra::Delegator</code>
 </li>
 </ul>
-<p>Pegale una mirada al código: acá está el
+<p>Hechale un vistazo al código: acá está el
 <a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/base.rb#L1609-1633">Sinatra::Delegator mixin</a>
 que <a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/main.rb#L28-30">extiende el objeto main</a>.</p>
 
@@ -3127,7 +3130,7 @@ que <a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/main.rb
 <dt>Ruby 1.8.7</dt>
   <dd>
     1.8.7 es soportado completamente. Sin embargo, si no hay nada que te lo
-    prohíba, te recomendamos que usés 1.9.2 o cambies a JRuby o Rubinius. No se
+    prohiba, te recomendamos que uses 1.9.2 o cambies a JRuby o Rubinius. No se
     dejará de dar soporte a 1.8.7 hasta Sinatra 2.0 y Ruby 2.0, aunque si se
     libera la versión 1.8.8 de Ruby las cosas podrían llegar a cambiar. Sin
     embargo, que eso ocurra es muy poco probable, e incluso el caso de que lo
@@ -3139,7 +3142,7 @@ que <a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/main.rb
 
   <dt>Ruby 1.9.2</dt>
   <dd>
-    1.9.2 es soportado y recomendado. No usés 1.9.2p0, porque se producen fallos
+    1.9.2 es soportado y recomendado. No uses 1.9.2p0, porque se producen fallos
     de segmentación cuando se ejecuta Sinatra. El soporte se mantendrá al menos
     hasta que se libere la versión 1.9.4/2.0 de Ruby. El soporte para la última
     versión de la serie 1.9 se mantendrá mientras lo haga el core team de Ruby.
@@ -3177,16 +3180,16 @@ oficialmente. De cualquier manera, pueden ejecutar Sinatra:</p>
 <li>Versiones anteriores de JRuby y Rubinius</li>
   <li>Ruby Enterprise Edition</li>
   <li>MacRuby, Maglev e IronRuby</li>
-  <li>Ruby 1.9.0 y 1.9.1 (pero no te recomendamos que los usés)</li>
+  <li>Ruby 1.9.0 y 1.9.1 (pero no te recomendamos que los uses)</li>
 </ul>
 <p>No estar soportada oficialmente, significa que si las cosas solamente se rompen
 ahí y no en una plataforma soportada, asumimos que no es nuestro problema sino
 el suyo.</p>
 
 <p>Nuestro servidor CI también se ejecuta sobre ruby-head (que será la próxima
-versión 2.0.0) y la rama 1.9.4. Como están en movimiento constante, no podemos
+versión 2.1.0) y la rama 1.9.4. Como están en movimiento constante, no podemos
 garantizar nada. De todas formas, podés contar con que tanto 1.9.4-p0 como
-2.0.0-p0 sea soportadas.</p>
+2.1.0-p0 sea soportadas.</p>
 
 <p>Sinatra debería funcionar en cualquier sistema operativo soportado por la
 implementación de Ruby elegida.</p>
@@ -3200,7 +3203,7 @@ BlueRuby o cualquier versión de Ruby anterior a 1.8.7.</p>
 <p>Si querés usar el código de Sinatra más reciente, sentite libre de ejecutar
 tu aplicación sobre la rama master, en general es bastante estable.</p>
 
-<p>También liberamos prereleases de vez en cuando, así, podés hacer</p>
+<p>También liberamos prereleases de vez en cuando, así, podés hacer:</p>
 
 <div>
 <div class="CodeRay">
