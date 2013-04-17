@@ -339,7 +339,7 @@ more information on `get`, `post`, `put`, `delete` and friends.
 [Bacon]: https://github.com/chneukirchen/bacon
 [Test::Spec]: http://rubyforge.org/projects/test-spec/
 [Rack::Test]: https://github.com/brynary/rack-test/
-[spec]: http://rack.rubyforge.org/doc/files/SPEC.html
+[spec]: http://rack.rubyforge.org/doc/SPEC.html
 [Rack::MockRequest]: http://rack.rubyforge.org/doc/classes/Rack/MockRequest.html
 [Rack::MockResponse]: http://rack.rubyforge.org/doc/classes/Rack/MockResponse.html
 [Webrat]: https://github.com/brynary/webrat
