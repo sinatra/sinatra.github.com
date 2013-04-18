@@ -198,6 +198,7 @@ Websites {#sites}
 - [Similander](http://similar.heroku.com) extracts keywords from a given URL to find similar pages ([Source](https://github.com/ema/similander)).
 - [Sombras de Papel](http://sombrasdepapel.com/en/) Website of a pop-rock band from Barcelona (Spain) entirely made using Sinatra + HTML5. There's also an automatic mobile site.
 - [streetart.io](http://streetart.io) streetart.io allows you to share and discover interesting street art, public art and sculptures around you and your city. The website is a sinatra app which pulls data via the API.
+- [Scrum Primer](http://www.scrumprimer.org) - A short introduction to Scrum. The code is at [Scrum Primer @ Github](https://github.com/basvodde/scrumprimer). Also uses [r18n for Sinatra](https://github.com/ai/r18n)
 
 Companies using Sinatra {#biz}
 -----------------------
@@ -243,3 +244,4 @@ Companies using Sinatra {#biz}
 - [Red Hat](http://www.redhat.com)
 - [Travis CI](https://travis-ci.com)
 - [Clearhaus](https://www.clearhaus.com)
+- [Odd-e](http://www.odd-e.com)
