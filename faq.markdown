@@ -310,11 +310,10 @@ You have at least two options for implementing basic access authentication (Basi
 
 I. When you want to protect all requests in the application, simply put Rack::Auth::Basic middleware in the request processing chain by the `use` directive:
 
-    require 'rubygems'
     require 'sinatra'
 
     use Rack::Auth::Basic, "Restricted Area" do |username, password|
-      [username, password] == ['admin', 'admin']
+      username == 'admin' and password == 'admin'
     end
 
     get '/' do
@@ -327,23 +326,19 @@ I. When you want to protect all requests in the application, simply put Rack::Au
 
 II. When you want to protect only certain URLs in the application, or want the authorization to be more complex, you may use something like this:
 
-    require 'rubygems'
     require 'sinatra'
 
     helpers do
-
       def protected!
-        unless authorized?
-          response['WWW-Authenticate'] = %(Basic realm="Restricted Area")
-          throw(:halt, [401, "Not authorized\n"])
-        end
+        return if authorized?
+        headers['WWW-Authenticate'] = 'Basic realm="Restricted Area"'
+        halt 401, "Not authorized\n"
       end
 
       def authorized?
         @auth ||=  Rack::Auth::Basic::Request.new(request.env)
-        @auth.provided? && @auth.basic? && @auth.credentials && @auth.credentials == ['admin', 'admin']
+        @auth.provided? and @auth.basic? and @auth.credentials and @auth.credentials == ['admin', 'admin']
       end
-
     end
 
     get '/' do
@@ -361,7 +356,6 @@ How do I test HTTP authentication? {#test_http_auth}
 
 Assuming you have this simple implementation of HTTP authentication in your `application.rb`:
 
-    require 'rubygems'
     require 'sinatra'
 
     use Rack::Auth::Basic do |username, password|
@@ -375,8 +369,6 @@ Assuming you have this simple implementation of HTTP authentication in your `app
 You can test it like this with [_Rack::Test_](https://github.com/brynary/rack-test):
 
     ENV['RACK_ENV'] = 'test'
-
-    require 'rubygems'
     require 'test/unit'
     require 'rack/test'
 
