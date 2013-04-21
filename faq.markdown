@@ -52,7 +52,7 @@ Sessions are disabled by default. You need to enable them and then use the
 
     get '/foo' do
       session[:message] = 'Hello World!'
-      redirect '/bar'
+      redirect to('/bar')
     end
 
     get '/bar' do
