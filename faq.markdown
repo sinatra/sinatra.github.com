@@ -359,7 +359,7 @@ Assuming you have this simple implementation of HTTP authentication in your `app
     require 'sinatra'
 
     use Rack::Auth::Basic do |username, password|
-      [username, password] == ['admin', 'admin']
+      username == 'admin' and password == 'admin'
     end
 
     get '/protected' do
