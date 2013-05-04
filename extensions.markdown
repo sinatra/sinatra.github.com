@@ -201,7 +201,7 @@ Modular style applications must register the extension explicitly in their
 
 {% highlight ruby %}
 require 'sinatra/base'
-require 'sinatra/diggblocker'
+require 'sinatra/linkblocker'
 
 class Hello < Sinatra::Base
   register Sinatra::LinkBlocker
