@@ -39,7 +39,7 @@ can be applied as quickly as possible:
    can hold up acceptance of the patch.
 
 3. **Mind the `README`:** If the patch adds or modifies a major feature,
-   modify the `README.rdoc` file to reflect that. Again, if you don't
+   modify the `README.md` file to reflect that. Again, if you don't
    update the `README`, we have to, and this holds up acceptance.
 
 4. **Push it:** Once you're ready, push your changes to a topic branch
@@ -72,11 +72,11 @@ GitHub to track patch requests.
   repository](http://github.com/sinatra/sinatra-recipes).
 
 * [The Introduction](intro.html) is generated from Sinatra's
-  [README file](http://github.com/sinatra/sinatra/blob/master/README.rdoc).
+  [README file](http://github.com/sinatra/sinatra/blob/master/README.md).
 
 * If you want to help translating the documentation, there already is a
-  [Japanese](http://github.com/sinatra/sinatra/blob/master/README.jp.rdoc)
-  and a [German](http://github.com/sinatra/sinatra/blob/master/README.de.rdoc)
+  [Japanese](http://github.com/sinatra/sinatra/blob/master/README.jp.md)
+  and a [German](http://github.com/sinatra/sinatra/blob/master/README.de.md)
   version of the README, which tend to fall behind the English
   version.  Translations into other languages would also be appreciated.
 
