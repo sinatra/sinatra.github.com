@@ -245,3 +245,4 @@ Companies using Sinatra {#biz}
 - [Travis CI](https://travis-ci.com)
 - [Clearhaus](https://www.clearhaus.com)
 - [Odd-e](http://www.odd-e.com)
+- [Digital Deployment](http://www.digitaldeployment.com)
