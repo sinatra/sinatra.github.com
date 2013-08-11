@@ -38,11 +38,11 @@ makes a few helper methods and attributes available.
 The following is a simple example that ensures the hello world app functions
 properly:
 
+    ENV['RACK_ENV'] = 'test'
+
     require 'hello_world'
     require 'test/unit'
     require 'rack/test'
-
-    ENV['RACK_ENV'] = 'test'
 
     class HelloWorldTest < Test::Unit::TestCase
       include Rack::Test::Methods
@@ -69,12 +69,11 @@ For a variety of reasons you may not want to include `Rack::Test::Methods`
 into your own classes. `Rack::Test` supports this style of testing as well,
 here is the above example without using Mixin.
 
+    ENV['RACK_ENV'] = 'test'
 
     require 'hello_world'
     require 'test/unit'
     require 'rack/test'
-
-    set :environment, :test
 
     class HelloWorldTest < Test::Unit::TestCase
 
@@ -183,11 +182,11 @@ removed in Sinatra `1.0`.
 Sinatra can be tested under plain RSpec. The `Rack::Test` module should be
 included within the `describe` block:
 
+    ENV['RACK_ENV'] = 'test'
+
     require 'hello_world'  # <-- your sinatra app
     require 'rspec'
     require 'rack/test'
-
-    set :environment, :test
 
     describe 'The HelloWorld App' do
       include Rack::Test::Methods
@@ -217,11 +216,11 @@ Make `Rack::Test` available to all spec contexts by including it via
 
 Testing with Bacon is similar to `test/unit` and RSpec:
 
+    ENV['RACK_ENV'] = 'test'
+
     require 'hello_world'  # <-- your sinatra app
     require 'bacon'
     require 'rack/test'
-
-    set :environment, :test
 
     describe 'The HelloWorld App' do
       extend Rack::Test::Methods
@@ -249,11 +248,11 @@ Make `Rack::Test` available to all spec contexts by including it in
 The `Rack::Test` module should be included within the context of the
 `describe` block:
 
+    ENV['RACK_ENV'] = 'test'
+
     require 'hello_world'  # <-- your sinatra app
     require 'test/spec'
     require 'rack/test'
-
-    set :environment, :test
 
     describe 'The HelloWorld App' do
       include Rack::Test::Methods
@@ -280,6 +279,8 @@ Make `Rack::Test` available to all spec contexts by including it in
 ### [Webrat][]
 
 From `Webrat`'s wiki where you'll find more [examples][].
+
+    ENV['RACK_ENV'] = 'test'
 
     require 'hello_world'  # <-- your sinatra app
     require 'rack/test'
@@ -308,6 +309,8 @@ From `Webrat`'s wiki where you'll find more [examples][].
 
 `Capybara` will use `Rack::Test` by default. You can use another driver, like
 `Selenium`, by setting the default_driver.
+
+    ENV['RACK_ENV'] = 'test'
 
     require 'hello_world'  # <-- your sinatra app
     require 'capybara'
