@@ -140,14 +140,14 @@ end
 desc 'Rebuild site under _site with Jekyll'
 task :jekyll do
   rm_rf '_site'
-  sh 'jekyll --pygments'
+  sh 'jekyll build'
 end
 
 desc 'Start the Jekyll server on http://localhost:4000/'
 task :server do
   rm_rf '_site'
-  puts 'jekyll --pygments --auto --server'
-  exec 'jekyll --pygments --auto --server'
+  puts 'jekyll serve --watch'
+  exec 'jekyll serve --watch'
 end
 
 CLEAN.include '_site', "_includes/*.html"
