@@ -19,11 +19,11 @@ Install dependencies:
 
 Run the test server:
 
-    $ rake server
+    $ jekyll serve --watch
 
 Changes are immediately available at:
 
-    http://sinatrarb.smackaho.st:4000/
+    http://localhost:4000
 
 Contributing
 ------------
