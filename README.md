@@ -19,7 +19,7 @@ Install dependencies:
 
 Run the test server:
 
-    $ jekyll serve --watch
+    $ rake server
 
 Changes are immediately available at:
 
