@@ -142,6 +142,7 @@ Libraries and extensions {#libs}
 - [Sinatra::Jsonp](https://github.com/shtirlic/sinatra-jsonp) JSONP output helper for Sinatra.
 - [Bowtie](https://github.com/tomas/bowtie) Admin generator for DataMapper models, on Sinatra.
 - [Sinatra::Kittens](https://github.com/tbuehlmann/sinatra-kittens) Random kitten pictures for Sinatra not_found pages.
+- [Sinatra::FuzzyLayout](https://github.com/kgrz/sinatra-fuzzy_layout) Extension for enabling or disabling layout template for views using regex.
 
 Websites {#sites}
 --------
