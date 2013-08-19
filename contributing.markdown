@@ -3,6 +3,11 @@ title: "Sinatra: Contribute"
 layout: default
 ---
 
+<div style="float: right; margin: 0  0 20px 20px">
+<h3>Donate</h3>
+<script data-gittip-username="sinatra" src="https://www.gittip.com/assets/widgets/0002.js"></script>
+</div>
+
 # Contribute
 
 Want to show Sinatra some love? Help out by contributing!
