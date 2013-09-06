@@ -197,8 +197,8 @@ included within the `describe` block:
 
       it "says hello" do
         get '/'
-        last_response.should be_ok
-        last_response.body.should == 'Hello World'
+        expect(last_response).to be_ok
+        expect(last_response.body).to eq('Hello World')
       end
     end
 
