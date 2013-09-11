@@ -12,10 +12,13 @@ Grab the sources from GitHub:
     $ git clone git://github.com/sinatra/sinatra.github.com.git
     $ cd sinatra.github.com
 
+Make sure you have the `bundler` gem installed on your machine:
+
+    $ gem install bundler
+
 Install dependencies:
 
-    $ gem install jekyll
-    $ gem install rdoc -v 2.3.0
+    $ bundle install
 
 Run the test server:
 
