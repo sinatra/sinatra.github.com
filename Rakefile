@@ -3,6 +3,7 @@ require 'rake/clean'
 require 'rdoc'
 require 'rdoc/encoding'
 require 'rdoc/markup/to_html'
+require 'rdoc/options'
 require 'uri'
 require 'nokogiri'
 require 'kramdown'
@@ -131,7 +132,7 @@ contrib("_contrib/doc/%s.rdoc") { |fn| file fn => '_contrib' }
 contrib do |fn|
   file "_includes/#{fn}.html" => ["build:contrib_docs", "_contrib/doc/#{fn}.rdoc", "Rakefile"] do |f|
     html =
-      RDoc::Markup::ToHtml.new
+      RDoc::Markup::ToHtml.new(RDoc::Options.new)
       .convert(File.read("_contrib/doc/#{fn}.rdoc"))
     File.open(f.name, 'wb') { |io| io.write html }
   end
