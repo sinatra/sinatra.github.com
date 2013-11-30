@@ -248,3 +248,4 @@ Companies using Sinatra {#biz}
 - [Clearhaus](https://www.clearhaus.com)
 - [Odd-e](http://www.odd-e.com)
 - [Digital Deployment](http://www.digitaldeployment.com)
+- [Icicle - Ruby Development Company](http://www.icicletech.com/)
