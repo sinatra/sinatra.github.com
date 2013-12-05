@@ -82,6 +82,10 @@ Applications {#apps}
 - [streetart.io](http://itunes.com/app/streetartio) streetart.io allows you to share and discover interesting street art, public art and sculptures around you and your city. API is powered by Sinatra and Redis.
 - [TaskwarriorWeb](http://theunraveler.github.com/taskwarrior-web/) - A Sinatra-based web interface for the Taskwarrior todo application. Because being a neck-beard is only fun sometimes.
 - [Travis CI](https://travis-ci.org/) - Free Hosted Continuous Integration Platform for the Open Source Community
+- [Rank Captain](http://rankcaptain.com) - Keyword based mass landing page generator with live template editor
+- [Importrechner.ch](http://importrechner.ch) - Dynamic car import calculator and contract form generator based upon Sinatra & AngularJS
+- [VDGB](http://vdgb.dk) - Subscription based online video training platform for schools and teachers
+- [The Myndflame Bucket](http://buckateers.com) - Innovative platform for Twitch.tv show to automatically collect donations from viewers, provide limited rewards and to encourage fellowship to continuously support the show through gamification
 
 
 Libraries and extensions {#libs}
