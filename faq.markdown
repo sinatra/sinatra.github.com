@@ -229,7 +229,7 @@ You can even use templates to render the body. In `email.erb`:
 
     Good day <%= params[:name] %>,
 
-    Thanks for my signing my guestbook. You're a doll.
+    Thanks for signing my guestbook. You're a doll.
 
     Frank
 
