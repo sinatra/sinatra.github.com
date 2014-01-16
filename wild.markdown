@@ -205,6 +205,7 @@ Websites {#sites}
 - [streetart.io](http://streetart.io) streetart.io allows you to share and discover interesting street art, public art and sculptures around you and your city. The website is a sinatra app which pulls data via the API.
 - [Scrum Primer](http://www.scrumprimer.org) - A short introduction to Scrum. The code is at [Scrum Primer @ Github](https://github.com/basvodde/scrumprimer). Also uses [r18n for Sinatra](https://github.com/ai/r18n)
 - [Jembatan Keledai](http://jembatankeledai.com) A collection of mnemonics in Indonesian.
+- [hike.io](http://hike.io) - The best place to find beautiful hikes online. Hike.io is free, open source, and anyone can make an edit. [(Source)](https://github.com/zaknelson/hike.io)
 
 Companies using Sinatra {#biz}
 -----------------------
