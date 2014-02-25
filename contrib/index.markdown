@@ -91,7 +91,7 @@ All extensions:
   helpers to Erb, Erubis, Haml and Slim.
 
 * [Sinatra::Cookies](cookies.html): Provides the *cookies* helper for reading
-  and writting cookies.
+  and writing cookies.
 
 * [Sinatra::JSON](json.html): Easily return JSON documents.
 
@@ -107,7 +107,7 @@ All extensions:
   depending on the incoming request.
 
 * [Sinatra::Streaming](streaming.html): Improves the streaming API by making
-  the *stream* object immitate an IO object.
+  the *stream* object imitate an IO object.
 
 ### Custom Extensions
 
