@@ -21,7 +21,7 @@ end
 
 def readme(pattern = "%s", &block)
   return readme(pattern).each(&block) if block_given?
-  %w[en de es fr hu jp zh ru ko pt-br pt-pt].map do |lang|
+  %w[en de es fr hu ja zh ru ko pt-br pt-pt].map do |lang|
     pattern % "README#{lang == "en" ? "" : ".#{lang}"}"
   end
 end
