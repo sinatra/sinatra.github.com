@@ -1,70 +1,74 @@
 
-<h1>Sinatra::Reloader</h1>
+<h1 id="label-Sinatra%3A%3AReloader">Sinatra::Reloader<span><a href="#label-Sinatra%3A%3AReloader">&para;</a> <a href="#documentation">&uarr;</a></span></h1>
 
 <p>Extension to reload modified files.  Useful during development, since it
 will automatically require files defining routes, filters, error handlers
 and inline templates, with every incoming request, but only if they have
 been updated.</p>
 
-<h2>Usage</h2>
+<h2 id="label-Usage">Usage<span><a href="#label-Usage">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 
-<h3>Classic Application</h3>
+<h3 id="label-Classic+Application">Classic Application<span><a href="#label-Classic+Application">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
-<p>To enable the reloader in a classic application all you need to do is
+<p>To enable the realoader in a classic application all you need to do is
 require it:</p>
 
-<pre>require &quot;sinatra&quot;
-require &quot;sinatra/reloader&quot; if development?
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra&quot;</span>
+<span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra/reloader&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">development?</span>
 
-# Your classic application code goes here...</pre>
+<span class="ruby-comment"># Your classic application code goes here...</span>
+</pre>
 
-<h3>Modular Application</h3>
+<h3 id="label-Modular+Application">Modular Application<span><a href="#label-Modular+Application">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
-<p>To enable the reloader in a modular application all you need to do is
+<p>To enable the realoader in a modular application all you need to do is
 require it, and then, register it:</p>
 
-<pre>require &quot;sinatra/base&quot;
-require &quot;sinatra/reloader&quot;
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra/base&quot;</span>
+<span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra/reloader&quot;</span>
 
-class MyApp &lt; Sinatra::Base
-  configure :development do
-    register Sinatra::Reloader
-  end
+<span class="ruby-keyword">class</span> <span class="ruby-constant">MyApp</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Sinatra</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>
+  <span class="ruby-identifier">configure</span> :<span class="ruby-identifier">development</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">register</span> <span class="ruby-constant">Sinatra</span><span class="ruby-operator">::</span><span class="ruby-constant">Reloader</span>
+  <span class="ruby-keyword">end</span>
 
-  # Your modular application code goes here...
-end</pre>
+  <span class="ruby-comment"># Your modular application code goes here...</span>
+<span class="ruby-keyword">end</span>
+</pre>
 
-<h2>Changing the Reloading Policy</h2>
+<h2 id="label-Changing+the+Reloading+Policy">Changing the Reloading Policy<span><a href="#label-Changing+the+Reloading+Policy">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 
-<p>You can refine the reloading policy with <tt>also_reload</tt> and
-<tt>dont_reload</tt>, to customize which files should, and should not, be
-reloaded, respectively.</p>
+<p>You can refine the reloading policy with <code>also_reload</code> and
+<code>dont_reload</code>, to customize which files should, and should not,
+be reloaded, respectively.</p>
 
-<h3>Classic Application</h3>
+<h3 id="label-Classic+Application">Classic Application<span><a href="#label-Classic+Application">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>Simply call the methods:</p>
 
-<pre>require &quot;sinatra&quot;
-require &quot;sinatra/reloader&quot; if development?
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra&quot;</span>
+<span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra/reloader&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">development?</span>
 
-also_reload '/path/to/some/file'
-dont_reload '/path/to/other/file'
+<span class="ruby-identifier">also_reload</span> <span class="ruby-string">&#39;/path/to/some/file&#39;</span>
+<span class="ruby-identifier">dont_reload</span> <span class="ruby-string">&#39;/path/to/other/file&#39;</span>
 
-# Your classic application code goes here...</pre>
+<span class="ruby-comment"># Your classic application code goes here...</span>
+</pre>
 
-<h3>Modular Application</h3>
+<h3 id="label-Modular+Application">Modular Application<span><a href="#label-Modular+Application">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
-<p>Call the methods inside the <tt>configure</tt> block:</p>
+<p>Call the methods inside the <code>configure</code> block:</p>
 
-<pre>require &quot;sinatra/base&quot;
-require &quot;sinatra/reloader&quot;
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra/base&quot;</span>
+<span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra/reloader&quot;</span>
 
-class MyApp &lt; Sinatra::Base
-  configure :development do
-    register Sinatra::Reloader
-    also_reload '/path/to/some/file'
-    dont_reload '/path/to/other/file'
-  end
+<span class="ruby-keyword">class</span> <span class="ruby-constant">MyApp</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Sinatra</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>
+  <span class="ruby-identifier">configure</span> :<span class="ruby-identifier">development</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">register</span> <span class="ruby-constant">Sinatra</span><span class="ruby-operator">::</span><span class="ruby-constant">Reloader</span>
+    <span class="ruby-identifier">also_reload</span> <span class="ruby-string">&#39;/path/to/some/file&#39;</span>
+    <span class="ruby-identifier">dont_reload</span> <span class="ruby-string">&#39;/path/to/other/file&#39;</span>
+  <span class="ruby-keyword">end</span>
 
-  # Your modular application code goes here...
-end</pre>
+  <span class="ruby-comment"># Your modular application code goes here...</span>
+<span class="ruby-keyword">end</span>
+</pre>

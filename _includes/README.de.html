@@ -7,6 +7,7 @@
 			<li><a href='#R%C3%BCckgabewerte'>Rückgabewerte</a></li>
 			<li><a href='#Eigene%20Routen-Muster'>Eigene Routen-Muster</a></li>
 		</ol>
+		<li><a href='#Statische%20Dateien'>Statische Dateien</a></li>
 		<li><a href='#Views/Templates'>Views/Templates</a></li>
 		<ol class='level-2'>
 			<li><a href='#Direkte%20Templates'>Direkte Templates</a></li>
@@ -62,6 +63,7 @@
 			<li><a href='#Konfiguration'>Konfiguration</a></li>
 			<ol class='level-3'>
 				<li><a href='#Einstellung%20des%20Angriffsschutzes'>Einstellung des Angriffsschutzes</a></li>
+				<li><a href='#M%C3%B6gliche%20Einstellungen'>Mögliche Einstellungen</a></li>
 		</ol></ol>
 		<li><a href='#Umgebungen'>Umgebungen</a></li>
 		<li><a href='#Fehlerbehandlung'>Fehlerbehandlung</a></li>
@@ -102,17 +104,27 @@
 <html><body>
 
 <p><em>Wichtig: Dieses Dokument ist eine Übersetzung aus dem Englischen und unter
-Umständen nicht auf dem aktuellen Stand.</em></p>
+Umständen nicht auf dem aktuellen Stand (aktuell Sinatra 1.4.2).</em></p>
 
 <p>Sinatra ist eine
 <a href="http://de.wikipedia.org/wiki/Dom%C3%A4nenspezifische_Sprache">DSL</a>, die das
 schnelle Erstellen von Webanwendungen in Ruby mit minimalem Aufwand
 ermöglicht:</p>
 
+<p>Sinatra via <code>rubygems</code> installieren:</p>
+
 <div>
 <div class="CodeRay">
-  <div class="code"><pre><span style="color:#777"># myapp.rb</span>
-require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra</span><span style="color:#710">'</span></span>
+  <div class="code"><pre>gem install sinatra
+</pre></div>
+</div>
+</div>
+
+<p>Eine Datei mit dem Namen <code>myapp.rb</code> erstellen:</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra</span><span style="color:#710">'</span></span>
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Hallo Welt!</span><span style="color:#710">'</span></span>
 <span style="color:#080;font-weight:bold">end</span>
@@ -120,20 +132,17 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>Einfach via <code>rubygems</code> installieren und starten:</p>
+<p>und im gleichen Verzeichnis ausführen:</p>
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre>gem install sinatra
-ruby myapp.rb
+  <div class="code"><pre>ruby myapp.rb
 </pre></div>
 </div>
 </div>
 
-<p>Die Seite kann nun unter http://localhost:4567 betrachtet werden.</p>
-
-<p>Es wird empfohlen, den Thin-Server via <code>gem install thin</code> zu installieren, den
-Sinatra dann, soweit vorhanden, automatisch verwendet.</p>
+<p>Die Seite kann nun unter <a href="http://localhost:4567">http://localhost:4567</a>
+aufgerufen werden.</p>
 
 <a name='Inhalt'></a>
 <h2>Inhalt</h2>
@@ -173,7 +182,6 @@ link <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#71
 unlink <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   .. trenne etwas ..
 <span style="color:#080;font-weight:bold">end</span>
-
 </pre></div>
 </div>
 </div>
@@ -188,7 +196,7 @@ Das erste Routen-Muster, das mit dem Request übereinstimmt, wird ausgeführt.</
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/hallo/:name</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># passt auf "GET /hallo/foo" und "GET /hallo/bar"</span>
-  <span style="color:#777"># params[:name] ist 'foo' oder 'bar'</span>
+  <span style="color:#777"># params[:name] ist dann 'foo' oder 'bar'</span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hallo </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:name</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
@@ -200,19 +208,20 @@ Das erste Routen-Muster, das mit dem Request übereinstimmt, wird ausgeführt.</
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/hallo/:name</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span> |n|
+  <span style="color:#777"># n entspricht hier params[:name]</span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hallo </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>n<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
 </div>
 
-<p>Routen-Muster können auch mit Splat- oder Wildcard-Parametern über das
+<p>Routen-Muster können auch mit sog. Splat- oder Wildcard-Parametern über das
 <code>params[:splat]</code>-Array angesprochen werden:</p>
 
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/sag/*/zu/*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#777"># passt auf /sag/hallo/zu/welt</span>
+  <span style="color:#777"># passt z.B. auf /sag/hallo/zu/welt</span>
   params[<span style="color:#A60">:splat</span>] <span style="color:#777"># =&gt; ["hallo", "welt"]</span>
 <span style="color:#080;font-weight:bold">end</span>
 
@@ -276,24 +285,31 @@ Abgleich mit den Routen modifiziert wird.</p>
 <a name='Bedingungen'></a>
 <h3>Bedingungen</h3>
 
-<p>An Routen können eine Vielzahl von Bedingungen angehängt werden, die erfüllt
+<p>An Routen können eine Vielzahl von Bedingungen geknüpft werden, die erfüllt
 sein müssen, damit der Block ausgeführt wird. Möglich wäre etwa eine
-Einschränkung des User-Agents:</p>
+Einschränkung des User-Agents über die interne Bedingung <code>:agent</code>:</p>
 
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span>, <span style="color:#A60">:agent</span> =&gt; <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">Songbird (</span><span style="color:#D20">\d</span><span style="color:#D20">\.</span><span style="color:#D20">\d</span><span style="color:#808">)[</span><span style="color:#D20">\d</span><span style="color:#D20">\/</span><span style="color:#808">]*?</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Du verwendest Songbird Version </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:agent</span>][<span style="color:#00D">0</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">"</span></span>
 <span style="color:#080;font-weight:bold">end</span>
+</pre></div>
+</div>
+</div>
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+<p>Wird Songbird als Browser nicht verwendet, springt Sinatra zur nächsten Route:</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># passt auf andere Browser</span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
 </div>
 
-<p>Andere mitgelieferte Bedingungen sind <code>host_name</code> und <code>provides</code>:</p>
+<p>Andere mitgelieferte Bedingungen sind <code>:host_name</code> und <code>:provides</code>:</p>
 
 <div>
 <div class="CodeRay">
@@ -312,13 +328,13 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>Es können auch andere Bedingungen relativ einfach hinzugefügt werden:</p>
+<p>Eigene Bedingungen können relativ einfach hinzugefügt werden:</p>
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre>set(<span style="color:#A60">:probability</span>) { |value| condition { rand &lt;= value } }
+  <div class="code"><pre>set(<span style="color:#A60">:wahrscheinlichkeit</span>) { |value| condition { rand &lt;= value } }
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/auto_gewinnen</span><span style="color:#710">'</span></span>, <span style="color:#A60">:probability</span> =&gt; <span style="color:#60E">0.1</span> <span style="color:#080;font-weight:bold">do</span>
+get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/auto_gewinnen</span><span style="color:#710">'</span></span>, <span style="color:#A60">:wahrscheinlichkeit</span> =&gt; <span style="color:#60E">0.1</span> <span style="color:#080;font-weight:bold">do</span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Du hast gewonnen!</span><span style="color:#710">"</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 
@@ -448,9 +464,11 @@ get all_but(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="co
 </pre></div>
 </div>
 </div>
-<p>## Statische Dateien</p>
 
-<p>Statische Dateien werden aus dem <code>./public</code>-Ordner ausgeliefert. Es ist möglich,
+<a name='Statische%20Dateien'></a>
+<h2>Statische Dateien</h2>
+
+<p>Statische Dateien werden im <code>./public</code>-Ordner erwartet. Es ist möglich,
 einen anderen Ort zu definieren, indem man die <code>:public_folder</code>-Option setzt:</p>
 
 <div>
@@ -460,7 +478,7 @@ einen anderen Ort zu definieren, indem man die <code>:public_folder</code>-Optio
 </div>
 </div>
 
-<p>Zu beachten ist, dass der Ordnername public nicht Teil der URL ist. Die Datei
+<p>Zu beachten ist, dass der Ordnername <code>public</code> nicht Teil der URL ist. Die Datei
 <code>./public/css/style.css</code> ist unter <code>http://example.com/css/style.css</code> zu finden.</p>
 
 <p>Um den <code>Cache-Control</code>-Header mit Informationen zu versorgen, verwendet man
@@ -520,7 +538,8 @@ einen String zurückgibt:</p>
 </div>
 </div>
 
-<p>Für alle Templates können auch generelle Einstellungen festgelegt werden:</p>
+<p>Für alle Templates können auch Einstellungen, die für alle Routen gelten,
+festgelegt werden:</p>
 
 <div>
 <div class="CodeRay">
@@ -540,20 +559,20 @@ Einstellungen, die mit <code>set</code> festgelegt wurden.</p>
 
 <dl>
 <dt>locals</dt>
-  <dd>Liste von lokalen Variablen, die and das Dokument weitergegeben werden.
+  <dd>Liste von lokalen Variablen, die an das Dokument weitergegeben werden.
     Praktisch für Partials:
 
     <tt>erb "&lt;%= foo %&gt;", :locals =&gt; {:foo =&gt; "bar"}</tt>
 </dd>
-      
+
   <dt>default_encoding</dt>
   <dd>Gibt die Stringkodierung an, die verwendet werden soll. Voreingestellt
     auf <tt>settings.default_encoding</tt>.</dd>
-      
+
   <dt>views</dt>
-  <dd>Ordner, aus dem die Templates heraus geladen werden. Voreingestellt auf
+  <dd>Ordner, aus dem die Templates geladen werden. Voreingestellt auf
     <tt>settings.views</tt>.</dd>
-      
+
   <dt>layout</dt>
   <dd>Legt fest, ob ein Layouttemplate verwendet werden soll oder nicht
     (<tt>true</tt> oder<tt>false</tt>). Ist es ein Symbol, dann legt es fest,
@@ -561,16 +580,16 @@ Einstellungen, die mit <code>set</code> festgelegt wurden.</p>
 
     <tt>erb :index, :layout =&gt; !request.xhr?</tt>
 </dd>
-      
+
   <dt>content_type</dt>
-  <dd>Content-Type den das Template ausgibt. Voreinstellung hängt von der
+  <dd>Content-Typ den das Template ausgibt. Voreinstellung hängt von der
     Templatesprache ab.</dd>
-      
+
   <dt>scope</dt>
   <dd>Scope, in dem das Template gerendert wird. Liegt standardmäßig innerhalb
     der App-Instanz. Wird Scope geändert, sind Instanzvariablen und
     Helfermethoden nicht verfügbar.</dd>
-      
+
   <dt>layout_engine</dt>
   <dd>Legt fest, welcher Renderer für das Layout verantwortlich ist. Hilfreich
     für Sprachen, die sonst keine Templates unterstützen. Voreingestellt auf
@@ -578,6 +597,7 @@ Einstellungen, die mit <code>set</code> festgelegt wurden.</p>
 
     <tt>set :rdoc, :layout_engine =&gt; :erb</tt>
 </dd>
+
   <dt>layout_options</dt>
   <dd>Besondere Einstellungen, die nur für das Rendering verwendet werden:
 
@@ -599,7 +619,7 @@ auch dann, wenn sie sich in einem Unterordner befinden:</p>
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre>haml <span style="color:#A60"><span style="color:#A60">:</span><span style="color:#630">'</span><span style="color:#A60">unterverzeichnis/template</span><span style="color:#630">'</span></span>
+  <div class="code"><pre>haml <span style="color:#A60"><span style="color:#A60">:</span><span style="color:#740">'</span><span style="color:#A60">unterverzeichnis/template</span><span style="color:#740">'</span></span>
 </pre></div>
 </div>
 </div>
@@ -659,7 +679,7 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <tr>
 <td>Abhängigkeit</td>
     <td>
-<a href="http://www.kuwata-lab.com/erubis/">erubis</a> oder erb 
+<a href="http://www.kuwata-lab.com/erubis/">erubis</a> oder erb
     (Standardbibliothek von Ruby)</td>
   </tr>
 <tr>
@@ -788,7 +808,7 @@ denen man Variablen weitergibt.</p>
 <table>
 <tr>
 <td>Abhängigkeit</td>
-    <td>Eine der folgenden Bibliotheken: 
+    <td>Eine der folgenden Bibliotheken:
         <a href="https://github.com/rtomayko/rdiscount" title="RDiscount">RDiscount</a>,
         <a href="https://github.com/vmg/redcarpet" title="RedCarpet">RedCarpet</a>,
         <a href="http://deveiate.org/projects/BlueCloth" title="BlueCloth">BlueCloth</a>,
@@ -1046,7 +1066,7 @@ verwendet wird.</p>
 <tr>
 <td>Abhängigkeit</td>
     <td>
-<a href="https://github.com/josh/ruby-coffee-script">coffee-script</a> 
+<a href="https://github.com/josh/ruby-coffee-script">coffee-script</a>
         und eine <a href="https://github.com/sstephenson/execjs/blob/master/README.md#readme">Möglichkeit JavaScript auszuführen</a>.
     </td>
   </tr>
@@ -1067,7 +1087,7 @@ verwendet wird.</p>
     <td>
       <a href="https://github.com/lucasmazza/ruby-stylus" title="Ruby Stylus">
         Stylus
-      </a> und eine Möglichkeit 
+      </a> und eine Möglichkeit
       <a href="https://github.com/sstephenson/execjs/blob/master/README.md#readme" title="ExecJS">
         JavaScript auszuführen
       </a>.
@@ -1138,7 +1158,7 @@ verwendet werden:</p>
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre>var resource = {<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">foo</span><span style="color:#710">"</span></span><span style="color:#A60"><span style="color:#A60">:</span><span style="color:#630">"</span><span style="color:#A60">bar</span><span style="color:#630">"</span></span>,<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">baz</span><span style="color:#710">"</span></span><span style="color:#A60"><span style="color:#A60">:</span><span style="color:#630">"</span><span style="color:#A60">qux</span><span style="color:#630">"</span></span>}; present(resource);
+  <div class="code"><pre>var resource = {<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">foo</span><span style="color:#710">"</span></span><span style="color:#A60"><span style="color:#A60">:</span><span style="color:#740">"</span><span style="color:#A60">bar</span><span style="color:#740">"</span></span>,<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">baz</span><span style="color:#710">"</span></span><span style="color:#A60"><span style="color:#A60">:</span><span style="color:#740">"</span><span style="color:#A60">qux</span><span style="color:#740">"</span></span>}; present(resource);
 </pre></div>
 </div>
 </div>
@@ -1200,8 +1220,8 @@ Templates eingesetzt.</p>
 <a name='Templates%20mit%20%3Ccode%3Eyield%3C/code%3E%20und%20verschachtelte%20Layouts'></a>
 <h3>Templates mit <code>yield</code> und verschachtelte Layouts</h3>
 
-<p>Ein Layout ist üblicherweise ein Template, dass ein <code>yield</code> aufruft. Ein solches
-Template kann entweder wie oben beschrieben über die <code>:template</code> option
+<p>Ein Layout ist üblicherweise ein Template, das ein <code>yield</code> aufruft. Ein solches
+Template kann entweder wie oben beschrieben über die <code>:template</code> Option
 verwendet werden oder mit einem Block gerendert werden:</p>
 
 <div>
@@ -1303,7 +1323,9 @@ verwendet. Durch <code>:layout =&gt; false</code> kann das Ausführen verhindert
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  haml <span style="color:#A60">:index</span>, <span style="color:#A60">:layout</span> =&gt; request.xhr?
+  haml <span style="color:#A60">:index</span>, <span style="color:#A60">:layout</span> =&gt; !request.xhr?
+  <span style="color:#777"># !request.xhr? prüft, ob es sich um einen asynchronen Request handelt.</span>
+  <span style="color:#777"># wenn nicht, dann verwende ein Layout (negiert durch !)</span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -1384,8 +1406,8 @@ Instanzvariablen können in After-Filtern verwendet werden:</p>
 </div>
 </div>
 
-<p>Filter können optional auch mit einem Muster ausgestattet werden, welches auf
-den Request-Pfad passen muss, damit der Filter ausgeführt wird:</p>
+<p>Filter können optional auch mit einem Muster ausgestattet werden, das auf den
+Request-Pfad passen muss, damit der Filter ausgeführt wird:</p>
 
 <div>
 <div class="CodeRay">
@@ -1486,7 +1508,7 @@ teilen:</p>
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre>set <span style="color:#A60">:session_secret</span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">super secret</span><span style="color:#710">'</span></span>
+  <div class="code"><pre>set <span style="color:#A60">:session_secret</span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">super_geheimes_Gegeimnis</span><span style="color:#710">'</span></span>
 </pre></div>
 </div>
 </div>
@@ -1513,7 +1535,7 @@ Einstellungen ablegen.</p>
 </div>
 </div>
 
-<p>Der Status kann beim Stoppen auch angegeben werden:</p>
+<p>Der Status kann beim Stoppen mit angegeben werden:</p>
 
 <div>
 <div class="CodeRay">
@@ -1584,8 +1606,9 @@ gefunden wird.</p>
 <a name='Eine%20andere%20Route%20ansteuern'></a>
 <h3>Eine andere Route ansteuern</h3>
 
-<p>Manchmal entspricht <code>pass</code> nicht den Anforderungen, wenn das Ergebnis einer
-anderen Route gefordert wird. Um das zu erreichen, lässt sich <code>call</code> nutzen:</p>
+<p>Wenn nicht zu einer anderen Route gesprungen werden soll, sondern nur das
+Ergebnis einer anderen Route gefordert wird, kann <code>call</code> für einen internen
+Request verwendet werden:</p>
 
 <div>
 <div class="CodeRay">
@@ -1609,17 +1632,14 @@ werden kann, wenn <code>"bar"</code> in eine Helfer-Methode umgewandelt wird, au
 Kopie der Instanz erzeugt werden soll, kann <code>call!</code> anstelle von <code>call</code>
 verwendet werden.</p>
 
-<p>Die Rack-Spezifikationen enthalten weitere Informationen zu <code>call</code>.</p>
-
 <a name='Body,%20Status-Code%20und%20Header%20setzen'></a>
 <h3>Body, Status-Code und Header setzen</h3>
 
-<p>Es ist möglich und empfohlen, den Status-Code sowie den Response-Body mit
-einem Returnwert in der Route zu setzen. In manchen Situationen kann es jedoch
-sein, dass der Body an irgendeiner anderen Stelle während der Ausführung
-gesetzt wird. Das lässt sich mit der Helfer-Methode <code>body</code> bewerkstelligen.
-Wird <code>body</code> verwendet, lässt sich der Body jederzeit über diese Methode
-aufrufen:</p>
+<p>Es ist möglich und empfohlen, den Status-Code sowie den Response-Body mit einem
+Returnwert in der Route zu setzen. In manchen Situationen kann es jedoch sein,
+dass der Body an anderer Stelle während der Ausführung gesetzt werden soll.
+Dafür kann man die Helfer-Methode <code>body</code> einsetzen. Ist sie gesetzt, kann sie zu
+einem späteren Zeitpunkt aufgerufen werden:</p>
 
 <div>
 <div class="CodeRay">
@@ -1680,8 +1700,8 @@ zurückschicken, bis er die Verbindung abbricht. Für diese Fälle gibt es die
 </div>
 </div>
 
-<p>Damit lassen sich Streaming-APIs realisieren, sog. 
-<a href="http://dev.w3.org/html5/eventsource/">Server Sent Events</a> die als Basis für
+<p>Damit lassen sich Streaming-APIs realisieren, sog.
+<a href="http://dev.w3.org/html5/eventsource/">Server Sent Events</a>, die als Basis für
 <a href="http://en.wikipedia.org/wiki/WebSocket">WebSockets</a> dienen. Ebenso können sie
 verwendet werden, um den Durchsatz zu erhöhen, wenn ein Teil der Daten von
 langsamen Ressourcen abhängig ist.</p>
@@ -1711,7 +1731,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
   <span style="color:#777"># Client-Registrierung beim Server, damit Events mitgeteilt werden können</span>
   stream(<span style="color:#A60">:keep_open</span>) { |out| connections &lt;&lt; out }
 
-  <span style="color:#777"># tote Verbindungen entfernen </span>
+  <span style="color:#777"># tote Verbindungen entfernen</span>
   connections.reject!(&amp;<span style="color:#A60">:closed?</span>)
 
   <span style="color:#777"># Rückmeldung</span>
@@ -1751,7 +1771,7 @@ Instanz zur Verfügung:</p>
 </div>
 </div>
 
-<p>Der Logger übernimmt dabei automatisch alle im Rack-Handler eingestellten 
+<p>Der Logger übernimmt dabei automatisch alle im Rack-Handler eingestellten
 Log-Vorgaben. Ist Loggen ausgeschaltet, gibt die Methode ein Leerobjekt zurück.
 In den Routen und Filtern muss man sich also nicht weiter darum kümmern.</p>
 
@@ -1773,7 +1793,7 @@ werden:</p>
 <p>Damit auch keine Middleware das Logging aktivieren kann, muss die <code>logging</code>
 Einstellung auf <code>nil</code> gesetzt werden. Das heißt aber auch, dass <code>logger</code> in
 diesem Fall <code>nil</code> zurückgeben wird. Üblicherweise wird das eingesetzt, wenn ein
-eigener Logger eingerichtet werden soll. Sinatra wird dann verwenden, was in 
+eigener Logger eingerichtet werden soll. Sinatra wird dann verwenden, was in
 <code>env['rack.logger']</code> eingetragen ist.</p>
 
 <a name='Mime-Types'></a>
@@ -1949,7 +1969,7 @@ eine aktuelle Version im Cache vorhält:</p>
 </div>
 </div>
 
-<p>ebenso ist es möglich einen 
+<p>ebenso ist es möglich einen
 <a href="http://de.wikipedia.org/wiki/HTTP_ETag">schwachen ETag</a> zu verwenden:</p>
 
 <div>
@@ -2042,15 +2062,15 @@ Option:</p>
   <dt>last_modified</dt>
   <dd>Wert für den Last-Modified-Header, Standardwert ist <tt>mtime</tt> der
     Datei.</dd>
-  
+
   <dt>type</dt>
   <dd>Content-Type, der verwendet werden soll. Wird, wenn nicht angegeben, von
     der Dateiendung abgeleitet.</dd>
-  
+
   <dt>disposition</dt>
   <dd>Verwendet für Content-Disposition. Mögliche Werte sind: <tt>nil</tt>
     (Standard), <tt>:attachment</tt> und <tt>:inline</tt>.</dd>
-  
+
   <dt>length</dt>
   <dd>Content-Length-Header. Standardwert ist die Dateigröße.</dd>
 </dl>
@@ -2175,7 +2195,7 @@ Klassen konvertieren:</p>
 
 <p>Diese Methode wird intern für +expires, <code>last_modiefied</code> und ihresgleichen
 verwendet. Mit ein paar Handgriffen lässt sich diese Methode also in ihrem
-Verhalten erweitern, indem man <code>time_for</code> in der eigenen Applikation 
+Verhalten erweitern, indem man <code>time_for</code> in der eigenen Applikation
 überschreibt:</p>
 
 <div>
@@ -2254,7 +2274,7 @@ werden!</p>
 
 <p>Beachte, dass <code>find_template</code> nicht prüft, ob eine Datei tatsächlich existiert.
 Es wird lediglich der angegebene Block aufgerufen und nach allen möglichen
-Pfaden gesucht. Das ergibt kein Performance-Problem, da <code>render</code> <code>block</code> 
+Pfaden gesucht. Das ergibt kein Performance-Problem, da <code>render</code> <code>block</code>
 verwendet, sobald eine Datei gefunden wurde. Ebenso werden Template-Pfade samt
 Inhalt gecached, solange nicht im Entwicklungsmodus gearbeitet wird. Das sollte
 im Hinterkopf behalten werden, wenn irgendwelche verrückten Methoden
@@ -2363,7 +2383,9 @@ Schutzmechanismen zu deaktivieren:</p>
 </pre></div>
 </div>
 </div>
-<p>#### Mögliche Einstellungen</p>
+
+<a name='M%C3%B6gliche%20Einstellungen'></a>
+<h4>Mögliche Einstellungen</h4>
 
 <dl>
 <dt>absolute_redirects</dt>
@@ -2386,8 +2408,9 @@ Schutzmechanismen zu deaktivieren:</p>
   Inline-, View- und öffentliche Verzeichnis des Projekts festzustellen.</dd>
 
   <dt>bind</dt>
-  <dd>IP-Address, an die gebunden wird (Standardwert: <tt>0.0.0.0</tt>). Wird
-  nur für den eingebauten Server verwendet.</dd>
+  <dd>IP-Address, an die gebunden wird (Standardwert: <tt>0.0.0.0</tt>
+  <em>oder</em> <tt>localhost</tt>). Wird  nur für den eingebauten Server
+  verwendet.</dd>
 
   <dt>default_encoding</dt>
   <dd>Das Encoding, falls keines angegeben wurde. Standardwert ist
@@ -2456,8 +2479,8 @@ Schutzmechanismen zu deaktivieren:</p>
 
   <dt>server</dt>
   <dd>Server oder Liste von Servern, die als eingebaute Server zur Verfügung
-  stehen. Standardmäßig auf <tt>[‘thin’, ‘mongrel’, ‘webrick’]</tt>
-  voreingestellt. Die Anordnung gibt die Priorität vor.</dd>
+  stehen. Die Reihenfolge gibt die Priorität vor, die Voreinstellung hängt von
+  der verwendenten Ruby Implementierung ab.</dd>
 
   <dt>sessions</dt>
   <dd>Sessions auf Cookiebasis mittels
@@ -2489,7 +2512,7 @@ Schutzmechanismen zu deaktivieren:</p>
   <dt>threaded</dt>
   <dd>Wird es auf <tt>true</tt> gesetzt, wird Thin aufgefordert
   <tt>EventMachine.defer</tt> zur Verarbeitung des Requests einzusetzen.</dd>
-  
+
   <dt>views</dt>
   <dd>Verzeichnis der Views. Leitet sich von der <tt>app_file</tt> Einstellung
   ab, wenn nicht gesetzt.</dd>
@@ -2511,8 +2534,12 @@ und <code>"test"</code> werden Templates automatisch gecached.</p>
 <p>Um die Anwendung in einer anderen Umgebung auszuführen kann man die <code>-e</code>
 Option verwenden:</p>
 
-<pre><code>ruby my_app.rb -e [ENVIRONMENT]
-</code></pre>
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>ruby my_app.rb -e [ENVIRONMENT]
+</pre></div>
+</div>
+</div>
 
 <p>In der Anwendung kann man die die Methoden  <code>development?</code>, <code>test?</code> und
 <code>production?</code> verwenden, um die aktuelle Umgebung zu erfahren.</p>
@@ -2578,8 +2605,12 @@ Routen-Block oder in einem Filter geworfen wurde. Die Exception kann über die
 
 <p>bekommt man dieses:</p>
 
-<pre><code>Au weia, etwas Schlimmes ist passiert
-</code></pre>
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>Au weia, etwas Schlimmes ist passiert
+</pre></div>
+</div>
+</div>
 
 <p>Alternativ kann ein Error-Handler auch für einen Status-Code definiert werden:</p>
 
@@ -2659,9 +2690,8 @@ muss <code>use</code> häufig nicht explizit verwendet werden.</p>
 
 <p>Hilfreiche Middleware gibt es z.B. hier:
 <a href="https://github.com/rack/rack/tree/master/lib/rack">rack</a>,
-<a href="https://github.com/rack/rack-contrib#readme">rack-contrib</a>, mit
-<a href="http://coderack.org/">CodeRack</a> oder im <a href="https://github.com/rack/rack/wiki/List-of-Middleware">Rack
-wiki</a>.</p>
+<a href="https://github.com/rack/rack-contrib#readme">rack-contrib</a>, 
+oder im <a href="https://github.com/rack/rack/wiki/List-of-Middleware">Rack wiki</a>.</p>
 
 <a name='Testen'></a>
 <h2>Testen</h2>
@@ -2838,8 +2868,12 @@ require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:
 
 <p>Starte mit:</p>
 
-<pre><code>ruby mein_app.rb
-</code></pre>
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>ruby mein_app.rb
+</pre></div>
+</div>
+</div>
 
 <p>Oder über eine <code>config.ru</code>-Datei, die es erlaubt, einen beliebigen
 Rack-Handler zu verwenden:</p>
@@ -2855,8 +2889,12 @@ run <span style="color:#036;font-weight:bold">MeineApp</span>
 
 <p>Starte:</p>
 
-<pre><code>rackup -p 4567
-</code></pre>
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>rackup -p 4567
+</pre></div>
+</div>
+</div>
 
 <a name='Eine%20klassische%20Anwendung%20mit%20einer%20config.ru%20verwenden'></a>
 <h3>Eine klassische Anwendung mit einer config.ru verwenden</h3>
@@ -3083,8 +3121,8 @@ Anwendungs-Scope zugegriffen werden:</p>
 <p>Im Anfrage-Scope befindet man sich:</p>
 
 <ul>
-<li>In get/head/post/put/delete-Blöcken</li>
-  <li>In before/after-Filtern</li>
+<li>In get, head, post, put, delete, options, patch, link und unlink Blöcken</li>
+  <li>In before und after Filtern</li>
   <li>In Helfer-Methoden</li>
   <li>In Templates</li>
 </ul>
@@ -3114,8 +3152,12 @@ eingebunden](http://github.com/sinatra/sinatra/blob/master/lib/sinatra/main.rb</
 
 <p>Sinatra-Anwendungen können direkt von der Kommandozeile aus gestartet werden:</p>
 
-<pre><code>ruby myapp.rb [-h] [-x] [-e ENVIRONMENT] [-p PORT] [-h HOST] [-s HANDLER]
-</code></pre>
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>ruby myapp.rb [-h] [-x] [-e ENVIRONMENT] [-p PORT] [-h HOST] [-s HANDLER]
+</pre></div>
+</div>
+</div>
 
 <p>Die Optionen sind:</p>
 
@@ -3134,65 +3176,51 @@ eingebunden](http://github.com/sinatra/sinatra/blob/master/lib/sinatra/main.rb</
 
 <dl>
 <dt>Ruby 1.8.7</dt>
-  <dd>1.8.7 wird vollständig unterstützt, aber solange nichts dagegen spricht,
-  wird ein Update auf 1.9.2 oder ein Umstieg auf JRuby/Rubinius empfohlen.
-  Unterstützung für 1.8.7 wird es mindestens bis Sinatra 2.0 und Ruby 2.0
-  geben, es sei denn, dass der unwahrscheinliche Fall eintritt und 1.8.8
-  rauskommt. Doch selbst dann ist es eher wahrscheinlich, dass 1.8.7 weiterhin
-  unterstützt wird. <b>Ruby 1.8.6 wird nicht mehr unterstützt.</b> Soll Sinatra
-  unter 1.8.6 eingesetzt werden, muss Sinatra 1.2 verwendet werden, dass noch
-  bis zum Release von Sinatra 1.4.0 fortgeführt wird.</dd>
+<dd>1.8.7 wird vollständig unterstützt, ein Wechsel zu JRuby oder Rubinius wird
+aber empfohlen. Ruby 1.8.7 wird noch bis Sinatra 2.0 unterstützt werden. Frühere
+Versionen von Ruby sind nicht kompatibel mit Sinatra.</dd>
 
-  <dt>Ruby 1.9.2</dt>
-  <dd>1.9.2 wird voll unterstützt und empfohlen. Version 1.9.2p0 sollte nicht
-  verwendet werden, da unter Sinatra immer wieder Segfaults auftreten.
-  Unterstützung wird es mindestens bis zum Release von Ruby 1.9.4/2.0 geben und
-  das letzte Sinatra Release für 1.9 wird so lange unterstützt, wie das Ruby
-  Core-Team 1.9 pflegt.</dd>
+<dt>Ruby 1.9.2</dt>
+<dd>1.9.2 wird mindestens bis Sinatra 1.5 voll unterstützt. Version 1.9.2p0
+sollte nicht verwendet werden, da unter Sinatra immer wieder Segfaults
+auftreten.</dd>
 
-  <dt>Ruby 1.9.3</dt>
-  <dd>1.9.3 wird vollständig unterstützt und empfohlen. Achtung, bei einem
-  Wechsel zu 1.9.3 werden alle Sessions ungültig.</dd>
+<dt>Ruby 1.9.3</dt>
+<dd>1.9.3 wird vollständig unterstützt und empfohlen. Achtung, bei einem
+Upgrade von einer früheren Version von Ruby zu Ruby 1.9.3 werden alle Sessions
+ungültig. Ruby 1.9.3 wird bis Sinatra 2.0 unterstützt werden.</dd>
 
-  <dt>Rubinius</dt>
-  <dd>Rubinius (rbx &gt;= 1.2.4) wird offiziell unter Einbezug aller Templates
-  unterstützt. Die kommende 2.0 Version wird ebenfalls unterstützt, samt 1.9
-  Modus.</dd>
+<dt>Rubinius</dt>
+<dd>Rubinius (Version &gt;= 2.x) wird offiziell unterstützt. Es wird empfohlen, den
+<a href="http://puma.io">Puma Server</a> zu installieren (<tt>gem install puma
+</tt>)</dd>
 
-  <dt>JRuby</dt>
-  <dd>JRuby wird offiziell unterstützt (JRuby &gt;= 1.6.7). Probleme mit
-  Template- Bibliotheken Dritter sind nicht bekannt. Falls JRuby zum Einsatz
-  kommt, sollte aber darauf geachtet werden, dass ein JRuby-Rack-Handler zum
-  Einsatz kommt – die Thin und Mongrel Web-Server werden bisher nicht
-  unterstütz. JRubys Unterstützung für C-Erweiterungen sind zur Zeit ebenfalls
-  experimenteller Natur, betrifft im Moment aber nur die RDiscount, Redcarpet,
-  RedCloth und [[Yajl]] Templates.</dd>
+<dt>JRuby</dt>
+<dd>Aktuelle JRuby Versionen werden offiziell unterstützt. Es wird empfohlen,
+keine C-Erweiterungen zu verwenden und als Server Trinidad zu verwenden
+(<tt>gem install trinidad</tt>).</dd>
 </dl>
-<p>Weiterhin werden wir die kommende Ruby-Versionen im Auge behalten.</p>
-
 <p>Die nachfolgend aufgeführten Ruby-Implementierungen werden offiziell nicht von
 Sinatra unterstützt, funktionieren aber normalerweise:</p>
 
 <ul>
 <li>Ruby Enterprise Edition</li>
   <li>Ältere Versionen von JRuby und Rubinius</li>
-  <li>MacRuby, Maglev, IronRuby</li>
-  <li>Ruby 1.9.0 und 1.9.1 (wird jedoch nicht empfohlen, s.o.)</li>
+  <li>MacRuby (<tt>gem install control_tower</tt> wird empfohlen), Maglev, IronRuby</li>
+  <li>Ruby 1.9.0 und 1.9.1</li>
 </ul>
 <p>Nicht offiziell unterstützt bedeutet, dass wenn Sachen nicht funktionieren,
 wir davon ausgehen, dass es nicht an Sinatra sondern an der jeweiligen
-Implentierung liegt.</p>
+Implementierung liegt.</p>
 
 <p>Im Rahmen unserer CI (Kontinuierlichen Integration) wird bereits ruby-head
-(das kommende Ruby 2.0.0) und 1.9.4 mit eingebunden. Da noch alles im Fluss
-ist, kann zur Zeit für nichts garantiert werden. Es kann aber erwartet werden,
-dass Ruby 2.0.0p0 und 1.9.4p0 von Sinatra unterstützt werden wird.</p>
+(das kommende Ruby 2.1.0) mit eingebunden. Es kann davon ausgegangen
+werden, dass Sinatra Ruby 2.1.0 vollständig unterstützen wird.</p>
 
-<p>Sinatra sollte auf jedem Betriebssystem laufen, dass den gewählten Ruby-
-Interpreter unterstützt.</p>
+<p>Sinatra sollte auf jedem Betriebssystem laufen, dass einen funktionierenden
+Ruby-Interpreter aufweist.</p>
 
-<p>Sinatra wird aktuell nicht unter Cardinal, SmallRuby, BleuRuby oder
-irgendeiner  Version von Ruby vor 1.8.7 laufen.</p>
+<p>Sinatra läuft aktuell nicht unter Cardinal, SmallRuby, BlueRuby oder Ruby &lt;= 1.8.7.</p>
 
 <a name='Der%20neuste%20Stand%20(The%20Bleeding%20Edge)'></a>
 <h2>Der neuste Stand (The Bleeding Edge)</h2>
@@ -3201,8 +3229,12 @@ irgendeiner  Version von Ruby vor 1.8.7 laufen.</p>
 Er sollte recht stabil sein. Ebenso gibt es von Zeit zu Zeit prerelease Gems,
 die so installiert werden:</p>
 
-<pre><code>gem install sinatra --pre
-</code></pre>
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>gem install sinatra --pre
+</pre></div>
+</div>
+</div>
 
 <a name='Mit%20Bundler'></a>
 <h3>Mit Bundler</h3>
@@ -3213,8 +3245,12 @@ nachfolgenden Weg.</p>
 
 <p>Soweit Bundler noch nicht installiert ist:</p>
 
-<pre><code>gem install bundler
-</code></pre>
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>gem install bundler
+</pre></div>
+</div>
+</div>
 
 <p>Anschließend wird eine <code>Gemfile</code>-Datei im Projektverzeichnis mit folgendem
 Inhalt erstellt:</p>
@@ -3237,19 +3273,27 @@ Gemfile von Sinatra hinzugefügt.</p>
 
 <p>Jetzt kannst du deine Applikation starten:</p>
 
-<pre><code>bundle exec ruby myapp.rb
-</code></pre>
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>bundle exec ruby myapp.rb
+</pre></div>
+</div>
+</div>
 
 <a name='Eigenes%20Repository'></a>
 <h3>Eigenes Repository</h3>
 <p>Um auf dem neuesten Stand von Sinatras Code zu sein, kann eine lokale Kopie
-angelegt werden. Gestartet wird in der Anwendung mit dem <code>sinatra/lib</code>- Ordner
+angelegt werden. Gestartet wird in der Anwendung mit dem <code>sinatra/lib</code>-Ordner
 im <code>LOAD_PATH</code>:</p>
 
-<pre><code>cd myapp
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>cd myapp
 git clone git://github.com/sinatra/sinatra.git
 ruby -Isinatra/lib myapp.rb
-</code></pre>
+</pre></div>
+</div>
+</div>
 
 <p>Alternativ kann der <code>sinatra/lib</code>-Ordner zum <code>LOAD_PATH</code> in der Anwendung
 hinzugefügt werden:</p>
@@ -3269,26 +3313,38 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Um Sinatra-Code von Zeit zu Zeit zu aktualisieren:</p>
 
-<pre><code>cd myproject/sinatra
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>cd myproject/sinatra
 git pull
-</code></pre>
+</pre></div>
+</div>
+</div>
 
 <a name='Gem%20erstellen'></a>
 <h3>Gem erstellen</h3>
 
 <p>Aus der eigenen lokalen Kopie kann nun auch ein globales Gem gebaut werden:</p>
 
-<pre><code>git clone git://github.com/sinatra/sinatra.git
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>git clone git://github.com/sinatra/sinatra.git
 cd sinatra
 rake sinatra.gemspec
 rake install
-</code></pre>
+</pre></div>
+</div>
+</div>
 
 <p>Falls Gems als Root installiert werden sollen, sollte die letzte Zeile
 folgendermaßen lauten:</p>
 
-<pre><code>sudo rake install
-</code></pre>
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>sudo rake install
+</pre></div>
+</div>
+</div>
 
 <a name='Versions-Verfahren'></a>
 <h2>Versions-Verfahren</h2>
@@ -3310,7 +3366,8 @@ gefunden? Brauchst du Hilfe? Hast du einen Patch?</li>
   <li><a href="http://twitter.com/sinatra">Twitter</a></li>
   <li><a href="http://groups.google.com/group/sinatrarb">Mailing-Liste</a></li>
   <li>
-<a href="irc://chat.freenode.net/#sinatra"> #sinatra</a> auf http://freenode.net</li>
+<a href="irc://chat.freenode.net/#sinatra">#sinatra</a> auf http://freenode.net Es
+gibt dort auch immer wieder deutschsprachige Entwickler, die gerne weiterhelfen.</li>
   <li>
 <a href="http://sinatra-book.gittr.com">Sinatra Book</a> Kochbuch Tutorial</li>
   <li>

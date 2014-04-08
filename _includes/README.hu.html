@@ -121,7 +121,7 @@ is el tudod érni:</p>
 </div>
 </div>
 
-<p>Az útvonalmintákban szerepelhetnek joker paraméterek is, melyeket a 
+<p>Az útvonalmintákban szerepelhetnek joker paraméterek is, melyeket a
 <code>params[:splat]</code> tömbön keresztül tudunk elérni.</p>
 
 <div>
@@ -199,7 +199,7 @@ itt is lehetőség nyílik egyéb könyvtár használatára:</p>
 <p>set :views, File.dirname(<strong>FILE</strong>) + ‘/templates’</p>
 
 <p>Nagyon fontos észben tartani, hogy a sablononkra mindig szimbólumokkal
-hivatkozunk, még akkor is, ha egyéb (ebben az esetben a 
+hivatkozunk, még akkor is, ha egyéb (ebben az esetben a
 :’subdir/template’) könyvtárban tároljuk őket. A renderelő
 metódusok minden, nekik közvetlenül átadott karakterláncot megjelenítenek.</p>
 
@@ -388,14 +388,14 @@ végére begépeljük őket:</p>
 
 <p>Megjegyzés: azok a fájlon belüli sablonok, amelyek az alkalmazás fájl végére
 kerülnek és függnek a sinatra könyvtártól, automatikusan betöltődnek.
-Ha ugyanezt más alkalmazásfájlban is szeretnéd megtenni, hívd meg 
+Ha ugyanezt más alkalmazásfájlban is szeretnéd megtenni, hívd meg
 a <tt>use_in_file_templates!</tt> metódust az adott fájlban.</p>
 
 <a name='Kulcsszavas%20sablonok'></a>
 <h3>Kulcsszavas sablonok</h3>
 
-<p>Sablonokat végül a felsőszintű <tt>template</tt> metódussal is 
-definiálhatunk: </p>
+<p>Sablonokat végül a felsőszintű <tt>template</tt> metódussal is
+definiálhatunk:</p>
 
 <div>
 <div class="CodeRay">
@@ -459,15 +459,15 @@ az útvonalakban és a sablonokban is:</p>
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre>  before do
-    @note = 'Csá!'
-    request.path_info = '/foo/bar/baz'
-  end
+  <div class="code"><pre>  before <span style="color:#080;font-weight:bold">do</span>
+    <span style="color:#33B">@note</span> = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Csá!</span><span style="color:#710">'</span></span>
+    request.path_info = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo/bar/baz</span><span style="color:#710">'</span></span>
+  <span style="color:#080;font-weight:bold">end</span>
 
-  get '/foo/*' do
-    @note #=&gt; 'Szeva!'
-    params[:splat] #=&gt; 'bar/baz'
-  end
+  get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo/*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+    <span style="color:#33B">@note</span> <span style="color:#777">#=&gt; 'Szeva!'</span>
+    params[<span style="color:#A60">:splat</span>] <span style="color:#777">#=&gt; 'bar/baz'</span>
+  <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
 </div>
@@ -505,7 +505,7 @@ használd a következő parancsot:</p>
 <a name='Passzol%C3%A1s'></a>
 <h2>Passzolás</h2>
 
-<p>Az útvonalak továbbadhatják a végrehajtást egy másik útvonalnak 
+<p>Az útvonalak továbbadhatják a végrehajtást egy másik útvonalnak
 a <code>pass</code> függvényhívással:</p>
 
 <div>
@@ -568,7 +568,7 @@ egy 404-es hibával tér vissza.</p>
 
 <p>A hibakezelők ugyanabban a kontextusban futnak le, mint az útvonalak és
 előszűrők, ezért számukra is elérhetőek mindazok a könyvtárak, amelyek
-az utóbbiak rendelkezésére is állnak; így például a <code>haml</code>, 
+az utóbbiak rendelkezésére is állnak; így például a <code>haml</code>,
 az <code>erb</code>, a <code>halt</code> stb.</p>
 
 <a name='Nem%20tal%C3%A1lhat%C3%B3'></a>
@@ -650,10 +650,10 @@ bevezetéséhez:</p>
 <h2>Rack Middleware</h2>
 
 <p>A Sinatra egy Ruby keretrendszerek számára kifejlesztett egyszerű és szabványos
-interfészre, a <a href="http://rack.rubyforge.org/">Rack</a> -re épül. A Rack fejlesztői 
+interfészre, a <a href="http://rack.rubyforge.org/">Rack</a> -re épül. A Rack fejlesztői
 szempontból egyik legérdekesebb jellemzője, hogy támogatja az úgynevezett
 “middleware” elnevezésű komponenseket, amelyek beékelődnek a szerver és az
-alkalmazás közé, így képesek megfigyelni és/vagy módosítani a HTTP 
+alkalmazás közé, így képesek megfigyelni és/vagy módosítani a HTTP
 kéréseket és válaszokat. Segítségükkel különféle, egységesen működő
 funkciókat építhetünk be rendszerünkbe.</p>
 
@@ -675,10 +675,10 @@ funkciókat építhetünk be rendszerünkbe.</p>
 </div>
 </div>
 
-<p>A <code>use</code> metódus szemantikája megegyezik a 
+<p>A <code>use</code> metódus szemantikája megegyezik a
 <a href="http://rack.rubyforge.org/doc/classes/Rack/Builder.html">Rack::Builder</a> DSL-ben
 használt +use+ metóduséval (az említett DSL-t leginkább rackup állományokban
-használják). Hogy egy példát említsünk, a <code>use</code> metódus elfogad 
+használják). Hogy egy példát említsünk, a <code>use</code> metódus elfogad
 változókat és blokkokat egyaránt, akár kombinálva is ezeket:</p>
 
 <div>
@@ -691,7 +691,7 @@ változókat és blokkokat egyaránt, akár kombinálva is ezeket:</p>
 </div>
 
 <p>A Rack terjesztéssel egy csomó alap middleware komponens is érkezik,
-amelyekkel a naplózás, URL útvonalak megadása, autentikáció és 
+amelyekkel a naplózás, URL útvonalak megadása, autentikáció és
 munkamenet-kezelés könnyen megvalósítható. A Sinatra ezek közül elég
 sokat automatikusan felhasznál a beállításoktól függően, így ezek
 explicit betöltésével (+use+) nem kell bajlódnod.</p>
@@ -785,7 +785,7 @@ szintű DSL-en keresztül is hozzáférhetők. A legtöbb felső szintű
 alkalmazás átalakítható Sinatra::Base alapú komponensekké két lépésben:</p>
 
 <p>A <code>Sinatra::Base</code> osztály igazából egy üres lap: a legtöbb funkció
-alapból ki van kapcsolva, beleértve a beépített szervert is. A 
+alapból ki van kapcsolva, beleértve a beépített szervert is. A
 beállításokkal és az egyes kapcsolók hatásával az
 <a href="http://sinatra.github.com/configuration.html">Options and Configuration</a> lap
 foglalkozik.</p>
@@ -820,7 +820,7 @@ a fő névtérbe.</p>
 
 <p>Ha a Sinatra legfrissebb, fejlesztői változatát szeretnéd használni,
 készíts egy helyi másolatot és indítsd az alkalmazásodat úgy,
-hogy a <code>sinatra/lib</code> könyvtár elérhető legyen a 
+hogy a <code>sinatra/lib</code> könyvtár elérhető legyen a
 <code>LOAD_PATH</code>-on:</p>
 
 <pre><code>  cd myapp

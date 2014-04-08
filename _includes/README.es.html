@@ -115,7 +115,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>Instalá el gem y corré la aplicación con:</p>
+<p>Instalar la gema y correr la aplicación con:</p>
 
 <div>
 <div class="CodeRay">
@@ -125,16 +125,15 @@ ruby miapp.rb
 </div>
 </div>
 
-<p>Podés verla en: http://localhost:4567</p>
+<p>Ver en <a href="http://localhost:4567">http://localhost:4567</a>.</p>
 
-<p>Es recomendable además ejecutar <code>gem install thin</code>, ya que Sinatra lo va
-a utilizar cuando esté disponible.</p>
+<p>Se recomienda ejecutar <code>gem install thin</code>, porque Sinatra lo utilizará si está disponible.</p>
 
 <a name='Rutas'></a>
 <h2>Rutas</h2>
 
-<p>En Sinatra, una ruta está compuesta por un método HTTP y un patrón de una URL.
-Cada ruta se asocia con un bloque:</p>
+<p>En Sinatra, una ruta es un método HTTP junto a un patrón de un URL.
+Cada ruta está asociada a un bloque:</p>
 
 <div>
 <div class="CodeRay">
@@ -161,12 +160,21 @@ delete <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#
 options <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   .. informar algo ..
 <span style="color:#080;font-weight:bold">end</span>
+
+link <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+  .. afiliar a algo ..
+<span style="color:#080;font-weight:bold">end</span>
+
+unlink <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+  .. separar algo ..
+<span style="color:#080;font-weight:bold">end</span>
+
 </pre></div>
 </div>
 </div>
 
 <p>Las rutas son comparadas en el orden en el que son definidas. La primera ruta
-que coincide con la petición es invocada.</p>
+que coincide con la petición es escogida.</p>
 
 <p>Los patrones de las rutas pueden incluir parámetros nombrados, accesibles a
 través del hash <code>params</code>:</p>
@@ -182,7 +190,7 @@ través del hash <code>params</code>:</p>
 </div>
 </div>
 
-<p>También podés acceder a los parámetros nombrados usando parámetros de bloque:</p>
+<p>También puede acceder a los parámetros nombrados usando parámetros de bloque:</p>
 
 <div>
 <div class="CodeRay">
@@ -301,7 +309,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>Podés definir tus propias condiciones fácilmente:</p>
+<p>Puede definir sus propias condiciones fácilmente:</p>
 
 <div>
 <div class="CodeRay">
@@ -318,8 +326,8 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>Si tu condición acepta más de un argumento, podés pasarle un arreglo. Al
-definir la condición puede resultarte conveniente utilizar el operador splat en
+<p>Si su condición acepta más de un argumento, puede pasarle un arreglo. Al
+definir la condición, se puede utilizar el operador splat en
 la lista de parámetros:</p>
 
 <div>
@@ -351,10 +359,10 @@ respuesta que se le pasa al cliente HTTP o al siguiente middleware en la pila
 de Rack. Lo más común es que sea un string, como en los ejemplos anteriores.
 Sin embargo, otros valores también son aceptados.</p>
 
-<p>Podés devolver cualquier objeto que sea una respuesta Rack válida, un objeto
+<p>Puede devolver cualquier objeto que sea una respuesta Rack válida, un objeto
 que represente el cuerpo de una respuesta Rack o un código de estado HTTP:</p>
 
-<p>De esa manera podemos, por ejemplo, implementar fácilmente un streaming:</p>
+<p>De esa manera, podemos fácilmente implementar un ejemplo de streaming:</p>
 
 <div>
 <div class="CodeRay">
@@ -372,13 +380,13 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <a name='Comparadores%20de%20Rutas%20Personalizados'></a>
 <h3>Comparadores de Rutas Personalizados</h3>
 
-<p>Como se mostró anteriormente, Sinatra permite utilizar Strings y expresiones
+<p>Como se mostró anteriormente, Sinatra permite utilizar strings y expresiones
 regulares para definir las rutas. Sin embargo, la cosa no termina ahí. Podés
 definir tus propios comparadores muy fácilmente:</p>
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre><span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">PattronCualquieraMenos</span>
+  <div class="code"><pre><span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">PatronCualquieraMenos</span>
   <span style="color:#036;font-weight:bold">Match</span> = <span style="color:#036;font-weight:bold">Struct</span>.new(<span style="color:#A60">:captures</span>)
 
   <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">initialize</span>(excepto)
@@ -402,7 +410,7 @@ get cualquiera_menos(<span style="background-color:hsla(0,100%,50%,0.05)"><span 
 </div>
 </div>
 
-<p>Tené en cuenta que el ejemplo anterior es un poco rebuscado. Un resultado
+<p>Tenga en cuenta que el ejemplo anterior es un poco rebuscado. Un resultado
 similar puede conseguirse más sencillamente:</p>
 
 <div>
@@ -430,7 +438,7 @@ similar puede conseguirse más sencillamente:</p>
 <h3>Archivos Estáticos</h3>
 
 <p>Los archivos estáticos son servidos desde el directorio público
-<code>./public</code>. Podés especificar una ubicación diferente ajustando la
+<code>./public</code>. Puede especificar una ubicación diferente ajustando la
 opción <code>:public_folder</code>:</p>
 
 <div>
@@ -440,11 +448,11 @@ opción <code>:public_folder</code>:</p>
 </div>
 </div>
 
-<p>Notá que el nombre del directorio público no está incluido en la URL. Por
+<p>Note que el nombre del directorio público no está incluido en la URL. Por
 ejemplo, el archivo <code>./public/css/style.css</code> se accede a través de
 <code>http://ejemplo.com/css/style.css</code>.</p>
 
-<p>Usá la configuración <code>:static_cache_control</code> para agregar el encabezado
+<p>Use la configuración <code>:static_cache_control</code> para agregar el encabezado
 <code>Cache-Control</code> (ver la sección de configuración para más detalles).</p>
 
 <a name='Vistas%20/%20Plantillas'></a>
@@ -505,7 +513,7 @@ de la plantilla:</p>
 </div>
 </div>
 
-<p>Además podés definir las opciones para un lenguaje de plantillas de forma
+<p>Además, puede definir las opciones para un lenguaje de plantillas de forma
 general:</p>
 
 <div>
@@ -747,8 +755,8 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
     <td><tt>liquid :index, :locals =&gt; { :clave =&gt; 'valor' }</tt></td>
   </tr>
 </table>
-<p>Como no vas a poder llamar a métodos de Ruby (excepto por <code>yield</code>) desde una
-plantilla Liquid, casi siempre vas a querer pasarle locales.</p>
+<p>Como no va a poder llamar a métodos de Ruby (excepto por <code>yield</code>) desde una
+plantilla Liquid, casi siempre va a querer pasarle locales.</p>
 
 <a name='Plantillas%20Markdown'></a>
 <h3>Plantillas Markdown</h3>
@@ -776,7 +784,7 @@ plantilla Liquid, casi siempre vas a querer pasarle locales.</p>
   </tr>
 </table>
 <p>No es posible llamar métodos desde markdown, ni pasarle locales. Por lo tanto,
-generalmente vas a usarlo en combinación con otro motor de renderizado:</p>
+generalmente va a usarlo en combinación con otro motor de renderizado:</p>
 
 <div>
 <div class="CodeRay">
@@ -785,7 +793,7 @@ generalmente vas a usarlo en combinación con otro motor de renderizado:</p>
 </div>
 </div>
 
-<p>Tené en cuenta que también podés llamar al método <code>markdown</code> desde otras
+<p>Tenga en cuenta que también podés llamar al método <code>markdown</code> desde otras
 plantillas:</p>
 
 <div>
@@ -796,7 +804,7 @@ plantillas:</p>
 </div>
 </div>
 
-<p>Como no podés utilizar Ruby desde Markdown, no podés usar layouts escritos en
+<p>Como no puede utilizar Ruby desde Markdown, no puede usar layouts escritos en
 Markdown. De todos modos, es posible usar un motor de renderizado para el
 layout distinto al de la plantilla pasando la opción <code>:layout_engine</code>.</p>
 
@@ -901,8 +909,8 @@ al de la plantilla pasando la opción <code>:layout_engine</code>.</p>
     <td><tt>radius :index, :locals =&gt; { :clave =&gt; 'valor' }</tt></td>
   </tr>
 </table>
-<p>Como no vas a poder llamar a métodos de Ruby (excepto por <code>yield</code>) desde una
-plantilla Radius, casi siempre vas a querer pasarle locales.</p>
+<p>Desde que no se puede utilisar métodos de Ruby (excepto por <code>yield</code>) de una
+plantilla Radius, casi siempre se necesita pasar locales.</p>
 
 <a name='Plantillas%20Markaby'></a>
 <h3>Plantillas Markaby</h3>
@@ -975,7 +983,7 @@ plantilla Radius, casi siempre vas a querer pasarle locales.</p>
   </tr>
 </table>
 <p>No es posible llamar métodos desde creole, ni pasarle locales. Por lo tanto,
-generalmente vas a usarlo en combinación con otro motor de renderizado:</p>
+generalmente va a usarlo en combinación con otro motor de renderizado:</p>
 
 <div>
 <div class="CodeRay">
@@ -984,7 +992,7 @@ generalmente vas a usarlo en combinación con otro motor de renderizado:</p>
 </div>
 </div>
 
-<p>Tené en cuenta que también podés llamar al método <code>creole</code> desde otras
+<p>Debe tomar en cuenta que también puede llamar al método <code>creole</code> desde otras
 plantillas:</p>
 
 <div>
@@ -1085,7 +1093,7 @@ json[<span style="color:#A60">:baz</span>] = key
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre>var resource = {<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">foo</span><span style="color:#710">"</span></span><span style="color:#A60"><span style="color:#A60">:</span><span style="color:#630">"</span><span style="color:#A60">bar</span><span style="color:#630">"</span></span>,<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">baz</span><span style="color:#710">"</span></span><span style="color:#A60"><span style="color:#A60">:</span><span style="color:#630">"</span><span style="color:#A60">qux</span><span style="color:#630">"</span></span>}; present(resource);
+  <div class="code"><pre>var resource = {<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">foo</span><span style="color:#710">"</span></span><span style="color:#A60"><span style="color:#A60">:</span><span style="color:#740">"</span><span style="color:#A60">bar</span><span style="color:#740">"</span></span>,<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">baz</span><span style="color:#710">"</span></span><span style="color:#A60"><span style="color:#A60">:</span><span style="color:#740">"</span><span style="color:#A60">qux</span><span style="color:#740">"</span></span>}; present(resource);
 </pre></div>
 </div>
 </div>
@@ -2659,8 +2667,7 @@ para que típicamente no tengas que usarlas (con <code>use</code>) explícitamen
 <p>Podés encontrar middleware útil en
 <a href="https://github.com/rack/rack/tree/master/lib/rack">rack</a>,
 <a href="https://github.com/rack/rack-contrib#readme">rack-contrib</a>,
-con <a href="http://coderack.org/">CodeRack</a> o en la
-<a href="https://github.com/rack/rack/wiki/List-of-Middleware">Rack wiki</a>.</p>
+o en la <a href="https://github.com/rack/rack/wiki/List-of-Middleware">Rack wiki</a>.</p>
 
 <a name='Pruebas'></a>
 <h2>Pruebas</h2>

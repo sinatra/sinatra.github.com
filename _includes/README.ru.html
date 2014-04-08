@@ -23,11 +23,13 @@
 				<li><a href='#Markdown%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'>Markdown шаблоны</a></li>
 				<li><a href='#Textile%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'>Textile шаблоны</a></li>
 				<li><a href='#RDoc%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'>RDoc шаблоны</a></li>
+				<li><a href='#AsciiDoc%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'>AsciiDoc шаблоны</a></li>
 				<li><a href='#Radius%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'>Radius шаблоны</a></li>
 				<li><a href='#Markaby%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'>Markaby шаблоны</a></li>
 				<li><a href='#RABL%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'>RABL шаблоны</a></li>
 				<li><a href='#Slim%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'>Slim шаблоны</a></li>
 				<li><a href='#Creole%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'>Creole шаблоны</a></li>
+				<li><a href='#MediaWiki%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'>MediaWiki шаблоны</a></li>
 				<li><a href='#CoffeeScript%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'>CoffeeScript шаблоны</a></li>
 				<li><a href='#Yajl%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'>Yajl шаблоны</a></li>
 				<li><a href='#WLang%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'>WLang шаблоны</a></li>
@@ -167,6 +169,14 @@ delete <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#
 
 options <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># .. что-то ответить ..</span>
+<span style="color:#080;font-weight:bold">end</span>
+
+link <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+  .. что-то подключить ..
+<span style="color:#080;font-weight:bold">end</span>
+
+unlink <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+  .. что-то отключить ..
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -899,6 +909,28 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 для отображения шаблона, а другой для лэйаута с помощью опции
 <code>:layout_engine</code>.</p>
 
+<a name='AsciiDoc%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'></a>
+<h4>AsciiDoc шаблоны</h4>
+
+<table>
+<tr>
+<td>Зависимости</td>
+    <td><a href="http://asciidoctor.org/" title="Asciidoctor">Asciidoctor</a></td>
+  </tr>
+<tr>
+<td>Расширения файлов</td>
+    <td>
+<tt>.asciidoc</tt>, <tt>.adoc</tt> и <tt>.ad</tt>
+</td>
+  </tr>
+<tr>
+<td>Пример</td>
+    <td><tt>asciidoc :README, :layout_engine =&gt; :erb</tt></td>
+  </tr>
+</table>
+<p>Так как в AsciiDoc шаблонах невозможно вызывать методы из Ruby напрямую, то вы
+почти всегда будете передавать в шаблон локальные переменные.</p>
+
 <a name='Radius%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'></a>
 <h4>Radius шаблоны</h4>
 
@@ -1015,6 +1047,51 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 один шаблонизатор для отображения шаблона, а другой для лэйаута с помощью
 опции <code>:layout_engine</code>.</p>
 
+<a name='MediaWiki%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'></a>
+<h4>MediaWiki шаблоны</h4>
+
+<table>
+<tr>
+<td>Зависимости</td>
+    <td><a href="https://github.com/nricciar/wikicloth" title="WikiCloth">WikiCloth</a></td>
+  </tr>
+<tr>
+<td>Расширения файлов</td>
+    <td>
+<tt>.mediawiki</tt> и <tt>.mw</tt>
+</td>
+  </tr>
+<tr>
+<td>Пример</td>
+    <td><tt>mediawiki :wiki, :layout_engine =&gt; :erb</tt></td>
+  </tr>
+</table>
+<p>В разметке MediaWiki невозможно вызывать методы или передавать локальные переменные.
+Следовательно, вам, скорее всего, придется использовать этот шаблон совместно
+с другим шаблонизатором:</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>erb <span style="color:#A60">:overview</span>, <span style="color:#A60">:locals</span> =&gt; { <span style="color:#A60">:text</span> =&gt; mediawiki(<span style="color:#A60">:introduction</span>) }
+</pre></div>
+</div>
+</div>
+
+<p>Заметьте, что вы можете вызывать метод <code>mediawiki</code> из других шаблонов:</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>%h1 <span style="color:#036;font-weight:bold">Hello</span> <span style="color:#036;font-weight:bold">From</span> Haml!
+%p= mediawiki(<span style="color:#A60">:greetings</span>)
+</pre></div>
+</div>
+</div>
+
+<p>Вы не можете вызывать Ruby из MediaWiki, соответственно, вы не можете
+использовать лэйауты на MediaWiki. Тем не менее, есть возможность использовать
+один шаблонизатор для отображения шаблона, а другой для лэйаута с помощью
+опции <code>:layout_engine</code>.</p>
+
 <a name='CoffeeScript%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'></a>
 <h4>CoffeeScript шаблоны</h4>
 
@@ -1079,7 +1156,7 @@ json[<span style="color:#A60">:baz</span>] = key
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre>var resource = {<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">foo</span><span style="color:#710">"</span></span><span style="color:#A60"><span style="color:#A60">:</span><span style="color:#630">"</span><span style="color:#A60">bar</span><span style="color:#630">"</span></span>,<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">baz</span><span style="color:#710">"</span></span><span style="color:#A60"><span style="color:#A60">:</span><span style="color:#630">"</span><span style="color:#A60">qux</span><span style="color:#630">"</span></span>}; present(resource);
+  <div class="code"><pre>var resource = {<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">foo</span><span style="color:#710">"</span></span><span style="color:#A60"><span style="color:#A60">:</span><span style="color:#740">"</span><span style="color:#A60">bar</span><span style="color:#740">"</span></span>,<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">baz</span><span style="color:#710">"</span></span><span style="color:#A60"><span style="color:#A60">:</span><span style="color:#740">"</span><span style="color:#A60">qux</span><span style="color:#740">"</span></span>}; present(resource);
 </pre></div>
 </div>
 </div>
@@ -1180,7 +1257,7 @@ json[<span style="color:#A60">:baz</span>] = key
 </div>
 </div>
 
-<p>В настоящее время, следующие интерпретирубщие шаблоны методы
+<p>В настоящее время, следующие интерпретирующие шаблоны методы
 принимают блок:
 <code>erb</code>, <code>haml</code>, <code>liquid</code>, <code>slim </code>, <code>wlang</code>.
 Общий метод заполнения шаблонов <code>render</code> также принимает блок.</p>
@@ -1461,6 +1538,16 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <div>
 <div class="CodeRay">
   <div class="code"><pre>set <span style="color:#A60">:sessions</span>, <span style="color:#A60">:domain</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">foo.com</span><span style="color:#710">'</span></span>
+</pre></div>
+</div>
+</div>
+
+<p>Чтобы сделать сессию доступной другим приложениям, размещенным на поддоменах
+foo.com, добавьте <em>.</em> перед доменом:</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>set <span style="color:#A60">:sessions</span>, <span style="color:#A60">:domain</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">.foo.com</span><span style="color:#710">'</span></span>
 </pre></div>
 </div>
 </div>
@@ -2486,6 +2573,9 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
     обработки запросов.
   </dd>
 
+  <dt>traps</dt>
+  <dd>должна ли Синатра обрабатывать системные сигналы или нет.</dd>
+
   <dt>views</dt>
   <dd>путь к директории с шаблонами.</dd>
 </dl>
@@ -2650,7 +2740,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Вы можете найти полезные прослойки в
 <a href="https://github.com/rack/rack/tree/master/lib/rack">rack</a>,
 <a href="https://github.com/rack/rack-contrib#readme">rack-contrib</a>,
-<a href="http://coderack.org/">CodeRack</a> или в
+или в
 <a href="https://github.com/rack/rack/wiki/List-of-Middleware">Rack wiki</a>.</p>
 
 <a name='%D0%A2%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5'></a>

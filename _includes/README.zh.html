@@ -1,6 +1,6 @@
 <div class='toc'>
 	<ol class='level-1'>
-		<li><a href='#%E8%B7%AF%E7%94%B1'>路由</a></li>
+		<li><a href='#%E8%B7%AF%E7%94%B1(route)'>路由(route)</a></li>
 		<ol class='level-2'>
 			<li><a href='#%E6%9D%A1%E4%BB%B6'>条件</a></li>
 			<li><a href='#%E8%BF%94%E5%9B%9E%E5%80%BC'>返回值</a></li>
@@ -41,7 +41,7 @@
 			<li><a href='#%E8%AE%A9%E8%B7%AF'>让路</a></li>
 			<li><a href='#%E8%A7%A6%E5%8F%91%E5%8F%A6%E4%B8%80%E4%B8%AA%E8%B7%AF%E7%94%B1'>触发另一个路由</a></li>
 			<li><a href='#%E8%AE%BE%E5%AE%9A%20%E6%B6%88%E6%81%AF%E4%BD%93%EF%BC%8C%E7%8A%B6%E6%80%81%E7%A0%81%E5%92%8C%E6%B6%88%E6%81%AF%E5%A4%B4'>设定 消息体，状态码和消息头</a></li>
-			<li><a href='#%E5%AA%92%E4%BD%93%E7%B1%BB%E5%9E%8B'>媒体类型</a></li>
+			<li><a href='#%E5%AA%92%E4%BD%93(MIME)%E7%B1%BB%E5%9E%8B'>媒体(MIME)类型</a></li>
 			<li><a href='#%E7%94%9F%E6%88%90%20URL'>生成 URL</a></li>
 			<li><a href='#%E6%B5%8F%E8%A7%88%E5%99%A8%E9%87%8D%E5%AE%9A%E5%90%91'>浏览器重定向</a></li>
 			<li><a href='#%E7%BC%93%E5%AD%98%E6%8E%A7%E5%88%B6'>缓存控制</a></li>
@@ -89,11 +89,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <html><body>
 
-<p><em>注：本文档仅仅是英文版的翻译，会出现内容没有及时更新的情况发生。
+<p><em>注：本文档是英文版的翻译，内容更新有可能不及时。
 如有不一致的地方，请以英文版为准。</em></p>
 
-<p>Sinatra是一个基于Ruby语言，以最小精力为代价快速创建web应用为目的的<a href="http://en.wikipedia.org/wiki/Domain-specific_language">DSL</a>（
-领域专属语言）：</p>
+<p>Sinatra是一个基于Ruby语言的<a href="http://en.wikipedia.org/wiki/Domain-specific_language">DSL</a>（
+领域专属语言），可以轻松、快速的创建web应用。</p>
 
 <div>
 <div class="CodeRay">
@@ -107,7 +107,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>安装gem然后运行：</p>
+<p>安装gem，然后运行：</p>
 
 <div>
 <div class="CodeRay">
@@ -119,35 +119,45 @@ ruby myapp.rb
 
 <p>在该地址查看： <a href="http://localhost:4567">localhost:4567</a></p>
 
-<p>推荐同时运行<code>gem install thin</code>，Sinatra会优先选择thin作为服务器。</p>
+<p>安装Sintra后，最好再运行<code>gem install thin</code>安装Thin。这样，Sinatra会优先选择Thin作为服务器。</p>
 
-<a name='%E8%B7%AF%E7%94%B1'></a>
-<h2>路由</h2>
+<a name='%E8%B7%AF%E7%94%B1(route)'></a>
+<h2>路由(route)</h2>
 
-<p>在Sinatra中，一个路由是一个HTTP方法与URL匹配范式的配对。
-每个路由都与一个代码块关联：</p>
+<p>在Sinatra中，一个路由分为两部分：HTTP方法(GET, POST等)和URL匹配范式。
+每个路由都有一个要执行的代码块：</p>
 
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  .. 显示一些事物 ..
+  .. 显示内容 ..
 <span style="color:#080;font-weight:bold">end</span>
 
 post <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  .. 创建一些事物 ..
+  .. 创建内容 ..
 <span style="color:#080;font-weight:bold">end</span>
 
 put <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  .. 更新一些事物 ..
+  .. 更新内容 ..
 <span style="color:#080;font-weight:bold">end</span>
 
 delete <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  .. 消灭一些事物 ..
+  .. 删除内容 ..
 <span style="color:#080;font-weight:bold">end</span>
 
 options <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  .. 满足一些事物 ..
+  .. 显示命令列表 ..
 <span style="color:#080;font-weight:bold">end</span>
+
+link <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+  .. 建立某种联系 ..
+<span style="color:#080;font-weight:bold">end</span>
+
+unlink <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+  .. 解除某种联系 ..
+<span style="color:#080;font-weight:bold">end</span>
+
+
 </pre></div>
 </div>
 </div>
@@ -254,7 +264,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>你也可以很轻松地定义自己的条件：</p>
+<p>你也可以自定义条件：</p>
 
 <div>
 <div class="CodeRay">
@@ -329,7 +339,7 @@ get all_but(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="co
 </div>
 </div>
 
-<p>请注意上面的例子可能超工程了， 因为它也可以用更简单的方式表述:</p>
+<p>上面的例子可能太繁琐了， 因为它也可以用更简单的方式表述:</p>
 
 <div>
 <div class="CodeRay">
@@ -435,7 +445,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>渲染 <code>./views/index.erb</code></p>
+<p>这里调用的是 <code>./views/index.erb</code></p>
 
 <a name='Erubis'></a>
 <h3>Erubis</h3>
@@ -454,7 +464,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>渲染 <code>./views/index.erubis</code></p>
+<p>这里调用的是 <code>./views/index.erubis</code></p>
 
 <p>使用Erubis代替Erb也是可能的:</p>
 
@@ -489,7 +499,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>渲染 <code>./views/index.builder</code>。</p>
+<p>这里调用的是 <code>./views/index.builder</code>。</p>
 
 <a name='Nokogiri%20%E6%A8%A1%E6%9D%BF'></a>
 <h3>Nokogiri 模板</h3>
@@ -508,7 +518,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>渲染 <code>./views/index.nokogiri</code>。</p>
+<p>这里调用的是 <code>./views/index.nokogiri</code>。</p>
 
 <a name='Sass%20%E6%A8%A1%E6%9D%BF'></a>
 <h3>Sass 模板</h3>
@@ -527,7 +537,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>渲染 <code>./views/stylesheet.sass</code>。</p>
+<p>这里调用的是 <code>./views/stylesheet.sass</code>。</p>
 
 <p><a href="http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#options">Sass
 的选项</a>
@@ -563,7 +573,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>渲染 <code>./views/stylesheet.scss</code>。</p>
+<p>这里调用的是 <code>./views/stylesheet.scss</code>。</p>
 
 <p><a href="http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#options">Scss的选项</a>
 可以通过Sinatra选项全局设定， 参考
@@ -598,7 +608,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>渲染 <code>./views/stylesheet.less</code>。</p>
+<p>这里调用的是 <code>./views/stylesheet.less</code>。</p>
 
 <a name='Liquid%20%E6%A8%A1%E6%9D%BF'></a>
 <h3>Liquid 模板</h3>
@@ -617,7 +627,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>渲染 <code>./views/index.liquid</code>。</p>
+<p>这里调用的是 <code>./views/index.liquid</code>。</p>
 
 <p>因为你不能在Liquid 模板中调用 Ruby 方法 (除了 <code>yield</code>) ，
 你几乎总是需要传递locals给它：</p>
@@ -646,7 +656,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>渲染 <code>./views/index.markdown</code> (<code>md</code> 和 <code>mkd</code> 也是合理的文件扩展名)。</p>
+<p>这里调用的是 <code>./views/index.markdown</code> (<code>md</code> 和 <code>mkd</code> 也是合理的文件扩展名)。</p>
 
 <p>在markdown中是不可以调用方法的，也不可以传递 locals给它。
 你因此一般会结合其他的渲染引擎来使用它：</p>
@@ -681,7 +691,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>这将会渲染 <code>./views/index.md</code> 并使用 <code>./views/layout.erb</code> 作为布局。</p>
+<p>这将会调用 <code>./views/index.md</code> 并使用 <code>./views/layout.erb</code> 作为布局。</p>
 
 <p>请记住你可以全局设定这个选项:</p>
 
@@ -696,7 +706,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>这将会渲染 <code>./views/index.markdown</code> (和任何其他的 Markdown 模版) 并使用
+<p>这将会调用 <code>./views/index.markdown</code> (和任何其他的 Markdown 模版) 并使用
 <code>./views/post.haml</code> 作为布局.</p>
 
 <p>也可能使用BlueCloth而不是RDiscount来解析Markdown文件:</p>
@@ -735,7 +745,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>渲染 <code>./views/index.textile</code>。</p>
+<p>这里调用的是 <code>./views/index.textile</code>。</p>
 
 <p>在textile中是不可以调用方法的，也不可以传递 locals给它。
 你因此一般会结合其他的渲染引擎来使用它：</p>
@@ -786,7 +796,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>这将会渲染 <code>./views/index.textile</code> (和任何其他的 Textile 模版) 并使用
+<p>这将会调用 <code>./views/index.textile</code> (和任何其他的 Textile 模版) 并使用
 <code>./views/post.haml</code> 作为布局.</p>
 
 <a name='RDoc%20%E6%A8%A1%E6%9D%BF'></a>
@@ -807,7 +817,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>渲染 <code>./views/index.rdoc</code>。</p>
+<p>这里调用的是 <code>./views/index.rdoc</code>。</p>
 
 <p>在rdoc中是不可以调用方法的，也不可以传递locals给它。
 你因此一般会结合其他的渲染引擎来使用它：</p>
@@ -842,7 +852,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>这将会渲染 <code>./views/index.rdoc</code> 并使用 <code>./views/layout.erb</code> 作为布局。</p>
+<p>这将会调用 <code>./views/index.rdoc</code> 并使用 <code>./views/layout.erb</code> 作为布局。</p>
 
 <p>请记住你可以全局设定这个选项:</p>
 
@@ -857,7 +867,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>这将会渲染 <code>./views/index.rdoc</code> (和任何其他的 RDoc 模版) 并使用
+<p>这将会调用 <code>./views/index.rdoc</code> (和任何其他的 RDoc 模版) 并使用
 <code>./views/post.haml</code> 作为布局.</p>
 
 <a name='Radius%20%E6%A8%A1%E6%9D%BF'></a>
@@ -877,7 +887,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>渲染 <code>./views/index.radius</code>。</p>
+<p>这里调用的是 <code>./views/index.radius</code>。</p>
 
 <p>因为你不能在Radius 模板中调用 Ruby 方法 (除了 <code>yield</code>) ，
 你几乎总是需要传递locals给它：</p>
@@ -906,7 +916,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>渲染 <code>./views/index.mab</code>。</p>
+<p>这里调用的是 <code>./views/index.mab</code>。</p>
 
 <p>你也可以使用嵌入的 Markaby:</p>
 
@@ -936,7 +946,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>渲染 <code>./views/index.slim</code>。</p>
+<p>这里调用的是 <code>./views/index.slim</code>。</p>
 
 <a name='Creole%20%E6%A8%A1%E6%9D%BF'></a>
 <h3>Creole 模板</h3>
@@ -955,7 +965,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>渲染 <code>./views/index.creole</code>。</p>
+<p>这里调用的是 <code>./views/index.creole</code>。</p>
 
 <a name='CoffeeScript%20%E6%A8%A1%E6%9D%BF'></a>
 <h3>CoffeeScript 模板</h3>
@@ -978,7 +988,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <a href="http://github.com/josh/ruby-coffee-script">github.com/josh/ruby-coffee-script</a>
 获取更新的选项。</p>
 
-<p>现在你可以渲染 CoffeeScript 模版了:</p>
+<p>现在你可以调用 CoffeeScript 模版了:</p>
 
 <div>
 <div class="CodeRay">
@@ -992,7 +1002,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>渲染 <code>./views/application.coffee</code>。</p>
+<p>这里调用的是 <code>./views/application.coffee</code>。</p>
 
 <a name='%E5%B5%8C%E5%85%A5%E6%A8%A1%E6%9D%BF%E5%AD%97%E7%AC%A6%E4%B8%B2'></a>
 <h3>嵌入模板字符串</h3>
@@ -1006,7 +1016,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>渲染嵌入模板字符串。</p>
+<p>调用嵌入模板字符串。</p>
 
 <a name='%E5%9C%A8%E6%A8%A1%E6%9D%BF%E4%B8%AD%E8%AE%BF%E9%97%AE%E5%8F%98%E9%87%8F'></a>
 <h3>在模板中访问变量</h3>
@@ -1136,7 +1146,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>渲染 <code>./views/index.myat</code>。察看
+<p>这里调用的是 <code>./views/index.myat</code>。察看
 <a href="https://github.com/rtomayko/tilt">github.com/rtomayko/tilt</a>
 来更多了解Tilt.</p>
 
@@ -1368,7 +1378,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>如果你希望请求被发送到同一个应用，而不是副本， 使用 <code>call!</code> 而不是
 <code>call</code>.</p>
 
-<p>察看 Rack specification 如果你想更多了解 <code>call</code>.</p>
+<p>如果想更多了解 <code>call</code>，请察看 Rack specification。</p>
 
 <a name='%E8%AE%BE%E5%AE%9A%20%E6%B6%88%E6%81%AF%E4%BD%93%EF%BC%8C%E7%8A%B6%E6%80%81%E7%A0%81%E5%92%8C%E6%B6%88%E6%81%AF%E5%A4%B4'></a>
 <h3>设定 消息体，状态码和消息头</h3>
@@ -1412,11 +1422,11 @@ after <span style="color:#080;font-weight:bold">do</span>
 <p>如同 <code>body</code>, 不带参数的 <code>headers</code> 和 <code>status</code> 可以用来访问
 他们你的当前值.</p>
 
-<a name='%E5%AA%92%E4%BD%93%E7%B1%BB%E5%9E%8B'></a>
-<h3>媒体类型</h3>
+<a name='%E5%AA%92%E4%BD%93(MIME)%E7%B1%BB%E5%9E%8B'></a>
+<h3>媒体(MIME)类型</h3>
 
-<p>当使用 <code>send_file</code> 或者静态文件的场合，你的媒体类型可能
-Sinatra并不理解。使用 <code>mime_type</code> 通过文件扩展名来注册它们：</p>
+<p>使用 <code>send_file</code> 或者静态文件的时候，Sinatra可能不能识别你的媒体类型。
+使用 <code>mime_type</code> 通过文件扩展名来注册它们：</p>
 
 <div>
 <div class="CodeRay">
@@ -1425,7 +1435,7 @@ Sinatra并不理解。使用 <code>mime_type</code> 通过文件扩展名来注�
 </div>
 </div>
 
-<p>你也可以通过 <code>content_type</code> 辅助方法使用：</p>
+<p>你也可以使用 <code>content_type</code> 辅助方法：</p>
 
 <div>
 <div class="CodeRay">
@@ -1449,7 +1459,7 @@ Sinatra并不理解。使用 <code>mime_type</code> 通过文件扩展名来注�
 </div>
 </div>
 
-<p>它会根据反向代理和Rack路由，如果有的话，来计算生成的URL。</p>
+<p>如果使用反向代理和Rack路由，生成URL的时候会考虑这些因素。</p>
 
 <p>这个方法还有一个别名 <code>to</code> (见下面的例子).</p>
 
@@ -1467,7 +1477,7 @@ Sinatra并不理解。使用 <code>mime_type</code> 通过文件扩展名来注�
 </div>
 </div>
 
-<p>任何额外的参数都会被以 <code>halt</code>相同的方式来处理:</p>
+<p>其他参数的用法，与 <code>halt</code>相同:</p>
 
 <div>
 <div class="CodeRay">
@@ -1477,7 +1487,7 @@ redirect <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color
 </div>
 </div>
 
-<p>你可以方便的通过 <code>redirect back</code>把用户重定向到来自的页面:</p>
+<p>用 <code>redirect back</code>可以把用户重定向到原始页面:</p>
 
 <div>
 <div class="CodeRay">
@@ -1493,7 +1503,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>为了传递参数给redirect，或者加入query:</p>
+<p>如果想传递参数给redirect，可以用query string:</p>
 
 <div>
 <div class="CodeRay">
@@ -1502,7 +1512,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>或者使用session:</p>
+<p>或者用session:</p>
 
 <div>
 <div class="CodeRay">
@@ -1523,9 +1533,9 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <a name='%E7%BC%93%E5%AD%98%E6%8E%A7%E5%88%B6'></a>
 <h3>缓存控制</h3>
 
-<p>正确地设定消息头是恰当的HTTP缓存的基础。</p>
+<p>要使用HTTP缓存，必须正确地设定消息头。</p>
 
-<p>你可以方便的设定 Cache-Control 消息头，像这样:</p>
+<p>你可以这样设定 Cache-Control 消息头:</p>
 
 <div>
 <div class="CodeRay">
@@ -1560,9 +1570,9 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>为了合适地使用缓存，你应该考虑使用 <code>etag</code> 和 <code>last_modified</code>方法。.
-推荐在执行繁重任务*之前*使用这些helpers，
-他们会立刻发送响应，如果客户端在缓存中已经有了当前版本。</p>
+<p>为了合适地使用缓存，你应该考虑使用 <code>etag</code> 和 <code>last_modified</code>方法。
+推荐在执行繁重任务*之前*使用这些helpers，这样一来，
+如果客户端在缓存中已经有相关内容，就会立即得到显示。</p>
 
 <div>
 <div class="CodeRay">
@@ -1651,7 +1661,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
     <dt>length</dt>
     <dd>Content-Length 的值，默认是文件的大小。</dd>
 </dl>
-<p>如果Rack处理器支持，Ruby进程除streaming以外的方式会被使用。
+<p>如果Rack处理器支持的话，Ruby进程也能使用除streaming以外的方法。
 如果你使用这个辅助方法， Sinatra会自动处理range请求。</p>
 
 <a name='%E8%AE%BF%E9%97%AE%E8%AF%B7%E6%B1%82%E5%AF%B9%E8%B1%A1'></a>
@@ -2720,6 +2730,18 @@ rake install
   <li>
     <p><a href="irc://chat.freenode.net/#sinatra">IRC: #sinatra</a> on
 <a href="http://freenode.net">freenode.net</a></p>
+  </li>
+  <li>
+    <p><a href="http://sinatra-book.gittr.com/">Sinatra宝典</a> Cookbook教程</p>
+  </li>
+  <li>
+    <p><a href="http://recipes.sinatrarb.com/">Sinatra使用技巧</a> 网友贡献的实用技巧</p>
+  </li>
+  <li>
+    <p><a href="http://rubydoc.info/gems/sinatra">最新版本</a>API文档；<a href="http://rubydoc.info">http://rubydoc.info</a>的<a href="http://rubydoc.info/github/sinatra/sinatra">当前HEAD</a></p>
+  </li>
+  <li>
+    <p><a href="http://travis-ci.org/sinatra/sinatra">CI服务器</a></p>
   </li>
 </ul>
 </body></html>

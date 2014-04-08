@@ -21,11 +21,13 @@
 				<li><a href='#Markdown%20Templates'>Markdown Templates</a></li>
 				<li><a href='#Textile%20Templates'>Textile Templates</a></li>
 				<li><a href='#RDoc%20Templates'>RDoc Templates</a></li>
+				<li><a href='#AsciiDoc%20Templates'>AsciiDoc Templates</a></li>
 				<li><a href='#Radius%20Templates'>Radius Templates</a></li>
 				<li><a href='#Markaby%20Templates'>Markaby Templates</a></li>
 				<li><a href='#RABL%20Templates'>RABL Templates</a></li>
 				<li><a href='#Slim%20Templates'>Slim Templates</a></li>
 				<li><a href='#Creole%20Templates'>Creole Templates</a></li>
+				<li><a href='#MediaWiki%20Templates'>MediaWiki Templates</a></li>
 				<li><a href='#CoffeeScript%20Templates'>CoffeeScript Templates</a></li>
 				<li><a href='#Stylus%20Templates'>Stylus Templates</a></li>
 				<li><a href='#Yajl%20Templates'>Yajl Templates</a></li>
@@ -272,6 +274,20 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/posts.?:format?</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># matches "GET /posts" and any extension "GET /posts.json", "GET /posts.xml" etc.</span>
+<span style="color:#080;font-weight:bold">end</span>
+</pre></div>
+</div>
+</div>
+
+<p>Routes may also utilize query parameters:</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/posts</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+  <span style="color:#777"># matches "GET /posts?title=foo&amp;author=bar"</span>
+  title = params[<span style="color:#A60">:title</span>]
+  author = params[<span style="color:#A60">:author</span>]
+  <span style="color:#777"># uses title and author variables; query is optional to the /posts route</span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -567,13 +583,13 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
   <dt>layout</dt>
   <dd>
-    Whether to use a layout (<tt>true</tt> or <tt>false</tt>), if it's a Symbol, specifies
+    Whether to use a layout (<tt>true</tt> or <tt>false</tt>). If it's a Symbol, specifies
     what template to use. Example: <tt>erb :index, :layout =&gt; !request.xhr?</tt>
   </dd>
 
   <dt>content_type</dt>
   <dd>
-    Content-Type the template produces, default depends on template language.
+    Content-Type the template produces. Default depends on template language.
   </dd>
 
   <dt>scope</dt>
@@ -595,11 +611,17 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
     <tt>set :rdoc, :layout_options =&gt; { :views =&gt; 'views/layouts' }</tt>
   </dd>
 </dl>
-<p>Templates are assumed to be located directly under the <code>./views</code> directory. To 
-use a different views directory: 
-<code>set :views, settings.root + '/templates'</code></p>
+<p>Templates are assumed to be located directly under the <code>./views</code> directory. To
+use a different views directory:</p>
 
-<p>One important thing to remember is that you always have to reference templates 
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>set <span style="color:#A60">:views</span>, settings.root + <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/templates</span><span style="color:#710">'</span></span>
+</pre></div>
+</div>
+</div>
+
+<p>One important thing to remember is that you always have to reference templates
 with symbols, even if they’re in a subdirectory (in this case, use:
 <code>:'subdir/template'</code> or <code>'subdir/template'.to_sym</code>). You must use a symbol
 because otherwise rendering methods will render any strings passed to them
@@ -915,6 +937,28 @@ therefore will usually use it in combination with another rendering engine:</p>
 RDoc. However, it is possible to use another rendering engine for the
 template than for the layout by passing the <code>:layout_engine</code> option.</p>
 
+<a name='AsciiDoc%20Templates'></a>
+<h4>AsciiDoc Templates</h4>
+
+<table>
+<tr>
+<td>Dependency</td>
+    <td><a href="http://asciidoctor.org/" title="Asciidoctor">Asciidoctor</a></td>
+  </tr>
+<tr>
+<td>File Extension</td>
+    <td>
+<tt>.asciidoc</tt>, <tt>.adoc</tt> and <tt>.ad</tt>
+</td>
+  </tr>
+<tr>
+<td>Example</td>
+    <td><tt>asciidoc :README, :layout_engine =&gt; :erb</tt></td>
+  </tr>
+</table>
+<p>Since you cannot call Ruby methods directly from an AsciiDoc template, you almost
+always want to pass locals to it.</p>
+
 <a name='Radius%20Templates'></a>
 <h4>Radius Templates</h4>
 
@@ -1029,6 +1073,49 @@ therefore will usually use it in combination with another rendering engine:</p>
 Creole. However, it is possible to use another rendering engine for the
 template than for the layout by passing the <code>:layout_engine</code> option.</p>
 
+<a name='MediaWiki%20Templates'></a>
+<h4>MediaWiki Templates</h4>
+
+<table>
+<tr>
+<td>Dependency</td>
+    <td><a href="https://github.com/nricciar/wikicloth" title="WikiCloth">WikiCloth</a></td>
+  </tr>
+<tr>
+<td>File Extension</td>
+    <td>
+<tt>.mediawiki</tt> and <tt>.mw</tt>
+</td>
+  </tr>
+<tr>
+<td>Example</td>
+    <td><tt>mediawiki :wiki, :layout_engine =&gt; :erb</tt></td>
+  </tr>
+</table>
+<p>It is not possible to call methods from MediaWiki markup, nor to pass locals to it.
+You therefore will usually use it in combination with another rendering engine:</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>erb <span style="color:#A60">:overview</span>, <span style="color:#A60">:locals</span> =&gt; { <span style="color:#A60">:text</span> =&gt; mediawiki(<span style="color:#A60">:introduction</span>) }
+</pre></div>
+</div>
+</div>
+
+<p>Note that you may also call the <code>mediawiki</code> method from within other templates:</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>%h1 <span style="color:#036;font-weight:bold">Hello</span> <span style="color:#036;font-weight:bold">From</span> Haml!
+%p= mediawiki(<span style="color:#A60">:greetings</span>)
+</pre></div>
+</div>
+</div>
+
+<p>Since you cannot call Ruby from MediaWiki, you cannot use layouts written in
+MediaWiki. However, it is possible to use another rendering engine for the
+template than for the layout by passing the <code>:layout_engine</code> option.</p>
+
 <a name='CoffeeScript%20Templates'></a>
 <h4>CoffeeScript Templates</h4>
 
@@ -1133,7 +1220,8 @@ object:</p>
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre>var resource = {<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">foo</span><span style="color:#710">"</span></span><span style="color:#A60"><span style="color:#A60">:</span><span style="color:#630">"</span><span style="color:#A60">bar</span><span style="color:#630">"</span></span>,<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">baz</span><span style="color:#710">"</span></span><span style="color:#A60"><span style="color:#A60">:</span><span style="color:#630">"</span><span style="color:#A60">qux</span><span style="color:#630">"</span></span>}; present(resource);
+  <div class="code"><pre><span style="color:#080;font-weight:bold">var</span> resource = {<span style="color:#606"><span style="color:#404">"</span><span>foo</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">bar</span><span style="color:#710">"</span></span>,<span style="color:#606"><span style="color:#404">"</span><span>baz</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">qux</span><span style="color:#710">"</span></span>};
+present(resource);
 </pre></div>
 </div>
 </div>
@@ -1144,7 +1232,7 @@ object:</p>
 <table>
 <tr>
 <td>Dependency</td>
-    <td><a href="https://github.com/blambeau/wlang/" title="wlang">wlang</a></td>
+    <td><a href="https://github.com/blambeau/wlang/" title="WLang">WLang</a></td>
   </tr>
 <tr>
 <td>File Extension</td>
@@ -1155,8 +1243,8 @@ object:</p>
     <td><tt>wlang :index, :locals =&gt; { :key =&gt; 'value' }</tt></td>
   </tr>
 </table>
-<p>Since calling ruby methods is not idiomatic in wlang, you almost always want to pass locals
-to it. Layouts written in wlang and <code>yield</code> are supported, though.</p>
+<p>Since calling ruby methods is not idiomatic in WLang, you almost always want to pass locals
+to it. Layouts written in WLang and <code>yield</code> are supported, though.</p>
 
 <a name='Accessing%20Variables%20in%20Templates'></a>
 <h3>Accessing Variables in Templates</h3>
@@ -1232,7 +1320,7 @@ layouts:</p>
 </div>
 </div>
 
-<p>Currently the following rendering method accept a block: <code>erb</code>, <code>haml</code>,
+<p>Currently, the following rendering methods accept a block: <code>erb</code>, <code>haml</code>,
 <code>liquid</code>, <code>slim </code>, <code>wlang</code>.
 Also the general <code>render</code> method accepts a block.</p>
 
@@ -1360,9 +1448,9 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>After filters are evaluated after each request within the same context and can
-also modify the request and response. Instance variables set in before filters
-and routes are accessible by after filters:</p>
+<p>After filters are evaluated after each request within the same
+context as the routes will be and can also modify the request and response. Instance
+variables set in before filters and routes are accessible by after filters:</p>
 
 <div>
 <div class="CodeRay">
@@ -1508,6 +1596,16 @@ the <code>sessions</code> setting:</p>
 <div>
 <div class="CodeRay">
   <div class="code"><pre>set <span style="color:#A60">:sessions</span>, <span style="color:#A60">:domain</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">foo.com</span><span style="color:#710">'</span></span>
+</pre></div>
+</div>
+</div>
+
+<p>To share your session across other apps on subdomains of foo.com, prefix the
+domain with a <em>.</em> like this instead:</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>set <span style="color:#A60">:sessions</span>, <span style="color:#A60">:domain</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">.foo.com</span><span style="color:#710">'</span></span>
 </pre></div>
 </div>
 </div>
@@ -1687,7 +1785,7 @@ creating your own wrapper:</p>
 </div>
 
 <p>This allows you to implement streaming APIs,
-<a href="http://dev.w3.org/html5/eventsource/">Server Sent Events</a> and can be used as
+<a href="http://dev.w3.org/html5/eventsource/">Server Sent Events</a>, and can be used as
 the basis for <a href="http://en.wikipedia.org/wiki/WebSocket">WebSockets</a>. It can also be
 used to increase throughput if some but not all content depends on a slow
 resource.</p>
@@ -1754,7 +1852,7 @@ post <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#71
 
 <p>This logger will automatically take your Rack handler’s logging settings into
 account. If logging is disabled, this method will return a dummy object, so
-you do not have to worry in your routes and filters about it.</p>
+you do not have to worry about it in your routes and filters.</p>
 
 <p>Note that logging is only enabled for <code>Sinatra::Application</code> by
 default, so if you inherit from <code>Sinatra::Base</code>, you probably want to
@@ -1811,7 +1909,7 @@ Haml:</p>
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre><span style="color:#070">%a</span>{<span style="color:#A60">:href</span> =&gt; url(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span>)} foo
+  <div class="code"><pre>%a{<span style="color:#A60">:href</span> =&gt; url(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span>)} foo
 </pre></div>
 </div>
 </div>
@@ -1978,11 +2076,11 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Use the <code>:static_cache_control</code> setting (see below) to add
 <code>Cache-Control</code> header info to static files.</p>
 
-<p>According to RFC 2616 your application should behave differently if the If-Match
-or If-None-Match header is set to <code>*</code> depending on whether the resource
+<p>According to RFC 2616, your application should behave differently if the If-Match
+or If-None-Match header is set to <code>*</code>, depending on whether the resource
 requested is already in existence. Sinatra assumes resources for safe (like get)
 and idempotent (like put) requests are already in existence, whereas other
-resources (for instance for post requests), are treated as new resources. You
+resources (for instance post requests) are treated as new resources. You
 can change this behavior by passing in a <code>:new_resource</code> option:</p>
 
 <div>
@@ -2051,7 +2149,7 @@ can change this behavior by passing in a <code>:new_resource</code> option:</p>
 
   <dt>status</dt>
     <dd>
-      Status code to be send. Useful when sending a static file as an error page.
+      Status code to be sent. Useful when sending a static file as an error page.
 
       If supported by the Rack handler, other means than streaming from the Ruby
       process will be used. If you use this helper method, Sinatra will automatically
@@ -2293,8 +2391,7 @@ method.</p>
 </div>
 </div>
 
-<p>Run when the environment is set to either <code>:production</code> or
-<code>:test</code>:</p>
+<p>Run when the environment is set to either <code>:production</code> or <code>:test</code>:</p>
 
 <div>
 <div class="CodeRay">
@@ -2357,7 +2454,8 @@ vulnerabilities):</p>
 
 <p>By default, Sinatra will only set up session based protection if <code>:sessions</code>
 has been enabled. Sometimes you want to set up sessions on your own, though. In
-that case you can get it to set up session based protections by passing the <code>:session</code> option:</p>
+that case you can get it to set up session based protections by passing the
+<code>:session</code> option:</p>
 
 <div>
 <div class="CodeRay">
@@ -2385,7 +2483,7 @@ set <span style="color:#A60">:protection</span>, <span style="color:#A60">:sessi
 
   <dt>add_charsets</dt>
   <dd>
-    mime types the <tt>content_type</tt> helper will automatically add the charset info to.
+    Mime types the <tt>content_type</tt> helper will automatically add the charset info to.
     You should add to it rather than overriding this option:
     <tt>settings.add_charsets &lt;&lt; "application/foobar"</tt>
   </dd>
@@ -2400,19 +2498,19 @@ set <span style="color:#A60">:protection</span>, <span style="color:#A60">:sessi
   <dd>IP address to bind to (default: <tt>0.0.0.0</tt> <em>or</em> <tt>localhost</tt> if your `environment` is set to development.). Only used for built-in server.</dd>
 
   <dt>default_encoding</dt>
-  <dd>encoding to assume if unknown (defaults to <tt>"utf-8"</tt>).</dd>
+  <dd>Encoding to assume if unknown (defaults to <tt>"utf-8"</tt>).</dd>
 
   <dt>dump_errors</dt>
-  <dd>display errors in the log.</dd>
+  <dd>Display errors in the log.</dd>
 
   <dt>environment</dt>
   <dd>
-    current environment, defaults to <tt>ENV['RACK_ENV']</tt>, or <tt>"development"</tt> if
+    Current environment. Defaults to <tt>ENV['RACK_ENV']</tt>, or <tt>"development"</tt> if
     not available.
   </dd>
 
   <dt>logging</dt>
-  <dd>use the logger.</dd>
+  <dd>Use the logger.</dd>
 
   <dt>lock</dt>
   <dd>
@@ -2423,7 +2521,7 @@ set <span style="color:#A60">:protection</span>, <span style="color:#A60">:sessi
 
   <dt>method_override</dt>
   <dd>
-    use <tt>_method</tt> magic to allow put/delete forms in browsers that
+    Use <tt>_method</tt> magic to allow put/delete forms in browsers that
     don't support it.
   </dd>
 
@@ -2462,29 +2560,29 @@ set <span style="color:#A60">:protection</span>, <span style="color:#A60">:sessi
 
   <dt>raise_errors</dt>
   <dd>
-    raise exceptions (will stop application). Enabled by default when
+    Raise exceptions (will stop application). Enabled by default when
     <tt>environment</tt> is set to <tt>"test"</tt>, disabled otherwise.
   </dd>
 
   <dt>run</dt>
   <dd>
-    if enabled, Sinatra will handle starting the web server, do not
+    If enabled, Sinatra will handle starting the web server. Do not
     enable if using rackup or other means.
   </dd>
 
   <dt>running</dt>
-  <dd>is the built-in server running now? do not change this setting!</dd>
+  <dd>Is the built-in server running now? Do not change this setting!</dd>
 
   <dt>server</dt>
   <dd>
-    Server or list of servers to use for built-in server. order indicates priority,
-    default depends on Ruby implementation.
+    Server or list of servers to use for built-in server. Order indicates
+    priority, default depends on Ruby implementation.
   </dd>
 
   <dt>sessions</dt>
   <dd>
     Enable cookie-based sessions support using <tt>Rack::Session::Cookie</tt>.
-     See 'Using Sessions' section for more information.
+    See 'Using Sessions' section for more information.
   </dd>
 
   <dt>show_exceptions</dt>
@@ -2524,6 +2622,9 @@ set <span style="color:#A60">:protection</span>, <span style="color:#A60">:sessi
     If set to <tt>true</tt>, will tell Thin to use <tt>EventMachine.defer</tt>
     for processing the request.
   </dd>
+
+  <dt>traps</dt>
+  <dd>Whether Sinatra should handle system signals.</dd>
 
   <dt>views</dt>
   <dd>
@@ -2717,8 +2818,7 @@ typically don’t have to <code>use</code> them explicitly.</p>
 <p>You can find useful middleware in
 <a href="https://github.com/rack/rack/tree/master/lib/rack">rack</a>,
 <a href="https://github.com/rack/rack-contrib#readm">rack-contrib</a>,
-with <a href="http://coderack.org/">CodeRack</a> or in the
-<a href="https://github.com/rack/rack/wiki/List-of-Middleware">Rack wiki</a>.</p>
+or in the <a href="https://github.com/rack/rack/wiki/List-of-Middleware">Rack wiki</a>.</p>
 
 <a name='Testing'></a>
 <h2>Testing</h2>
@@ -2802,8 +2902,24 @@ of <code>Sinatra::Base</code>.</li>
 </ul>
 <p><code>Sinatra::Base</code> is a blank slate. Most options are disabled by default,
 including the built-in server. See
-<a href="http://sinatra.github.com/configuration.html">Options and Configuration</a>
-for details on available options and their behavior.</p>
+<a href="http://sinatra.github.com/configuration.html">Configuring Settings</a>
+for details on available options and their behavior. If you want
+behavior more similar to when you define your app at the top level (also
+know as Classic style), you
+can subclass <code>Sinatra::Application</code>.</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra/base</span><span style="color:#710">'</span></span>
+
+<span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyApp</span> &lt; <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color:#036;font-weight:bold">Application</span>
+  get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+    <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Hello world!</span><span style="color:#710">'</span></span>
+  <span style="color:#080;font-weight:bold">end</span>
+<span style="color:#080;font-weight:bold">end</span>
+</pre></div>
+</div>
+</div>
 
 <a name='Modular%20vs.%20Classic%20Style'></a>
 <h3>Modular vs. Classic Style</h3>
@@ -2824,36 +2940,43 @@ different default settings:</p>
 <th>Setting</th>
     <th>Classic</th>
     <th>Modular</th>
+    <th>Modular</th>
   </tr>
 <tr>
 <td>app_file</td>
     <td>file loading sinatra</td>
     <td>file subclassing Sinatra::Base</td>
+    <td>file subclassing Sinatra::Application</td>
   </tr>
 <tr>
 <td>run</td>
     <td>$0 == app_file</td>
+    <td>false</td>
     <td>false</td>
   </tr>
 <tr>
 <td>logging</td>
     <td>true</td>
     <td>false</td>
+    <td>true</td>
   </tr>
 <tr>
 <td>method_override</td>
     <td>true</td>
     <td>false</td>
+    <td>true</td>
   </tr>
 <tr>
 <td>inline_templates</td>
     <td>true</td>
     <td>false</td>
+    <td>true</td>
   </tr>
 <tr>
 <td>static</td>
     <td>true</td>
     <td>false</td>
+    <td>true</td>
   </tr>
 </table>
 <a name='Serving%20a%20Modular%20Application'></a>
@@ -2901,7 +3024,7 @@ run <span style="color:#036;font-weight:bold">MyApp</span>
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre>rackup -p <span style="color:#00D">4567</span>
+  <div class="code"><pre>rackup -p 4567
 </pre></div>
 </div>
 </div>
@@ -2994,7 +3117,7 @@ application (Rails/Ramaze/Camping/…):</p>
 <h3>Dynamic Application Creation</h3>
 
 <p>Sometimes you want to create new applications at runtime without having to
-assign them to a constant, you can do this with <code>Sinatra.new</code>:</p>
+assign them to a constant. You can do this with <code>Sinatra.new</code>:</p>
 
 <div>
 <div class="CodeRay">
@@ -3102,7 +3225,7 @@ single application class for all requests.</p>
 <h3>Request/Instance Scope</h3>
 
 <p>For every incoming request, a new instance of your application class is
-created and all handler blocks run in that scope. From within this scope you
+created, and all handler blocks run in that scope. From within this scope you
 can access the <code>request</code> and <code>session</code> objects or call rendering methods like
 <code>erb</code> or <code>haml</code>. You can access the application scope from within the request
 scope via the <code>settings</code> helper:</p>
@@ -3163,7 +3286,7 @@ being <a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/main.
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre>ruby myapp.rb [-h] [-x] [-e <span style="color:#036;font-weight:bold">ENVIRONMENT</span>] [-p <span style="color:#036;font-weight:bold">PORT</span>] [-o <span style="color:#036;font-weight:bold">HOST</span>] [-s <span style="color:#036;font-weight:bold">HANDLER</span>]
+  <div class="code"><pre>ruby myapp.rb [-h] [-x] [-e ENVIRONMENT] [-p PORT] [-o HOST] [-s HANDLER]
 </pre></div>
 </div>
 </div>
@@ -3212,7 +3335,7 @@ being <a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/main.
 
   <dt>Rubinius</dt>
   <dd>
-    Rubinius is officially supported (Rubinius &gt;= 2.x). It is recommendended to
+    Rubinius is officially supported (Rubinius &gt;= 2.x). It is recommended to
     <tt>gem install puma</tt>.
   </dd>
 
@@ -3264,7 +3387,7 @@ application against the master branch, it should be rather stable.</p>
 </div>
 </div>
 
-<p>To get some of the latest features.</p>
+<p>to get some of the latest features.</p>
 
 <a name='With%20Bundler'></a>
 <h3>With Bundler</h3>
@@ -3348,7 +3471,7 @@ rake install
 </div>
 </div>
 
-<p>If you install gems as root, the last step should be</p>
+<p>If you install gems as root, the last step should be:</p>
 
 <div>
 <div class="CodeRay">

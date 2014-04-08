@@ -75,7 +75,7 @@ GitHub to track patch requests.
   [README file](http://github.com/sinatra/sinatra/blob/master/README.md).
 
 * If you want to help translating the documentation, there already is a
-  [Japanese](http://github.com/sinatra/sinatra/blob/master/README.jp.md)
+  [Japanese](http://github.com/sinatra/sinatra/blob/master/README.travis-ci/travis-md)
   and a [German](http://github.com/sinatra/sinatra/blob/master/README.de.md)
   version of the README, which tend to fall behind the English
   version.  Translations into other languages would also be appreciated.
