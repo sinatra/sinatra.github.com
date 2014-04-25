@@ -10,7 +10,7 @@ or action to perform depending on the request&#39;s Accept header.</p>
 <span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/&#39;</span> <span class="ruby-keyword">do</span>
   <span class="ruby-identifier">data</span> = { :<span class="ruby-identifier">name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;example&#39;</span> }
   <span class="ruby-identifier">request</span>.<span class="ruby-identifier">accept</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">type</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">case</span> <span class="ruby-identifier">type</span>
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">type</span>.<span class="ruby-identifier">to_s</span>
     <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;text/html&#39;</span>
       <span class="ruby-identifier">halt</span> <span class="ruby-identifier">haml</span>(:<span class="ruby-identifier">index</span>, :<span class="ruby-identifier">locals</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">data</span>)
     <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;text/json&#39;</span>
