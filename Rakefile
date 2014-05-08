@@ -14,7 +14,7 @@ def cleanup(html)
   html_doc.xpath("//h1").first.remove # Removes Sinatra Heading
   html_doc.xpath("//ul").first.remove # Removes the ToC in Markdown
   toc_header = html_doc.xpath("//h2").first
-  toc_header.remove if toc_header.inner_html == "Table of Contents"
+  toc_header.remove if ["Table of Contents", "Inhalt", "Table des matières", "目次", "목차"].include? toc_header.inner_html
   html_doc.to_html
 end
 
@@ -84,7 +84,7 @@ task :pull => ['pull:sinatra', 'pull:contrib']
 
 directory "_sinatra" do
   puts 'Cloning sinatra repo'
-  sh "git clone git://github.com/sinatra/sinatra.git _sinatra" 
+  sh "git clone git://github.com/sinatra/sinatra.git _sinatra"
 end
 
 desc 'Pull in the latest from the sinatra repo'
@@ -95,7 +95,7 @@ end
 
 directory "_contrib" do
   puts 'Cloning sinatra-contrib repo'
-  sh "git clone git://github.com/sinatra/sinatra-contrib.git _contrib" 
+  sh "git clone git://github.com/sinatra/sinatra-contrib.git _contrib"
 end
 
 desc 'Pull in the latest from the sinatra-contrib repo'
