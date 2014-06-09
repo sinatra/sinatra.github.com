@@ -340,11 +340,11 @@ more information on `get`, `post`, `put`, `delete` and friends.
 [Test::Unit]: http://www.ruby-doc.org/stdlib/libdoc/test/unit/rdoc/classes/Test/Unit.html
 [RSpec]: http://rspec.info
 [Bacon]: https://github.com/chneukirchen/bacon
-[Test::Spec]: http://rubyforge.org/projects/test-spec/
+[Test::Spec]: http://rubydoc.info/gems/test-spec/
 [Rack::Test]: https://github.com/brynary/rack-test/
-[spec]: http://rack.rubyforge.org/doc/SPEC.html
-[Rack::MockRequest]: http://rack.rubyforge.org/doc/classes/Rack/MockRequest.html
-[Rack::MockResponse]: http://rack.rubyforge.org/doc/classes/Rack/MockResponse.html
+[spec]: http://rubydoc.info/github/rack/rack/master/file/SPEC
+[Rack::MockRequest]: http://rubydoc.info/github/rack/rack/master/Rack/MockRequest
+[Rack::MockResponse]: http://rubydoc.info/github/rack/rack/master/Rack/MockResponse
 [Webrat]: https://github.com/brynary/webrat
 [examples]: https://github.com/brynary/webrat/wiki/sinatra
 [Capybara]: https://github.com/jnicklas/capybara
