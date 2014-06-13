@@ -87,6 +87,7 @@ Applications {#apps}
 - [VDGB](http://vdgb.dk) - Subscription based online video training platform for schools and teachers
 - [The Myndflame Bucket](http://buckateers.com) - Innovative platform for Twitch.tv show to automatically collect donations from viewers, provide limited rewards and to encourage fellowship to continuously support the show through gamification
 - [Beathound](http://beathound.com) - helping you stay on top of new releases from the artists you love
+- [What Animal Do You Lift?](http://whatanimaldoyoulift.herokuapp.com) - A simple app to give your gym workouts some new perspective
 
 Libraries and extensions {#libs}
 ------------------------
