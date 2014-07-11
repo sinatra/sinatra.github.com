@@ -189,7 +189,7 @@ Websites {#sites}
 - [Scholas](http://schol.as) Social file-sharing for academics.
 - [Gemcutter](http://gemcutter.org) Awesome gem hosting.
 - [SavvyFranchises](http://www.savvyfranchises.com/) Franchise Search + Discovery for the Savvy Entrepreneur.
-- [The Setup](http://usesthis.com/) The setup is a bunch of nerdy interviews ([Source](https://github.com/waferbaby/usesthis/))
+- [The Setup](http://usesthis.com/) The setup is a bunch of nerdy interviews ([Source](https://github.com/waferbaby/usesthis/tree/sinatra))
 - [A Good Company](http://www.weareagoodcompany.com/) An awesome little portfolio for a great design company.
 - [dbpedia lite](http://dbpedialite.org/) takes some of the structured data in Wikipedia and presents it as Linked Data ([Source](https://github.com/njh/dbpedialite/)).
 - [Evan Lecklider](http://lecklider.com/) Website showing off work, code examples and experiments built with Sinatra and Compass.
