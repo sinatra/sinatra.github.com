@@ -40,7 +40,7 @@ If you still want in-process reloading, check out [Sinatra::Reloader](/contrib/r
 What are my deployment options? {#deploy}
 -------------------------------
 
-See the [book](http://sinatra-book.gittr.com/#deployment).
+See the [book](https://github.com/sinatra/sinatra-book).
 
 How do I use sessions? {#sessions}
 ----------------------
