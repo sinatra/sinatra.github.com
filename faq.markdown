@@ -280,7 +280,7 @@ Read more on the [Tilt Google Group](https://groups.google.com/forum/#!topic/til
 How do I use ActiveRecord migrations? {#ar-migrations}
 -------------------------------------
 
-From [Adam Wiggins's blog](http://adam.blog.heroku.com/past/2009/2/28/activerecord_migrations_outside_rails/):
+From [Adam Wiggins's blog](http://adam.herokuapp.com/past/2009/2/28/activerecord_migrations_outside_rails/):
 
 > To use ActiveRecord’s migrations with Sinatra (or other non-Rails project),
 > add the following to your Rakefile:
