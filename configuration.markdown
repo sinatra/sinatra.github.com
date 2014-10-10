@@ -99,7 +99,7 @@ are disabled by default. Enable them with:
 Sessions are implemented by inserting the [`Rack::Session::Cookie`][c]
 component into the application's middleware pipeline.
 
-[c]: http://rack.rubyforge.org/doc/classes/Rack/Session/Cookie.html
+[c]: http://rubydoc.info/github/rack/rack/master/Rack/Session/Cookie
 
 ### `:logging` - log requests to `STDERR`
 
@@ -110,7 +110,7 @@ default in `Sinatra::Base` subclasses.
 Internally, the [`Rack::CommonLogger`][cl] component is used to generate
 log messages.
 
-[cl]: http://rack.rubyforge.org/doc/classes/Rack/CommonLogger.html
+[cl]: http://rubydoc.info/github/rack/rack/master/Rack/CommonLogger
 
 ### `:method_override` - enable/disable the POST `_method` hack
 
@@ -124,7 +124,7 @@ HTML form submission -- that do not support the full range of HTTP methods.
 The POST `_method` hack is implemented by inserting the
 [`Rack::MethodOverride`][mo] component into the middleware pipeline.
 
-[mo]: http://rack.rubyforge.org/doc/classes/Rack/MethodOverride.html
+[mo]: http://rubydoc.info/github/rack/rack/master/Rack/MethodOverride
 
 ### `:root` - The application's root directory
 
@@ -243,7 +243,7 @@ raised outside of the application where it may be handled by the server
 handler or Rack middleware, such as [`Rack::ShowExceptions`][se] or
 [`Rack::MailExceptions`][me].
 
-[se]: http://rack.rubyforge.org/doc/classes/Rack/ShowExceptions.html
+[se]: http://rubydoc.info/github/rack/rack/master/Rack/ShowExceptions
 [me]: https://github.com/rack/rack-contrib/blob/master/lib/rack/contrib/mailexceptions.rb
 
 ### `:lock` - ensure single request concurrency with a mutex lock
