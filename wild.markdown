@@ -87,6 +87,7 @@ Applications {#apps}
 - [VDGB](http://vdgb.dk) - Subscription based online video training platform for schools and teachers
 - [The Myndflame Bucket](http://buckateers.com) - Innovative platform for Twitch.tv show to automatically collect donations from viewers, provide limited rewards and to encourage fellowship to continuously support the show through gamification
 - [Beathound](http://beathound.com) - helping you stay on top of new releases from the artists you love
+- [Metaflop](http://www.metaflop.com) An easy to use web application for generating and modulating your own fonts.
 
 Libraries and extensions {#libs}
 ------------------------
