@@ -153,7 +153,7 @@ RDoc documentation courtesy of `rubydoc.info`.
 
 List of applications, libraries, websites and companies using Sinatra.
 
-### [The Sinatra Book](http://sinatra-book.gittr.com/)
+### [The Sinatra Book](http://sinatra-org-book.herokuapp.com/)
 
 An in-depth look at building and deploying Sinatra applications.
 Maintained by [Chris Schneider][cschneid] and [Zachary Scott][zzak].
