@@ -74,11 +74,19 @@ GitHub to track patch requests.
 * [The Introduction](intro.html) is generated from Sinatra's
   [README file](http://github.com/sinatra/sinatra/blob/master/README.md).
 
-* If you want to help translating the documentation, there already is a
-  [Japanese](http://github.com/sinatra/sinatra/blob/master/README.travis-ci/travis-md)
-  and a [German](http://github.com/sinatra/sinatra/blob/master/README.de.md)
-  version of the README, which tend to fall behind the English
-  version.  Translations into other languages would also be appreciated.
+* If you want to help translating the documentation, the README is already available in
+  [Japanese](https://github.com/sinatra/sinatra/blob/master/README.ja.md),
+  [German](http://github.com/sinatra/sinatra/blob/master/README.de.md),
+  [Chinese](https://github.com/sinatra/sinatra/blob/master/README.zh.md),
+  [Russian](https://github.com/sinatra/sinatra/blob/master/README.ru.md),
+  [European](https://github.com/sinatra/sinatra/blob/master/README.pt-pt.md) and
+  [Brazillian](https://github.com/sinatra/sinatra/blob/master/README.pt-br.md) Portugese,
+  [French](https://github.com/sinatra/sinatra/blob/master/README.fr.md),
+  [Spanish](https://github.com/sinatra/sinatra/blob/master/README.es.md),
+  [Korean](https://github.com/sinatra/sinatra/blob/master/README.ko.md), and
+  [Hungarian](https://github.com/sinatra/sinatra/blob/master/README.hu.md).
+  The translations tend to fall behind the English version. Translations into other
+  languages would also be appreciated.
 
 ## Looking for something to do?
 
