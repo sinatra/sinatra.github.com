@@ -1,7 +1,7 @@
 
 <h1 id="label-Sinatra%3A%3ARespondWith">Sinatra::RespondWith<span><a href="#label-Sinatra%3A%3ARespondWith">&para;</a> <a href="#documentation">&uarr;</a></span></h1>
 
-<p>This extensions lets Sinatra automatically choose what template to render
+<p>These extensions let Sinatra automatically choose what template to render
 or action to perform depending on the request&#39;s Accept header.</p>
 
 <p>Example:</p>
@@ -10,7 +10,7 @@ or action to perform depending on the request&#39;s Accept header.</p>
 <span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/&#39;</span> <span class="ruby-keyword">do</span>
   <span class="ruby-identifier">data</span> = { :<span class="ruby-identifier">name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;example&#39;</span> }
   <span class="ruby-identifier">request</span>.<span class="ruby-identifier">accept</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">type</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">case</span> <span class="ruby-identifier">type</span>
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">type</span>.<span class="ruby-identifier">to_s</span>
     <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;text/html&#39;</span>
       <span class="ruby-identifier">halt</span> <span class="ruby-identifier">haml</span>(:<span class="ruby-identifier">index</span>, :<span class="ruby-identifier">locals</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">data</span>)
     <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;text/json&#39;</span>
@@ -55,9 +55,9 @@ the result (<code>data.to_json</code>).</p>
 <h2 id="label-Security">Security<span><a href="#label-Security">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 
 <p>Since methods are triggered based on client input, this can lead to
-security issues (but not as seviere as those might apear in the first
-place: keep in mind that only known file extensions are used). You
-therefore should limit the possible formats you serve.</p>
+security issues (but not as severe as those might appear in the first
+place: keep in mind that only known file extensions are used). You should
+limit the possible formats you serve.</p>
 
 <p>This is possible with the <code>provides</code> condition:</p>
 
@@ -67,7 +67,7 @@ therefore should limit the possible formats you serve.</p>
 </pre>
 
 <p>However, since you have to set <code>provides</code> for every route, this
-extension adds a app global (class method) `respond_to`, that let&#39;s you
+extension adds an app global (class method) `respond_to`, that lets you
 define content types for all routes:</p>
 
 <pre class="ruby"><span class="ruby-identifier">respond_to</span> :<span class="ruby-identifier">html</span>, :<span class="ruby-identifier">json</span>, :<span class="ruby-identifier">xml</span>, :<span class="ruby-identifier">atom</span>

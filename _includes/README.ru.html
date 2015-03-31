@@ -31,6 +31,7 @@
 				<li><a href='#Creole%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'>Creole шаблоны</a></li>
 				<li><a href='#MediaWiki%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'>MediaWiki шаблоны</a></li>
 				<li><a href='#CoffeeScript%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'>CoffeeScript шаблоны</a></li>
+				<li><a href='#Stylus%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'>Stylus шаблоны</a></li>
 				<li><a href='#Yajl%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'>Yajl шаблоны</a></li>
 				<li><a href='#WLang%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'>WLang шаблоны</a></li>
 			</ol>
@@ -70,7 +71,7 @@
 		<li><a href='#%D0%9E%D0%B1%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0%20%D0%BE%D1%88%D0%B8%D0%B1%D0%BE%D0%BA'>Обработка ошибок</a></li>
 		<ol class='level-2'>
 			<li><a href='#Not%20Found'>Not Found</a></li>
-			<li><a href='#%D0%9E%D1%88%D0%B8%D0%B1%D0%BA%D0%B8'>Ошибки</a></li>
+			<li><a href='#Error'>Error</a></li>
 		</ol>
 		<li><a href='#Rack%20%E2%80%9C%D0%BF%D1%80%D0%BE%D1%81%D0%BB%D0%BE%D0%B9%D0%BA%D0%B8%E2%80%9D'>Rack “прослойки”</a></li>
 		<li><a href='#%D0%A2%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5'>Тестирование</a></li>
@@ -125,13 +126,21 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Установите gem:</p>
 
-<pre><code>gem install sinatra
-</code></pre>
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>gem install sinatra
+</pre></div>
+</div>
+</div>
 
 <p>и запустите приложение с помощью:</p>
 
-<pre><code>ruby myapp.rb
-</code></pre>
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>ruby myapp.rb
+</pre></div>
+</div>
+</div>
 
 <p>Оцените результат: http://localhost:4567</p>
 
@@ -192,8 +201,8 @@ unlink <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/hello/:name</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># соответствует "GET /hello/foo" и "GET /hello/bar",</span>
-  <span style="color:#777"># где params[:name] 'foo' или 'bar'</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hello </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:name</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
+  <span style="color:#777"># где params['name'] 'foo' или 'bar'</span>
+  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hello </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">name</span><span style="color:#710">'</span></span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -211,18 +220,18 @@ unlink <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#
 </div>
 
 <p>Шаблоны маршрутов также могут включать в себя splat (или ‘*’ маску,
-обозначающую любой символ) параметры, доступные в массиве <code>params[:splat]</code>:</p>
+обозначающую любой символ) параметры, доступные в массиве <code>params['splat']</code>:</p>
 
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/say/*/to/*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># соответствует /say/hello/to/world</span>
-  params[<span style="color:#A60">:splat</span>] <span style="color:#777"># =&gt; ["hello", "world"]</span>
+  params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">splat</span><span style="color:#710">'</span></span>] <span style="color:#777"># =&gt; ["hello", "world"]</span>
 <span style="color:#080;font-weight:bold">end</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/download/*.*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># соответствует /download/path/to/file.xml</span>
-  params[<span style="color:#A60">:splat</span>] <span style="color:#777"># =&gt; ["path/to/file", "xml"]</span>
+  params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">splat</span><span style="color:#710">'</span></span>] <span style="color:#777"># =&gt; ["path/to/file", "xml"]</span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -243,8 +252,8 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">%r{</span><span style="color:#808">/hello/([</span><span style="color:#D20">\w</span><span style="color:#808">]+)</span><span style="color:#404">}</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hello, </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:captures</span>].first<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
+  <div class="code"><pre>get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#D20">\A</span><span style="color:#D20">\/</span><span style="color:#808">hello</span><span style="color:#D20">\/</span><span style="color:#808">([</span><span style="color:#D20">\w</span><span style="color:#808">]+)</span><span style="color:#D20">\z</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
+  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hello, </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">captures</span><span style="color:#710">'</span></span>].first<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -254,7 +263,8 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">%r{</span><span style="color:#808">/hello/([</span><span style="color:#D20">\w</span><span style="color:#808">]+)</span><span style="color:#404">}</span></span> <span style="color:#080;font-weight:bold">do</span> |c|
+  <div class="code"><pre><span style="color:#777"># Находит "GET /meta/hello/world", "GET /hello/world/1234" и так далее</span>
+get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">%r{</span><span style="color:#808">/hello/([</span><span style="color:#D20">\w</span><span style="color:#808">]+)</span><span style="color:#404">}</span></span> <span style="color:#080;font-weight:bold">do</span> |c|
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hello, </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>c<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
@@ -285,7 +295,7 @@ traversal, см. ниже), путь запроса может быть изме
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span>, <span style="color:#A60">:agent</span> =&gt; <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">Songbird (</span><span style="color:#D20">\d</span><span style="color:#D20">\.</span><span style="color:#D20">\d</span><span style="color:#808">)[</span><span style="color:#D20">\d</span><span style="color:#D20">\/</span><span style="color:#808">]*?</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">You're using Songbird version </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:agent</span>][<span style="color:#00D">0</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">"</span></span>
+  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">You're using Songbird version </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">agent</span><span style="color:#710">'</span></span>][<span style="color:#00D">0</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">"</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
@@ -364,6 +374,8 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Вы можете вернуть любой объект, который будет либо корректным Rack ответом,
 объектом Rack body, либо кодом состояния HTTP:</p>
+
+
 
 <p>Таким образом, легко можно реализовать, например, поточный пример:</p>
 
@@ -535,7 +547,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Доступные опции:</p>
 
 <dl>
-<dt>locals</dt>
+  <dt>locals</dt>
   <dd>
     Список локальных переменных, передаваемых в документ.
     Например: <tt>erb "&lt;%= foo %&gt;", :locals =&gt; {:foo =&gt; "bar"}</tt>
@@ -579,6 +591,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
     шаблона. Пример: <tt>set :rdoc, :layout_engine =&gt; :erb</tt>
   </dd>
 </dl>
+
 <p>По умолчанию считается, что шаблоны находятся в директории <code>./views</code>. Чтобы
 использовать другую директорию с шаблонами:</p>
 
@@ -626,148 +639,156 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <h4>Haml шаблоны</h4>
 
 <table>
-<tr>
-<td>Зависимости</td>
+  <tr>
+    <td>Зависимости</td>
     <td><a href="http://haml.info/" title="haml">haml</a></td>
   </tr>
-<tr>
-<td>Расширения файлов</td>
+  <tr>
+    <td>Расширения файлов</td>
     <td><tt>.haml</tt></td>
   </tr>
-<tr>
-<td>Пример</td>
+  <tr>
+    <td>Пример</td>
     <td><tt>haml :index, :format =&gt; :html5</tt></td>
   </tr>
 </table>
+
 <a name='Erb%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'></a>
 <h4>Erb шаблоны</h4>
 
 <table>
-<tr>
-<td>Зависимости</td>
+  <tr>
+    <td>Зависимости</td>
     <td>
       <a href="http://www.kuwata-lab.com/erubis/" title="erubis">erubis</a>
       или erb (включен в Ruby)
     </td>
   </tr>
-<tr>
-<td>Расширения файлов</td>
+  <tr>
+    <td>Расширения файлов</td>
     <td>
 <tt>.erb</tt>, <tt>.rhtml</tt> or <tt>.erubis</tt> (только Erubis)</td>
   </tr>
-<tr>
-<td>Пример</td>
+  <tr>
+    <td>Пример</td>
     <td><tt>erb :index</tt></td>
   </tr>
 </table>
+
 <a name='Builder%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'></a>
 <h4>Builder шаблоны</h4>
 
 <table>
-<tr>
-<td>Зависимости</td>
+  <tr>
+    <td>Зависимости</td>
     <td>
-      <a href="http://builder.rubyforge.org/" title="builder">builder</a>
+      <a href="https://github.com/jimweirich/builder" title="builder">builder</a>
     </td>
   </tr>
-<tr>
-<td>Расширения файлов</td>
+  <tr>
+    <td>Расширения файлов</td>
     <td><tt>.builder</tt></td>
   </tr>
-<tr>
-<td>Пример</td>
+  <tr>
+    <td>Пример</td>
     <td><tt>builder { |xml| xml.em "hi" }</tt></td>
   </tr>
 </table>
+
 <p>Блок также используется и для встроенных шаблонов (см. пример).</p>
 
 <a name='Nokogiri%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'></a>
 <h4>Nokogiri шаблоны</h4>
 
 <table>
-<tr>
-<td>Зависимости</td>
+  <tr>
+    <td>Зависимости</td>
     <td><a href="http://nokogiri.org/" title="nokogiri">nokogiri</a></td>
   </tr>
-<tr>
-<td>Расширения файлов</td>
+  <tr>
+    <td>Расширения файлов</td>
     <td><tt>.nokogiri</tt></td>
   </tr>
-<tr>
-<td>Пример</td>
+  <tr>
+    <td>Пример</td>
     <td><tt>nokogiri { |xml| xml.em "hi" }</tt></td>
   </tr>
 </table>
+
 <p>Блок также используется и для встроенных шаблонов (см. пример).</p>
 
 <a name='Sass%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'></a>
 <h4>Sass шаблоны</h4>
 
 <table>
-<tr>
-<td>Зависимости</td>
+  <tr>
+    <td>Зависимости</td>
     <td><a href="http://sass-lang.com/" title="sass">sass</a></td>
   </tr>
-<tr>
-<td>Расширения файлов</td>
+  <tr>
+    <td>Расширения файлов</td>
     <td><tt>.sass</tt></td>
   </tr>
-<tr>
-<td>Пример</td>
+  <tr>
+    <td>Пример</td>
     <td><tt>sass :stylesheet, :style =&gt; :expanded</tt></td>
   </tr>
 </table>
+
 <a name='SCSS%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'></a>
 <h4>SCSS шаблоны</h4>
 
 <table>
-<tr>
-<td>Зависимости</td>
+  <tr>
+    <td>Зависимости</td>
     <td><a href="http://sass-lang.com/" title="sass">sass</a></td>
   </tr>
-<tr>
-<td>Расширения файлов</td>
+  <tr>
+    <td>Расширения файлов</td>
     <td><tt>.scss</tt></td>
   </tr>
-<tr>
-<td>Пример</td>
+  <tr>
+    <td>Пример</td>
     <td><tt>scss :stylesheet, :style =&gt; :expanded</tt></td>
   </tr>
 </table>
+
 <a name='Less%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'></a>
 <h4>Less шаблоны</h4>
 
 <table>
-<tr>
-<td>Зависимости</td>
+  <tr>
+    <td>Зависимости</td>
     <td><a href="http://www.lesscss.org/" title="less">less</a></td>
   </tr>
-<tr>
-<td>Расширения файлов</td>
+  <tr>
+    <td>Расширения файлов</td>
     <td><tt>.less</tt></td>
   </tr>
-<tr>
-<td>Пример</td>
+  <tr>
+    <td>Пример</td>
     <td><tt>less :stylesheet</tt></td>
   </tr>
 </table>
+
 <a name='Liquid%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'></a>
 <h4>Liquid шаблоны</h4>
 
 <table>
-<tr>
-<td>Зависимости</td>
+  <tr>
+    <td>Зависимости</td>
     <td><a href="http://www.liquidmarkup.org/" title="liquid">liquid</a></td>
   </tr>
-<tr>
-<td>Расширения файлов</td>
+  <tr>
+    <td>Расширения файлов</td>
     <td><tt>.liquid</tt></td>
   </tr>
-<tr>
-<td>Пример</td>
+  <tr>
+    <td>Пример</td>
     <td><tt>liquid :index, :locals =&gt; { :key =&gt; 'value' }</tt></td>
   </tr>
 </table>
+
 <p>Так как в Liquid шаблонах невозможно вызывать методы из Ruby (кроме <code>yield</code>), то
 вы почти всегда будете передавать в шаблон локальные переменные.</p>
 
@@ -775,28 +796,29 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <h4>Markdown шаблоны</h4>
 
 <table>
-<tr>
-<td>Зависимости</td>
+  <tr>
+    <td>Зависимости</td>
     <td>
       Любая из библиотек:
         <a href="https://github.com/rtomayko/rdiscount" title="RDiscount">RDiscount</a>,
         <a href="https://github.com/vmg/redcarpet" title="RedCarpet">RedCarpet</a>,
         <a href="http://deveiate.org/projects/BlueCloth" title="BlueCloth">BlueCloth</a>,
-        <a href="http://kramdown.rubyforge.org/" title="kramdown">kramdown</a>,
-        <a href="http://maruku.rubyforge.org/" title="maruku">maruku</a>
+        <a href="http://kramdown.gettalong.org/" title="kramdown">kramdown</a>,
+        <a href="https://github.com/bhollis/maruku" title="maruku">maruku</a>
     </td>
   </tr>
-<tr>
-<td>Расширения файлов</td>
+  <tr>
+    <td>Расширения файлов</td>
     <td>
 <tt>.markdown</tt>, <tt>.mkd</tt> and <tt>.md</tt>
 </td>
   </tr>
-<tr>
-<td>Пример</td>
+  <tr>
+    <td>Пример</td>
     <td><tt>markdown :index, :layout_engine =&gt; :erb</tt></td>
   </tr>
 </table>
+
 <p>В Markdown невозможно вызывать методы или передавать локальные переменные.
 Следовательно, вам, скорее всего, придется использовать этот шаблон совместно
 с другим шаблонизатором:</p>
@@ -827,19 +849,20 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <h4>Textile шаблоны</h4>
 
 <table>
-<tr>
-<td>Зависимости</td>
+  <tr>
+    <td>Зависимости</td>
     <td><a href="http://redcloth.org/" title="RedCloth">RedCloth</a></td>
   </tr>
-<tr>
-<td>Расширения файлов</td>
+  <tr>
+    <td>Расширения файлов</td>
     <td><tt>.textile</tt></td>
   </tr>
-<tr>
-<td>Пример</td>
+  <tr>
+    <td>Пример</td>
     <td><tt>textile :index, :layout_engine =&gt; :erb</tt></td>
   </tr>
 </table>
+
 <p>В Textile невозможно вызывать методы или передавать локальные переменные.
 Следовательно, вам, скорее всего, придется использовать этот шаблон совместно
 с другим шаблонизатором:</p>
@@ -870,19 +893,20 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <h4>RDoc шаблоны</h4>
 
 <table>
-<tr>
-<td>Зависимости</td>
-    <td><a href="http://rdoc.rubyforge.org/" title="RDoc">RDoc</a></td>
+  <tr>
+    <td>Зависимости</td>
+    <td><a href="http://rdoc.sourceforge.net/" title="RDoc">RDoc</a></td>
   </tr>
-<tr>
-<td>Расширения файлов</td>
+  <tr>
+    <td>Расширения файлов</td>
     <td><tt>.rdoc</tt></td>
   </tr>
-<tr>
-<td>Пример</td>
+  <tr>
+    <td>Пример</td>
     <td><tt>rdoc :README, :layout_engine =&gt; :erb</tt></td>
   </tr>
 </table>
+
 <p>В RDoc невозможно вызывать методы или передавать локальные переменные.
 Следовательно, вам, скорее всего, придется использовать этот шаблон совместно
 с другим шаблонизатором:</p>
@@ -913,21 +937,22 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <h4>AsciiDoc шаблоны</h4>
 
 <table>
-<tr>
-<td>Зависимости</td>
+  <tr>
+    <td>Зависимости</td>
     <td><a href="http://asciidoctor.org/" title="Asciidoctor">Asciidoctor</a></td>
   </tr>
-<tr>
-<td>Расширения файлов</td>
+  <tr>
+    <td>Расширения файлов</td>
     <td>
 <tt>.asciidoc</tt>, <tt>.adoc</tt> и <tt>.ad</tt>
 </td>
   </tr>
-<tr>
-<td>Пример</td>
+  <tr>
+    <td>Пример</td>
     <td><tt>asciidoc :README, :layout_engine =&gt; :erb</tt></td>
   </tr>
 </table>
+
 <p>Так как в AsciiDoc шаблонах невозможно вызывать методы из Ruby напрямую, то вы
 почти всегда будете передавать в шаблон локальные переменные.</p>
 
@@ -935,19 +960,20 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <h4>Radius шаблоны</h4>
 
 <table>
-<tr>
-<td>Зависимости</td>
-    <td><a href="http://radius.rubyforge.org/" title="Radius">Radius</a></td>
+  <tr>
+    <td>Зависимости</td>
+    <td><a href="https://github.com/jlong/radius" title="Radius">Radius</a></td>
   </tr>
-<tr>
-<td>Расширения файлов</td>
+  <tr>
+    <td>Расширения файлов</td>
     <td><tt>.radius</tt></td>
   </tr>
-<tr>
-<td>Пример</td>
+  <tr>
+    <td>Пример</td>
     <td><tt>radius :index, :locals =&gt; { :key =&gt; 'value' }</tt></td>
   </tr>
 </table>
+
 <p>Так как в Radius шаблонах невозможно вызывать методы из Ruby напрямую, то вы
 почти всегда будете передавать в шаблон локальные переменные.</p>
 
@@ -955,72 +981,76 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <h4>Markaby шаблоны</h4>
 
 <table>
-<tr>
-<td>Зависимости</td>
+  <tr>
+    <td>Зависимости</td>
     <td><a href="http://markaby.github.com/" title="Markaby">Markaby</a></td>
   </tr>
-<tr>
-<td>Расширения файлов</td>
+  <tr>
+    <td>Расширения файлов</td>
     <td><tt>.mab</tt></td>
   </tr>
-<tr>
-<td>Пример</td>
+  <tr>
+    <td>Пример</td>
     <td><tt>markaby { h1 "Welcome!" }</tt></td>
   </tr>
 </table>
+
 <p>Блок также используется и для встроенных шаблонов (см. пример).</p>
 
 <a name='RABL%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'></a>
 <h4>RABL шаблоны</h4>
 
 <table>
-<tr>
-<td>Зависимости</td>
+  <tr>
+    <td>Зависимости</td>
     <td><a href="https://github.com/nesquena/rabl" title="Rabl">Rabl</a></td>
   </tr>
-<tr>
-<td>Расширения файлов</td>
+  <tr>
+    <td>Расширения файлов</td>
     <td><tt>.rabl</tt></td>
   </tr>
-<tr>
-<td>Пример</td>
+  <tr>
+    <td>Пример</td>
     <td><tt>rabl :index</tt></td>
   </tr>
 </table>
+
 <a name='Slim%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'></a>
 <h4>Slim шаблоны</h4>
 
 <table>
-<tr>
-<td>Зависимости</td>
+  <tr>
+    <td>Зависимости</td>
     <td><a href="http://slim-lang.com/" title="Slim Lang">Slim Lang</a></td>
   </tr>
-<tr>
-<td>Расширения файлов</td>
+  <tr>
+    <td>Расширения файлов</td>
     <td><tt>.slim</tt></td>
   </tr>
-<tr>
-<td>Пример</td>
+  <tr>
+    <td>Пример</td>
     <td><tt>slim :index</tt></td>
   </tr>
 </table>
+
 <a name='Creole%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'></a>
 <h4>Creole шаблоны</h4>
 
 <table>
-<tr>
-<td>Зависимости</td>
+  <tr>
+    <td>Зависимости</td>
     <td><a href="https://github.com/minad/creole" title="Creole">Creole</a></td>
   </tr>
-<tr>
-<td>Расширения файлов</td>
+  <tr>
+    <td>Расширения файлов</td>
     <td><tt>.creole</tt></td>
   </tr>
-<tr>
-<td>Пример</td>
+  <tr>
+    <td>Пример</td>
     <td><tt>creole :wiki, :layout_engine =&gt; :erb</tt></td>
   </tr>
 </table>
+
 <p>В Creole невозможно вызывать методы или передавать локальные переменные.
 Следовательно, вам, скорее всего, придется использовать этот шаблон совместно
 с другим шаблонизатором:</p>
@@ -1051,21 +1081,22 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <h4>MediaWiki шаблоны</h4>
 
 <table>
-<tr>
-<td>Зависимости</td>
+  <tr>
+    <td>Зависимости</td>
     <td><a href="https://github.com/nricciar/wikicloth" title="WikiCloth">WikiCloth</a></td>
   </tr>
-<tr>
-<td>Расширения файлов</td>
+  <tr>
+    <td>Расширения файлов</td>
     <td>
 <tt>.mediawiki</tt> и <tt>.mw</tt>
 </td>
   </tr>
-<tr>
-<td>Пример</td>
+  <tr>
+    <td>Пример</td>
     <td><tt>mediawiki :wiki, :layout_engine =&gt; :erb</tt></td>
   </tr>
 </table>
+
 <p>В разметке MediaWiki невозможно вызывать методы или передавать локальные переменные.
 Следовательно, вам, скорее всего, придется использовать этот шаблон совместно
 с другим шаблонизатором:</p>
@@ -1096,40 +1127,82 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <h4>CoffeeScript шаблоны</h4>
 
 <table>
-<tr>
-<td>Зависимости</td>
+  <tr>
+    <td>Зависимости</td>
     <td>
       <a href="https://github.com/josh/ruby-coffee-script" title="Ruby CoffeeScript">
         CoffeeScript
-      </a> и способ
+      </a> и
       <a href="https://github.com/sstephenson/execjs/blob/master/README.md#readme" title="ExecJS">
-        запускать JavaScript
+        способ запускать JavaScript
       </a>
     </td>
   </tr>
-<tr>
-<td>Расширения файлов</td>
+  <tr>
+    <td>Расширения файлов</td>
     <td><tt>.coffee</tt></td>
   </tr>
-<tr>
-<td>Пример</td>
+  <tr>
+    <td>Пример</td>
     <td><tt>coffee :index</tt></td>
   </tr>
 </table>
+
+<a name='Stylus%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'></a>
+<h4>Stylus шаблоны</h4>
+
+<table>
+  <tr>
+    <td>Зависимости</td>
+    <td>
+      <a href="https://github.com/lucasmazza/ruby-stylus" title="Ruby Stylus">
+        Stylus
+      </a> и
+      <a href="https://github.com/sstephenson/execjs/blob/master/README.md#readme" title="ExecJS">
+        способ запускать JavaScript
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td>Расширение файла</td>
+    <td><tt>.styl</tt></td>
+  </tr>
+  <tr>
+    <td>Пример</td>
+    <td><tt>stylus :index</tt></td>
+  </tr>
+</table>
+
+<p>Перед тем, как использовать шаблоны стилус, загрузите <code>stylus</code> и
+<code>stylus/tilt</code>:</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra</span><span style="color:#710">'</span></span>
+require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">stylus</span><span style="color:#710">'</span></span>
+require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">stylus/tilt</span><span style="color:#710">'</span></span>
+
+get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+  stylus <span style="color:#A60">:example</span>
+<span style="color:#080;font-weight:bold">end</span>
+</pre></div>
+</div>
+</div>
+
 <a name='Yajl%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'></a>
 <h4>Yajl шаблоны</h4>
 
 <table>
-<tr>
-<td>Зависимости</td>
+  <tr>
+    <td>Зависимости</td>
     <td><a href="https://github.com/brianmario/yajl-ruby" title="yajl-ruby">yajl-ruby</a></td>
   </tr>
-<tr>
-<td>Расширения файлов</td>
+  <tr>
+    <td>Расширения файлов</td>
     <td><tt>.yajl</tt></td>
   </tr>
-<tr>
-<td>Пример</td>
+  <tr>
+    <td>Пример</td>
     <td>
       <tt>
         yajl :index,
@@ -1140,6 +1213,7 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
     </td>
   </tr>
 </table>
+
 <p>Содержимое шаблона интерпретируется как код на Ruby, а результирующая
 переменная json затем конвертируется с помощью <code>#to_json</code>.</p>
 
@@ -1165,19 +1239,20 @@ json[<span style="color:#A60">:baz</span>] = key
 <h4>WLang шаблоны</h4>
 
 <table>
-<tr>
-<td>Зависимости</td>
+  <tr>
+    <td>Зависимости</td>
     <td><a href="https://github.com/blambeau/wlang/" title="wlang">wlang</a></td>
   </tr>
-<tr>
-<td>Расширения файлов</td>
+  <tr>
+    <td>Расширения файлов</td>
     <td><tt>.wlang</tt></td>
   </tr>
-<tr>
-<td>Пример</td>
+  <tr>
+    <td>Пример</td>
     <td><tt>wlang :index, :locals =&gt; { :key =&gt; 'value' }</tt></td>
   </tr>
 </table>
+
 <p>Так как в WLang шаблонах невозможно вызывать методы из Ruby напрямую (за
 исключением <code>yield</code>), то вы почти всегда будете передавать в шаблон локальные
 переменные.</p>
@@ -1192,7 +1267,7 @@ json[<span style="color:#A60">:baz</span>] = key
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:id</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#33B">@foo</span> = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="color:#A60">:id</span>])
+  <span style="color:#33B">@foo</span> = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">id</span><span style="color:#710">'</span></span>])
   haml <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">%h1= @foo.name</span><span style="color:#710">'</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
@@ -1204,7 +1279,7 @@ json[<span style="color:#A60">:baz</span>] = key
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:id</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  foo = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="color:#A60">:id</span>])
+  foo = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">id</span><span style="color:#710">'</span></span>])
   haml <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">%h1= bar.name</span><span style="color:#710">'</span></span>, <span style="color:#A60">:locals</span> =&gt; { <span style="color:#A60">:bar</span> =&gt; foo }
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
@@ -1381,7 +1456,7 @@ https://github.com/rtomayko/tilt</p>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo/*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#33B">@note</span> <span style="color:#777">#=&gt; 'Hi!'</span>
-  params[<span style="color:#A60">:splat</span>] <span style="color:#777">#=&gt; 'bar/baz'</span>
+  params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">splat</span><span style="color:#710">'</span></span>] <span style="color:#777">#=&gt; 'bar/baz'</span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -1415,7 +1490,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <span style="color:#080;font-weight:bold">end</span>
 
 after <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/create/:slug</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span> |slug|
-  session[<span style="color:#A60">:last_slug</span>] = slug
+  session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">last_slug</span><span style="color:#710">'</span></span>] = slug
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -1451,7 +1526,7 @@ after <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#7
 <span style="color:#080;font-weight:bold">end</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:name</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  bar(params[<span style="color:#A60">:name</span>])
+  bar(params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">name</span><span style="color:#710">'</span></span>])
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -1487,11 +1562,11 @@ helpers <span style="color:#036;font-weight:bold">FooUtils</span>, <span style="
   <div class="code"><pre>enable <span style="color:#A60">:sessions</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">value = </span><span style="color:#710">"</span></span> &lt;&lt; session[<span style="color:#A60">:value</span>].inspect
+  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">value = </span><span style="color:#710">"</span></span> &lt;&lt; session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">value</span><span style="color:#710">'</span></span>].inspect
 <span style="color:#080;font-weight:bold">end</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:value</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  session[<span style="color:#A60">:value</span>] = params[<span style="color:#A60">:value</span>]
+  session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">value</span><span style="color:#710">'</span></span>] = params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">value</span><span style="color:#710">'</span></span>]
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -1509,11 +1584,11 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
   <div class="code"><pre>use <span style="color:#036;font-weight:bold">Rack</span>::<span style="color:#036;font-weight:bold">Session</span>::<span style="color:#036;font-weight:bold">Pool</span>, <span style="color:#A60">:expire_after</span> =&gt; <span style="color:#00D">2592000</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">value = </span><span style="color:#710">"</span></span> &lt;&lt; session[<span style="color:#A60">:value</span>].inspect
+  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">value = </span><span style="color:#710">"</span></span> &lt;&lt; session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">value</span><span style="color:#710">'</span></span>].inspect
 <span style="color:#080;font-weight:bold">end</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:value</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  session[<span style="color:#A60">:value</span>] = params[<span style="color:#A60">:value</span>]
+  session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">value</span><span style="color:#710">'</span></span>] = params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">value</span><span style="color:#710">'</span></span>]
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -1619,7 +1694,7 @@ foo.com, добавьте <em>.</em> перед доменом:</p>
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/guess/:who</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  pass <span style="color:#080;font-weight:bold">unless</span> params[<span style="color:#A60">:who</span>] == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Frank</span><span style="color:#710">'</span></span>
+  pass <span style="color:#080;font-weight:bold">unless</span> params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">who</span><span style="color:#710">'</span></span>] == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Frank</span><span style="color:#710">'</span></span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">You got me!</span><span style="color:#710">'</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 
@@ -1758,19 +1833,17 @@ connections = []
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/subscribe</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># регистрация клиента</span>
-  stream(<span style="color:#A60">:keep_open</span>) { |out| connections &lt;&lt; out }
-
-  <span style="color:#777"># удаление "мертвых клиентов"</span>
-  connections.reject!(&amp;<span style="color:#A60">:closed?</span>)
-
-  <span style="color:#777"># допуск</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">subscribed</span><span style="color:#710">"</span></span>
+  stream(<span style="color:#A60">:keep_open</span>) <span style="color:#080;font-weight:bold">do</span> |out|
+    connections &lt;&lt; out }
+    <span style="color:#777"># удаление "мертвых клиентов"</span>
+    connections.reject!(&amp;<span style="color:#A60">:closed?</span>)
+  <span style="color:#080;font-weight:bold">end</span>
 <span style="color:#080;font-weight:bold">end</span>
 
 post <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/message</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   connections.each <span style="color:#080;font-weight:bold">do</span> |out|
     <span style="color:#777"># уведомить клиента о новом сообщении</span>
-    out &lt;&lt; params[<span style="color:#A60">:message</span>] &lt;&lt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#b0b">\n</span><span style="color:#710">"</span></span>
+    out &lt;&lt; params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">message</span><span style="color:#710">'</span></span>] &lt;&lt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#b0b">\n</span><span style="color:#710">"</span></span>
 
     <span style="color:#777"># указать клиенту на необходимость снова соединиться</span>
     out.close
@@ -1927,12 +2000,12 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
   <div class="code"><pre>enable <span style="color:#A60">:sessions</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  session[<span style="color:#A60">:secret</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">foo</span><span style="color:#710">'</span></span>
+  session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">secret</span><span style="color:#710">'</span></span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">foo</span><span style="color:#710">'</span></span>
   redirect to(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/bar</span><span style="color:#710">'</span></span>)
 <span style="color:#080;font-weight:bold">end</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/bar</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  session[<span style="color:#A60">:secret</span>]
+  session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">secret</span><span style="color:#710">'</span></span>]
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -1986,7 +2059,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/article/:id</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#33B">@article</span> = <span style="color:#036;font-weight:bold">Article</span>.find params[<span style="color:#A60">:id</span>]
+  <span style="color:#33B">@article</span> = <span style="color:#036;font-weight:bold">Article</span>.find params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">id</span><span style="color:#710">'</span></span>]
   last_modified <span style="color:#33B">@article</span>.updated_at
   etag <span style="color:#33B">@article</span>.sha1
   erb <span style="color:#A60">:article</span>
@@ -2082,7 +2155,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Возможные опции:</p>
 
 <dl>
-<dt>filename</dt>
+  <dt>filename</dt>
   <dd>имя файла, по умолчанию: реальное имя файла.</dd>
 
   <dt>last_modified</dt>
@@ -2103,6 +2176,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
   <dd>Код ответа. Полезно, когда отдается статический файл в качестве страницы с
       сообщением об ошибке.</dd>
 </dl>
+
 <p>Этот метод будет использовать возможности Rack сервера для отправки файлов,
 если они доступны, в противном случае будет напрямую отдавать файл из Ruby
 процесса. Метод <code>send_file</code> также обеспечивает автоматическую обработку
@@ -2223,7 +2297,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 
 <p>Этот метод используется внутри Sinatra методами <code>expires</code>, <code>last_modified</code> и
-им подобными. Поэтому вы легко можете расширить функционал этих методов,
+им подобными. Поэтому вы легко можете изменить и дополнить поведение этих методов,
 переопределив <code>time_for</code> в своем приложении:</p>
 
 <div>
@@ -2413,7 +2487,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <h3>Доступные настройки</h3>
 
 <dl>
-<dt>absolute_redirects</dt>
+  <dt>absolute_redirects</dt>
   <dd>
     если отключено, то Sinatra будет позволять использование относительных
     перенаправлений, но при этом перестанет соответствовать RFC 2616 (HTTP
@@ -2427,11 +2501,11 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
   </dd>
   <dd>Отключено по умолчанию.</dd>
 
-  <dt>add_charsets</dt>
+  <dt>add_charset</dt>
   <dd>
     mime-типы, к которым метод <tt>content_type</tt> будет автоматически добавлять
     информацию о кодировке. Вам следует добавлять значения к этой опции
-    вместо ее переопределения: <tt>settings.add_charsets &lt;&lt; "application/foobar"</tt>
+    вместо ее переопределения: <tt>settings.add_charset &lt;&lt; "application/foobar"</tt>
   </dd>
 
   <dt>app_file</dt>
@@ -2579,6 +2653,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
   <dt>views</dt>
   <dd>путь к директории с шаблонами.</dd>
 </dl>
+
 <a name='%D0%A0%D0%B5%D0%B6%D0%B8%D0%BC,%20%D0%BE%D0%BA%D1%80%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5'></a>
 <h2>Режим, окружение</h2>
 
@@ -2619,8 +2694,8 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<a name='%D0%9E%D1%88%D0%B8%D0%B1%D0%BA%D0%B8'></a>
-<h3>Ошибки</h3>
+<a name='Error'></a>
+<h3>Error</h3>
 
 <p>Обработчик ошибок <code>error</code> будет вызван, когда исключение выброшено из блока
 маршрута, либо из фильтра. Объект-исключение доступен как переменная
@@ -2629,7 +2704,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <div>
 <div class="CodeRay">
   <div class="code"><pre>error <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Sorry there was a nasty error - </span><span style="color:#710">'</span></span> + env[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra.error</span><span style="color:#710">'</span></span>].name
+  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Sorry there was a nasty error - </span><span style="color:#710">'</span></span> + env[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra.error</span><span style="color:#710">'</span></span>].message
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -2694,7 +2769,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <a name='Rack%20%E2%80%9C%D0%BF%D1%80%D0%BE%D1%81%D0%BB%D0%BE%D0%B9%D0%BA%D0%B8%E2%80%9D'></a>
 <h2>Rack “прослойки”</h2>
 
-<p>Sinatra использует <a href="http://rack.rubyforge.org/">Rack</a>, минимальный стандартный
+<p>Sinatra использует <a href="http://rack.github.io/">Rack</a>, минимальный стандартный
 интерфейс для веб-фреймворков на Ruby. Одной из самых интересных для
 разработчиков возможностей Rack является поддержка “прослоек” (“middleware”) —
 компонентов, находящихся “между” сервером и вашим приложением, которые
@@ -2719,7 +2794,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 
 <p>Семантика <code>use</code> идентична той, что определена для
-<a href="http://rack.rubyforge.org/doc/classes/Rack/Builder.html">Rack::Builder</a> DSL
+<a href="http://rubydoc.info/github/rack/rack/master/Rack/Builder">Rack::Builder</a> DSL
 (чаще всего используется в rackup файлах). Например, метод <code>use</code> принимает как
 множественные переменные, так и блоки:</p>
 
@@ -2754,10 +2829,10 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <div>
 <div class="CodeRay">
   <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">my_sinatra_app</span><span style="color:#710">'</span></span>
-require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">test/unit</span><span style="color:#710">'</span></span>
+require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">minitest/autorun</span><span style="color:#710">'</span></span>
 require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rack/test</span><span style="color:#710">'</span></span>
 
-<span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyAppTest</span> &lt; <span style="color:#036;font-weight:bold">Test</span>::<span style="color:#036;font-weight:bold">Unit</span>::<span style="color:#036;font-weight:bold">TestCase</span>
+<span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyAppTest</span> &lt; <span style="color:#036;font-weight:bold">Minitest</span>::<span style="color:#036;font-weight:bold">Test</span>
   include <span style="color:#036;font-weight:bold">Rack</span>::<span style="color:#036;font-weight:bold">Test</span>::<span style="color:#036;font-weight:bold">Methods</span>
 
   <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">app</span>
@@ -2816,12 +2891,13 @@ require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:
 конвертированы в <code>Sinatra::Base</code> компоненты с помощью двух модификаций:</p>
 
 <ul>
-<li>Вы должны подключать <code>sinatra/base</code> вместо <code>sinatra</code>, иначе все методы,
+  <li>Вы должны подключать <code>sinatra/base</code> вместо <code>sinatra</code>, иначе все методы,
 предоставляемые Sinatra, будут импортированы в глобальное пространство
 имен.</li>
   <li>Поместите все маршруты, обработчики ошибок, фильтры и опции в подкласс
 <code>Sinatra::Base</code>.</li>
 </ul>
+
 <p><code>Sinatra::Base</code> — это чистый лист. Большинство опций, включая встроенный
 сервер, по умолчанию отключены. Смотрите
 <a href="http://www.sinatrarb.com/configuration.html">Опции и конфигурация</a>
@@ -2929,11 +3005,12 @@ run <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color
 <code>config.ru</code>:</p>
 
 <ul>
-<li>вы хотите разворачивать свое приложение на различных Rack-совместимых
+  <li>вы хотите разворачивать свое приложение на различных Rack-совместимых
 серверах (Passenger, Unicorn, Heroku, …);</li>
   <li>вы хотите использовать более одного подкласса <code>Sinatra::Base</code>;</li>
   <li>вы хотите использовать Sinatra только в качестве “прослойки” Rack.</li>
 </ul>
+
 <p><strong>Совсем необязательно переходить на использование <code>config.ru</code> лишь потому,
 что вы стали использовать модульный стиль приложения. И необязательно
 использовать модульный стиль, чтобы запускать приложение с помощью
@@ -2957,8 +3034,8 @@ run <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color
   get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/login</span><span style="color:#710">'</span></span>) { haml <span style="color:#A60">:login</span> }
 
   post(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/login</span><span style="color:#710">'</span></span>) <span style="color:#080;font-weight:bold">do</span>
-    <span style="color:#080;font-weight:bold">if</span> params[<span style="color:#A60">:name</span>] == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">admin</span><span style="color:#710">'</span></span> &amp;&amp; params[<span style="color:#A60">:password</span>] == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">admin</span><span style="color:#710">'</span></span>
-      session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">user_name</span><span style="color:#710">'</span></span>] = params[<span style="color:#A60">:name</span>]
+    <span style="color:#080;font-weight:bold">if</span> params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">name</span><span style="color:#710">'</span></span>] == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">admin</span><span style="color:#710">'</span></span> &amp;&amp; params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">password</span><span style="color:#710">'</span></span>] == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">admin</span><span style="color:#710">'</span></span>
+      session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">user_name</span><span style="color:#710">'</span></span>] = params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">name</span><span style="color:#710">'</span></span>]
     <span style="color:#080;font-weight:bold">else</span>
       redirect <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/login</span><span style="color:#710">'</span></span>
     <span style="color:#080;font-weight:bold">end</span>
@@ -3074,20 +3151,22 @@ run <span style="color:#036;font-weight:bold">RailsProject</span>::<span style="
 <p>У вас будет область видимости приложения внутри:</p>
 
 <ul>
-<li>тела вашего класса приложения;</li>
+  <li>тела вашего класса приложения;</li>
   <li>методов, определенных расширениями;</li>
   <li>блока, переданного в <code>helpers</code>;</li>
   <li>блоков, использованных как значения для <code>set</code>;</li>
   <li>блока, переданного в <code>Sinatra.new</code>.</li>
 </ul>
+
 <p>Вы можете получить доступ к объекту области видимости (классу приложения)
 следующими способами:</p>
 
 <ul>
-<li>через объект, переданный блокам конфигурации (<code>configure { |c| ... }</code>);</li>
+  <li>через объект, переданный блокам конфигурации (<code>configure { |c| ... }</code>);</li>
   <li>
 <code>settings</code> внутри области видимости запроса.</li>
 </ul>
+
 <a name='%D0%9E%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C%20%D0%B2%D0%B8%D0%B4%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0/%D1%8D%D0%BA%D0%B7%D0%B5%D0%BC%D0%BF%D0%BB%D1%8F%D1%80%D0%B0'></a>
 <h3>Область видимости запроса/экземпляра</h3>
 
@@ -3106,8 +3185,8 @@ run <span style="color:#036;font-weight:bold">RailsProject</span>::<span style="
     <span style="color:#777"># Область видимости запроса '/define_route/:name'</span>
     <span style="color:#33B">@value</span> = <span style="color:#00D">42</span>
 
-    settings.get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">/</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:name</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">"</span></span>) <span style="color:#080;font-weight:bold">do</span>
-      <span style="color:#777"># Область видимости запроса "/#{params[:name]}"</span>
+    settings.get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">/</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">name</span><span style="color:#710">'</span></span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">"</span></span>) <span style="color:#080;font-weight:bold">do</span>
+      <span style="color:#777"># Область видимости запроса "/#{params['name']}"</span>
       <span style="color:#33B">@value</span> <span style="color:#777"># =&gt; nil (другой запрос)</span>
     <span style="color:#080;font-weight:bold">end</span>
 
@@ -3121,11 +3200,12 @@ run <span style="color:#036;font-weight:bold">RailsProject</span>::<span style="
 <p>У вас будет область видимости запроса в:</p>
 
 <ul>
-<li>get/head/post/put/delete/options блоках;</li>
+  <li>get/head/post/put/delete/options блоках;</li>
   <li>before/after фильтрах;</li>
   <li>методах-помощниках;</li>
   <li>шаблонах/отображениях.</li>
 </ul>
+
 <a name='%D0%9E%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C%20%D0%B2%D0%B8%D0%B4%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8%20%D0%B4%D0%B5%D0%BB%D0%B5%D0%B3%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F'></a>
 <h3>Область видимости делегирования</h3>
 
@@ -3140,9 +3220,10 @@ run <span style="color:#036;font-weight:bold">RailsProject</span>::<span style="
 <p>У вас будет контекст делегирования внутри:</p>
 
 <ul>
-<li>привязки верхнего уровня, если вы сделали <code>require 'sinatra'</code>;</li>
+  <li>привязки верхнего уровня, если вы сделали <code>require 'sinatra'</code>;</li>
   <li>объекта, расширенного с помощью <code>Sinatra::Delegator</code>.</li>
 </ul>
+
 <p>Посмотрите сами в код: вот
 <a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/base.rb#L1609-1633">примесь Sinatra::Delegator</a>
 <a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/main.rb#L28-30">расширяет главный объект</a>.</p>
@@ -3171,7 +3252,7 @@ run <span style="color:#036;font-weight:bold">RailsProject</span>::<span style="
 <p>Следующие версии Ruby официально поддерживаются:</p>
 
 <dl>
-<dt>Ruby 1.8.7</dt>
+  <dt>Ruby 1.8.7</dt>
   <dd>1.8.7 полностью поддерживается, тем не менее, если вас ничто не держит на
     этой версии, рекомендуем обновиться до 1.9.2 или перейти на JRuby или
     Rubinius. Поддержка 1.8.7 не будет прекращена до выхода Sinatra 2.0 и Ruby
@@ -3205,17 +3286,19 @@ run <span style="color:#036;font-weight:bold">RailsProject</span>::<span style="
   еще экспериментальная, что на данный момент затрагивает только RDiscount,
   Redcarpet и RedCloth.</dd>
 </dl>
+
 <p>Мы также следим за предстоящими к выходу версиями Ruby.</p>
 
 <p>Следующие реализации Ruby не поддерживаются официально, но известно, что на
 них запускается Sinatra:</p>
 
 <ul>
-<li>старые версии JRuby и Rubinius;</li>
+  <li>старые версии JRuby и Rubinius;</li>
   <li>Ruby Enterprise Edition;</li>
   <li>MacRuby, Maglev, IronRuby;</li>
   <li>Ruby 1.9.0 и 1.9.1 (настоятельно не рекомендуются к использованию).</li>
 </ul>
+
 <p>То, что версия официально не поддерживается, означает, что, если что-то не
 работает на этой версии, а на поддерживаемой работает — это не наша проблема,
 а их.</p>
@@ -3323,7 +3406,7 @@ SemVerTag.</p>
 <h2>Дальнейшее чтение</h2>
 
 <ul>
-<li>
+  <li>
 <a href="http://www.sinatrarb.com/">Веб-сайт проекта</a> — Дополнительная
 документация, новости и ссылки на другие ресурсы.</li>
   <li>
@@ -3335,7 +3418,7 @@ SemVerTag.</p>
   <li>
 <a href="irc://chat.freenode.net/#sinatra">#sinatra</a> на http://freenode.net</li>
   <li>
-<a href="http://sinatra-book.gittr.com">Sinatra Book</a> учебник и сборник рецептов</li>
+<a href="https://github.com/sinatra/sinatra-book/">Sinatra Book</a> учебник и сборник рецептов</li>
   <li>
 <a href="http://recipes.sinatrarb.com/">Sinatra Recipes</a> сборник рецептов</li>
   <li>API документация к <a href="http://rubydoc.info/gems/sinatra">последнему релизу</a>

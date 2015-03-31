@@ -105,8 +105,8 @@ hash <code>params</code>:</p>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/ola/:nome</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># corresponde a "GET /ola/foo" e "GET /ola/bar"</span>
-  <span style="color:#777"># params[:nome] é 'foo' ou 'bar'</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Olá </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:nome</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
+  <span style="color:#777"># params['nome'] é 'foo' ou 'bar'</span>
+  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Olá </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">nome</span><span style="color:#710">'</span></span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -124,18 +124,18 @@ hash <code>params</code>:</p>
 </div>
 
 <p>Padrões de rota podem também incluir parâmetros splat (asteriscos),
-acessíveis através do array <code>params[:splat]</code>.</p>
+acessíveis através do array <code>params['splat']</code>.</p>
 
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/diga/*/ao/*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># corresponde a /diga/ola/ao/mundo</span>
-  params[<span style="color:#A60">:splat</span>] <span style="color:#777"># =&gt; ["ola", "mundo"]</span>
+  params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">splat</span><span style="color:#710">'</span></span>] <span style="color:#777"># =&gt; ["ola", "mundo"]</span>
 <span style="color:#080;font-weight:bold">end</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/download/*.*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># corresponde a /download/pasta/do/arquivo.xml</span>
-  params[<span style="color:#A60">:splat</span>] <span style="color:#777"># =&gt; ["pasta/do/arquivo", "xml"]</span>
+  params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">splat</span><span style="color:#710">'</span></span>] <span style="color:#777"># =&gt; ["pasta/do/arquivo", "xml"]</span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -145,8 +145,8 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">%r{</span><span style="color:#808">/ola/([</span><span style="color:#D20">\w</span><span style="color:#808">]+)</span><span style="color:#404">}</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Olá, </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:captures</span>].first<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
+  <div class="code"><pre>get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#D20">\A</span><span style="color:#D20">\/</span><span style="color:#808">ola</span><span style="color:#D20">\/</span><span style="color:#808">([</span><span style="color:#D20">\w</span><span style="color:#808">]+)</span><span style="color:#D20">\z</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
+  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Olá, </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">captures</span><span style="color:#710">'</span></span>].first<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -169,7 +169,7 @@ exemplo, o agente usuário:</p>
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span>, <span style="color:#A60">:agent</span> =&gt; <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">Songbird (</span><span style="color:#D20">\d</span><span style="color:#D20">\.</span><span style="color:#D20">\d</span><span style="color:#808">)[</span><span style="color:#D20">\d</span><span style="color:#D20">\/</span><span style="color:#808">]*?</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Você está a utilizar a versão </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:agent</span>][<span style="color:#00D">0</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20"> do Songbird.</span><span style="color:#710">"</span></span>
+  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Você está a utilizar a versão </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">agent</span><span style="color:#710">'</span></span>][<span style="color:#00D">0</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20"> do Songbird.</span><span style="color:#710">"</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
@@ -391,7 +391,7 @@ directamente acedidas por templates:</p>
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:id</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#33B">@foo</span> = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="color:#A60">:id</span>])
+  <span style="color:#33B">@foo</span> = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">id</span><span style="color:#710">'</span></span>])
   haml <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">%h1= @foo.nome</span><span style="color:#710">'</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
@@ -403,7 +403,7 @@ directamente acedidas por templates:</p>
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:id</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  foo = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="color:#A60">:id</span>])
+  foo = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">id</span><span style="color:#710">'</span></span>])
   haml <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">%h1= foo.nome</span><span style="color:#710">'</span></span>, <span style="color:#A60">:locals</span> =&gt; { <span style="color:#A60">:foo</span> =&gt; foo }
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
@@ -494,7 +494,7 @@ para utilizar em manipuladores de rotas e modelos:</p>
 <span style="color:#080;font-weight:bold">end</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:nome</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  bar(params[<span style="color:#A60">:nome</span>])
+  bar(params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">nome</span><span style="color:#710">'</span></span>])
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -517,7 +517,7 @@ templates:</p>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo/*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#33B">@nota</span> <span style="color:#777">#=&gt; 'Olá!'</span>
-  params[<span style="color:#A60">:splat</span>] <span style="color:#777">#=&gt; 'bar/baz'</span>
+  params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">splat</span><span style="color:#710">'</span></span>] <span style="color:#777">#=&gt; 'bar/baz'</span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -611,7 +611,7 @@ usando <code>pass</code>:</p>
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/adivinhar/:quem</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  pass <span style="color:#080;font-weight:bold">unless</span> params[<span style="color:#A60">:quem</span>] == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Frank</span><span style="color:#710">'</span></span>
+  pass <span style="color:#080;font-weight:bold">unless</span> params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">quem</span><span style="color:#710">'</span></span>] == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Frank</span><span style="color:#710">'</span></span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Apanhaste-me!</span><span style="color:#710">'</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 
@@ -694,7 +694,7 @@ obtido a partir da variável Rack <code>sinatra.error</code>:</p>
 <div>
 <div class="CodeRay">
   <div class="code"><pre>error <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Peço desculpa, houve um erro desagradável - </span><span style="color:#710">'</span></span> + env[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra.error</span><span style="color:#710">'</span></span>].name
+  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Peço desculpa, houve um erro desagradável - </span><span style="color:#710">'</span></span> + env[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra.error</span><span style="color:#710">'</span></span>].message
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -783,7 +783,7 @@ arquivos:</p>
 <a name='Middleware%20Rack'></a>
 <h2>Middleware Rack</h2>
 
-<p>O Sinatra corre no <a href="http://rack.rubyforge.org/">Rack</a>, uma interface
+<p>O Sinatra corre no <a href="http://rack.github.io/">Rack</a>, uma interface
 padrão mínima para frameworks web em Ruby. Uma das capacidades mais
 interessantes do Rack, para desenvolver aplicações, é o suporte de
 “middleware” – componentes que residem entre o servidor e a aplicação,
@@ -809,7 +809,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 
 <p>A semântica de <code>use</code> é idêntica aquela definida para a DSL
-<a href="http://rack.rubyforge.org/doc/classes/Rack/Builder.html">Rack::Builder</a>
+<a href="http://rubydoc.info/github/rack/rack/master/Rack/Builder">Rack::Builder</a>
 (mais frequentemente utilizada para arquivos rackup). Por exemplo, o
 método <code>use</code> aceita múltiplos argumentos/variáveis, bem como blocos:</p>
 
@@ -840,7 +840,7 @@ framework de teste baseados no Rack.
   <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">minha_aplicacao_sinatra</span><span style="color:#710">'</span></span>
 require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rack/test</span><span style="color:#710">'</span></span>
 
-<span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MinhaAplicacaoTeste</span> &lt; <span style="color:#036;font-weight:bold">Test</span>::<span style="color:#036;font-weight:bold">Unit</span>::<span style="color:#036;font-weight:bold">TestCase</span>
+<span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MinhaAplicacaoTeste</span> &lt; <span style="color:#036;font-weight:bold">Minitest</span>::<span style="color:#036;font-weight:bold">Test</span>
   include <span style="color:#036;font-weight:bold">Rack</span>::<span style="color:#036;font-weight:bold">Test</span>::<span style="color:#036;font-weight:bold">Methods</span>
 
   <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">app</span>
@@ -913,6 +913,8 @@ ou, controlar um componente de servidor fornecendo como biblioteca:</p>
 aqueles disponíveis via a DSL de nível superior. Aplicações de nível
 mais alto podem ser convertidas para componentes <code>Sinatra::Base</code> com duas
 modificações:</p>
+
+
 
 <p><code>Sinatra::Base</code> é um quadro branco. Muitas opções são desactivadas por
 padrão, incluindo o servidor embutido. Veja <a href="http://sinatra.github.com/configuration.html">Opções e
@@ -997,7 +999,7 @@ git pull
 <h2>Mais</h2>
 
 <ul>
-<li>
+  <li>
     <p><a href="http://www.sinatrarb.com/">Website do Projeto</a> - Documentação
 adicional, novidades e links para outros recursos.</p>
   </li>

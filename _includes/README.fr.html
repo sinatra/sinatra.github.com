@@ -145,6 +145,8 @@ Sinatra utilise le server Thin quand il est disponible.</p>
 <a name='Table%20des%20mati%C3%A8res'></a>
 <h2>Table des matières</h2>
 
+
+
 <a name='Routes'></a>
 <h2>Routes</h2>
 
@@ -198,8 +200,8 @@ l’intermédiaire du hash <code>params</code> :</p>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/bonjour/:nom</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># répond aux requêtes "GET /bonjour/foo" et "GET /bonjour/bar"</span>
-  <span style="color:#777"># params[:nom] est 'foo' ou 'bar'</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Bonjour </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:nom</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20"> !</span><span style="color:#710">"</span></span>
+  <span style="color:#777"># params['nom'] est 'foo' ou 'bar'</span>
+  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Bonjour </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">nom</span><span style="color:#710">'</span></span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20"> !</span><span style="color:#710">"</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -212,8 +214,8 @@ paramètres du bloc comme ceci :</p>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/bonjour/:nom</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span> |n|
   <span style="color:#777"># répond aux requêtes "GET /bonjour/foo" et "GET /bonjour/bar"</span>
-  <span style="color:#777"># params[:nom] est 'foo' ou 'bar'</span>
-  <span style="color:#777"># n contient params[:nom]</span>
+  <span style="color:#777"># params['nom'] est 'foo' ou 'bar'</span>
+  <span style="color:#777"># n contient params['nom']</span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Bonjour </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>n<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20"> !</span><span style="color:#710">"</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
@@ -221,18 +223,18 @@ paramètres du bloc comme ceci :</p>
 </div>
 
 <p>Une route peut contenir un splat (caractère joker), accessible par
-l’intermédiaire du tableau <code>params[:splat]</code> :</p>
+l’intermédiaire du tableau <code>params['splat']</code> :</p>
 
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/dire/*/a/*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># répond à /dire/bonjour/a/monde</span>
-  params[<span style="color:#A60">:splat</span>] <span style="color:#777"># =&gt; ["bonjour", "monde"]</span>
+  params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">splat</span><span style="color:#710">'</span></span>] <span style="color:#777"># =&gt; ["bonjour", "monde"]</span>
 <span style="color:#080;font-weight:bold">end</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/telecharger/*.*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># répond à /telecharger/chemin/vers/fichier.xml</span>
-  params[<span style="color:#A60">:splat</span>] <span style="color:#777"># =&gt; ["chemin/vers/fichier", "xml"]</span>
+  params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">splat</span><span style="color:#710">'</span></span>] <span style="color:#777"># =&gt; ["chemin/vers/fichier", "xml"]</span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -253,8 +255,8 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">%r{</span><span style="color:#808">/bonjour/([</span><span style="color:#D20">\w</span><span style="color:#808">]+)</span><span style="color:#404">}</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Bonjour, </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:captures</span>].first<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20"> !</span><span style="color:#710">"</span></span>
+  <div class="code"><pre>get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#D20">\A</span><span style="color:#D20">\/</span><span style="color:#808">bonjour</span><span style="color:#D20">\/</span><span style="color:#808">([</span><span style="color:#D20">\w</span><span style="color:#808">]+)</span><span style="color:#D20">\z</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
+  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Bonjour, </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">captures</span><span style="color:#710">'</span></span>].first<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20"> !</span><span style="color:#710">"</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -282,6 +284,20 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
+<p>Ainsi que des paramètres d’URL :</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/posts</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+  <span style="color:#777"># répond à "GET /posts?titre=foo&amp;auteur=bar"</span>
+  titre = params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">titre</span><span style="color:#710">'</span></span>]
+  auteur = params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">auteur</span><span style="color:#710">'</span></span>]
+  <span style="color:#777"># utilise les variables titre et auteur, ces paramètres d'URL sont optionnels pour la route /posts</span>
+<span style="color:#080;font-weight:bold">end</span>
+</pre></div>
+</div>
+</div>
+
 <p>A ce propos, à moins d’avoir désactivé la protection contre les attaques par
 “path transversal” (voir plus loin), l’URL demandée peut avoir été modifiée
 avant d’être comparée à vos routes.</p>
@@ -295,7 +311,7 @@ avant d’être comparée à vos routes.</p>
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span>, <span style="color:#A60">:agent</span> =&gt; <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">Songbird (</span><span style="color:#D20">\d</span><span style="color:#D20">\.</span><span style="color:#D20">\d</span><span style="color:#808">)[</span><span style="color:#D20">\d</span><span style="color:#D20">\/</span><span style="color:#808">]*?</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Vous utilisez Songbird version </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:agent</span>][<span style="color:#00D">0</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">"</span></span>
+  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Vous utilisez Songbird version </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">agent</span><span style="color:#710">'</span></span>][<span style="color:#00D">0</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">"</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
@@ -378,7 +394,7 @@ acceptées.</p>
 valide, d’un corps de réponse Rack ou d’un code statut HTTP :</p>
 
 <ul>
-<li>Un tableau de 3 éléments : <code>[code statut (Fixnum), entêtes (Hash), corps
+  <li>Un tableau de 3 éléments : <code>[code statut (Fixnum), entêtes (Hash), corps
 de la réponse (répondant à #each)]</code>
 </li>
   <li>Un tableau de 2 élements : <code>[code statut (Fixnum), corps de la réponse
@@ -388,6 +404,7 @@ de la réponse (répondant à #each)]</code>
 caractères au bloc fourni</li>
   <li>Un Fixnum représentant le code statut</li>
 </ul>
+
 <p>Avec cela, on peut facilement implémenter un streaming par exemple :</p>
 
 <div>
@@ -562,7 +579,7 @@ définies au moyen de <code>set</code>.</p>
 <p>Options disponibles :</p>
 
 <dl>
-<dt>locals</dt>
+  <dt>locals</dt>
   <dd>
     Liste de variables locales passées au document. Pratique pour les vues
     partielles.
@@ -614,6 +631,7 @@ définies au moyen de <code>set</code>.</p>
     :layout_options =&gt; { :views =&gt; 'views/layouts' }</tt>
   </dd>
 </dl>
+
 <p>Les templates sont supposés se trouver directement dans le dossier
 <code>./views</code>. Pour utiliser un dossier de vues différent :</p>
 
@@ -663,59 +681,62 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <h4>Templates Haml</h4>
 
 <table>
-<tr>
-<td>Dépendances</td>
+  <tr>
+    <td>Dépendances</td>
     <td><a href="http://haml.info/" title="haml">haml</a></td>
   </tr>
-<tr>
-<td>Extensions de fichier</td>
+  <tr>
+    <td>Extensions de fichier</td>
     <td><tt>.haml</tt></td>
   </tr>
-<tr>
-<td>Exemple</td>
+  <tr>
+    <td>Exemple</td>
     <td><tt>haml :index, :format =&gt; :html5</tt></td>
   </tr>
 </table>
+
 <a name='Templates%20Erb'></a>
 <h4>Templates Erb</h4>
 
 <table>
-<tr>
-<td>Dépendances</td>
+  <tr>
+    <td>Dépendances</td>
     <td>
       <a href="http://www.kuwata-lab.com/erubis/" title="erubis">erubis</a>
       ou erb (inclus avec Ruby)
     </td>
   </tr>
-<tr>
-<td>Extensions de fichier</td>
+  <tr>
+    <td>Extensions de fichier</td>
     <td>
 <tt>.erb</tt>, <tt>.rhtml</tt> ou <tt>.erubis</tt> (Erubis seulement)</td>
   </tr>
-<tr>
-<td>Exemple</td>
+  <tr>
+    <td>Exemple</td>
     <td><tt>erb :index</tt></td>
   </tr>
 </table>
+
 <a name='Templates%20Builder'></a>
 <h4>Templates Builder</h4>
 
 <table>
-<tr>
-<td>Dépendances</td>
+  <tr>
+    <td>Dépendances</td>
     <td>
-      <a href="http://builder.rubyforge.org/" title="builder">builder</a>
+      <a href="https://github.com/jimweirich/builder" title="builder">builder</a>
     </td>
   </tr>
-<tr>
-<td>Extensions de fichier</td>
+  <tr>
+    <td>Extensions de fichier</td>
     <td><tt>.builder</tt></td>
   </tr>
-<tr>
-<td>Exemple</td>
+  <tr>
+    <td>Exemple</td>
     <td><tt>builder { |xml| xml.em "salut" }</tt></td>
   </tr>
 </table>
+
 <p>Ce moteur accepte également un bloc pour des templates en ligne (voir
 exemple).</p>
 
@@ -723,21 +744,22 @@ exemple).</p>
 <h4>Templates Nokogiri</h4>
 
 <table>
-<tr>
-<td>Dépendances</td>
+  <tr>
+    <td>Dépendances</td>
     <td><a href="http://nokogiri.org/" title="nokogiri">nokogiri</a></td>
   </tr>
-<tr>
-<td>Extensions de fichier</td>
+  <tr>
+    <td>Extensions de fichier</td>
     <td><tt>.nokogiri</tt></td>
   </tr>
-<tr>
-<td>Exemple</td>
+  <tr>
+    <td>Exemple</td>
     <td>
 <tt>nokogiri { |xml| xml.em "salut" }</tt>
     </td>
   </tr>
 </table>
+
 <p>Ce moteur accepte également un bloc pour des templates en ligne (voir
 exemple).</p>
 
@@ -745,74 +767,78 @@ exemple).</p>
 <h4>Templates Sass</h4>
 
 <table>
-<tr>
-<td>Dépendances</td>
+  <tr>
+    <td>Dépendances</td>
     <td><a href="http://sass-lang.com/" title="sass">sass</a></td>
   </tr>
-<tr>
-<td>Extensions de fichier</td>
+  <tr>
+    <td>Extensions de fichier</td>
     <td><tt>.sass</tt></td>
   </tr>
-<tr>
-<td>Exemple</td>
+  <tr>
+    <td>Exemple</td>
     <td><tt>sass :stylesheet, :style =&gt; :expanded</tt></td>
   </tr>
 </table>
+
 <a name='Templates%20SCSS'></a>
 <h4>Templates SCSS</h4>
 
 <table>
-<tr>
-<td>Dépendances</td>
+  <tr>
+    <td>Dépendances</td>
     <td><a href="http://sass-lang.com/" title="sass">sass</a></td>
   </tr>
-<tr>
-<td>Extensions de fichier</td>
+  <tr>
+    <td>Extensions de fichier</td>
     <td><tt>.scss</tt></td>
   </tr>
-<tr>
-<td>Exemple</td>
+  <tr>
+    <td>Exemple</td>
     <td>
 <tt>scss :stylesheet, :style =&gt; :expanded</tt>
     </td>
   </tr>
 </table>
+
 <a name='Templates%20Less'></a>
 <h4>Templates Less</h4>
 
 <table>
-<tr>
-<td>Dépendances</td>
+  <tr>
+    <td>Dépendances</td>
     <td><a href="http://www.lesscss.org/" title="less">less</a></td>
   </tr>
-<tr>
-<td>Extensions de fichier</td>
+  <tr>
+    <td>Extensions de fichier</td>
     <td><tt>.less</tt></td>
   </tr>
-<tr>
-<td>Exemple</td>
+  <tr>
+    <td>Exemple</td>
     <td>
 <tt>less :stylesheet</tt>
     </td>
   </tr>
 </table>
+
 <a name='Templates%20Liquid'></a>
 <h4>Templates Liquid</h4>
 
 <table>
-<tr>
-<td>Dépendances</td>
+  <tr>
+    <td>Dépendances</td>
     <td><a href="http://www.liquidmarkup.org/" title="liquid">liquid</a></td>
   </tr>
-<tr>
-<td>Extensions de fichier</td>
+  <tr>
+    <td>Extensions de fichier</td>
     <td><tt>.liquid</tt></td>
   </tr>
-<tr>
-<td>Exemple</td>
+  <tr>
+    <td>Exemple</td>
     <td><tt>liquid :index, :locals =&gt; { :key =&gt; 'value' }</tt></td>
   </tr>
 </table>
+
 <p>Comme vous ne pouvez appeler de méthodes Ruby (autres que <code>yield</code>)
 dans un template Liquid, vous aurez sûrement à lui passer des variables
 locales.</p>
@@ -821,28 +847,30 @@ locales.</p>
 <h4>Templates Markdown</h4>
 
 <table>
-<tr>
-<td><p>Dépendances</p></td>
+  <tr>
+    <td><p>Dépendances</p></td>
     <td>
       Au choix :
       <a href="https://github.com/rtomayko/rdiscount" title="RDiscount">RDiscount</a>,
       <a href="https://github.com/vmg/redcarpet" title="RedCarpet">RedCarpet</a>,
       <a href="http://deveiate.org/projects/BlueCloth" title="BlueCloth">BlueCloth</a>,
-      <a href="http://kramdown.rubyforge.org/" title="kramdown">kramdown</a>,
-      <a href="http://maruku.rubyforge.org/" title="maruku">maruku</a>
+      <a href="http://kramdown.gettalong.org/" title="kramdown">kramdown</a>,
+      <a href="https://github.com/bhollis/maruku" title="maruku">maruku</a>
     </td>
   </tr>
-<tr>
-<td>Extensions de fichier</td>
+
+  <tr>
+    <td>Extensions de fichier</td>
     <td>
 <tt>.markdown</tt>, <tt>.mkd</tt> et <tt>.md</tt>
 </td>
   </tr>
-<tr>
-<td>Exemple</td>
+  <tr>
+    <td>Exemple</td>
     <td><tt>markdown :index, :layout_engine =&gt; :erb</tt></td>
   </tr>
 </table>
+
 <p>Il n’est pas possible d’appeler des méthodes depuis markdown, ni de
 lui passer des variables locales. Par conséquent, il sera souvent utilisé
 en combinaison avec un autre moteur de rendu :</p>
@@ -874,19 +902,20 @@ pour le layout en utilisant l’option <code>:layout_engine</code>.</p>
 <h4>Templates Textile</h4>
 
 <table>
-<tr>
-<td>Dépendances</td>
+  <tr>
+    <td>Dépendances</td>
     <td><a href="http://redcloth.org/" title="RedCloth">RedCloth</a></td>
   </tr>
-<tr>
-<td>Extensions de fichier</td>
+  <tr>
+    <td>Extensions de fichier</td>
     <td><tt>.textile</tt></td>
   </tr>
-<tr>
-<td>Exemple</td>
+  <tr>
+    <td>Exemple</td>
     <td><tt>textile :index, :layout_engine =&gt; :erb</tt></td>
   </tr>
 </table>
+
 <p>Il n’est pas possible d’appeler des méthodes depuis textile, ni de lui
 passer des variables locales. Par conséquent, il sera souvent utilisé en
 combinaison avec un autre moteur de rendu :</p>
@@ -918,19 +947,20 @@ pour le layout en utilisant l’option <code>:layout_engine</code>.</p>
 <h4>Templates RDoc</h4>
 
 <table>
-<tr>
-<td>Dépendances</td>
-    <td><a href="http://rdoc.rubyforge.org/" title="RDoc">RDoc</a></td>
+  <tr>
+    <td>Dépendances</td>
+    <td><a href="http://rdoc.sourceforge.net/" title="RDoc">RDoc</a></td>
   </tr>
-<tr>
-<td>Extensions de fichier</td>
+  <tr>
+    <td>Extensions de fichier</td>
     <td><tt>.rdoc</tt></td>
   </tr>
-<tr>
-<td>Exemple</td>
+  <tr>
+    <td>Exemple</td>
     <td><tt>rdoc :README, :layout_engine =&gt; :erb</tt></td>
   </tr>
 </table>
+
 <p>Il n’est pas possible d’appeler des méthodes depuis rdoc, ni de lui
 passer des variables locales. Par conséquent, il sera souvent utilisé en
 combinaison avec un autre moteur de rendu :</p>
@@ -961,19 +991,20 @@ pour le layout en utilisant l’option <code>:layout_engine</code>.</p>
 <a name='Templates%20Radius'></a>
 <h4>Templates Radius</h4>
 <table>
-<tr>
-<td>Dépendances</td>
-    <td><a href="http://radius.rubyforge.org/" title="Radius">Radius</a></td>
+  <tr>
+    <td>Dépendances</td>
+    <td><a href="https://github.com/jlong/radius" title="Radius">Radius</a></td>
   </tr>
-<tr>
-<td>Extensions de fichier</td>
+  <tr>
+    <td>Extensions de fichier</td>
     <td><tt>.radius</tt></td>
   </tr>
-<tr>
-<td>Exemple</td>
+  <tr>
+    <td>Exemple</td>
     <td><tt>radius :index, :locals =&gt; { :key =&gt; 'value' }</tt></td>
   </tr>
 </table>
+
 <p>Comme vous ne pouvez pas appeler de méthodes Ruby depuis un template
 Radius, vous aurez sûrement à lui passer des variables locales.</p>
 
@@ -981,19 +1012,20 @@ Radius, vous aurez sûrement à lui passer des variables locales.</p>
 <h4>Templates Markaby</h4>
 
 <table>
-<tr>
-<td>Dépendances</td>
+  <tr>
+    <td>Dépendances</td>
     <td><a href="http://markaby.github.com/" title="Markaby">Markaby</a></td>
   </tr>
-<tr>
-<td>Extensions de fichier</td>
+  <tr>
+    <td>Extensions de fichier</td>
     <td><tt>.mab</tt></td>
   </tr>
-<tr>
-<td>Exemple</td>
+  <tr>
+    <td>Exemple</td>
     <td><tt>markaby { h1 "Bienvenue !" }</tt></td>
   </tr>
 </table>
+
 <p>Ce moteur accepte également un bloc pour des templates en ligne (voir
 exemple).</p>
 
@@ -1001,53 +1033,56 @@ exemple).</p>
 <h4>Templates RABL</h4>
 
 <table>
-<tr>
-<td>Dépendances</td>
+  <tr>
+    <td>Dépendances</td>
     <td><a href="https://github.com/nesquena/rabl" title="Rabl">Rabl</a></td>
   </tr>
-<tr>
-<td>Extensions de fichier</td>
+  <tr>
+    <td>Extensions de fichier</td>
     <td><tt>.rabl</tt></td>
   </tr>
-<tr>
-<td>Exemple</td>
+  <tr>
+    <td>Exemple</td>
     <td><tt>rabl :index</tt></td>
   </tr>
 </table>
+
 <a name='Templates%20Slim'></a>
 <h4>Templates Slim</h4>
 
 <table>
-<tr>
-<td>Dépendances</td>
+  <tr>
+    <td>Dépendances</td>
     <td><a href="http://slim-lang.com/" title="Slim Lang">Slim Lang</a></td>
   </tr>
-<tr>
-<td>Extensions de fichier</td>
+  <tr>
+    <td>Extensions de fichier</td>
     <td><tt>.slim</tt></td>
   </tr>
-<tr>
-<td>Exemple</td>
+  <tr>
+    <td>Exemple</td>
     <td><tt>slim :index</tt></td>
   </tr>
 </table>
+
 <a name='Templates%20Creole'></a>
 <h4>Templates Creole</h4>
 
 <table>
-<tr>
-<td>Dépendances</td>
+  <tr>
+    <td>Dépendances</td>
     <td><a href="https://github.com/minad/creole" title="Creole">Creole</a></td>
   </tr>
-<tr>
-<td>Extensions de fichier</td>
+  <tr>
+    <td>Extensions de fichier</td>
     <td><tt>.creole</tt></td>
   </tr>
-<tr>
-<td>Exemple</td>
+  <tr>
+    <td>Exemple</td>
     <td><tt>creole :wiki, :layout_engine =&gt; :erb</tt></td>
   </tr>
 </table>
+
 <p>Il n’est pas possible d’appeler des méthodes depuis creole, ni de lui
 passer des variables locales. Par conséquent, il sera souvent utilisé en
 combinaison avec un autre moteur de rendu :</p>
@@ -1079,8 +1114,8 @@ en utilisant l’option <code>:layout_engine</code>.</p>
 <h4>Templates CoffeeScript</h4>
 
 <table>
-<tr>
-<td>Dépendances</td>
+  <tr>
+    <td>Dépendances</td>
     <td>
       <a href="https://github.com/josh/ruby-coffee-script" title="Ruby CoffeeScript">
         CoffeeScript
@@ -1091,21 +1126,22 @@ en utilisant l’option <code>:layout_engine</code>.</p>
       </a>
     </td>
   </tr>
-<tr>
-<td>Extensions de fichier</td>
+  <tr>
+    <td>Extensions de fichier</td>
     <td><tt>.coffee</tt></td>
   </tr>
-<tr>
-<td>Exemple</td>
+  <tr>
+    <td>Exemple</td>
     <td><tt>coffee :index</tt></td>
   </tr>
 </table>
+
 <a name='Templates%20Stylus'></a>
 <h4>Templates Stylus</h4>
 
 <table>
-<tr>
-<td>Dépendances</td>
+  <tr>
+    <td>Dépendances</td>
     <td>
       <a href="https://github.com/lucasmazza/ruby-stylus" title="Ruby Stylus">
         Stylus
@@ -1116,15 +1152,16 @@ en utilisant l’option <code>:layout_engine</code>.</p>
       </a>
     </td>
   </tr>
-<tr>
-<td>Extensions de fichier</td>
+  <tr>
+    <td>Extensions de fichier</td>
     <td><tt>.styl</tt></td>
   </tr>
-<tr>
-<td>Exemple</td>
+  <tr>
+    <td>Exemple</td>
     <td><tt>stylus :index</tt></td>
   </tr>
 </table>
+
 <p>Avant de pouvoir utiliser des templates Stylus, vous devez auparavant charger
 <code>stylus</code> et <code>stylus/tilt</code> :</p>
 
@@ -1145,23 +1182,24 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <h4>Templates Yajl</h4>
 
 <table>
-<tr>
-<td>Dépendances</td>
+  <tr>
+    <td>Dépendances</td>
     <td>
       <a href="https://github.com/brianmario/yajl-ruby" title="yajl-ruby">yajl-ruby</a>
     </td>
   </tr>
-<tr>
-<td>Extensions de fichier</td>
+  <tr>
+    <td>Extensions de fichier</td>
     <td><tt>.yajl</tt></td>
   </tr>
-<tr>
-<td>Exemple</td>
+  <tr>
+    <td>Exemple</td>
     <td>
 <tt>yajl :index, :locals =&gt; { :key =&gt; 'qux' }, :callback =&gt; 'present', :variable =&gt; 'resource'</tt>
     </td>
   </tr>
 </table>
+
 <p>Le source du template est évalué en tant que chaine Ruby, puis la
 variable json obtenue est convertie avec #to_json.</p>
 
@@ -1187,19 +1225,20 @@ l’objet retourné.</p>
 <h4>Templates WLang</h4>
 
 <table>
-<tr>
-<td>Dépendances</td>
+  <tr>
+    <td>Dépendances</td>
     <td><a href="https://github.com/blambeau/wlang/" title="wlang">wlang</a></td>
   </tr>
-<tr>
-<td>Extensions de fichier</td>
+  <tr>
+    <td>Extensions de fichier</td>
     <td><tt>.wlang</tt></td>
   </tr>
-<tr>
-<td>Exemple</td>
+  <tr>
+    <td>Exemple</td>
     <td><tt>wlang :index, :locals =&gt; { :key =&gt; 'value' }</tt></td>
   </tr>
 </table>
+
 <p>L’appel de code ruby au sein des templates n’est pas idiomatique en wlang.
 L’écriture de templates sans logique est encouragé, via le passage de variables
 locales. Il est néanmoins possible d’écrire un layout en wlang et d’y utiliser
@@ -1215,7 +1254,7 @@ gestionnaire de route sont directement accessibles dans le template :</p>
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:id</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#33B">@foo</span> = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="color:#A60">:id</span>])
+  <span style="color:#33B">@foo</span> = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">id</span><span style="color:#710">'</span></span>])
   haml <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">%h1= @foo.nom</span><span style="color:#710">'</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
@@ -1227,7 +1266,7 @@ gestionnaire de route sont directement accessibles dans le template :</p>
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:id</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  foo = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="color:#A60">:id</span>])
+  foo = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">id</span><span style="color:#710">'</span></span>])
   haml <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">%h1= foo.nom</span><span style="color:#710">'</span></span>, <span style="color:#A60">:locals</span> =&gt; { <span style="color:#A60">:foo</span> =&gt; foo }
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
@@ -1405,7 +1444,7 @@ des routes et des templates :</p>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo/*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#33B">@note</span> <span style="color:#777">#=&gt; 'Coucou !'</span>
-  params[<span style="color:#A60">:splat</span>] <span style="color:#777">#=&gt; 'bar/baz'</span>
+  params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">splat</span><span style="color:#710">'</span></span>] <span style="color:#777">#=&gt; 'bar/baz'</span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -1439,7 +1478,7 @@ exécution aux cas où la requête correspond à ce masque :</p>
 <span style="color:#080;font-weight:bold">end</span>
 
 after <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/faire/:travail</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span> |travail|
-  session[<span style="color:#A60">:dernier_travail</span>] = travail
+  session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">dernier_travail</span><span style="color:#710">'</span></span>] = travail
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -1475,7 +1514,7 @@ qui seront accessibles dans vos gestionnaires de route et dans vos templates :</
 <span style="color:#080;font-weight:bold">end</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:nom</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  bar(params[<span style="color:#A60">:nom</span>])
+  bar(params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">nom</span><span style="color:#710">'</span></span>])
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -1512,11 +1551,11 @@ activées, vous avez un hash de session par session utilisateur :</p>
   <div class="code"><pre>enable <span style="color:#A60">:sessions</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">valeur = </span><span style="color:#710">"</span></span> &lt;&lt; session[<span style="color:#A60">:valeur</span>].inspect
+  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">valeur = </span><span style="color:#710">"</span></span> &lt;&lt; session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">valeur</span><span style="color:#710">'</span></span>].inspect
 <span style="color:#080;font-weight:bold">end</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:value</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  session[<span style="color:#A60">:valeur</span>] = params[<span style="color:#A60">:valeur</span>]
+  session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">valeur</span><span style="color:#710">'</span></span>] = params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">valeur</span><span style="color:#710">'</span></span>]
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -1534,11 +1573,11 @@ choix comme vous le feriez pour n’importe quel autre middleware :</p>
   <div class="code"><pre>use <span style="color:#036;font-weight:bold">Rack</span>::<span style="color:#036;font-weight:bold">Session</span>::<span style="color:#036;font-weight:bold">Pool</span>, <span style="color:#A60">:expire_after</span> =&gt; <span style="color:#00D">2592000</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">valeur = </span><span style="color:#710">"</span></span> &lt;&lt; session[<span style="color:#A60">:valeur</span>].inspect
+  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">valeur = </span><span style="color:#710">"</span></span> &lt;&lt; session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">valeur</span><span style="color:#710">'</span></span>].inspect
 <span style="color:#080;font-weight:bold">end</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:value</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  session[<span style="color:#A60">:valeur</span>] = params[<span style="color:#A60">:valeur</span>]
+  session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">valeur</span><span style="color:#710">'</span></span>] = params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">valeur</span><span style="color:#710">'</span></span>]
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -1644,7 +1683,7 @@ avec <code>pass</code> :</p>
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/devine/:qui</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  pass <span style="color:#080;font-weight:bold">unless</span> params[<span style="color:#A60">:qui</span>] == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Frank</span><span style="color:#710">'</span></span>
+  pass <span style="color:#080;font-weight:bold">unless</span> params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">qui</span><span style="color:#710">'</span></span>] == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Frank</span><span style="color:#710">'</span></span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Tu m'as eu !</span><span style="color:#710">"</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 
@@ -1789,19 +1828,17 @@ connexions = []
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/souscrire</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># abonne un client aux évènements du serveur</span>
-  stream(<span style="color:#A60">:keep_open</span>) { |out| connexions &lt;&lt; out }
-
-  <span style="color:#777"># purge les connexions abandonnées</span>
-  connexions.reject!(&amp;<span style="color:#A60">:closed?</span>)
-
-  <span style="color:#777"># compte-rendu</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">abonné</span><span style="color:#710">"</span></span>
+  stream(<span style="color:#A60">:keep_open</span>) <span style="color:#080;font-weight:bold">do</span> |out|
+    connexions &lt;&lt; out
+    <span style="color:#777"># purge les connexions abandonnées</span>
+    connexions.reject!(&amp;<span style="color:#A60">:closed?</span>)
+  <span style="color:#080;font-weight:bold">end</span>
 <span style="color:#080;font-weight:bold">end</span>
 
 post <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/message</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   connexions.each <span style="color:#080;font-weight:bold">do</span> |out|
     <span style="color:#777"># prévient le client qu'un nouveau message est arrivé</span>
-    out &lt;&lt; params[<span style="color:#A60">:message</span>] &lt;&lt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#b0b">\n</span><span style="color:#710">"</span></span>
+    out &lt;&lt; params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">message</span><span style="color:#710">'</span></span>] &lt;&lt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#b0b">\n</span><span style="color:#710">"</span></span>
 
     <span style="color:#777"># indique au client de se connecter à nouveau</span>
     out.close
@@ -1960,12 +1997,12 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
   <div class="code"><pre>enable <span style="color:#A60">:sessions</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  session[<span style="color:#A60">:secret</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">foo</span><span style="color:#710">'</span></span>
+  session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">secret</span><span style="color:#710">'</span></span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">foo</span><span style="color:#710">'</span></span>
   redirect to(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/bar</span><span style="color:#710">'</span></span>)
 <span style="color:#080;font-weight:bold">end</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/bar</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  session[<span style="color:#A60">:secret</span>]
+  session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">secret</span><span style="color:#710">'</span></span>]
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -2019,7 +2056,7 @@ si le client a déjà la version courante dans son cache :</p>
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/article/:id</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#33B">@article</span> = <span style="color:#036;font-weight:bold">Article</span>.find params[<span style="color:#A60">:id</span>]
+  <span style="color:#33B">@article</span> = <span style="color:#036;font-weight:bold">Article</span>.find params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">id</span><span style="color:#710">'</span></span>]
   last_modified <span style="color:#33B">@article</span>.updated_at
   etag <span style="color:#33B">@article</span>.sha1
   erb <span style="color:#A60">:article</span>
@@ -2116,7 +2153,7 @@ comportement en passant une option <code>:new_resource</code> :</p>
 <p>Les options sont :</p>
 
 <dl>
-<dt>filename</dt>
+  <dt>filename</dt>
   <dd>
     le nom du fichier dans la réponse, par défaut le nom du fichier envoyé.
   </dd>
@@ -2147,6 +2184,7 @@ comportement en passant une option <code>:new_resource</code> :</p>
     code état à renvoyer. Utile quand un fichier statique sert de page d’erreur.
   </dd>
 </dl>
+
 <p>Si le gestionnaire Rack le supporte, d’autres moyens que le streaming via le
 processus Ruby seront utilisés. Si vous utilisez cette méthode, Sinatra gérera
 automatiquement les requêtes de type range.</p>
@@ -2473,7 +2511,7 @@ set <span style="color:#A60">:protection</span>, <span style="color:#A60">:sessi
 <h3>Paramètres disponibles</h3>
 
 <dl>
-<dt>absolute_redirects</dt>
+  <dt>absolute_redirects</dt>
   <dd>Si désactivé, Sinatra permettra les redirections relatives. Toutefois,
   Sinatra ne sera plus conforme à la RFC 2616 (HTTP 1.1), qui n’autorise
   que les redirections absolues.
@@ -2486,14 +2524,14 @@ set <span style="color:#A60">:protection</span>, <span style="color:#A60">:sessi
   <p>Désactivé par défaut.</p>
 </dd>
 
-  <dt>add_charsets</dt>
+  <dt>add_charset</dt>
   <dd>
 <p>types mime pour lesquels la méthode <tt>content_type</tt> va
   automatiquement ajouter l’information du <tt>charset</tt>.</p>
 
   <p>Vous devriez lui ajouter des valeurs plutôt que de l’écraser :</p>
 
-  <pre>settings.add_charsets &gt;&gt; "application/foobar"</pre>
+  <pre>settings.add_charset &gt;&gt; "application/foobar"</pre>
 </dd>
 
   <dt>app_file</dt>
@@ -2619,6 +2657,7 @@ set <span style="color:#A60">:protection</span>, <span style="color:#A60">:sessi
     ne correspond. Défini à <tt>true</tt> par défaut.
   </dd>
 </dl>
+
 <a name='Environements'></a>
 <h2>Environements</h2>
 
@@ -2689,7 +2728,7 @@ variable Rack <code>sinatra.error</code> :</p>
 <div>
 <div class="CodeRay">
   <div class="code"><pre>error <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Désolé mais une méchante erreur est survenue - </span><span style="color:#710">'</span></span> + env[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra.error</span><span style="color:#710">'</span></span>].name
+  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Désolé mais une méchante erreur est survenue - </span><span style="color:#710">'</span></span> + env[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra.error</span><span style="color:#710">'</span></span>].message
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -2755,7 +2794,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <a name='Les%20Middlewares%20Rack'></a>
 <h2>Les Middlewares Rack</h2>
 
-<p>Sinatra tourne avec <a href="http://rack.rubyforge.org/">Rack</a>, une interface standard
+<p>Sinatra tourne avec <a href="http://rack.github.io/">Rack</a>, une interface standard
 et minimale pour les web frameworks Ruby. Un des points forts de Rack est le
 support de ce que l’on appelle des “middlewares” – composant qui vient se
 situer entre le serveur et votre application, et dont le but est de
@@ -2781,7 +2820,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 
 <p>La sémantique de <code>use</code> est identique à celle définie dans le DSL de
-<a href="http://rack.rubyforge.org/doc/classes/Rack/Builder.html">Rack::Builder</a>
+<a href="http://rubydoc.info/github/rack/rack/master/Rack/Builder">Rack::Builder</a>
 (le plus souvent utilisé dans un fichier rackup). Par exemple, la méthode
 <code>use</code> accepte divers arguments ainsi que des blocs :</p>
 
@@ -2814,10 +2853,10 @@ recommandé :</p>
 <div>
 <div class="CodeRay">
   <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">mon_application_sinatra</span><span style="color:#710">'</span></span>
-require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">test/unit</span><span style="color:#710">'</span></span>
+require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">minitest/autorun</span><span style="color:#710">'</span></span>
 require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rack/test</span><span style="color:#710">'</span></span>
 
-<span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MonTest</span> &lt; <span style="color:#036;font-weight:bold">Test</span>::<span style="color:#036;font-weight:bold">Unit</span>::<span style="color:#036;font-weight:bold">TestCase</span>
+<span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MonTest</span> &lt; <span style="color:#036;font-weight:bold">Minitest</span>::<span style="color:#036;font-weight:bold">Test</span>
   include <span style="color:#036;font-weight:bold">Rack</span>::<span style="color:#036;font-weight:bold">Test</span>::<span style="color:#036;font-weight:bold">Methods</span>
 
   <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">app</span>
@@ -2877,15 +2916,32 @@ pour transformer la plupart des applications de haut niveau en un composant
 <code>Sinatra::Base</code> :</p>
 
 <ul>
-<li>Votre fichier doit charger <code>sinatra/base</code> au lieu de <code>sinatra</code>, sinon toutes
+  <li>Votre fichier doit charger <code>sinatra/base</code> au lieu de <code>sinatra</code>, sinon toutes
 les méthodes du DSL Sinatra seront importées dans l’espace de nom principal.</li>
   <li>Les gestionnaires de routes, la gestion d’erreur, les filtres et les options
 doivent être placés dans une classe héritant de <code>Sinatra::Base</code>.</li>
 </ul>
+
 <p><code>Sinatra::Base</code> est une page blanche. La plupart des options sont
 désactivées par défaut, y compris le serveur intégré. Reportez-vous à
 <a href="http://sinatra.github.com/configuration.html">Options et Configuration</a>
-pour plus d’informations sur les options et leur fonctionnement.</p>
+pour plus d’informations sur les options et leur fonctionnement. Si vous
+souhaitez un comportement plus proche de celui obtenu lorsque vous définissez
+votre application au niveau supérieur (aussi connu sous le nom de style
+Classique), vous pouvez créer une classe héritant de <code>Sinatra::Application</code>.</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra/base</span><span style="color:#710">'</span></span>
+
+<span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyApp</span> &lt; <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color:#036;font-weight:bold">Application</span>
+  get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+    <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Bonjour le monde !</span><span style="color:#710">'</span></span>
+  <span style="color:#080;font-weight:bold">end</span>
+<span style="color:#080;font-weight:bold">end</span>
+</pre></div>
+</div>
+</div>
 
 <a name='Style%20modulaire%20vs.%20style%20classique'></a>
 <h3>Style modulaire vs. style classique</h3>
@@ -2902,14 +2958,56 @@ classique et style modulaire.</p>
 <p>Si vous passez d’un style à l’autre, souvenez-vous des quelques différences
 mineures en ce qui concerne les paramètres par défaut :</p>
 
-<p>Paramètre         Classique                   Modulaire</p>
+<table>
+  <tr>
+    <th>Paramètre</th>
+    <th>Classique</th>
+    <th>Modulaire</th>
+    <th>Modulaire</th>
+  </tr>
 
-<p>app_file          fichier chargeant sinatra   fichier héritant de Sinatra::Base
-  run               $0 == app_file              false
-  logging           true                        false
-  method_override   true                        false
-  inline_templates  true                        false
-  static            true                        false</p>
+  <tr>
+    <td>app_file</td>
+    <td>fichier chargeant sinatra</td>
+    <td>fichier héritant de Sinatra::Base</td>
+    <td>fichier héritant de Sinatra::Application</td>
+  </tr>
+
+  <tr>
+    <td>run</td>
+    <td>$0 == app_file</td>
+    <td>false</td>
+    <td>false</td>
+  </tr>
+
+  <tr>
+    <td>logging</td>
+    <td>true</td>
+    <td>false</td>
+    <td>true</td>
+  </tr>
+
+  <tr>
+    <td>method_override</td>
+    <td>true</td>
+    <td>false</td>
+    <td>true</td>
+  </tr>
+
+  <tr>
+    <td>inline_templates</td>
+    <td>true</td>
+    <td>false</td>
+    <td>true</td>
+  </tr>
+
+  <tr>
+    <td>static</td>
+    <td>true</td>
+    <td>false</td>
+    <td>true</td>
+  </tr>
+</table>
 
 <a name='Servir%20une%20application%20modulaire'></a>
 <h3>Servir une application modulaire</h3>
@@ -2995,12 +3093,13 @@ run <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color
 <p>Quelques cas où vous devriez utiliser un fichier <code>config.ru</code> :</p>
 
 <ul>
-<li>Vous souhaitez déployer avec un autre gestionnaire Rack (Passenger, Unicorn,
+  <li>Vous souhaitez déployer avec un autre gestionnaire Rack (Passenger, Unicorn,
 Heroku, …).</li>
   <li>Vous souhaitez utiliser plus d’une sous-classe de <code>Sinatra::Base</code>.</li>
   <li>Vous voulez utiliser Sinatra comme un middleware, non en tant que
 endpoint.</li>
 </ul>
+
 <p><strong>Il n’est pas nécessaire de passer par un fichier <code>config.ru</code> pour la
 seule raison que vous êtes passé au style modulaire, et vous n’avez pas besoin
 de passer au style modulaire pour utiliser un fichier <code>config.ru</code>.</strong></p>
@@ -3024,8 +3123,8 @@ application Sinatra, ou n’importe quelle application basée sur Rack
   get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/connexion</span><span style="color:#710">'</span></span>) { haml <span style="color:#A60">:connexion</span> }
 
   post(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/connexion</span><span style="color:#710">'</span></span>) <span style="color:#080;font-weight:bold">do</span>
-    <span style="color:#080;font-weight:bold">if</span> params[<span style="color:#A60">:nom</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">admin</span><span style="color:#710">'</span></span> &amp;&amp; params[<span style="color:#A60">:motdepasse</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">admin</span><span style="color:#710">'</span></span>
-      session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">nom_utilisateur</span><span style="color:#710">'</span></span>] = params[<span style="color:#A60">:nom</span>]
+    <span style="color:#080;font-weight:bold">if</span> params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">nom</span><span style="color:#710">'</span></span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">admin</span><span style="color:#710">'</span></span> &amp;&amp; params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">motdepasse</span><span style="color:#710">'</span></span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">admin</span><span style="color:#710">'</span></span>
+      session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">nom_utilisateur</span><span style="color:#710">'</span></span>] = params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">nom</span><span style="color:#710">'</span></span>]
     <span style="color:#080;font-weight:bold">else</span>
       redirect <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/connexion</span><span style="color:#710">'</span></span>
     <span style="color:#080;font-weight:bold">end</span>
@@ -3141,7 +3240,7 @@ les requêtes sont traitées par une seule classe d’application.</p>
 <p>Vous avez le binding du contexte de l’application dans :</p>
 
 <ul>
-<li>Le corps de la classe d’application</li>
+  <li>Le corps de la classe d’application</li>
   <li>Les méthodes définies par les extensions</li>
   <li>Le bloc passé à <code>helpers</code>
 </li>
@@ -3150,12 +3249,14 @@ les requêtes sont traitées par une seule classe d’application.</p>
   <li>Le bloc passé à <code>Sinatra.new</code>
 </li>
 </ul>
+
 <p>Vous pouvez atteindre ce contexte (donc la classe) de la façon suivante :</p>
 
 <ul>
-<li>Via l’objet passé dans les blocs <code>configure</code> (<code>configure { |c| ... }</code>)</li>
+  <li>Via l’objet passé dans les blocs <code>configure</code> (<code>configure { |c| ... }</code>)</li>
   <li>En utilisant <code>settings</code> dans le contexte de la requête</li>
 </ul>
+
 <a name='Contexte%20de%20la%20requ%C3%AAte/instance'></a>
 <h3>Contexte de la requête/instance</h3>
 
@@ -3174,8 +3275,8 @@ requête au moyen de <code>settings</code> :</p>
     <span style="color:#777"># Contexte de la requête pour '/ajouter_route/:nom'</span>
     <span style="color:#33B">@value</span> = <span style="color:#00D">42</span>
 
-    settings.get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">/</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:nom</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">"</span></span>) <span style="color:#080;font-weight:bold">do</span>
-      <span style="color:#777"># Contexte de la requête pour "/#{params[:nom]}"</span>
+    settings.get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">/</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">nom</span><span style="color:#710">'</span></span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">"</span></span>) <span style="color:#080;font-weight:bold">do</span>
+      <span style="color:#777"># Contexte de la requête pour "/#{params['nom']}"</span>
       <span style="color:#33B">@value</span> <span style="color:#777"># =&gt; nil (on est pas au sein de la même requête)</span>
     <span style="color:#080;font-weight:bold">end</span>
 
@@ -3189,11 +3290,12 @@ requête au moyen de <code>settings</code> :</p>
 <p>Vous avez le binding du contexte de la requête dans :</p>
 
 <ul>
-<li>les blocs get, head, post, put, delete, options, patch, link et unlink</li>
+  <li>les blocs get, head, post, put, delete, options, patch, link et unlink</li>
   <li>les filtres before et after</li>
   <li>les méthodes utilitaires (définies au moyen de <code>helpers</code>)</li>
   <li>les vues et templates</li>
 </ul>
+
 <a name='Le%20contexte%20de%20d%C3%A9l%C3%A9gation'></a>
 <h3>Le contexte de délégation</h3>
 
@@ -3208,11 +3310,12 @@ méthodes en appelant <code>Sinatra::Delegator.delegate :method_name</code>.</p>
 <p>Vous avez le binding du contexte de délégation dans :</p>
 
 <ul>
-<li>Le binding de haut niveau, si vous avez utilisé <code>require "sinatra"</code>
+  <li>Le binding de haut niveau, si vous avez utilisé <code>require "sinatra"</code>
 </li>
   <li>Un objet qui inclut le module <code>Sinatra::Delegator</code>
 </li>
 </ul>
+
 <p>Pour vous faire une idée, vous pouvez jeter un coup d’oeil au
 <a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/base.rb#L1609-1633">mixin Sinatra::Delegator</a>
 qui <a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/main.rb#L28-30">étend l’objet principal</a>.</p>
@@ -3245,7 +3348,7 @@ qui <a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/main.rb
 <p>Les versions suivantes de Ruby sont officiellement supportées :</p>
 
 <dl>
-<dt>Ruby 1.8.7</dt>
+  <dt>Ruby 1.8.7</dt>
   <dd>
     1.8.7 est complètement supporté, toutefois si rien ne vous en empêche,
     nous vous recommandons de faire une mise à jour ou bien de passer à JRuby
@@ -3286,17 +3389,19 @@ qui <a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/main.rb
     trinidad</tt> est recommandé.
   </dd>
 </dl>
+
 <p>Nous gardons également un oeil sur les versions Ruby à venir.</p>
 
 <p>Les implémentations Ruby suivantes ne sont pas officiellement supportées mais
 sont malgré tout connues pour permettre de faire fonctionner Sinatra :</p>
 
 <ul>
-<li>Versions plus anciennes de JRuby et Rubinius</li>
+  <li>Versions plus anciennes de JRuby et Rubinius</li>
   <li>Ruby Enterprise Edition</li>
   <li>MacRuby, Maglev, IronRuby</li>
   <li>Ruby 1.9.0 et 1.9.1 (mais nous déconseillons leur utilisation)</li>
 </ul>
+
 <p>Le fait de ne pas être officiellement supporté signifie que si quelque chose
 ne fonctionne pas sur cette plateforme uniquement alors c’est un problème de la
 plateforme et pas un bug de Sinatra.</p>
@@ -3434,7 +3539,7 @@ SemVer que SemVerTag.</p>
 <h2>Mais encore</h2>
 
 <ul>
-<li>
+  <li>
 <a href="http://www.sinatrarb.com/">Site internet</a> - Plus de documentation,
 de news, et des liens vers d’autres ressources.</li>
   <li>
@@ -3445,7 +3550,7 @@ bug ? Besoin d’aide ? Vous avez un patch ?</li>
   <li><a href="http://groups.google.com/group/sinatrarb/topics">Mailing List</a></li>
   <li>IRC : <a href="irc://chat.freenode.net/#sinatra">#sinatra</a> sur http://freenode.net</li>
   <li>
-<a href="http://sinatra-book.gittr.com">Sinatra Book</a> Tutoriels et recettes</li>
+<a href="https://github.com/sinatra/sinatra-book/">Sinatra Book</a> Tutoriels et recettes</li>
   <li>
 <a href="http://recipes.sinatrarb.com/">Sinatra Recipes</a> trucs et astuces rédigés par
 la communauté</li>

@@ -35,7 +35,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <html><body>
 <p><em>Fontos megjegyzés: Ez a dokumentum csak egy fordítása az angol nyelvű
-változat, és lehet, hogy nem naprakész.</em></p>
+változatnak, és lehet, hogy nem naprakész.</em></p>
 
 <p>A Sinatra egy <a href="http://en.wikipedia.org/wiki/Domain-specific_language">DSL</a>
 webalkalmazások Ruby nyelven történő fejlesztéséhez, minimális
@@ -102,8 +102,8 @@ hash-ből érhetünk el:</p>
 <div class="CodeRay">
   <div class="code"><pre>  get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/hello/:name</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
     <span style="color:#777"># illeszkedik a "GET /hello/foo" és a "GET /hello/bar" útvonalakra</span>
-    <span style="color:#777"># ekkor params[:name] értéke 'foo' vagy 'bar' lesz</span>
-    <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Helló </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:name</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
+    <span style="color:#777"># ekkor params['name'] értéke 'foo' vagy 'bar' lesz</span>
+    <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Helló </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">name</span><span style="color:#710">'</span></span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
   <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -122,18 +122,18 @@ is el tudod érni:</p>
 </div>
 
 <p>Az útvonalmintákban szerepelhetnek joker paraméterek is, melyeket a
-<code>params[:splat]</code> tömbön keresztül tudunk elérni.</p>
+<code>params['splat']</code> tömbön keresztül tudunk elérni.</p>
 
 <div>
 <div class="CodeRay">
   <div class="code"><pre>  get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/say/*/to/*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
     <span style="color:#777"># illeszkedik a /say/hello/to/world mintára</span>
-    params[<span style="color:#A60">:splat</span>] <span style="color:#777"># =&gt; ["hello", "world"]</span>
+    params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">splat</span><span style="color:#710">'</span></span>] <span style="color:#777"># =&gt; ["hello", "world"]</span>
   <span style="color:#080;font-weight:bold">end</span>
 
   get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/download/*.*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
     <span style="color:#777"># illeszkedik a /download/path/to/file.xml mintára</span>
-    params[<span style="color:#A60">:splat</span>] <span style="color:#777"># =&gt; ["path/to/file", "xml"]</span>
+    params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">splat</span><span style="color:#710">'</span></span>] <span style="color:#777"># =&gt; ["path/to/file", "xml"]</span>
   <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -143,8 +143,8 @@ is el tudod érni:</p>
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre>  get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">%r{</span><span style="color:#808">/hello/([</span><span style="color:#D20">\w</span><span style="color:#808">]+)</span><span style="color:#404">}</span></span> <span style="color:#080;font-weight:bold">do</span>
-    <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Helló, </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:captures</span>].first<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
+  <div class="code"><pre>  get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#D20">\A</span><span style="color:#D20">\/</span><span style="color:#808">hello</span><span style="color:#D20">\/</span><span style="color:#808">([</span><span style="color:#D20">\w</span><span style="color:#808">]+)</span><span style="color:#D20">\z</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
+    <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Helló, </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">captures</span><span style="color:#710">'</span></span>].first<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
   <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -167,7 +167,7 @@ tervezhetők, így például az user agent karakterláncot alapul véve:</p>
 <div>
 <div class="CodeRay">
   <div class="code"><pre>  get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span>, <span style="color:#A60">:agent</span> =&gt; <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">Songbird (</span><span style="color:#D20">\d</span><span style="color:#D20">\.</span><span style="color:#D20">\d</span><span style="color:#808">)[</span><span style="color:#D20">\d</span><span style="color:#D20">\/</span><span style="color:#808">]*?</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
-    <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">A Songbird </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:agent</span>][<span style="color:#00D">0</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20"> verzióját használod</span><span style="color:#710">"</span></span>
+    <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">A Songbird </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">agent</span><span style="color:#710">'</span></span>][<span style="color:#00D">0</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20"> verzióját használod</span><span style="color:#710">"</span></span>
   <span style="color:#080;font-weight:bold">end</span>
 
   get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
@@ -186,7 +186,7 @@ mégpedig a :public_folder kapcsoló beállításával:</p>
 
 <p>set :public_folder, File.dirname(<strong>FILE</strong>) + ‘/static’</p>
 
-<p>Fontos mgejegyezni, hogy a nyilvános könyvtár neve nem szerepel az URL-ben.
+<p>Fontos megjegyezni, hogy a nyilvános könyvtár neve nem szerepel az URL-ben.
 A ./public/css/style.css fájl az
 <code>http://example.com/css/style.css</code> URL-en lesz elérhető.</p>
 
@@ -337,7 +337,7 @@ változók közvetlenül elérhetőek lesznek a sablonokban:</p>
 <div>
 <div class="CodeRay">
   <div class="code"><pre>  get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:id</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-    <span style="color:#33B">@foo</span> = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="color:#A60">:id</span>])
+    <span style="color:#33B">@foo</span> = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">id</span><span style="color:#710">'</span></span>])
     haml <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">%h1= @foo.name</span><span style="color:#710">'</span></span>
   <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
@@ -349,7 +349,7 @@ változók közvetlenül elérhetőek lesznek a sablonokban:</p>
 <div>
 <div class="CodeRay">
   <div class="code"><pre>  get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:id</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-    foo = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="color:#A60">:id</span>])
+    foo = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">id</span><span style="color:#710">'</span></span>])
     haml <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">%h1= foo.name</span><span style="color:#710">'</span></span>, <span style="color:#A60">:locals</span> =&gt; { <span style="color:#A60">:foo</span> =&gt; foo }
   <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
@@ -443,7 +443,7 @@ használni:</p>
   <span style="color:#080;font-weight:bold">end</span>
 
   get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:name</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-    bar(params[<span style="color:#A60">:name</span>])
+    bar(params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">name</span><span style="color:#710">'</span></span>])
   <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -466,7 +466,7 @@ az útvonalakban és a sablonokban is:</p>
 
   get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo/*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
     <span style="color:#33B">@note</span> <span style="color:#777">#=&gt; 'Szeva!'</span>
-    params[<span style="color:#A60">:splat</span>] <span style="color:#777">#=&gt; 'bar/baz'</span>
+    params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">splat</span><span style="color:#710">'</span></span>] <span style="color:#777">#=&gt; 'bar/baz'</span>
   <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -511,7 +511,7 @@ a <code>pass</code> függvényhívással:</p>
 <div>
 <div class="CodeRay">
   <div class="code"><pre>  get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/guess/:who</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-    pass <span style="color:#080;font-weight:bold">unless</span> params[<span style="color:#A60">:who</span>] == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Frici</span><span style="color:#710">'</span></span>
+    pass <span style="color:#080;font-weight:bold">unless</span> params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">who</span><span style="color:#710">'</span></span>] == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Frici</span><span style="color:#710">'</span></span>
     <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Elkaptál!</span><span style="color:#710">"</span></span>
   <span style="color:#080;font-weight:bold">end</span>
 
@@ -596,7 +596,7 @@ előszűrő kivételt vált ki. A kivétel objektum lehívható a
 <div>
 <div class="CodeRay">
   <div class="code"><pre>  error <span style="color:#080;font-weight:bold">do</span>
-    <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Elnézést, de valami szörnyű hiba lépett fel - </span><span style="color:#710">'</span></span> + env[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra.error</span><span style="color:#710">'</span></span>].name
+    <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Elnézést, de valami szörnyű hiba lépett fel - </span><span style="color:#710">'</span></span> + env[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra.error</span><span style="color:#710">'</span></span>].message
   <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -650,7 +650,7 @@ bevezetéséhez:</p>
 <h2>Rack Middleware</h2>
 
 <p>A Sinatra egy Ruby keretrendszerek számára kifejlesztett egyszerű és szabványos
-interfészre, a <a href="http://rack.rubyforge.org/">Rack</a> -re épül. A Rack fejlesztői
+interfészre, a <a href="http://rack.github.io/">Rack</a> -re épül. A Rack fejlesztői
 szempontból egyik legérdekesebb jellemzője, hogy támogatja az úgynevezett
 “middleware” elnevezésű komponenseket, amelyek beékelődnek a szerver és az
 alkalmazás közé, így képesek megfigyelni és/vagy módosítani a HTTP
@@ -676,7 +676,7 @@ funkciókat építhetünk be rendszerünkbe.</p>
 </div>
 
 <p>A <code>use</code> metódus szemantikája megegyezik a
-<a href="http://rack.rubyforge.org/doc/classes/Rack/Builder.html">Rack::Builder</a> DSL-ben
+<a href="http://rubydoc.info/github/rack/rack/master/Rack/Builder">Rack::Builder</a> DSL-ben
 használt +use+ metóduséval (az említett DSL-t leginkább rackup állományokban
 használják). Hogy egy példát említsünk, a <code>use</code> metódus elfogad
 változókat és blokkokat egyaránt, akár kombinálva is ezeket:</p>
@@ -708,7 +708,7 @@ könyvtárat ajánljuk:</p>
   <div class="code"><pre>  require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">my_sinatra_app</span><span style="color:#710">'</span></span>
   require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rack/test</span><span style="color:#710">'</span></span>
 
-  <span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyAppTest</span> &lt; <span style="color:#036;font-weight:bold">Test</span>::<span style="color:#036;font-weight:bold">Unit</span>::<span style="color:#036;font-weight:bold">TestCase</span>
+  <span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyAppTest</span> &lt; <span style="color:#036;font-weight:bold">Minitest</span>::<span style="color:#036;font-weight:bold">Test</span>
     include <span style="color:#036;font-weight:bold">Rack</span>::<span style="color:#036;font-weight:bold">Test</span>::<span style="color:#036;font-weight:bold">Methods</span>
 
     <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">app</span>
@@ -784,6 +784,8 @@ tartalmazó könyvtár vezérlésekor:</p>
 szintű DSL-en keresztül is hozzáférhetők. A legtöbb felső szintű
 alkalmazás átalakítható Sinatra::Base alapú komponensekké két lépésben:</p>
 
+
+
 <p>A <code>Sinatra::Base</code> osztály igazából egy üres lap: a legtöbb funkció
 alapból ki van kapcsolva, beleértve a beépített szervert is. A
 beállításokkal és az egyes kapcsolók hatásával az
@@ -854,7 +856,7 @@ az alkalmazásodban:</p>
 <h2>További információk</h2>
 
 <ul>
-<li>
+  <li>
 <a href="http://sinatra.github.com/">A projekt weboldala</a> - Kiegészítő dokumentáció,
 hírek, hasznos linkek</li>
   <li>

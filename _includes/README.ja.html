@@ -55,9 +55,7 @@
 			<li><a href='#%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E3%83%AA%E3%83%80%E3%82%A4%E3%83%AC%E3%82%AF%E3%83%88(Browser%20Redirect)'>ブラウザリダイレクト(Browser Redirect)</a></li>
 			<li><a href='#%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5%E5%88%B6%E5%BE%A1(Cache%20Control)'>キャッシュ制御(Cache Control)</a></li>
 			<li><a href='#%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E9%80%81%E4%BF%A1'>ファイルの送信</a></li>
-		</ol>
-		<li><a href='#%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%B8%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9'>リクエストオブジェクトへのアクセス</a></li>
-		<ol class='level-2'>
+			<li><a href='#%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%B8%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9'>リクエストオブジェクトへのアクセス</a></li>
 			<li><a href='#%E3%82%A2%E3%82%BF%E3%83%83%E3%83%81%E3%83%A1%E3%83%B3%E3%83%88(Attachments)'>アタッチメント(Attachments)</a></li>
 			<li><a href='#%E6%97%A5%E4%BB%98%E3%81%A8%E6%99%82%E5%88%BB%E3%81%AE%E5%8F%96%E3%82%8A%E6%89%B1%E3%81%84'>日付と時刻の取り扱い</a></li>
 			<li><a href='#%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E6%8E%A2%E7%B4%A2'>テンプレートファイルの探索</a></li>
@@ -147,6 +145,8 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <a name='%E7%9B%AE%E6%AC%A1'></a>
 <h2>目次</h2>
 
+
+
 <a name='%E3%83%AB%E3%83%BC%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0(Routes)'></a>
 <h2>ルーティング(Routes)</h2>
 
@@ -200,8 +200,8 @@ unlink <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/hello/:name</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># "GET /hello/foo" と "GET /hello/bar" にマッチ</span>
-  <span style="color:#777"># params[:name] は 'foo' か 'bar'</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hello </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:name</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
+  <span style="color:#777"># params['name'] は 'foo' か 'bar'</span>
+  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hello </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">name</span><span style="color:#710">'</span></span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -213,8 +213,8 @@ unlink <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/hello/:name</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span> |n|
   <span style="color:#777"># "GET /hello/foo" と "GET /hello/bar" にマッチ</span>
-  <span style="color:#777"># params[:name] は 'foo' か 'bar'</span>
-  <span style="color:#777"># n が params[:name] を保持</span>
+  <span style="color:#777"># params['name'] は 'foo' か 'bar'</span>
+  <span style="color:#777"># n が params['name'] を保持</span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hello </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>n<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
@@ -222,18 +222,18 @@ unlink <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#
 </div>
 
 <p>ルーティングパターンはアスタリスク(すなわちワイルドカード)を含むこともでき、
-<code>params[:splat]</code> で取得できます。</p>
+<code>params['splat']</code> で取得できます。</p>
 
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/say/*/to/*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># /say/hello/to/world にマッチ</span>
-  params[<span style="color:#A60">:splat</span>] <span style="color:#777"># =&gt; ["hello", "world"]</span>
+  params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">splat</span><span style="color:#710">'</span></span>] <span style="color:#777"># =&gt; ["hello", "world"]</span>
 <span style="color:#080;font-weight:bold">end</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/download/*.*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># /download/path/to/file.xml にマッチ</span>
-  params[<span style="color:#A60">:splat</span>] <span style="color:#777"># =&gt; ["path/to/file", "xml"]</span>
+  params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">splat</span><span style="color:#710">'</span></span>] <span style="color:#777"># =&gt; ["path/to/file", "xml"]</span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -254,8 +254,8 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">%r{</span><span style="color:#808">/hello/([</span><span style="color:#D20">\w</span><span style="color:#808">]+)</span><span style="color:#404">}</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hello, </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:captures</span>].first<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
+  <div class="code"><pre>get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#D20">\A</span><span style="color:#D20">\/</span><span style="color:#808">hello</span><span style="color:#D20">\/</span><span style="color:#808">([</span><span style="color:#D20">\w</span><span style="color:#808">]+)</span><span style="color:#D20">\z</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
+  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hello, </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">captures</span><span style="color:#710">'</span></span>].first<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -294,7 +294,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span>, <span style="color:#A60">:agent</span> =&gt; <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">Songbird (</span><span style="color:#D20">\d</span><span style="color:#D20">\.</span><span style="color:#D20">\d</span><span style="color:#808">)[</span><span style="color:#D20">\d</span><span style="color:#D20">\/</span><span style="color:#808">]*?</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Songbirdのバージョン </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:agent</span>][<span style="color:#00D">0</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">を使ってます。</span><span style="color:#710">"</span></span>
+  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Songbirdのバージョン </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">agent</span><span style="color:#710">'</span></span>][<span style="color:#00D">0</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">を使ってます。</span><span style="color:#710">"</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
@@ -373,7 +373,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Rackレスポンス、Rackボディオブジェクト、HTTPステータスコードのいずれかとして妥当なオブジェクトであればどのようなオブジェクトでも返すことができます。</p>
 
 <ul>
-<li>3つの要素を含む配列:
+  <li>3つの要素を含む配列:
 <code>[ステータス(Fixnum), ヘッダ(Hash), レスポンスボディ(#eachに応答する)]</code>
 </li>
   <li>2つの要素を含む配列:
@@ -384,6 +384,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 与えられたブロックに文字列を渡す。</li>
   <li>ステータスコードを表現する整数(Fixnum)</li>
 </ul>
+
 <p>これにより、例えばストリーミングを簡単に実装することができます。</p>
 
 <div>
@@ -543,7 +544,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>利用可能なオプション:</p>
 
 <dl>
-<dt>locals</dt>
+  <dt>locals</dt>
   <dd>
     ドキュメントに渡されるローカルのリスト。パーシャルに便利。
     例: <tt>erb "&lt;%= foo %&gt;", :locals =&gt; {:foo =&gt; "bar"}</tt>
@@ -585,6 +586,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
     <tt>set :rdoc, :layout_options =&gt; { :views =&gt; 'views/layouts' }</tt>
   </dd>
 </dl>
+
 <p>テンプレートは<code>./views</code>ディレクトリ下に配置されています。
 他のディレクトリを使用する場合の例:</p>
 
@@ -630,176 +632,185 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <h4>Haml テンプレート</h4>
 
 <table>
-<tr>
-<td>依存</td>
+  <tr>
+    <td>依存</td>
     <td><a href="http://haml.info/" title="haml">haml</a></td>
   </tr>
-<tr>
-<td>ファイル拡張子</td>
+  <tr>
+    <td>ファイル拡張子</td>
     <td><tt>.haml</tt></td>
   </tr>
-<tr>
-<td>例</td>
+  <tr>
+    <td>例</td>
     <td><tt>haml :index, :format =&gt; :html5</tt></td>
   </tr>
 </table>
+
 <a name='Erb%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>Erb テンプレート</h4>
 
 <table>
-<tr>
-<td>依存</td>
+  <tr>
+    <td>依存</td>
     <td>
       <a href="http://www.kuwata-lab.com/erubis/" title="erubis">erubis</a>
       または erb (Rubyに同梱)
     </td>
   </tr>
-<tr>
-<td>ファイル拡張子</td>
+  <tr>
+    <td>ファイル拡張子</td>
     <td>
 <tt>.erb</tt>, <tt>.rhtml</tt> or <tt>.erubis</tt> (Erubisだけ)</td>
   </tr>
-<tr>
-<td>例</td>
+  <tr>
+    <td>例</td>
     <td><tt>erb :index</tt></td>
   </tr>
 </table>
+
 <a name='Builder%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>Builder テンプレート</h4>
 
 <table>
-<tr>
-<td>依存</td>
+  <tr>
+    <td>依存</td>
     <td>
-      <a href="http://builder.rubyforge.org/" title="builder">builder</a>
+      <a href="https://github.com/jimweirich/builder" title="builder">builder</a>
     </td>
   </tr>
-<tr>
-<td>ファイル拡張子</td>
+  <tr>
+    <td>ファイル拡張子</td>
     <td><tt>.builder</tt></td>
   </tr>
-<tr>
-<td>例</td>
+  <tr>
+    <td>例</td>
     <td><tt>builder { |xml| xml.em "hi" }</tt></td>
   </tr>
 </table>
+
 <p>インラインテンプレート用にブロックを取ることもできます（例を参照）。</p>
 
 <a name='Nokogiri%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>Nokogiri テンプレート</h4>
 
 <table>
-<tr>
-<td>依存</td>
+  <tr>
+    <td>依存</td>
     <td><a href="http://nokogiri.org/" title="nokogiri">nokogiri</a></td>
   </tr>
-<tr>
-<td>ファイル拡張子</td>
+  <tr>
+    <td>ファイル拡張子</td>
     <td><tt>.nokogiri</tt></td>
   </tr>
-<tr>
-<td>例</td>
+  <tr>
+    <td>例</td>
     <td><tt>nokogiri { |xml| xml.em "hi" }</tt></td>
   </tr>
 </table>
+
 <p>インラインテンプレート用にブロックを取ることもできます（例を参照）。</p>
 
 <a name='Sass%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>Sass テンプレート</h4>
 
 <table>
-<tr>
-<td>依存</td>
+  <tr>
+    <td>依存</td>
     <td><a href="http://sass-lang.com/" title="sass">sass</a></td>
   </tr>
-<tr>
-<td>ファイル拡張子</td>
+  <tr>
+    <td>ファイル拡張子</td>
     <td><tt>.sass</tt></td>
   </tr>
-<tr>
-<td>例</td>
+  <tr>
+    <td>例</td>
     <td><tt>sass :stylesheet, :style =&gt; :expanded</tt></td>
   </tr>
 </table>
+
 <a name='Scss%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>Scss テンプレート</h4>
 
 <table>
-<tr>
-<td>依存</td>
+  <tr>
+    <td>依存</td>
     <td><a href="http://sass-lang.com/" title="sass">sass</a></td>
   </tr>
-<tr>
-<td>ファイル拡張子</td>
+  <tr>
+    <td>ファイル拡張子</td>
     <td><tt>.scss</tt></td>
   </tr>
-<tr>
-<td>例</td>
+  <tr>
+    <td>例</td>
     <td><tt>scss :stylesheet, :style =&gt; :expanded</tt></td>
   </tr>
 </table>
+
 <a name='Less%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>Less テンプレート</h4>
 
 <table>
-<tr>
-<td>依存</td>
+  <tr>
+    <td>依存</td>
     <td><a href="http://www.lesscss.org/" title="less">less</a></td>
   </tr>
-<tr>
-<td>ファイル拡張子</td>
+  <tr>
+    <td>ファイル拡張子</td>
     <td><tt>.less</tt></td>
   </tr>
-<tr>
-<td>例</td>
+  <tr>
+    <td>例</td>
     <td><tt>less :stylesheet</tt></td>
   </tr>
 </table>
+
 <a name='Liquid%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>Liquid テンプレート</h4>
 
 <table>
-<tr>
-<td>依存</td>
+  <tr>
+    <td>依存</td>
     <td><a href="http://www.liquidmarkup.org/" title="liquid">liquid</a></td>
   </tr>
-<tr>
-<td>ファイル拡張子</td>
+  <tr>
+    <td>ファイル拡張子</td>
     <td><tt>.liquid</tt></td>
   </tr>
-<tr>
-<td>例</td>
+  <tr>
+    <td>例</td>
     <td><tt>liquid :index, :locals =&gt; { :key =&gt; 'value' }</tt></td>
   </tr>
 </table>
+
 <p>LiquidテンプレートからRubyのメソッド(<code>yield</code>を除く)を呼び出すことができないため、ほぼ全ての場合にlocalsを指定する必要があるでしょう。</p>
 
 <a name='Markdown%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>Markdown テンプレート</h4>
 
 <table>
-<tr>
-<td>依存</td>
+  <tr>
+    <td>依存</td>
     <td>
       次の何れか:
         <a href="https://github.com/rtomayko/rdiscount" title="RDiscount">RDiscount</a>,
         <a href="https://github.com/vmg/redcarpet" title="RedCarpet">RedCarpet</a>,
         <a href="http://deveiate.org/projects/BlueCloth" title="BlueCloth">BlueCloth</a>,
-        <a href="http://kramdown.rubyforge.org/" title="kramdown">kramdown</a>,
-        <a href="http://maruku.rubyforge.org/" title="maruku">maruku</a>
+        <a href="http://kramdown.gettalong.org/" title="kramdown">kramdown</a>,
+        <a href="https://github.com/bhollis/maruku" title="maruku">maruku</a>
     </td>
   </tr>
-<tr>
-<td>ファイル拡張子</td>
+  <tr>
+    <td>ファイル拡張子</td>
     <td>
 <tt>.markdown</tt>, <tt>.mkd</tt> and <tt>.md</tt>
 </td>
   </tr>
-<tr>
-<td>例</td>
+  <tr>
+    <td>例</td>
     <td><tt>markdown :index, :layout_engine =&gt; :erb</tt></td>
   </tr>
 </table>
+
 <p>Markdownからメソッドを呼び出すことも、localsに変数を渡すこともできません。
 それゆえ、他のレンダリングエンジンとの組み合わせで使うのが普通です。</p>
 
@@ -826,19 +837,20 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <h4>Textile テンプレート</h4>
 
 <table>
-<tr>
-<td>依存</td>
+  <tr>
+    <td>依存</td>
     <td><a href="http://redcloth.org/" title="RedCloth">RedCloth</a></td>
   </tr>
-<tr>
-<td>ファイル拡張子</td>
+  <tr>
+    <td>ファイル拡張子</td>
     <td><tt>.textile</tt></td>
   </tr>
-<tr>
-<td>例</td>
+  <tr>
+    <td>例</td>
     <td><tt>textile :index, :layout_engine =&gt; :erb</tt></td>
   </tr>
 </table>
+
 <p>Textileからメソッドを呼び出すことも、localsに変数を渡すこともできません。
 それゆえ、他のレンダリングエンジンとの組み合わせで使うのが普通です。</p>
 
@@ -865,19 +877,20 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <h4>RDoc テンプレート</h4>
 
 <table>
-<tr>
-<td>依存</td>
-    <td><a href="http://rdoc.rubyforge.org/" title="RDoc">RDoc</a></td>
+  <tr>
+    <td>依存</td>
+    <td><a href="http://rdoc.sourceforge.net/" title="RDoc">RDoc</a></td>
   </tr>
-<tr>
-<td>ファイル拡張子</td>
+  <tr>
+    <td>ファイル拡張子</td>
     <td><tt>.rdoc</tt></td>
   </tr>
-<tr>
-<td>例</td>
+  <tr>
+    <td>例</td>
     <td><tt>rdoc :README, :layout_engine =&gt; :erb</tt></td>
   </tr>
 </table>
+
 <p>RDocからメソッドを呼び出すことも、localsに変数を渡すこともできません。
 それゆえ、他のレンダリングエンジンとの組み合わせで使うのが普通です。</p>
 
@@ -904,112 +917,118 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <h4>AsciiDoc テンプレート</h4>
 
 <table>
-<tr>
-<td>依存</td>
+ <tr>
+   <td>依存</td>
    <td><a href="http://asciidoctor.org/" title="Asciidoctor">Asciidoctor</a></td>
  </tr>
-<tr>
-<td>ファイル拡張子</td>
+ <tr>
+   <td>ファイル拡張子</td>
    <td>
 <tt>.asciidoc</tt>, <tt>.adoc</tt> and <tt>.ad</tt>
 </td>
  </tr>
-<tr>
-<td>例</td>
+ <tr>
+   <td>例</td>
    <td><tt>asciidoc :README, :layout_engine =&gt; :erb</tt></td>
  </tr>
 </table>
+
 <p>AsciiDocテンプレートからRubyのメソッドを直接呼び出すことができないため、ほぼ全ての場合にlocalsを指定する必要があるでしょう。</p>
 
 <a name='Radius%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>Radius テンプレート</h4>
 
 <table>
-<tr>
-<td>依存</td>
-    <td><a href="http://radius.rubyforge.org/" title="Radius">Radius</a></td>
+  <tr>
+    <td>依存</td>
+    <td><a href="https://github.com/jlong/radius" title="Radius">Radius</a></td>
   </tr>
-<tr>
-<td>ファイル拡張子</td>
+  <tr>
+    <td>ファイル拡張子</td>
     <td><tt>.radius</tt></td>
   </tr>
-<tr>
-<td>例</td>
+  <tr>
+    <td>例</td>
     <td><tt>radius :index, :locals =&gt; { :key =&gt; 'value' }</tt></td>
   </tr>
 </table>
+
 <p>RadiusテンプレートからRubyのメソッドを直接呼び出すことができないため、ほぼ全ての場合にlocalsを指定する必要があるでしょう。</p>
 
 <a name='Markaby%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>Markaby テンプレート</h4>
 
 <table>
-<tr>
-<td>依存</td>
+  <tr>
+    <td>依存</td>
     <td><a href="http://markaby.github.com/" title="Markaby">Markaby</a></td>
   </tr>
-<tr>
-<td>ファイル拡張子</td>
+  <tr>
+    <td>ファイル拡張子</td>
     <td><tt>.mab</tt></td>
   </tr>
-<tr>
-<td>例</td>
+  <tr>
+    <td>例</td>
     <td><tt>markaby { h1 "Welcome!" }</tt></td>
   </tr>
 </table>
+
 <p>インラインテンプレート用にブロックを取ることもできます（例を参照）。</p>
 
 <a name='RABL%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>RABL テンプレート</h4>
 
 <table>
-<tr>
-<td>依存</td>
+  <tr>
+    <td>依存</td>
     <td><a href="https://github.com/nesquena/rabl" title="Rabl">Rabl</a></td>
   </tr>
-<tr>
-<td>ファイル拡張子</td>
+  <tr>
+    <td>ファイル拡張子</td>
     <td><tt>.rabl</tt></td>
   </tr>
-<tr>
-<td>例</td>
+  <tr>
+    <td>例</td>
     <td><tt>rabl :index</tt></td>
   </tr>
 </table>
+
 <a name='Slim%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>Slim テンプレート</h4>
 
 <table>
-<tr>
-<td>依存</td>
+  <tr>
+    <td>依存</td>
     <td><a href="http://slim-lang.com/" title="Slim Lang">Slim Lang</a></td>
   </tr>
-<tr>
-<td>ファイル拡張子</td>
+  <tr>
+    <td>ファイル拡張子</td>
     <td><tt>.slim</tt></td>
   </tr>
-<tr>
-<td>例</td>
+  <tr>
+    <td>例</td>
     <td><tt>slim :index</tt></td>
   </tr>
 </table>
+
 <a name='Creole%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>Creole テンプレート</h4>
 
 <table>
-<tr>
-<td>依存</td>
+  <tr>
+    <td>依存</td>
     <td><a href="https://github.com/minad/creole" title="Creole">Creole</a></td>
   </tr>
-<tr>
-<td>ファイル拡張子</td>
+  <tr>
+    <td>ファイル拡張子</td>
     <td><tt>.creole</tt></td>
   </tr>
-<tr>
-<td>例</td>
+  <tr>
+    <td>例</td>
     <td><tt>creole :wiki, :layout_engine =&gt; :erb</tt></td>
   </tr>
 </table>
+
 <p>Creoleからメソッドを呼び出すことも、localsに変数を渡すこともできません。
 それゆえ、他のレンダリングエンジンとの組み合わせで使うのが普通です。</p>
 
@@ -1036,21 +1055,22 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <h4>MediaWiki テンプレート</h4>
 
 <table>
-<tr>
-<td>依存</td>
+  <tr>
+    <td>依存</td>
     <td><a href="https://github.com/nricciar/wikicloth" title="WikiCloth">WikiCloth</a></td>
   </tr>
-<tr>
-<td>ファイル拡張子</td>
+  <tr>
+    <td>ファイル拡張子</td>
     <td>
 <tt>.mediawiki</tt> および <tt>.mw</tt>
 </td>
   </tr>
-<tr>
-<td>例</td>
+  <tr>
+    <td>例</td>
     <td><tt>mediawiki :wiki, :layout_engine =&gt; :erb</tt></td>
   </tr>
 </table>
+
 <p>MediaWikiのテンプレートは直接メソッドから呼び出したり、ローカル変数を通すことはできません。それゆえに、通常は別のレンダリングエンジンと組み合わせて利用します。</p>
 
 <div>
@@ -1066,8 +1086,8 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <h4>CoffeeScript テンプレート</h4>
 
 <table>
-<tr>
-<td>依存</td>
+  <tr>
+    <td>依存</td>
     <td>
       <a href="https://github.com/josh/ruby-coffee-script" title="Ruby CoffeeScript">
         CoffeeScript
@@ -1077,21 +1097,22 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
       </a>
     </td>
   </tr>
-<tr>
-<td>ファイル拡張子</td>
+  <tr>
+    <td>ファイル拡張子</td>
     <td><tt>.coffee</tt></td>
   </tr>
-<tr>
-<td>例</td>
+  <tr>
+    <td>例</td>
     <td><tt>coffee :index</tt></td>
   </tr>
 </table>
+
 <a name='Stylus%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>Stylus テンプレート</h4>
 
 <table>
-<tr>
-<td>依存</td>
+  <tr>
+    <td>依存</td>
     <td>
       <a href="https://github.com/lucasmazza/ruby-stylus" title="Ruby Stylus">
         Stylus
@@ -1101,15 +1122,16 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
       </a>
     </td>
   </tr>
-<tr>
-<td>ファイル拡張子</td>
+  <tr>
+    <td>ファイル拡張子</td>
     <td><tt>.styl</tt></td>
   </tr>
-<tr>
-<td>例</td>
+  <tr>
+    <td>例</td>
     <td><tt>stylus :index</tt></td>
   </tr>
 </table>
+
 <p>Stylusテンプレートを使えるようにする前に、まず<code>stylus</code>と<code>stylus/tilt</code>を読み込む必要があります。</p>
 
 <div>
@@ -1129,16 +1151,16 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <h4>Yajl テンプレート</h4>
 
 <table>
-<tr>
-<td>依存</td>
+  <tr>
+    <td>依存</td>
     <td><a href="https://github.com/brianmario/yajl-ruby" title="yajl-ruby">yajl-ruby</a></td>
   </tr>
-<tr>
-<td>ファイル拡張子</td>
+  <tr>
+    <td>ファイル拡張子</td>
     <td><tt>.yajl</tt></td>
   </tr>
-<tr>
-<td>例</td>
+  <tr>
+    <td>例</td>
     <td>
       <tt>
         yajl :index,
@@ -1149,6 +1171,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
     </td>
   </tr>
 </table>
+
 <p>テンプレートのソースはRubyの文字列として評価され、その結果のJSON変数は<code>#to_json</code>を使って変換されます。</p>
 
 <div>
@@ -1172,19 +1195,20 @@ json[<span style="color:#A60">:baz</span>] = key
 <h4>WLang テンプレート</h4>
 
 <table>
-<tr>
-<td>依存</td>
+  <tr>
+    <td>依存</td>
     <td><a href="https://github.com/blambeau/wlang/" title="wlang">wlang</a></td>
   </tr>
-<tr>
-<td>ファイル拡張子</td>
+  <tr>
+    <td>ファイル拡張子</td>
     <td><tt>.wlang</tt></td>
   </tr>
-<tr>
-<td>例</td>
+  <tr>
+    <td>例</td>
     <td><tt>wlang :index, :locals =&gt; { :key =&gt; 'value' }</tt></td>
   </tr>
 </table>
+
 <p>WLang内でのRubyメソッドの呼び出しは一般的ではないので、ほとんどの場合にlocalsを指定する必要があるでしょう。しかしながら、WLangで書かれたレイアウトは<code>yield</code>をサポートしています。</p>
 
 <a name='%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E5%86%85%E3%81%A7%E3%81%AE%E5%A4%89%E6%95%B0%E3%81%B8%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9'></a>
@@ -1195,7 +1219,7 @@ json[<span style="color:#A60">:baz</span>] = key
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:id</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#33B">@foo</span> = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="color:#A60">:id</span>])
+  <span style="color:#33B">@foo</span> = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">id</span><span style="color:#710">'</span></span>])
   haml <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">%h1= @foo.name</span><span style="color:#710">'</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
@@ -1207,7 +1231,7 @@ json[<span style="color:#A60">:baz</span>] = key
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:id</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  foo = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="color:#A60">:id</span>])
+  foo = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">id</span><span style="color:#710">'</span></span>])
   haml <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">%h1= bar.name</span><span style="color:#710">'</span></span>, <span style="color:#A60">:locals</span> =&gt; { <span style="color:#A60">:bar</span> =&gt; foo }
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
@@ -1369,7 +1393,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo/*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#33B">@note</span> <span style="color:#777">#=&gt; 'Hi!'</span>
-  params[<span style="color:#A60">:splat</span>] <span style="color:#777">#=&gt; 'bar/baz'</span>
+  params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">splat</span><span style="color:#710">'</span></span>] <span style="color:#777">#=&gt; 'bar/baz'</span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -1432,7 +1456,7 @@ after <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#7
 <span style="color:#080;font-weight:bold">end</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:name</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  bar(params[<span style="color:#A60">:name</span>])
+  bar(params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">name</span><span style="color:#710">'</span></span>])
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -1471,7 +1495,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <span style="color:#080;font-weight:bold">end</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:value</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  session[<span style="color:#A60">:value</span>] = params[<span style="color:#A60">:value</span>]
+  session[<span style="color:#A60">:value</span>] = params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">value</span><span style="color:#710">'</span></span>]
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -1488,7 +1512,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <span style="color:#080;font-weight:bold">end</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:value</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  session[<span style="color:#A60">:value</span>] = params[<span style="color:#A60">:value</span>]
+  session[<span style="color:#A60">:value</span>] = params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">value</span><span style="color:#710">'</span></span>]
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -1586,7 +1610,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/guess/:who</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  pass <span style="color:#080;font-weight:bold">unless</span> params[<span style="color:#A60">:who</span>] == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Frank</span><span style="color:#710">'</span></span>
+  pass <span style="color:#080;font-weight:bold">unless</span> params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">who</span><span style="color:#710">'</span></span>] == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Frank</span><span style="color:#710">'</span></span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">見つかっちゃった!</span><span style="color:#710">"</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 
@@ -1696,19 +1720,17 @@ connections = []
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/subscribe</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># サーバイベントにおけるクライアントの関心を登録</span>
-  stream(<span style="color:#A60">:keep_open</span>) { |out| connections &lt;&lt; out }
-
-  <span style="color:#777"># 死んでいるコネクションを排除</span>
-  connections.reject!(&amp;<span style="color:#A60">:closed?</span>)
-
-  <span style="color:#777"># 肯定応答</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">subscribed</span><span style="color:#710">"</span></span>
+  stream(<span style="color:#A60">:keep_open</span>) <span style="color:#080;font-weight:bold">do</span> |out|
+    connections &lt;&lt; out
+    <span style="color:#777"># 死んでいるコネクションを排除</span>
+    connections.reject!(&amp;<span style="color:#A60">:closed?</span>)
+  <span style="color:#080;font-weight:bold">end</span>
 <span style="color:#080;font-weight:bold">end</span>
 
 post <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/message</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   connections.each <span style="color:#080;font-weight:bold">do</span> |out|
     <span style="color:#777"># クライアントへ新規メッセージ到着の通知</span>
-    out &lt;&lt; params[<span style="color:#A60">:message</span>] &lt;&lt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#b0b">\n</span><span style="color:#710">"</span></span>
+    out &lt;&lt; params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">message</span><span style="color:#710">'</span></span>] &lt;&lt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#b0b">\n</span><span style="color:#710">"</span></span>
 
     <span style="color:#777"># クライアントへの再接続の指示</span>
     out.close
@@ -1906,7 +1928,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/article/:id</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#33B">@article</span> = <span style="color:#036;font-weight:bold">Article</span>.find params[<span style="color:#A60">:id</span>]
+  <span style="color:#33B">@article</span> = <span style="color:#036;font-weight:bold">Article</span>.find params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">id</span><span style="color:#710">'</span></span>]
   last_modified <span style="color:#33B">@article</span>.updated_at
   etag <span style="color:#33B">@article</span>.sha1
   erb <span style="color:#A60">:article</span>
@@ -1992,7 +2014,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>オプション一覧</p>
 
 <dl>
-<dt>filename</dt>
+  <dt>filename</dt>
     <dd>ファイル名。デフォルトは実際のファイル名。</dd>
 
   <dt>last_modified</dt>
@@ -2017,8 +2039,9 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
       Rackハンドラでサポートされている場合は、Rubyプロセスからのストリーミング以外の手段が使われる。このヘルパーメソッドを使うと、Sinatraは自動で範囲リクエスト(range requests)を扱う。
     </dd>
 </dl>
+
 <a name='%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%B8%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9'></a>
-<h2>リクエストオブジェクトへのアクセス</h2>
+<h3>リクエストオブジェクトへのアクセス</h3>
 
 <p>受信するリクエストオブジェクトは、<code>request</code>メソッドを通じてリクエストレベル(フィルタ、ルーティング、エラーハンドラ)からアクセスすることができます。</p>
 
@@ -2308,7 +2331,7 @@ set <span style="color:#A60">:protection</span>, <span style="color:#A60">:sessi
 <h3>利用可能な設定</h3>
 
 <dl>
-<dt>absolute_redirects</dt>
+  <dt>absolute_redirects</dt>
   <dd>
     無効のとき、Sinatraは相対リダイレクトを許容するが、RFC 2616 (HTTP 1.1)は絶対リダイレクトのみを許容するので、これには準拠しなくなる。
   </dd>
@@ -2317,10 +2340,10 @@ set <span style="color:#A60">:protection</span>, <span style="color:#A60">:sessi
   </dd>
   <dd>デフォルトは無効。</dd>
 
-  <dt>add_charsets</dt>
+  <dt>add_charset</dt>
   <dd>
     Mimeタイプ <tt>content_type</tt>ヘルパーが自動的にキャラクタセット情報をここに追加する。このオプションは書き換えるのではなく、値を追加するようにすること。
-    <tt>settings.add_charsets &lt;&lt; "application/foobar"</tt>
+    <tt>settings.add_charset &lt;&lt; "application/foobar"</tt>
   </dd>
 
   <dt>app_file</dt>
@@ -2449,6 +2472,7 @@ set <span style="color:#A60">:protection</span>, <span style="color:#A60">:sessi
     マッチするルーティングが無い場合に、X-Cascadeヘッダをセットするか否かの設定。デフォルトは<tt>true</tt>。
   </dd>
 </dl>
+
 <a name='%E7%92%B0%E5%A2%83%E8%A8%AD%E5%AE%9A(Environments)'></a>
 <h2>環境設定(Environments)</h2>
 
@@ -2505,7 +2529,7 @@ set <span style="color:#A60">:protection</span>, <span style="color:#A60">:sessi
 <div>
 <div class="CodeRay">
   <div class="code"><pre>error <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">エラーが発生しました。 - </span><span style="color:#710">'</span></span> + env[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra.error</span><span style="color:#710">'</span></span>].name
+  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">エラーが発生しました。 - </span><span style="color:#710">'</span></span> + env[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra.error</span><span style="color:#710">'</span></span>].message
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -2569,7 +2593,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <a name='Rack%E3%83%9F%E3%83%89%E3%83%AB%E3%82%A6%E3%82%A7%E3%82%A2(Rack%20Middleware)'></a>
 <h2>Rackミドルウェア(Rack Middleware)</h2>
 
-<p>SinatraはRuby製Webフレームワークのミニマルな標準的インタフェースである<a href="http://rack.rubyforge.org/">Rack</a>上に構築されています。アプリケーションデベロッパーにとってRackにおける最も興味深い機能は、「ミドルウェア(middleware)」をサポートしていることであり、これは、サーバとアプリケーションとの間に置かれ、HTTPリクエスト/レスポンスを監視および/または操作することで、各種の汎用的機能を提供するコンポーネントです。</p>
+<p>SinatraはRuby製Webフレームワークのミニマルな標準的インタフェースである<a href="http://rack.github.io/">Rack</a>上に構築されています。アプリケーションデベロッパーにとってRackにおける最も興味深い機能は、「ミドルウェア(middleware)」をサポートしていることであり、これは、サーバとアプリケーションとの間に置かれ、HTTPリクエスト/レスポンスを監視および/または操作することで、各種の汎用的機能を提供するコンポーネントです。</p>
 
 <p>Sinatraはトップレベルの<code>use</code>メソッドを通して、Rackミドルウェアパイプラインの構築を楽にします。</p>
 
@@ -2588,7 +2612,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p><code>use</code>の文法は、<a href="http://rack.rubyforge.org/doc/classes/Rack/Builder.html">Rack::Builder</a>DSLで定義されているそれ（rackupファイルで最もよく使われる）と同じです。例えば <code>use</code>メソッドは複数の引数、そしてブロックも取ることができます。</p>
+<p><code>use</code>の文法は、<a href="http://rubydoc.info/github/rack/rack/master/Rack/Builder">Rack::Builder</a>DSLで定義されているそれ（rackupファイルで最もよく使われる）と同じです。例えば <code>use</code>メソッドは複数の引数、そしてブロックも取ることができます。</p>
 
 <div>
 <div class="CodeRay">
@@ -2615,10 +2639,10 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <div>
 <div class="CodeRay">
   <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">my_sinatra_app</span><span style="color:#710">'</span></span>
-require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">test/unit</span><span style="color:#710">'</span></span>
+require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">minitest/autorun</span><span style="color:#710">'</span></span>
 require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rack/test</span><span style="color:#710">'</span></span>
 
-<span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyAppTest</span> &lt; <span style="color:#036;font-weight:bold">Test</span>::<span style="color:#036;font-weight:bold">Unit</span>::<span style="color:#036;font-weight:bold">TestCase</span>
+<span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyAppTest</span> &lt; <span style="color:#036;font-weight:bold">Minitest</span>::<span style="color:#036;font-weight:bold">Test</span>
   include <span style="color:#036;font-weight:bold">Rack</span>::<span style="color:#036;font-weight:bold">Test</span>::<span style="color:#036;font-weight:bold">Methods</span>
 
   <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">app</span>
@@ -2670,11 +2694,12 @@ require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:
 <p><code>Sinatra::Base</code>のサブクラスで利用できるメソッドは、トップレベルDSLで利用できるものと全く同じです。ほとんどのトップレベルで記述されたアプリは、以下の２点を修正することで<code>Sinatra::Base</code>コンポーネントに変えることができます。</p>
 
 <ul>
-<li>
+  <li>
 <code>sinatra</code>の代わりに<code>sinatra/base</code>を読み込む
 (そうしない場合、SinatraのDSLメソッドの全てがmainの名前空間にインポートされます)</li>
   <li>ルーティング、エラーハンドラ、フィルタ、オプションを<code>Sinatra::Base</code>のサブクラスに書く</li>
 </ul>
+
 <p><code>Sinatra::Base</code>はまっさらです。ビルトインサーバを含む、ほとんどのオプションがデフォルトで無効になっています。利用可能なオプションとその挙動の詳細については<a href="http://sinatra.github.com/configuration.html">Configuring Settings</a>(英語)をご覧下さい。</p>
 
 <p>もしもクラシックスタイルと同じような挙動のアプリケーションをトップレベルで定義させる必要があれば、<code>Sinatra::Application</code>をサブクラス化させてください。</p>
@@ -2702,49 +2727,56 @@ require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:
 <p>一方のスタイルから他方へ移行する場合、デフォルト設定がわずかに異なる点に注意が必要です。</p>
 
 <table>
-<tr>
-<th>設定</th>
+  <tr>
+    <th>設定</th>
     <th>クラッシック</th>
     <th>モジュラー</th>
     <th>モジュラー</th>
   </tr>
-<tr>
-<td>app_file</td>
+
+  <tr>
+    <td>app_file</td>
     <td>sinatraを読み込むファイル</td>
     <td>Sinatra::Baseをサブクラス化したファイル</td>
     <td>Sinatra::Applicationをサブクラス化したファイル</td>
   </tr>
-<tr>
-<td>run</td>
+
+  <tr>
+    <td>run</td>
     <td>$0 == app_file</td>
     <td>false</td>
     <td>false</td>
   </tr>
-<tr>
-<td>logging</td>
+
+  <tr>
+    <td>logging</td>
     <td>true</td>
     <td>false</td>
     <td>true</td>
   </tr>
-<tr>
-<td>method_override</td>
+
+  <tr>
+    <td>method_override</td>
     <td>true</td>
     <td>false</td>
     <td>true</td>
   </tr>
-<tr>
-<td>inline_templates</td>
+
+  <tr>
+    <td>inline_templates</td>
     <td>true</td>
     <td>false</td>
     <td>true</td>
   </tr>
-<tr>
-<td>static</td>
+
+  <tr>
+    <td>static</td>
     <td>true</td>
     <td>false</td>
     <td>true</td>
   </tr>
 </table>
+
 <a name='%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%A9%E3%83%BC%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E6%8F%90%E4%BE%9B'></a>
 <h3>モジュラーアプリケーションの提供</h3>
 
@@ -2827,11 +2859,12 @@ run <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color
 <p><code>config.ru</code>ファイルは、以下の場合に適しています。</p>
 
 <ul>
-<li>異なるRackハンドラ(Passenger, Unicorn, Herokuなど)でデプロイしたいとき</li>
+  <li>異なるRackハンドラ(Passenger, Unicorn, Herokuなど)でデプロイしたいとき</li>
   <li>
 <code>Sinatra::Base</code>の複数のサブクラスを使いたいとき</li>
   <li>Sinatraをミドルウェアとして利用し、エンドポイントとしては利用しないとき</li>
 </ul>
+
 <p><strong>モジュラースタイルに移行したという理由だけで、<code>config.ru</code>に移行する必要はなく、<code>config.ru</code>で起動するためにモジュラースタイルを使う必要はありません。</strong></p>
 
 <a name='Sinatra%E3%81%AE%E3%83%9F%E3%83%89%E3%83%AB%E3%82%A6%E3%82%A7%E3%82%A2%E3%81%A8%E3%81%97%E3%81%A6%E3%81%AE%E5%88%A9%E7%94%A8'></a>
@@ -2852,8 +2885,8 @@ run <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color
   get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/login</span><span style="color:#710">'</span></span>) { haml <span style="color:#A60">:login</span> }
 
   post(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/login</span><span style="color:#710">'</span></span>) <span style="color:#080;font-weight:bold">do</span>
-    <span style="color:#080;font-weight:bold">if</span> params[<span style="color:#A60">:name</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">admin</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">and</span> params[<span style="color:#A60">:password</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">admin</span><span style="color:#710">'</span></span>
-      session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">user_name</span><span style="color:#710">'</span></span>] = params[<span style="color:#A60">:name</span>]
+    <span style="color:#080;font-weight:bold">if</span> params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">name</span><span style="color:#710">'</span></span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">admin</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">and</span> params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">password</span><span style="color:#710">'</span></span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">admin</span><span style="color:#710">'</span></span>
+      session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">user_name</span><span style="color:#710">'</span></span>] = params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">name</span><span style="color:#710">'</span></span>]
     <span style="color:#080;font-weight:bold">else</span>
       redirect <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/login</span><span style="color:#710">'</span></span>
     <span style="color:#080;font-weight:bold">end</span>
@@ -2964,7 +2997,7 @@ run <span style="color:#036;font-weight:bold">RailsProject</span>::<span style="
 <p>次の場所ではアプリケーションスコープバインディングを持ちます。</p>
 
 <ul>
-<li>アプリケーションクラス本体</li>
+  <li>アプリケーションクラス本体</li>
   <li>拡張によって定義されたメソッド</li>
   <li>
 <code>helpers</code>に渡されたブロック</li>
@@ -2973,13 +3006,15 @@ run <span style="color:#036;font-weight:bold">RailsProject</span>::<span style="
   <li>
 <code>Sinatra.new</code>に渡されたブロック</li>
 </ul>
+
 <p>このスコープオブジェクト(クラス)は次のように利用できます。</p>
 
 <ul>
-<li>configureブロックに渡されたオブジェクト経由(<code>configure { |c| ... }</code>)</li>
+  <li>configureブロックに渡されたオブジェクト経由(<code>configure { |c| ... }</code>)</li>
   <li>リクエストスコープの中での<code>settings</code>
 </li>
 </ul>
+
 <a name='%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88/%E3%82%A4%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%B3%E3%82%B9%E3%81%AE%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97'></a>
 <h3>リクエスト/インスタンスのスコープ</h3>
 
@@ -2995,8 +3030,8 @@ run <span style="color:#036;font-weight:bold">RailsProject</span>::<span style="
     <span style="color:#777"># '/define_route/:name'のためのリクエストスコープ</span>
     <span style="color:#33B">@value</span> = <span style="color:#00D">42</span>
 
-    settings.get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">/</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:name</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">"</span></span>) <span style="color:#080;font-weight:bold">do</span>
-      <span style="color:#777"># "/#{params[:name]}"のためのリクエストスコープ</span>
+    settings.get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">/</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">name</span><span style="color:#710">'</span></span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">"</span></span>) <span style="color:#080;font-weight:bold">do</span>
+      <span style="color:#777"># "/#{params['name']}"のためのリクエストスコープ</span>
       <span style="color:#33B">@value</span> <span style="color:#777"># =&gt; nil (not the same request)</span>
     <span style="color:#080;font-weight:bold">end</span>
 
@@ -3010,11 +3045,12 @@ run <span style="color:#036;font-weight:bold">RailsProject</span>::<span style="
 <p>次の場所ではリクエストスコープバインディングを持ちます。</p>
 
 <ul>
-<li>get/head/post/put/delete/options/patch/link/unlink ブロック</li>
+  <li>get/head/post/put/delete/options/patch/link/unlink ブロック</li>
   <li>before/after フィルタ</li>
   <li>helper メソッド</li>
   <li>テンプレート/ビュー</li>
 </ul>
+
 <a name='%E3%83%87%E3%83%AA%E3%82%B2%E3%83%BC%E3%83%88%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97'></a>
 <h3>デリゲートスコープ</h3>
 
@@ -3027,10 +3063,11 @@ run <span style="color:#036;font-weight:bold">RailsProject</span>::<span style="
 <p>次の場所ではデリゲートスコープを持ちます。</p>
 
 <ul>
-<li>もし<code>require "sinatra"</code>しているならば、トップレベルバインディング</li>
+  <li>もし<code>require "sinatra"</code>しているならば、トップレベルバインディング</li>
   <li>
 <code>Sinatra::Delegator</code> mixinでextendされたオブジェクト</li>
 </ul>
+
 <p>コードをご覧ください: ここでは <a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/base.rb#L1609-1633">Sinatra::Delegator
 mixin</a>は<a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/main.rb#L28-30">mainオブジェクトにextendされています</a>。</p>
 
@@ -3062,7 +3099,7 @@ mixin</a>は<a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra
 <p>次のRubyバージョンが公式にサポートされています。</p>
 
 <dl>
-<dt>Ruby 1.8.7</dt>
+  <dt>Ruby 1.8.7</dt>
   <dd>
     1.8.7は完全にサポートされていますが、特にそれでなければならないという理由がないのであれば、アップグレードまたはJRubyまたはRubiniusへの移行を薦めます。1.8.7のサポートがSinatra 2.0の前に終わることはないでしょう。Ruby 1.8.6はサポート対象外です。
   </dd>
@@ -3094,16 +3131,18 @@ mixin</a>は<a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra
     <tt>gem install trinidad</tt>することが推奨されています。
   </dd>
 </dl>
+
 <p>開発チームは常に最新となるRubyバージョンに注視しています。</p>
 
 <p>次のRuby実装は公式にはサポートされていませんが、Sinatraが起動すると報告されています。</p>
 
 <ul>
-<li>JRubyとRubiniusの古いバージョン</li>
+  <li>JRubyとRubiniusの古いバージョン</li>
   <li>Ruby Enterprise Edition</li>
   <li>MacRuby, Maglev, IronRuby</li>
   <li>Ruby 1.9.0と1.9.1 (これらの使用はお薦めしません)</li>
 </ul>
+
 <p>公式サポートをしないという意味は、問題がそこだけで起こり、サポートされているプラットフォーム上では起きない場合に、開発チームはそれはこちら側の問題ではないとみなすということです。</p>
 
 <p>開発チームはまた、ruby-head(最新となる2.1.0)に対しCIを実行していますが、それが一貫して動くようになるまで何も保証しません。2.1.0が完全にサポートされればその限りではありません。</p>
@@ -3224,7 +3263,7 @@ rake install
 <h2>参考文献</h2>
 
 <ul>
-<li>
+  <li>
 <a href="http://sinatra.github.com/">プロジェクトサイト</a> - ドキュメント、ニュース、他のリソースへのリンクがあります。</li>
   <li>
 <a href="http://sinatra.github.com/contributing.html">プロジェクトに参加(貢献)する</a> - バグレポート パッチの送信、サポートなど</li>
@@ -3234,7 +3273,7 @@ rake install
   <li>http://freenode.net上のIRC: <a href="irc://chat.freenode.net/#sinatra">#sinatra</a>
 </li>
   <li>
-<a href="http://sinatra-book.gittr.com">Sinatra Book</a> クックブック、チュートリアル</li>
+<a href="https://github.com/sinatra/sinatra-book/">Sinatra Book</a> クックブック、チュートリアル</li>
   <li>
 <a href="http://recipes.sinatrarb.com/">Sinatra Recipes</a> コミュニティによるレシピ集</li>
   <li>http://rubydoc.info上のAPIドキュメント: <a href="http://rubydoc.info/gems/sinatra">最新版(latest release)用</a>または<a href="http://rubydoc.info/github/sinatra/sinatra">現在のHEAD用</a>
