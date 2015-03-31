@@ -2,12 +2,13 @@
 <h1 id="label-Sinatra%3A%3AExtension">Sinatra::Extension<span><a href="#label-Sinatra%3A%3AExtension">&para;</a> <a href="#documentation">&uarr;</a></span></h1>
 
 <p><code>Sinatra::Extension</code> is a mixin that provides some syntactic
-sugar for your extensions.  It allows you to call directly inside your
-extension module almost any <code>Sinatra::Base</code> method.  This means
-you can use <code>get</code> to define a route, <code>before</code> to
-define a before filter, <code>set</code> to define a setting, a so on.</p>
+sugar for your extensions. It allows you to call almost any
+<code>Sinatra::Base</code> method directly inside your extension module.
+This means you can use <code>get</code> to define a route,
+<code>before</code> to define a before filter, <code>set</code> to define a
+setting and so on.</p>
 
-<p>Is important to be aware that this mixin remembers the methods calls you
+<p>Is important to be aware that this mixin remembers the method calls you
 make, and then, when your extension is registered, replays them on the
 Sinatra application that has been extended.  In order to do that, it
 defines a <code>registered</code> method, so, if your extension defines one

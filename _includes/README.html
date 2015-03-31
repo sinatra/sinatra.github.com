@@ -39,6 +39,7 @@
 			<li><a href='#Named%20Templates'>Named Templates</a></li>
 			<li><a href='#Associating%20File%20Extensions'>Associating File Extensions</a></li>
 			<li><a href='#Adding%20Your%20Own%20Template%20Engine'>Adding Your Own Template Engine</a></li>
+			<li><a href='#Using%20Custom%20Logic%20for%20Template%20Lookup'>Using Custom Logic for Template Lookup</a></li>
 		</ol>
 		<li><a href='#Filters'>Filters</a></li>
 		<li><a href='#Helpers'>Helpers</a></li>
@@ -143,6 +144,8 @@ pick up if available.</p>
 
 
 
+
+
 <a name='Routes'></a>
 <h2>Routes</h2>
 
@@ -196,8 +199,8 @@ matches the request is invoked.</p>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/hello/:name</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># matches "GET /hello/foo" and "GET /hello/bar"</span>
-  <span style="color:#777"># params[:name] is 'foo' or 'bar'</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hello </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:name</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
+  <span style="color:#777"># params['name'] is 'foo' or 'bar'</span>
+  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hello </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">name</span><span style="color:#710">'</span></span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -209,8 +212,8 @@ matches the request is invoked.</p>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/hello/:name</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span> |n|
   <span style="color:#777"># matches "GET /hello/foo" and "GET /hello/bar"</span>
-  <span style="color:#777"># params[:name] is 'foo' or 'bar'</span>
-  <span style="color:#777"># n stores params[:name]</span>
+  <span style="color:#777"># params['name'] is 'foo' or 'bar'</span>
+  <span style="color:#777"># n stores params['name']</span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hello </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>n<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
@@ -218,18 +221,18 @@ matches the request is invoked.</p>
 </div>
 
 <p>Route patterns may also include splat (or wildcard) parameters, accessible
-via the <code>params[:splat]</code> array:</p>
+via the <code>params['splat']</code> array:</p>
 
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/say/*/to/*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># matches /say/hello/to/world</span>
-  params[<span style="color:#A60">:splat</span>] <span style="color:#777"># =&gt; ["hello", "world"]</span>
+  params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">splat</span><span style="color:#710">'</span></span>] <span style="color:#777"># =&gt; ["hello", "world"]</span>
 <span style="color:#080;font-weight:bold">end</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/download/*.*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># matches /download/path/to/file.xml</span>
-  params[<span style="color:#A60">:splat</span>] <span style="color:#777"># =&gt; ["path/to/file", "xml"]</span>
+  params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">splat</span><span style="color:#710">'</span></span>] <span style="color:#777"># =&gt; ["path/to/file", "xml"]</span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -250,8 +253,8 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">%r{</span><span style="color:#808">/hello/([</span><span style="color:#D20">\w</span><span style="color:#808">]+)</span><span style="color:#404">}</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hello, </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:captures</span>].first<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
+  <div class="code"><pre>get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#D20">\A</span><span style="color:#D20">\/</span><span style="color:#808">hello</span><span style="color:#D20">\/</span><span style="color:#808">([</span><span style="color:#D20">\w</span><span style="color:#808">]+)</span><span style="color:#D20">\z</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
+  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hello, </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">captures</span><span style="color:#710">'</span></span>].first<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -262,6 +265,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">%r{</span><span style="color:#808">/hello/([</span><span style="color:#D20">\w</span><span style="color:#808">]+)</span><span style="color:#404">}</span></span> <span style="color:#080;font-weight:bold">do</span> |c|
+  <span style="color:#777"># Matches "GET /meta/hello/world", "GET /hello/world/1234" etc.</span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hello, </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>c<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
@@ -285,8 +289,8 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/posts</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># matches "GET /posts?title=foo&amp;author=bar"</span>
-  title = params[<span style="color:#A60">:title</span>]
-  author = params[<span style="color:#A60">:author</span>]
+  title = params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">title</span><span style="color:#710">'</span></span>]
+  author = params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">author</span><span style="color:#710">'</span></span>]
   <span style="color:#777"># uses title and author variables; query is optional to the /posts route</span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
@@ -304,7 +308,7 @@ the request path might be modified before matching against your routes.</p>
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span>, <span style="color:#A60">:agent</span> =&gt; <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">Songbird (</span><span style="color:#D20">\d</span><span style="color:#D20">\.</span><span style="color:#D20">\d</span><span style="color:#808">)[</span><span style="color:#D20">\d</span><span style="color:#D20">\/</span><span style="color:#808">]*?</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">You're using Songbird version </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:agent</span>][<span style="color:#00D">0</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">"</span></span>
+  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">You're using Songbird version </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">agent</span><span style="color:#710">'</span></span>][<span style="color:#00D">0</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">"</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
@@ -332,6 +336,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </pre></div>
 </div>
 </div>
+<p><code>provides</code> searches the request’s Accept header.</p>
 
 <p>You can easily define your own conditions:</p>
 
@@ -385,7 +390,7 @@ also accepted.</p>
 body object or HTTP status code:</p>
 
 <ul>
-<li>An Array with three elements: <code>[status (Fixnum), headers (Hash), response
+  <li>An Array with three elements: <code>[status (Fixnum), headers (Hash), response
 body (responds to #each)]</code>
 </li>
   <li>An Array with two elements: <code>[status (Fixnum), response body (responds to
@@ -395,6 +400,7 @@ body (responds to #each)]</code>
 the given block</li>
   <li>A Fixnum representing the status code</li>
 </ul>
+
 <p>That way we can, for instance, easily implement a streaming example:</p>
 
 <div>
@@ -564,7 +570,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Available Options:</p>
 
 <dl>
-<dt>locals</dt>
+  <dt>locals</dt>
   <dd>
     List of locals passed to the document. Handy with partials.
     Example: <tt>erb "&lt;%= foo %&gt;", :locals =&gt; {:foo =&gt; "bar"}</tt>
@@ -583,8 +589,9 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
   <dt>layout</dt>
   <dd>
-    Whether to use a layout (<tt>true</tt> or <tt>false</tt>). If it's a Symbol, specifies
-    what template to use. Example: <tt>erb :index, :layout =&gt; !request.xhr?</tt>
+    Whether to use a layout (<tt>true</tt> or <tt>false</tt>). If it's a
+    Symbol, specifies what template to use. Example:
+    <tt>erb :index, :layout =&gt; !request.xhr?</tt>
   </dd>
 
   <dt>content_type</dt>
@@ -611,6 +618,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
     <tt>set :rdoc, :layout_options =&gt; { :views =&gt; 'views/layouts' }</tt>
   </dd>
 </dl>
+
 <p>Templates are assumed to be located directly under the <code>./views</code> directory. To
 use a different views directory:</p>
 
@@ -659,148 +667,156 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <h4>Haml Templates</h4>
 
 <table>
-<tr>
-<td>Dependency</td>
+  <tr>
+    <td>Dependency</td>
     <td><a href="http://haml.info/" title="haml">haml</a></td>
   </tr>
-<tr>
-<td>File Extension</td>
+  <tr>
+    <td>File Extension</td>
     <td><tt>.haml</tt></td>
   </tr>
-<tr>
-<td>Example</td>
+  <tr>
+    <td>Example</td>
     <td><tt>haml :index, :format =&gt; :html5</tt></td>
   </tr>
 </table>
+
 <a name='Erb%20Templates'></a>
 <h4>Erb Templates</h4>
 
 <table>
-<tr>
-<td>Dependency</td>
+  <tr>
+    <td>Dependency</td>
     <td>
       <a href="http://www.kuwata-lab.com/erubis/" title="erubis">erubis</a>
       or erb (included in Ruby)
     </td>
   </tr>
-<tr>
-<td>File Extensions</td>
+  <tr>
+    <td>File Extensions</td>
     <td>
 <tt>.erb</tt>, <tt>.rhtml</tt> or <tt>.erubis</tt> (Erubis only)</td>
   </tr>
-<tr>
-<td>Example</td>
+  <tr>
+    <td>Example</td>
     <td><tt>erb :index</tt></td>
   </tr>
 </table>
+
 <a name='Builder%20Templates'></a>
 <h4>Builder Templates</h4>
 
 <table>
-<tr>
-<td>Dependency</td>
+  <tr>
+    <td>Dependency</td>
     <td>
-      <a href="http://builder.rubyforge.org/" title="builder">builder</a>
+      <a href="https://github.com/jimweirich/builder" title="builder">builder</a>
     </td>
   </tr>
-<tr>
-<td>File Extension</td>
+  <tr>
+    <td>File Extension</td>
     <td><tt>.builder</tt></td>
   </tr>
-<tr>
-<td>Example</td>
+  <tr>
+    <td>Example</td>
     <td><tt>builder { |xml| xml.em "hi" }</tt></td>
   </tr>
 </table>
+
 <p>It also takes a block for inline templates (see example).</p>
 
 <a name='Nokogiri%20Templates'></a>
 <h4>Nokogiri Templates</h4>
 
 <table>
-<tr>
-<td>Dependency</td>
+  <tr>
+    <td>Dependency</td>
     <td><a href="http://nokogiri.org/" title="nokogiri">nokogiri</a></td>
   </tr>
-<tr>
-<td>File Extension</td>
+  <tr>
+    <td>File Extension</td>
     <td><tt>.nokogiri</tt></td>
   </tr>
-<tr>
-<td>Example</td>
+  <tr>
+    <td>Example</td>
     <td><tt>nokogiri { |xml| xml.em "hi" }</tt></td>
   </tr>
 </table>
+
 <p>It also takes a block for inline templates (see example).</p>
 
 <a name='Sass%20Templates'></a>
 <h4>Sass Templates</h4>
 
 <table>
-<tr>
-<td>Dependency</td>
+  <tr>
+    <td>Dependency</td>
     <td><a href="http://sass-lang.com/" title="sass">sass</a></td>
   </tr>
-<tr>
-<td>File Extension</td>
+  <tr>
+    <td>File Extension</td>
     <td><tt>.sass</tt></td>
   </tr>
-<tr>
-<td>Example</td>
+  <tr>
+    <td>Example</td>
     <td><tt>sass :stylesheet, :style =&gt; :expanded</tt></td>
   </tr>
 </table>
+
 <a name='SCSS%20Templates'></a>
 <h4>SCSS Templates</h4>
 
 <table>
-<tr>
-<td>Dependency</td>
+  <tr>
+    <td>Dependency</td>
     <td><a href="http://sass-lang.com/" title="sass">sass</a></td>
   </tr>
-<tr>
-<td>File Extension</td>
+  <tr>
+    <td>File Extension</td>
     <td><tt>.scss</tt></td>
   </tr>
-<tr>
-<td>Example</td>
+  <tr>
+    <td>Example</td>
     <td><tt>scss :stylesheet, :style =&gt; :expanded</tt></td>
   </tr>
 </table>
+
 <a name='Less%20Templates'></a>
 <h4>Less Templates</h4>
 
 <table>
-<tr>
-<td>Dependency</td>
+  <tr>
+    <td>Dependency</td>
     <td><a href="http://www.lesscss.org/" title="less">less</a></td>
   </tr>
-<tr>
-<td>File Extension</td>
+  <tr>
+    <td>File Extension</td>
     <td><tt>.less</tt></td>
   </tr>
-<tr>
-<td>Example</td>
+  <tr>
+    <td>Example</td>
     <td><tt>less :stylesheet</tt></td>
   </tr>
 </table>
+
 <a name='Liquid%20Templates'></a>
 <h4>Liquid Templates</h4>
 
 <table>
-<tr>
-<td>Dependency</td>
+  <tr>
+    <td>Dependency</td>
     <td><a href="http://www.liquidmarkup.org/" title="liquid">liquid</a></td>
   </tr>
-<tr>
-<td>File Extension</td>
+  <tr>
+    <td>File Extension</td>
     <td><tt>.liquid</tt></td>
   </tr>
-<tr>
-<td>Example</td>
+  <tr>
+    <td>Example</td>
     <td><tt>liquid :index, :locals =&gt; { :key =&gt; 'value' }</tt></td>
   </tr>
 </table>
+
 <p>Since you cannot call Ruby methods (except for <code>yield</code>) from a Liquid
 template, you almost always want to pass locals to it.</p>
 
@@ -808,28 +824,29 @@ template, you almost always want to pass locals to it.</p>
 <h4>Markdown Templates</h4>
 
 <table>
-<tr>
-<td>Dependency</td>
+  <tr>
+    <td>Dependency</td>
     <td>
       Anyone of:
         <a href="https://github.com/rtomayko/rdiscount" title="RDiscount">RDiscount</a>,
         <a href="https://github.com/vmg/redcarpet" title="RedCarpet">RedCarpet</a>,
         <a href="http://deveiate.org/projects/BlueCloth" title="BlueCloth">BlueCloth</a>,
-        <a href="http://kramdown.rubyforge.org/" title="kramdown">kramdown</a>,
-        <a href="http://maruku.rubyforge.org/" title="maruku">maruku</a>
+        <a href="http://kramdown.gettalong.org/" title="kramdown">kramdown</a>,
+        <a href="https://github.com/bhollis/maruku" title="maruku">maruku</a>
     </td>
   </tr>
-<tr>
-<td>File Extensions</td>
+  <tr>
+    <td>File Extensions</td>
     <td>
 <tt>.markdown</tt>, <tt>.mkd</tt> and <tt>.md</tt>
 </td>
   </tr>
-<tr>
-<td>Example</td>
+  <tr>
+    <td>Example</td>
     <td><tt>markdown :index, :layout_engine =&gt; :erb</tt></td>
   </tr>
 </table>
+
 <p>It is not possible to call methods from markdown, nor to pass locals to it.
 You therefore will usually use it in combination with another rendering
 engine:</p>
@@ -859,19 +876,20 @@ template than for the layout by passing the <code>:layout_engine</code> option.<
 <h4>Textile Templates</h4>
 
 <table>
-<tr>
-<td>Dependency</td>
+  <tr>
+    <td>Dependency</td>
     <td><a href="http://redcloth.org/" title="RedCloth">RedCloth</a></td>
   </tr>
-<tr>
-<td>File Extension</td>
+  <tr>
+    <td>File Extension</td>
     <td><tt>.textile</tt></td>
   </tr>
-<tr>
-<td>Example</td>
+  <tr>
+    <td>Example</td>
     <td><tt>textile :index, :layout_engine =&gt; :erb</tt></td>
   </tr>
 </table>
+
 <p>It is not possible to call methods from textile, nor to pass locals to it. You
 therefore will usually use it in combination with another rendering engine:</p>
 
@@ -900,19 +918,20 @@ template than for the layout by passing the <code>:layout_engine</code> option.<
 <h4>RDoc Templates</h4>
 
 <table>
-<tr>
-<td>Dependency</td>
-    <td><a href="http://rdoc.rubyforge.org/" title="RDoc">RDoc</a></td>
+  <tr>
+    <td>Dependency</td>
+    <td><a href="http://rdoc.sourceforge.net/" title="RDoc">RDoc</a></td>
   </tr>
-<tr>
-<td>File Extension</td>
+  <tr>
+    <td>File Extension</td>
     <td><tt>.rdoc</tt></td>
   </tr>
-<tr>
-<td>Example</td>
+  <tr>
+    <td>Example</td>
     <td><tt>rdoc :README, :layout_engine =&gt; :erb</tt></td>
   </tr>
 </table>
+
 <p>It is not possible to call methods from rdoc, nor to pass locals to it. You
 therefore will usually use it in combination with another rendering engine:</p>
 
@@ -941,41 +960,43 @@ template than for the layout by passing the <code>:layout_engine</code> option.<
 <h4>AsciiDoc Templates</h4>
 
 <table>
-<tr>
-<td>Dependency</td>
+  <tr>
+    <td>Dependency</td>
     <td><a href="http://asciidoctor.org/" title="Asciidoctor">Asciidoctor</a></td>
   </tr>
-<tr>
-<td>File Extension</td>
+  <tr>
+    <td>File Extension</td>
     <td>
 <tt>.asciidoc</tt>, <tt>.adoc</tt> and <tt>.ad</tt>
 </td>
   </tr>
-<tr>
-<td>Example</td>
+  <tr>
+    <td>Example</td>
     <td><tt>asciidoc :README, :layout_engine =&gt; :erb</tt></td>
   </tr>
 </table>
-<p>Since you cannot call Ruby methods directly from an AsciiDoc template, you almost
-always want to pass locals to it.</p>
+
+<p>Since you cannot call Ruby methods directly from an AsciiDoc template, you
+almost always want to pass locals to it.</p>
 
 <a name='Radius%20Templates'></a>
 <h4>Radius Templates</h4>
 
 <table>
-<tr>
-<td>Dependency</td>
-    <td><a href="http://radius.rubyforge.org/" title="Radius">Radius</a></td>
+  <tr>
+    <td>Dependency</td>
+    <td><a href="https://github.com/jlong/radius" title="Radius">Radius</a></td>
   </tr>
-<tr>
-<td>File Extension</td>
+  <tr>
+    <td>File Extension</td>
     <td><tt>.radius</tt></td>
   </tr>
-<tr>
-<td>Example</td>
+  <tr>
+    <td>Example</td>
     <td><tt>radius :index, :locals =&gt; { :key =&gt; 'value' }</tt></td>
   </tr>
 </table>
+
 <p>Since you cannot call Ruby methods directly from a Radius template, you almost
 always want to pass locals to it.</p>
 
@@ -983,72 +1004,76 @@ always want to pass locals to it.</p>
 <h4>Markaby Templates</h4>
 
 <table>
-<tr>
-<td>Dependency</td>
+  <tr>
+    <td>Dependency</td>
     <td><a href="http://markaby.github.com/" title="Markaby">Markaby</a></td>
   </tr>
-<tr>
-<td>File Extension</td>
+  <tr>
+    <td>File Extension</td>
     <td><tt>.mab</tt></td>
   </tr>
-<tr>
-<td>Example</td>
+  <tr>
+    <td>Example</td>
     <td><tt>markaby { h1 "Welcome!" }</tt></td>
   </tr>
 </table>
+
 <p>It also takes a block for inline templates (see example).</p>
 
 <a name='RABL%20Templates'></a>
 <h4>RABL Templates</h4>
 
 <table>
-<tr>
-<td>Dependency</td>
+  <tr>
+    <td>Dependency</td>
     <td><a href="https://github.com/nesquena/rabl" title="Rabl">Rabl</a></td>
   </tr>
-<tr>
-<td>File Extension</td>
+  <tr>
+    <td>File Extension</td>
     <td><tt>.rabl</tt></td>
   </tr>
-<tr>
-<td>Example</td>
+  <tr>
+    <td>Example</td>
     <td><tt>rabl :index</tt></td>
   </tr>
 </table>
+
 <a name='Slim%20Templates'></a>
 <h4>Slim Templates</h4>
 
 <table>
-<tr>
-<td>Dependency</td>
+  <tr>
+    <td>Dependency</td>
     <td><a href="http://slim-lang.com/" title="Slim Lang">Slim Lang</a></td>
   </tr>
-<tr>
-<td>File Extension</td>
+  <tr>
+    <td>File Extension</td>
     <td><tt>.slim</tt></td>
   </tr>
-<tr>
-<td>Example</td>
+  <tr>
+    <td>Example</td>
     <td><tt>slim :index</tt></td>
   </tr>
 </table>
+
 <a name='Creole%20Templates'></a>
 <h4>Creole Templates</h4>
 
 <table>
-<tr>
-<td>Dependency</td>
+  <tr>
+    <td>Dependency</td>
     <td><a href="https://github.com/minad/creole" title="Creole">Creole</a></td>
   </tr>
-<tr>
-<td>File Extension</td>
+  <tr>
+    <td>File Extension</td>
     <td><tt>.creole</tt></td>
   </tr>
-<tr>
-<td>Example</td>
+  <tr>
+    <td>Example</td>
     <td><tt>creole :wiki, :layout_engine =&gt; :erb</tt></td>
   </tr>
 </table>
+
 <p>It is not possible to call methods from creole, nor to pass locals to it. You
 therefore will usually use it in combination with another rendering engine:</p>
 
@@ -1077,23 +1102,25 @@ template than for the layout by passing the <code>:layout_engine</code> option.<
 <h4>MediaWiki Templates</h4>
 
 <table>
-<tr>
-<td>Dependency</td>
+  <tr>
+    <td>Dependency</td>
     <td><a href="https://github.com/nricciar/wikicloth" title="WikiCloth">WikiCloth</a></td>
   </tr>
-<tr>
-<td>File Extension</td>
+  <tr>
+    <td>File Extension</td>
     <td>
 <tt>.mediawiki</tt> and <tt>.mw</tt>
 </td>
   </tr>
-<tr>
-<td>Example</td>
+  <tr>
+    <td>Example</td>
     <td><tt>mediawiki :wiki, :layout_engine =&gt; :erb</tt></td>
   </tr>
 </table>
-<p>It is not possible to call methods from MediaWiki markup, nor to pass locals to it.
-You therefore will usually use it in combination with another rendering engine:</p>
+
+<p>It is not possible to call methods from MediaWiki markup, nor to pass locals to
+it. You therefore will usually use it in combination with another rendering
+engine:</p>
 
 <div>
 <div class="CodeRay">
@@ -1120,8 +1147,8 @@ template than for the layout by passing the <code>:layout_engine</code> option.<
 <h4>CoffeeScript Templates</h4>
 
 <table>
-<tr>
-<td>Dependency</td>
+  <tr>
+    <td>Dependency</td>
     <td>
       <a href="https://github.com/josh/ruby-coffee-script" title="Ruby CoffeeScript">
         CoffeeScript
@@ -1131,21 +1158,22 @@ template than for the layout by passing the <code>:layout_engine</code> option.<
       </a>
     </td>
   </tr>
-<tr>
-<td>File Extension</td>
+  <tr>
+    <td>File Extension</td>
     <td><tt>.coffee</tt></td>
   </tr>
-<tr>
-<td>Example</td>
+  <tr>
+    <td>Example</td>
     <td><tt>coffee :index</tt></td>
   </tr>
 </table>
+
 <a name='Stylus%20Templates'></a>
 <h4>Stylus Templates</h4>
 
 <table>
-<tr>
-<td>Dependency</td>
+  <tr>
+    <td>Dependency</td>
     <td>
       <a href="https://github.com/lucasmazza/ruby-stylus" title="Ruby Stylus">
         Stylus
@@ -1155,15 +1183,16 @@ template than for the layout by passing the <code>:layout_engine</code> option.<
       </a>
     </td>
   </tr>
-<tr>
-<td>File Extension</td>
+  <tr>
+    <td>File Extension</td>
     <td><tt>.styl</tt></td>
   </tr>
-<tr>
-<td>Example</td>
+  <tr>
+    <td>Example</td>
     <td><tt>stylus :index</tt></td>
   </tr>
 </table>
+
 <p>Before being able to use Stylus templates, you need to load <code>stylus</code> and
 <code>stylus/tilt</code> first:</p>
 
@@ -1184,16 +1213,16 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <h4>Yajl Templates</h4>
 
 <table>
-<tr>
-<td>Dependency</td>
+  <tr>
+    <td>Dependency</td>
     <td><a href="https://github.com/brianmario/yajl-ruby" title="yajl-ruby">yajl-ruby</a></td>
   </tr>
-<tr>
-<td>File Extension</td>
+  <tr>
+    <td>File Extension</td>
     <td><tt>.yajl</tt></td>
   </tr>
-<tr>
-<td>Example</td>
+  <tr>
+    <td>Example</td>
     <td>
       <tt>
         yajl :index,
@@ -1204,6 +1233,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
     </td>
   </tr>
 </table>
+
 <p>The template source is evaluated as a Ruby string, and the
 resulting json variable is converted using <code>#to_json</code>:</p>
 
@@ -1230,21 +1260,22 @@ present(resource);
 <h4>WLang Templates</h4>
 
 <table>
-<tr>
-<td>Dependency</td>
+  <tr>
+    <td>Dependency</td>
     <td><a href="https://github.com/blambeau/wlang/" title="WLang">WLang</a></td>
   </tr>
-<tr>
-<td>File Extension</td>
+  <tr>
+    <td>File Extension</td>
     <td><tt>.wlang</tt></td>
   </tr>
-<tr>
-<td>Example</td>
+  <tr>
+    <td>Example</td>
     <td><tt>wlang :index, :locals =&gt; { :key =&gt; 'value' }</tt></td>
   </tr>
 </table>
-<p>Since calling ruby methods is not idiomatic in WLang, you almost always want to pass locals
-to it. Layouts written in WLang and <code>yield</code> are supported, though.</p>
+
+<p>Since calling ruby methods is not idiomatic in WLang, you almost always want to
+pass locals to it. Layouts written in WLang and <code>yield</code> are supported, though.</p>
 
 <a name='Accessing%20Variables%20in%20Templates'></a>
 <h3>Accessing Variables in Templates</h3>
@@ -1255,7 +1286,7 @@ variables set in route handlers are directly accessible by templates:</p>
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:id</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#33B">@foo</span> = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="color:#A60">:id</span>])
+  <span style="color:#33B">@foo</span> = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">id</span><span style="color:#710">'</span></span>])
   haml <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">%h1= @foo.name</span><span style="color:#710">'</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
@@ -1267,7 +1298,7 @@ variables set in route handlers are directly accessible by templates:</p>
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:id</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  foo = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="color:#A60">:id</span>])
+  foo = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">id</span><span style="color:#710">'</span></span>])
   haml <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">%h1= bar.name</span><span style="color:#710">'</span></span>, <span style="color:#A60">:locals</span> =&gt; { <span style="color:#A60">:bar</span> =&gt; foo }
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
@@ -1295,8 +1326,7 @@ described above, or it can be rendered with a block as follows:</p>
 
 <p>This code is mostly equivalent to <code>erb :index, :layout =&gt; :post</code>.</p>
 
-<p>Passing blocks to rendering methods is most useful for creating nested
-layouts:</p>
+<p>Passing blocks to rendering methods is most useful for creating nested layouts:</p>
 
 <div>
 <div class="CodeRay">
@@ -1321,8 +1351,7 @@ layouts:</p>
 </div>
 
 <p>Currently, the following rendering methods accept a block: <code>erb</code>, <code>haml</code>,
-<code>liquid</code>, <code>slim </code>, <code>wlang</code>.
-Also the general <code>render</code> method accepts a block.</p>
+<code>liquid</code>, <code>slim </code>, <code>wlang</code>. Also the general <code>render</code> method accepts a block.</p>
 
 <a name='Inline%20Templates'></a>
 <h3>Inline Templates</h3>
@@ -1426,6 +1455,27 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Renders <code>./views/index.myat</code>. See https://github.com/rtomayko/tilt to
 learn more about Tilt.</p>
 
+<a name='Using%20Custom%20Logic%20for%20Template%20Lookup'></a>
+<h3>Using Custom Logic for Template Lookup</h3>
+
+<p>To implement your own template lookup mechanism you can write your
+own <code>#find_template</code> method:</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>configure <span style="color:#080;font-weight:bold">do</span>
+  set <span style="color:#A60">:views</span> [ <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">./views/a</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">./views/b</span><span style="color:#710">'</span></span> ]
+<span style="color:#080;font-weight:bold">end</span>
+
+<span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">find_template</span>(views, name, engine, &amp;block)
+  Array(views).each <span style="color:#080;font-weight:bold">do</span> |v|
+    <span style="color:#080;font-weight:bold">super</span>(v, name, engine, &amp;block)
+  <span style="color:#080;font-weight:bold">end</span>
+<span style="color:#080;font-weight:bold">end</span>
+</pre></div>
+</div>
+</div>
+
 <a name='Filters'></a>
 <h2>Filters</h2>
 
@@ -1442,15 +1492,15 @@ variables set in filters are accessible by routes and templates:</p>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo/*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#33B">@note</span> <span style="color:#777">#=&gt; 'Hi!'</span>
-  params[<span style="color:#A60">:splat</span>] <span style="color:#777">#=&gt; 'bar/baz'</span>
+  params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">splat</span><span style="color:#710">'</span></span>] <span style="color:#777">#=&gt; 'bar/baz'</span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
 </div>
 
-<p>After filters are evaluated after each request within the same
-context as the routes will be and can also modify the request and response. Instance
-variables set in before filters and routes are accessible by after filters:</p>
+<p>After filters are evaluated after each request within the same context as the
+routes will be and can also modify the request and response. Instance variables
+set in before filters and routes are accessible by after filters:</p>
 
 <div>
 <div class="CodeRay">
@@ -1511,7 +1561,7 @@ route handlers and templates:</p>
 <span style="color:#080;font-weight:bold">end</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:name</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  bar(params[<span style="color:#A60">:name</span>])
+  bar(params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">name</span><span style="color:#710">'</span></span>])
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -1551,7 +1601,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <span style="color:#080;font-weight:bold">end</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:value</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  session[<span style="color:#A60">:value</span>] = params[<span style="color:#A60">:value</span>]
+  session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">value</span><span style="color:#710">'</span></span>] = params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">value</span><span style="color:#710">'</span></span>]
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -1572,7 +1622,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <span style="color:#080;font-weight:bold">end</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:value</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  session[<span style="color:#A60">:value</span>] = params[<span style="color:#A60">:value</span>]
+  session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">value</span><span style="color:#710">'</span></span>] = params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">value</span><span style="color:#710">'</span></span>]
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -1675,7 +1725,7 @@ domain with a <em>.</em> like this instead:</p>
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/guess/:who</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  pass <span style="color:#080;font-weight:bold">unless</span> params[<span style="color:#A60">:who</span>] == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Frank</span><span style="color:#710">'</span></span>
+  pass <span style="color:#080;font-weight:bold">unless</span> params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">who</span><span style="color:#710">'</span></span>] == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Frank</span><span style="color:#710">'</span></span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">You got me!</span><span style="color:#710">'</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 
@@ -1710,8 +1760,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 
 <p>Note that in the example above, you would ease testing and increase performance
-by simply moving <code>"bar"</code> into a helper used by both <code>/foo</code>
-and <code>/bar</code>.</p>
+by simply moving <code>"bar"</code> into a helper used by both <code>/foo</code> and <code>/bar</code>.</p>
 
 <p>If you want the request to be sent to the same application instance rather than
 a duplicate, use <code>call!</code> instead of <code>call</code>.</p>
@@ -1810,19 +1859,17 @@ connections = []
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/subscribe</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># register a client's interest in server events</span>
-  stream(<span style="color:#A60">:keep_open</span>) { |out| connections &lt;&lt; out }
-
-  <span style="color:#777"># purge dead connections</span>
-  connections.reject!(&amp;<span style="color:#A60">:closed?</span>)
-
-  <span style="color:#777"># acknowledge</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">subscribed</span><span style="color:#710">"</span></span>
+  stream(<span style="color:#A60">:keep_open</span>) <span style="color:#080;font-weight:bold">do</span> |out|
+    connections &lt;&lt; out
+    <span style="color:#777"># purge dead connections</span>
+    connections.reject!(&amp;<span style="color:#A60">:closed?</span>)
+  <span style="color:#080;font-weight:bold">end</span>
 <span style="color:#080;font-weight:bold">end</span>
 
-post <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/message</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+post <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:message</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   connections.each <span style="color:#080;font-weight:bold">do</span> |out|
     <span style="color:#777"># notify client that a new message has arrived</span>
-    out &lt;&lt; params[<span style="color:#A60">:message</span>] &lt;&lt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#b0b">\n</span><span style="color:#710">"</span></span>
+    out &lt;&lt; params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">message</span><span style="color:#710">'</span></span>] &lt;&lt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#b0b">\n</span><span style="color:#710">"</span></span>
 
     <span style="color:#777"># indicate client to connect again</span>
     out.close
@@ -1854,9 +1901,8 @@ post <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#71
 account. If logging is disabled, this method will return a dummy object, so
 you do not have to worry about it in your routes and filters.</p>
 
-<p>Note that logging is only enabled for <code>Sinatra::Application</code> by
-default, so if you inherit from <code>Sinatra::Base</code>, you probably want to
-enable it yourself:</p>
+<p>Note that logging is only enabled for <code>Sinatra::Application</code> by default, so if
+you inherit from <code>Sinatra::Base</code>, you probably want to enable it yourself:</p>
 
 <div>
 <div class="CodeRay">
@@ -2027,14 +2073,14 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 
 <p>To properly use caches, you should consider using <code>etag</code> or <code>last_modified</code>.
-It is recommended to call those helpers <em>before</em> doing any heavy lifting, as they
-will immediately flush a response if the client already has the current
+It is recommended to call those helpers <em>before</em> doing any heavy lifting, as
+they will immediately flush a response if the client already has the current
 version in its cache:</p>
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/article/:id</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#33B">@article</span> = <span style="color:#036;font-weight:bold">Article</span>.find params[<span style="color:#A60">:id</span>]
+  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">/article/:id</span><span style="color:#710">"</span></span> <span style="color:#080;font-weight:bold">do</span>
+  <span style="color:#33B">@article</span> = <span style="color:#036;font-weight:bold">Article</span>.find params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">id</span><span style="color:#710">'</span></span>]
   last_modified <span style="color:#33B">@article</span>.updated_at
   etag <span style="color:#33B">@article</span>.sha1
   erb <span style="color:#A60">:article</span>
@@ -2106,7 +2152,8 @@ can change this behavior by passing in a <code>:new_resource</code> option:</p>
 <a name='Sending%20Files'></a>
 <h3>Sending Files</h3>
 
-<p>For sending files, you can use the <code>send_file</code> helper method:</p>
+<p>To return the contents of a file as the response, you can use the <code>send_file</code>
+helper method:</p>
 
 <div>
 <div class="CodeRay">
@@ -2129,33 +2176,35 @@ can change this behavior by passing in a <code>:new_resource</code> option:</p>
 <p>The options are:</p>
 
 <dl>
-<dt>filename</dt>
-    <dd>file name, in response, defaults to the real file name.</dd>
+  <dt>filename</dt>
+    <dd>File name to be used in the response, defaults to the real file name.</dd>
 
   <dt>last_modified</dt>
-    <dd>value for Last-Modified header, defaults to the file's mtime.</dd>
+    <dd>Value for Last-Modified header, defaults to the file's mtime.</dd>
 
   <dt>type</dt>
-    <dd>content type to use, guessed from the file extension if missing.</dd>
+    <dd>Value for Content-Type header, guessed from the file extension if
+    missing.</dd>
 
-  disposition
+  <dt>disposition</dt>
     <dd>
-      used for Content-Disposition, possible value: <tt>nil</tt> (default),
-      <tt>:attachment</tt> and <tt>:inline</tt>
+      Value for Content-Disposition header, possible values: <tt>nil</tt>
+      (default), <tt>:attachment</tt> and <tt>:inline</tt>
     </dd>
 
   <dt>length</dt>
-    <dd>Content-Length header, defaults to file size.</dd>
+    <dd>Value for Content-Length header, defaults to file size.</dd>
 
   <dt>status</dt>
     <dd>
       Status code to be sent. Useful when sending a static file as an error page.
 
       If supported by the Rack handler, other means than streaming from the Ruby
-      process will be used. If you use this helper method, Sinatra will automatically
-      handle range requests.
+      process will be used. If you use this helper method, Sinatra will
+      automatically handle range requests.
     </dd>
 </dl>
+
 <a name='Accessing%20the%20Request%20Object'></a>
 <h3>Accessing the Request Object</h3>
 
@@ -2198,8 +2247,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>Some options, like <code>script_name</code> or <code>path_info</code>, can also be
-written:</p>
+<p>Some options, like <code>script_name</code> or <code>path_info</code>, can also be written:</p>
 
 <div>
 <div class="CodeRay">
@@ -2256,9 +2304,8 @@ stored on disk rather than displayed in the browser:</p>
 <a name='Dealing%20with%20Date%20and%20Time'></a>
 <h3>Dealing with Date and Time</h3>
 
-<p>Sinatra offers a <code>time_for</code> helper method that generates a Time object
-from the given value. It is also able to convert <code>DateTime</code>, <code>Date</code> and
-similar classes:</p>
+<p>Sinatra offers a <code>time_for</code> helper method that generates a Time object from the
+given value. It is also able to convert <code>DateTime</code>, <code>Date</code> and similar classes:</p>
 
 <div>
 <div class="CodeRay">
@@ -2469,7 +2516,7 @@ set <span style="color:#A60">:protection</span>, <span style="color:#A60">:sessi
 <h3>Available Settings</h3>
 
 <dl>
-<dt>absolute_redirects</dt>
+  <dt>absolute_redirects</dt>
   <dd>
     If disabled, Sinatra will allow relative redirects, however, Sinatra will no
     longer conform with RFC 2616 (HTTP 1.1), which only allows absolute redirects.
@@ -2481,11 +2528,11 @@ set <span style="color:#A60">:protection</span>, <span style="color:#A60">:sessi
   </dd>
   <dd>Disabled by default.</dd>
 
-  <dt>add_charsets</dt>
+  <dt>add_charset</dt>
   <dd>
     Mime types the <tt>content_type</tt> helper will automatically add the charset info to.
     You should add to it rather than overriding this option:
-    <tt>settings.add_charsets &lt;&lt; "application/foobar"</tt>
+    <tt>settings.add_charset &lt;&lt; "application/foobar"</tt>
   </dd>
 
   <dt>app_file</dt>
@@ -2495,7 +2542,9 @@ set <span style="color:#A60">:protection</span>, <span style="color:#A60">:sessi
   </dd>
 
   <dt>bind</dt>
-  <dd>IP address to bind to (default: <tt>0.0.0.0</tt> <em>or</em> <tt>localhost</tt> if your `environment` is set to development.). Only used for built-in server.</dd>
+  <dd>IP address to bind to (default: <tt>0.0.0.0</tt> <em>or</em>
+  <tt>localhost</tt> if your `environment` is set to development). Only used
+  for built-in server.</dd>
 
   <dt>default_encoding</dt>
   <dd>Encoding to assume if unknown (defaults to <tt>"utf-8"</tt>).</dd>
@@ -2505,8 +2554,8 @@ set <span style="color:#A60">:protection</span>, <span style="color:#A60">:sessi
 
   <dt>environment</dt>
   <dd>
-    Current environment. Defaults to <tt>ENV['RACK_ENV']</tt>, or <tt>"development"</tt> if
-    not available.
+    Current environment. Defaults to <tt>ENV['RACK_ENV']</tt>, or
+    <tt>"development"</tt> if not available.
   </dd>
 
   <dt>logging</dt>
@@ -2536,7 +2585,8 @@ set <span style="color:#A60">:protection</span>, <span style="color:#A60">:sessi
   </dd>
 
   <dt>protection</dt>
-  <dd>Whether or not to enable web attack protections. See protection section above.</dd>
+  <dd>Whether or not to enable web attack protections. See protection section
+  above.</dd>
 
   <dt>public_dir</dt>
   <dd>Alias for <tt>public_folder</tt>. See below.</dd>
@@ -2550,12 +2600,14 @@ set <span style="color:#A60">:protection</span>, <span style="color:#A60">:sessi
 
   <dt>reload_templates</dt>
   <dd>
-    Whether or not to reload templates between requests. Enabled in development mode.
+    Whether or not to reload templates between requests. Enabled in development
+    mode.
   </dd>
 
   <dt>root</dt>
   <dd>
-    Path to project root folder. Inferred from <tt>app_file</tt> setting if not set.
+    Path to project root folder. Inferred from <tt>app_file</tt> setting if not
+    set.
   </dd>
 
   <dt>raise_errors</dt>
@@ -2587,14 +2639,13 @@ set <span style="color:#A60">:protection</span>, <span style="color:#A60">:sessi
 
   <dt>show_exceptions</dt>
   <dd>
-    Show a stack trace in the browser when an exception
-    happens. Enabled by default when <tt>environment</tt>
-    is set to <tt>"development"</tt>, disabled otherwise.
+    Show a stack trace in the browser when an exception happens. Enabled by
+    default when <tt>environment</tt> is set to <tt>"development"</tt>,
+    disabled otherwise.
   </dd>
   <dd>
-    Can also be set to <tt>:after_handler</tt> to trigger
-    app-specified error handling before showing a stack
-    trace in the browser.
+    Can also be set to <tt>:after_handler</tt> to trigger app-specified error
+    handling before showing a stack trace in the browser.
   </dd>
 
   <dt>static</dt>
@@ -2602,15 +2653,14 @@ set <span style="color:#A60">:protection</span>, <span style="color:#A60">:sessi
   <dd>Disable when using a server able to do this on its own.</dd>
   <dd>Disabling will boost performance.</dd>
   <dd>
-    Enabled per default in classic style, disabled for
-    modular apps.
+    Enabled per default in classic style, disabled for modular apps.
   </dd>
 
   <dt>static_cache_control</dt>
   <dd>
-    When Sinatra is serving static files, set this to add
-    <tt>Cache-Control</tt> headers to the responses. Uses the
-    <tt>cache_control</tt> helper. Disabled by default.
+    When Sinatra is serving static files, set this to add <tt>Cache-Control</tt>
+    headers to the responses. Uses the <tt>cache_control</tt> helper. Disabled
+    by default.
   </dd>
   <dd>
     Use an explicit array when setting multiple values:
@@ -2638,16 +2688,16 @@ set <span style="color:#A60">:protection</span>, <span style="color:#A60">:sessi
     Defaults to <tt>true</tt>.
   </dd>
 </dl>
+
 <a name='Environments'></a>
 <h2>Environments</h2>
 
-<p>There are three predefined <code>environments</code>: <code>"development"</code>,
-<code>"production"</code> and <code>"test"</code>. Environments can be set
-through the <code>RACK_ENV</code> environment variable. The default value is
-<code>"development"</code>. In the <code>"development"</code> environment all templates are reloaded between
-requests, and special <code>not_found</code> and <code>error</code> handlers
-display stack traces in your browser.
-In the <code>"production"</code> and <code>"test"</code> environments, templates are cached by default.</p>
+<p>There are three predefined <code>environments</code>: <code>"development"</code>, <code>"production"</code> and
+<code>"test"</code>. Environments can be set through the <code>RACK_ENV</code> environment variable.
+The default value is <code>"development"</code>. In the <code>"development"</code> environment all
+templates are reloaded between requests, and special <code>not_found</code> and <code>error</code>
+handlers display stack traces in your browser. In the <code>"production"</code> and
+<code>"test"</code> environments, templates are cached by default.</p>
 
 <p>To run different environments, set the <code>RACK_ENV</code> environment variable:</p>
 
@@ -2700,13 +2750,22 @@ code is 404, the <code>not_found</code> handler is invoked:</p>
 <h3>Error</h3>
 
 <p>The <code>error</code> handler is invoked any time an exception is raised from a route
-block or a filter. The exception object can be obtained from the
-<code>sinatra.error</code> Rack variable:</p>
+block or a filter. But note in development it will only run if you set the
+show exceptions option to <code>:after_handler</code>:</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>set <span style="color:#A60">:show_exceptions</span>, <span style="color:#A60">:after_handler</span>
+</pre></div>
+</div>
+</div>
+
+<p>The exception object can be obtained from the <code>sinatra.error</code> Rack variable:</p>
 
 <div>
 <div class="CodeRay">
   <div class="code"><pre>error <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Sorry there was a nasty error - </span><span style="color:#710">'</span></span> + env[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra.error</span><span style="color:#710">'</span></span>].name
+  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Sorry there was a nasty error - </span><span style="color:#710">'</span></span> + env[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra.error</span><span style="color:#710">'</span></span>].message
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -2772,7 +2831,7 @@ and additional debugging information in your browser.</p>
 <a name='Rack%20Middleware'></a>
 <h2>Rack Middleware</h2>
 
-<p>Sinatra rides on <a href="http://rack.rubyforge.org/">Rack</a>, a minimal standard
+<p>Sinatra rides on <a href="http://rack.github.io/">Rack</a>, a minimal standard
 interface for Ruby web frameworks. One of Rack’s most interesting capabilities
 for application developers is support for “middleware” – components that sit
 between the server and your application monitoring and/or manipulating the
@@ -2797,7 +2856,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 
 <p>The semantics of <code>use</code> are identical to those defined for the
-<a href="http://rack.rubyforge.org/doc/classes/Rack/Builder.html">Rack::Builder</a> DSL
+<a href="http://rubydoc.info/github/rack/rack/master/Rack/Builder">Rack::Builder</a> DSL
 (most frequently used from rackup files). For example, the <code>use</code> method
 accepts multiple/variable args as well as blocks:</p>
 
@@ -2830,10 +2889,10 @@ is recommended:</p>
 <div>
 <div class="CodeRay">
   <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">my_sinatra_app</span><span style="color:#710">'</span></span>
-require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">test/unit</span><span style="color:#710">'</span></span>
+require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">minitest/autorun</span><span style="color:#710">'</span></span>
 require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rack/test</span><span style="color:#710">'</span></span>
 
-<span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyAppTest</span> &lt; <span style="color:#036;font-weight:bold">Test</span>::<span style="color:#036;font-weight:bold">Unit</span>::<span style="color:#036;font-weight:bold">TestCase</span>
+<span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyAppTest</span> &lt; <span style="color:#036;font-weight:bold">Minitest</span>::<span style="color:#036;font-weight:bold">Test</span>
   include <span style="color:#036;font-weight:bold">Rack</span>::<span style="color:#036;font-weight:bold">Test</span>::<span style="color:#036;font-weight:bold">Methods</span>
 
   <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">app</span>
@@ -2859,8 +2918,8 @@ require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:
 </div>
 </div>
 
-<p>Note: If you are using Sinatra in the modular style, replace <code>Sinatra::Application</code>
-above with the class name of your app.</p>
+<p>Note: If you are using Sinatra in the modular style, replace
+<code>Sinatra::Application</code> above with the class name of your app.</p>
 
 <a name='Sinatra::Base%20-%20Middleware,%20Libraries,%20and%20Modular%20Apps'></a>
 <h2>Sinatra::Base - Middleware, Libraries, and Modular Apps</h2>
@@ -2889,23 +2948,24 @@ directories, logging, exception detail page, etc.). That’s where
 </div>
 </div>
 
-<p>The methods available to <code>Sinatra::Base</code> subclasses are exactly the same as those
-available via the top-level DSL. Most top-level apps can be converted to
+<p>The methods available to <code>Sinatra::Base</code> subclasses are exactly the same as
+those available via the top-level DSL. Most top-level apps can be converted to
 <code>Sinatra::Base</code> components with two modifications:</p>
 
 <ul>
-<li>Your file should require <code>sinatra/base</code> instead of <code>sinatra</code>;
+  <li>Your file should require <code>sinatra/base</code> instead of <code>sinatra</code>;
 otherwise, all of Sinatra’s DSL methods are imported into the main
 namespace.</li>
   <li>Put your app’s routes, error handlers, filters, and options in a subclass
 of <code>Sinatra::Base</code>.</li>
 </ul>
+
 <p><code>Sinatra::Base</code> is a blank slate. Most options are disabled by default,
 including the built-in server. See
 <a href="http://sinatra.github.com/configuration.html">Configuring Settings</a>
 for details on available options and their behavior. If you want
 behavior more similar to when you define your app at the top level (also
-know as Classic style), you
+known as Classic style), you
 can subclass <code>Sinatra::Application</code>.</p>
 
 <div>
@@ -2927,58 +2987,65 @@ can subclass <code>Sinatra::Application</code>.</p>
 <p>Contrary to common belief, there is nothing wrong with the classic style. If it
 suits your application, you do not have to switch to a modular application.</p>
 
-<p>The main disadvantage of using the classic style rather than the modular style is that
-you will only have one Sinatra application per Ruby process. If you plan to use
-more than one, switch to the modular style. There is no reason you cannot mix
-the modular and the classic styles.</p>
+<p>The main disadvantage of using the classic style rather than the modular style
+is that you will only have one Sinatra application per Ruby process. If you
+plan to use more than one, switch to the modular style. There is no reason you
+cannot mix the modular and the classic styles.</p>
 
 <p>If switching from one style to the other, you should be aware of slightly
 different default settings:</p>
 
 <table>
-<tr>
-<th>Setting</th>
+  <tr>
+    <th>Setting</th>
     <th>Classic</th>
     <th>Modular</th>
     <th>Modular</th>
   </tr>
-<tr>
-<td>app_file</td>
+
+  <tr>
+    <td>app_file</td>
     <td>file loading sinatra</td>
     <td>file subclassing Sinatra::Base</td>
     <td>file subclassing Sinatra::Application</td>
   </tr>
-<tr>
-<td>run</td>
+
+  <tr>
+    <td>run</td>
     <td>$0 == app_file</td>
     <td>false</td>
     <td>false</td>
   </tr>
-<tr>
-<td>logging</td>
+
+  <tr>
+    <td>logging</td>
     <td>true</td>
     <td>false</td>
     <td>true</td>
   </tr>
-<tr>
-<td>method_override</td>
+
+  <tr>
+    <td>method_override</td>
     <td>true</td>
     <td>false</td>
     <td>true</td>
   </tr>
-<tr>
-<td>inline_templates</td>
+
+  <tr>
+    <td>inline_templates</td>
     <td>true</td>
     <td>false</td>
     <td>true</td>
   </tr>
-<tr>
-<td>static</td>
+
+  <tr>
+    <td>static</td>
     <td>true</td>
     <td>false</td>
     <td>true</td>
   </tr>
 </table>
+
 <a name='Serving%20a%20Modular%20Application'></a>
 <h3>Serving a Modular Application</h3>
 
@@ -3062,14 +3129,15 @@ run <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color
 <p>A <code>config.ru</code> file is recommended if:</p>
 
 <ul>
-<li>You want to deploy with a different Rack handler (Passenger, Unicorn,
+  <li>You want to deploy with a different Rack handler (Passenger, Unicorn,
 Heroku, …).</li>
   <li>You want to use more than one subclass of <code>Sinatra::Base</code>.</li>
   <li>You want to use Sinatra only for middleware, and not as an endpoint.</li>
 </ul>
-<p><strong>There is no need to switch to a <code>config.ru</code> simply because you
-switched to the modular style, and you don’t have to use the modular style for running
-with a <code>config.ru</code>.</strong></p>
+
+<p><strong>There is no need to switch to a <code>config.ru</code> simply because you switched to
+the modular style, and you don’t have to use the modular style for running with
+a <code>config.ru</code>.</strong></p>
 
 <a name='Using%20Sinatra%20as%20Middleware'></a>
 <h3>Using Sinatra as Middleware</h3>
@@ -3089,8 +3157,8 @@ application (Rails/Ramaze/Camping/…):</p>
   get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/login</span><span style="color:#710">'</span></span>) { haml <span style="color:#A60">:login</span> }
 
   post(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/login</span><span style="color:#710">'</span></span>) <span style="color:#080;font-weight:bold">do</span>
-    <span style="color:#080;font-weight:bold">if</span> params[<span style="color:#A60">:name</span>] == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">admin</span><span style="color:#710">'</span></span> &amp;&amp; params[<span style="color:#A60">:password</span>] == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">admin</span><span style="color:#710">'</span></span>
-      session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">user_name</span><span style="color:#710">'</span></span>] = params[<span style="color:#A60">:name</span>]
+    <span style="color:#080;font-weight:bold">if</span> params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">name</span><span style="color:#710">'</span></span>] == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">admin</span><span style="color:#710">'</span></span> &amp;&amp; params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">password</span><span style="color:#710">'</span></span>] == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">admin</span><span style="color:#710">'</span></span>
+      session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">user_name</span><span style="color:#710">'</span></span>] = params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">name</span><span style="color:#710">'</span></span>]
     <span style="color:#080;font-weight:bold">else</span>
       redirect <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/login</span><span style="color:#710">'</span></span>
     <span style="color:#080;font-weight:bold">end</span>
@@ -3205,7 +3273,7 @@ single application class for all requests.</p>
 <p>You have the application scope binding inside:</p>
 
 <ul>
-<li>Your application class body</li>
+  <li>Your application class body</li>
   <li>Methods defined by extensions</li>
   <li>The block passed to <code>helpers</code>
 </li>
@@ -3214,13 +3282,15 @@ single application class for all requests.</p>
   <li>The block passed to <code>Sinatra.new</code>
 </li>
 </ul>
+
 <p>You can reach the scope object (the class) like this:</p>
 
 <ul>
-<li>Via the object passed to configure blocks (<code>configure { |c| ... }</code>)</li>
+  <li>Via the object passed to configure blocks (<code>configure { |c| ... }</code>)</li>
   <li>
 <code>settings</code> from within the request scope</li>
 </ul>
+
 <a name='Request/Instance%20Scope'></a>
 <h3>Request/Instance Scope</h3>
 
@@ -3238,8 +3308,8 @@ scope via the <code>settings</code> helper:</p>
     <span style="color:#777"># Request scope for '/define_route/:name'</span>
     <span style="color:#33B">@value</span> = <span style="color:#00D">42</span>
 
-    settings.get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">/</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:name</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">"</span></span>) <span style="color:#080;font-weight:bold">do</span>
-      <span style="color:#777"># Request scope for "/#{params[:name]}"</span>
+    settings.get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">/</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">name</span><span style="color:#710">'</span></span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">"</span></span>) <span style="color:#080;font-weight:bold">do</span>
+      <span style="color:#777"># Request scope for "/#{params['name']}"</span>
       <span style="color:#33B">@value</span> <span style="color:#777"># =&gt; nil (not the same request)</span>
     <span style="color:#080;font-weight:bold">end</span>
 
@@ -3253,11 +3323,12 @@ scope via the <code>settings</code> helper:</p>
 <p>You have the request scope binding inside:</p>
 
 <ul>
-<li>get, head, post, put, delete, options, patch, link, and unlink blocks</li>
+  <li>get, head, post, put, delete, options, patch, link, and unlink blocks</li>
   <li>before and after filters</li>
   <li>helper methods</li>
   <li>templates/views</li>
 </ul>
+
 <a name='Delegation%20Scope'></a>
 <h3>Delegation Scope</h3>
 
@@ -3271,10 +3342,11 @@ do not share variables/state with the class scope (read: you have a different
 <p>You have the delegate scope binding inside:</p>
 
 <ul>
-<li>The top level binding, if you did <code>require "sinatra"</code>
+  <li>The top level binding, if you did <code>require "sinatra"</code>
 </li>
   <li>An object extended with the <code>Sinatra::Delegator</code> mixin</li>
 </ul>
+
 <p>Have a look at the code for yourself: here’s the
 <a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/base.rb#L1609-1633">Sinatra::Delegator mixin</a>
 being <a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/main.rb#L28-30">extending the main object</a>.</p>
@@ -3306,7 +3378,7 @@ being <a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/main.
 
 <p>The following Ruby versions are officially supported:</p>
 <dl>
-<dt>Ruby 1.8.7</dt>
+  <dt>Ruby 1.8.7</dt>
   <dd>
     1.8.7 is fully supported, however, if nothing is keeping you from it, we
     recommend upgrading or switching to JRuby or Rubinius. Support for 1.8.7
@@ -3327,9 +3399,9 @@ being <a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/main.
     until the release of Sinatra 2.0.
   </dd>
 
-  <dt>Ruby 2.0.0</dt>
+  <dt>Ruby 2.x</dt>
   <dd>
-    2.0.0 is fully supported and recommended. There are currently no plans to drop
+    2.x is fully supported and recommended. There are currently no plans to drop
     official support for it.
   </dd>
 
@@ -3346,23 +3418,25 @@ being <a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/main.
     <tt>gem install trinidad</tt>.
   </dd>
 </dl>
+
 <p>We also keep an eye on upcoming Ruby versions.</p>
 
 <p>The following Ruby implementations are not officially supported but still are
 known to run Sinatra:</p>
 
 <ul>
-<li>Older versions of JRuby and Rubinius</li>
+  <li>Older versions of JRuby and Rubinius</li>
   <li>Ruby Enterprise Edition</li>
   <li>MacRuby, Maglev, IronRuby</li>
   <li>Ruby 1.9.0 and 1.9.1 (but we do recommend against using those)</li>
 </ul>
+
 <p>Not being officially supported means if things only break there and not on a
 supported platform, we assume it’s not our issue but theirs.</p>
 
-<p>We also run our CI against ruby-head (the upcoming 2.1.0), but we can’t
-guarantee anything, since it is constantly moving. Expect 2.1.0 to be fully
-supported.</p>
+<p>We also run our CI against ruby-head (future releases of MRI), but we can’t
+guarantee anything, since it is constantly moving. Expect upcoming 2.x releases
+to be fully supported.</p>
 
 <p>Sinatra should work on any operating system supported by the chosen Ruby
 implementation.</p>
@@ -3490,7 +3564,7 @@ SemVerTag.</p>
 <h2>Further Reading</h2>
 
 <ul>
-<li>
+  <li>
 <a href="http://www.sinatrarb.com/">Project Website</a> - Additional documentation,
 news, and links to other resources.</li>
   <li>
@@ -3501,7 +3575,7 @@ help? Have a patch?</li>
   <li><a href="http://groups.google.com/group/sinatrarb/topics">Mailing List</a></li>
   <li>IRC: <a href="irc://chat.freenode.net/#sinatra">#sinatra</a> on http://freenode.net</li>
   <li>
-<a href="http://sinatra-book.gittr.com">Sinatra Book</a> Cookbook Tutorial</li>
+<a href="https://github.com/sinatra/sinatra-book/">Sinatra Book</a> Cookbook Tutorial</li>
   <li>
 <a href="http://recipes.sinatrarb.com/">Sinatra Recipes</a> Community
 contributed recipes</li>

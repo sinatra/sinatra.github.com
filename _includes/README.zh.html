@@ -117,7 +117,18 @@ ruby myapp.rb
 </div>
 </div>
 
-<p>在该地址查看： <a href="http://localhost:4567">localhost:4567</a></p>
+<p>在该地址查看： http://localhost:4567</p>
+
+<p>这个时候访问地址将绑定到 127.0.0.1 和 localhost ，如果使用 vagrant 进行开发，访问会失败，此时就需要进行 ip 绑定了：</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>ruby myapp.rb -o 0.0.0.0
+</pre></div>
+</div>
+</div>
+
+<p>~~~~-o~~~~ 这个参数就是进行 Listening 时候监听的绑定，能从通过 IP、127.0.0.1、localhost + 端口号进行访问。</p>
 
 <p>安装Sintra后，最好再运行<code>gem install thin</code>安装Thin。这样，Sinatra会优先选择Thin作为服务器。</p>
 
@@ -170,8 +181,8 @@ unlink <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/hello/:name</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># 匹配 "GET /hello/foo" 和 "GET /hello/bar"</span>
-  <span style="color:#777"># params[:name] 的值是 'foo' 或者 'bar'</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hello </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:name</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
+  <span style="color:#777"># params['name'] 的值是 'foo' 或者 'bar'</span>
+  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hello </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">name</span><span style="color:#710">'</span></span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -188,18 +199,18 @@ unlink <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#
 </div>
 </div>
 
-<p>路由范式也可以包含通配符参数， 可以通过<code>params[:splat]</code>数组获得。</p>
+<p>路由范式也可以包含通配符参数， 可以通过<code>params['splat']</code>数组获得。</p>
 
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/say/*/to/*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># 匹配 /say/hello/to/world</span>
-  params[<span style="color:#A60">:splat</span>] <span style="color:#777"># =&gt; ["hello", "world"]</span>
+  params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">splat</span><span style="color:#710">'</span></span>] <span style="color:#777"># =&gt; ["hello", "world"]</span>
 <span style="color:#080;font-weight:bold">end</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/download/*.*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># 匹配 /download/path/to/file.xml</span>
-  params[<span style="color:#A60">:splat</span>] <span style="color:#777"># =&gt; ["path/to/file", "xml"]</span>
+  params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">splat</span><span style="color:#710">'</span></span>] <span style="color:#777"># =&gt; ["path/to/file", "xml"]</span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -209,8 +220,8 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">%r{</span><span style="color:#808">/hello/([</span><span style="color:#D20">\w</span><span style="color:#808">]+)</span><span style="color:#404">}</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hello, </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:captures</span>].first<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
+  <div class="code"><pre>get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#D20">\A</span><span style="color:#D20">\/</span><span style="color:#808">hello</span><span style="color:#D20">\/</span><span style="color:#808">([</span><span style="color:#D20">\w</span><span style="color:#808">]+)</span><span style="color:#D20">\z</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
+  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hello, </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">captures</span><span style="color:#710">'</span></span>].first<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -235,7 +246,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span>, <span style="color:#A60">:agent</span> =&gt; <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">Songbird (</span><span style="color:#D20">\d</span><span style="color:#D20">\.</span><span style="color:#D20">\d</span><span style="color:#808">)[</span><span style="color:#D20">\d</span><span style="color:#D20">\/</span><span style="color:#808">]*?</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">你正在使用Songbird，版本是 </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:agent</span>][<span style="color:#00D">0</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">"</span></span>
+  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">你正在使用Songbird，版本是 </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">agent</span><span style="color:#710">'</span></span>][<span style="color:#00D">0</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">"</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
@@ -291,6 +302,8 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>你可以返回任何对象，或者是一个合理的Rack响应， Rack
 body对象或者HTTP状态码：</p>
+
+
 
 <p>那样，我们可以轻松的实现例如流式传输的例子：</p>
 
@@ -391,14 +404,14 @@ get all_but(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="co
 </div>
 </div>
 
-<p>请记住一件非常重要的事情，你只可以通过符号引用模板， 即使它们在子目录下
-（在这种情况下，使用 <code>:'subdir/template'</code>）。 你必须使用一个符号，
-因为渲染方法会直接地渲染任何传入的字符串。</p>
+<p>重要提示：你只可以通过符号引用模板， 即使它们在子目录下
+（在这种情况下，使用 <code>:'subdir/template'</code>）。 如果你不用符号、而用字符串的话，
+填充方法会只把你传入的字符串当成内容显示出来，而不调用模板。</p>
 
 <a name='Haml%E6%A8%A1%E6%9D%BF'></a>
 <h3>Haml模板</h3>
 
-<p>需要引入 <code>haml</code> gem/library以渲染 HAML 模板：</p>
+<p>需要引入 <code>haml</code> gem/library以填充 HAML 模板：</p>
 
 <div>
 <div class="CodeRay">
@@ -412,7 +425,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>渲染 <code>./views/index.haml</code>。</p>
+<p>填充 <code>./views/index.haml</code>。</p>
 
 <p><a href="http://haml.info/docs/yardoc/file.HAML_REFERENCE.html#options">Haml的选项</a>
 可以通过Sinatra的配置全局设定， 参见
@@ -450,7 +463,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <a name='Erubis'></a>
 <h3>Erubis</h3>
 
-<p>需要引入 <code>erubis</code> gem/library以渲染 erubis 模板：</p>
+<p>需要引入 <code>erubis</code> gem/library以填充 erubis 模板：</p>
 
 <div>
 <div class="CodeRay">
@@ -480,12 +493,12 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>使用Erubis来渲染 <code>./views/index.erb</code>。</p>
+<p>使用Erubis来填充 <code>./views/index.erb</code>。</p>
 
 <a name='Builder%20%E6%A8%A1%E6%9D%BF'></a>
 <h3>Builder 模板</h3>
 
-<p>需要引入 <code>builder</code> gem/library 以渲染 builder templates：</p>
+<p>需要引入 <code>builder</code> gem/library 以填充 builder templates：</p>
 
 <div>
 <div class="CodeRay">
@@ -504,7 +517,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <a name='Nokogiri%20%E6%A8%A1%E6%9D%BF'></a>
 <h3>Nokogiri 模板</h3>
 
-<p>需要引入 <code>nokogiri</code> gem/library 以渲染 nokogiri 模板：</p>
+<p>需要引入 <code>nokogiri</code> gem/library 以填充 nokogiri 模板：</p>
 
 <div>
 <div class="CodeRay">
@@ -523,7 +536,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <a name='Sass%20%E6%A8%A1%E6%9D%BF'></a>
 <h3>Sass 模板</h3>
 
-<p>需要引入 <code>haml</code> 或者 <code>sass</code> gem/library 以渲染 Sass 模板：</p>
+<p>需要引入 <code>haml</code> 或者 <code>sass</code> gem/library 以填充 Sass 模板：</p>
 
 <div>
 <div class="CodeRay">
@@ -559,7 +572,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <a name='Scss%20%E6%A8%A1%E6%9D%BF'></a>
 <h3>Scss 模板</h3>
 
-<p>需要引入 <code>haml</code> 或者 <code>sass</code> gem/library 来渲染 Scss templates：</p>
+<p>需要引入 <code>haml</code> 或者 <code>sass</code> gem/library 来填充 Scss templates：</p>
 
 <div>
 <div class="CodeRay">
@@ -594,7 +607,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <a name='Less%20%E6%A8%A1%E6%9D%BF'></a>
 <h3>Less 模板</h3>
 
-<p>需要引入 <code>less</code> gem/library 以渲染 Less 模板：</p>
+<p>需要引入 <code>less</code> gem/library 以填充 Less 模板：</p>
 
 <div>
 <div class="CodeRay">
@@ -613,7 +626,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <a name='Liquid%20%E6%A8%A1%E6%9D%BF'></a>
 <h3>Liquid 模板</h3>
 
-<p>需要引入 <code>liquid</code> gem/library 来渲染 Liquid 模板：</p>
+<p>需要引入 <code>liquid</code> gem/library 来填充 Liquid 模板：</p>
 
 <div>
 <div class="CodeRay">
@@ -642,7 +655,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <a name='Markdown%20%E6%A8%A1%E6%9D%BF'></a>
 <h3>Markdown 模板</h3>
 
-<p>需要引入 <code>rdiscount</code> gem/library 以渲染 Markdown 模板：</p>
+<p>需要引入 <code>rdiscount</code> gem/library 以填充 Markdown 模板：</p>
 
 <div>
 <div class="CodeRay">
@@ -659,7 +672,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>这里调用的是 <code>./views/index.markdown</code> (<code>md</code> 和 <code>mkd</code> 也是合理的文件扩展名)。</p>
 
 <p>在markdown中是不可以调用方法的，也不可以传递 locals给它。
-你因此一般会结合其他的渲染引擎来使用它：</p>
+你因此一般会结合其他的填充引擎来使用它：</p>
 
 <div>
 <div class="CodeRay">
@@ -679,7 +692,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 
 <p>既然你不能在Markdown中调用Ruby，你不能使用Markdown编写的布局。
-不过，使用其他渲染引擎作为模版的布局是可能的，
+不过，使用其他填充引擎作为模版的布局是可能的，
 通过传递<code>:layout_engine</code>选项:</p>
 
 <div>
@@ -726,12 +739,12 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>使用BlueCloth来渲染 <code>./views/index.md</code> 。</p>
+<p>使用BlueCloth来填充 <code>./views/index.md</code> 。</p>
 
 <a name='Textile%20%E6%A8%A1%E6%9D%BF'></a>
 <h3>Textile 模板</h3>
 
-<p>需要引入 <code>RedCloth</code> gem/library 以渲染 Textile 模板：</p>
+<p>需要引入 <code>RedCloth</code> gem/library 以填充 Textile 模板：</p>
 
 <div>
 <div class="CodeRay">
@@ -748,7 +761,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>这里调用的是 <code>./views/index.textile</code>。</p>
 
 <p>在textile中是不可以调用方法的，也不可以传递 locals给它。
-你因此一般会结合其他的渲染引擎来使用它：</p>
+你因此一般会结合其他的填充引擎来使用它：</p>
 
 <div>
 <div class="CodeRay">
@@ -768,7 +781,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 
 <p>既然你不能在Textile中调用Ruby，你不能使用Textile编写的布局。
-不过，使用其他渲染引擎作为模版的布局是可能的，
+不过，使用其他填充引擎作为模版的布局是可能的，
 通过传递<code>:layout_engine</code>选项:</p>
 
 <div>
@@ -780,7 +793,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>这将会渲染 <code>./views/index.textile</code> 并使用 <code>./views/layout.erb</code>
+<p>这将会填充 <code>./views/index.textile</code> 并使用 <code>./views/layout.erb</code>
 作为布局。</p>
 
 <p>请记住你可以全局设定这个选项:</p>
@@ -802,7 +815,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <a name='RDoc%20%E6%A8%A1%E6%9D%BF'></a>
 <h3>RDoc 模板</h3>
 
-<p>需要引入 <code>RDoc</code> gem/library 以渲染RDoc模板：</p>
+<p>需要引入 <code>RDoc</code> gem/library 以填充RDoc模板：</p>
 
 <div>
 <div class="CodeRay">
@@ -820,7 +833,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>这里调用的是 <code>./views/index.rdoc</code>。</p>
 
 <p>在rdoc中是不可以调用方法的，也不可以传递locals给它。
-你因此一般会结合其他的渲染引擎来使用它：</p>
+你因此一般会结合其他的填充引擎来使用它：</p>
 
 <div>
 <div class="CodeRay">
@@ -840,7 +853,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 
 <p>既然你不能在RDoc中调用Ruby，你不能使用RDoc编写的布局。
-不过，使用其他渲染引擎作为模版的布局是可能的，
+不过，使用其他填充引擎作为模版的布局是可能的，
 通过传递<code>:layout_engine</code>选项:</p>
 
 <div>
@@ -873,7 +886,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <a name='Radius%20%E6%A8%A1%E6%9D%BF'></a>
 <h3>Radius 模板</h3>
 
-<p>需要引入 <code>radius</code> gem/library 以渲染 Radius 模板：</p>
+<p>需要引入 <code>radius</code> gem/library 以填充 Radius 模板：</p>
 
 <div>
 <div class="CodeRay">
@@ -902,7 +915,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <a name='Markaby%20%E6%A8%A1%E6%9D%BF'></a>
 <h3>Markaby 模板</h3>
 
-<p>需要引入<code>markaby</code> gem/library以渲染Markaby模板：</p>
+<p>需要引入<code>markaby</code> gem/library以填充Markaby模板：</p>
 
 <div>
 <div class="CodeRay">
@@ -932,7 +945,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <a name='Slim%20%E6%A8%A1%E6%9D%BF'></a>
 <h3>Slim 模板</h3>
 
-<p>需要引入 <code>slim</code> gem/library 来渲染 Slim 模板：</p>
+<p>需要引入 <code>slim</code> gem/library 来填充 Slim 模板：</p>
 
 <div>
 <div class="CodeRay">
@@ -951,7 +964,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <a name='Creole%20%E6%A8%A1%E6%9D%BF'></a>
 <h3>Creole 模板</h3>
 
-<p>需要引入 <code>creole</code> gem/library 来渲染 Creole 模板：</p>
+<p>需要引入 <code>creole</code> gem/library 来填充 Creole 模板：</p>
 
 <div>
 <div class="CodeRay">
@@ -974,7 +987,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 以执行Javascript:</p>
 
 <ul>
-<li>
+  <li>
     <p><code>node</code> (来自 Node.js) 在你的路径中</p>
   </li>
   <li>
@@ -984,6 +997,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
     <p><code>therubyracer</code> gem/library</p>
   </li>
 </ul>
+
 <p>请察看
 <a href="http://github.com/josh/ruby-coffee-script">github.com/josh/ruby-coffee-script</a>
 获取更新的选项。</p>
@@ -1027,7 +1041,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:id</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#33B">@foo</span> = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="color:#A60">:id</span>])
+  <span style="color:#33B">@foo</span> = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">id</span><span style="color:#710">'</span></span>])
   haml <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">%h1= @foo.name</span><span style="color:#710">'</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
@@ -1039,14 +1053,14 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:id</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  foo = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="color:#A60">:id</span>])
+  foo = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">id</span><span style="color:#710">'</span></span>])
   haml <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">%h1= foo.name</span><span style="color:#710">'</span></span>, <span style="color:#A60">:locals</span> =&gt; { <span style="color:#A60">:foo</span> =&gt; foo }
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
 </div>
 
-<p>典型的使用情况是在别的模板中按照局部模板的方式来渲染。</p>
+<p>典型的使用情况是在别的模板中按照局部模板的方式来填充。</p>
 
 <a name='%E5%86%85%E8%81%94%E6%A8%A1%E6%9D%BF'></a>
 <h3>内联模板</h3>
@@ -1099,7 +1113,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 </div>
 
-<p>如果存在名为“layout”的模板，该模板会在每个模板渲染的时候被使用。
+<p>如果存在名为“layout”的模板，该模板会在每个模板填充的时候被使用。
 你可以单独地通过传送 <code>:layout =&gt; false</code>来禁用，
 或者通过<code>set :haml, :layout =&gt; false</code>来禁用他们。</p>
 
@@ -1129,7 +1143,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <a name='%E6%B7%BB%E5%8A%A0%E4%BD%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%A8%A1%E7%89%88%E5%BC%95%E6%93%8E'></a>
 <h3>添加你自己的模版引擎</h3>
 
-<p>首先，通过Tilt注册你自己的引擎，然后创建一个渲染方法:</p>
+<p>首先，通过Tilt注册你自己的引擎，然后创建一个填充方法:</p>
 
 <div>
 <div class="CodeRay">
@@ -1165,7 +1179,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo/*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#33B">@note</span> <span style="color:#777">#=&gt; 'Hi!'</span>
-  params[<span style="color:#A60">:splat</span>] <span style="color:#777">#=&gt; 'bar/baz'</span>
+  params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">splat</span><span style="color:#710">'</span></span>] <span style="color:#777">#=&gt; 'bar/baz'</span>
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -1196,7 +1210,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <span style="color:#080;font-weight:bold">end</span>
 
 after <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/create/:slug</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span> |slug|
-  session[<span style="color:#A60">:last_slug</span>] = slug
+  session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">last_slug</span><span style="color:#710">'</span></span>] = slug
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -1231,7 +1245,7 @@ after <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#7
 <span style="color:#080;font-weight:bold">end</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:name</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  bar(params[<span style="color:#A60">:name</span>])
+  bar(params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">name</span><span style="color:#710">'</span></span>])
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -1248,11 +1262,11 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
   <div class="code"><pre>enable <span style="color:#A60">:sessions</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">value = </span><span style="color:#710">"</span></span> &lt;&lt; session[<span style="color:#A60">:value</span>].inspect
+  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">value = </span><span style="color:#710">"</span></span> &lt;&lt; session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">value</span><span style="color:#710">'</span></span>].inspect
 <span style="color:#080;font-weight:bold">end</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:value</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  session[<span style="color:#A60">:value</span>] = params[<span style="color:#A60">:value</span>]
+  session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">value</span><span style="color:#710">'</span></span>] = params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">value</span><span style="color:#710">'</span></span>]
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -1268,11 +1282,11 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
   <div class="code"><pre>use <span style="color:#036;font-weight:bold">Rack</span>::<span style="color:#036;font-weight:bold">Session</span>::<span style="color:#036;font-weight:bold">Pool</span>, <span style="color:#A60">:expire_after</span> =&gt; <span style="color:#00D">2592000</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">value = </span><span style="color:#710">"</span></span> &lt;&lt; session[<span style="color:#A60">:value</span>].inspect
+  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">value = </span><span style="color:#710">"</span></span> &lt;&lt; session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">value</span><span style="color:#710">'</span></span>].inspect
 <span style="color:#080;font-weight:bold">end</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:value</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  session[<span style="color:#A60">:value</span>] = params[<span style="color:#A60">:value</span>]
+  session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">value</span><span style="color:#710">'</span></span>] = params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">value</span><span style="color:#710">'</span></span>]
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -1334,7 +1348,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/guess/:who</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  pass <span style="color:#080;font-weight:bold">unless</span> params[<span style="color:#A60">:who</span>] == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Frank</span><span style="color:#710">'</span></span>
+  pass <span style="color:#080;font-weight:bold">unless</span> params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">who</span><span style="color:#710">'</span></span>] == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Frank</span><span style="color:#710">'</span></span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">You got me!</span><span style="color:#710">'</span></span>
 <span style="color:#080;font-weight:bold">end</span>
 
@@ -1519,12 +1533,12 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
   <div class="code"><pre>enable <span style="color:#A60">:sessions</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  session[<span style="color:#A60">:secret</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">foo</span><span style="color:#710">'</span></span>
+  session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">secret</span><span style="color:#710">'</span></span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">foo</span><span style="color:#710">'</span></span>
   redirect to(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/bar</span><span style="color:#710">'</span></span>)
 <span style="color:#080;font-weight:bold">end</span>
 
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/bar</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  session[<span style="color:#A60">:secret</span>]
+  session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">secret</span><span style="color:#710">'</span></span>]
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -1577,7 +1591,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <div>
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/article/:id</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#33B">@article</span> = <span style="color:#036;font-weight:bold">Article</span>.find params[<span style="color:#A60">:id</span>]
+  <span style="color:#33B">@article</span> = <span style="color:#036;font-weight:bold">Article</span>.find params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">id</span><span style="color:#710">'</span></span>]
   last_modified <span style="color:#33B">@article</span>.updated_at
   etag <span style="color:#33B">@article</span>.sha1
   erb <span style="color:#A60">:article</span>
@@ -1643,7 +1657,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>可用的选项有:</p>
 
 <dl>
-<dt>filename</dt>
+    <dt>filename</dt>
     <dd>响应中的文件名，默认是真实文件的名字。</dd>
 
     <dt>last_modified</dt>
@@ -1661,6 +1675,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
     <dt>length</dt>
     <dd>Content-Length 的值，默认是文件的大小。</dd>
 </dl>
+
 <p>如果Rack处理器支持的话，Ruby进程也能使用除streaming以外的方法。
 如果你使用这个辅助方法， Sinatra会自动处理range请求。</p>
 
@@ -1759,7 +1774,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <a name='%E6%9F%A5%E6%89%BE%E6%A8%A1%E6%9D%BF%E6%96%87%E4%BB%B6'></a>
 <h3>查找模板文件</h3>
 
-<p><code>find_template</code> 辅助方法被用于在渲染时查找模板文件:</p>
+<p><code>find_template</code> 辅助方法被用于在填充时查找模板文件:</p>
 
 <div>
 <div class="CodeRay">
@@ -1881,7 +1896,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <h3>可选的设置</h3>
 
 <dl>
-<dt>absolute_redirects</dt>
+    <dt>absolute_redirects</dt>
     <dd>
         <p>
             如果被禁用，Sinatra会允许使用相对路径重定向， 但是，Sinatra就不再遵守
@@ -1898,7 +1913,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
         </p>
     </dd>
 
-    <dt>add_charsets</dt>
+    <dt>add_charset</dt>
     <dd>
         <p>
             设定 <tt>content_type</tt> 辅助方法会 自动加上字符集信息的多媒体类型。
@@ -1906,7 +1921,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
         <p>
             你应该添加而不是覆盖这个选项:
-            <tt>settings.add_charsets &lt;&lt; "application/foobar"</tt>
+            <tt>settings.add_charset &lt;&lt; "application/foobar"</tt>
         </p>
     </dd>
 
@@ -2026,6 +2041,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
         views 文件夹。
     </dd>
 </dl>
+
 <a name='%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86'></a>
 <h2>错误处理</h2>
 
@@ -2056,7 +2072,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <div>
 <div class="CodeRay">
   <div class="code"><pre>error <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Sorry there was a nasty error - </span><span style="color:#710">'</span></span> + env[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra.error</span><span style="color:#710">'</span></span>].name
+  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Sorry there was a nasty error - </span><span style="color:#710">'</span></span> + env[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra.error</span><span style="color:#710">'</span></span>].message
 <span style="color:#080;font-weight:bold">end</span>
 </pre></div>
 </div>
@@ -2121,7 +2137,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <a name='Rack%20%E4%B8%AD%E9%97%B4%E4%BB%B6'></a>
 <h2>Rack 中间件</h2>
 
-<p>Sinatra 依靠 <a href="http://rack.rubyforge.org/">Rack</a>, 一个面向Ruby
+<p>Sinatra 依靠 <a href="http://rack.github.io/">Rack</a>, 一个面向Ruby
 web框架的最小标准接口。
 Rack的一个最有趣的面向应用开发者的能力是支持“中间件”——坐落在服务器和你的应用之间，
 监视 并/或 操作HTTP请求/响应以 提供多样类型的常用功能。</p>
@@ -2144,7 +2160,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 
 <p><code>use</code> 的语义和在
-<a href="http://rack.rubyforge.org/doc/classes/Rack/Builder.html">Rack::Builder</a>
+<a href="http://rubydoc.info/github/rack/rack/master/Rack/Builder">Rack::Builder</a>
 DSL(在rack文件中最频繁使用)中定义的完全一样。例如，<code>use</code> 方法接受
 多个/可变 参数，包括代码块：</p>
 
@@ -2170,10 +2186,10 @@ DSL(在rack文件中最频繁使用)中定义的完全一样。例如，<code>us
 <div>
 <div class="CodeRay">
   <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">my_sinatra_app</span><span style="color:#710">'</span></span>
-require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">test/unit</span><span style="color:#710">'</span></span>
+require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">minitest/autorun</span><span style="color:#710">'</span></span>
 require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rack/test</span><span style="color:#710">'</span></span>
 
-<span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyAppTest</span> &lt; <span style="color:#036;font-weight:bold">Test</span>::<span style="color:#036;font-weight:bold">Unit</span>::<span style="color:#036;font-weight:bold">TestCase</span>
+<span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyAppTest</span> &lt; <span style="color:#036;font-weight:bold">Minitest</span>::<span style="color:#036;font-weight:bold">Test</span>
   include <span style="color:#036;font-weight:bold">Rack</span>::<span style="color:#036;font-weight:bold">Test</span>::<span style="color:#036;font-weight:bold">Methods</span>
 
   <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">app</span>
@@ -2233,7 +2249,7 @@ metal，带有服务器组件的简单程序库，
 大部分顶层应用可以通过两个改变转换成Sinatra::Base组件：</p>
 
 <ul>
-<li>
+  <li>
     <p>你的文件应当引入 <code>sinatra/base</code> 而不是 <code>sinatra</code>;
 否则，所有的Sinatra的 DSL 方法将会被引进到 主命名空间。</p>
   </li>
@@ -2242,6 +2258,7 @@ metal，带有服务器组件的简单程序库，
 一个Sinatra::Base的子类中。</p>
   </li>
 </ul>
+
 <p><code>+Sinatra::Base+</code> 是一张白纸。大部分的选项默认是禁用的，
 包含内置的服务器。参见
 <a href="http://sinatra.github.com/configuration.html">选项和配置</a>
@@ -2256,7 +2273,7 @@ metal，带有服务器组件的简单程序库，
 <p>和模块化方式相比只有两个缺点:</p>
 
 <ul>
-<li>
+  <li>
     <p>你对每个Ruby进程只能定义一个Sinatra应用，如果你需要更多，
 切换到模块化方式。</p>
   </li>
@@ -2265,6 +2282,7 @@ metal，带有服务器组件的简单程序库，
 library/gem，转换到模块化方式。</p>
   </li>
 </ul>
+
 <p>没有任何原因阻止你混合模块化和传统方式。</p>
 
 <p>如果从一种转换到另一种，你需要注意settings中的 一些微小的不同:</p>
@@ -2352,7 +2370,7 @@ run <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color
 <p>以下情况你可能需要使用 <code>config.ru</code>:</p>
 
 <ul>
-<li>
+  <li>
     <p>你要使用不同的 Rack 处理器部署 (Passenger, Unicorn, Heroku, …).</p>
   </li>
   <li>
@@ -2362,6 +2380,7 @@ run <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color
     <p>你只想把Sinatra当作中间件使用，而不是端点。</p>
   </li>
 </ul>
+
 <p><strong>你并不需要切换到<code>config.ru</code>仅仅因为你切换到模块化方式，
 你同样不需要切换到模块化方式， 仅仅因为要运行 <code>config.ru</code>.</strong></p>
 
@@ -2383,8 +2402,8 @@ run <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color
   get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/login</span><span style="color:#710">'</span></span>) { haml <span style="color:#A60">:login</span> }
 
   post(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/login</span><span style="color:#710">'</span></span>) <span style="color:#080;font-weight:bold">do</span>
-    <span style="color:#080;font-weight:bold">if</span> params[<span style="color:#A60">:name</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">admin</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">and</span> params[<span style="color:#A60">:password</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">admin</span><span style="color:#710">'</span></span>
-      session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">user_name</span><span style="color:#710">'</span></span>] = params[<span style="color:#A60">:name</span>]
+    <span style="color:#080;font-weight:bold">if</span> params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">name</span><span style="color:#710">'</span></span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">admin</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">and</span> params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">password</span><span style="color:#710">'</span></span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">admin</span><span style="color:#710">'</span></span>
+      session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">user_name</span><span style="color:#710">'</span></span>] = params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">name</span><span style="color:#710">'</span></span>]
     <span style="color:#080;font-weight:bold">else</span>
       redirect <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/login</span><span style="color:#710">'</span></span>
     <span style="color:#080;font-weight:bold">end</span>
@@ -2442,7 +2461,7 @@ Sinatra::Application，或者这个类就是你显式创建的子类。
 <p>在下列情况下你将拥有应用变量域的绑定：</p>
 
 <ul>
-<li>
+  <li>
     <p>在应用类中</p>
   </li>
   <li>
@@ -2455,22 +2474,24 @@ Sinatra::Application，或者这个类就是你显式创建的子类。
     <p>用作`set`值的过程/代码块</p>
   </li>
 </ul>
+
 <p>你可以访问变量域对象（就是应用类）就像这样：</p>
 
 <ul>
-<li>
+  <li>
     <p>通过传递给代码块的对象 (<code>configure { |c| ... }</code>)</p>
   </li>
   <li>
     <p>在请求变量域中使用`settings`</p>
   </li>
 </ul>
+
 <a name='%E8%AF%B7%E6%B1%82/%E5%AE%9E%E4%BE%8B%20%E5%8F%98%E9%87%8F%E5%9F%9F'></a>
 <h3>请求/实例 变量域</h3>
 
 <p>对于每个进入的请求，一个新的应用类的实例会被创建
 所有的处理器代码块在该变量域被运行。在这个变量域中， 你可以访问
-`request` 和 `session` 对象，或者调用渲染方法比如 `erb` 或者
+`request` 和 `session` 对象，或者调用填充方法比如 `erb` 或者
 `haml`。你可以在请求变量域当中通过`settings`辅助方法
 访问应用变量域：</p>
 
@@ -2482,8 +2503,8 @@ Sinatra::Application，或者这个类就是你显式创建的子类。
     <span style="color:#777"># 针对 '/define_route/:name' 的请求变量域</span>
     <span style="color:#33B">@value</span> = <span style="color:#00D">42</span>
 
-    settings.get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">/</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:name</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">"</span></span>) <span style="color:#080;font-weight:bold">do</span>
-      <span style="color:#777"># 针对 "/#{params[:name]}" 的请求变量域</span>
+    settings.get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">/</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">name</span><span style="color:#710">'</span></span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">"</span></span>) <span style="color:#080;font-weight:bold">do</span>
+      <span style="color:#777"># 针对 "/#{params['name']}" 的请求变量域</span>
       <span style="color:#33B">@value</span> <span style="color:#777"># =&gt; nil (并不是相同的请求)</span>
     <span style="color:#080;font-weight:bold">end</span>
 
@@ -2497,7 +2518,7 @@ Sinatra::Application，或者这个类就是你显式创建的子类。
 <p>在以下情况将获得请求变量域：</p>
 
 <ul>
-<li>
+  <li>
     <p>get/head/post/put/delete 代码块</p>
   </li>
   <li>
@@ -2510,6 +2531,7 @@ Sinatra::Application，或者这个类就是你显式创建的子类。
     <p>模板/视图</p>
   </li>
 </ul>
+
 <a name='%E4%BB%A3%E7%90%86%E5%8F%98%E9%87%8F%E5%9F%9F'></a>
 <h3>代理变量域</h3>
 
@@ -2523,13 +2545,14 @@ Sinatra::Application，或者这个类就是你显式创建的子类。
 <p>在以下情况将获得代理变量域：</p>
 
 <ul>
-<li>
+  <li>
     <p>顶层的绑定，如果你做过 <code>require "sinatra"</code></p>
   </li>
   <li>
     <p>在扩展了 `Sinatra::Delegator` mixin的对象</p>
   </li>
 </ul>
+
 <p>自己在这里看一下代码: <a href="http://github.com/sinatra/sinatra/blob/ceac46f0bc129a6e994a06100aa854f606fe5992/lib/sinatra/base.rb#L1128">Sinatra::Delegator
 mixin</a>
 已经
@@ -2561,7 +2584,7 @@ mixin</a>
 <p>下面的Ruby版本是官方支持的:</p>
 
 <dl>
-<dt>Ruby 1.8.6</dt>
+    <dt>Ruby 1.8.6</dt>
     <dd>
         不推荐在1.8.6上安装Sinatra， 但是直到Sinatra
         1.3.0发布才会放弃对它的支持。 RDoc 和
@@ -2596,12 +2619,13 @@ mixin</a>
         服务器还没有在JRuby上获得支持。
     </dd>
 </dl>
+
 <p>我们也会时刻关注新的Ruby版本。</p>
 
 <p>下面的 Ruby 实现没有被官方支持， 但是已知可以运行 Sinatra:</p>
 
 <ul>
-<li>
+  <li>
     <p>JRuby 和 Rubinius 老版本</p>
   </li>
   <li>
@@ -2617,6 +2641,7 @@ mixin</a>
     <p>Ruby 1.9.0 and 1.9.1</p>
   </li>
 </ul>
+
 <p>不被官方支持的意思是，如果在不被支持的平台上有运行错误，
 我们假定不是我们的问题，而是平台的问题。</p>
 
@@ -2710,7 +2735,7 @@ rake install
 <h2>更多</h2>
 
 <ul>
-<li>
+  <li>
     <p><a href="http://www.sinatrarb.com/">项目主页（英文）</a> - 更多的文档，
 新闻，和其他资源的链接。</p>
   </li>
@@ -2732,7 +2757,7 @@ rake install
 <a href="http://freenode.net">freenode.net</a></p>
   </li>
   <li>
-    <p><a href="http://sinatra-book.gittr.com/">Sinatra宝典</a> Cookbook教程</p>
+    <p><a href="https://github.com/sinatra/sinatra-book/">Sinatra宝典</a> Cookbook教程</p>
   </li>
   <li>
     <p><a href="http://recipes.sinatrarb.com/">Sinatra使用技巧</a> 网友贡献的实用技巧</p>
