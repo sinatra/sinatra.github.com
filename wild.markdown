@@ -10,7 +10,6 @@ We'll take care of the rest.
 
 Applications {#apps}
 ------------
-- [Flip Text](http://cedarcreekit.com/labs/flip_text) A simple app used to flip text upside down.
 - [SequenceServer](http://www.sequenceserver.com/) An easy-to-setup BLAST sequence search server
 - [Flickr Group Viewer](http://gv.vqvz.com) is a (nicer?) way to view photos in a flickr group -- [on GitHub](https://github.com/funkaoshi/gv.vqvz.com).
 - [OnBoard](http://dev.vemarsas.it/onboard/) a web interface to manage Linux-based network appliances.
