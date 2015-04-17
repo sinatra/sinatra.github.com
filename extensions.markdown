@@ -126,7 +126,7 @@ end
 The call to `Sinatra.helpers` includes the module in
 `Sinatra::Application`, making all methods defined in the module
 available to classic style applications. Using this extension in classic
-style apps is a simple as requiring the extension and using the new
+style apps is as simple as requiring the extension and using the new
 method:
 
 {% highlight ruby %}
