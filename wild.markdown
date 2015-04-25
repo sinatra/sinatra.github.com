@@ -136,6 +136,7 @@ Libraries and extensions {#libs}
 - [Bowtie](https://github.com/tomas/bowtie) Admin generator for DataMapper models, on Sinatra.
 - [Sinatra::Kittens](https://github.com/tbuehlmann/sinatra-kittens) Random kitten pictures for Sinatra not_found pages.
 - [Sinatra::FuzzyLayout](https://github.com/kgrz/sinatra-fuzzy_layout) Extension for enabling or disabling layout template for views using regex.
+- [Sinatra::Param](https://github.com/mattt/sinatra-param) Parameter Validation & Type Coercion for Sinatra.
 
 Websites {#sites}
 --------
