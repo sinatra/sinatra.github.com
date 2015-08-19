@@ -229,3 +229,4 @@ Companies using Sinatra {#biz}
 - [Odd-e](http://www.odd-e.com)
 - [Digital Deployment](http://www.digitaldeployment.com)
 - [Icicle - Ruby Development Company](http://www.icicletech.com/)
+- [Robocat](http://robo.cat/)
