@@ -7,7 +7,7 @@ layout: default
 
 Want to show Sinatra some love? Help out by contributing!
 
-## Find a bug?
+## Found a bug?
 
 Log it in our [issue tracker][ghi] or send a note to
 the [mailing list][ml]. Be sure to include all relevant information, like
