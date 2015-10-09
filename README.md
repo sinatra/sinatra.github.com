@@ -2,7 +2,7 @@ Sinatra Website / Documentation
 ===============================
 
 This repo contains the Sinatra website and documentation sources published
-at [http://sinatra.github.com/](http://sinatra.github.com/).
+at [http://www.sinatrarb.com/](http://www.sinatrarb.com/).
 
 Working Locally
 ---------------

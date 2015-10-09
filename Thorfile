@@ -7,7 +7,7 @@ class Blog < Thor
     layout: post
     title: TITLE
     author: YOUR NAME
-    author_url: http://sinatra.github.com/
+    author_url: http://www.sinatrarb.com/
     publish_date: #{Time.now.strftime('%A, %B %d, %Y')}
     ---
 
