@@ -138,6 +138,7 @@ Libraries and extensions {#libs}
 - [Sinatra::Kittens](https://github.com/tbuehlmann/sinatra-kittens) Random kitten pictures for Sinatra not_found pages.
 - [Sinatra::FuzzyLayout](https://github.com/kgrz/sinatra-fuzzy_layout) Extension for enabling or disabling layout template for views using regex.
 - [Sinatra::Param](https://github.com/mattt/sinatra-param) Parameter Validation & Type Coercion for Sinatra.
+- [SinatraLogger](https://github.com/wshihadeh/sinatra_logger) Provides logging functionaly to Sinatra application.
 
 Websites {#sites}
 --------
