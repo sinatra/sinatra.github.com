@@ -92,6 +92,9 @@
 			<li><a href='#Delegation-Scope'>Delegation-Scope</a></li>
 		</ol>
 		<li><a href='#Kommandozeile'>Kommandozeile</a></li>
+		<ol class='level-2'>
+			<li><a href='#Multi-threading'>Multi-threading</a></li>
+		</ol>
 		<li><a href='#Systemanforderungen'>Systemanforderungen</a></li>
 		<li><a href='#Der%20neuste%20Stand%20(The%20Bleeding%20Edge)'>Der neuste Stand (The Bleeding Edge)</a></li>
 		<ol class='level-2'>
@@ -110,13 +113,13 @@
 Umständen nicht auf dem aktuellen Stand (aktuell Sinatra 1.4.5).</em></p>
 
 <p>Sinatra ist eine
-<a href="http://de.wikipedia.org/wiki/Dom%C3%A4nenspezifische_Sprache">DSL</a>, die das
+<a href="https://de.wikipedia.org/wiki/Dom%C3%A4nenspezifische_Sprache">DSL</a>, die das
 schnelle Erstellen von Webanwendungen in Ruby mit minimalem Aufwand
 ermöglicht:</p>
 
 <p>Sinatra via <code>rubygems</code> installieren:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>gem install sinatra
 </pre></div>
@@ -125,7 +128,7 @@ ermöglicht:</p>
 
 <p>Eine Datei mit dem Namen <code>myapp.rb</code> erstellen:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra</span><span style="color:#710">'</span></span>
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
@@ -137,7 +140,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>und im gleichen Verzeichnis ausführen:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>ruby myapp.rb
 </pre></div>
@@ -158,7 +161,7 @@ aufgerufen werden.</p>
 <p>In Sinatra wird eine Route durch eine HTTP-Methode und ein URL-Muster definiert.
 Jeder dieser Routen wird ein Ruby-Block zugeordnet:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   .. zeige etwas ..
@@ -197,7 +200,7 @@ Das erste Routen-Muster, das mit dem Request übereinstimmt, wird ausgeführt.</
 <p>Die Muster der Routen können benannte Parameter beinhalten, die über den
 <code>params</code>-Hash zugänglich gemacht werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/hallo/:name</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># passt auf "GET /hallo/foo" und "GET /hallo/bar"</span>
@@ -210,7 +213,7 @@ Das erste Routen-Muster, das mit dem Request übereinstimmt, wird ausgeführt.</
 
 <p>Man kann auf diese auch mit Block-Parametern zugreifen:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/hallo/:name</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span> |n|
   <span style="color:#777"># n entspricht hier params['name']</span>
@@ -223,7 +226,7 @@ Das erste Routen-Muster, das mit dem Request übereinstimmt, wird ausgeführt.</
 <p>Routen-Muster können auch mit sog. Splat- oder Wildcard-Parametern über das
 <code>params['splat']</code>-Array angesprochen werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/sag/*/zu/*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># passt z.B. auf /sag/hallo/zu/welt</span>
@@ -240,7 +243,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Oder mit Block-Parametern:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/download/*.*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span> |pfad, endung|
   [pfad, endung] <span style="color:#777"># =&gt; ["Pfad/zu/Datei", "xml"]</span>
@@ -251,7 +254,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Routen mit regulären Ausdrücken sind auch möglich:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#D20">\A</span><span style="color:#D20">\/</span><span style="color:#808">hallo</span><span style="color:#D20">\/</span><span style="color:#808">([</span><span style="color:#D20">\w</span><span style="color:#808">]+)</span><span style="color:#D20">\z</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hallo, </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">captures</span><span style="color:#710">'</span></span>].first<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
@@ -262,7 +265,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Und auch hier können Block-Parameter genutzt werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">%r{</span><span style="color:#808">/hallo/([</span><span style="color:#D20">\w</span><span style="color:#808">]+)</span><span style="color:#404">}</span></span> <span style="color:#080;font-weight:bold">do</span> |c|
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hallo, </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>c<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
@@ -273,7 +276,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Routen-Muster können auch mit optionalen Parametern ausgestattet werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/posts.?:format?</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># passt auf "GET /posts" sowie jegliche Erweiterung</span>
@@ -285,7 +288,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Routen können auch den query-Parameter verwenden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/posts</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># matches "GET /posts?title=foo&amp;author=bar"</span>
@@ -308,7 +311,7 @@ Abgleich mit den Routen modifiziert wird.</p>
 sein müssen, damit der Block ausgeführt wird. Möglich wäre etwa eine
 Einschränkung des User-Agents über die interne Bedingung <code>:agent</code>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span>, <span style="color:#A60">:agent</span> =&gt; <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">Songbird (</span><span style="color:#D20">\d</span><span style="color:#D20">\.</span><span style="color:#D20">\d</span><span style="color:#808">)[</span><span style="color:#D20">\d</span><span style="color:#D20">\/</span><span style="color:#808">]*?</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Du verwendest Songbird Version </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">agent</span><span style="color:#710">'</span></span>][<span style="color:#00D">0</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">"</span></span>
@@ -319,7 +322,7 @@ Einschränkung des User-Agents über die interne Bedingung <code>:agent</code>:<
 
 <p>Wird Songbird als Browser nicht verwendet, springt Sinatra zur nächsten Route:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># passt auf andere Browser</span>
@@ -330,7 +333,7 @@ Einschränkung des User-Agents über die interne Bedingung <code>:agent</code>:<
 
 <p>Andere mitgelieferte Bedingungen sind <code>:host_name</code> und <code>:provides</code>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span>, <span style="color:#A60">:host_name</span> =&gt; <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">^admin</span><span style="color:#D20">\.</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Adminbereich, Zugriff verweigert!</span><span style="color:#710">"</span></span>
@@ -350,7 +353,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Eigene Bedingungen können relativ einfach hinzugefügt werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>set(<span style="color:#A60">:wahrscheinlichkeit</span>) { |value| condition { rand &lt;= value } }
 
@@ -368,7 +371,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Bei Bedingungen, die mehrere Werte annehmen können, sollte ein Splat verwendet
 werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>set(<span style="color:#A60">:auth</span>) <span style="color:#080;font-weight:bold">do</span> |*roles|   <span style="color:#777"># &lt;- hier kommt der Splat ins Spiel</span>
   condition <span style="color:#080;font-weight:bold">do</span>
@@ -413,7 +416,7 @@ Block nur mit Strings als Übergabewerte aufruft.</li>
 
 <p>Damit lässt sich relativ einfach Streaming implementieren:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">Stream</span>
   <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">each</span>
@@ -437,7 +440,7 @@ String-Muster und Reguläre Ausdrücke zum Abgleichen von Routen ausgestattet.
 Das muss aber noch nicht alles sein, es können ohne großen Aufwand eigene
 Routen-Muster erstellt werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">AllButPattern</span>
   <span style="color:#036;font-weight:bold">Match</span> = <span style="color:#036;font-weight:bold">Struct</span>.new(<span style="color:#A60">:captures</span>)
@@ -465,7 +468,7 @@ get all_but(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="co
 
 <p>Beachte, dass das obige Beispiel etwas übertrieben wirkt. Es geht auch einfacher:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
   pass <span style="color:#080;font-weight:bold">if</span> request.path_info == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">/index</span><span style="color:#710">"</span></span>
@@ -477,7 +480,7 @@ get all_but(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="co
 
 <p>Oder unter Verwendung eines negativen look ahead:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">%r{</span><span style="color:#808">^(?!/index$)</span><span style="color:#404">}</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># ...</span>
@@ -492,7 +495,7 @@ get all_but(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="co
 <p>Statische Dateien werden im <code>./public</code>-Ordner erwartet. Es ist möglich,
 einen anderen Ort zu definieren, indem man die <code>:public_folder</code>-Option setzt:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>set <span style="color:#A60">:public_folder</span>, <span style="color:#036;font-weight:bold">File</span>.dirname(<span style="color:#069">__FILE__</span>) + <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/static</span><span style="color:#710">'</span></span>
 </pre></div>
@@ -511,7 +514,7 @@ die <code>:static_cache_control</code>-Einstellung (s.u.).</p>
 <p>Alle Templatesprachen verwenden ihre eigene Renderingmethode, die jeweils
 einen String zurückgibt:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   erb <span style="color:#A60">:index</span>
@@ -524,7 +527,7 @@ einen String zurückgibt:</p>
 
 <p>Anstelle eines Templatenamens kann man auch direkt die Templatesprache verwenden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   code = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">&lt;%= Time.now %&gt;</span><span style="color:#710">"</span></span>
@@ -536,7 +539,7 @@ einen String zurückgibt:</p>
 
 <p>Templates nehmen ein zweite Argument an, den Options-Hash:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   erb <span style="color:#A60">:index</span>, <span style="color:#A60">:layout</span> =&gt; <span style="color:#A60">:post</span>
@@ -550,7 +553,7 @@ einen String zurückgibt:</p>
 
 <p>Optionen, die Sinatra nicht versteht, werden an das Template weitergereicht:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   haml <span style="color:#A60">:index</span>, <span style="color:#A60">:format</span> =&gt; <span style="color:#A60">:html5</span>
@@ -562,7 +565,7 @@ einen String zurückgibt:</p>
 <p>Für alle Templates können auch Einstellungen, die für alle Routen gelten,
 festgelegt werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>set <span style="color:#A60">:haml</span>, <span style="color:#A60">:format</span> =&gt; <span style="color:#A60">:html5</span>
 
@@ -629,7 +632,7 @@ Einstellungen, die mit <code>set</code> festgelegt wurden.</p>
 <p>Sinatra geht davon aus, dass die Templates sich im <code>./views</code> Verzeichnis
 befinden. Es kann jedoch ein anderer Ordner festgelegt werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>set <span style="color:#A60">:views</span>, settings.root + <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/templates</span><span style="color:#710">'</span></span>
 </pre></div>
@@ -639,7 +642,7 @@ befinden. Es kann jedoch ein anderer Ordner festgelegt werden:</p>
 <p>Es ist zu beachten, dass immer mit Symbolen auf Templates verwiesen werden muss,
 auch dann, wenn sie sich in einem Unterordner befinden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>haml <span style="color:#A60"><span style="color:#A60">:</span><span style="color:#740">'</span><span style="color:#A60">unterverzeichnis/template</span><span style="color:#740">'</span></span>
 </pre></div>
@@ -651,7 +654,7 @@ auch dann, wenn sie sich in einem Unterordner befinden:</p>
 <a name='Direkte%20Templates'></a>
 <h3>Direkte Templates</h3>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   haml <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">%div.title Hallo Welt</span><span style="color:#710">'</span></span>
@@ -669,7 +672,7 @@ auch dann, wenn sie sich in einem Unterordner befinden:</p>
 verwendet wird (und dann auch Thread-sicher ist), verwendet man am besten zu
 Beginn ein <code>'require'</code>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rdiscount</span><span style="color:#710">'</span></span> <span style="color:#777"># oder require 'bluecloth'</span>
 get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span>) { markdown <span style="color:#A60">:index</span> }
@@ -742,7 +745,7 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <table>
   <tr>
     <td>Abhängigkeit</td>
-    <td><a href="http://nokogiri.org/">nokogiri</a></td>
+    <td><a href="http://www.nokogiri.org/">nokogiri</a></td>
   </tr>
   <tr>
     <td>Dateierweiterung</td>
@@ -798,7 +801,7 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <table>
   <tr>
     <td>Abhängigkeit</td>
-    <td><a href="http://www.lesscss.org/">less</a></td>
+    <td><a href="http://lesscss.org/">less</a></td>
   </tr>
   <tr>
     <td>Dateierweiterung</td>
@@ -816,7 +819,7 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <table>
   <tr>
     <td>Abhängigkeit</td>
-    <td><a href="http://www.liquidmarkup.org/">liquid</a></td>
+    <td><a href="http://liquidmarkup.org/">liquid</a></td>
   </tr>
   <tr>
     <td>Dateierweiterung</td>
@@ -839,7 +842,7 @@ denen man Variablen weitergibt.</p>
   <tr>
     <td>Abhängigkeit</td>
     <td>Eine der folgenden Bibliotheken:
-        <a href="https://github.com/rtomayko/rdiscount" title="RDiscount">RDiscount</a>,
+        <a href="https://github.com/davidfstr/rdiscount" title="RDiscount">RDiscount</a>,
         <a href="https://github.com/vmg/redcarpet" title="RedCarpet">RedCarpet</a>,
         <a href="http://deveiate.org/projects/BlueCloth" title="BlueCloth">BlueCloth</a>,
         <a href="http://kramdown.gettalong.org/" title="kramdown">kramdown</a> oder
@@ -862,7 +865,7 @@ denen man Variablen weitergibt.</p>
 keine locals verwenden kann, wird man Markdown üblicherweise in Kombination
 mit anderen Renderern verwenden wollen:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>erb <span style="color:#A60">:overview</span>, <span style="color:#A60">:locals</span> =&gt; { <span style="color:#A60">:text</span> =&gt; markdown(<span style="color:#A60">:einfuehrung</span>) }
 </pre></div>
@@ -872,7 +875,7 @@ mit anderen Renderern verwenden wollen:</p>
 <p>Beachte, dass man die <code>markdown</code>-Methode auch aus anderen Templates heraus
 aufrufen kann:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>%h1 <span style="color:#036;font-weight:bold">Gruß</span> von Haml!
 %p= markdown(<span style="color:#A60">:Grüße</span>)
@@ -907,7 +910,7 @@ Templates zu verwenden und einen anderen für das Layout, indem die
 keine locals verwenden kann, wird man Textile üblicherweise in Kombination mit
 anderen Renderern verwenden wollen:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>erb <span style="color:#A60">:overview</span>, <span style="color:#A60">:locals</span> =&gt; { <span style="color:#A60">:text</span> =&gt; textile(<span style="color:#A60">:einfuehrung</span>) }
 </pre></div>
@@ -917,7 +920,7 @@ anderen Renderern verwenden wollen:</p>
 <p>Beachte, dass man die <code>textile</code>-Methode auch aus anderen Templates heraus
 aufrufen kann:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>%h1 <span style="color:#036;font-weight:bold">Gruß</span> von Haml!
 %p= textile(<span style="color:#A60">:Grüße</span>)
@@ -952,7 +955,7 @@ Templates zu verwenden und einen anderen für das Layout, indem die
 keine locals verwenden kann, wird man RDoc üblicherweise in Kombination mit
 anderen Renderern verwenden wollen:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>erb <span style="color:#A60">:overview</span>, <span style="color:#A60">:locals</span> =&gt; { <span style="color:#A60">:text</span> =&gt; rdoc(<span style="color:#A60">:einfuehrung</span>) }
 </pre></div>
@@ -962,7 +965,7 @@ anderen Renderern verwenden wollen:</p>
 <p>Beachte, dass man die <code>rdoc</code>-Methode auch aus anderen Templates heraus
 aufrufen kann:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>%h1 <span style="color:#036;font-weight:bold">Gruß</span> von Haml!
 %p= rdoc(<span style="color:#A60">:Grüße</span>)
@@ -1026,7 +1029,7 @@ man üblicherweise locals verwenden wollen, mit denen man Variablen weitergibt.<
 <table>
   <tr>
     <td>Abhängigkeit</td>
-    <td><a href="http://markaby.github.com/">markaby</a></td>
+    <td><a href="http://markaby.github.io/">markaby</a></td>
   </tr>
   <tr>
     <td>Dateierweiterung</td>
@@ -1098,7 +1101,7 @@ man üblicherweise locals verwenden wollen, mit denen man Variablen weitergibt.<
 keine locals verwenden kann, wird man Creole üblicherweise in Kombination mit
 anderen Renderern verwenden wollen:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>erb <span style="color:#A60">:overview</span>, <span style="color:#A60">:locals</span> =&gt; { <span style="color:#A60">:text</span> =&gt; creole(<span style="color:#A60">:einfuehrung</span>) }
 </pre></div>
@@ -1108,7 +1111,7 @@ anderen Renderern verwenden wollen:</p>
 <p>Beachte, dass man die <code>creole</code>-Methode auch aus anderen Templates heraus
 aufrufen kann:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>%h1 <span style="color:#036;font-weight:bold">Gruß</span> von Haml!
 %p= creole(<span style="color:#A60">:Grüße</span>)
@@ -1145,7 +1148,7 @@ verwendet wird.</p>
 keine locals verwenden kann, wird man Mediawiki üblicherweise in Kombination mit
 anderen Renderern verwenden wollen:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>erb <span style="color:#A60">:overview</span>, <span style="color:#A60">:locals</span> =&gt; { <span style="color:#A60">:text</span> =&gt; mediawiki(<span style="color:#A60">:introduction</span>) }
 </pre></div>
@@ -1155,7 +1158,7 @@ anderen Renderern verwenden wollen:</p>
 <p>Beachte: Man kann die <code>mediawiki</code>-Methode auch aus anderen Templates
 heraus aufrufen:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>%h1 <span style="color:#036;font-weight:bold">Grüße</span> von Haml!
 %p= mediawiki(<span style="color:#A60">:greetings</span>)
@@ -1195,7 +1198,7 @@ Templates zu verwenden und einen anderen für das Layout, indem die
   <tr>
     <td>Abhängigkeit</td>
     <td>
-      <a href="https://github.com/lucasmazza/ruby-stylus" title="Ruby Stylus">
+      <a href="https://github.com/forgecrafted/ruby-stylus" title="Ruby Stylus">
         Stylus
       </a> und eine Möglichkeit
       <a href="https://github.com/sstephenson/execjs/blob/master/README.md#readme" title="ExecJS">
@@ -1216,7 +1219,7 @@ Templates zu verwenden und einen anderen für das Layout, indem die
 <p>Um Stylus-Templates ausführen zu können, müssen <code>stylus</code> und <code>stylus/tilt</code>
 zuerst geladen werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra</span><span style="color:#710">'</span></span>
 require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">stylus</span><span style="color:#710">'</span></span>
@@ -1257,7 +1260,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Die Template-Quelle wird als Ruby-String evaluiert. Die daraus resultierende
 json Variable wird mit Hilfe von <code>#to_json</code> umgewandelt:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>json = { <span style="color:#A60">:foo</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bar</span><span style="color:#710">'</span></span> }
 json[<span style="color:#A60">:baz</span>] = key
@@ -1268,7 +1271,7 @@ json[<span style="color:#A60">:baz</span>] = key
 <p>Die <code>:callback</code> und <code>:variable</code> Optionen können mit dem gerenderten Objekt
 verwendet werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#080;font-weight:bold">var</span> resource = {<span style="color:#606"><span style="color:#404">"</span><span>foo</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">bar</span><span style="color:#710">"</span></span>,<span style="color:#606"><span style="color:#404">"</span><span>baz</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">qux</span><span style="color:#710">"</span></span>};
 present(resource);
@@ -1306,7 +1309,7 @@ Wlang und <code>yield</code> verwenden, werden aber trotzdem unterstützt.</p>
 <p>Templates werden in demselben Kontext ausgeführt wie Routen. Instanzvariablen
 in Routen sind auch direkt im Template verfügbar:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:id</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#33B">@foo</span> = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">id</span><span style="color:#710">'</span></span>])
@@ -1318,7 +1321,7 @@ in Routen sind auch direkt im Template verfügbar:</p>
 
 <p>Oder durch einen expliziten Hash von lokalen Variablen:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:id</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   foo = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">id</span><span style="color:#710">'</span></span>])
@@ -1338,7 +1341,7 @@ Templates eingesetzt.</p>
 Template kann entweder wie oben beschrieben über die <code>:template</code> Option
 verwendet werden oder mit einem Block gerendert werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>erb <span style="color:#A60">:post</span>, <span style="color:#A60">:layout</span> =&gt; <span style="color:#069">false</span> <span style="color:#080;font-weight:bold">do</span>
   erb <span style="color:#A60">:index</span>
@@ -1352,7 +1355,7 @@ verwendet werden oder mit einem Block gerendert werden:</p>
 <p>Blöcke an Render-Methoden weiterzugeben ist besonders bei verschachtelten
 Layouts hilfreich:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>erb <span style="color:#A60">:main_layout</span>, <span style="color:#A60">:layout</span> =&gt; <span style="color:#069">false</span> <span style="color:#080;font-weight:bold">do</span>
   erb <span style="color:#A60">:admin_layout</span> <span style="color:#080;font-weight:bold">do</span>
@@ -1365,7 +1368,7 @@ Layouts hilfreich:</p>
 
 <p>Der gleiche Effekt kann auch mit weniger Code erreicht werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>erb <span style="color:#A60">:admin_layout</span>, <span style="color:#A60">:layout</span> =&gt; <span style="color:#A60">:main_layout</span> <span style="color:#080;font-weight:bold">do</span>
   erb <span style="color:#A60">:user</span>
@@ -1384,7 +1387,7 @@ und <code>wlang</code>.</p>
 
 <p>Templates können auch am Ende der Datei definiert werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra</span><span style="color:#710">'</span></span>
 
@@ -1414,7 +1417,7 @@ werden.</p>
 
 <p>Templates können auch mit der Top-Level <code>template</code>-Methode definiert werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>template <span style="color:#A60">:layout</span> <span style="color:#080;font-weight:bold">do</span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">%html</span><span style="color:#b0b">\n</span><span style="color:#D20">  =yield</span><span style="color:#b0b">\n</span><span style="color:#710">"</span></span>
@@ -1434,7 +1437,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Wenn ein Template mit dem Namen “layout” existiert, wird es bei jedem Aufruf
 verwendet. Durch <code>:layout =&gt; false</code> kann das Ausführen verhindert werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   haml <span style="color:#A60">:index</span>, <span style="color:#A60">:layout</span> =&gt; !request.xhr?
@@ -1452,7 +1455,7 @@ verwendet. Durch <code>:layout =&gt; false</code> kann das Ausführen verhindert
 genutzt werden. Wenn etwa die Dateiendung <code>tt</code> für Textile-Templates genutzt
 werden soll, lässt sich dies wie folgt bewerkstelligen:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#036;font-weight:bold">Tilt</span>.register <span style="color:#A60">:tt</span>, <span style="color:#036;font-weight:bold">Tilt</span>[<span style="color:#A60">:textile</span>]
 </pre></div>
@@ -1465,7 +1468,7 @@ werden soll, lässt sich dies wie folgt bewerkstelligen:</p>
 <p>Zu allererst muss die Engine bei Tilt registriert und danach eine
 Rendering-Methode erstellt werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#036;font-weight:bold">Tilt</span>.register <span style="color:#A60">:mtt</span>, <span style="color:#036;font-weight:bold">MeineTolleTemplateEngine</span>
 
@@ -1490,7 +1493,7 @@ Tilt zu erfahren.</p>
 <p>Um einen eigenen Mechanismus zum Aufsuchen von Templates zu
 implementieren, muss <code>#find_template</code> definiert werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>configure <span style="color:#080;font-weight:bold">do</span>
   set <span style="color:#A60">:views</span> [ <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">./views/a</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">./views/b</span><span style="color:#710">'</span></span> ]
@@ -1513,7 +1516,7 @@ Routen, ausgeführt. So können etwa Request und Antwort geändert werden.
 Gesetzte Instanzvariablen in Filtern können in Routen und Templates verwendet
 werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>before <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#33B">@note</span> = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Hi!</span><span style="color:#710">'</span></span>
@@ -1532,7 +1535,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 können ebenfalls Request und Antwort ändern. In Before-Filtern gesetzte
 Instanzvariablen können in After-Filtern verwendet werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>after <span style="color:#080;font-weight:bold">do</span>
   puts response.status
@@ -1544,7 +1547,7 @@ Instanzvariablen können in After-Filtern verwendet werden:</p>
 <p>Filter können optional auch mit einem Muster ausgestattet werden, das auf den
 Request-Pfad passen muss, damit der Filter ausgeführt wird:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>before <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/protected/*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   authenticate!
@@ -1560,7 +1563,7 @@ after <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#7
 <p>Ähnlich wie Routen können Filter auch mit weiteren Bedingungen eingeschränkt
 werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>before <span style="color:#A60">:agent</span> =&gt; <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">Songbird</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># ...</span>
@@ -1579,7 +1582,7 @@ after <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#7
 <p>Durch die Top-Level <code>helpers</code>-Methode werden sogenannte Helfer-Methoden
 definiert, die in Routen und Templates verwendet werden können:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>helpers <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">bar</span>(name)
@@ -1599,7 +1602,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Sessions werden verwendet, um Zustände zwischen den Requests zu speichern. Sind
 sie aktiviert, kann ein Session-Hash je Benutzer-Session verwendet werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>enable <span style="color:#A60">:sessions</span>
 
@@ -1620,7 +1623,7 @@ höheren, teilweise überflüssigen Traffic. Um das zu vermeiden, kann eine Rack
 Session-Middleware verwendet werden. Dabei wird auf <code>enable :sessions</code>
 verzichtet und die Middleware wie üblich im Programm eingebunden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>use <span style="color:#036;font-weight:bold">Rack</span>::<span style="color:#036;font-weight:bold">Session</span>::<span style="color:#036;font-weight:bold">Pool</span>, <span style="color:#A60">:expire_after</span> =&gt; <span style="color:#00D">2592000</span>
 
@@ -1641,7 +1644,7 @@ Neustart der Applikation automatisch ändert, ist es sinnvoll, ein eigenes zu
 wählen, damit sich alle Instanzen der Applikation dasselbe Session-Secret
 teilen:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>set <span style="color:#A60">:session_secret</span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">super_geheimes_Gegeimnis</span><span style="color:#710">'</span></span>
 </pre></div>
@@ -1651,7 +1654,7 @@ teilen:</p>
 <p>Zur weiteren Konfiguration kann man einen Hash mit Optionen in den <code>sessions</code>
 Einstellungen ablegen.</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>set <span style="color:#A60">:sessions</span>, <span style="color:#A60">:domain</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">foo.com</span><span style="color:#710">'</span></span>
 </pre></div>
@@ -1661,7 +1664,7 @@ Einstellungen ablegen.</p>
 <p>Um eine Session mit anderen Apps und zwischen verschiedenen Subdomains
 von foo.com zu teilen, wird ein <em>.</em> der Domain vorangestellt:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>set <span style="color:#A60">:sessions</span>, <span style="color:#A60">:domain</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">.foo,com</span><span style="color:#710">'</span></span>
 </pre></div>
@@ -1673,7 +1676,7 @@ von foo.com zu teilen, wird ein <em>.</em> der Domain vorangestellt:</p>
 
 <p>Zum sofortigen Stoppen eines Request in einem Filter oder einer Route:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>halt
 </pre></div>
@@ -1682,7 +1685,7 @@ von foo.com zu teilen, wird ein <em>.</em> der Domain vorangestellt:</p>
 
 <p>Der Status kann beim Stoppen mit angegeben werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>halt <span style="color:#00D">410</span>
 </pre></div>
@@ -1691,7 +1694,7 @@ von foo.com zu teilen, wird ein <em>.</em> der Domain vorangestellt:</p>
 
 <p>Oder auch den Response-Body:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>halt <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Hier steht der Body</span><span style="color:#710">'</span></span>
 </pre></div>
@@ -1700,7 +1703,7 @@ von foo.com zu teilen, wird ein <em>.</em> der Domain vorangestellt:</p>
 
 <p>Oder beides:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>halt <span style="color:#00D">401</span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">verschwinde!</span><span style="color:#710">'</span></span>
 </pre></div>
@@ -1709,7 +1712,7 @@ von foo.com zu teilen, wird ein <em>.</em> der Domain vorangestellt:</p>
 
 <p>Sogar mit Headern:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>halt <span style="color:#00D">402</span>, {<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Content-Type</span><span style="color:#710">'</span></span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">text/plain</span><span style="color:#710">'</span></span>}, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Rache</span><span style="color:#710">'</span></span>
 </pre></div>
@@ -1718,7 +1721,7 @@ von foo.com zu teilen, wird ein <em>.</em> der Domain vorangestellt:</p>
 
 <p>Natürlich ist es auch möglich, ein Template mit <code>halt</code> zu verwenden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>halt erb(<span style="color:#A60">:error</span>)
 </pre></div>
@@ -1730,7 +1733,7 @@ von foo.com zu teilen, wird ein <em>.</em> der Domain vorangestellt:</p>
 
 <p>Eine Route kann mittels <code>pass</code> zu der nächsten passenden Route springen:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/raten/:wer</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   pass <span style="color:#080;font-weight:bold">unless</span> params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">wer</span><span style="color:#710">'</span></span>] == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Frank</span><span style="color:#710">'</span></span>
@@ -1755,7 +1758,7 @@ gefunden wird.</p>
 Ergebnis einer anderen Route gefordert wird, kann <code>call</code> für einen internen
 Request verwendet werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   status, headers, body = call env.merge(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">PATH_INFO</span><span style="color:#710">"</span></span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/bar</span><span style="color:#710">'</span></span>)
@@ -1786,7 +1789,7 @@ dass der Body an anderer Stelle während der Ausführung gesetzt werden soll.
 Dafür kann man die Helfer-Methode <code>body</code> einsetzen. Ist sie gesetzt, kann sie zu
 einem späteren Zeitpunkt aufgerufen werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   body <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">bar</span><span style="color:#710">"</span></span>
@@ -1805,7 +1808,7 @@ einsetzen, siehe auch “Rückgabewerte”).</p>
 
 <p>Vergleichbar mit <code>body</code> lassen sich auch Status-Code und Header setzen:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   status <span style="color:#00D">418</span>
@@ -1830,7 +1833,7 @@ Verbindung auch erst dann beenden und Daten so lange an den Client
 zurückschicken, bis er die Verbindung abbricht. Für diese Fälle gibt es die
 <code>stream</code>-Helfer-Methode, die es einem erspart eigene Lösungen zu schreiben:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   stream <span style="color:#080;font-weight:bold">do</span> |out|
@@ -1846,14 +1849,14 @@ zurückschicken, bis er die Verbindung abbricht. Für diese Fälle gibt es die
 </div>
 
 <p>Damit lassen sich Streaming-APIs realisieren, sog.
-<a href="http://dev.w3.org/html5/eventsource/">Server Sent Events</a>, die als Basis für
-<a href="http://en.wikipedia.org/wiki/WebSocket">WebSockets</a> dienen. Ebenso können sie
+<a href="https://w3c.github.io/eventsource/">Server Sent Events</a>, die als Basis für
+<a href="https://en.wikipedia.org/wiki/WebSocket">WebSockets</a> dienen. Ebenso können sie
 verwendet werden, um den Durchsatz zu erhöhen, wenn ein Teil der Daten von
 langsamen Ressourcen abhängig ist.</p>
 
 <p>Es ist zu beachten, dass das Verhalten beim Streaming, insbesondere die Anzahl
 nebenläufiger Anfragen, stark davon abhängt, welcher Webserver für die
-Applikation verwendet wird. Einige Server, z.B. WEBRick, unterstützen
+Applikation verwendet wird. Einige Server unterstützen
 Streaming nicht oder nur teilweise. Sollte der Server Streaming nicht
 unterstützen, wird ein vollständiger Response-Body zurückgeschickt, sobald der
 an <code>stream</code> weitergegebene Block abgearbeitet ist. Mit Shotgun funktioniert
@@ -1865,7 +1868,7 @@ späteren Zeitpunkt nachholen. Die Funktion ist jedoch nur bei Event-gesteuerten
 Serven wie Thin oder Rainbows möglich, andere Server werden trotzdem den Stream
 beenden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#777"># Durchgehende Anfrage (long polling)</span>
 
@@ -1904,7 +1907,7 @@ post <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#71
 <p>Im Geltungsbereich eines Request stellt die <code>logger</code> Helfer-Methode eine <code>Logger</code>
 Instanz zur Verfügung:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   logger.info <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">es passiert gerade etwas</span><span style="color:#710">"</span></span>
@@ -1922,7 +1925,7 @@ In den Routen und Filtern muss man sich also nicht weiter darum kümmern.</p>
 voreingestellt ist. Wird über <code>Sinatra::Base</code> vererbt, muss es erst aktiviert
 werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyApp</span> &lt; <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color:#036;font-weight:bold">Base</span>
   configure <span style="color:#A60">:production</span>, <span style="color:#A60">:development</span>  <span style="color:#080;font-weight:bold">do</span>
@@ -1946,7 +1949,7 @@ eigener Logger eingerichtet werden soll. Sinatra wird dann verwenden, was in
 dass Sinatra den Mime-Typ nicht kennt. Registriert wird dieser mit <code>mime_type</code>
 per Dateiendung:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>configure <span style="color:#080;font-weight:bold">do</span>
   mime_type <span style="color:#A60">:foo</span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">text/foo</span><span style="color:#710">'</span></span>
@@ -1957,7 +1960,7 @@ per Dateiendung:</p>
 
 <p>Es kann aber auch der <code>content_type</code>-Helfer verwendet werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   content_type <span style="color:#A60">:foo</span>
@@ -1973,7 +1976,7 @@ per Dateiendung:</p>
 <p>Zum Generieren von URLs sollte die <code>url</code>-Helfer-Methode genutzen werden, so z.B.
 beim Einsatz von Haml:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>%a{<span style="color:#A60">:href</span> =&gt; url(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span>)} foo
 </pre></div>
@@ -1990,7 +1993,7 @@ beim Einsatz von Haml:</p>
 <p>Eine Browser-Umleitung kann mithilfe der <code>redirect</code>-Helfer-Methode erreicht
 werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   redirect to(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/bar</span><span style="color:#710">'</span></span>)
@@ -2001,10 +2004,10 @@ werden:</p>
 
 <p>Weitere Parameter werden wie Argumente der <code>halt</code>-Methode behandelt:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>redirect to(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/bar</span><span style="color:#710">'</span></span>), <span style="color:#00D">303</span>
-redirect <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">http://google.com</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Hier bist du falsch</span><span style="color:#710">'</span></span>
+redirect <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">http://www.google.com/</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Hier bist du falsch</span><span style="color:#710">'</span></span>
 </pre></div>
 </div>
 </div>
@@ -2012,7 +2015,7 @@ redirect <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color
 <p>Ebenso leicht lässt sich ein Schritt zurück mit dem Alias <code>redirect back</code>
 erreichen:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">&lt;a href='/bar'&gt;mach was&lt;/a&gt;</span><span style="color:#710">"</span></span>
@@ -2029,7 +2032,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Um Argumente an ein Redirect weiterzugeben, können sie entweder dem Query
 übergeben:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>redirect to(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/bar?summe=42</span><span style="color:#710">'</span></span>)
 </pre></div>
@@ -2038,7 +2041,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>oder eine Session verwendet werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>enable <span style="color:#A60">:sessions</span>
 
@@ -2062,7 +2065,7 @@ ordentliches HTTP-Caching.</p>
 
 <p>Der Cache-Control-Header lässt sich ganz einfach einstellen:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   cache_control <span style="color:#A60">:public</span>
@@ -2074,7 +2077,7 @@ ordentliches HTTP-Caching.</p>
 
 <p>Profitipp: Caching im before-Filter aktivieren</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>before <span style="color:#080;font-weight:bold">do</span>
   cache_control <span style="color:#A60">:public</span>, <span style="color:#A60">:must_revalidate</span>, <span style="color:#A60">:max_age</span> =&gt; <span style="color:#00D">60</span>
@@ -2086,7 +2089,7 @@ ordentliches HTTP-Caching.</p>
 <p>Bei Verwendung der <code>expires</code>-Helfermethode zum Setzen des gleichnamigen Headers,
 wird <code>Cache-Control</code> automatisch eigestellt:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>before <span style="color:#080;font-weight:bold">do</span>
   expires <span style="color:#00D">500</span>, <span style="color:#A60">:public</span>, <span style="color:#A60">:must_revalidate</span>
@@ -2100,7 +2103,7 @@ werden. Es wird empfohlen, dass diese Helfer aufgerufen werden <strong>bevor</st
 eigentliche Arbeit anfängt, da sie sofort eine Antwort senden, wenn der Client
 eine aktuelle Version im Cache vorhält:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/article/:id</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#33B">@article</span> = <span style="color:#036;font-weight:bold">Article</span>.find params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">id</span><span style="color:#710">'</span></span>]
@@ -2113,9 +2116,9 @@ eine aktuelle Version im Cache vorhält:</p>
 </div>
 
 <p>ebenso ist es möglich einen
-<a href="http://de.wikipedia.org/wiki/HTTP_ETag">schwachen ETag</a> zu verwenden:</p>
+<a href="https://de.wikipedia.org/wiki/HTTP_ETag">schwachen ETag</a> zu verwenden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>etag <span style="color:#33B">@article</span>.sha1, <span style="color:#A60">:weak</span>
 </pre></div>
@@ -2127,7 +2130,7 @@ notwendigen Informationen an den Cache weiter. Für schnelle Reverse-Proxy
 Cache-Lösungen bietet sich z.B.
 <a href="https://github.com/rtomayko/rack-cache">rack-cache</a> an:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">rack/cache</span><span style="color:#710">"</span></span>
 require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">sinatra</span><span style="color:#710">"</span></span>
@@ -2154,7 +2157,7 @@ wobei anderen Ressourcen (besipielsweise bei post), als neue Ressourcen
 behandelt werden. Dieses Verhalten lässt sich mit der <code>:new_resource</code> Option
 ändern:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/create</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   etag <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#710">'</span></span>, <span style="color:#A60">:new_resource</span> =&gt; <span style="color:#069">true</span>
@@ -2168,7 +2171,7 @@ behandelt werden. Dieses Verhalten lässt sich mit der <code>:new_resource</code
 <p>Soll das schwache ETag trotzdem verwendet werden, verwendet man die <code>:kind</code>
 Option:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>etag <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#710">'</span></span>, <span style="color:#A60">:new_resource</span> =&gt; <span style="color:#069">true</span>, <span style="color:#A60">:kind</span> =&gt; <span style="color:#A60">:weak</span>
 </pre></div>
@@ -2181,7 +2184,7 @@ Option:</p>
 <p>Um den Inhalt einer Datei als Response zurückzugeben, kann die
 <code>send_file</code>-Helfer-Methode verwendet werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   send_file <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">foo.png</span><span style="color:#710">'</span></span>
@@ -2192,7 +2195,7 @@ Option:</p>
 
 <p>Für <code>send_file</code> stehen einige Hash-Optionen zur Verfügung:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>send_file <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">foo.png</span><span style="color:#710">'</span></span>, <span style="color:#A60">:type</span> =&gt; <span style="color:#A60">:jpg</span>
 </pre></div>
@@ -2230,7 +2233,7 @@ Range-Requests.</p>
 <p>Auf das <code>request</code>-Objekt der eigehenden Anfrage kann vom Anfrage-Scope aus
 zugegriffen werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#777"># App läuft unter http://example.com/example</span>
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
@@ -2269,7 +2272,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Manche Optionen, wie etwa <code>script_name</code> oder <code>path_info</code>, sind auch
 schreibbar:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>before { request.path_info = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">/</span><span style="color:#710">"</span></span> }
 
@@ -2282,7 +2285,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Der <code>request.body</code> ist ein IO- oder StringIO-Objekt:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>post <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">/api</span><span style="color:#710">"</span></span> <span style="color:#080;font-weight:bold">do</span>
   request.body.rewind <span style="color:#777"># falls schon jemand davon gelesen hat</span>
@@ -2299,7 +2302,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Damit der Browser erkennt, dass ein Response gespeichert und nicht im Browser
 angezeigt werden soll, kann der <code>attachment</code>-Helfer verwendet werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   attachment
@@ -2311,7 +2314,7 @@ angezeigt werden soll, kann der <code>attachment</code>-Helfer verwendet werden:
 
 <p>Ebenso kann eine Dateiname als Parameter hinzugefügt werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   attachment <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">info.txt</span><span style="color:#710">"</span></span>
@@ -2328,7 +2331,7 @@ angezeigt werden soll, kann der <code>attachment</code>-Helfer verwendet werden:
 Time-Objekt generiert. Ebenso kann sie nach <code>DateTime</code>, <code>Date</code> und ähnliche
 Klassen konvertieren:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   pass <span style="color:#080;font-weight:bold">if</span> <span style="color:#036;font-weight:bold">Time</span>.now &gt; time_for(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Dec 23, 2012</span><span style="color:#710">'</span></span>)
@@ -2343,7 +2346,7 @@ verwendet. Mit ein paar Handgriffen lässt sich diese Methode also in ihrem
 Verhalten erweitern, indem man <code>time_for</code> in der eigenen Applikation
 überschreibt:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>helpers <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">time_for</span>(value)
@@ -2370,7 +2373,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Die <code>find_template</code>-Helfer-Methode wird genutzt, um Template-Dateien zum Rendern
 aufzufinden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>find_template settings.views, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">foo</span><span style="color:#710">'</span></span>, <span style="color:#036;font-weight:bold">Tilt</span>[<span style="color:#A60">:haml</span>] <span style="color:#080;font-weight:bold">do</span> |file|
   puts <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">könnte diese hier sein: </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>file<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">"</span></span>
@@ -2383,7 +2386,7 @@ aufzufinden:</p>
 nützlich werden, um eigene Nachschlage-Mechanismen einzubauen. Zum Beispiel
 dann, wenn mehr als nur ein view-Verzeichnis verwendet werden soll:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>set <span style="color:#A60">:views</span>, [<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">views</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">templates</span><span style="color:#710">'</span></span>]
 
@@ -2399,7 +2402,7 @@ helpers <span style="color:#080;font-weight:bold">do</span>
 <p>Ein anderes Beispiel wäre, verschiedene Vereichnisse für verschiedene Engines
 zu verwenden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>set <span style="color:#A60">:views</span>, <span style="color:#A60">:sass</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">views/sass</span><span style="color:#710">'</span></span>, <span style="color:#A60">:haml</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">templates</span><span style="color:#710">'</span></span>, <span style="color:#A60">:default</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">views</span><span style="color:#710">'</span></span>
 
@@ -2430,7 +2433,7 @@ zusammenbastelt werden.</p>
 
 <p>Wird einmal beim Starten in jedweder Umgebung ausgeführt:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>configure <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># setze eine Option</span>
@@ -2455,7 +2458,7 @@ zusammenbastelt werden.</p>
 <p>Läuft nur, wenn die Umgebung (RACK_ENV-Umgebungsvariable) auf <code>:production</code>
 gesetzt ist:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>configure <span style="color:#A60">:production</span> <span style="color:#080;font-weight:bold">do</span>
   ...
@@ -2466,7 +2469,7 @@ gesetzt ist:</p>
 
 <p>Läuft nur, wenn die Umgebung auf <code>:production</code> oder auf <code>:test</code> gesetzt ist:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>configure <span style="color:#A60">:production</span>, <span style="color:#A60">:test</span> <span style="color:#080;font-weight:bold">do</span>
   ...
@@ -2477,7 +2480,7 @@ gesetzt ist:</p>
 
 <p>Diese Einstellungen sind über <code>settings</code> erreichbar:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>configure <span style="color:#080;font-weight:bold">do</span>
   set <span style="color:#A60">:foo</span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bar</span><span style="color:#710">'</span></span>
@@ -2496,13 +2499,13 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <h4>Einstellung des Angriffsschutzes</h4>
 
 <p>Sinatra verwendet
-<a href="https://github.com/rkh/rack-protection#readme">Rack::Protection</a>, um die
+<a href="https://github.com/sinatra/rack-protection#readme">Rack::Protection</a>, um die
 Anwendung vor häufig vorkommenden Angriffen zu schützen. Diese Voreinstellung
 lässt sich selbstverständlich deaktivieren, der damit verbundene
 Geschwindigkeitszuwachs steht aber in keinem Verhätnis zu den möglichen
 Risiken.</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>disable <span style="color:#A60">:protection</span>
 </pre></div>
@@ -2512,7 +2515,7 @@ Risiken.</p>
 <p>Um einen bestimmten Schutzmechanismus zu deaktivieren, fügt man <code>protection</code>
 einen Hash mit Optionen hinzu:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>set <span style="color:#A60">:protection</span>, <span style="color:#A60">:except</span> =&gt; <span style="color:#A60">:path_traversal</span>
 </pre></div>
@@ -2522,7 +2525,7 @@ einen Hash mit Optionen hinzu:</p>
 <p>Neben Strings akzeptiert <code>:except</code> auch Arrays, um gleich mehrere
 Schutzmechanismen zu deaktivieren:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>set <span style="color:#A60">:protection</span>, <span style="color:#A60">:except</span> =&gt; [<span style="color:#A60">:path_traversal</span>, <span style="color:#A60">:session_hijacking</span>]
 </pre></div>
@@ -2683,7 +2686,7 @@ und <code>"test"</code> werden Templates automatisch gecached.</p>
 <p>Um die Anwendung in einer anderen Umgebung auszuführen kann man die <code>-e</code>
 Option verwenden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>ruby my_app.rb -e [ENVIRONMENT]
 </pre></div>
@@ -2705,7 +2708,7 @@ dass alle Goodies wie <code>haml</code>, <code>erb</code>, <code>halt</code>, et
 <p>Wenn eine <code>Sinatra::NotFound</code>-Exception geworfen wird oder der Statuscode 404
 ist, wird der <code>not_found</code>-Handler ausgeführt:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>not_found <span style="color:#080;font-weight:bold">do</span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Seite kann nirgendwo gefunden werden.</span><span style="color:#710">'</span></span>
@@ -2722,7 +2725,7 @@ Routen-Block oder in einem Filter geworfen wurde. In der
 <code>development</code>-Umgebung wird es nur dann funktionieren, wenn die
 <code>:show_exceptions</code>-Option auf <code>:after_handler</code> eingestellt wurde:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>set <span style="color:#A60">:show_exceptions</span>, <span style="color:#A60">:after_handler</span>
 </pre></div>
@@ -2731,7 +2734,7 @@ Routen-Block oder in einem Filter geworfen wurde. In der
 
 <p>Die Exception kann über die <code>sinatra.error</code>-Rack-Variable angesprochen werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>error <span style="color:#080;font-weight:bold">do</span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Entschuldige, es gab einen hässlichen Fehler - </span><span style="color:#710">'</span></span> + env[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra.error</span><span style="color:#710">'</span></span>].message
@@ -2742,7 +2745,7 @@ Routen-Block oder in einem Filter geworfen wurde. In der
 
 <p>Benutzerdefinierte Fehler:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>error <span style="color:#036;font-weight:bold">MeinFehler</span> <span style="color:#080;font-weight:bold">do</span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Au weia, </span><span style="color:#710">'</span></span> + env[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra.error</span><span style="color:#710">'</span></span>].message
@@ -2753,7 +2756,7 @@ Routen-Block oder in einem Filter geworfen wurde. In der
 
 <p>Dann, wenn das passiert:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   raise <span style="color:#036;font-weight:bold">MeinFehler</span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">etwas Schlimmes ist passiert</span><span style="color:#710">'</span></span>
@@ -2764,7 +2767,7 @@ Routen-Block oder in einem Filter geworfen wurde. In der
 
 <p>bekommt man dieses:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>Au weia, etwas Schlimmes ist passiert
 </pre></div>
@@ -2773,7 +2776,7 @@ Routen-Block oder in einem Filter geworfen wurde. In der
 
 <p>Alternativ kann ein Error-Handler auch für einen Status-Code definiert werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>error <span style="color:#00D">403</span> <span style="color:#080;font-weight:bold">do</span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Zugriff verboten</span><span style="color:#710">'</span></span>
@@ -2788,7 +2791,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Oder ein Status-Code-Bereich:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>error <span style="color:#00D">400</span>..<span style="color:#00D">510</span> <span style="color:#080;font-weight:bold">do</span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Hallo?</span><span style="color:#710">'</span></span>
@@ -2813,7 +2816,7 @@ die Anwendung geschaltet werden und so HTTP-Request und/oder Antwort
 <p>Sinatra macht das Erstellen von Middleware-Verkettungen mit der
 Top-Level-Methode <code>use</code> zu einem Kinderspiel:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra</span><span style="color:#710">'</span></span>
 require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">meine_middleware</span><span style="color:#710">'</span></span>
@@ -2829,11 +2832,11 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 
 <p>Die Semantik von <code>use</code> entspricht der gleichnamigen Methode der
-<a href="http://rubydoc.info/github/rack/rack/master/Rack/Builder">Rack::Builder</a>-DSL
+<a href="http://www.rubydoc.info/github/rack/rack/master/Rack/Builder">Rack::Builder</a>-DSL
 (meist verwendet in Rackup-Dateien). Ein Beispiel dafür ist, dass die
 <code>use</code>-Methode mehrere/verschiedene Argumente und auch Blöcke entgegennimmt:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>use <span style="color:#036;font-weight:bold">Rack</span>::<span style="color:#036;font-weight:bold">Auth</span>::<span style="color:#036;font-weight:bold">Basic</span> <span style="color:#080;font-weight:bold">do</span> |username, password|
   username == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">admin</span><span style="color:#710">'</span></span> &amp;&amp; password == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">geheim</span><span style="color:#710">'</span></span>
@@ -2856,10 +2859,10 @@ oder im <a href="https://github.com/rack/rack/wiki/List-of-Middleware">Rack wiki
 <h2>Testen</h2>
 
 <p>Sinatra-Tests können mit jedem auf Rack aufbauendem Test-Framework geschrieben
-werden. <a href="http://rdoc.info/github/brynary/rack-test/master/frames">Rack::Test</a>
+werden. <a href="http://www.rubydoc.info/github/brynary/rack-test/master/frames">Rack::Test</a>
 wird empfohlen:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">my_sinatra_app</span><span style="color:#710">'</span></span>
 require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">minitest/autorun</span><span style="color:#710">'</span></span>
@@ -2907,7 +2910,7 @@ sie z.B. bei einer einzelnen Anwendungsdatei, <code>./public</code> und <code>./
 Logging, Exception-Detail-Seite, usw.). Genau hier kommt <code>Sinatra::Base</code> ins
 Spiel:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra/base</span><span style="color:#710">'</span></span>
 
@@ -2928,7 +2931,7 @@ Endpunkt oder via Rails Metal verwendet werden kann. Verwendet wird sie durch
 <code>use</code> oder <code>run</code> von einer Rackup-<code>config.ru</code>-Datei oder als Server-Komponente
 einer Bibliothek:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#036;font-weight:bold">MyApp</span>.run! <span style="color:#A60">:host</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">localhost</span><span style="color:#710">'</span></span>, <span style="color:#A60">:port</span> =&gt; <span style="color:#00D">9090</span>
 </pre></div>
@@ -2949,13 +2952,13 @@ einer Subklasse von <code>Sinatra::Base</code> definiert werden.</li>
 
 <p><code>Sinatra::Base</code> ist ein unbeschriebenes Blatt. Die meisten Optionen sind per
 Standard deaktiviert. Das betrifft auch den eingebauten Server. Siehe
-<a href="http://sinatra.github.com/configuration.html">Optionen und Konfiguration</a> für
+<a href="http://www.sinatrarb.com/configuration.html">Optionen und Konfiguration</a> für
 Details über mögliche Optionen.</p>
 
 <p>Damit eine App sich ähnlich wie eine klassische App verhält, kann man
 auch eine Subclass von <code>Sinatra::Application</code> erstellen:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra/base</span><span style="color:#710">'</span></span>
 
@@ -3041,7 +3044,7 @@ werden:</p>
 <p>Es gibt zwei übliche Wege, eine modulare Anwendung zu starten. Zum einen über
 <code>run!</code>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#777"># mein_app.rb</span>
 require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra/base</span><span style="color:#710">'</span></span>
@@ -3058,7 +3061,7 @@ require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:
 
 <p>Starte mit:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>ruby mein_app.rb
 </pre></div>
@@ -3068,7 +3071,7 @@ require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:
 <p>Oder über eine <code>config.ru</code>-Datei, die es erlaubt, einen beliebigen
 Rack-Handler zu verwenden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#777"># config.ru (mit rackup starten)</span>
 require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">./mein_app</span><span style="color:#710">'</span></span>
@@ -3079,7 +3082,7 @@ run <span style="color:#036;font-weight:bold">MeineApp</span>
 
 <p>Starte:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>rackup -p 4567
 </pre></div>
@@ -3091,7 +3094,7 @@ run <span style="color:#036;font-weight:bold">MeineApp</span>
 
 <p>Schreibe eine Anwendungsdatei:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#777"># app.rb</span>
 require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra</span><span style="color:#710">'</span></span>
@@ -3105,7 +3108,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>sowie eine dazugehörige <code>config.ru</code>-Datei:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">./app</span><span style="color:#710">'</span></span>
 run <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color:#036;font-weight:bold">Application</span>
@@ -3138,7 +3141,7 @@ beliebigen Rack-Endpunkt gehangen werden. Bei diesem Endpunkt muss es sich
 nicht um eine andere Sinatra-Anwendung handeln, es kann jede andere
 Rack-Anwendung sein (Rails/Ramaze/Camping/…):</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra/base</span><span style="color:#710">'</span></span>
 
@@ -3179,7 +3182,7 @@ Rack-Anwendung sein (Rails/Ramaze/Camping/…):</p>
 ohne dass sie einer Konstanten zugeordnet werden. Dies lässt sich mit
 <code>Sinatra.new</code> erreichen:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra/base</span><span style="color:#710">'</span></span>
 my_app = <span style="color:#036;font-weight:bold">Sinatra</span>.new { get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span>) { <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">hallo</span><span style="color:#710">"</span></span> } }
@@ -3190,7 +3193,7 @@ my_app.run!
 
 <p>Die Applikation kann mit Hilfe eines optionalen Parameters erstellt werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#777"># config.ru</span>
 require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra/base</span><span style="color:#710">'</span></span>
@@ -3216,7 +3219,7 @@ oder Sinatra in einer Bibliothek Verwendung findet.</p>
 
 <p>Ebenso lassen sich damit hervorragend Sinatra-Middlewares erstellen:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra/base</span><span style="color:#710">'</span></span>
 
@@ -3248,7 +3251,7 @@ wird.</p>
 
 <p>Optionen, die via <code>set</code> gesetzt werden, sind Methoden auf Klassenebene:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyApp</span> &lt; <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color:#036;font-weight:bold">Base</span>
   <span style="color:#777"># Hey, ich bin im Anwendungsscope!</span>
@@ -3291,7 +3294,7 @@ kann auf <code>request</code> oder <code>session</code> zugegriffen und Methoden
 <code>haml</code> aufgerufen werden. Außerdem kann mit der <code>settings</code>-Method auf den
 Anwendungs-Scope zugegriffen werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyApp</span> &lt; <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color:#036;font-weight:bold">Base</span>
   <span style="color:#777"># Hey, ich bin im Anwendungs-Scope!</span>
@@ -3347,7 +3350,7 @@ eingebunden](http://github.com/sinatra/sinatra/blob/master/lib/sinatra/main.rb</
 
 <p>Sinatra-Anwendungen können direkt von der Kommandozeile aus gestartet werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>ruby myapp.rb [-h] [-x] [-e ENVIRONMENT] [-p PORT] [-h HOST] [-s HANDLER]
 </pre></div>
@@ -3363,6 +3366,47 @@ eingebunden](http://github.com/sinatra/sinatra/blob/master/lib/sinatra/main.rb</
 -s # Rack-Server/Handler setzen (Standard ist thin)
 -x # Mutex-Lock einschalten (Standard ist off)
 </code></pre>
+
+<a name='Multi-threading'></a>
+<h3>Multi-threading</h3>
+
+<p><em>Paraphrasiert von <a href="http://stackoverflow.com/questions/6278817/is-sinatra-multi-threaded/6282999#6282999)">dieser Antwort auf StackOverflow</a> von Konstantin</em></p>
+
+<p>Sinatra erlegt kein Nebenläufigkeitsmodell auf, sondern überlässt dies dem
+selbst gewählten Rack-Proxy (Server), so wie Thin, Puma oder WEBrick.
+Sinatra selbst ist Thread-sicher, somit ist es kein Problem wenn der
+Rack-Proxy ein anderes Threading-Modell für Nebenläufigkeit benutzt.
+Das heißt, dass wenn der Server gestartet wird, dass man die korrekte
+Aufrufsmethode benutzen sollte für den jeweiligen Rack-Proxy.
+Das folgende Beispiel ist eine Veranschaulichung eines mehrprozessigen
+Thin Servers:</p>
+
+<div class="highlighter-coderay">
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#777"># app.rb</span>
+
+require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra/base</span><span style="color:#710">'</span></span>
+
+<span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">App</span> &lt; <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color:#036;font-weight:bold">Base</span>
+  get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+    <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hello, World</span><span style="color:#710">"</span></span>
+  <span style="color:#080;font-weight:bold">end</span>
+<span style="color:#080;font-weight:bold">end</span>
+
+<span style="color:#036;font-weight:bold">App</span>.run!
+
+</pre></div>
+</div>
+</div>
+
+<p>Um den Server zu starten, führt man das folgende Kommando aus:</p>
+
+<div class="highlighter-coderay">
+<div class="CodeRay">
+  <div class="code"><pre>thin --threaded start
+</pre></div>
+</div>
+</div>
 
 <a name='Systemanforderungen'></a>
 <h2>Systemanforderungen</h2>
@@ -3429,7 +3473,7 @@ Ruby-Interpreter aufweist.</p>
 Er sollte recht stabil sein. Ebenso gibt es von Zeit zu Zeit prerelease Gems,
 die so installiert werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>gem install sinatra --pre
 </pre></div>
@@ -3440,12 +3484,12 @@ die so installiert werden:</p>
 <h3>Mit Bundler</h3>
 
 <p>Wenn die Applikation mit der neuesten Version von Sinatra und
-<a href="http://gembundler.com/">Bundler</a> genutzt werden soll, empfehlen wir den
+<a href="http://bundler.io">Bundler</a> genutzt werden soll, empfehlen wir den
 nachfolgenden Weg.</p>
 
 <p>Soweit Bundler noch nicht installiert ist:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>gem install bundler
 </pre></div>
@@ -3455,7 +3499,7 @@ nachfolgenden Weg.</p>
 <p>Anschließend wird eine <code>Gemfile</code>-Datei im Projektverzeichnis mit folgendem
 Inhalt erstellt:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>source <span style="color:#A60">:rubygems</span>
 gem <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra</span><span style="color:#710">'</span></span>, <span style="color:#A60">:git</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">git://github.com/sinatra/sinatra.git</span><span style="color:#710">"</span></span>
@@ -3473,7 +3517,7 @@ Gemfile von Sinatra hinzugefügt.</p>
 
 <p>Jetzt kannst du deine Applikation starten:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>bundle exec ruby myapp.rb
 </pre></div>
@@ -3486,7 +3530,7 @@ Gemfile von Sinatra hinzugefügt.</p>
 angelegt werden. Gestartet wird in der Anwendung mit dem <code>sinatra/lib</code>-Ordner
 im <code>LOAD_PATH</code>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>cd myapp
 git clone git://github.com/sinatra/sinatra.git
@@ -3498,7 +3542,7 @@ ruby -Isinatra/lib myapp.rb
 <p>Alternativ kann der <code>sinatra/lib</code>-Ordner zum <code>LOAD_PATH</code> in der Anwendung
 hinzugefügt werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#d70">$LOAD_PATH</span>.unshift <span style="color:#036;font-weight:bold">File</span>.dirname(<span style="color:#069">__FILE__</span>) + <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/sinatra/lib</span><span style="color:#710">'</span></span>
 require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rubygems</span><span style="color:#710">'</span></span>
@@ -3513,7 +3557,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Um Sinatra-Code von Zeit zu Zeit zu aktualisieren:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>cd myproject/sinatra
 git pull
@@ -3526,7 +3570,7 @@ git pull
 
 <p>Aus der eigenen lokalen Kopie kann nun auch ein globales Gem gebaut werden:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>git clone git://github.com/sinatra/sinatra.git
 cd sinatra
@@ -3539,7 +3583,7 @@ rake install
 <p>Falls Gems als Root installiert werden sollen, sollte die letzte Zeile
 folgendermaßen lauten:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>sudo rake install
 </pre></div>
@@ -3557,13 +3601,13 @@ SemVer und SemVerTag.</p>
 
 <ul>
   <li>
-<a href="http://sinatra.github.com/">Projekt-Website</a> - Ergänzende Dokumentation,
+<a href="http://www.sinatrarb.com/">Projekt-Website</a> - Ergänzende Dokumentation,
 News und Links zu anderen Ressourcen.</li>
   <li>
-<a href="http://sinatra.github.com/contributing.html">Mitmachen</a> - Einen Fehler
+<a href="http://www.sinatrarb.com/contributing.html">Mitmachen</a> - Einen Fehler
 gefunden? Brauchst du Hilfe? Hast du einen Patch?</li>
-  <li><a href="http://github.com/sinatra/sinatra/issues">Issue-Tracker</a></li>
-  <li><a href="http://twitter.com/sinatra">Twitter</a></li>
+  <li><a href="https://github.com/sinatra/sinatra/issues">Issue-Tracker</a></li>
+  <li><a href="https://twitter.com/sinatra">Twitter</a></li>
   <li><a href="http://groups.google.com/group/sinatrarb">Mailing-Liste</a></li>
   <li>
 <a href="irc://chat.freenode.net/#sinatra">#sinatra</a> auf http://freenode.net Es
@@ -3573,9 +3617,9 @@ gibt dort auch immer wieder deutschsprachige Entwickler, die gerne weiterhelfen.
   <li>
 <a href="http://recipes.sinatrarb.com/">Sinatra Recipes</a> Sinatra-Rezepte aus der
 Community</li>
-  <li>API Dokumentation für die <a href="http://rubydoc.info/gems/sinatra">aktuelle
+  <li>API Dokumentation für die <a href="http://www.rubydoc.info//gems/sinatra">aktuelle
 Version</a> oder für
-<a href="http://rubydoc.info/github/sinatra/sinatra">HEAD</a> auf http://rubydoc.info</li>
-  <li><a href="http://travis-ci.org/sinatra/sinatra">CI Server</a></li>
+<a href="http://www.rubydoc.info/github/sinatra/sinatra">HEAD</a> auf http://rubydoc.info</li>
+  <li><a href="https://travis-ci.org/sinatra/sinatra">CI Server</a></li>
 </ul>
 </body></html>

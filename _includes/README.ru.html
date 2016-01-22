@@ -1,5 +1,6 @@
 <div class='toc'>
 	<ol class='level-1'>
+		<li><a href='#%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5'>Содержание</a></li>
 		<li><a href='#%D0%9C%D0%B0%D1%80%D1%88%D1%80%D1%83%D1%82%D1%8B'>Маршруты</a></li>
 		<ol class='level-2'>
 			<li><a href='#%D0%A3%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F'>Условия</a></li>
@@ -87,10 +88,13 @@
 		<li><a href='#%D0%9E%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D0%B8%20%D0%B2%D0%B8%D0%B4%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8%20%D0%B8%20%D0%BF%D1%80%D0%B8%D0%B2%D1%8F%D0%B7%D0%BA%D0%B0'>Области видимости и привязка</a></li>
 		<ol class='level-2'>
 			<li><a href='#%D0%9E%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C%20%D0%B2%D0%B8%D0%B4%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20/%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B0'>Область видимости приложения / класса</a></li>
-			<li><a href='#%D0%9E%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C%20%D0%B2%D0%B8%D0%B4%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0/%D1%8D%D0%BA%D0%B7%D0%B5%D0%BC%D0%BF%D0%BB%D1%8F%D1%80%D0%B0'>Область видимости запроса/экземпляра</a></li>
+			<li><a href='#%D0%9E%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C%20%D0%B2%D0%B8%D0%B4%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%20/%20%D1%8D%D0%BA%D0%B7%D0%B5%D0%BC%D0%BF%D0%BB%D1%8F%D1%80%D0%B0'>Область видимости запроса / экземпляра</a></li>
 			<li><a href='#%D0%9E%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C%20%D0%B2%D0%B8%D0%B4%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8%20%D0%B4%D0%B5%D0%BB%D0%B5%D0%B3%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F'>Область видимости делегирования</a></li>
 		</ol>
 		<li><a href='#%D0%9A%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%BD%D0%B0%D1%8F%20%D1%81%D1%82%D1%80%D0%BE%D0%BA%D0%B0'>Командная строка</a></li>
+		<ol class='level-2'>
+			<li><a href='#Multi-threading'>Multi-threading</a></li>
+		</ol>
 		<li><a href='#%D0%A1%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%BD%D1%8B%D0%B5%20%D1%82%D1%80%D0%B5%D0%B1%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F'>Системные требования</a></li>
 		<li><a href='#%D0%9D%D0%B0%20%D0%BE%D1%81%D1%82%D1%80%D0%B8%D0%B5'>На острие</a></li>
 		<ol class='level-2'>
@@ -105,14 +109,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <html><body>
 
+<a name='%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5'></a>
+<h2>Содержание</h2>
+
+
+
 <p><em>Внимание: Этот документ является переводом английской версии и может быть
 устаревшим</em></p>
 
 <p>Sinatra — это предметно-ориентированный каркас
-(<a href="http://ru.wikipedia.org/wiki/%D0%9F%D1%80%D0%B5%D0%B4%D0%BC%D0%B5%D1%82%D0%BD%D0%BE-%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B9_%D1%8F%D0%B7%D1%8B%D0%BA_%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F">DSL</a>)
+(<a href="https://ru.wikipedia.org/wiki/%D0%9F%D1%80%D0%B5%D0%B4%D0%BC%D0%B5%D1%82%D0%BD%D0%BE-%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B9_%D1%8F%D0%B7%D1%8B%D0%BA">DSL</a>)
 для быстрого создания функциональных веб-приложений на Ruby с минимумом усилий:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#777"># myapp.rb</span>
 require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra</span><span style="color:#710">'</span></span>
@@ -126,7 +135,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Установите gem:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>gem install sinatra
 </pre></div>
@@ -135,7 +144,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>и запустите приложение с помощью:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>ruby myapp.rb
 </pre></div>
@@ -154,7 +163,7 @@ thin</code>. Thin — это более производительный и фу
 <p>В Sinatra маршрут — это пара: &lt;HTTP метод&gt; и &lt;шаблон URL&gt;. Каждый маршрут
 связан с блоком кода:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># .. что-то показать ..</span>
@@ -197,7 +206,7 @@ unlink <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#
 <p>Шаблоны маршрутов могут включать в себя именованные параметры, доступные в xэше
 <code>params</code>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/hello/:name</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># соответствует "GET /hello/foo" и "GET /hello/bar",</span>
@@ -210,7 +219,7 @@ unlink <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#
 
 <p>Также можно использовать именованные параметры в качестве переменных блока:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/hello/:name</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span> |n|
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hello </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>n<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
@@ -222,7 +231,7 @@ unlink <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#
 <p>Шаблоны маршрутов также могут включать в себя splat (или ‘*’ маску,
 обозначающую любой символ) параметры, доступные в массиве <code>params['splat']</code>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/say/*/to/*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># соответствует /say/hello/to/world</span>
@@ -239,7 +248,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Или с параметрами блока:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/download/*.*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span> |path, ext|
   [path, ext] <span style="color:#777"># =&gt; ["path/to/file", "xml"]</span>
@@ -250,7 +259,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Регулярные выражения в качестве шаблонов маршрутов:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#D20">\A</span><span style="color:#D20">\/</span><span style="color:#808">hello</span><span style="color:#D20">\/</span><span style="color:#808">([</span><span style="color:#D20">\w</span><span style="color:#808">]+)</span><span style="color:#D20">\z</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hello, </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">captures</span><span style="color:#710">'</span></span>].first<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
@@ -261,7 +270,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Или с параметром блока:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#777"># Находит "GET /meta/hello/world", "GET /hello/world/1234" и так далее</span>
 get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">%r{</span><span style="color:#808">/hello/([</span><span style="color:#D20">\w</span><span style="color:#808">]+)</span><span style="color:#404">}</span></span> <span style="color:#080;font-weight:bold">do</span> |c|
@@ -273,7 +282,7 @@ get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#4
 
 <p>Шаблоны маршрутов могут иметь необязательные параметры:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/posts.?:format?</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># соответствует "GET /posts", "GET /posts.json", "GET /posts.xml" и т.д.</span>
@@ -292,7 +301,7 @@ traversal, см. ниже), путь запроса может быть изме
 <p>Маршруты могут включать различные условия совпадений, например, клиентское
 приложение (user agent):</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span>, <span style="color:#A60">:agent</span> =&gt; <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">Songbird (</span><span style="color:#D20">\d</span><span style="color:#D20">\.</span><span style="color:#D20">\d</span><span style="color:#808">)[</span><span style="color:#D20">\d</span><span style="color:#D20">\/</span><span style="color:#808">]*?</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">You're using Songbird version </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">agent</span><span style="color:#710">'</span></span>][<span style="color:#00D">0</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">"</span></span>
@@ -307,7 +316,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Другими доступными условиями являются <code>host_name</code> и <code>provides</code>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span>, <span style="color:#A60">:host_name</span> =&gt; <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">^admin</span><span style="color:#D20">\.</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Admin Area, Access denied!</span><span style="color:#710">"</span></span>
@@ -326,7 +335,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Вы можете задать собственные условия:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>set(<span style="color:#A60">:probability</span>) { |value| condition { rand &lt;= value } }
 
@@ -343,7 +352,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Для условия, которое принимает несколько параметров, используйте звездочку:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>set(<span style="color:#A60">:auth</span>) <span style="color:#080;font-weight:bold">do</span> |*roles|   <span style="color:#777"># &lt;- обратите внимание на звездочку</span>
   condition <span style="color:#080;font-weight:bold">do</span>
@@ -375,11 +384,19 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Вы можете вернуть любой объект, который будет либо корректным Rack ответом,
 объектом Rack body, либо кодом состояния HTTP:</p>
 
-
+<ul>
+  <li>массив с тремя переменными: <code>[код (Fixnum), заголовки (Hash), тело ответа
+(должно отвечать на #each)]</code>;</li>
+  <li>массив с двумя переменными: <code>[код (Fixnum), тело ответа (должно отвечать
+на #each)]</code>;</li>
+  <li>объект, отвечающий на <code>#each</code>, который передает только строковые типы
+данных в этот блок;</li>
+  <li>Fixnum, представляющий код состояния HTTP.</li>
+</ul>
 
 <p>Таким образом, легко можно реализовать, например, поточный пример:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">Stream</span>
   <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">each</span>
@@ -404,7 +421,7 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 легко определить свои собственные детекторы совпадений (matchers) для
 маршрутов:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">AllButPattern</span>
   <span style="color:#036;font-weight:bold">Match</span> = <span style="color:#036;font-weight:bold">Struct</span>.new(<span style="color:#A60">:captures</span>)
@@ -433,7 +450,7 @@ get all_but(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="co
 <p>Заметьте, что предыдущий пример, возможно, чересчур усложнен, потому что он
 может быть реализован так:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
   pass <span style="color:#080;font-weight:bold">if</span> request.path_info == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">/index</span><span style="color:#710">"</span></span>
@@ -445,7 +462,7 @@ get all_but(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="co
 
 <p>Или с использованием негативного просмотра вперед:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">%r{</span><span style="color:#808">^(?!/index$)</span><span style="color:#404">}</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># ...</span>
@@ -460,7 +477,7 @@ get all_but(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="co
 <p>Статические файлы отдаются из <code>./public</code> директории. Вы можете указать другое
 место, используя опцию <code>:public_folder</code>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>set <span style="color:#A60">:public_folder</span>, <span style="color:#036;font-weight:bold">File</span>.dirname(<span style="color:#069">__FILE__</span>) + <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/static</span><span style="color:#710">'</span></span>
 </pre></div>
@@ -480,7 +497,7 @@ get all_but(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="co
 <p>Каждый шаблонизатор представлен своим собственным методом. Эти методы попросту
 возвращают строку:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   erb <span style="color:#A60">:index</span>
@@ -494,7 +511,7 @@ get all_but(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="co
 <p>Вместо имени шаблона вы так же можете передавать непосредственно само
 содержимое шаблона:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   code = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">&lt;%= Time.now %&gt;</span><span style="color:#710">"</span></span>
@@ -506,7 +523,7 @@ get all_but(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="co
 
 <p>Эти методы принимают второй аргумент, хеш с опциями:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   erb <span style="color:#A60">:index</span>, <span style="color:#A60">:layout</span> =&gt; <span style="color:#A60">:post</span>
@@ -520,7 +537,7 @@ get all_but(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="co
 
 <p>Любые опции, не понимаемые Sinatra, будут переданы в шаблонизатор:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   haml <span style="color:#A60">:index</span>, <span style="color:#A60">:format</span> =&gt; <span style="color:#A60">:html5</span>
@@ -531,7 +548,7 @@ get all_but(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="co
 
 <p>Вы также можете задавать опции для шаблонизаторов в общем:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>set <span style="color:#A60">:haml</span>, <span style="color:#A60">:format</span> =&gt; <span style="color:#A60">:html5</span>
 
@@ -595,7 +612,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>По умолчанию считается, что шаблоны находятся в директории <code>./views</code>. Чтобы
 использовать другую директорию с шаблонами:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>set <span style="color:#A60">:views</span>, settings.root + <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/templates</span><span style="color:#710">'</span></span>
 </pre></div>
@@ -610,7 +627,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <a name='%D0%91%D1%83%D0%BA%D0%B2%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B'></a>
 <h3>Буквальные шаблоны</h3>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   haml <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">%div.title Hello World</span><span style="color:#710">'</span></span>
@@ -627,7 +644,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Некоторые языки шаблонов имеют несколько реализаций. Чтобы указать, какую
 реализацию использовать, вам следует просто подключить нужную библиотеку:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rdiscount</span><span style="color:#710">'</span></span> <span style="color:#777"># или require 'bluecloth'</span>
 get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span>) { markdown <span style="color:#A60">:index</span> }
@@ -703,7 +720,7 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <table>
   <tr>
     <td>Зависимости</td>
-    <td><a href="http://nokogiri.org/" title="nokogiri">nokogiri</a></td>
+    <td><a href="http://www.nokogiri.org/" title="nokogiri">nokogiri</a></td>
   </tr>
   <tr>
     <td>Расширения файлов</td>
@@ -759,7 +776,7 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <table>
   <tr>
     <td>Зависимости</td>
-    <td><a href="http://www.lesscss.org/" title="less">less</a></td>
+    <td><a href="http://lesscss.org/" title="less">less</a></td>
   </tr>
   <tr>
     <td>Расширения файлов</td>
@@ -777,7 +794,7 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <table>
   <tr>
     <td>Зависимости</td>
-    <td><a href="http://www.liquidmarkup.org/" title="liquid">liquid</a></td>
+    <td><a href="http://liquidmarkup.org/" title="liquid">liquid</a></td>
   </tr>
   <tr>
     <td>Расширения файлов</td>
@@ -800,7 +817,7 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
     <td>Зависимости</td>
     <td>
       Любая из библиотек:
-        <a href="https://github.com/rtomayko/rdiscount" title="RDiscount">RDiscount</a>,
+        <a href="https://github.com/davidfstr/rdiscount" title="RDiscount">RDiscount</a>,
         <a href="https://github.com/vmg/redcarpet" title="RedCarpet">RedCarpet</a>,
         <a href="http://deveiate.org/projects/BlueCloth" title="BlueCloth">BlueCloth</a>,
         <a href="http://kramdown.gettalong.org/" title="kramdown">kramdown</a>,
@@ -823,7 +840,7 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 Следовательно, вам, скорее всего, придется использовать этот шаблон совместно
 с другим шаблонизатором:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>erb <span style="color:#A60">:overview</span>, <span style="color:#A60">:locals</span> =&gt; { <span style="color:#A60">:text</span> =&gt; markdown(<span style="color:#A60">:introduction</span>) }
 </pre></div>
@@ -832,7 +849,7 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Заметьте, что вы можете вызывать метод <code>markdown</code> из других шаблонов:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>%h1 <span style="color:#036;font-weight:bold">Hello</span> <span style="color:#036;font-weight:bold">From</span> Haml!
 %p= markdown(<span style="color:#A60">:greetings</span>)
@@ -867,7 +884,7 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 Следовательно, вам, скорее всего, придется использовать этот шаблон совместно
 с другим шаблонизатором:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>erb <span style="color:#A60">:overview</span>, <span style="color:#A60">:locals</span> =&gt; { <span style="color:#A60">:text</span> =&gt; textile(<span style="color:#A60">:introduction</span>) }
 </pre></div>
@@ -876,7 +893,7 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Заметьте, что вы можете вызывать метод <code>textile</code> из других шаблонов:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>%h1 <span style="color:#036;font-weight:bold">Hello</span> <span style="color:#036;font-weight:bold">From</span> Haml!
 %p= textile(<span style="color:#A60">:greetings</span>)
@@ -911,7 +928,7 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 Следовательно, вам, скорее всего, придется использовать этот шаблон совместно
 с другим шаблонизатором:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>erb <span style="color:#A60">:overview</span>, <span style="color:#A60">:locals</span> =&gt; { <span style="color:#A60">:text</span> =&gt; rdoc(<span style="color:#A60">:introduction</span>) }
 </pre></div>
@@ -920,7 +937,7 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Заметьте, что вы можете вызывать метод <code>rdoc</code> из других шаблонов:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>%h1 <span style="color:#036;font-weight:bold">Hello</span> <span style="color:#036;font-weight:bold">From</span> Haml!
 %p= rdoc(<span style="color:#A60">:greetings</span>)
@@ -983,7 +1000,7 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <table>
   <tr>
     <td>Зависимости</td>
-    <td><a href="http://markaby.github.com/" title="Markaby">Markaby</a></td>
+    <td><a href="http://markaby.github.io/" title="Markaby">Markaby</a></td>
   </tr>
   <tr>
     <td>Расширения файлов</td>
@@ -1055,7 +1072,7 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 Следовательно, вам, скорее всего, придется использовать этот шаблон совместно
 с другим шаблонизатором:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>erb <span style="color:#A60">:overview</span>, <span style="color:#A60">:locals</span> =&gt; { <span style="color:#A60">:text</span> =&gt; creole(<span style="color:#A60">:introduction</span>) }
 </pre></div>
@@ -1064,7 +1081,7 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Заметьте, что вы можете вызывать метод <code>creole</code> из других шаблонов:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>%h1 <span style="color:#036;font-weight:bold">Hello</span> <span style="color:#036;font-weight:bold">From</span> Haml!
 %p= creole(<span style="color:#A60">:greetings</span>)
@@ -1101,7 +1118,7 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 Следовательно, вам, скорее всего, придется использовать этот шаблон совместно
 с другим шаблонизатором:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>erb <span style="color:#A60">:overview</span>, <span style="color:#A60">:locals</span> =&gt; { <span style="color:#A60">:text</span> =&gt; mediawiki(<span style="color:#A60">:introduction</span>) }
 </pre></div>
@@ -1110,7 +1127,7 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Заметьте, что вы можете вызывать метод <code>mediawiki</code> из других шаблонов:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>%h1 <span style="color:#036;font-weight:bold">Hello</span> <span style="color:#036;font-weight:bold">From</span> Haml!
 %p= mediawiki(<span style="color:#A60">:greetings</span>)
@@ -1155,7 +1172,7 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
   <tr>
     <td>Зависимости</td>
     <td>
-      <a href="https://github.com/lucasmazza/ruby-stylus" title="Ruby Stylus">
+      <a href="https://github.com/forgecrafted/ruby-stylus" title="Ruby Stylus">
         Stylus
       </a> и
       <a href="https://github.com/sstephenson/execjs/blob/master/README.md#readme" title="ExecJS">
@@ -1176,7 +1193,7 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Перед тем, как использовать шаблоны стилус, загрузите <code>stylus</code> и
 <code>stylus/tilt</code>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra</span><span style="color:#710">'</span></span>
 require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">stylus</span><span style="color:#710">'</span></span>
@@ -1217,7 +1234,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Содержимое шаблона интерпретируется как код на Ruby, а результирующая
 переменная json затем конвертируется с помощью <code>#to_json</code>.</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>json = { <span style="color:#A60">:foo</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bar</span><span style="color:#710">'</span></span> }
 json[<span style="color:#A60">:baz</span>] = key
@@ -1228,7 +1245,7 @@ json[<span style="color:#A60">:baz</span>] = key
 <p>Опции <code>:callback</code> и <code>:variable</code> используются для “декорирования” итогового
 объекта.</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>var resource = {<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">foo</span><span style="color:#710">"</span></span><span style="color:#A60"><span style="color:#A60">:</span><span style="color:#740">"</span><span style="color:#A60">bar</span><span style="color:#740">"</span></span>,<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">baz</span><span style="color:#710">"</span></span><span style="color:#A60"><span style="color:#A60">:</span><span style="color:#740">"</span><span style="color:#A60">qux</span><span style="color:#740">"</span></span>}; present(resource);
 </pre></div>
@@ -1264,7 +1281,7 @@ json[<span style="color:#A60">:baz</span>] = key
 Переменные экземпляра, установленные в процессе обработки маршрутов, будут
 доступны напрямую в шаблонах:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:id</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#33B">@foo</span> = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">id</span><span style="color:#710">'</span></span>])
@@ -1276,7 +1293,7 @@ json[<span style="color:#A60">:baz</span>] = key
 
 <p>Либо установите их через хеш локальных переменных:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:id</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   foo = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">id</span><span style="color:#710">'</span></span>])
@@ -1296,7 +1313,7 @@ json[<span style="color:#A60">:baz</span>] = key
 Такой шаблон может быть либо использован с помощью опции <code>:template</code>,
 как описано выше, либо он может быть дополнен блоком:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>    erb <span style="color:#A60">:post</span>, <span style="color:#A60">:layout</span> =&gt; <span style="color:#069">false</span> <span style="color:#080;font-weight:bold">do</span>
       erb <span style="color:#A60">:index</span>
@@ -1310,7 +1327,7 @@ json[<span style="color:#A60">:baz</span>] = key
 <p>Передача блоков интерпретирующим шаблоны методам наиболее полезна для
 создания вложенных раскладок:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>    erb <span style="color:#A60">:main_layout</span>, <span style="color:#A60">:layout</span> =&gt; <span style="color:#069">false</span> <span style="color:#080;font-weight:bold">do</span>
       erb <span style="color:#A60">:admin_layout</span> <span style="color:#080;font-weight:bold">do</span>
@@ -1323,7 +1340,7 @@ json[<span style="color:#A60">:baz</span>] = key
 
 <p>Это же самое может быть сделано короче:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>    erb <span style="color:#A60">:admin_layout</span>, <span style="color:#A60">:layout</span> =&gt; <span style="color:#A60">:main_layout</span> <span style="color:#080;font-weight:bold">do</span>
       erb <span style="color:#A60">:user</span>
@@ -1342,7 +1359,7 @@ json[<span style="color:#A60">:baz</span>] = key
 
 <p>Шаблоны также могут быть определены в конце исходного файла:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra</span><span style="color:#710">'</span></span>
 
@@ -1371,7 +1388,7 @@ Sinatra, будут загружены автоматически. Вызови�
 
 <p>Шаблоны также могут быть определены при помощи <code>template</code> метода:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>template <span style="color:#A60">:layout</span> <span style="color:#080;font-weight:bold">do</span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">%html</span><span style="color:#b0b">\n</span><span style="color:#D20">  =yield</span><span style="color:#b0b">\n</span><span style="color:#710">"</span></span>
@@ -1393,7 +1410,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 помощью <code>:layout =&gt; false</code> или отключить его для всего приложения: <code>set :haml,
 :layout =&gt; false</code>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   haml <span style="color:#A60">:index</span>, <span style="color:#A60">:layout</span> =&gt; !request.xhr?
@@ -1409,7 +1426,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <code>Tilt.register</code>. Например, если вы хотите использовать расширение <code>tt</code> для
 шаблонов Textile:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#036;font-weight:bold">Tilt</span>.register <span style="color:#A60">:tt</span>, <span style="color:#036;font-weight:bold">Tilt</span>[<span style="color:#A60">:textile</span>]
 </pre></div>
@@ -1422,7 +1439,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Сначала зарегистрируйте свой движок в Tilt, а затем создайте метод, отвечающий
 за рендеринг:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#036;font-weight:bold">Tilt</span>.register <span style="color:#A60">:myat</span>, <span style="color:#036;font-weight:bold">MyAwesomeTemplateEngine</span>
 
@@ -1447,7 +1464,7 @@ https://github.com/rtomayko/tilt</p>
 маршруты, и могут изменять как запрос, так и ответ на него. Переменные
 экземпляра, установленные в фильтрах, доступны в маршрутах и шаблонах:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>before <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#33B">@note</span> = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Hi!</span><span style="color:#710">'</span></span>
@@ -1467,7 +1484,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 экземпляра, установленные в <code>before</code>-фильтрах и маршрутах, будут доступны в
 <code>after</code>-фильтрах:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>after <span style="color:#080;font-weight:bold">do</span>
   puts response.status
@@ -1483,7 +1500,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Фильтры могут использовать шаблоны URL и будут интерпретированы, только если
 путь запроса совпадет с этим шаблоном:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>before <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/protected/*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   authenticate!
@@ -1498,7 +1515,7 @@ after <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#7
 
 <p>Как и маршруты, фильтры могут использовать условия:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>before <span style="color:#A60">:agent</span> =&gt; <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">Songbird</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># ...</span>
@@ -1517,7 +1534,7 @@ after <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#7
 <p>Используйте метод <code>helpers</code>, чтобы определить методы-помощники, которые в
 дальнейшем можно будет использовать в обработчиках маршрутов и шаблонах:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>helpers <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">bar</span>(name)
@@ -1534,7 +1551,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Также методы-помощники могут быть заданы в отдельных модулях:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#080;font-weight:bold">module</span> <span style="color:#B06;font-weight:bold">FooUtils</span>
   <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">foo</span>(name) <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>name<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">foo</span><span style="color:#710">"</span></span> <span style="color:#080;font-weight:bold">end</span>
@@ -1557,7 +1574,7 @@ helpers <span style="color:#036;font-weight:bold">FooUtils</span>, <span style="
 <p>Сессия используется, чтобы сохранять состояние между запросами. Если эта опция
 включена, то у вас будет один хеш сессии на одну пользовательскую сессию:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>enable <span style="color:#A60">:sessions</span>
 
@@ -1579,7 +1596,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 механизм сессий. Для этого <em>не надо</em> вызывать <code>enable :sessions</code>, вместо этого
 следует подключить ее так же, как и любую другую “прослойку”:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>use <span style="color:#036;font-weight:bold">Rack</span>::<span style="color:#036;font-weight:bold">Session</span>::<span style="color:#036;font-weight:bold">Pool</span>, <span style="color:#A60">:expire_after</span> =&gt; <span style="color:#00D">2592000</span>
 
@@ -1600,7 +1617,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 ключ вручную, чтобы у всех экземпляров вашего приложения был один и тот же
 ключ:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>set <span style="color:#A60">:session_secret</span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">super secret</span><span style="color:#710">'</span></span>
 </pre></div>
@@ -1610,7 +1627,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Если вы хотите больше настроек для сессий, вы можете задать их, передав хеш
 опций в параметр <code>sessions</code>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>set <span style="color:#A60">:sessions</span>, <span style="color:#A60">:domain</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">foo.com</span><span style="color:#710">'</span></span>
 </pre></div>
@@ -1620,7 +1637,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Чтобы сделать сессию доступной другим приложениям, размещенным на поддоменах
 foo.com, добавьте <em>.</em> перед доменом:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>set <span style="color:#A60">:sessions</span>, <span style="color:#A60">:domain</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">.foo.com</span><span style="color:#710">'</span></span>
 </pre></div>
@@ -1633,7 +1650,7 @@ foo.com, добавьте <em>.</em> перед доменом:</p>
 <p>Чтобы незамедлительно прервать обработку запроса внутри фильтра или маршрута,
 используйте:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>halt
 </pre></div>
@@ -1642,7 +1659,7 @@ foo.com, добавьте <em>.</em> перед доменом:</p>
 
 <p>Можно также указать статус при прерывании:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>halt <span style="color:#00D">410</span>
 </pre></div>
@@ -1651,7 +1668,7 @@ foo.com, добавьте <em>.</em> перед доменом:</p>
 
 <p>Тело:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>halt <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">this will be the body</span><span style="color:#710">'</span></span>
 </pre></div>
@@ -1660,7 +1677,7 @@ foo.com, добавьте <em>.</em> перед доменом:</p>
 
 <p>И то, и другое:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>halt <span style="color:#00D">401</span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">go away!</span><span style="color:#710">'</span></span>
 </pre></div>
@@ -1669,7 +1686,7 @@ foo.com, добавьте <em>.</em> перед доменом:</p>
 
 <p>Можно указать заголовки:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>halt <span style="color:#00D">402</span>, {<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Content-Type</span><span style="color:#710">'</span></span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">text/plain</span><span style="color:#710">'</span></span>}, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">revenge</span><span style="color:#710">'</span></span>
 </pre></div>
@@ -1678,7 +1695,7 @@ foo.com, добавьте <em>.</em> перед доменом:</p>
 
 <p>И, конечно, можно использовать шаблоны с <code>halt</code>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>halt erb(<span style="color:#A60">:error</span>)
 </pre></div>
@@ -1691,7 +1708,7 @@ foo.com, добавьте <em>.</em> перед доменом:</p>
 <p>Маршрут может передать обработку запроса следующему совпадающему маршруту,
 используя <code>pass</code>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/guess/:who</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   pass <span style="color:#080;font-weight:bold">unless</span> params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">who</span><span style="color:#710">'</span></span>] == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Frank</span><span style="color:#710">'</span></span>
@@ -1715,7 +1732,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Иногда <code>pass</code> не подходит, например, если вы хотите получить результат вызова
 другого обработчика маршрута. В таком случае просто используйте <code>call</code>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   status, headers, body = call env.merge(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">PATH_INFO</span><span style="color:#710">"</span></span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/bar</span><span style="color:#710">'</span></span>)
@@ -1748,7 +1765,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 Если вы задействуете метод <code>body</code>, то вы можете использовать его и в
 дальнейшем, чтобы получить доступ к телу ответа.</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   body <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">bar</span><span style="color:#710">"</span></span>
@@ -1767,7 +1784,7 @@ after <span style="color:#080;font-weight:bold">do</span>
 
 <p>Аналогично вы можете установить код ответа и его заголовки:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   status <span style="color:#00D">418</span>
@@ -1791,7 +1808,7 @@ after <span style="color:#080;font-weight:bold">do</span>
 отправлять данные до тех пор, пока клиент не закроет соединение. Вы можете
 использовать метод <code>stream</code> вместо написания собственных “оберток”.</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   stream <span style="color:#080;font-weight:bold">do</span> |out|
@@ -1807,24 +1824,24 @@ after <span style="color:#080;font-weight:bold">do</span>
 </div>
 
 <p>Что позволяет вам реализовать стриминговые API,
-<a href="http://dev.w3.org/html5/eventsource/">Server Sent Events</a>,
-и может служить основой для <a href="http://en.wikipedia.org/wiki/WebSocket">WebSockets</a>.
+<a href="https://w3c.github.io/eventsource/">Server Sent Events</a>,
+и может служить основой для <a href="https://en.wikipedia.org/wiki/WebSocket">WebSockets</a>.
 Также такой подход можно использовать для увеличения производительности в случае,
 когда какая-то часть контента зависит от медленного ресурса.</p>
 
 <p>Заметьте, что возможности стриминга, особенно количество одновременно
 обслуживаемых запросов, очень сильно зависят от используемого веб-сервера.
-Некоторые серверы, например, WEBRick, могут и вовсе не поддерживать стриминг.
-Если сервер не поддерживает стриминг, то все данные будут отправлены за один
-раз сразу после того, как блок, переданный в <code>stream</code>, завершится. Стриминг
-вообще не работает при использовании Shotgun.</p>
+Некоторые серверы могут и вовсе не поддерживать стриминг.  Если сервер не
+поддерживает стриминг, то все данные будут отправлены за один раз сразу после
+того, как блок, переданный в <code>stream</code>, завершится. Стриминг вообще не работает
+при использовании Shotgun.</p>
 
 <p>Если метод используется с параметром <code>keep_open</code>, то он не будет вызывать
 <code>close</code> у объекта потока, что позволит вам закрыть его позже в любом другом
 месте. Это работает только с событийными серверами, например, с Thin и
 Rainbows. Другие же серверы все равно будут закрывать поток:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#777"># long polling</span>
 
@@ -1862,7 +1879,7 @@ post <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#71
 <p>В области видимости запроса метод <code>logger</code> предоставляет доступ к экземпляру
 <code>Logger</code>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   logger.info <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">loading data</span><span style="color:#710">"</span></span>
@@ -1880,7 +1897,7 @@ post <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#71
 <code>Sinatra::Application</code>, а если ваше приложение — подкласс <code>Sinatra::Base</code>, то
 вы, наверное, захотите включить его вручную:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyApp</span> &lt; <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color:#036;font-weight:bold">Base</span>
   configure <span style="color:#A60">:production</span>, <span style="color:#A60">:development</span> <span style="color:#080;font-weight:bold">do</span>
@@ -1903,7 +1920,7 @@ post <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#71
 mime-типы, которые Sinatra не понимает по умолчанию. Используйте <code>mime_type</code>
 для их регистрации по расширению файла:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>configure <span style="color:#080;font-weight:bold">do</span>
   mime_type <span style="color:#A60">:foo</span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">text/foo</span><span style="color:#710">'</span></span>
@@ -1914,7 +1931,7 @@ mime-типы, которые Sinatra не понимает по умолчан�
 
 <p>Вы также можете использовать это в <code>content_type</code> методе-помощнике:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   content_type <span style="color:#A60">:foo</span>
@@ -1929,7 +1946,7 @@ mime-типы, которые Sinatra не понимает по умолчан�
 
 <p>Чтобы сформировать URL, вам следует использовать метод <code>url</code>, например, в Haml:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>%a{<span style="color:#A60">:href</span> =&gt; url(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span>)} foo
 </pre></div>
@@ -1946,7 +1963,7 @@ mime-типы, которые Sinatra не понимает по умолчан�
 
 <p>Вы можете перенаправить браузер пользователя с помощью метода <code>redirect</code>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   redirect to(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/bar</span><span style="color:#710">'</span></span>)
@@ -1958,10 +1975,10 @@ mime-типы, которые Sinatra не понимает по умолчан�
 <p>Любые дополнительные параметры используются по аналогии с аргументами метода
 <code>halt</code>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>redirect to(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/bar</span><span style="color:#710">'</span></span>), <span style="color:#00D">303</span>
-redirect <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">http://google.com</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">wrong place, buddy</span><span style="color:#710">'</span></span>
+redirect <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">http://www.google.com/</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">wrong place, buddy</span><span style="color:#710">'</span></span>
 </pre></div>
 </div>
 </div>
@@ -1969,7 +1986,7 @@ redirect <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color
 <p>Вы также можете перенаправить пользователя обратно, на страницу, с которой он
 пришел, с помощью <code>redirect back</code>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">&lt;a href='/bar'&gt;do something&lt;/a&gt;</span><span style="color:#710">"</span></span>
@@ -1986,7 +2003,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Чтобы передать какие-либо параметры вместе с перенаправлением, либо добавьте
 их в строку запроса:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>redirect to(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/bar?sum=42</span><span style="color:#710">'</span></span>)
 </pre></div>
@@ -1995,7 +2012,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>либо используйте сессию:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>enable <span style="color:#A60">:sessions</span>
 
@@ -2018,7 +2035,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Вы можете легко выставить заголовок Cache-Control таким образом:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   cache_control <span style="color:#A60">:public</span>
@@ -2030,7 +2047,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Совет: задавайте кэширование в <code>before</code>-фильтре:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>before <span style="color:#080;font-weight:bold">do</span>
   cache_control <span style="color:#A60">:public</span>, <span style="color:#A60">:must_revalidate</span>, <span style="color:#A60">:max_age</span> =&gt; <span style="color:#00D">60</span>
@@ -2042,7 +2059,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Если вы используете метод <code>expires</code> для задания соответствующего заголовка, то
 <code>Cache-Control</code> будет выставлен автоматически:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>before <span style="color:#080;font-weight:bold">do</span>
   expires <span style="color:#00D">500</span>, <span style="color:#A60">:public</span>, <span style="color:#A60">:must_revalidate</span>
@@ -2056,7 +2073,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 методы-помощники <em>до</em> выполнения ресурсоемких вычислений, так как они
 немедленно отправят ответ клиенту, если текущая версия уже есть в их кэше:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/article/:id</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#33B">@article</span> = <span style="color:#036;font-weight:bold">Article</span>.find params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">id</span><span style="color:#710">'</span></span>]
@@ -2069,9 +2086,9 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 
 <p>Также вы можете использовать
-<a href="http://en.wikipedia.org/wiki/HTTP_ETag#Strong_and_weak_validation">weak ETag</a>:</p>
+<a href="https://en.wikipedia.org/wiki/HTTP_ETag#Strong_and_weak_validation">weak ETag</a>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>etag <span style="color:#33B">@article</span>.sha1, <span style="color:#A60">:weak</span>
 </pre></div>
@@ -2082,7 +2099,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 необходимую информацию для вашего кэша. Если вы ищете легкое решение для
 кэширования, попробуйте <a href="https://github.com/rtomayko/rack-cache">rack-cache</a>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rack/cache</span><span style="color:#710">'</span></span>
 require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra</span><span style="color:#710">'</span></span>
@@ -2109,7 +2126,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 с помощью POST) считает новыми. Вы можете изменить данное поведение с помощью
 опции <code>:new_resource</code>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/create</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   etag <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#710">'</span></span>, <span style="color:#A60">:new_resource</span> =&gt; <span style="color:#069">true</span>
@@ -2122,7 +2139,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Если вы хотите использовать weak ETag, задайте опцию <code>:kind</code>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>etag <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#710">'</span></span>, <span style="color:#A60">:new_resource</span> =&gt; <span style="color:#069">true</span>, <span style="color:#A60">:kind</span> =&gt; <span style="color:#A60">:weak</span>
 </pre></div>
@@ -2134,7 +2151,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Для отправки файлов пользователю вы можете использовать метод <code>send_file</code>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   send_file <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">foo.png</span><span style="color:#710">'</span></span>
@@ -2145,7 +2162,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Этот метод имеет несколько опций:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>send_file <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">foo.png</span><span style="color:#710">'</span></span>, <span style="color:#A60">:type</span> =&gt; <span style="color:#A60">:jpg</span>
 </pre></div>
@@ -2188,7 +2205,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Объект входящего запроса доступен на уровне обработки запроса (в фильтрах,
 маршрутах, обработчиках ошибок) с помощью <code>request</code> метода:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#777"># приложение запущено на http://example.com/example</span>
 get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
@@ -2227,7 +2244,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Некоторые опции, такие как <code>script_name</code> или <code>path_info</code>, доступны для
 изменения:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>before { request.path_info = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">/</span><span style="color:#710">"</span></span> }
 
@@ -2240,7 +2257,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p><code>request.body</code> является IO или StringIO объектом:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>post <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">/api</span><span style="color:#710">"</span></span> <span style="color:#080;font-weight:bold">do</span>
   request.body.rewind  <span style="color:#777"># в случае, если кто-то уже прочитал тело запроса</span>
@@ -2257,7 +2274,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Вы можете использовать метод <code>attachment</code>, чтобы сказать браузеру, что ответ
 сервера должен быть сохранен на диск, а не отображен:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   attachment
@@ -2269,7 +2286,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Вы также можете указать имя файла:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   attachment <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">info.txt</span><span style="color:#710">"</span></span>
@@ -2286,7 +2303,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 создает объект Time. Он также может конвертировать <code>DateTime</code>, <code>Date</code> и
 подобные классы:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   pass <span style="color:#080;font-weight:bold">if</span> <span style="color:#036;font-weight:bold">Time</span>.now &gt; time_for(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Dec 23, 2012</span><span style="color:#710">'</span></span>)
@@ -2300,7 +2317,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 им подобными. Поэтому вы легко можете изменить и дополнить поведение этих методов,
 переопределив <code>time_for</code> в своем приложении:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>helpers <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">time_for</span>(value)
@@ -2327,7 +2344,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Для поиска шаблонов и их последующего рендеринга используется метод
 <code>find_template</code>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>find_template settings.views, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">foo</span><span style="color:#710">'</span></span>, <span style="color:#036;font-weight:bold">Tilt</span>[<span style="color:#A60">:haml</span>] <span style="color:#080;font-weight:bold">do</span> |file|
   puts <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">could be </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>file<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">"</span></span>
@@ -2341,7 +2358,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 поиска. Например, если вы хотите, чтобы можно было использовать несколько
 директорий с шаблонами:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>set <span style="color:#A60">:views</span>, [<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">views</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">templates</span><span style="color:#710">'</span></span>]
 
@@ -2357,7 +2374,7 @@ helpers <span style="color:#080;font-weight:bold">do</span>
 <p>Другой пример, в котором используются разные директории для движков
 рендеринга:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>set <span style="color:#A60">:views</span>, <span style="color:#A60">:sass</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">views/sass</span><span style="color:#710">'</span></span>, <span style="color:#A60">:haml</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">templates</span><span style="color:#710">'</span></span>, <span style="color:#A60">:default</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">views</span><span style="color:#710">'</span></span>
 
@@ -2388,7 +2405,7 @@ helpers <span style="color:#080;font-weight:bold">do</span>
 <p>Этот блок исполняется один раз при старте в любом окружении, режиме
 (environment):</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>configure <span style="color:#080;font-weight:bold">do</span>
   <span style="color:#777"># задание одной опции</span>
@@ -2412,7 +2429,7 @@ helpers <span style="color:#080;font-weight:bold">do</span>
 
 <p>Будет запущено, когда окружение (RACK_ENV переменная) <code>:production</code>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>configure <span style="color:#A60">:production</span> <span style="color:#080;font-weight:bold">do</span>
   ...
@@ -2423,7 +2440,7 @@ helpers <span style="color:#080;font-weight:bold">do</span>
 
 <p>Будет запущено, когда окружение <code>:production</code> или <code>:test</code>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>configure <span style="color:#A60">:production</span>, <span style="color:#A60">:test</span> <span style="color:#080;font-weight:bold">do</span>
   ...
@@ -2434,7 +2451,7 @@ helpers <span style="color:#080;font-weight:bold">do</span>
 
 <p>Вы можете получить доступ к этим опциям с помощью <code>settings</code>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>configure <span style="color:#080;font-weight:bold">do</span>
   set <span style="color:#A60">:foo</span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bar</span><span style="color:#710">'</span></span>
@@ -2453,11 +2470,11 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <h3>Настройка защиты от атак</h3>
 
 <p>Sinatra использует
-<a href="https://github.com/rkh/rack-protection#readme">Rack::Protection</a> для защиты
+<a href="https://github.com/sinatra/rack-protection#readme">Rack::Protection</a> для защиты
 приложения от простых атак. Вы можете легко выключить эту защиту (что сделает
 ваше приложение чрезвычайно уязвимым):</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>disable <span style="color:#A60">:protection</span>
 </pre></div>
@@ -2467,7 +2484,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Чтобы пропустить какой-либо уровень защиты, передайте хеш опций в параметр
 <code>protection</code>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>set <span style="color:#A60">:protection</span>, <span style="color:#A60">:except</span> =&gt; <span style="color:#A60">:path_traversal</span>
 </pre></div>
@@ -2476,7 +2493,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Вы также можете отключить сразу несколько уровней защиты:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>set <span style="color:#A60">:protection</span>, <span style="color:#A60">:except</span> =&gt; [<span style="color:#A60">:path_traversal</span>, <span style="color:#A60">:session_hijacking</span>]
 </pre></div>
@@ -2685,7 +2702,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Когда выброшено исключение <code>Sinatra::NotFound</code>, или кодом ответа является 404,
 то будет вызван <code>not_found</code> обработчик:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>not_found <span style="color:#080;font-weight:bold">do</span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">This is nowhere to be found.</span><span style="color:#710">'</span></span>
@@ -2701,7 +2718,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 маршрута, либо из фильтра. Объект-исключение доступен как переменная
 <code>sinatra.error</code> в Rack:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>error <span style="color:#080;font-weight:bold">do</span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Sorry there was a nasty error - </span><span style="color:#710">'</span></span> + env[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra.error</span><span style="color:#710">'</span></span>].message
@@ -2712,7 +2729,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Конкретные ошибки:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>error <span style="color:#036;font-weight:bold">MyCustomError</span> <span style="color:#080;font-weight:bold">do</span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">So what happened was...</span><span style="color:#710">'</span></span> + env[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra.error</span><span style="color:#710">'</span></span>].message
@@ -2723,7 +2740,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Тогда, если это произошло:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
   raise <span style="color:#036;font-weight:bold">MyCustomError</span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">something bad</span><span style="color:#710">'</span></span>
@@ -2739,7 +2756,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Также вы можете установить обработчик ошибок для кода состояния HTTP:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>error <span style="color:#00D">403</span> <span style="color:#080;font-weight:bold">do</span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Access forbidden</span><span style="color:#710">'</span></span>
@@ -2754,7 +2771,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Либо набора кодов:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>error <span style="color:#00D">400</span>..<span style="color:#00D">510</span> <span style="color:#080;font-weight:bold">do</span>
   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Boom</span><span style="color:#710">'</span></span>
@@ -2778,7 +2795,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>В Sinatra очень просто использовать такие “прослойки” с помощью метода <code>use</code>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra</span><span style="color:#710">'</span></span>
 require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">my_custom_middleware</span><span style="color:#710">'</span></span>
@@ -2794,11 +2811,11 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 </div>
 
 <p>Семантика <code>use</code> идентична той, что определена для
-<a href="http://rubydoc.info/github/rack/rack/master/Rack/Builder">Rack::Builder</a> DSL
+<a href="http://www.rubydoc.info/github/rack/rack/master/Rack/Builder">Rack::Builder</a> DSL
 (чаще всего используется в rackup файлах). Например, метод <code>use</code> принимает как
 множественные переменные, так и блоки:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>use <span style="color:#036;font-weight:bold">Rack</span>::<span style="color:#036;font-weight:bold">Auth</span>::<span style="color:#036;font-weight:bold">Basic</span> <span style="color:#080;font-weight:bold">do</span> |username, password|
   username == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">admin</span><span style="color:#710">'</span></span> &amp;&amp; password == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">secret</span><span style="color:#710">'</span></span>
@@ -2823,10 +2840,10 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Тесты для Sinatra приложений могут быть написаны с помощью библиотек,
 фреймворков, поддерживающих тестирование Rack.
-<a href="http://rdoc.info/github/brynary/rack-test/master/frames">Rack::Test</a>
+<a href="http://www.rubydoc.info/github/brynary/rack-test/master/frames">Rack::Test</a>
 рекомендован:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">my_sinatra_app</span><span style="color:#710">'</span></span>
 require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">minitest/autorun</span><span style="color:#710">'</span></span>
@@ -2870,7 +2887,7 @@ require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:
 (“прослоек”), Rails metal, простых библиотек с серверными компонентами,
 расширений Sinatra. И тут на помощь приходит <code>Sinatra::Base</code>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra/base</span><span style="color:#710">'</span></span>
 
@@ -2934,7 +2951,7 @@ static              true                    false
 <p>Есть два общепринятых способа запускать модульные приложения: запуск напрямую
 с помощью <code>run!</code>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#777"># my_app.rb</span>
 require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra/base</span><span style="color:#710">'</span></span>
@@ -2957,7 +2974,7 @@ require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:
 <p>Или с помощью конфигурационного файла <code>config.ru</code>, который позволяет
 использовать любой Rack-совместимый сервер приложений.</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#777"># config.ru</span>
 require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">./my_app</span><span style="color:#710">'</span></span>
@@ -2976,7 +2993,7 @@ run <span style="color:#036;font-weight:bold">MyApp</span>
 
 <p>Файл приложения:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#777"># app.rb</span>
 require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra</span><span style="color:#710">'</span></span>
@@ -2990,7 +3007,7 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>И соответствующий <code>config.ru</code>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">./app</span><span style="color:#710">'</span></span>
 run <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color:#036;font-weight:bold">Application</span>
@@ -3024,7 +3041,7 @@ run <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color
 “прослойки”. Этим endpoint (конечной точкой) может быть другое Sinatra
 приложение, или приложение, основанное на Rack (Rails/Ramaze/Camping/…):</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra/base</span><span style="color:#710">'</span></span>
 
@@ -3064,7 +3081,7 @@ run <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color
 <p>Иногда требуется создавать Sinatra приложения “на лету” (например, из другого
 приложения). Это возможно с помощью <code>Sinatra.new</code>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra/base</span><span style="color:#710">'</span></span>
 my_app = <span style="color:#036;font-weight:bold">Sinatra</span>.new { get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span>) { <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">hi</span><span style="color:#710">"</span></span> } }
@@ -3076,7 +3093,7 @@ my_app.run!
 <p>Этот метод может принимать аргументом приложение, от которого следует
 наследоваться:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#777"># config.ru</span>
 require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra/base</span><span style="color:#710">'</span></span>
@@ -3102,7 +3119,7 @@ Sinatra внутри вашей библиотеки.</p>
 
 <p>Благодаря этому, использовать Sinatra как “прослойку” очень просто:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra/base</span><span style="color:#710">'</span></span>
 
@@ -3133,7 +3150,7 @@ run <span style="color:#036;font-weight:bold">RailsProject</span>::<span style="
 
 <p>Опции, созданные с помощью <code>set</code>, являются методами уровня класса:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyApp</span> &lt; <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color:#036;font-weight:bold">Base</span>
   <span style="color:#777"># Я в области видимости приложения!</span>
@@ -3167,8 +3184,8 @@ run <span style="color:#036;font-weight:bold">RailsProject</span>::<span style="
 <code>settings</code> внутри области видимости запроса.</li>
 </ul>
 
-<a name='%D0%9E%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C%20%D0%B2%D0%B8%D0%B4%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0/%D1%8D%D0%BA%D0%B7%D0%B5%D0%BC%D0%BF%D0%BB%D1%8F%D1%80%D0%B0'></a>
-<h3>Область видимости запроса/экземпляра</h3>
+<a name='%D0%9E%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C%20%D0%B2%D0%B8%D0%B4%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%20/%20%D1%8D%D0%BA%D0%B7%D0%B5%D0%BC%D0%BF%D0%BB%D1%8F%D1%80%D0%B0'></a>
+<h3>Область видимости запроса / экземпляра</h3>
 
 <p>Для каждого входящего запроса будет создан новый экземпляр вашего приложения,
 и все блоки обработчика будут запущены в этом контексте. В этой области
@@ -3177,7 +3194,7 @@ run <span style="color:#036;font-weight:bold">RailsProject</span>::<span style="
 видимости приложения из контекста запроса, используя метод-помощник
 <code>settings</code>:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyApp</span> &lt; <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color:#036;font-weight:bold">Base</span>
   <span style="color:#777"># Я в области видимости приложения!</span>
@@ -3245,6 +3262,45 @@ run <span style="color:#036;font-weight:bold">RailsProject</span>::<span style="
 -s # указание rack сервера/обработчика (по умолчанию thin)
 -x # включить мьютекс-блокировку (по умолчанию выключена)
 </code></pre>
+
+<a name='Multi-threading'></a>
+<h3>Multi-threading</h3>
+
+<p><em>Данный раздел является перефразированным <a href="http://stackoverflow.com/questions/6278817/is-sinatra-multi-threaded/6282999#6282999)">ответом пользователя Konstantin</a> на StackOverflow</em></p>
+
+<p>Sinatra не навязывает каких-либо моделей параллелизма, но для этих целей можно
+использовать любой Rack обработчик, например Thin, Puma или WEBrick. Сама
+по себе Sinatra потокобезопасна, поэтому нет никаких проблем в использовании
+поточной модели параллелизма в Rack обработчике. Это означает, что когда
+запускается сервер, вы должны указать правильный метод вызова для конкретного
+Rack обработчика. Пример ниже показывает, как можно запустить мультитредовый
+Thin сервер:</p>
+
+<div class="highlighter-coderay">
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#777"># app.rb</span>
+
+require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra/base</span><span style="color:#710">'</span></span>
+
+<span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">App</span> &lt; <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color:#036;font-weight:bold">Base</span>
+  get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+    <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hello, World</span><span style="color:#710">"</span></span>
+  <span style="color:#080;font-weight:bold">end</span>
+<span style="color:#080;font-weight:bold">end</span>
+
+<span style="color:#036;font-weight:bold">App</span>.run!
+</pre></div>
+</div>
+</div>
+
+<p>Чтобы запустить сервер, вы должны выполнить следующую команду:</p>
+
+<div class="highlighter-coderay">
+<div class="CodeRay">
+  <div class="code"><pre>thin --threaded start
+</pre></div>
+</div>
+</div>
 
 <a name='%D0%A1%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%BD%D1%8B%D0%B5%20%D1%82%D1%80%D0%B5%D0%B1%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F'></a>
 <h2>Системные требования</h2>
@@ -3332,7 +3388,7 @@ run <span style="color:#036;font-weight:bold">RailsProject</span>::<span style="
 <h3>С помощью Bundler</h3>
 
 <p>Если вы хотите запускать свое приложение с последней версией Sinatra, то
-рекомендуем использовать <a href="http://gembundler.com/">Bundler</a>.</p>
+рекомендуем использовать <a href="http://bundler.io">Bundler</a>.</p>
 
 <p>Сначала установите Bundler, если у вас его еще нет:</p>
 
@@ -3341,7 +3397,7 @@ run <span style="color:#036;font-weight:bold">RailsProject</span>::<span style="
 
 <p>Затем создайте файл <code>Gemfile</code> в директории вашего проекта:</p>
 
-<div>
+<div class="highlighter-coderay">
 <div class="CodeRay">
   <div class="code"><pre>source <span style="color:#A60">:rubygems</span>
 gem <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra</span><span style="color:#710">'</span></span>, <span style="color:#A60">:git</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">git://github.com/sinatra/sinatra.git</span><span style="color:#710">"</span></span>
@@ -3412,18 +3468,20 @@ SemVerTag.</p>
   <li>
 <a href="http://www.sinatrarb.com/contributing">Участие в проекте</a> — Обнаружили
 баг? Нужна помощь? Написали патч?</li>
-  <li><a href="http://github.com/sinatra/sinatra/issues">Слежение за проблемами/ошибками</a></li>
-  <li><a href="http://twitter.com/sinatra">Twitter</a></li>
+  <li><a href="https://github.com/sinatra/sinatra/issues">Отслеживание проблем/ошибок</a></li>
+  <li><a href="https://twitter.com/sinatra">Twitter</a></li>
   <li><a href="http://groups.google.com/group/sinatrarb/topics">Группы рассылки</a></li>
+  <li>IRC: <a href="irc://chat.freenode.net/#sinatra">#sinatra</a> на http://freenode.net</li>
   <li>
-<a href="irc://chat.freenode.net/#sinatra">#sinatra</a> на http://freenode.net</li>
+<a href="https://sinatrarb.slack.com">Sinatra и Друзья</a> на Slack, а так же
+<a href="https://sinatra-slack.herokuapp.com/">ссылка</a> для инвайта.</li>
   <li>
 <a href="https://github.com/sinatra/sinatra-book/">Sinatra Book</a> учебник и сборник рецептов</li>
   <li>
 <a href="http://recipes.sinatrarb.com/">Sinatra Recipes</a> сборник рецептов</li>
-  <li>API документация к <a href="http://rubydoc.info/gems/sinatra">последнему релизу</a>
-или <a href="http://rubydoc.info/github/sinatra/sinatra">текущему HEAD</a> на
-http://rubydoc.info</li>
-  <li><a href="http://travis-ci.org/sinatra/sinatra">Сервер непрерывной интеграции</a></li>
+  <li>API документация к <a href="http://www.rubydoc.info/gems/sinatra">последнему релизу</a>
+или <a href="http://www.rubydoc.info/github/sinatra/sinatra">текущему HEAD</a> на
+http://www.rubydoc.info/</li>
+  <li><a href="https://travis-ci.org/sinatra/sinatra">Сервер непрерывной интеграции</a></li>
 </ul>
 </body></html>
