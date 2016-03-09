@@ -52,6 +52,10 @@ in `#sinatra`.
 
 See the `CHANGES` file included for release notes about each release:
 
+ * [1.4.7](https://github.com/sinatra/sinatra/blob/v1.4.7/CHANGELOG.md)
+   January 24, 2016
+ * [1.4.6](https://github.com/sinatra/sinatra/blob/v1.4.6/CHANGES)
+   March 23, 2015
  * [1.4.5](https://github.com/sinatra/sinatra/blob/v1.4.5/CHANGES)
    April 8, 2014
  * [1.4.4](https://github.com/sinatra/sinatra/blob/v1.4.4/CHANGES)
