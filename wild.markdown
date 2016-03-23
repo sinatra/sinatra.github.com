@@ -10,6 +10,7 @@ We'll take care of the rest.
 
 Applications {#apps}
 ------------
+- [MagneticHTML](http://play.magnetichtml.com) Drag-and-drop magnetic tiles to create (and save) your own webpage!
 - [SequenceServer](http://www.sequenceserver.com/) An easy-to-setup BLAST sequence search server
 - [Flickr Group Viewer](http://gv.vqvz.com) is a (nicer?) way to view photos in a flickr group -- [on GitHub](https://github.com/funkaoshi/gv.vqvz.com).
 - [OnBoard](http://dev.vemarsas.it/onboard/) a web interface to manage Linux-based network appliances.
