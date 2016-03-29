@@ -135,7 +135,7 @@ follows:
 If you are interested in more robust partials solutions, check out the 
 [sinatra-recipes project](http://recipes.sinatrarb.com/), which has articles on
 using the [sinatra-partial gem](http://recipes.sinatrarb.com/p/helpers/partials_using_the_sinatra-partial_gem?#article) or 
-[implementing your own Rails-style patrials](http://recipes.sinatrarb.com/p/helpers/partials?#article).
+[implementing your own Rails-style partials](http://recipes.sinatrarb.com/p/helpers/partials?#article).
 
 
 Can I have multiple URLs trigger the same route/handler? {#multiroute}
