@@ -153,6 +153,10 @@ See the `CHANGES` file included for release notes about each release:
 
 RDoc documentation courtesy of `rubydoc.info`.
 
+### [Searchable API Documentation](https://rubydocs.org?search=sinatra)
+
+Searchable SDoc documentation courtesy of `rubydocs.org`.
+
 ### [In the Wild](/wild.html)
 
 List of applications, libraries, websites and companies using Sinatra.
