@@ -2,21 +2,39 @@
   ul li
     list-style-type: none
 
+.index-navbar #navbar 
+  display: flex
+  justify-content: center
+  +media(max-width 1180px)
+    justify-content: space-between
+    flex-direction: column
+
+.index-navbar .nav-list-item
+  flex-grow: 1
+  margin-top: 15px
+
+.index-navbar li#nav-logo
+  flex-grow: 6
+  +media(max-width 1180px)
+    order: -9
+
 #navbar
   background: white
   height: 73px
   li
-    padding-right: 10px
-    margin-top: 200px
+    +media(max-width 1180px)
   img
-    margin:
-      left: 50px
-      right: 50px
+    margin-top: -15px
     &:hover
       opacity: .7
   a
+    font-size: 1.1em
     color: #56534f
-    color: green
     text-decoration: none
     &:hover
       color: lighten(#56534f, 30%)
+    +media(max-width 1180px)
+      font-size: 5em
+      text-align: center
+    +media(max-width 777px)
+      font-size: 3em
