@@ -10,15 +10,20 @@
   flex-grow: 1
   margin-top: 15px
 
-.index-navbar li#nav-logo, li#nav-logo, 
+.index-navbar .nav-list-item
+  &:first-child
+    +media(max-width 777px)
+      margin-top: 120px
+
+.index-navbar li#nav-logo, li#nav-logo
   flex-grow: 6
 
-.index-navbar #navbar 
+#navbar
   +media(max-width 1180px)
-    justify-content: space-between
-    flex-direction: column
+    justify-content: flex-end
+    flex-direction: row
 
-.index-navbar li#nav-logo, 
+.index-navbar #nav-logo
   +media(max-width 1180px)
     order: -9
 
@@ -37,9 +42,14 @@
       color: lighten(#56534f, 30%)
 
 .index-navbar #navbar
+  +media(max-width 1180px)
+    justify-content: space-between
+    flex-direction: column
   a
     font-size: 1.1em
     +media(max-width 1180px)
       font-size: 5em
     +media(max-width 777px)
       font-size: 3em
+    +media(max-width 500px)
+      font-size: 2.3em
