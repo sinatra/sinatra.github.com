@@ -13,8 +13,7 @@ gulp.task('js', function(){
 });
 
 gulp.task('css', function(){
-  //sass('_sass/application.sass', { style: 'compressed' })
-  sass('_sass/application.sass')
+  sass('_sass/application.sass', { style: 'compressed' })
     .pipe(rename({
       suffix: '.min'}))
     .pipe(gulp.dest('css'));
@@ -24,7 +23,7 @@ gulp.task('prefixer', function(){
   gulp.src('css/application.min.css')
     //.pipe(prefixer())
     .pipe(prefixer({
-      browsers: ['last 2 versions'],
+      browsers: ['last 4 versions'],
         }))
     .pipe(gulp.dest('css'));
 });
