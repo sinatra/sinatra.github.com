@@ -1,6 +1,7 @@
 var gulp   = require('gulp'),
     uglify = require('gulp-uglify'),
     sass   = require('gulp-ruby-sass'),
+    prefixer = require('gulp-autoprefixer'),
     rename = require('gulp-rename');
 
 gulp.task('js', function(){
@@ -15,5 +16,11 @@ gulp.task('css', function(){
   sass('_sass/application.sass', { style: 'compressed' })
     .pipe(rename({
       suffix: '.min'}))
+    .pipe(gulp.dest('css'));
+});
+
+gulp.task('prefixer', function(){
+  gulp.src('css/application.min.css')
+    .pipe(prefixer())
     .pipe(gulp.dest('css'));
 });
