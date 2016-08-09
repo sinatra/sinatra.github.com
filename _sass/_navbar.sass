@@ -1,0 +1,123 @@
+// Colors
+
+$nav-link-color: #56534f
+$hidden-navbar-bg-color: #FAFAFA
+
+// Common styles for index and gobal navbar versions
+
+#head
+  ul li
+    list-style-type: none
+
+.index-navbar #navbar, #navbar 
+  display: flex
+  justify-content: center
+
+.index-navbar .nav-list-item, .nav-list-item
+  flex-grow: 1
+  margin:
+    top: 15px
+
+.index-navbar li#nav-logo, li#nav-logo
+  flex-grow: 6
+
+.index-navbar #navbar, #navbar, #hidden-navbar, .index-navbar #navbar
+  a
+    font-size: 1.1em
+    color: $nav-link-color
+    &:hover
+      color: lighten($nav-link-color, 30%)
+
+.index-navbar #navbar, #navbar
+  +media(max-width 1180px)
+    background-color: rgba(white, 0)
+  background: white
+  flex-shrink: 0
+  img
+    margin:
+      top: -15px
+    &:hover
+      opacity: .7
+  a
+    font-family: anonymous_probold, $helvetica
+    text-decoration: none
+
+// Expanded navbar
+
+.nav-list-item
+  +media(max-width 1000px)
+    visibility: hidden
+  visibility: visible
+
+// Collapsed navbar
+
+#hidden-navbar
+  display: flex
+  flex-direction: column
+  justify-content: flex-end
+  background-color: darken($hidden-navbar-bg-color, 5%)
+  li
+    flex-grow: 2
+    align-self: flex-end
+    margin:
+      right: 12px
+    padding:
+      bottom: 15px
+  a
+    font-family: $helvetica
+    text-decoration: none
+
+// Index navbar specific
+
+.index-navbar .hidden-nav-list-item
+  display: none
+
+.index-navbar #hidden-navbar
+  display: none
+
+.index-navbar #navbar
+  +media(max-width 1180px)
+    justify-content: space-between
+    flex-direction: column
+  a
+    +media(max-width 1180px)
+      font-size: 5em
+    +media(max-width 777px)
+      font-size: 3em
+    +media(max-width 500px)
+      font-size: 2.3em
+
+#navbar
+  +media(max-width 1000px)
+    justify-content: flex-end
+
+.index-navbar #navbar
+  li
+    +media(max-width 1000px)
+      visibility: visible
+
+// Logo stuff
+
+.index-navbar #nav-logo
+  +media(max-width 1180px)
+    order: -9
+  +media(max-width 1000px)
+    display: inline
+
+.index-navbar #toggle-nav-logo
+  display: none
+
+#nav-logo
+  +media(max-width 1000px)
+    display: none
+
+li#toggle-nav-logo
+  +media(max-width 1000px)
+    display: inline
+    visibility: visible
+  display: none
+
+#hidden-navbar-wrapper
+  +media(min-width 1001px)
+    display: none
+  display: none
