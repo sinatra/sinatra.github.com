@@ -7,12 +7,6 @@ var gulp        = require('gulp'),
     del         = require('del'),
     runSequence = require('run-sequence');
 
-
-gulp.task('watch', function(){
-  gulp.watch('_sass/*.sass', ['css']),
-  gulp.watch('css/min/*.css', ['prefix']);
-});
-
 // JS stuff
 
 gulp.task('js', function(){
@@ -24,6 +18,10 @@ gulp.task('js', function(){
 });
 
 // Sass/CSS stuff
+
+gulp.task('watch', function(){
+  gulp.watch('_sass/*.sass', ['build-css']);
+});
 
 gulp.task('build-css', function(callback) {
   runSequence('sass2css',
