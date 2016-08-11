@@ -66,5 +66,5 @@ gulp.task('purify', function() {
 });
 
 gulp.task('clean-css', function() {
-  return del(['css/prefixed']);
+  return del(['css/prefixed', 'css/*.min.css']);
 });
