@@ -9,3 +9,4 @@ gem "thor"
 gem 'bourbon'
 gem 'neat'
 gem 'sass'
+gem 'rake'
