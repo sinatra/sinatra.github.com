@@ -26,7 +26,7 @@ Run the test server:
 
 Changes are immediately available at:
 
-    http://localhost:4000
+    http://localhost:4000/sinatra.github.com/
 
 Contributing
 ------------
