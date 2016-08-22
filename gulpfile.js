@@ -7,6 +7,17 @@ var gulp        = require('gulp'),
     del         = require('del'),
     runSequence = require('run-sequence');
 
+
+// Browsersync stuff -> livereloads page after CSS changes
+
+var browserSync = require("browser-sync").create();
+
+browserSync.init({
+    proxy: "http://127.0.0.1:4000/sinatra.github.com/" // creates a proxy for localhost
+});
+
+browserSync.watch("css/**/*.css").on("change", browserSync.reload);
+
 // JS stuff
 
 gulp.task('js', function(){
