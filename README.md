@@ -27,6 +27,24 @@ Run the test server:
 Changes are immediately available at:
 
     http://localhost:4000/sinatra.github.com/
+    
+
+    
+Sass / CSS
+--------------
+
+Gulp was [set up](https://github.com/sinatra/sinatra.github.com/blob/master/gulpfile.js) to streamline your build process. Simply run:
+
+    $ gulp watch
+
+`gulp watch` triggers a couple of processes:
+- After changes have been introduced in the `_sass` directory, it first builds uncompressed `.css` files from the corresponding `.sass` files and puts them into `/css/development`.
+- Gulp also watches any changes made directly made on `.css`files in the `/css/development` directory.
+- In turn, these or any changes in `/css/development` will get compressed, prefixed and purified of any obsolete style declarations before being placed in their final destination at `/css`.
+
+That means Gulp is configured so that you can either work on `.sass` files in the `/_sass` directory or on `.css` files directly in the `/css/development` directory. The legacy styles are placed in there as well atm. That being said, if you want to introduce changes in `/css/development`, you need to create new filenames to avoid being overwritten when new versions of Sass files get built.
+
+Contributing directly to one of the existing Sass partials or via new ones of your own would be the preferred option. After some refactoring, we want to only serve one authorative stylesheet (application.css) that imports all the Sass partials during the build process. It would be appreciated if you could introduce your changes in the indented Sass syntax. Not a friend of curlies and stuff.
 
 Contributing
 ------------
