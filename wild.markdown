@@ -235,3 +235,4 @@ Companies using Sinatra {#biz}
 - [Digital Deployment](http://www.digitaldeployment.com)
 - [Icicle - Ruby Development Company](http://www.icicletech.com/)
 - [Robocat](http://robo.cat/)
+- [Green Touch](https://green-touch.org/)
