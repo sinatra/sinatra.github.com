@@ -44,7 +44,7 @@ gulp.task('build-css', function(callback) {
 
 gulp.task('sass2css', function(){
   console.log("Buidling your CSS from Sass");
-  return sass('_sass/application.sass')
+  return sass('_sass/*.sass')
   //return sass('_sass/application.sass', { style: 'compressed' })
     .pipe(gulp.dest('css/development/'));
 });
@@ -77,5 +77,5 @@ gulp.task('purify', function() {
 });
 
 gulp.task('clean-css', function() {
-  return del(['css/prefixed', 'css/*.min.css']);
+  return del('css/prefixed');
 });
