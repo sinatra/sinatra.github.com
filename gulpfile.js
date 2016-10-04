@@ -31,7 +31,7 @@ gulp.task('js', function(){
 // Sass/CSS stuff
 
 gulp.task('watch', function(){
-  gulp.watch(['_sass/**/*.sass', '_sass/**/*.scss', 'css/development/*.css'], ['build-css']);
+  gulp.watch(['_sass/**/*.sass', 'css/development/*.css'], ['build-css']);
 });
 
 gulp.task('build-css', function(callback) {
