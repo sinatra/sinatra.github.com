@@ -91,7 +91,7 @@ The environment can be set explicitly:
 
 ### `:sessions` - enable/disable cookie based sessions
 
-Support for encrypted, cookie-based sessions are included with Sinatra but
+Support for signed (but not encrypted), cookie-based sessions are included with Sinatra but
 are disabled by default. Enable them with:
 
     set :sessions, true
