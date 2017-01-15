@@ -141,6 +141,7 @@ Libraries and extensions {#libs}
 - [Sinatra::Param](https://github.com/mattt/sinatra-param) Parameter Validation & Type Coercion for Sinatra.
 - [SinatraLogger](https://github.com/wshihadeh/sinatra_logger) Provides logging functionaly to Sinatra application.
 - [Sinja](https://github.com/mwpastore/sinja) RESTful, {json:api}-compliant web services in Sinatra
+- [React::Sinatra](https://github.com/namusyaka/react-sinatra) React on Sinatra Integration
 
 Websites {#sites}
 --------
