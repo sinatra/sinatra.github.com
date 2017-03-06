@@ -159,7 +159,7 @@ Extending The DSL (class) Context with `Sinatra.register`
 
 Extensions can also extend Sinatra's class level DSL using the
 `Sinatra.register` method. Here's an extension that adds a
-`block_links_from` macro that checks the referer on each request for
+`block_links_from` macro that checks the referer (sic) on each request for
 a app provided pattern and sends back a `403 Forbidden` response when
 a match is detected:
 

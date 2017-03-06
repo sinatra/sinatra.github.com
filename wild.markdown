@@ -106,7 +106,7 @@ Libraries and extensions {#libs}
   Base app with DataMapper, Haml and RSpec. Fork and build.
 - [Sinatra OAuth Provider](https://github.com/eddanger/sinatra-oauth-provider)
   an [OAuth](http://oauth.net) provider implemented with Sinatra
-- [Spork](https://github.com/deadprogrammer/spork) Executes some aynchronous
+- [Spork](https://github.com/deadprogrammer/spork) Executes some asynchronous
   code using Sinatra running under Passenger
 - [Retweet](https://github.com/zapnap/retweet) Create Twitter apps like
   tweetdreams.org with ease
