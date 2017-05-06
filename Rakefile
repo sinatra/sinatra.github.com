@@ -36,7 +36,6 @@ def contrib(pattern = "%s", &block)
     sinatra-namespace
     sinatra-cookies
     sinatra-reloader
-    sinatra-decompile
     sinatra-respond-with
     sinatra-extension
     sinatra-streaming
@@ -64,7 +63,7 @@ def with_toc(src)
   toc + src
 end
 
-task :default => ['_sinatra', '_contrib', :build]
+task :default => ['_sinatra', :build]
 
 desc "Build outdated static files and API docs"
 task :build => [:pull, 'build:static']
@@ -80,7 +79,7 @@ task :regen => [:build] do
 end
 
 desc 'Pull in the latest from the sinatra and sinatra-contrib repos'
-task :pull => ['pull:sinatra', 'pull:contrib']
+task :pull => ['pull:sinatra']
 
 directory "_sinatra" do
   puts 'Cloning sinatra repo'
@@ -91,17 +90,6 @@ desc 'Pull in the latest from the sinatra repo'
 task 'pull:sinatra' => "_sinatra" do
     puts 'Pulling sinatra.git'
     sh "cd _sinatra && git pull &>/dev/null"
-end
-
-directory "_contrib" do
-  puts 'Cloning sinatra-contrib repo'
-  sh "git clone git://github.com/sinatra/sinatra-contrib.git _contrib" 
-end
-
-desc 'Pull in the latest from the sinatra-contrib repo'
-task 'pull:contrib' => "_contrib" do
-    puts 'Pulling sinatra-contrib.git'
-    sh "cd _contrib && git pull &>/dev/null"
 end
 
 readme("_sinatra/%s.md") { |fn| file fn => '_sinatra' }
@@ -121,19 +109,19 @@ end
 
 
 desc 'Build contrib docs'
-task 'build:contrib_docs' => 'pull:contrib' do
+task 'build:contrib_docs' do
   puts 'Building sinatra-contrib docs'
-  sh "cd _contrib && rake doc &>/dev/null"
+  sh "cd _sinatra/sinatra-contrib && rake doc"
 end
 
 
-contrib("_contrib/doc/%s.rdoc") { |fn| file fn => '_contrib' }
+contrib("_sinatra/sinatra-contrib/doc/%s.rdoc") { |fn| file fn => '_sinatra/sinatra-contrib' }
 
 contrib do |fn|
-  file "_includes/#{fn}.html" => ["build:contrib_docs", "_contrib/doc/#{fn}.rdoc", "Rakefile"] do |f|
+  file "_includes/#{fn}.html" => ["build:contrib_docs", "_sinatra/sinatra-contrib/doc/#{fn}.rdoc", "Rakefile"] do |f|
     html =
-      RDoc::Markup::ToHtml.new(RDoc::Options.new)
-      .convert(File.read("_contrib/doc/#{fn}.rdoc"))
+      RDoc::Markup::ToHtml.new
+      .convert(File.read("_sinatra/sinatra-contrib/doc/#{fn}.rdoc"))
     File.open(f.name, 'wb') { |io| io.write html }
   end
 end
@@ -152,4 +140,4 @@ task :server do
 end
 
 CLEAN.include '_site', "_includes/*.html"
-CLOBBER.include "_contrib", "_sinatra"
+CLOBBER.include "_sinatra/sinatra-contrib", "_sinatra"
