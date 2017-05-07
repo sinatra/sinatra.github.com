@@ -42,6 +42,11 @@ extensions in the wild.
 
 How to add new functionality to Sinatra using the extension APIs.
 
+### [Rack::Protection](/protection)
+
+This gem protects against typical web attacks. Should work for all Rack apps,
+including Rails.
+
 Project Information
 -------------------
 
