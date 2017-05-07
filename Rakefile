@@ -46,6 +46,30 @@ def contrib(pattern = "%s", &block)
   end
 end
 
+def protection(pattern = "%s", &block)
+  return protection(pattern).each(&block) if block_given?
+
+  %w[
+    rack-protection-escaped-params
+    rack-protection-frame-options
+    rack-protection-strict-transport
+    rack-protection-http-origin
+    rack-protection-json-csrf
+    rack-protection-remote-token
+    rack-protection-authenticity-token
+    rack-protection-path-traversal
+    rack-protection-cookie-tossing
+    rack-protection-content-security-policy
+    rack-protection-xss-header
+    rack-protection-remote-referrer
+    rack-protection-form-token
+    rack-protection-ip-spoofing
+    rack-protection-session-hijacking
+  ].map do |extension|
+    pattern % extension
+  end
+end
+
 # generates Table of Contents
 def with_toc(src)
   toc = "<div class='toc'>\n"
@@ -69,7 +93,7 @@ desc "Build outdated static files and API docs"
 task :build => [:pull, 'build:static']
 
 desc "Build outdated static files"
-task 'build:static' => readme("_includes/%s.html") + contrib("_includes/%s.html")
+task 'build:static' => readme("_includes/%s.html") + contrib("_includes/%s.html") + protection("_includes/%s.html")
 
 desc "Build anything that's outdated and stage changes for next commit"
 task :regen => [:build] do
@@ -78,7 +102,7 @@ task :regen => [:build] do
   puts "  git commit -m 'Regen prebuilt files'"
 end
 
-desc 'Pull in the latest from the sinatra and sinatra-contrib repos'
+desc 'Pull in the latest from the sinatra repo'
 task :pull => ['pull:sinatra']
 
 directory "_sinatra" do
@@ -107,13 +131,29 @@ readme do |fn|
   end
 end
 
+desc 'Build protection docs'
+task 'build:protection_docs' do
+  puts 'Building rack-protection docs'
+  sh "cd _sinatra/rack-protection && rake doc"
+end
+
+
+protection("_sinatra/rack-protection/doc/%s.rdoc") { |fn| file fn => '_sinatra/rack-protection' }
+
+protection do |fn|
+  file "_includes/#{fn}.html" => ["build:protection_docs", "_sinatra/rack-protection/doc/#{fn}.rdoc", "Rakefile"] do |f|
+    html =
+      RDoc::Markup::ToHtml.new
+      .convert(File.read("_sinatra/rack-protection/doc/#{fn}.rdoc"))
+    File.open(f.name, 'wb') { |io| io.write html }
+  end
+end
 
 desc 'Build contrib docs'
 task 'build:contrib_docs' do
   puts 'Building sinatra-contrib docs'
   sh "cd _sinatra/sinatra-contrib && rake doc"
 end
-
 
 contrib("_sinatra/sinatra-contrib/doc/%s.rdoc") { |fn| file fn => '_sinatra/sinatra-contrib' }
 
@@ -140,4 +180,4 @@ task :server do
 end
 
 CLEAN.include '_site', "_includes/*.html"
-CLOBBER.include "_sinatra/sinatra-contrib", "_sinatra"
+CLOBBER.include "_sinatra/sinatra-contrib", "_sinatra/rack-protection", "_sinatra"
