@@ -1,78 +1,73 @@
 
-<h1 id="label-Sinatra-3A-3AStreaming">Sinatra::Streaming<span><a href="#label-Sinatra-3A-3AStreaming">&para;</a> <a href="#top">&uarr;</a></span></h1>
+<h1>Sinatra::Streaming</h1>
 
-<p>Sinatra 1.3 introduced the <code>stream</code> helper. This addon improves
-the streaming API by making the stream object imitate an IO object, turning
-it into a real Deferrable and making the body play nicer with middleware
+<p>Sinatra 1.3 introduced the <tt>stream</tt> helper. This addon improves the
+streaming API by making the stream object imitate an IO object, turning it
+into a real Deferrable and making the body play nicer with middleware
 unaware of streaming.</p>
 
-<h2 id="label-IO-like+behavior">IO-like behavior<span><a href="#label-IO-like+behavior">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<h2>IO-like behavior</h2>
 
 <p>This is useful when passing the stream object to a library expecting an IO
 or StringIO object.</p>
 
-<pre class="ruby"><span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/&#39;</span> <span class="ruby-keyword">do</span>
-  <span class="ruby-identifier">stream</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">out</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">out</span>.<span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Hello World!&quot;</span>, <span class="ruby-string">&quot;How are you?&quot;</span>
-    <span class="ruby-identifier">out</span>.<span class="ruby-identifier">write</span> <span class="ruby-node">&quot;Written #{out.pos} bytes so far!\n&quot;</span>
-    <span class="ruby-identifier">out</span>.<span class="ruby-identifier">putc</span>(<span class="ruby-value">65</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">out</span>.<span class="ruby-identifier">closed?</span>
-    <span class="ruby-identifier">out</span>.<span class="ruby-identifier">flush</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span>
-</pre>
+<pre>get &#39;/&#39; do
+  stream do |out|
+    out.puts &quot;Hello World!&quot;, &quot;How are you?&quot;
+    out.write &quot;Written #{out.pos} bytes so far!\n&quot;
+    out.putc(65) unless out.closed?
+    out.flush
+  end
+end</pre>
 
-<h2 id="label-Better+Middleware+Handling">Better Middleware Handling<span><a href="#label-Better+Middleware+Handling">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<h2>Better Middleware Handling</h2>
 
 <p>Blocks passed to #map! or #map will actually be applied when streaming
 takes place (as you might have suspected, #map! applies modifications to
 the current body, while #map creates a new one):</p>
 
-<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">StupidMiddleware</span>
-  <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">app</span>) <span class="ruby-ivar">@app</span> = <span class="ruby-identifier">app</span> <span class="ruby-keyword">end</span>
+<pre>class StupidMiddleware
+  def initialize(app) @app = app end
 
-  <span class="ruby-keyword">def</span> <span class="ruby-identifier">call</span>(<span class="ruby-identifier">env</span>)
-    <span class="ruby-identifier">status</span>, <span class="ruby-identifier">headers</span>, <span class="ruby-identifier">body</span> = <span class="ruby-ivar">@app</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">env</span>)
-    <span class="ruby-identifier">body</span>.<span class="ruby-identifier">map!</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">upcase</span> }
-    [<span class="ruby-identifier">status</span>, <span class="ruby-identifier">headers</span>, <span class="ruby-identifier">body</span>]
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span>
+  def call(env)
+    status, headers, body = @app.call(env)
+    body.map! { |e| e.upcase }
+    [status, headers, body]
+  end
+end
 
-<span class="ruby-identifier">use</span> <span class="ruby-constant">StupidMiddleware</span>
+use StupidMiddleware
 
-<span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/&#39;</span> <span class="ruby-keyword">do</span>
-  <span class="ruby-identifier">stream</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">out</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">out</span>.<span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;still&quot;</span>
-    <span class="ruby-identifier">sleep</span> <span class="ruby-value">1</span>
-    <span class="ruby-identifier">out</span>.<span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;streaming&quot;</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span>
-</pre>
+get &#39;/&#39; do
+  stream do |out|
+    out.puts &quot;still&quot;
+    sleep 1
+    out.puts &quot;streaming&quot;
+  end
+end</pre>
 
 <p>Even works if #each is used to generate an Enumerator:</p>
 
-<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">call</span>(<span class="ruby-identifier">env</span>)
-  <span class="ruby-identifier">status</span>, <span class="ruby-identifier">headers</span>, <span class="ruby-identifier">body</span> = <span class="ruby-ivar">@app</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">env</span>)
-  <span class="ruby-identifier">body</span> = <span class="ruby-identifier">body</span>.<span class="ruby-identifier">each</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">upcase</span> }
-  [<span class="ruby-identifier">status</span>, <span class="ruby-identifier">headers</span>, <span class="ruby-identifier">body</span>]
-<span class="ruby-keyword">end</span>
-</pre>
+<pre>def call(env)
+  status, headers, body = @app.call(env)
+  body = body.each.map { |s| s.upcase }
+  [status, headers, body]
+end</pre>
 
 <p>Note that both examples violate the Rack specification.</p>
 
-<h2 id="label-Setup">Setup<span><a href="#label-Setup">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<h2>Setup</h2>
 
 <p>In a classic application:</p>
 
-<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra&quot;</span>
-<span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra/streaming&quot;</span>
-</pre>
+<pre>require &quot;sinatra&quot;
+require &quot;sinatra/streaming&quot;</pre>
 
 <p>In a modular application:</p>
 
-<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra/base&quot;</span>
-<span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra/streaming&quot;</span>
+<pre>require &quot;sinatra/base&quot;
+require &quot;sinatra/streaming&quot;
 
-<span class="ruby-keyword">class</span> <span class="ruby-constant">MyApp</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Sinatra</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>
-  <span class="ruby-identifier">helpers</span> <span class="ruby-constant">Sinatra</span><span class="ruby-operator">::</span><span class="ruby-constant">Streaming</span>
-<span class="ruby-keyword">end</span>
-</pre>
+class MyApp &lt; Sinatra::Base
+  helpers Sinatra::Streaming
+end</pre>

@@ -115,37 +115,25 @@
 <p>Sinatra는 최소한의 노력으로 루비 기반 웹 애플리케이션을 신속하게 만들 수 있게
 해 주는 <a href="https://en.wikipedia.org/wiki/Domain-specific_language">DSL</a>입니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre><span style="color:#777"># myapp.rb</span>
-require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra</span><span style="color:#710">'</span></span>
+<pre><code class="language-ruby"># myapp.rb
+require 'sinatra'
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Hello world!</span><span style="color:#710">'</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/' do
+  'Hello world!'
+end
+</code></pre>
 
 <p>아래의 명령어로 젬을 설치합니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>gem install sinatra
-</pre></div>
-</div>
-</div>
+<pre><code class="language-shell">gem install sinatra
+</code></pre>
 
 <p>아래의 명령어로 실행합니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>ruby myapp.rb
-</pre></div>
-</div>
-</div>
+<pre><code class="language-shell">ruby myapp.rb
+</code></pre>
 
-<p><code>http://localhost:4567</code>를 확인해 보세요.</p>
+<p><a href="http://localhost:4567">http://localhost:4567</a> 를 확인해 보세요.</p>
 
 <p><code>gem install thin</code>도 함께 실행하기를 권장합니다.
 thin이 설치되어 있을 경우 Sinatra는 thin을 통해 실행합니다.</p>
@@ -161,147 +149,111 @@ thin이 설치되어 있을 경우 Sinatra는 thin을 통해 실행합니다.</p
 <p>Sinatra에서, 라우터(route)는 URL-매칭 패턴과 쌍을 이루는 HTTP 메서드입니다.
 각각의 라우터는 블록과 연결됩니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+<pre><code class="language-ruby">get '/' do
   .. 무언가 보여주기(show) ..
-<span style="color:#080;font-weight:bold">end</span>
+end
 
-post <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+post '/' do
   .. 무언가 만들기(create) ..
-<span style="color:#080;font-weight:bold">end</span>
+end
 
-put <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+put '/' do
   .. 무언가 대체하기(replace) ..
-<span style="color:#080;font-weight:bold">end</span>
+end
 
-patch <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+patch '/' do
   .. 무언가 수정하기(modify) ..
-<span style="color:#080;font-weight:bold">end</span>
+end
 
-delete <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+delete '/' do
   .. 무언가 없애기(annihilate) ..
-<span style="color:#080;font-weight:bold">end</span>
+end
 
-options <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+options '/' do
   .. 무언가 주기(appease) ..
-<span style="color:#080;font-weight:bold">end</span>
+end
 
-link <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+link '/' do
   .. 무언가 관계맺기(affiliate) ..
-<span style="color:#080;font-weight:bold">end</span>
+end
 
-unlink <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+unlink '/' do
   .. 무언가 격리하기(separate) ..
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+end
+</code></pre>
 
 <p>라우터는 정의된 순서에 따라 매치되고 요청에 대해 가장 먼저 매칭된 라우터가 호출됩니다.</p>
 
 <p>라우터 패턴에는 이름을 가진 매개변수가 포함될 수 있으며, <code>params</code> 해시로 접근할 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/hello/:name</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#777"># "GET /hello/foo" 및 "GET /hello/bar"와 매치</span>
-  <span style="color:#777"># params['name']은 'foo' 또는 'bar'</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hello </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">name</span><span style="color:#710">'</span></span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/hello/:name' do
+  # "GET /hello/foo" 및 "GET /hello/bar"와 매치
+  # params['name']은 'foo' 또는 'bar'
+  "Hello #{params['name']}!"
+end
+</code></pre>
 
 <p>또한 블록 매개변수를 통하여도 이름을 가진 매개변수에 접근할 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/hello/:name</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span> |n|
-  <span style="color:#777"># "GET /hello/foo" 및 "GET /hello/bar"와 매치</span>
-  <span style="color:#777"># params['name']은 'foo' 또는 'bar'</span>
-  <span style="color:#777"># n 에는 params['name']가 저장</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hello </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>n<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/hello/:name' do |n|
+  # "GET /hello/foo" 및 "GET /hello/bar"와 매치
+  # params['name']은 'foo' 또는 'bar'
+  # n 에는 params['name']가 저장
+  "Hello #{n}!"
+end
+</code></pre>
 
 <p>라우터 패턴에는 스플랫(splat, 또는 와일드카드)도 매개변수도 포함될 수 있으며, 이럴 경우 <code>params['splat']</code> 배열을 통해 접근할 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/say/*/to/*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#777"># /say/hello/to/world와 매치</span>
-  params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">splat</span><span style="color:#710">'</span></span>] <span style="color:#777"># =&gt; ["hello", "world"]</span>
-<span style="color:#080;font-weight:bold">end</span>
+<pre><code class="language-ruby">get '/say/*/to/*' do
+  # /say/hello/to/world와 매치
+  params['splat'] # =&gt; ["hello", "world"]
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/download/*.*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#777"># /download/path/to/file.xml과 매치</span>
-  params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">splat</span><span style="color:#710">'</span></span>] <span style="color:#777"># =&gt; ["path/to/file", "xml"]</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/download/*.*' do
+  # /download/path/to/file.xml과 매치
+  params['splat'] # =&gt; ["path/to/file", "xml"]
+end
+</code></pre>
 
 <p>블록 매개변수로도 접근할 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/download/*.*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span> |path, ext|
-  [path, ext] <span style="color:#777"># =&gt; ["path/to/file", "xml"]</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/download/*.*' do |path, ext|
+  [path, ext] # =&gt; ["path/to/file", "xml"]
+end
+</code></pre>
 
 <p>라우터는 정규표현식으로 매치할 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#D20">\A</span><span style="color:#D20">\/</span><span style="color:#808">hello</span><span style="color:#D20">\/</span><span style="color:#808">([</span><span style="color:#D20">\w</span><span style="color:#808">]+)</span><span style="color:#D20">\z</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hello, </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">captures</span><span style="color:#710">'</span></span>].first<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get /\/hello\/([\w]+)/ do
+  "Hello, #{params['captures'].first}!"
+end
+</code></pre>
 
 <p>블록 매개변수로도 사용가능합니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">%r{</span><span style="color:#808">/hello/([</span><span style="color:#D20">\w</span><span style="color:#808">]+)</span><span style="color:#404">}</span></span> <span style="color:#080;font-weight:bold">do</span> |c|
-  <span style="color:#777"># "GET /meta/hello/world", "GET /hello/world/1234" 등과 매치</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hello, </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>c<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get %r{/hello/([\w]+)} do |c|
+  # "GET /meta/hello/world", "GET /hello/world/1234" 등과 매치
+  "Hello, #{c}!"
+end
+</code></pre>
 
 <p>라우터 패턴에는 선택적인(optional) 매개변수도 올 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/posts.?:format?</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#777"># "GET /posts" 는 물론 "GET /posts.json", "GET /posts.xml" 와 같은 어떤 확장자와도 매칭</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/posts/:format?' do
+  # "GET /posts/" 는 물론 "GET /posts/json", "GET /posts/xml" 와 같은 어떤 확장자와도 매칭
+end
+</code></pre>
 
 <p>쿼리 파라메터로도 이용가능 합니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/posts</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#777"># matches "GET /posts?title=foo&amp;author=bar"</span>
-  title = params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">title</span><span style="color:#710">'</span></span>]
-  author = params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">author</span><span style="color:#710">'</span></span>]
-  <span style="color:#777"># uses title and author variables; query is optional to the /posts route</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/posts' do
+  # matches "GET /posts?title=foo&amp;author=bar"
+  title = params['title']
+  author = params['author']
+  # uses title and author variables; query is optional to the /posts route
+end
+</code></pre>
 
 <p>한편, 경로 탐색 공격 방지(path traversal attack protection, 아래 참조)를 비활성화시키지 않았다면,
 요청 경로는 라우터와 매칭되기 이전에 수정될 수 있습니다.</p>
@@ -311,78 +263,62 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>라우터는 사용자 에이전트(user agent)같은 다양한 매칭 조건을 포함할 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span>, <span style="color:#A60">:agent</span> =&gt; <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">Songbird (</span><span style="color:#D20">\d</span><span style="color:#D20">\.</span><span style="color:#D20">\d</span><span style="color:#808">)[</span><span style="color:#D20">\d</span><span style="color:#D20">\/</span><span style="color:#808">]*?</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Songbird 버전 </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">agent</span><span style="color:#710">'</span></span>][<span style="color:#00D">0</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">을 사용하는군요!</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
+<pre><code class="language-ruby">get '/foo', :agent =&gt; /Songbird (\d\.\d)[\d\/]*?/ do
+  "Songbird 버전 #{params['agent'][0]}을 사용하는군요!"
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#777"># songbird 브라우저가 아닌 경우 매치</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/foo' do
+  # songbird 브라우저가 아닌 경우 매치
+end
+</code></pre>
 
 <p>다른 가능한 조건에는 <code>host_name</code>과 <code>provides</code>가 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span>, <span style="color:#A60">:host_name</span> =&gt; <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">^admin</span><span style="color:#D20">\.</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Admin Area, Access denied!</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
+<pre><code class="language-ruby">get '/', :host_name =&gt; /^admin\./ do
+  "Admin Area, Access denied!"
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span>, <span style="color:#A60">:provides</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">html</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  haml <span style="color:#A60">:index</span>
-<span style="color:#080;font-weight:bold">end</span>
+get '/', :provides =&gt; 'html' do
+  haml :index
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span>, <span style="color:#A60">:provides</span> =&gt; [<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rss</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">atom</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">xml</span><span style="color:#710">'</span></span>] <span style="color:#080;font-weight:bold">do</span>
-  builder <span style="color:#A60">:feed</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/', :provides =&gt; ['rss', 'atom', 'xml'] do
+  builder :feed
+end
+</code></pre>
 <p><code>provides</code>는 request의 허용된 해더를 검색합니다.</p>
 
 <p>사용자 정의 조건도 쉽게 만들 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>set(<span style="color:#A60">:probability</span>) { |value| condition { rand &lt;= value } }
+<pre><code class="language-ruby">set(:probability) { |value| condition { rand &lt;= value } }
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/win_a_car</span><span style="color:#710">'</span></span>, <span style="color:#A60">:probability</span> =&gt; <span style="color:#60E">0.1</span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">내가 졌소!</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
+get '/win_a_car', :probability =&gt; 0.1 do
+  "내가 졌소!"
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/win_a_car</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">미안해서 어쩌나.</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/win_a_car' do
+  "미안해서 어쩌나."
+end
+</code></pre>
 
 <p>여러 값을 받는 조건에는 스플랫(splat)을 사용합니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>set(<span style="color:#A60">:auth</span>) <span style="color:#080;font-weight:bold">do</span> |*roles|   <span style="color:#777"># &lt;- 이게 스플랫</span>
-  condition <span style="color:#080;font-weight:bold">do</span>
-    <span style="color:#080;font-weight:bold">unless</span> logged_in? &amp;&amp; roles.any? {|role| current_user.in_role? role }
-      redirect <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">/login/</span><span style="color:#710">"</span></span>, <span style="color:#00D">303</span>
-    <span style="color:#080;font-weight:bold">end</span>
-  <span style="color:#080;font-weight:bold">end</span>
-<span style="color:#080;font-weight:bold">end</span>
+<pre><code class="language-ruby">set(:auth) do |*roles|   # &lt;- 이게 스플랫
+  condition do
+    unless logged_in? &amp;&amp; roles.any? {|role| current_user.in_role? role }
+      redirect "/login/", 303
+    end
+  end
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">/my/account/</span><span style="color:#710">"</span></span>, <span style="color:#A60">:auth</span> =&gt; [<span style="color:#A60">:user</span>, <span style="color:#A60">:admin</span>] <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">내 계정 정보</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
+get "/my/account/", :auth =&gt; [:user, :admin] do
+  "내 계정 정보"
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">/only/admin/</span><span style="color:#710">"</span></span>, <span style="color:#A60">:auth</span> =&gt; <span style="color:#A60">:admin</span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">관리자 외 접근불가!</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get "/only/admin/", :auth =&gt; :admin do
+  "관리자 외 접근불가!"
+end
+</code></pre>
 
 <a name='%EB%B0%98%ED%99%98%EA%B0%92(Return%20Values)'></a>
 <h3>반환값(Return Values)</h3>
@@ -404,18 +340,14 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>이것을 이용한 예를 들자면, 스트리밍(streaming) 예제를 쉽게 구현할 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre><span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">Stream</span>
-  <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">each</span>
-<span style="color:#00D">100</span>.times { |i| <span style="color:#080;font-weight:bold">yield</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>i<span style="font-weight:bold;color:#666">}</span></span><span style="color:#b0b">\n</span><span style="color:#710">"</span></span> }
-  <span style="color:#080;font-weight:bold">end</span>
-<span style="color:#080;font-weight:bold">end</span>
+<pre><code class="language-ruby">class Stream
+  def each
+100.times { |i| yield "#{i}\n" }
+  end
+end
 
-get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span>) { <span style="color:#036;font-weight:bold">Stream</span>.new }
-</pre></div>
-</div>
-</div>
+get('/') { Stream.new }
+</code></pre>
 
 <p><code>stream</code> 헬퍼 메서드(아래 참조)를 사용하면 이런 번거로움을 줄이고 스트리밍 로직을 라우터 속에 포함 시킬 수도 있습니다.</p>
 
@@ -425,54 +357,42 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>위에서 보듯, Sinatra에는 문자열 패턴 및 정규표현식을 이용한 라우터 매칭 지원이 내장되어 있습니다.
 하지만, 그게 끝은 아닙니다. 여러분 만의 매처(matcher)도 쉽게 정의할 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre><span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">AllButPattern</span>
-  <span style="color:#036;font-weight:bold">Match</span> = <span style="color:#036;font-weight:bold">Struct</span>.new(<span style="color:#A60">:captures</span>)
+<pre><code class="language-ruby">class AllButPattern
+  Match = Struct.new(:captures)
 
-  <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">initialize</span>(except)
-    <span style="color:#33B">@except</span>   = except
-    <span style="color:#33B">@captures</span> = <span style="color:#036;font-weight:bold">Match</span>.new([])
-  <span style="color:#080;font-weight:bold">end</span>
+  def initialize(except)
+    @except   = except
+    @captures = Match.new([])
+  end
 
-  <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">match</span>(str)
-    <span style="color:#33B">@captures</span> <span style="color:#080;font-weight:bold">unless</span> <span style="color:#33B">@except</span> === str
-  <span style="color:#080;font-weight:bold">end</span>
-<span style="color:#080;font-weight:bold">end</span>
+  def match(str)
+    @captures unless @except === str
+  end
+end
 
-<span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">all_but</span>(pattern)
-  <span style="color:#036;font-weight:bold">AllButPattern</span>.new(pattern)
-<span style="color:#080;font-weight:bold">end</span>
+def all_but(pattern)
+  AllButPattern.new(pattern)
+end
 
-get all_but(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">/index</span><span style="color:#710">"</span></span>) <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#777"># ...</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get all_but("/index") do
+  # ...
+end
+</code></pre>
 
 <p>사실 위의 예제는 조금 과하게 작성된 면이 있습니다. 간단하게 표현할 수도 있어요.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
-  pass <span style="color:#080;font-weight:bold">if</span> request.path_info == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">/index</span><span style="color:#710">"</span></span>
-  <span style="color:#777"># ...</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get // do
+  pass if request.path_info == "/index"
+  # ...
+end
+</code></pre>
 
 <p>또는 거꾸로 탐색(negative look ahead)할 수도 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">%r{</span><span style="color:#808">^(?!/index$)</span><span style="color:#404">}</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#777"># ...</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get %r{(?!/index)} do
+  # ...
+end
+</code></pre>
 
 <a name='%EC%A0%95%EC%A0%81%20%ED%8C%8C%EC%9D%BC(Static%20Files)'></a>
 <h2>정적 파일(Static Files)</h2>
@@ -480,12 +400,8 @@ get all_but(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="co
 <p>정적 파일들은 <code>./public</code> 디렉터리에서 제공됩니다. 위치를 다른 곳으로
 변경하려면 <code>:public_folder</code> 옵션을 지정하면 됩니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>set <span style="color:#A60">:public_folder</span>, <span style="color:#036;font-weight:bold">File</span>.dirname(<span style="color:#069">__FILE__</span>) + <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/static</span><span style="color:#710">'</span></span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">set :public_folder, File.dirname(__FILE__) + '/static'
+</code></pre>
 
 <p>public 디렉터리명은 URL에 포함되지 않는다는 점에 주의하세요.
 <code>./public/css/style.css</code> 파일은 아마 <code>http://example.com/css/style.css</code> 로 접근할 수 있을 것입니다.</p>
@@ -498,66 +414,46 @@ get all_but(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="co
 <p>템플릿 언어들은 각각의 렌더링 메서드를 통해 표출됩니다.
 이들 메서드는 문자열을 반환할 뿐입니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  erb <span style="color:#A60">:index</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/' do
+  erb :index
+end
+</code></pre>
 
 <p>이 구문은 <code>views/index.erb</code>를 렌더합니다.</p>
 
 <p>템플릿 이름 대신 템플릿의 내용을 직접 넘길 수도 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  code = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">&lt;%= Time.now %&gt;</span><span style="color:#710">"</span></span>
+<pre><code class="language-ruby">get '/' do
+  code = "&lt;%= Time.now %&gt;"
   erb code
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+end
+</code></pre>
 
 <p>템플릿은 두 번째 인자로 옵션값의 해시를 받습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  erb <span style="color:#A60">:index</span>, <span style="color:#A60">:layout</span> =&gt; <span style="color:#A60">:post</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/' do
+  erb :index, :layout =&gt; :post
+end
+</code></pre>
 
 <p>이 구문은 <code>views/post.erb</code> 속에 내장된 <code>views/index.erb</code>를 렌더합니다.
 (<code>views/layout.erb</code>파일이 존재할 경우 기본값은 <code>views/layout.erb</code>입니다.)</p>
 
 <p>Sinatra가 이해하지 못하는 모든 옵션값들은 템플릿 엔진으로 전달됩니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  haml <span style="color:#A60">:index</span>, <span style="color:#A60">:format</span> =&gt; <span style="color:#A60">:html5</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/' do
+  haml :index, :format =&gt; :html5
+end
+</code></pre>
 
 <p>옵션값은 템플릿 언어별로 전역적으로 설정할 수도 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>set <span style="color:#A60">:haml</span>, <span style="color:#A60">:format</span> =&gt; <span style="color:#A60">:html5</span>
+<pre><code class="language-ruby">set :haml, :format =&gt; :html5
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  haml <span style="color:#A60">:index</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/' do
+  haml :index
+end
+</code></pre>
 
 <p>render 메서드에서 전달된 옵션값들은 <code>set</code>을 통해 설정한 옵션값보다 우선합니다.</p>
 
@@ -610,12 +506,8 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>템플릿은 <code>./views</code> 디렉터리에 있는 것으로 가정됩니다. 뷰 디렉터리를
 다른 곳으로 하고 싶으시면 이렇게 하세요.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>set <span style="color:#A60">:views</span>, settings.root + <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/templates</span><span style="color:#710">'</span></span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">set :views, settings.root + '/templates'
+</code></pre>
 
 <p>템플릿은 언제나 심볼로 참조되어야 한다는 것에 주의하세요.
 템플릿이 하위 디렉터리에 위치한 경우(그럴 경우에는 <code>:'subdir/template'</code>을
@@ -625,14 +517,10 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <a name='%EB%A6%AC%ED%84%B0%EB%9F%B4%20%ED%85%9C%ED%94%8C%EB%A6%BF(Literal%20Templates)'></a>
 <h3>리터럴 템플릿(Literal Templates)</h3>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  haml <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">%div.title Hello World</span><span style="color:#710">'</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/' do
+  haml '%div.title Hello World'
+end
+</code></pre>
 
 <p>템플릿 문자열을 렌더합니다.</p>
 
@@ -642,13 +530,9 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>일부 언어는 여러 개의 구현이 있습니다. (스레드에 안전하게 thread-safe) 어느 구현을
 사용할지 저정하려면, 먼저 require 하기만 하면 됩니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rdiscount</span><span style="color:#710">'</span></span> <span style="color:#777"># or require 'bluecloth'</span>
-get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span>) { markdown <span style="color:#A60">:index</span> }
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">require 'rdiscount' # or require 'bluecloth'
+get('/') { markdown :index }
+</code></pre>
 
 <a name='Haml%20%ED%85%9C%ED%94%8C%EB%A6%BF'></a>
 <h4>Haml 템플릿</h4>
@@ -833,22 +717,14 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Markdown에서는 메서드 호출 뿐 아니라 locals 전달도 안됩니다.
 따라서 일반적으로는 다른 렌더링 엔진과 함께 사용하게 됩니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>erb <span style="color:#A60">:overview</span>, <span style="color:#A60">:locals</span> =&gt; { <span style="color:#A60">:text</span> =&gt; markdown(<span style="color:#A60">:introduction</span>) }
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">erb :overview, :locals =&gt; { :text =&gt; markdown(:introduction) }
+</code></pre>
 
 <p>다른 템플릿 속에서 <code>markdown</code> 메서드를 호출할 수도 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>%h1 안녕 Haml!
-%p= markdown(<span style="color:#A60">:greetings</span>)
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">%h1 안녕 Haml!
+%p= markdown(:greetings)
+</code></pre>
 
 <p>Markdown에서 루비를 호출할 수 없기 때문에, Markdown으로 작성된 레이아웃은
 사용할 수 없습니다. 하지만, <code>:layout_engine</code> 옵션으로 레이아웃의 템플릿을
@@ -875,22 +751,14 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Textile에서는 메서드 호출 뿐 아니라 locals 전달도 안됩니다.
 따라서 일반적으로는 다른 렌더링 엔진과 함께 사용하게 됩니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>erb <span style="color:#A60">:overview</span>, <span style="color:#A60">:locals</span> =&gt; { <span style="color:#A60">:text</span> =&gt; textile(<span style="color:#A60">:introduction</span>) }
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">erb :overview, :locals =&gt; { :text =&gt; textile(:introduction) }
+</code></pre>
 
 <p>다른 템플릿 속에서 <code>textile</code> 메서드를 호출할 수도 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>%h1 안녕 Haml!
-%p= textile(<span style="color:#A60">:greetings</span>)
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">%h1 안녕 Haml!
+%p= textile(:greetings)
+</code></pre>
 
 <p>Textile에서 루비를 호출할 수 없기 때문에, Textile으로 작성된 레이아웃은
 사용할 수 없습니다. 하지만, <code>:layout_engine</code> 옵션으로 레이아웃의 템플릿을
@@ -917,22 +785,14 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>RDoc에서는 메서드 호출 뿐 아니라 locals 전달도 안됩니다.
 따라서 일반적으로는 다른 렌더링 엔진과 함께 사용하게 됩니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>erb <span style="color:#A60">:overview</span>, <span style="color:#A60">:locals</span> =&gt; { <span style="color:#A60">:text</span> =&gt; rdoc(<span style="color:#A60">:introduction</span>) }
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">erb :overview, :locals =&gt; { :text =&gt; rdoc(:introduction) }
+</code></pre>
 
 <p>다른 템플릿 속에서 <code>rdoc</code> 메서드를 호출할 수도 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>%h1 <span style="color:#036;font-weight:bold">Hello</span> <span style="color:#036;font-weight:bold">From</span> Haml!
-%p= rdoc(<span style="color:#A60">:greetings</span>)
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">%h1 Hello From Haml!
+%p= rdoc(:greetings)
+</code></pre>
 
 <p>RDoc에서 루비를 호출할 수 없기 때문에, RDoc으로 작성된 레이아웃은
 사용할 수 없습니다. 하지만, <code>:layout_engine</code> 옵션으로 레이아웃의 템플릿을
@@ -1059,22 +919,14 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Creole에서는 메서드 호출 뿐 아니라 locals 전달도 안됩니다.
 따라서 일반적으로는 다른 렌더링 엔진과 함께 사용하게 됩니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>erb <span style="color:#A60">:overview</span>, <span style="color:#A60">:locals</span> =&gt; { <span style="color:#A60">:text</span> =&gt; creole(<span style="color:#A60">:introduction</span>) }
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">erb :overview, :locals =&gt; { :text =&gt; creole(:introduction) }
+</code></pre>
 
 <p>다른 템플릿 속에서 <code>creole</code> 메서드를 호출할 수도 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>%h1 <span style="color:#036;font-weight:bold">Hello</span> <span style="color:#036;font-weight:bold">From</span> Haml!
-%p= creole(<span style="color:#A60">:greetings</span>)
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">%h1 Hello From Haml!
+%p= creole(:greetings)
+</code></pre>
 
 <p>Creole에서 루비를 호출할 수 없기 때문에, Creole으로 작성된 레이아웃은
 사용할 수 없습니다. 하지만, <code>:layout_engine</code> 옵션으로 레이아웃의 템플릿을
@@ -1103,22 +955,14 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>MediaWiki 마크업에서는 메서드 호출 뿐 아니라 locals 전달도 불가능합니다.
 따라서 일반적으로는 다른 렌더링 엔진과 함께 사용하게 됩니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>erb <span style="color:#A60">:overview</span>, <span style="color:#A60">:locals</span> =&gt; { <span style="color:#A60">:text</span> =&gt; mediawiki(<span style="color:#A60">:introduction</span>) }
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">erb :overview, :locals =&gt; { :text =&gt; mediawiki(:introduction) }
+</code></pre>
 
 <p>다른 템플릿 속에서 <code>mediawiki</code> 메서드를 호출할 수도 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>%h1 <span style="color:#036;font-weight:bold">Hello</span> <span style="color:#036;font-weight:bold">From</span> Haml!
-%p= mediawiki(<span style="color:#A60">:greetings</span>)
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">%h1 Hello From Haml!
+%p= mediawiki(:greetings)
+</code></pre>
 
 <p>MediaWiki에서 루비를 호출할 수 없기 때문에, MediaWiki으로 작성된 레이아웃은
 사용할 수 없습니다. 하지만, <code>:layout_engine</code> 옵션으로 레이아웃의 템플릿을
@@ -1177,18 +1021,14 @@ get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Stylus 템플릿을 사용가능하게 하려면, 먼저 <code>stylus</code>와 <code>stylus/tilt</code>를 로드
 해야합니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra</span><span style="color:#710">'</span></span>
-require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">stylus</span><span style="color:#710">'</span></span>
-require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">stylus/tilt</span><span style="color:#710">'</span></span>
+<pre><code class="language-ruby">require 'sinatra'
+require 'stylus'
+require 'stylus/tilt'
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  stylus <span style="color:#A60">:example</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/' do
+  stylus :example
+end
+</code></pre>
 
 <a name='Yajl%20%ED%85%9C%ED%94%8C%EB%A6%BF'></a>
 <h4>Yajl 템플릿</h4>
@@ -1217,23 +1057,15 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>템플릿 소스는 루비 문자열로 평가(evaluate)되고, 결과인 json 변수는 <code>#to_json</code>으로 변환됩니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>json = { <span style="color:#A60">:foo</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bar</span><span style="color:#710">'</span></span> }
-json[<span style="color:#A60">:baz</span>] = key
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">json = { :foo =&gt; 'bar' }
+json[:baz] = key
+</code></pre>
 
 <p><code>:callback</code>과 <code>:variable</code> 옵션은 렌더된 객체를 꾸미는데(decorate) 사용할 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre><span style="color:#080;font-weight:bold">var</span> resource = {<span style="color:#606"><span style="color:#404">"</span><span>foo</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">bar</span><span style="color:#710">"</span></span>,<span style="color:#606"><span style="color:#404">"</span><span>baz</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">qux</span><span style="color:#710">"</span></span>};
+<pre><code class="language-javascript">var resource = {"foo":"bar","baz":"qux"};
 present(resource);
-</pre></div>
-</div>
-</div>
+</code></pre>
 
 <a name='WLang%20%ED%85%9C%ED%94%8C%EB%A6%BF'></a>
 <h4>WLang 템플릿</h4>
@@ -1263,27 +1095,19 @@ WLang으로 쓰여진 레이아웃과 <code>yield</code>는 지원합니다.</p>
 <p>템플릿은 라우터 핸들러와 같은 맥락(context)에서 평가됩니다. 라우터
 핸들러에서 설정한 인스턴스 변수들은 템플릿에서 직접 접근 가능합니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:id</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#33B">@foo</span> = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">id</span><span style="color:#710">'</span></span>])
-  haml <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">%h1= @foo.name</span><span style="color:#710">'</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/:id' do
+  @foo = Foo.find(params['id'])
+  haml '%h1= @foo.name'
+end
+</code></pre>
 
 <p>명시적으로 로컬 변수의 해시를 지정할 수도 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:id</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  foo = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">id</span><span style="color:#710">'</span></span>])
-  haml <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">%h1= bar.name</span><span style="color:#710">'</span></span>, <span style="color:#A60">:locals</span> =&gt; { <span style="color:#A60">:bar</span> =&gt; foo }
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/:id' do
+  foo = Foo.find(params['id'])
+  haml '%h1= bar.name', :locals =&gt; { :bar =&gt; foo }
+end
+</code></pre>
 
 <p>이 방법은 주로 템플릿을 다른 템플릿 속에서 파셜(partial)로 렌더링할
 때 사용됩니다.</p>
@@ -1295,40 +1119,28 @@ WLang으로 쓰여진 레이아웃과 <code>yield</code>는 지원합니다.</p>
 위에 설명된 <code>:template</code> 옵션을 통해 템플릿을 사용하거나,
 다음 예제처럼 블록으로 렌더링 할 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>erb <span style="color:#A60">:post</span>, <span style="color:#A60">:layout</span> =&gt; <span style="color:#069">false</span> <span style="color:#080;font-weight:bold">do</span>
-  erb <span style="color:#A60">:index</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">erb :post, :layout =&gt; false do
+  erb :index
+end
+</code></pre>
 
 <p>위 코드는 <code>erb :index, :layout =&gt; :post</code>와 대부분 동일합니다.</p>
 
 <p>렌더링 메서드에 블록 넘기기는 중첩 레이아웃을 만들때 유용합니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>erb <span style="color:#A60">:main_layout</span>, <span style="color:#A60">:layout</span> =&gt; <span style="color:#069">false</span> <span style="color:#080;font-weight:bold">do</span>
-  erb <span style="color:#A60">:admin_layout</span> <span style="color:#080;font-weight:bold">do</span>
-    erb <span style="color:#A60">:user</span>
-  <span style="color:#080;font-weight:bold">end</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">erb :main_layout, :layout =&gt; false do
+  erb :admin_layout do
+    erb :user
+  end
+end
+</code></pre>
 
 <p>위의 코드도 줄일 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>erb <span style="color:#A60">:admin_layout</span>, <span style="color:#A60">:layout</span> =&gt; <span style="color:#A60">:main_layout</span> <span style="color:#080;font-weight:bold">do</span>
-  erb <span style="color:#A60">:user</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">erb :admin_layout, :layout =&gt; :main_layout do
+  erb :user
+end
+</code></pre>
 
 <p>현재, <code>erb</code>, <code>haml</code>, <code>liquid</code>, <code>slim </code>, <code>wlang</code>는 블럭을 지원합니다.
 일반적인 <code>render</code> 메소드도 블럭을 지원합니다.</p>
@@ -1338,25 +1150,21 @@ WLang으로 쓰여진 레이아웃과 <code>yield</code>는 지원합니다.</p>
 
 <p>템플릿은 소스 파일의 마지막에서 정의할 수도 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra</span><span style="color:#710">'</span></span>
+<pre><code class="language-ruby">require 'sinatra'
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  haml <span style="color:#A60">:index</span>
-<span style="color:#080;font-weight:bold">end</span>
+get '/' do
+  haml :index
+end
 
-<span style="color:#777">__END__
+__END__
 
 @@ layout
 %html
 = yield
 
 @@ index
-%div.title Hello world.</span>
-</pre></div>
-</div>
-</div>
+%div.title Hello world.
+</code></pre>
 
 <p>참고: sinatra를 require한 소스 파일에 정의된 인라인 템플릿은 자동으로
 로드됩니다. 다른 소스 파일에서 인라인 템플릿을 사용하려면 명시적으로
@@ -1367,36 +1175,28 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>템플릿은 톱 레벨(top-level)에서 <code>template</code>메서드로도 정의할 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>template <span style="color:#A60">:layout</span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">%html</span><span style="color:#b0b">\n</span><span style="color:#D20">  =yield</span><span style="color:#b0b">\n</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
+<pre><code class="language-ruby">template :layout do
+  "%html\n  =yield\n"
+end
 
-template <span style="color:#A60">:index</span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">%div.title Hello World!</span><span style="color:#710">'</span></span>
-<span style="color:#080;font-weight:bold">end</span>
+template :index do
+  '%div.title Hello World!'
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  haml <span style="color:#A60">:index</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/' do
+  haml :index
+end
+</code></pre>
 
 <p>“layout”이라는 이름의 템플릿이 존재하면, 템플릿이 렌더될 때마다 사용됩니다.
 레이아웃을 비활성화할 때는 <code>:layout =&gt; false</code>를 전달하여 개별적으로
 비활성시키거나 <code>set :haml, :layout =&gt; false</code>으로 기본값을 비활성으로 둘 수
 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  haml <span style="color:#A60">:index</span>, <span style="color:#A60">:layout</span> =&gt; !request.xhr?
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/' do
+  haml :index, :layout =&gt; !request.xhr?
+end
+</code></pre>
 
 <a name='%ED%8C%8C%EC%9D%BC%20%ED%99%95%EC%9E%A5%EC%9E%90%20%EC%97%B0%EA%B2%B0%ED%95%98%EA%B8%B0'></a>
 <h3>파일 확장자 연결하기</h3>
@@ -1405,32 +1205,24 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 됩니다. 예를 들어, <code>tt</code>라는 파일 확장자를 Textile 템플릿과 연결하고 싶다면,
 다음과 같이 하면 됩니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre><span style="color:#036;font-weight:bold">Tilt</span>.register <span style="color:#A60">:tt</span>, <span style="color:#036;font-weight:bold">Tilt</span>[<span style="color:#A60">:textile</span>]
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">Tilt.register :tt, Tilt[:textile]
+</code></pre>
 
 <a name='%EB%82%98%EB%A7%8C%EC%9D%98%20%EA%B3%A0%EC%9C%A0%ED%95%9C%20%ED%85%9C%ED%94%8C%EB%A6%BF%20%EC%97%94%EC%A7%84%20%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0'></a>
 <h3>나만의 고유한 템플릿 엔진 추가하기</h3>
 
 <p>우선, Tilt로 여러분 엔진을 등록하고, 렌더링 메서드를 생성합니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre><span style="color:#036;font-weight:bold">Tilt</span>.register <span style="color:#A60">:myat</span>, <span style="color:#036;font-weight:bold">MyAwesomeTemplateEngine</span>
+<pre><code class="language-ruby">Tilt.register :myat, MyAwesomeTemplateEngine
 
-helpers <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">myat</span>(*args) render(<span style="color:#A60">:myat</span>, *args) <span style="color:#080;font-weight:bold">end</span>
-<span style="color:#080;font-weight:bold">end</span>
+helpers do
+  def myat(*args) render(:myat, *args) end
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  myat <span style="color:#A60">:index</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/' do
+  myat :index
+end
+</code></pre>
 
 <p>위 코드는 <code>./views/index.myat</code> 를 렌더합니다.
 Tilt에 대한 더 자세한 내용은 https://github.com/rtomayko/tilt 참조하세요.</p>
@@ -1440,20 +1232,16 @@ Tilt에 대한 더 자세한 내용은 https://github.com/rtomayko/tilt 참조�
 
 <p>고유한 템플릿 룩업을 구현하기 위해서는 <code>#find_template</code> 메서드를 만드셔야 합니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>configure <span style="color:#080;font-weight:bold">do</span>
-  set <span style="color:#A60">:views</span> [ <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">./views/a</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">./views/b</span><span style="color:#710">'</span></span> ]
-<span style="color:#080;font-weight:bold">end</span>
+<pre><code class="language-ruby">configure do
+  set :views [ './views/a', './views/b' ]
+end
 
-<span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">find_template</span>(views, name, engine, &amp;block)
-  Array(views).each <span style="color:#080;font-weight:bold">do</span> |v|
-    <span style="color:#080;font-weight:bold">super</span>(v, name, engine, &amp;block)
-  <span style="color:#080;font-weight:bold">end</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+def find_template(views, name, engine, &amp;block)
+  Array(views).each do |v|
+    super(v, name, engine, &amp;block)
+  end
+end
+</code></pre>
 
 <a name='%ED%95%84%ED%84%B0(Filters)'></a>
 <h2>필터(Filters)</h2>
@@ -1462,33 +1250,25 @@ Tilt에 대한 더 자세한 내용은 https://github.com/rtomayko/tilt 참조�
 요청과 응답을 변형할 수 있습니다. 필터에서 설정된 인스턴스 변수들은 라우터와
 템플릿에서 접근 가능합니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>before <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#33B">@note</span> = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Hi!</span><span style="color:#710">'</span></span>
-  request.path_info = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo/bar/baz</span><span style="color:#710">'</span></span>
-<span style="color:#080;font-weight:bold">end</span>
+<pre><code class="language-ruby">before do
+  @note = 'Hi!'
+  request.path_info = '/foo/bar/baz'
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo/*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#33B">@note</span> <span style="color:#777">#=&gt; 'Hi!'</span>
-  params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">splat</span><span style="color:#710">'</span></span>] <span style="color:#777">#=&gt; 'bar/baz'</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/foo/*' do
+  @note #=&gt; 'Hi!'
+  params['splat'] #=&gt; 'bar/baz'
+end
+</code></pre>
 
 <p>사후 필터(after filter)는 라우터와 동일한 맥락에서 매 요청 이후에 평가되며
 마찬가지로 요청과 응답을 변형할 수 있습니다. 사전 필터와 라우터에서 설정된
 인스턴스 변수들은 사후 필터에서 접근 가능합니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>after <span style="color:#080;font-weight:bold">do</span>
+<pre><code class="language-ruby">after do
   puts response.status
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+end
+</code></pre>
 
 <p>참고: 만약 라우터에서 <code>body</code> 메서드를 사용하지 않고 그냥 문자열만 반환한
 경우라면, body는 나중에 생성되는 탓에, 아직 사후 필터에서 사용할 수 없을
@@ -1497,33 +1277,25 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>필터는 패턴을 취할 수도 있으며, 이 경우 요청 경로가 그 패턴과 매치할
 경우에만 필터가 평가될 것입니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>before <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/protected/*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+<pre><code class="language-ruby">before '/protected/*' do
   authenticate!
-<span style="color:#080;font-weight:bold">end</span>
+end
 
-after <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/create/:slug</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span> |slug|
-  session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">last_slug</span><span style="color:#710">'</span></span>] = slug
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+after '/create/:slug' do |slug|
+  session['last_slug'] = slug
+end
+</code></pre>
 
 <p>라우터와 마찬가지로, 필터 역시 조건을 취할 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>before <span style="color:#A60">:agent</span> =&gt; <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">Songbird</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#777"># ...</span>
-<span style="color:#080;font-weight:bold">end</span>
+<pre><code class="language-ruby">before :agent =&gt; /Songbird/ do
+  # ...
+end
 
-after <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/blog/*</span><span style="color:#710">'</span></span>, <span style="color:#A60">:host_name</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">example.com</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#777"># ...</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+after '/blog/*', :host_name =&gt; 'example.com' do
+  # ...
+end
+</code></pre>
 
 <a name='%ED%97%AC%ED%8D%BC(Helpers)'></a>
 <h2>헬퍼(Helpers)</h2>
@@ -1531,37 +1303,29 @@ after <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#7
 <p>톱-레벨의 <code>helpers</code> 메서드를 사용하여 라우터 핸들러와 템플릿에서 사용할 헬퍼
 메서드들을 정의할 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>helpers <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">bar</span>(name)
-    <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>name<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">bar</span><span style="color:#710">"</span></span>
-  <span style="color:#080;font-weight:bold">end</span>
-<span style="color:#080;font-weight:bold">end</span>
+<pre><code class="language-ruby">helpers do
+  def bar(name)
+    "#{name}bar"
+  end
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:name</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  bar(params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">name</span><span style="color:#710">'</span></span>])
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/:name' do
+  bar(params['name'])
+end
+</code></pre>
 
 <p>또는, 헬퍼 메서드는 별도의 모듈 속에 정의할 수도 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre><span style="color:#080;font-weight:bold">module</span> <span style="color:#B06;font-weight:bold">FooUtils</span>
-  <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">foo</span>(name) <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>name<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">foo</span><span style="color:#710">"</span></span> <span style="color:#080;font-weight:bold">end</span>
-<span style="color:#080;font-weight:bold">end</span>
+<pre><code class="language-ruby">module FooUtils
+  def foo(name) "#{name}foo" end
+end
 
-<span style="color:#080;font-weight:bold">module</span> <span style="color:#B06;font-weight:bold">BarUtils</span>
-  <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">bar</span>(name) <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>name<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">bar</span><span style="color:#710">"</span></span> <span style="color:#080;font-weight:bold">end</span>
-<span style="color:#080;font-weight:bold">end</span>
+module BarUtils
+  def bar(name) "#{name}bar" end
+end
 
-helpers <span style="color:#036;font-weight:bold">FooUtils</span>, <span style="color:#036;font-weight:bold">BarUtils</span>
-</pre></div>
-</div>
-</div>
+helpers FooUtils, BarUtils
+</code></pre>
 
 <p>이 것은 모듈을 애플리케이션 클래스에 포함(include)시킨 것과 같습니다.</p>
 
@@ -1571,20 +1335,16 @@ helpers <span style="color:#036;font-weight:bold">FooUtils</span>, <span style="
 <p>세션은 요청 동안에 상태를 유지하기 위해 사용합니다.
 세션이 활성화되면, 사용자 세션 당 세션 해시 하나씩을 갖게 됩니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>enable <span style="color:#A60">:sessions</span>
+<pre><code class="language-ruby">enable :sessions
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">value = </span><span style="color:#710">"</span></span> &lt;&lt; session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">value</span><span style="color:#710">'</span></span>].inspect
-<span style="color:#080;font-weight:bold">end</span>
+get '/' do
+  "value = " &lt;&lt; session['value'].inspect
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:value</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">value</span><span style="color:#710">'</span></span>] = params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">value</span><span style="color:#710">'</span></span>]
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/:value' do
+  session['value'] = params['value']
+end
+</code></pre>
 
 <p><code>enable :sessions</code>은 실은 모든 데이터를 쿠키 속에 저장하는 것에 주의하세요.
 이 방식이 바람직하지 않을 수도 있습니다. (예를 들어, 많은 양의 데이터를
@@ -1593,128 +1353,84 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <code>enable :sessions</code>을 호출하지 <strong>않는</strong> 대신에, 선택한 미들웨어를 다른
 미들웨어들처럼 포함시키면 됩니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>use <span style="color:#036;font-weight:bold">Rack</span>::<span style="color:#036;font-weight:bold">Session</span>::<span style="color:#036;font-weight:bold">Pool</span>, <span style="color:#A60">:expire_after</span> =&gt; <span style="color:#00D">2592000</span>
+<pre><code class="language-ruby">use Rack::Session::Pool, :expire_after =&gt; 2592000
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">value = </span><span style="color:#710">"</span></span> &lt;&lt; session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">value</span><span style="color:#710">'</span></span>].inspect
-<span style="color:#080;font-weight:bold">end</span>
+get '/' do
+  "value = " &lt;&lt; session['value'].inspect
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:value</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">value</span><span style="color:#710">'</span></span>] = params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">value</span><span style="color:#710">'</span></span>]
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/:value' do
+  session['value'] = params['value']
+end
+</code></pre>
 
 <p>보안 강화을 위해서, 쿠키 속의 세션 데이터는 세션 시크릿(secret)으로
 사인(sign)됩니다. Sinatra는 무작위 시크릿을 생성합니다. 하지만, 이
 시크릿은 애플리케이션 시작 시마다 변경되기 때문에, 애플리케이션의
 모든 인스턴스들이 공유할 시크릿을 직접 만들 수도 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>set <span style="color:#A60">:session_secret</span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">super secret</span><span style="color:#710">'</span></span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">set :session_secret, 'super secret'
+</code></pre>
 
 <p>조금 더 세부적인 설정이 필요하다면, <code>sessions</code> 설정에서 옵션이 있는
 해시를 저장할 수도 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>set <span style="color:#A60">:sessions</span>, <span style="color:#A60">:domain</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">foo.com</span><span style="color:#710">'</span></span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">set :sessions, :domain =&gt; 'foo.com'
+</code></pre>
 
 <p>세션을 다른 foo.com의 서브도메인 들과 공유하기 원한다면, 다음에 나오는
 것 처럼 도메인 앞에 <em>.</em>을 붙이셔야 합니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>set <span style="color:#A60">:sessions</span>, <span style="color:#A60">:domain</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">.foo.com</span><span style="color:#710">'</span></span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">set :sessions, :domain =&gt; '.foo.com'
+</code></pre>
 
 <a name='%EC%A4%91%EB%8B%A8%ED%95%98%EA%B8%B0(Halting)'></a>
 <h3>중단하기(Halting)</h3>
 
 <p>필터나 라우터에서 요청을 즉각 중단하고 싶을 때 사용하합니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>halt
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">halt
+</code></pre>
 
 <p>중단할 때 상태를 지정할 수도 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>halt <span style="color:#00D">410</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">halt 410
+</code></pre>
 
 <p>본문을 넣을 수도 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>halt <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">this will be the body</span><span style="color:#710">'</span></span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">halt 'this will be the body'
+</code></pre>
 
 <p>둘 다 할 수도 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>halt <span style="color:#00D">401</span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">go away!</span><span style="color:#710">'</span></span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">halt 401, 'go away!'
+</code></pre>
 
 <p>헤더를 추가할 경우에는 다음과 같이 하면 됩니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>halt <span style="color:#00D">402</span>, {<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Content-Type</span><span style="color:#710">'</span></span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">text/plain</span><span style="color:#710">'</span></span>}, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">revenge</span><span style="color:#710">'</span></span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">halt 402, {'Content-Type' =&gt; 'text/plain'}, 'revenge'
+</code></pre>
 
 <p>당연히 <code>halt</code>와 템플릿은 같이 사용할 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>halt erb(<span style="color:#A60">:error</span>)
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">halt erb(:error)
+</code></pre>
 
 <a name='%EB%84%98%EA%B8%B0%EA%B8%B0(Passing)'></a>
 <h3>넘기기(Passing)</h3>
 
 <p>라우터는 <code>pass</code>를 사용하여 다음 번 매칭되는 라우터로 처리를 넘길 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/guess/:who</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  pass <span style="color:#080;font-weight:bold">unless</span> params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">who</span><span style="color:#710">'</span></span>] == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Frank</span><span style="color:#710">'</span></span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">You got me!</span><span style="color:#710">'</span></span>
-<span style="color:#080;font-weight:bold">end</span>
+<pre><code class="language-ruby">get '/guess/:who' do
+  pass unless params['who'] == 'Frank'
+  'You got me!'
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/guess/*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">You missed!</span><span style="color:#710">'</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/guess/*' do
+  'You missed!'
+end
+</code></pre>
 
 <p>이 때 라우터 블록에서 즉각 빠져나오게 되고 제어는 다음 번 매칭되는 라우터로
 넘어갑니다. 만약 매칭되는 라우터를 찾지 못하면, 404가 반환됩니다.</p>
@@ -1725,19 +1441,15 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>때로는 <code>pass</code>가 아니라, 다른 라우터를 호출한 결과를 얻고 싶을 때도
 있습니다. 이럴때는 간단하게 <code>call</code>을 사용하면 됩니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  status, headers, body = call env.merge(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">PATH_INFO</span><span style="color:#710">"</span></span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/bar</span><span style="color:#710">'</span></span>)
-  [status, headers, body.map(&amp;<span style="color:#A60">:upcase</span>)]
-<span style="color:#080;font-weight:bold">end</span>
+<pre><code class="language-ruby">get '/foo' do
+  status, headers, body = call env.merge("PATH_INFO" =&gt; '/bar')
+  [status, headers, body.map(&amp;:upcase)]
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/bar</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">bar</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/bar' do
+"bar"
+end
+</code></pre>
 
 <p>위 예제의 경우, <code>"bar"</code>를 헬퍼로 옮겨 <code>/foo</code>와 <code>/bar</code> 모두에서 사용하도록
 하면 테스팅을 쉽게 하고 성능을 높일 수 있습니다.</p>
@@ -1755,18 +1467,14 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 지점에서 설정해야 할때도 있습니다. 이런 경우 <code>body</code> 헬퍼 메서드를 사용하면
 됩니다. 이렇게 하면, 그 순간부터 본문에 접근할 때 그 메서드를 사용할 수가 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  body <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">bar</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
+<pre><code class="language-ruby">get '/foo' do
+  body "bar"
+end
 
-after <span style="color:#080;font-weight:bold">do</span>
+after do
   puts body
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+end
+</code></pre>
 
 <p><code>body</code>로 블록을 전달하는 것도 가능하며, 이 블록은 랙(Rack) 핸들러에 의해
 실행됩니다. (이 방법은 스트리밍을 구현할 때 사용할 수 있습니다. “값
@@ -1774,18 +1482,14 @@ after <span style="color:#080;font-weight:bold">do</span>
 
 <p>본문와 마찬가지로, 상태코드와 헤더도 설정할 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  status <span style="color:#00D">418</span>
+<pre><code class="language-ruby">get '/foo' do
+  status 418
   headers \
-<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Allow</span><span style="color:#710">"</span></span>   =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">BREW, POST, GET, PROPFIND, WHEN</span><span style="color:#710">"</span></span>,
-<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Refresh</span><span style="color:#710">"</span></span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Refresh: 20; http://www.ietf.org/rfc/rfc2324.txt</span><span style="color:#710">"</span></span>
-  body <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">I'm a tea pot!</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+"Allow"   =&gt; "BREW, POST, GET, PROPFIND, WHEN",
+"Refresh" =&gt; "Refresh: 20; http://www.ietf.org/rfc/rfc2324.txt"
+  body "I'm a tea pot!"
+end
+</code></pre>
 
 <p><code>body</code>처럼, <code>header</code>와 <code>status</code>도 매개변수 없이 사용하여 현재 값을
 액세스할 수 있습니다.</p>
@@ -1798,20 +1502,16 @@ after <span style="color:#080;font-weight:bold">do</span>
 계속 데이터를 내보내고 싶을 경우도 있죠. 여러분만의 래퍼(wrapper)를
 만들지 않으려면 <code>stream</code> 헬퍼를 사용하면 됩니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  stream <span style="color:#080;font-weight:bold">do</span> |out|
-    out &lt;&lt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">It's gonna be legen -</span><span style="color:#b0b">\n</span><span style="color:#710">"</span></span>
-    sleep <span style="color:#60E">0.5</span>
-    out &lt;&lt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20"> (wait for it) </span><span style="color:#b0b">\n</span><span style="color:#710">"</span></span>
-    sleep <span style="color:#00D">1</span>
-    out &lt;&lt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">- dary!</span><span style="color:#b0b">\n</span><span style="color:#710">"</span></span>
-  <span style="color:#080;font-weight:bold">end</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/' do
+  stream do |out|
+    out &lt;&lt; "It's gonna be legen -\n"
+    sleep 0.5
+    out &lt;&lt; " (wait for it) \n"
+    sleep 1
+    out &lt;&lt; "- dary!\n"
+  end
+end
+</code></pre>
 
 <p>이렇게 스트리밍 API나 <a href="https://w3c.github.io/eventsource/">서버 발송 이벤트Server Sent
 Events</a>를 구현할 수 있고, 이 방법은
@@ -1830,37 +1530,33 @@ Events</a>를 구현할 수 있고, 이 방법은
 있습니다. 이 옵션은 Thin과 Rainbow 같은 이벤트 기반 서버에서만 작동하고
 다른 서버들은 여전히 스트림을 닫습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre><span style="color:#777"># long polling</span>
+<pre><code class="language-ruby"># long polling
 
-set <span style="color:#A60">:server</span>, <span style="color:#A60">:thin</span>
+set :server, :thin
 connections = []
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/subscribe</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#777"># register a client's interest in server events</span>
-  stream(<span style="color:#A60">:keep_open</span>) <span style="color:#080;font-weight:bold">do</span> |out|
+get '/subscribe' do
+  # register a client's interest in server events
+  stream(:keep_open) do |out|
     connections &lt;&lt; out
-    <span style="color:#777"># purge dead connections</span>
-    connections.reject!(&amp;<span style="color:#A60">:closed?</span>)
-  <span style="color:#080;font-weight:bold">end</span>
-<span style="color:#080;font-weight:bold">end</span>
+    # purge dead connections
+    connections.reject!(&amp;:closed?)
+  end
+end
 
-post <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:message</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  connections.each <span style="color:#080;font-weight:bold">do</span> |out|
-    <span style="color:#777"># notify client that a new message has arrived</span>
-    out &lt;&lt; params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">message</span><span style="color:#710">'</span></span>] &lt;&lt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#b0b">\n</span><span style="color:#710">"</span></span>
+post '/:message' do
+  connections.each do |out|
+    # notify client that a new message has arrived
+    out &lt;&lt; params['message'] &lt;&lt; "\n"
 
-    <span style="color:#777"># indicate client to connect again</span>
+    # indicate client to connect again
     out.close
-  <span style="color:#080;font-weight:bold">end</span>
+  end
 
-  <span style="color:#777"># acknowledge</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">message received</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+  # acknowledge
+  "message received"
+end
+</code></pre>
 
 <a name='%EB%A1%9C%EA%B9%85(Logging)'></a>
 <h3>로깅(Logging)</h3>
@@ -1868,15 +1564,11 @@ post <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#71
 <p>요청 스코프(request scope) 내에서, <code>Logger</code>의 인스턴스인 <code>logger</code>
 헬퍼를 사용할 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  logger.info <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">loading data</span><span style="color:#710">"</span></span>
-  <span style="color:#777"># ...</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/' do
+  logger.info "loading data"
+  # ...
+end
+</code></pre>
 
 <p>이 로거는 자동으로 Rack 핸들러에서 설정한 로그설정을  참고합니다.
 만약 로깅이 비활성상태라면, 이 메서드는 더미(dummy) 객체를 반환하기 때문에,
@@ -1885,16 +1577,12 @@ post <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#71
 <p>로깅은 <code>Sinatra::Application</code>에서만 기본으로 활성화되어 있음에 유의합시다.
 만약 <code>Sinatra::Base</code>로부터 상속받은 경우라면 직접 활성화시켜 줘야 합니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre><span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyApp</span> &lt; <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color:#036;font-weight:bold">Base</span>
-  configure <span style="color:#A60">:production</span>, <span style="color:#A60">:development</span> <span style="color:#080;font-weight:bold">do</span>
-    enable <span style="color:#A60">:logging</span>
-  <span style="color:#080;font-weight:bold">end</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">class MyApp &lt; Sinatra::Base
+  configure :production, :development do
+    enable :logging
+  end
+end
+</code></pre>
 
 <p>로깅 미들웨어를 사용하지 않으려면, <code>logging</code> 설정을 <code>nil</code>로 두면 됩니다.
 하지만, 이 경우 주의할 것은 <code>logger</code>는 <code>nil</code>을 반환하는 것입니다.
@@ -1908,26 +1596,18 @@ Sinatra는 <code>env['rack.logger']</code>에서 찾은 로거를 사용할 것�
 마임 타입이 있을 수 있습니다. 이 경우 <code>mime_type</code>을 사용하여 파일
 확장자를 등록합니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>configure <span style="color:#080;font-weight:bold">do</span>
-  mime_type <span style="color:#A60">:foo</span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">text/foo</span><span style="color:#710">'</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">configure do
+  mime_type :foo, 'text/foo'
+end
+</code></pre>
 
 <p><code>content_type</code> 헬퍼로 쓸 수도 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  content_type <span style="color:#A60">:foo</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">foo foo foo</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/' do
+  content_type :foo
+  "foo foo foo"
+end
+</code></pre>
 
 <a name='URL%20%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0'></a>
 <h3>URL 생성하기</h3>
@@ -1935,12 +1615,8 @@ Sinatra는 <code>env['rack.logger']</code>에서 찾은 로거를 사용할 것�
 <p>URL을 생성할때 <code>url</code> 헬퍼 메서드를 사용합니다. 예를 들어 Haml에서는 이렇게
 합니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>%a{<span style="color:#A60">:href</span> =&gt; url(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span>)} foo
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">%a{:href =&gt; url('/foo')} foo
+</code></pre>
 
 <p>이것은 리버스 프록시(reverse proxies)와 Rack 라우터가 있다면 참고합니다.</p>
 
@@ -1951,68 +1627,48 @@ Sinatra는 <code>env['rack.logger']</code>에서 찾은 로거를 사용할 것�
 
 <p><code>redirect</code> 헬퍼 메서드를 사용하여 브라우저를 리다이렉트 시킬 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  redirect to(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/bar</span><span style="color:#710">'</span></span>)
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/foo' do
+  redirect to('/bar')
+end
+</code></pre>
 
 <p>다른 부가적인 매개변수들은 <code>halt</code>에 전달하는 인자들과 비슷합니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>redirect to(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/bar</span><span style="color:#710">'</span></span>), <span style="color:#00D">303</span>
-redirect <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">http://www.google.com/</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">wrong place, buddy</span><span style="color:#710">'</span></span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">redirect to('/bar'), 303
+redirect 'http://www.google.com/', 'wrong place, buddy'
+</code></pre>
 
 <p><code>redirect back</code>을 사용하면 쉽게 사용자가 왔던 페이지로 다시 돌아가게
 할 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">&lt;a href='/bar'&gt;do something&lt;/a&gt;</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
+<pre><code class="language-ruby">get '/foo' do
+  "&lt;a href='/bar'&gt;do something&lt;/a&gt;"
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/bar</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+get '/bar' do
   do_something
   redirect back
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+end
+</code></pre>
 
 <p>리다이렉트와 함께 인자를 전달하려면, 쿼리로 붙이거나,</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>redirect to(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/bar?sum=42</span><span style="color:#710">'</span></span>)
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">redirect to('/bar?sum=42')
+</code></pre>
 
 <p>세션을 사용하면 됩니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>enable <span style="color:#A60">:sessions</span>
+<pre><code class="language-ruby">enable :sessions
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">secret</span><span style="color:#710">'</span></span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">foo</span><span style="color:#710">'</span></span>
-  redirect to(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/bar</span><span style="color:#710">'</span></span>)
-<span style="color:#080;font-weight:bold">end</span>
+get '/foo' do
+  session['secret'] = 'foo'
+  redirect to('/bar')
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/bar</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">secret</span><span style="color:#710">'</span></span>]
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/bar' do
+  session['secret']
+end
+</code></pre>
 
 <a name='%EC%BA%90%EC%8B%9C%20%EC%BB%A8%ED%8A%B8%EB%A1%A4(Cache%20Control)'></a>
 <h3>캐시 컨트롤(Cache Control)</h3>
@@ -2021,85 +1677,61 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Cache-Control 헤더를 다음과 같이 간단하게 설정할 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  cache_control <span style="color:#A60">:public</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">cache it!</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/' do
+  cache_control :public
+  "cache it!"
+end
+</code></pre>
 
 <p>프로 팁: 캐싱은 사전 필터에서 설정하세요.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>before <span style="color:#080;font-weight:bold">do</span>
-  cache_control <span style="color:#A60">:public</span>, <span style="color:#A60">:must_revalidate</span>, <span style="color:#A60">:max_age</span> =&gt; <span style="color:#00D">60</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">before do
+  cache_control :public, :must_revalidate, :max_age =&gt; 60
+end
+</code></pre>
 
 <p><code>expires</code> 헬퍼를 사용하여 그에 상응하는 헤더를 설정한다면,
 <code>Cache-Control</code>이 자동으로 설정됩니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>before <span style="color:#080;font-weight:bold">do</span>
-  expires <span style="color:#00D">500</span>, <span style="color:#A60">:public</span>, <span style="color:#A60">:must_revalidate</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">before do
+  expires 500, :public, :must_revalidate
+end
+</code></pre>
 
 <p>캐시를 잘 사용하려면, <code>etag</code> 또는 <code>last_modified</code>을 사용해 보세요.
 무거운 작업을 하기 <em>전</em>에 이들 헬퍼를 호출하길 권장합니다. 이렇게 하면,
 클라이언트 캐시에 현재 버전이 이미 들어 있을 경우엔 즉각 응답을
 뿌릴(flush) 것입니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">/article/:id</span><span style="color:#710">"</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#33B">@article</span> = <span style="color:#036;font-weight:bold">Article</span>.find params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">id</span><span style="color:#710">'</span></span>]
-  last_modified <span style="color:#33B">@article</span>.updated_at
-  etag <span style="color:#33B">@article</span>.sha1
-  erb <span style="color:#A60">:article</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get "/article/:id" do
+  @article = Article.find params['id']
+  last_modified @article.updated_at
+  etag @article.sha1
+  erb :article
+end
+</code></pre>
 
 <p><a href="https://en.wikipedia.org/wiki/HTTP_ETag#Strong_and_weak_validation">약한 ETag</a>를
 사용할 수 도 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>etag <span style="color:#33B">@article</span>.sha1, <span style="color:#A60">:weak</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">etag @article.sha1, :weak
+</code></pre>
 
 <p>이들 헬퍼는 어떠한 캐싱도 하지 않으며, 대신 캐시에 필요한 정보를 제공합니다.
 손쉬운 리버스 프록시(reverse-proxy) 캐싱 솔루션을 찾고 있다면,
 <a href="https://github.com/rtomayko/rack-cache">rack-cache</a>를 써보세요.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">rack/cache</span><span style="color:#710">"</span></span>
-require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">sinatra</span><span style="color:#710">"</span></span>
+<pre><code class="language-ruby">require "rack/cache"
+require "sinatra"
 
-use <span style="color:#036;font-weight:bold">Rack</span>::<span style="color:#036;font-weight:bold">Cache</span>
+use Rack::Cache
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  cache_control <span style="color:#A60">:public</span>, <span style="color:#A60">:max_age</span> =&gt; <span style="color:#00D">36000</span>
-  sleep <span style="color:#00D">5</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">hello</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/' do
+  cache_control :public, :max_age =&gt; 36000
+  sleep 5
+  "hello"
+end
+</code></pre>
 
 <p>정적 파일에 <code>Cache-Control</code> 헤더 정보를 추가하려면 <code>:static_cache_control</code>
 설정(아래 참조)을 쓰세요.</p>
@@ -2110,48 +1742,32 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 이미 존재한다고 가정하지만, 다른 리소스(예를 들면 post 요청 같은)의 경우는
 새 리소스로 취급합니다. 이 행동은 <code>:new_resource</code> 옵션을 전달하여 변경할 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/create</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  etag <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#710">'</span></span>, <span style="color:#A60">:new_resource</span> =&gt; <span style="color:#069">true</span>
-  <span style="color:#036;font-weight:bold">Article</span>.create
-  erb <span style="color:#A60">:new_article</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/create' do
+  etag '', :new_resource =&gt; true
+  Article.create
+  erb :new_article
+end
+</code></pre>
 
 <p>약한 ETag를 사용하고자 한다면, <code>:kind</code>으로 전달합시다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>etag <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#710">'</span></span>, <span style="color:#A60">:new_resource</span> =&gt; <span style="color:#069">true</span>, <span style="color:#A60">:kind</span> =&gt; <span style="color:#A60">:weak</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">etag '', :new_resource =&gt; true, :kind =&gt; :weak
+</code></pre>
 
 <a name='%ED%8C%8C%EC%9D%BC%20%EC%A0%84%EC%86%A1%ED%95%98%EA%B8%B0(Sending%20Files)'></a>
 <h3>파일 전송하기(Sending Files)</h3>
 
 <p>응답(response)으로 파일의 컨탠츠를 리턴하려면, <code>send_file</code> 헬퍼 메서드를 사용하면 됩니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  send_file <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">foo.png</span><span style="color:#710">'</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/' do
+  send_file 'foo.png'
+end
+</code></pre>
 
 <p>이 메서드는 몇 가지 옵션을 받습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>send_file <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">foo.png</span><span style="color:#710">'</span></span>, <span style="color:#A60">:type</span> =&gt; <span style="color:#A60">:jpg</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">send_file 'foo.png', :type =&gt; :jpg
+</code></pre>
 
 <p>옵션들:</p>
 
@@ -2190,67 +1806,55 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>들어오는 요청 객에는 요청 레벨(필터, 라우터, 오류 핸들러)에서 <code>request</code>
 메서드를 통해 접근 가능합니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre><span style="color:#777"># http://example.com/example 상에서 실행 중인 앱</span>
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  t = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">%w[</span><span style="color:#D20">text/css text/html application/javascript</span><span style="color:#710">]</span></span>
-  request.accept              <span style="color:#777"># ['text/html', '*/*']</span>
-  request.accept? <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">text/xml</span><span style="color:#710">'</span></span>  <span style="color:#777"># true</span>
-  request.preferred_type(t)   <span style="color:#777"># 'text/html'</span>
-  request.body                <span style="color:#777"># 클라이언트로부터 전송된 요청 본문 (아래 참조)</span>
-  request.scheme              <span style="color:#777"># "http"</span>
-  request.script_name         <span style="color:#777"># "/example"</span>
-  request.path_info           <span style="color:#777"># "/foo"</span>
-  request.port                <span style="color:#777"># 80</span>
-  request.request_method      <span style="color:#777"># "GET"</span>
-  request.query_string        <span style="color:#777"># ""</span>
-  request.content_length      <span style="color:#777"># request.body의 길이</span>
-  request.media_type          <span style="color:#777"># request.body의 미디어 유형</span>
-  request.host                <span style="color:#777"># "example.com"</span>
-  request.get?                <span style="color:#777"># true (다른 동사에 대해 유사한 메서드 있음)</span>
-  request.form_data?          <span style="color:#777"># false</span>
-  request[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">SOME_HEADER</span><span style="color:#710">"</span></span>]      <span style="color:#777"># SOME_HEADER 헤더의 값</span>
-  request.referrer            <span style="color:#777"># 클라이언트의 리퍼러 또는 '/'</span>
-  request.user_agent          <span style="color:#777"># 사용자 에이전트 (:agent 조건에서 사용됨)</span>
-  request.cookies             <span style="color:#777"># 브라우저 쿠키의 해시</span>
-  request.xhr?                <span style="color:#777"># 이게 ajax 요청인가요?</span>
-  request.url                 <span style="color:#777"># "http://example.com/example/foo"</span>
-  request.path                <span style="color:#777"># "/example/foo"</span>
-  request.ip                  <span style="color:#777"># 클라이언트 IP 주소</span>
-  request.secure?             <span style="color:#777"># false (ssl 접속인 경우 true)</span>
-  request.forwarded?          <span style="color:#777"># true (리버스 프록시 하에서 작동 중이라면)</span>
-  request.env                 <span style="color:#777"># Rack에 의해 처리되는 로우(raw) env 해시</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby"># http://example.com/example 상에서 실행 중인 앱
+get '/foo' do
+  t = %w[text/css text/html application/javascript]
+  request.accept              # ['text/html', '*/*']
+  request.accept? 'text/xml'  # true
+  request.preferred_type(t)   # 'text/html'
+  request.body                # 클라이언트로부터 전송된 요청 본문 (아래 참조)
+  request.scheme              # "http"
+  request.script_name         # "/example"
+  request.path_info           # "/foo"
+  request.port                # 80
+  request.request_method      # "GET"
+  request.query_string        # ""
+  request.content_length      # request.body의 길이
+  request.media_type          # request.body의 미디어 유형
+  request.host                # "example.com"
+  request.get?                # true (다른 동사에 대해 유사한 메서드 있음)
+  request.form_data?          # false
+  request["SOME_HEADER"]      # SOME_HEADER 헤더의 값
+  request.referrer            # 클라이언트의 리퍼러 또는 '/'
+  request.user_agent          # 사용자 에이전트 (:agent 조건에서 사용됨)
+  request.cookies             # 브라우저 쿠키의 해시
+  request.xhr?                # 이게 ajax 요청인가요?
+  request.url                 # "http://example.com/example/foo"
+  request.path                # "/example/foo"
+  request.ip                  # 클라이언트 IP 주소
+  request.secure?             # false (ssl 접속인 경우 true)
+  request.forwarded?          # true (리버스 프록시 하에서 작동 중이라면)
+  request.env                 # Rack에 의해 처리되는 로우(raw) env 해시
+end
+</code></pre>
 
 <p><code>script_name</code>, <code>path_info</code>같은 일부 옵션들은 이렇게 쓸 수도 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>before { request.path_info = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">/</span><span style="color:#710">"</span></span> }
+<pre><code class="language-ruby">before { request.path_info = "/" }
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">/</span><span style="color:#710">"</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">all requests end up here</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get "/" do
+  "all requests end up here"
+end
+</code></pre>
 
 <p><code>request.body</code>는 IO 객체이거나 StringIO 객체입니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>post <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">/api</span><span style="color:#710">"</span></span> <span style="color:#080;font-weight:bold">do</span>
-  request.body.rewind  <span style="color:#777"># 누군가 이미 읽은 경우</span>
-  data = <span style="color:#036;font-weight:bold">JSON</span>.parse request.body.read
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hello </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>data[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">name</span><span style="color:#710">'</span></span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">post "/api" do
+  request.body.rewind  # 누군가 이미 읽은 경우
+  data = JSON.parse request.body.read
+  "Hello #{data['name']}!"
+end
+</code></pre>
 
 <a name='%EC%B2%A8%EB%B6%80(Attachments)'></a>
 <h3>첨부(Attachments)</h3>
@@ -2258,27 +1862,19 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p><code>attachment</code> 헬퍼를 사용하여 응답이 브라우저에 표시하는 대신
 디스크에 저장되어야 함을 블라우저에게 알릴 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+<pre><code class="language-ruby">get '/' do
   attachment
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">store it!</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+  "store it!"
+end
+</code></pre>
 
 <p>파일명을 전달할 수도 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  attachment <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">info.txt</span><span style="color:#710">"</span></span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">store it!</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/' do
+  attachment "info.txt"
+  "store it!"
+end
+</code></pre>
 
 <a name='%EB%82%A0%EC%A7%9C%EC%99%80%20%EC%8B%9C%EA%B0%84%20%EB%8B%A4%EB%A3%A8%EA%B8%B0'></a>
 <h3>날짜와 시간 다루기</h3>
@@ -2287,88 +1883,68 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 주어진 값으로부터 Time 객체를 생성한다. <code>DateTime</code>, <code>Date</code> 같은
 비슷한 클래스들도 변환됩니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  pass <span style="color:#080;font-weight:bold">if</span> <span style="color:#036;font-weight:bold">Time</span>.now &gt; time_for(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Dec 23, 2012</span><span style="color:#710">'</span></span>)
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">still time</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/' do
+  pass if Time.now &gt; time_for('Dec 23, 2012')
+  "still time"
+end
+</code></pre>
 
 <p>이 메서드는 내부적으로 <code>expires</code> 나 <code>last_modified</code> 같은 곳에서 사용됩니다.
 따라서 여러분은 애플리케이션에서 <code>time_for</code>를 오버라이딩하여 이들 메서드의
 동작을 쉽게 확장할 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>helpers <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">time_for</span>(value)
-    <span style="color:#080;font-weight:bold">case</span> value
-    <span style="color:#080;font-weight:bold">when</span> <span style="color:#A60">:yesterday</span> <span style="color:#080;font-weight:bold">then</span> <span style="color:#036;font-weight:bold">Time</span>.now - <span style="color:#00D">24</span>*<span style="color:#00D">60</span>*<span style="color:#00D">60</span>
-    <span style="color:#080;font-weight:bold">when</span> <span style="color:#A60">:tomorrow</span>  <span style="color:#080;font-weight:bold">then</span> <span style="color:#036;font-weight:bold">Time</span>.now + <span style="color:#00D">24</span>*<span style="color:#00D">60</span>*<span style="color:#00D">60</span>
-    <span style="color:#080;font-weight:bold">else</span> <span style="color:#080;font-weight:bold">super</span>
-    <span style="color:#080;font-weight:bold">end</span>
-  <span style="color:#080;font-weight:bold">end</span>
-<span style="color:#080;font-weight:bold">end</span>
+<pre><code class="language-ruby">helpers do
+  def time_for(value)
+    case value
+    when :yesterday then Time.now - 24*60*60
+    when :tomorrow  then Time.now + 24*60*60
+    else super
+    end
+  end
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  last_modified <span style="color:#A60">:yesterday</span>
-  expires <span style="color:#A60">:tomorrow</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">hello</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/' do
+  last_modified :yesterday
+  expires :tomorrow
+  "hello"
+end
+</code></pre>
 
 <a name='%ED%85%9C%ED%94%8C%EB%A6%BF%20%ED%8C%8C%EC%9D%BC%20%EC%B0%B8%EC%A1%B0%ED%95%98%EA%B8%B0'></a>
 <h3>템플릿 파일 참조하기</h3>
 
 <p><code>find_template</code>는 렌더링할 템플릿 파일을 찾는데 사용됩니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>find_template settings.views, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">foo</span><span style="color:#710">'</span></span>, <span style="color:#036;font-weight:bold">Tilt</span>[<span style="color:#A60">:haml</span>] <span style="color:#080;font-weight:bold">do</span> |file|
-  puts <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">could be </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>file<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">find_template settings.views, 'foo', Tilt[:haml] do |file|
+  puts "could be #{file}"
+end
+</code></pre>
 
 <p>이것만으로는 그렇게 유용하지는 않습니다만, 이 메서드를 오버라이드하여 여러분만의
 참조 메커니즘에서 가로채게 하면 유용해집니다. 예를 들어, 하나 이상의 뷰 디렉터리를
 사용하고자 한다면 이렇게 하세요.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>set <span style="color:#A60">:views</span>, [<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">views</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">templates</span><span style="color:#710">'</span></span>]
+<pre><code class="language-ruby">set :views, ['views', 'templates']
 
-helpers <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">find_template</span>(views, name, engine, &amp;block)
-    Array(views).each { |v| <span style="color:#080;font-weight:bold">super</span>(v, name, engine, &amp;block) }
-  <span style="color:#080;font-weight:bold">end</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+helpers do
+  def find_template(views, name, engine, &amp;block)
+    Array(views).each { |v| super(v, name, engine, &amp;block) }
+  end
+end
+</code></pre>
 
 <p>다른 예제는 각 엔진마다 다른 디렉터리를 사용할 경우입니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>set <span style="color:#A60">:views</span>, <span style="color:#A60">:sass</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">views/sass</span><span style="color:#710">'</span></span>, <span style="color:#A60">:haml</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">templates</span><span style="color:#710">'</span></span>, <span style="color:#A60">:default</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">views</span><span style="color:#710">'</span></span>
+<pre><code class="language-ruby">set :views, :sass =&gt; 'views/sass', :haml =&gt; 'templates', :default =&gt; 'views'
 
-helpers <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">find_template</span>(views, name, engine, &amp;block)
-    _, folder = views.detect { |k,v| engine == <span style="color:#036;font-weight:bold">Tilt</span>[k] }
-    folder ||= views[<span style="color:#A60">:default</span>]
-    <span style="color:#080;font-weight:bold">super</span>(folder, name, engine, &amp;block)
-  <span style="color:#080;font-weight:bold">end</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+helpers do
+  def find_template(views, name, engine, &amp;block)
+    _, folder = views.detect { |k,v| engine == Tilt[k] }
+    folder ||= views[:default]
+    super(folder, name, engine, &amp;block)
+  end
+end
+</code></pre>
 
 <p>여러분은 이것을 간단하게 확장(extension)으로 만들어 다른 사람들과 공유할 수 있다!</p>
 
@@ -2383,66 +1959,50 @@ helpers <span style="color:#080;font-weight:bold">do</span>
 
 <p>모든 환경에서, 시작될 때, 한번만 실행되게 하려면 이렇게 하면 됩니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>configure <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#777"># 옵션 하나 설정</span>
-  set <span style="color:#A60">:option</span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">value</span><span style="color:#710">'</span></span>
+<pre><code class="language-ruby">configure do
+  # 옵션 하나 설정
+  set :option, 'value'
 
-  <span style="color:#777"># 여러 옵션 설정</span>
-  set <span style="color:#A60">:a</span> =&gt; <span style="color:#00D">1</span>, <span style="color:#A60">:b</span> =&gt; <span style="color:#00D">2</span>
+  # 여러 옵션 설정
+  set :a =&gt; 1, :b =&gt; 2
 
-  <span style="color:#777"># `set :option, true`와 동일</span>
-  enable <span style="color:#A60">:option</span>
+  # `set :option, true`와 동일
+  enable :option
 
-  <span style="color:#777"># `set :option, false`와 동일</span>
-  disable <span style="color:#A60">:option</span>
+  # `set :option, false`와 동일
+  disable :option
 
-  <span style="color:#777"># 블록으로 동적인 설정을 할 수도 있음</span>
-  set(<span style="color:#A60">:css_dir</span>) { <span style="color:#036;font-weight:bold">File</span>.join(views, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">css</span><span style="color:#710">'</span></span>) }
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+  # 블록으로 동적인 설정을 할 수도 있음
+  set(:css_dir) { File.join(views, 'css') }
+end
+</code></pre>
 
-<p>환경(RACK_ENV 환경 변수)이 <code>:production</code>일 때만 실행되게 하려면 이렇게 하면 됩니다.</p>
+<p>환경(APP_ENV 환경 변수)이 <code>:production</code>일 때만 실행되게 하려면 이렇게 하면 됩니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>configure <span style="color:#A60">:production</span> <span style="color:#080;font-weight:bold">do</span>
+<pre><code class="language-ruby">configure :production do
   ...
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+end
+</code></pre>
 
 <p>환경이 <code>:production</code> 또는 <code>:test</code>일 때 실행되게 하려면 이렇게 하면 됩니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>configure <span style="color:#A60">:production</span>, <span style="color:#A60">:test</span> <span style="color:#080;font-weight:bold">do</span>
+<pre><code class="language-ruby">configure :production, :test do
   ...
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+end
+</code></pre>
 
 <p>이 옵션들은 <code>settings</code>를 통해 접근 가능합니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>configure <span style="color:#080;font-weight:bold">do</span>
-  set <span style="color:#A60">:foo</span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bar</span><span style="color:#710">'</span></span>
-<span style="color:#080;font-weight:bold">end</span>
+<pre><code class="language-ruby">configure do
+  set :foo, 'bar'
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  settings.foo? <span style="color:#777"># =&gt; true</span>
-  settings.foo  <span style="color:#777"># =&gt; 'bar'</span>
+get '/' do
+  settings.foo? # =&gt; true
+  settings.foo  # =&gt; 'bar'
   ...
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+end
+</code></pre>
 
 <a name='%EA%B3%B5%EA%B2%A9%20%EB%B0%A9%EC%96%B4%20%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0(Configuring%20attack%20protection)'></a>
 <h3>공격 방어 설정하기(Configuring attack protection)</h3>
@@ -2451,42 +2011,26 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 일반적이고 일어날 수 있는 공격에 대비합니다. 이 모듈은 간단하게 비활성시킬 수 있습니다.
 (하지만 애플리케이션에 엄청나게 많은 취약성을 야기합니다.)</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>disable <span style="color:#A60">:protection</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">disable :protection
+</code></pre>
 
 <p>하나의 방어층만 스킵하려면, 옵션 해시에 <code>protection</code>을 설정하면 됩니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>set <span style="color:#A60">:protection</span>, <span style="color:#A60">:except</span> =&gt; <span style="color:#A60">:path_traversal</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">set :protection, :except =&gt; :path_traversal
+</code></pre>
 
 <p>배열로 넘김으로써 방어층 여러 개를 비활성화할 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>set <span style="color:#A60">:protection</span>, <span style="color:#A60">:except</span> =&gt; [<span style="color:#A60">:path_traversal</span>, <span style="color:#A60">:session_hijacking</span>]
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">set :protection, :except =&gt; [:path_traversal, :session_hijacking]
+</code></pre>
 
 <p>기본적으로 <code>:sessions</code>가 활성 중일 때만 Sinatra는 방어층을 설정합니다.
 때로는 자신만의 세션을 설정할 때도 있습니다. 이런 경우 <code>:session</code> 옵션을
 넘겨줌으로써 세션을 기반으로한 방어층을 설정 할 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>use <span style="color:#036;font-weight:bold">Rack</span>::<span style="color:#036;font-weight:bold">Session</span>::<span style="color:#036;font-weight:bold">Pool</span>
-set <span style="color:#A60">:protection</span>, <span style="color:#A60">:session</span> =&gt; <span style="color:#069">true</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">use Rack::Session::Pool
+set :protection, :session =&gt; true
+</code></pre>
 
 <a name='%EA%B0%80%EB%8A%A5%ED%95%9C%20%EC%84%A4%EC%A0%95%EB%93%A4(Available%20Settings)'></a>
 <h3>가능한 설정들(Available Settings)</h3>
@@ -2531,7 +2075,7 @@ set <span style="color:#A60">:protection</span>, <span style="color:#A60">:sessi
 
   <dt>environment</dt>
   <dd>
-    현재 환경, 기본값은 <tt>ENV['RACK_ENV']</tt> ENV에 없을 경우엔 "development".
+    현재 환경, 기본값은 <tt>ENV['APP_ENV']</tt> ENV에 없을 경우엔 "development".
   </dd>
 
   <dt>logging</dt>
@@ -2663,36 +2207,28 @@ set <span style="color:#A60">:protection</span>, <span style="color:#A60">:sessi
 <h2>환경(Environments)</h2>
 
 <p>3가지의 미리 정의된 <code>environments</code> <code>"development"</code>, <code>"production"</code>, <code>"test"</code>
-가 있습니다. 환경은 <code>RACK_ENV</code> 환경 변수를 통해서도 설정됩니다. 기본값은
+가 있습니다. 환경은 <code>APP_ENV</code> 환경 변수를 통해서도 설정됩니다. 기본값은
 <code>"development"</code>입니다. <code>"development"</code> 모드에서는 모든 템플릿들은 요청 간에
 리로드됩니다. 또, <code>"development"</code> 모드에서는 특별한 <code>not_found</code> 와 <code>error</code>
 핸들러가 브라우저에서 스택 트레이스를 볼 수 있게합니다.
 <code>"production"</code>과 <code>"test"</code>에서는 기본적으로 템플릿은 캐시됩니다.</p>
 
-<p>다른 환경으로 실행시키려면 <code>RACK_ENV</code> 환경 변수를 사용하세요.</p>
+<p>다른 환경으로 실행시키려면 <code>APP_ENV</code> 환경 변수를 사용하세요.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>RACK_ENV=production ruby my_app.rb
-</pre></div>
-</div>
-</div>
+<pre><code class="language-shell">APP_ENV=production ruby my_app.rb
+</code></pre>
 
 <p>현재 설정된 환경이 무엇인지 검사하기 위해서는 준비된 <code>development?</code>, <code>test?</code>,
 <code>production?</code> 메서드를 사용할 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#080;font-weight:bold">if</span> settings.development?
-    <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">development!</span><span style="color:#710">"</span></span>
-  <span style="color:#080;font-weight:bold">else</span>
-    <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">not development!</span><span style="color:#710">"</span></span>
-  <span style="color:#080;font-weight:bold">end</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/' do
+  if settings.development?
+    "development!"
+  else
+    "not development!"
+  end
+end
+</code></pre>
 
 <a name='%EC%97%90%EB%9F%AC%20%EC%B2%98%EB%A6%AC(Error%20Handling)'></a>
 <h2>에러 처리(Error Handling)</h2>
@@ -2707,14 +2243,10 @@ set <span style="color:#A60">:protection</span>, <span style="color:#A60">:sessi
 <p><code>Sinatra::NotFound</code> 예외가 발생하거나 또는 응답의 상태 코드가 404라면,
 <code>not_found</code> 핸들러가 호출됩니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>not_found <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">아무 곳에도 찾을 수 없습니다.</span><span style="color:#710">'</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">not_found do
+  '아무 곳에도 찾을 수 없습니다.'
+end
+</code></pre>
 
 <a name='%EC%97%90%EB%9F%AC'></a>
 <h3>에러</h3>
@@ -2723,45 +2255,29 @@ set <span style="color:#A60">:protection</span>, <span style="color:#A60">:sessi
 하지만 개발 환경에서는 예외 확인 옵션을 <code>:after_handler</code>로 설정되어 있을 경우에만
 실행됨을 주의하세요.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>set <span style="color:#A60">:show_exceptions</span>, <span style="color:#A60">:after_handler</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">set :show_exceptions, :after_handler
+</code></pre>
 
 <p>예외 객체는 Rack 변수 <code>sinatra.error</code>로부터 얻을 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>error <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">고약한 오류가 발생했군요 - </span><span style="color:#710">'</span></span> + env[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra.error</span><span style="color:#710">'</span></span>].message
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">error do
+  '고약한 오류가 발생했군요 - ' + env['sinatra.error'].message
+end
+</code></pre>
 
 <p>사용자 정의 오류는 이렇게 정의합니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>error <span style="color:#036;font-weight:bold">MyCustomError</span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">무슨 일이 생겼나면요...</span><span style="color:#710">'</span></span> + env[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra.error</span><span style="color:#710">'</span></span>].message
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">error MyCustomError do
+  '무슨 일이 생겼나면요...' + env['sinatra.error'].message
+end
+</code></pre>
 
 <p>그런 다음, 이 오류가 발생하면 이렇게 처리합니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  raise <span style="color:#036;font-weight:bold">MyCustomError</span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">안좋은 일</span><span style="color:#710">'</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/' do
+  raise MyCustomError, '안좋은 일'
+end
+</code></pre>
 
 <p>결과는 이렇습니다.</p>
 
@@ -2770,29 +2286,21 @@ set <span style="color:#A60">:protection</span>, <span style="color:#A60">:sessi
 
 <p>상태 코드에 대해 오류 핸들러를 설치할 수도 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>error <span style="color:#00D">403</span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">액세스가 금지됨</span><span style="color:#710">'</span></span>
-<span style="color:#080;font-weight:bold">end</span>
+<pre><code class="language-ruby">error 403 do
+  '액세스가 금지됨'
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/secret</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#00D">403</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/secret' do
+  403
+end
+</code></pre>
 
 <p>범위로 지정할 수도 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>error <span style="color:#00D">400</span>..<span style="color:#00D">510</span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">어이쿠</span><span style="color:#710">'</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">error 400..510 do
+  '어이쿠'
+end
+</code></pre>
 
 <p>Sinatra는 개발 환경에서 동작할 때 브라우저에 괜찮은 스택 트레이스와 추가적인
 디버그 정보를 보여주기 위해 특별한 <code>not_found</code> 와 <code>error</code> 핸들러를 설치합니다.</p>
@@ -2809,33 +2317,25 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Sinatra는 톱레벨의 <code>use</code> 메서드를 사용하여 Rack 미들웨어의 파이프라인을 만드는 일을
 식은 죽 먹기로 만듭니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra</span><span style="color:#710">'</span></span>
-require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">my_custom_middleware</span><span style="color:#710">'</span></span>
+<pre><code class="language-ruby">require 'sinatra'
+require 'my_custom_middleware'
 
-use <span style="color:#036;font-weight:bold">Rack</span>::<span style="color:#036;font-weight:bold">Lint</span>
-use <span style="color:#036;font-weight:bold">MyCustomMiddleware</span>
+use Rack::Lint
+use MyCustomMiddleware
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/hello</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Hello World</span><span style="color:#710">'</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/hello' do
+  'Hello World'
+end
+</code></pre>
 
 <p><code>use</code>문법은 <a href="http://www.rubydoc.info/github/rack/rack/master/Rack/Builder">Rack::Builder</a> DSL
 (rackup 파일에서 가장 많이 사용)에서 정의한 것과 동일합니다. 예를 들어, <code>use</code> 메서드는
 블록이나 여러 개의/가변적인 인자도 받을 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>use <span style="color:#036;font-weight:bold">Rack</span>::<span style="color:#036;font-weight:bold">Auth</span>::<span style="color:#036;font-weight:bold">Basic</span> <span style="color:#080;font-weight:bold">do</span> |username, password|
-  username == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">admin</span><span style="color:#710">'</span></span> &amp;&amp; password == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">secret</span><span style="color:#710">'</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">use Rack::Auth::Basic do |username, password|
+  username == 'admin' &amp;&amp; password == 'secret'
+end
+</code></pre>
 
 <p>Rack은 로깅, 디버깅, URL 라우팅, 인증, 그리고 세센 핸들링을 위한 다양한 표준
 미들웨어로 분산되어 있습니다. Sinatra는 설정에 기반하여 이들 컴포넌트들 중
@@ -2853,37 +2353,33 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Sinatra 테스트는 많은 Rack 기반 테스팅 라이브러리, 프레임워크를 사용하여 작성가능합니다.
 그 중 <a href="http://www.rubydoc.info/github/brynary/rack-test/master/frames">Rack::Test</a>를 권장합니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">my_sinatra_app</span><span style="color:#710">'</span></span>
-require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">minitest/autorun</span><span style="color:#710">'</span></span>
-require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rack/test</span><span style="color:#710">'</span></span>
+<pre><code class="language-ruby">require 'my_sinatra_app'
+require 'minitest/autorun'
+require 'rack/test'
 
-<span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyAppTest</span> &lt; <span style="color:#036;font-weight:bold">Minitest</span>::<span style="color:#036;font-weight:bold">Test</span>
-  include <span style="color:#036;font-weight:bold">Rack</span>::<span style="color:#036;font-weight:bold">Test</span>::<span style="color:#036;font-weight:bold">Methods</span>
+class MyAppTest &lt; Minitest::Test
+  include Rack::Test::Methods
 
-  <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">app</span>
-    <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color:#036;font-weight:bold">Application</span>
-  <span style="color:#080;font-weight:bold">end</span>
+  def app
+    Sinatra::Application
+  end
 
-  <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">test_my_default</span>
-    get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span>
-    assert_equal <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Hello World!</span><span style="color:#710">'</span></span>, last_response.body
-  <span style="color:#080;font-weight:bold">end</span>
+  def test_my_default
+    get '/'
+    assert_equal 'Hello World!', last_response.body
+  end
 
-  <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">test_with_params</span>
-    get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/meet</span><span style="color:#710">'</span></span>, <span style="color:#A60">:name</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Frank</span><span style="color:#710">'</span></span>
-    assert_equal <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Hello Frank!</span><span style="color:#710">'</span></span>, last_response.body
-  <span style="color:#080;font-weight:bold">end</span>
+  def test_with_params
+    get '/meet', :name =&gt; 'Frank'
+    assert_equal 'Hello Frank!', last_response.body
+  end
 
-  <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">test_with_rack_env</span>
-    get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span>, {}, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">HTTP_USER_AGENT</span><span style="color:#710">'</span></span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Songbird</span><span style="color:#710">'</span></span>
-    assert_equal <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">You're using Songbird!</span><span style="color:#710">"</span></span>, last_response.body
-  <span style="color:#080;font-weight:bold">end</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+  def test_with_user_agent
+    get '/', {}, 'HTTP_USER_AGENT' =&gt; 'Songbird'
+    assert_equal "You're using Songbird!", last_response.body
+  end
+end
+</code></pre>
 
 <p>주의: Sinatra를 모듈러 방식으로 사용한다면, <code>Sinatra::Application</code>
 를 앱에서 사용하는 클래스 이름으로 바꾸세요.</p>
@@ -2898,21 +2394,17 @@ Rack 미들웨어나, Rails 메탈(metal) 또는 서버 컴포넌트를 갖는 �
 입니다. (즉, 하나의 단일 애플리케이션 파일과 <code>./public</code> 및 <code>./views</code> 디렉터리,
 로깅, 예외 상세 페이지 등등). 이 곳에서 <code>Sinatra::Base</code>가 필요합니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra/base</span><span style="color:#710">'</span></span>
+<pre><code class="language-ruby">require 'sinatra/base'
 
-<span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyApp</span> &lt; <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color:#036;font-weight:bold">Base</span>
-  set <span style="color:#A60">:sessions</span>, <span style="color:#069">true</span>
-  set <span style="color:#A60">:foo</span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bar</span><span style="color:#710">'</span></span>
+class MyApp &lt; Sinatra::Base
+  set :sessions, true
+  set :foo, 'bar'
 
-  get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-    <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Hello world!</span><span style="color:#710">'</span></span>
-  <span style="color:#080;font-weight:bold">end</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+  get '/' do
+    'Hello world!'
+  end
+end
+</code></pre>
 
 <p><code>Sinatra::Base</code> 서브클래스에서 사용가능한 메서드들은 톱레벨 DSL로 접근 가능한 것들과
 동일합니다. 대부분의 톱레벨 앱들은 다음 두 가지만 수정하면 <code>Sinatra::Base</code> 컴포넌트로
@@ -2977,7 +2469,7 @@ Rack 미들웨어나, Rails 메탈(metal) 또는 서버 컴포넌트를 갖는 �
   <tr>
     <td>static</td>
     <td>true</td>
-    <td>false</td>
+    <td>File.exist?(public_folder)</td>
   </tr>
 </table>
 
@@ -2987,77 +2479,53 @@ Rack 미들웨어나, Rails 메탈(metal) 또는 서버 컴포넌트를 갖는 �
 <p>모듈 앱을 시작하는 두 가지 일반적인 옵션이 있습니다.
 <code>run!</code>으로 능동적으로 시작하는 방법은 이렇습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre><span style="color:#777"># my_app.rb</span>
-require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra/base</span><span style="color:#710">'</span></span>
+<pre><code class="language-ruby"># my_app.rb
+require 'sinatra/base'
 
-<span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyApp</span> &lt; <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color:#036;font-weight:bold">Base</span>
-  <span style="color:#777"># ... 여기에 앱 코드가 온다 ...</span>
+class MyApp &lt; Sinatra::Base
+  # ... 여기에 앱 코드가 온다 ...
 
-  <span style="color:#777"># 루비 파일이 직접 실행될 경우에 서버를 시작</span>
-  run! <span style="color:#080;font-weight:bold">if</span> app_file == <span style="color:#d70">$0</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+  # 루비 파일이 직접 실행될 경우에 서버를 시작
+  run! if app_file == $0
+end
+</code></pre>
 
 <p>이렇게 시작할 수도 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>ruby my_app.rb
-</pre></div>
-</div>
-</div>
+<pre><code class="language-shell">ruby my_app.rb
+</code></pre>
 
 <p><code>config.ru</code>와 함께 사용할수도 있습니다. 이 경우는 어떠한 Rack 핸들러도 사용할 수 있도록
 허용 합다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre><span style="color:#777"># config.ru</span>
-require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">./my_app</span><span style="color:#710">'</span></span>
-run <span style="color:#036;font-weight:bold">MyApp</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby"># config.ru
+require './my_app'
+run MyApp
+</code></pre>
 
 <p>실행은 이렇게 합니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>rackup -p 4567
-</pre></div>
-</div>
-</div>
+<pre><code class="language-shell">rackup -p 4567
+</code></pre>
 
 <a name='config.ru%EB%A1%9C%20%EC%A0%84%ED%86%B5%EC%A0%81%20%EB%B0%A9%EC%8B%9D%EC%9D%98%20%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%20%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0'></a>
 <h3>config.ru로 전통적 방식의 애플리케이션 사용하기</h3>
 
 <p>앱 파일을 다음과 같이 작성합니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre><span style="color:#777"># app.rb</span>
-require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra</span><span style="color:#710">'</span></span>
+<pre><code class="language-ruby"># app.rb
+require 'sinatra'
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Hello world!</span><span style="color:#710">'</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/' do
+  'Hello world!'
+end
+</code></pre>
 
 <p>대응하는 <code>config.ru</code>는 다음과 같이 작성합니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">./app</span><span style="color:#710">'</span></span>
-run <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color:#036;font-weight:bold">Application</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">require './app'
+run Sinatra::Application
+</code></pre>
 
 <a name='%EC%96%B8%EC%A0%9C%20config.ru%EB%A5%BC%20%EC%82%AC%EC%9A%A9%ED%95%A0%EA%B9%8C?'></a>
 <h3>언제 config.ru를 사용할까?</h3>
@@ -3082,39 +2550,35 @@ run <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color
 또는 Rack 기반의 어떠한 애플리케이션(Rails/Ramaze/Camping/…)이 될 수도
 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra/base</span><span style="color:#710">'</span></span>
+<pre><code class="language-ruby">require 'sinatra/base'
 
-<span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">LoginScreen</span> &lt; <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color:#036;font-weight:bold">Base</span>
-  enable <span style="color:#A60">:sessions</span>
+class LoginScreen &lt; Sinatra::Base
+  enable :sessions
 
-  get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/login</span><span style="color:#710">'</span></span>) { haml <span style="color:#A60">:login</span> }
+  get('/login') { haml :login }
 
-  post(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/login</span><span style="color:#710">'</span></span>) <span style="color:#080;font-weight:bold">do</span>
-    <span style="color:#080;font-weight:bold">if</span> params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">name</span><span style="color:#710">'</span></span>] == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">admin</span><span style="color:#710">'</span></span> &amp;&amp; params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">password</span><span style="color:#710">'</span></span>] == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">admin</span><span style="color:#710">'</span></span>
-      session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">user_name</span><span style="color:#710">'</span></span>] = params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">name</span><span style="color:#710">'</span></span>]
-    <span style="color:#080;font-weight:bold">else</span>
-      redirect <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/login</span><span style="color:#710">'</span></span>
-    <span style="color:#080;font-weight:bold">end</span>
-  <span style="color:#080;font-weight:bold">end</span>
-<span style="color:#080;font-weight:bold">end</span>
+  post('/login') do
+    if params['name'] == 'admin' &amp;&amp; params['password'] == 'admin'
+      session['user_name'] = params['name']
+    else
+      redirect '/login'
+    end
+  end
+end
 
-<span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyApp</span> &lt; <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color:#036;font-weight:bold">Base</span>
-  <span style="color:#777"># 미들웨어는 사전 필터보다 앞서 실행됨</span>
-  use <span style="color:#036;font-weight:bold">LoginScreen</span>
+class MyApp &lt; Sinatra::Base
+  # 미들웨어는 사전 필터보다 앞서 실행됨
+  use LoginScreen
 
-  before <span style="color:#080;font-weight:bold">do</span>
-<span style="color:#080;font-weight:bold">unless</span> session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">user_name</span><span style="color:#710">'</span></span>]
-  halt <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">접근 거부됨, &lt;a href='/login'&gt;로그인&lt;/a&gt; 하세요.</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-  <span style="color:#080;font-weight:bold">end</span>
+  before do
+unless session['user_name']
+  halt "접근 거부됨, &lt;a href='/login'&gt;로그인&lt;/a&gt; 하세요."
+end
+  end
 
-  get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span>) { <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hello </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">user_name</span><span style="color:#710">'</span></span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">.</span><span style="color:#710">"</span></span> }
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+  get('/') { "Hello #{session['user_name']}." }
+end
+</code></pre>
 
 <a name='%EB%8F%99%EC%A0%81%EC%9D%B8%20%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%20%EC%83%9D%EC%84%B1(Dynamic%20Application%20Creation)'></a>
 <h3>동적인 애플리케이션 생성(Dynamic Application Creation)</h3>
@@ -3122,55 +2586,43 @@ run <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color
 <p>어떤 상수에 할당하지 않고 런타임에서 새 애플리케이션들을 생성하려면,
 <code>Sinatra.new</code>를 쓰면 됩니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra/base</span><span style="color:#710">'</span></span>
-my_app = <span style="color:#036;font-weight:bold">Sinatra</span>.new { get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span>) { <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">hi</span><span style="color:#710">"</span></span> } }
+<pre><code class="language-ruby">require 'sinatra/base'
+my_app = Sinatra.new { get('/') { "hi" } }
 my_app.run!
-</pre></div>
-</div>
-</div>
+</code></pre>
 
 <p>선택적 인자로 상속할 애플리케이션을 받을 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre><span style="color:#777"># config.ru</span>
-require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra/base</span><span style="color:#710">'</span></span>
+<pre><code class="language-ruby"># config.ru
+require 'sinatra/base'
 
-controller = <span style="color:#036;font-weight:bold">Sinatra</span>.new <span style="color:#080;font-weight:bold">do</span>
-  enable <span style="color:#A60">:logging</span>
-  helpers <span style="color:#036;font-weight:bold">MyHelpers</span>
-<span style="color:#080;font-weight:bold">end</span>
+controller = Sinatra.new do
+  enable :logging
+  helpers MyHelpers
+end
 
-map(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/a</span><span style="color:#710">'</span></span>) <span style="color:#080;font-weight:bold">do</span>
-  run <span style="color:#036;font-weight:bold">Sinatra</span>.new(controller) { get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span>) { <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">a</span><span style="color:#710">'</span></span> } }
-<span style="color:#080;font-weight:bold">end</span>
+map('/a') do
+  run Sinatra.new(controller) { get('/') { 'a' } }
+end
 
-map(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/b</span><span style="color:#710">'</span></span>) <span style="color:#080;font-weight:bold">do</span>
-  run <span style="color:#036;font-weight:bold">Sinatra</span>.new(controller) { get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span>) { <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">b</span><span style="color:#710">'</span></span> } }
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+map('/b') do
+  run Sinatra.new(controller) { get('/') { 'b' } }
+end
+</code></pre>
 
 <p>이 방법은 Sintra 익스텐션을 테스팅하거나 또는 여러분의 라이브러리에서 Sinatra를
 사용할 경우에 특히 유용합니다.</p>
 
 <p>이 방법은 Sinatra를 미들웨어로 사용하는 것을 아주 쉽게 만들어 주기도 합니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra/base</span><span style="color:#710">'</span></span>
+<pre><code class="language-ruby">require 'sinatra/base'
 
-use <span style="color:#036;font-weight:bold">Sinatra</span> <span style="color:#080;font-weight:bold">do</span>
-  get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span>) { ... }
-<span style="color:#080;font-weight:bold">end</span>
+use Sinatra do
+  get('/') { ... }
+end
 
-run <span style="color:#036;font-weight:bold">RailsProject</span>::<span style="color:#036;font-weight:bold">Application</span>
-</pre></div>
-</div>
-</div>
+run RailsProject::Application
+</code></pre>
 
 <a name='%EB%B2%94%EC%9C%84(Scopes)%EC%99%80%20%EB%B0%94%EC%9D%B8%EB%94%A9(Binding)'></a>
 <h2>범위(Scopes)와 바인딩(Binding)</h2>
@@ -3189,20 +2641,16 @@ run <span style="color:#036;font-weight:bold">RailsProject</span>::<span style="
 
 <p><code>set</code>으로 생성한 옵션들은 클래스 레벨의 메서드들입니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre><span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyApp</span> &lt; <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color:#036;font-weight:bold">Base</span>
-  <span style="color:#777"># 저기요, 저는 애플리케이션 범위에 있다구요!</span>
-  set <span style="color:#A60">:foo</span>, <span style="color:#00D">42</span>
-  foo <span style="color:#777"># =&gt; 42</span>
+<pre><code class="language-ruby">class MyApp &lt; Sinatra::Base
+  # 저기요, 저는 애플리케이션 범위에 있다구요!
+  set :foo, 42
+  foo # =&gt; 42
 
-  get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-    <span style="color:#777"># 저기요, 전 이제 더 이상 애플리케이션 범위 속에 있지 않아요!</span>
-  <span style="color:#080;font-weight:bold">end</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+  get '/foo' do
+    # 저기요, 전 이제 더 이상 애플리케이션 범위 속에 있지 않아요!
+  end
+end
+</code></pre>
 
 <p>애플리케이션 범위에는 이런 것들이 있습니다.</p>
 
@@ -3233,25 +2681,21 @@ run <span style="color:#036;font-weight:bold">RailsProject</span>::<span style="
 접근하거나 <code>erb</code> 나 <code>haml</code> 같은 렌더링 메서드를 호출할 수 있습니다. 요청 범위
 내에서 <code>settings</code> 헬퍼를 통해 애플리케이션 범위에 접근 가능합니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre><span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyApp</span> &lt; <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color:#036;font-weight:bold">Base</span>
-  <span style="color:#777"># 이봐요, 전 애플리케이션 범위에 있다구요!</span>
-  get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/define_route/:name</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-    <span style="color:#777"># '/define_route/:name'의 요청 범위</span>
-    <span style="color:#33B">@value</span> = <span style="color:#00D">42</span>
+<pre><code class="language-ruby">class MyApp &lt; Sinatra::Base
+  # 이봐요, 전 애플리케이션 범위에 있다구요!
+  get '/define_route/:name' do
+    # '/define_route/:name'의 요청 범위
+    @value = 42
 
-    settings.get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">/</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">name</span><span style="color:#710">'</span></span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">"</span></span>) <span style="color:#080;font-weight:bold">do</span>
-      <span style="color:#777"># "/#{params['name']}"의 요청 범위</span>
-      <span style="color:#33B">@value</span> <span style="color:#777"># =&gt; nil (동일한 요청이 아님)</span>
-    <span style="color:#080;font-weight:bold">end</span>
+    settings.get("/#{params['name']}") do
+      # "/#{params['name']}"의 요청 범위
+      @value # =&gt; nil (동일한 요청이 아님)
+    end
 
-    <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">라우터가 정의됨!</span><span style="color:#710">"</span></span>
-  <span style="color:#080;font-weight:bold">end</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+    "라우터가 정의됨!"
+  end
+end
+</code></pre>
 
 <p>요청 범위에는 이런 것들이 있습니다.</p>
 
@@ -3289,12 +2733,8 @@ run <span style="color:#036;font-weight:bold">RailsProject</span>::<span style="
 
 <p>Sinatra 애플리케이션은 직접 실행할 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>ruby myapp.rb [-h] [-x] [-e ENVIRONMENT] [-p PORT] [-o HOST] [-s HANDLER]
-</pre></div>
-</div>
-</div>
+<pre><code class="language-shell">ruby myapp.rb [-h] [-x] [-e ENVIRONMENT] [-p PORT] [-o HOST] [-s HANDLER]
+</code></pre>
 
 <p>옵션들은 다음과 같습니다.</p>
 
@@ -3317,32 +2757,24 @@ run <span style="color:#036;font-weight:bold">RailsProject</span>::<span style="
 이는 서버를 시작할 때, 서버에 따른 정확한 호출 방법을 사용했을 때의
 이야기입니다. 밑의 예제는 다중 스레드 Thin 서버를 시작하는 방법입니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre><span style="color:#777"># app.rb</span>
+<pre><code class="language-ruby"># app.rb
 
-require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra/base</span><span style="color:#710">'</span></span>
+require 'sinatra/base'
 
-<span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">App</span> &lt; <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color:#036;font-weight:bold">Base</span>
-  get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-    <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Hello, World</span><span style="color:#710">"</span></span>
-  <span style="color:#080;font-weight:bold">end</span>
-<span style="color:#080;font-weight:bold">end</span>
+class App &lt; Sinatra::Base
+  get '/' do
+    "Hello, World"
+  end
+end
 
-<span style="color:#036;font-weight:bold">App</span>.run!
+App.run!
 
-</pre></div>
-</div>
-</div>
+</code></pre>
 
 <p>서버를 시작하는 명령어는 다음과 같습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>thin --threaded start
-</pre></div>
-</div>
-</div>
+<pre><code class="language-shell">thin --threaded start
+</code></pre>
 
 <a name='%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD(Requirement)'></a>
 <h2>요구사항(Requirement)</h2>
@@ -3427,12 +2859,8 @@ Sinatra를 실행할 수 없을 것입니다.</p>
 <p>주기적으로 사전배포(prerelease) 젬을 푸시하기 때문에, 최신 기능들을 얻기 위해
 다음과 같이 할 수도 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>gem install sinatra --pre
-</pre></div>
-</div>
-</div>
+<pre><code class="language-shell">gem install sinatra --pre
+</code></pre>
 
 <a name='Bundler%EB%A5%BC%20%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC'></a>
 <h3>Bundler를 사용하여</h3>
@@ -3442,26 +2870,18 @@ Sinatra를 실행할 수 없을 것입니다.</p>
 
 <p>우선, 아직 설치하지 않았다면 bundler를 설치합니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>gem install bundler
-</pre></div>
-</div>
-</div>
+<pre><code class="language-shell">gem install bundler
+</code></pre>
 
 <p>그런 다음, 프로젝트 디렉터리에서, <code>Gemfile</code>을 만듭니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>source <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">https://rubygems.org</span><span style="color:#710">'</span></span>
-gem <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra</span><span style="color:#710">'</span></span>, <span style="color:#A60">:github</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">sinatra/sinatra</span><span style="color:#710">"</span></span>
+<pre><code class="language-ruby">source 'https://rubygems.org'
+gem 'sinatra', :github =&gt; "sinatra/sinatra"
 
-<span style="color:#777"># 다른 의존관계들</span>
-gem <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">haml</span><span style="color:#710">'</span></span>                    <span style="color:#777"># 예를 들어, haml을 사용한다면</span>
-gem <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">activerecord</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">~&gt; 3.0</span><span style="color:#710">'</span></span>  <span style="color:#777"># 아마도 ActiveRecord 3.x도 필요할 것</span>
-</pre></div>
-</div>
-</div>
+# 다른 의존관계들
+gem 'haml'                    # 예를 들어, haml을 사용한다면
+gem 'activerecord', '~&gt; 3.0'  # 아마도 ActiveRecord 3.x도 필요할 것
+</code></pre>
 
 <p><code>Gemfile</code>안에 애플리케이션의 모든 의존성을 적어야 합니다.
 하지만, Sinatra가 직접적인 의존관계에 있는 것들(Rack과 Tilt)은
@@ -3469,12 +2889,8 @@ Bundler가 자동으로 찾아서 추가할 것입니다.</p>
 
 <p>이제 앱을 실행할 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>bundle exec ruby myapp.rb
-</pre></div>
-</div>
-</div>
+<pre><code class="language-shell">bundle exec ruby myapp.rb
+</code></pre>
 
 <a name='%EC%A7%81%EC%A0%91%20%ED%95%98%EA%B8%B0(Roll%20Your%20Own)'></a>
 <h3>직접 하기(Roll Your Own)</h3>
@@ -3482,48 +2898,32 @@ Bundler가 자동으로 찾아서 추가할 것입니다.</p>
 <p>로컬 클론(clone)을 생성한 다음 <code>$LOAD_PATH</code>에 <code>sinatra/lib</code> 디렉터리를 주고
 여러분 앱을 실행합니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>cd myapp
+<pre><code class="language-shell">cd myapp
 git clone git://github.com/sinatra/sinatra.git
 ruby -I sinatra/lib myapp.rb
-</pre></div>
-</div>
-</div>
+</code></pre>
 
 <p>이후에 Sinatra 소스를 업데이트하려면 이렇게 하세요.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>cd myapp/sinatra
+<pre><code class="language-shell">cd myapp/sinatra
 git pull
-</pre></div>
-</div>
-</div>
+</code></pre>
 
 <a name='%EC%A0%84%EC%97%AD%EC%9C%BC%EB%A1%9C%20%EC%84%A4%EC%B9%98(Install%20Globally)'></a>
 <h3>전역으로 설치(Install Globally)</h3>
 
 <p>젬을 직접 빌드할 수 있습니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>git clone git://github.com/sinatra/sinatra.git
+<pre><code class="language-shell">git clone git://github.com/sinatra/sinatra.git
 cd sinatra
 rake sinatra.gemspec
 rake install
-</pre></div>
-</div>
-</div>
+</code></pre>
 
 <p>만약 젬을 루트로 설치한다면, 마지막 단계는 다음과 같이 해야 합니다.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>sudo rake install
-</pre></div>
-</div>
-</div>
+<pre><code class="language-shell">sudo rake install
+</code></pre>
 
 <a name='%EB%B2%84%EC%A0%80%EB%8B%9D(Versioning)'></a>
 <h2>버저닝(Versioning)</h2>

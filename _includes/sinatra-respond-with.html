@@ -1,92 +1,88 @@
 
-<h1 id="label-Sinatra-3A-3ARespondWith">Sinatra::RespondWith<span><a href="#label-Sinatra-3A-3ARespondWith">&para;</a> <a href="#top">&uarr;</a></span></h1>
+<h1>Sinatra::RespondWith</h1>
 
 <p>These extensions let Sinatra automatically choose what template to render
 or action to perform depending on the request&#39;s Accept header.</p>
 
 <p>Example:</p>
 
-<pre class="ruby"><span class="ruby-comment"># Without Sinatra::RespondWith</span>
-<span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/&#39;</span> <span class="ruby-keyword">do</span>
-  <span class="ruby-identifier">data</span> = { :<span class="ruby-identifier">name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;example&#39;</span> }
-  <span class="ruby-identifier">request</span>.<span class="ruby-identifier">accept</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">type</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">case</span> <span class="ruby-identifier">type</span>.<span class="ruby-identifier">to_s</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;text/html&#39;</span>
-      <span class="ruby-identifier">halt</span> <span class="ruby-identifier">haml</span>(:<span class="ruby-identifier">index</span>, :<span class="ruby-identifier">locals</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">data</span>)
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;text/json&#39;</span>
-      <span class="ruby-identifier">halt</span> <span class="ruby-identifier">data</span>.<span class="ruby-identifier">to_json</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;application/atom+xml&#39;</span>
-      <span class="ruby-identifier">halt</span> <span class="ruby-identifier">nokogiri</span>(:<span class="ruby-string">&#39;index.atom&#39;</span>, :<span class="ruby-identifier">locals</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">data</span>)
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;application/xml&#39;</span>, <span class="ruby-string">&#39;text/xml&#39;</span>
-      <span class="ruby-identifier">halt</span> <span class="ruby-identifier">nokogiri</span>(:<span class="ruby-string">&#39;index.xml&#39;</span>, :<span class="ruby-identifier">locals</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">data</span>)
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;text/plain&#39;</span>
-      <span class="ruby-identifier">halt</span> <span class="ruby-string">&#39;just an example&#39;</span>
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">error</span> <span class="ruby-value">406</span>
-<span class="ruby-keyword">end</span>
+<pre># Without Sinatra::RespondWith
+get &#39;/&#39; do
+  data = { :name =&gt; &#39;example&#39; }
+  request.accept.each do |type|
+    case type.to_s
+    when &#39;text/html&#39;
+      halt haml(:index, :locals =&gt; data)
+    when &#39;text/json&#39;
+      halt data.to_json
+    when &#39;application/atom+xml&#39;
+      halt nokogiri(:&#39;index.atom&#39;, :locals =&gt; data)
+    when &#39;application/xml&#39;, &#39;text/xml&#39;
+      halt nokogiri(:&#39;index.xml&#39;, :locals =&gt; data)
+    when &#39;text/plain&#39;
+      halt &#39;just an example&#39;
+    end
+  end
+  error 406
+end
 
-<span class="ruby-comment"># With Sinatra::RespondWith</span>
-<span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/&#39;</span> <span class="ruby-keyword">do</span>
-  <span class="ruby-identifier">respond_with</span> :<span class="ruby-identifier">index</span>, :<span class="ruby-identifier">name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;example&#39;</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">txt</span> { <span class="ruby-string">&#39;just an example&#39;</span> }
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span>
-</pre>
+# With Sinatra::RespondWith
+get &#39;/&#39; do
+  respond_with :index, :name =&gt; &#39;example&#39; do |f|
+    f.txt { &#39;just an example&#39; }
+  end
+end</pre>
 
-<p>Both helper methods <code>respond_to</code> and <code>respond_with</code>
-let you define custom handlers like the one above for
-<code>text/plain</code>. <code>respond_with</code> additionally takes a
-template name and/or an object to offer the following default behavior:</p>
+<p>Both helper methods <tt>respond_to</tt> and <tt>respond_with</tt> let you
+define custom handlers like the one above for <tt>text/plain</tt>.
+<tt>respond_with</tt> additionally takes a template name and/or an object
+to offer the following default behavior:</p>
 <ul><li>
 <p>If a template name is given, search for a template called
-<code>name.format.engine</code> (<code>index.xml.nokogiri</code> in the
-above example).</p>
+<tt>name.format.engine</tt> (<tt>index.xml.nokogiri</tt> in the above
+example).</p>
 </li><li>
 <p>If a template name is given, search for a templated called
-<code>name.engine</code> for engines known to result in the requested
-format (<code>index.haml</code>).</p>
+<tt>name.engine</tt> for engines known to result in the requested format
+(<tt>index.haml</tt>).</p>
 </li><li>
 <p>If a file extension associated with the mime type is known to Sinatra, and
-the object responds to <code>to_extension</code>, call that method and use
-the result (<code>data.to_json</code>).</p>
+the object responds to <tt>to_extension</tt>, call that method and use the
+result (<tt>data.to_json</tt>).</p>
 </li></ul>
 
-<h2 id="label-Security">Security<span><a href="#label-Security">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<h2>Security</h2>
 
 <p>Since methods are triggered based on client input, this can lead to
 security issues (but not as severe as those might appear in the first
 place: keep in mind that only known file extensions are used). You should
 limit the possible formats you serve.</p>
 
-<p>This is possible with the <code>provides</code> condition:</p>
+<p>This is possible with the <tt>provides</tt> condition:</p>
 
-<pre class="ruby"><span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/&#39;</span>, :<span class="ruby-identifier">provides</span> =<span class="ruby-operator">&gt;</span> [:<span class="ruby-identifier">html</span>, :<span class="ruby-identifier">json</span>, :<span class="ruby-identifier">xml</span>, :<span class="ruby-identifier">atom</span>] <span class="ruby-keyword">do</span>
-  <span class="ruby-identifier">respond_with</span> :<span class="ruby-identifier">index</span>, :<span class="ruby-identifier">name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;example&#39;</span>
-<span class="ruby-keyword">end</span>
-</pre>
+<pre>get &#39;/&#39;, :provides =&gt; [:html, :json, :xml, :atom] do
+  respond_with :index, :name =&gt; &#39;example&#39;
+end</pre>
 
-<p>However, since you have to set <code>provides</code> for every route, this
+<p>However, since you have to set <tt>provides</tt> for every route, this
 extension adds an app global (class method) `respond_to`, that lets you
 define content types for all routes:</p>
 
-<pre class="ruby"><span class="ruby-identifier">respond_to</span> :<span class="ruby-identifier">html</span>, :<span class="ruby-identifier">json</span>, :<span class="ruby-identifier">xml</span>, :<span class="ruby-identifier">atom</span>
-<span class="ruby-identifier">get</span>(<span class="ruby-string">&#39;/a&#39;</span>) { <span class="ruby-identifier">respond_with</span> :<span class="ruby-identifier">index</span>, :<span class="ruby-identifier">name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;a&#39;</span> }
-<span class="ruby-identifier">get</span>(<span class="ruby-string">&#39;/b&#39;</span>) { <span class="ruby-identifier">respond_with</span> :<span class="ruby-identifier">index</span>, :<span class="ruby-identifier">name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;b&#39;</span> }
-</pre>
+<pre>respond_to :html, :json, :xml, :atom
+get(&#39;/a&#39;) { respond_with :index, :name =&gt; &#39;a&#39; }
+get(&#39;/b&#39;) { respond_with :index, :name =&gt; &#39;b&#39; }</pre>
 
-<h2 id="label-Custom+Types">Custom Types<span><a href="#label-Custom+Types">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<h2>Custom Types</h2>
 
-<p>Use the <code>on</code> method for defining actions for custom types:</p>
+<p>Use the <tt>on</tt> method for defining actions for custom types:</p>
 
-<pre class="ruby"><span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/&#39;</span> <span class="ruby-keyword">do</span>
-  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">xml</span> { <span class="ruby-identifier">nokogiri</span> :<span class="ruby-identifier">index</span> }
-    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">on</span>(<span class="ruby-string">&#39;application/custom&#39;</span>) { <span class="ruby-identifier">custom_action</span> }
-    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">on</span>(<span class="ruby-string">&#39;text/*&#39;</span>) { <span class="ruby-identifier">data</span>.<span class="ruby-identifier">to_s</span> }
-    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">on</span>(<span class="ruby-string">&#39;*/*&#39;</span>) { <span class="ruby-string">&quot;matches everything&quot;</span> }
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span>
-</pre>
+<pre>get &#39;/&#39; do
+  respond_to do |f|
+    f.xml { nokogiri :index }
+    f.on(&#39;application/custom&#39;) { custom_action }
+    f.on(&#39;text/*&#39;) { data.to_s }
+    f.on(&#39;*/*&#39;) { &quot;matches everything&quot; }
+  end
+end</pre>
 
 <p>Definition order does not matter.</p>

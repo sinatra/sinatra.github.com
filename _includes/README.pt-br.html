@@ -76,47 +76,31 @@ pode estar desatualizado.</em></p>
 
 <p>Alguns dos trechos de código a seguir utilizam caracteres UTF-8. Então, caso esteja utilizando uma versão de ruby inferior à <code>2.0.0</code>, adicione o encoding no início de seus arquivos:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre><span style="color:#777"># encoding: utf-8</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby"># encoding: utf-8
+</code></pre>
 
 <p>Sinatra é uma <a href="https://pt.wikipedia.org/wiki/Linguagem_de_dom%C3%ADnio_espec%C3%ADfico">DSL</a> para
 criar aplicações web em Ruby com o mínimo de esforço e rapidez:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre><span style="color:#777"># minha_app.rb</span>
-require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra</span><span style="color:#710">'</span></span>
+<pre><code class="language-ruby"># minha_app.rb
+require 'sinatra'
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Olá Mundo!</span><span style="color:#710">'</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/' do
+  'Olá Mundo!'
+end
+</code></pre>
 
 <p>Instale a gem:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>gem install sinatra
-</pre></div>
-</div>
-</div>
+<pre><code class="language-shell">gem install sinatra
+</code></pre>
 
 <p>Em seguida execute:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>ruby minha_app.rb
-</pre></div>
-</div>
-</div>
+<pre><code class="language-shell">ruby minha_app.rb
+</code></pre>
 
-<p>Acesse: <a href="http://localhost:4567">localhost:4567</a></p>
+<p>Acesse: <a href="http://localhost:4567">http://localhost:4567</a></p>
 
 <p>É recomendado também executar <code>gem install thin</code>. Caso esta gem esteja disponível, o
 Sinatra irá utilizá-la.</p>
@@ -132,34 +116,30 @@ Sinatra irá utilizá-la.</p>
 <p>No Sinatra, uma rota é um método HTTP emparelhado com um padrão de URL.
 Cada rota possui um bloco de execução:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+<pre><code class="language-ruby">get '/' do
   .. mostrando alguma coisa ..
-<span style="color:#080;font-weight:bold">end</span>
+end
 
-post <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+post '/' do
   .. criando alguma coisa ..
-<span style="color:#080;font-weight:bold">end</span>
+end
 
-put <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+put '/' do
   .. atualizando alguma coisa ..
-<span style="color:#080;font-weight:bold">end</span>
+end
 
-patch <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+patch '/' do
   .. modificando alguma coisa ..
-<span style="color:#080;font-weight:bold">end</span>
+end
 
-delete <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+delete '/' do
   .. removendo alguma coisa ..
-<span style="color:#080;font-weight:bold">end</span>
+end
 
-options <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+options '/' do
   .. estabelecendo alguma coisa ..pe
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+end
+</code></pre>
 
 <p>As rotas são interpretadas na ordem em que são definidas. A primeira
 rota encontrada responde a requisição.</p>
@@ -167,108 +147,76 @@ rota encontrada responde a requisição.</p>
 <p>Padrões de rota podem conter parâmetros nomeados, acessíveis por meio do
 hash <code>params</code>:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/ola/:nome</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#777"># corresponde a "GET /ola/foo" e "GET /ola/bar"</span>
-  <span style="color:#777"># params['nome'] é 'foo' ou 'bar'</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Olá </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">nome</span><span style="color:#710">'</span></span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/ola/:nome' do
+  # corresponde a "GET /ola/foo" e "GET /ola/bar"
+  # params['nome'] é 'foo' ou 'bar'
+  "Olá #{params['nome']}!"
+end
+</code></pre>
 
 <p>Você também pode acessar parâmetros nomeados por meio dos parâmetros de
 um bloco:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/ola/:nome</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span> |n|
-  <span style="color:#777"># corresponde a "GET /ola/foo" e "GET /ola/bar"</span>
-  <span style="color:#777"># params['nome'] é 'foo' ou 'bar'</span>
-  <span style="color:#777"># n guarda o valor de params['nome']</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Olá </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>n<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/ola/:nome' do |n|
+  # corresponde a "GET /ola/foo" e "GET /ola/bar"
+  # params['nome'] é 'foo' ou 'bar'
+  # n guarda o valor de params['nome']
+  "Olá #{n}!"
+end
+</code></pre>
 
 <p>Padrões de rota também podem conter parâmetros splat (curinga),
 acessível por meio do array <code>params['splat']</code>:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/diga/*/para/*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#777"># corresponde a /diga/ola/para/mundo</span>
-  params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">splat</span><span style="color:#710">'</span></span>] <span style="color:#777"># =&gt; ["ola", "mundo"]</span>
-<span style="color:#080;font-weight:bold">end</span>
+<pre><code class="language-ruby">get '/diga/*/para/*' do
+  # corresponde a /diga/ola/para/mundo
+  params['splat'] # =&gt; ["ola", "mundo"]
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/download/*.*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#777"># corresponde a /download/caminho/do/arquivo.xml</span>
-  params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">splat</span><span style="color:#710">'</span></span>] <span style="color:#777"># =&gt; ["caminho/do/arquivo", "xml"]</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/download/*.*' do
+  # corresponde a /download/caminho/do/arquivo.xml
+  params['splat'] # =&gt; ["caminho/do/arquivo", "xml"]
+end
+</code></pre>
 
 <p>Ou com parâmetros de um bloco:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/download/*.*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span> |caminho, ext|
-  [caminho, ext] <span style="color:#777"># =&gt; ["caminho/do/arquivo", "xml"]</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/download/*.*' do |caminho, ext|
+  [caminho, ext] # =&gt; ["caminho/do/arquivo", "xml"]
+end
+</code></pre>
 
 <p>Rotas podem casar com expressões regulares:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#D20">\A</span><span style="color:#D20">\/</span><span style="color:#808">ola</span><span style="color:#D20">\/</span><span style="color:#808">([</span><span style="color:#D20">\w</span><span style="color:#808">]+)</span><span style="color:#D20">\z</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Olá, </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">captures</span><span style="color:#710">'</span></span>].first<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get /\/ola\/([\w]+)/ do
+  "Olá, #{params['captures'].first}!"
+end
+</code></pre>
 
 <p>Ou com parâmetros de um bloco:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">%r{</span><span style="color:#808">/ola/([</span><span style="color:#D20">\w</span><span style="color:#808">]+)</span><span style="color:#404">}</span></span> <span style="color:#080;font-weight:bold">do</span> |c|
-  <span style="color:#777"># corresponde a "GET /meta/ola/mundo", "GET /ola/mundo/1234" etc.</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Olá, </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>c<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">!</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get %r{/ola/([\w]+)} do |c|
+  # corresponde a "GET /meta/ola/mundo", "GET /ola/mundo/1234" etc.
+  "Olá, #{c}!"
+end
+</code></pre>
 
 <p>Padrões de rota podem contar com parâmetros opcionais:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/posts.?:formato?</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#777"># corresponde a "GET /posts" e qualquer extensão "GET /posts.json", "GET /posts.xml", etc.</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/posts/:formato?' do
+  # corresponde a "GET /posts/" e qualquer extensão "GET /posts/json", "GET /posts/xml", etc.
+end
+</code></pre>
 
 <p>Rotas também podem utilizar query strings:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/posts</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#777"># corresponde a "GET /posts?titulo=foo&amp;autor=bar"</span>
-  titulo = params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">titulo</span><span style="color:#710">'</span></span>]
-  autor = params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">autor</span><span style="color:#710">'</span></span>]
-  <span style="color:#777"># utiliza as variaveis titulo e autor; a query é opicional para a rota /posts</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/posts' do
+  # corresponde a "GET /posts?titulo=foo&amp;autor=bar"
+  titulo = params['titulo']
+  autor = params['autor']
+  # utiliza as variaveis titulo e autor; a query é opicional para a rota /posts
+end
+</code></pre>
 
 <p>A propósito, a menos que você desative a proteção contra ataques (veja
 abaixo), o caminho solicitado pode ser alterado antes de concluir a
@@ -279,78 +227,62 @@ comparação com as suas rotas.</p>
 
 <p>Rotas podem incluir uma variedade de condições, tal como o <code>user agent</code>:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span>, <span style="color:#A60">:agent</span> =&gt; <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">Songbird (</span><span style="color:#D20">\d</span><span style="color:#D20">\.</span><span style="color:#D20">\d</span><span style="color:#808">)[</span><span style="color:#D20">\d</span><span style="color:#D20">\/</span><span style="color:#808">]*?</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Você está usando o Songbird versão </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">agent</span><span style="color:#710">'</span></span>][<span style="color:#00D">0</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
+<pre><code class="language-ruby">get '/foo', :agent =&gt; /Songbird (\d\.\d)[\d\/]*?/ do
+  "Você está usando o Songbird versão #{params['agent'][0]}"
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#777"># Correspondente a navegadores que não sejam Songbird</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/foo' do
+  # Correspondente a navegadores que não sejam Songbird
+end
+</code></pre>
 
 <p>Outras condições disponíveis são <code>host_name</code> e <code>provides</code>:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span>, <span style="color:#A60">:host_name</span> =&gt; <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">^admin</span><span style="color:#D20">\.</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Área administrativa. Acesso negado!</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
+<pre><code class="language-ruby">get '/', :host_name =&gt; /^admin\./ do
+  "Área administrativa. Acesso negado!"
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span>, <span style="color:#A60">:provides</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">html</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  haml <span style="color:#A60">:index</span>
-<span style="color:#080;font-weight:bold">end</span>
+get '/', :provides =&gt; 'html' do
+  haml :index
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span>, <span style="color:#A60">:provides</span> =&gt; [<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rss</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">atom</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">xml</span><span style="color:#710">'</span></span>] <span style="color:#080;font-weight:bold">do</span>
-  builder <span style="color:#A60">:feed</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/', :provides =&gt; ['rss', 'atom', 'xml'] do
+  builder :feed
+end
+</code></pre>
 <p><code>provides</code> procura pelos Accept header das requisições</p>
 
 <p>Você pode facilmente definir suas próprias condições:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>set(<span style="color:#A60">:probabilidade</span>) { |valor| condition { rand &lt;= valor } }
+<pre><code class="language-ruby">set(:probabilidade) { |valor| condition { rand &lt;= valor } }
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/ganha_um_carro</span><span style="color:#710">'</span></span>, <span style="color:#A60">:probabilidade</span> =&gt; <span style="color:#60E">0.1</span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Você ganhou!</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
+get '/ganha_um_carro', :probabilidade =&gt; 0.1 do
+  "Você ganhou!"
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/ganha_um_carro</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Sinto muito, você perdeu.</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/ganha_um_carro' do
+  "Sinto muito, você perdeu."
+end
+</code></pre>
 
 <p>Use splat, para uma condição que leva vários valores:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>set(<span style="color:#A60">:auth</span>) <span style="color:#080;font-weight:bold">do</span> |*roles|   <span style="color:#777"># &lt;- observe o splat aqui</span>
-  condition <span style="color:#080;font-weight:bold">do</span>
-    <span style="color:#080;font-weight:bold">unless</span> logged_in? &amp;&amp; roles.any? {|role| current_user.in_role? role }
-      redirect <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">/login/</span><span style="color:#710">"</span></span>, <span style="color:#00D">303</span>
-    <span style="color:#080;font-weight:bold">end</span>
-  <span style="color:#080;font-weight:bold">end</span>
-<span style="color:#080;font-weight:bold">end</span>
+<pre><code class="language-ruby">set(:auth) do |*roles|   # &lt;- observe o splat aqui
+  condition do
+    unless logged_in? &amp;&amp; roles.any? {|role| current_user.in_role? role }
+      redirect "/login/", 303
+    end
+  end
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">/minha/conta/</span><span style="color:#710">"</span></span>, <span style="color:#A60">:auth</span> =&gt; [<span style="color:#A60">:usuario</span>, <span style="color:#A60">:administrador</span>] <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Detalhes da sua conta</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
+get "/minha/conta/", :auth =&gt; [:usuario, :administrador] do
+  "Detalhes da sua conta"
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">/apenas/administrador/</span><span style="color:#710">"</span></span>, <span style="color:#A60">:auth</span> =&gt; <span style="color:#A60">:administrador</span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Apenas administradores são permitidos aqui!</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get "/apenas/administrador/", :auth =&gt; :administrador do
+  "Apenas administradores são permitidos aqui!"
+end
+</code></pre>
 
 <a name='Retorno%20de%20valores'></a>
 <h2>Retorno de valores</h2>
@@ -384,18 +316,14 @@ retornar um código de status HTTP.</p>
 
 <p>Dessa forma, podemos implementar facilmente um exemplo de streaming:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre><span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">Stream</span>
-  <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">each</span>
-    <span style="color:#00D">100</span>.times { |i| <span style="color:#080;font-weight:bold">yield</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>i<span style="font-weight:bold;color:#666">}</span></span><span style="color:#b0b">\n</span><span style="color:#710">"</span></span> }
-  <span style="color:#080;font-weight:bold">end</span>
-<span style="color:#080;font-weight:bold">end</span>
+<pre><code class="language-ruby">class Stream
+  def each
+    100.times { |i| yield "#{i}\n" }
+  end
+end
 
-get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span>) { <span style="color:#036;font-weight:bold">Stream</span>.new }
-</pre></div>
-</div>
-</div>
+get('/') { Stream.new }
+</code></pre>
 
 <p>Você também pode usar o método auxiliar <code>stream</code> (descrito abaixo) para
 incorporar a lógica de streaming na rota.</p>
@@ -408,55 +336,43 @@ embutido para uso de padrões de String e expressões regulares como
 validadores de rota. No entanto, ele não pára por aí. Você pode
 facilmente definir os seus próprios validadores:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre><span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">AllButPattern</span>
-  <span style="color:#036;font-weight:bold">Match</span> = <span style="color:#036;font-weight:bold">Struct</span>.new(<span style="color:#A60">:captures</span>)
+<pre><code class="language-ruby">class AllButPattern
+  Match = Struct.new(:captures)
 
-  <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">initialize</span>(except)
-    <span style="color:#33B">@except</span>   = except
-    <span style="color:#33B">@captures</span> = <span style="color:#036;font-weight:bold">Match</span>.new([])
-  <span style="color:#080;font-weight:bold">end</span>
+  def initialize(except)
+    @except   = except
+    @captures = Match.new([])
+  end
 
-  <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">match</span>(str)
-    <span style="color:#33B">@captures</span> <span style="color:#080;font-weight:bold">unless</span> <span style="color:#33B">@except</span> === str
-  <span style="color:#080;font-weight:bold">end</span>
-<span style="color:#080;font-weight:bold">end</span>
+  def match(str)
+    @captures unless @except === str
+  end
+end
 
-<span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">all_but</span>(pattern)
-  <span style="color:#036;font-weight:bold">AllButPattern</span>.new(pattern)
-<span style="color:#080;font-weight:bold">end</span>
+def all_but(pattern)
+  AllButPattern.new(pattern)
+end
 
-get all_but(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">/index</span><span style="color:#710">"</span></span>) <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#777"># ...</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get all_but("/index") do
+  # ...
+end
+</code></pre>
 
 <p>Note que o exemplo acima pode ser robusto e complicado em excesso. Pode
 também ser implementado como:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#404">/</span></span> <span style="color:#080;font-weight:bold">do</span>
-  pass <span style="color:#080;font-weight:bold">if</span> request.path_info == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">/index</span><span style="color:#710">"</span></span>
-  <span style="color:#777"># ...</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get // do
+  pass if request.path_info == "/index"
+  # ...
+end
+</code></pre>
 
 <p>Ou, usando algo mais denso à frente:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">%r{</span><span style="color:#808">^(?!/index$)</span><span style="color:#404">}</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#777"># ...</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get %r{(?!/index)} do
+  # ...
+end
+</code></pre>
 
 <a name='Arquivos%20est%C3%A1ticos'></a>
 <h2>Arquivos estáticos</h2>
@@ -465,12 +381,8 @@ também ser implementado como:</p>
 <code>./public</code>. Você pode especificar um local diferente pela opção
 <code>:public_folder</code></p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>set <span style="color:#A60">:public_folder</span>, <span style="color:#036;font-weight:bold">File</span>.dirname(<span style="color:#069">__FILE__</span>) + <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/estatico</span><span style="color:#710">'</span></span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">set :public_folder, File.dirname(__FILE__) + '/estatico'
+</code></pre>
 
 <p>Note que o nome do diretório público não é incluido na URL. Um arquivo
 <code>./public/css/style.css</code> é disponibilizado como
@@ -481,65 +393,45 @@ também ser implementado como:</p>
 
 <p>Cada linguagem de template é exposta através de seu próprio método de renderização. Estes metodos simplesmente retornam uma string:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  erb <span style="color:#A60">:index</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/' do
+  erb :index
+end
+</code></pre>
 
 <p>Isto renderiza <code>views/index.rb</code></p>
 
 <p>Ao invés do nome do template, você também pode passar direto o conteúdo do template:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  code = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">&lt;%= Time.now %&gt;</span><span style="color:#710">"</span></span>
+<pre><code class="language-ruby">get '/' do
+  code = "&lt;%= Time.now %&gt;"
   erb code
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+end
+</code></pre>
 
 <p>Templates também aceitam um segundo argumento, um hash de opções:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  erb <span style="color:#A60">:index</span>, <span style="color:#A60">:layout</span> =&gt; <span style="color:#A60">:post</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/' do
+  erb :index, :layout =&gt; :post
+end
+</code></pre>
 
 <p>Isto irá renderizar a <code>views/index.erb</code> inclusa dentro da <code>views/post.erb</code> (o padrão é a <code>views/layout.erb</code>, se existir).</p>
 
 <p>Qualquer opção não reconhecida pelo Sinatra será passada adiante para o engine de template:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  haml <span style="color:#A60">:index</span>, <span style="color:#A60">:format</span> =&gt; <span style="color:#A60">:html5</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/' do
+  haml :index, :format =&gt; :html5
+end
+</code></pre>
 
 <p>Você também pode definir opções padrões para um tipo de template:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>set <span style="color:#A60">:haml</span>, <span style="color:#A60">:format</span> =&gt; <span style="color:#A60">:html5</span>
+<pre><code class="language-ruby">set :haml, :format =&gt; :html5
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  haml <span style="color:#A60">:index</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/' do
+  haml :index
+end
+</code></pre>
 
 <p>Opções passadas para o método de renderização sobrescreve as opções definitas através do método <code>set</code>.</p>
 
@@ -602,12 +494,8 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>É pressuposto que os templates estarão localizados direto sob o diretório <code>./views</code>. Para usar um diretório diferente:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>set <span style="color:#A60">:views</span>, settings.root + <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/templates</span><span style="color:#710">'</span></span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">set :views, settings.root + '/templates'
+</code></pre>
 
 <p>Uma coisa importante para se lembrar é que você sempre deve
 referenciar os templates utilizando <em>symbols</em>, mesmo que
@@ -620,14 +508,10 @@ para ele</p>
 <a name='Literal%20Templates'></a>
 <h3>Literal Templates</h3>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  haml <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">%div.title Olá Mundo</span><span style="color:#710">'</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/' do
+  haml '%div.title Olá Mundo'
+end
+</code></pre>
 
 <p>Renderiza um template string.</p>
 
@@ -636,13 +520,9 @@ para ele</p>
 
 <p>Algumas linguagens possuem multiplas implementações. Para especificar qual implementação deverá ser utilizada (e para ser <em>thread-safe</em>), você deve simplesmente requere-la primeiro:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rdiscount</span><span style="color:#710">'</span></span> <span style="color:#777"># ou require 'bluecloth'</span>
-get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span>) { markdown <span style="color:#A60">:index</span> }
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">require 'rdiscount' # ou require 'bluecloth'
+get('/') { markdown :index }
+</code></pre>
 
 <a name='Haml%20Templates'></a>
 <h4>Haml Templates</h4>
@@ -830,22 +710,14 @@ você quase sempre precisará passar o <code>locals</code> para ele.</p>
 
 <p>Não é possível chamar métodos por este template, nem passar <em>locals</em> para o mesmo. Portanto normalmente é utilizado junto a outra engine de renderização:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>erb <span style="color:#A60">:overview</span>, <span style="color:#A60">:locals</span> =&gt; { <span style="color:#A60">:text</span> =&gt; markdown(<span style="color:#A60">:introducao</span>) }
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">erb :overview, :locals =&gt; { :text =&gt; markdown(:introducao) }
+</code></pre>
 
 <p>Note que vcoê também pode chamar o método <code>markdown</code> dentro de outros templates:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>%h1 <span style="color:#036;font-weight:bold">Olá</span> <span style="color:#080;font-weight:bold">do</span> Haml!
-%p= markdown(<span style="color:#A60">:saudacoes</span>)
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">%h1 Olá do Haml!
+%p= markdown(:saudacoes)
+</code></pre>
 
 <p>Já que você não pode chamar o Ruby pelo Markdown, você não
 pode utilizar um layout escrito em Markdown. Contudo é
@@ -869,22 +741,14 @@ deve-se passar a <code>:layout_engine</code> como opção.</p>
 
 <p>Não é possível chamar métodos por este template, nem passar <em>locals</em> para o mesmo. Portanto normalmente é utilizado junto a outra engine de renderização:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>erb <span style="color:#A60">:overview</span>, <span style="color:#A60">:locals</span> =&gt; { <span style="color:#A60">:text</span> =&gt; textile(<span style="color:#A60">:introducao</span>) }
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">erb :overview, :locals =&gt; { :text =&gt; textile(:introducao) }
+</code></pre>
 
 <p>Note que vcoê também pode chamar o método <code>textile</code> dentro de outros templates:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>%h1 <span style="color:#036;font-weight:bold">Olá</span> <span style="color:#080;font-weight:bold">do</span> Haml!
-%p= textile(<span style="color:#A60">:saudacoes</span>)
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">%h1 Olá do Haml!
+%p= textile(:saudacoes)
+</code></pre>
 
 <p>Já que você não pode chamar o Ruby pelo Textile, você não
 pode utilizar um layout escrito em Textile. Contudo é
@@ -911,22 +775,14 @@ deve-se passar a <code>:layout_engine</code> como opção.</p>
 
 <p>Não é possível chamar métodos por este template, nem passar <em>locals</em> para o mesmo. Portanto normalmente é utilizado junto a outra engine de renderização:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>erb <span style="color:#A60">:overview</span>, <span style="color:#A60">:locals</span> =&gt; { <span style="color:#A60">:text</span> =&gt; rdoc(<span style="color:#A60">:introducao</span>) }
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">erb :overview, :locals =&gt; { :text =&gt; rdoc(:introducao) }
+</code></pre>
 
 <p>Note que vcoê também pode chamar o método <code>rdoc</code> dentro de outros templates:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>%h1 <span style="color:#036;font-weight:bold">Olá</span> <span style="color:#080;font-weight:bold">do</span> Haml!
-%p= rdoc(<span style="color:#A60">:saudacoes</span>)
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">%h1 Olá do Haml!
+%p= rdoc(:saudacoes)
+</code></pre>
 
 <p>Já que você não pode chamar o Ruby pelo RDoc, você não
 pode utilizar um layout escrito em RDoc. Contudo é
@@ -1053,22 +909,14 @@ você quase sempre precisará passar o <code>locals</code> para ele.</p>
 
 <p>Não é possível chamar métodos por este template, nem passar <em>locals</em> para o mesmo. Portanto normalmente é utilizado junto a outra engine de renderização:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>erb <span style="color:#A60">:overview</span>, <span style="color:#A60">:locals</span> =&gt; { <span style="color:#A60">:text</span> =&gt; creole(<span style="color:#A60">:introduction</span>) }
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">erb :overview, :locals =&gt; { :text =&gt; creole(:introduction) }
+</code></pre>
 
 <p>Note que vcoê também pode chamar o método <code>creole</code> dentro de outros templates:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>%h1 <span style="color:#036;font-weight:bold">Olá</span> <span style="color:#080;font-weight:bold">do</span> Haml!
-%p= creole(<span style="color:#A60">:saudacoes</span>)
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">%h1 Olá do Haml!
+%p= creole(:saudacoes)
+</code></pre>
 
 <p>Já que você não pode chamar o Ruby pelo Creole, você não
 pode utilizar um layout escrito em Creole. Contudo é
@@ -1099,22 +947,14 @@ deve-se passar a <code>:layout_engine</code> como opção.</p>
 it. You therefore will usually use it in combination with another rendering
 engine:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>erb <span style="color:#A60">:overview</span>, <span style="color:#A60">:locals</span> =&gt; { <span style="color:#A60">:text</span> =&gt; mediawiki(<span style="color:#A60">:introduction</span>) }
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">erb :overview, :locals =&gt; { :text =&gt; mediawiki(:introduction) }
+</code></pre>
 
 <p>Note that you may also call the <code>mediawiki</code> method from within other templates:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>%h1 <span style="color:#036;font-weight:bold">Hello</span> <span style="color:#036;font-weight:bold">From</span> Haml!
-%p= mediawiki(<span style="color:#A60">:greetings</span>)
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">%h1 Hello From Haml!
+%p= mediawiki(:greetings)
+</code></pre>
 
 <p>Já que você não pode chamar o Ruby pelo MediaWiki, você não
 pode utilizar um layout escrito em MediaWiki. Contudo é
@@ -1173,18 +1013,14 @@ deve-se passar a <code>:layout_engine</code> como opção.</p>
 
 <p>Antes que vcoê possa utilizar o template Stylus primeiro você deve carregar <code>stylus</code> e <code>stylus/tilt</code>:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra</span><span style="color:#710">'</span></span>
-require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">stylus</span><span style="color:#710">'</span></span>
-require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">stylus/tilt</span><span style="color:#710">'</span></span>
+<pre><code class="language-ruby">require 'sinatra'
+require 'stylus'
+require 'stylus/tilt'
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  stylus <span style="color:#A60">:exemplo</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/' do
+  stylus :exemplo
+end
+</code></pre>
 
 <a name='Yajl%20Templates'></a>
 <h4>Yajl Templates</h4>
@@ -1213,23 +1049,15 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>O código-fonte do template é executado como uma string Ruby e a variável resultante em json é convertida utilizando <code>#to_json</code>:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>json = { <span style="color:#A60">:foo</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bar</span><span style="color:#710">'</span></span> }
-json[<span style="color:#A60">:baz</span>] = key
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">json = { :foo =&gt; 'bar' }
+json[:baz] = key
+</code></pre>
 
 <p>O <code>:callback</code> e <code>:variable</code> são opções que podem ser utilizadas para o objeto de renderização:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre><span style="color:#080;font-weight:bold">var</span> resource = {<span style="color:#606"><span style="color:#404">"</span><span>foo</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">bar</span><span style="color:#710">"</span></span>,<span style="color:#606"><span style="color:#404">"</span><span>baz</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">qux</span><span style="color:#710">"</span></span>};
+<pre><code class="language-javascript">var resource = {"foo":"bar","baz":"qux"};
 present(resource);
-</pre></div>
-</div>
-</div>
+</code></pre>
 
 <a name='WLang%20Templates'></a>
 <h4>WLang Templates</h4>
@@ -1260,27 +1088,19 @@ você quase sempre precisará passar o <code>locals</code> para ele.</p>
 rota. Variáveis de instância setadas em rotas manipuladas são
 diretamente acessadas por templates:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:id</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#33B">@foo</span> = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">id</span><span style="color:#710">'</span></span>])
-  haml <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">%h1= @foo.nome</span><span style="color:#710">'</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/:id' do
+  @foo = Foo.find(params['id'])
+  haml '%h1= @foo.nome'
+end
+</code></pre>
 
 <p>Ou, especifique um hash explícito para variáveis locais:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:id</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  foo = <span style="color:#036;font-weight:bold">Foo</span>.find(params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">id</span><span style="color:#710">'</span></span>])
-  haml <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">%h1= foo.nome</span><span style="color:#710">'</span></span>, <span style="color:#A60">:locals</span> =&gt; { <span style="color:#A60">:foo</span> =&gt; foo }
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/:id' do
+  foo = Foo.find(params['id'])
+  haml '%h1= foo.nome', :locals =&gt; { :foo =&gt; foo }
+end
+</code></pre>
 
 <p>Isso é tipicamente utilizando quando renderizamos templates como
 partials dentro de outros templates.</p>
@@ -1291,40 +1111,28 @@ partials dentro de outros templates.</p>
 <p>O layout geralmente é apenas um template que executa <code>yield</code>.
 Tal template pode ser utilizado pela opção <code>:template</code> descrita acima ou pode ser renderizado através de um bloco, como a seguir:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>erb <span style="color:#A60">:post</span>, <span style="color:#A60">:layout</span> =&gt; <span style="color:#069">false</span> <span style="color:#080;font-weight:bold">do</span>
-  erb <span style="color:#A60">:index</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">erb :post, :layout =&gt; false do
+  erb :index
+end
+</code></pre>
 
 <p>Este código é quase equivalente a <code>erb :index, :layout =&gt; :post</code></p>
 
 <p>Passando blocos para os métodos de renderização é útil para criar layouts aninhados:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>erb <span style="color:#A60">:main_layout</span>, <span style="color:#A60">:layout</span> =&gt; <span style="color:#069">false</span> <span style="color:#080;font-weight:bold">do</span>
-  erb <span style="color:#A60">:admin_layout</span> <span style="color:#080;font-weight:bold">do</span>
-    erb <span style="color:#A60">:user</span>
-  <span style="color:#080;font-weight:bold">end</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">erb :main_layout, :layout =&gt; false do
+  erb :admin_layout do
+    erb :user
+  end
+end
+</code></pre>
 
 <p>Também pode ser feito com menos linhas de código:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>erb <span style="color:#A60">:admin_layout</span>, <span style="color:#A60">:layout</span> =&gt; <span style="color:#A60">:main_layout</span> <span style="color:#080;font-weight:bold">do</span>
-  erb <span style="color:#A60">:user</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">erb :admin_layout, :layout =&gt; :main_layout do
+  erb :user
+end
+</code></pre>
 
 <p>Atualmente os métodos listados aceitam blocos: <code>erb</code>, <code>haml</code>,
 <code>liquid</code>, <code>slim </code>, <code>wlang</code>. E também o método <code>render</code>.</p>
@@ -1334,25 +1142,21 @@ Tal template pode ser utilizado pela opção <code>:template</code> descrita aci
 
 <p>Templates podem ser definidos no final do arquivo fonte(.rb):</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra</span><span style="color:#710">'</span></span>
+<pre><code class="language-ruby">require 'sinatra'
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  haml <span style="color:#A60">:index</span>
-<span style="color:#080;font-weight:bold">end</span>
+get '/' do
+  haml :index
+end
 
-<span style="color:#777">__END__
+__END__
 
 @@ layout
 %html
   = yield
 
 @@ index
-%div.title Olá Mundo.</span>
-</pre></div>
-</div>
-</div>
+%div.title Olá Mundo.
+</code></pre>
 
 <p>NOTA: Templates inline definidos no arquivo fonte são automaticamente
 carregados pelo sinatra. Digite `enable :inline_templates` se você
@@ -1364,67 +1168,51 @@ tem templates inline no outro arquivo fonte.</p>
 <p>Templates também podem ser definidos utilizando o método top-level
 <code>template</code>:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>template <span style="color:#A60">:layout</span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">%html</span><span style="color:#b0b">\n</span><span style="color:#D20">  =yield</span><span style="color:#b0b">\n</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
+<pre><code class="language-ruby">template :layout do
+  "%html\n  =yield\n"
+end
 
-template <span style="color:#A60">:index</span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">%div.title Olá Mundo!</span><span style="color:#710">'</span></span>
-<span style="color:#080;font-weight:bold">end</span>
+template :index do
+  '%div.title Olá Mundo!'
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  haml <span style="color:#A60">:index</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/' do
+  haml :index
+end
+</code></pre>
 
 <p>Se existir um template com nome “layout”, ele será utilizado toda vez
 que um template for renderizado. Você pode desabilitar layouts passando
 <code>:layout =&gt; false</code>.</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  haml <span style="color:#A60">:index</span>, <span style="color:#A60">:layout</span> =&gt; !request.xhr?
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/' do
+  haml :index, :layout =&gt; !request.xhr?
+end
+</code></pre>
 
 <a name='Associando%20extens%C3%B5es%20de%20arquivos'></a>
 <h3>Associando extensões de arquivos</h3>
 
 <p>Para associar uma extensão de arquivo com um engine de template use o método <code>Tilt.register</code>. Por exemplo, se você quiser usar a extensão <code>tt</code> para os templates Textile você pode fazer o seguinte:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre><span style="color:#036;font-weight:bold">Tilt</span>.register <span style="color:#A60">:tt</span>, <span style="color:#036;font-weight:bold">Tilt</span>[<span style="color:#A60">:textile</span>]
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">Tilt.register :tt, Tilt[:textile]
+</code></pre>
 
 <a name='Adicionando%20seu%20Pr%C3%B3prio%20Engine%20de%20Template'></a>
 <h3>Adicionando seu Próprio Engine de Template</h3>
 
 <p>Primeiro registre seu engine utilizando o Tilt, e então crie um método de renderização:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre><span style="color:#036;font-weight:bold">Tilt</span>.register <span style="color:#A60">:myat</span>, <span style="color:#036;font-weight:bold">MyAwesomeTemplateEngine</span>
+<pre><code class="language-ruby">Tilt.register :myat, MyAwesomeTemplateEngine
 
-helpers <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">myat</span>(*args) render(<span style="color:#A60">:myat</span>, *args) <span style="color:#080;font-weight:bold">end</span>
-<span style="color:#080;font-weight:bold">end</span>
+helpers do
+  def myat(*args) render(:myat, *args) end
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  myat <span style="color:#A60">:index</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/' do
+  myat :index
+end
+</code></pre>
 
 <p>Renderize <code>./views/index.myat</code>. Veja
 https://github.com/rtomayko/tilt para saber mais sobre Tilt.</p>
@@ -1434,20 +1222,16 @@ https://github.com/rtomayko/tilt para saber mais sobre Tilt.</p>
 
 <p>Para implementar sua própria lógica para busca de templates você pode escrever seu próprio método <code>#find_template</code></p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>configure <span style="color:#080;font-weight:bold">do</span>
-  set <span style="color:#A60">:views</span> [ <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">./views/a</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">./views/b</span><span style="color:#710">'</span></span> ]
-<span style="color:#080;font-weight:bold">end</span>
+<pre><code class="language-ruby">configure do
+  set :views [ './views/a', './views/b' ]
+end
 
-<span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">find_template</span>(views, name, engine, &amp;block)
-  Array(views).each <span style="color:#080;font-weight:bold">do</span> |v|
-    <span style="color:#080;font-weight:bold">super</span>(v, name, engine, &amp;block)
-  <span style="color:#080;font-weight:bold">end</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+def find_template(views, name, engine, &amp;block)
+  Array(views).each do |v|
+    super(v, name, engine, &amp;block)
+  end
+end
+</code></pre>
 
 <a name='Filtros'></a>
 <h2>Filtros</h2>
@@ -1457,50 +1241,38 @@ da requisição e podem modificar a requisição e a reposta. Variáveis de
 instância setadas nos filtros são acessadas através de rotas e
 templates:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>before <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#33B">@nota</span> = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Oi!</span><span style="color:#710">'</span></span>
-  request.path_info = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo/bar/baz</span><span style="color:#710">'</span></span>
-<span style="color:#080;font-weight:bold">end</span>
+<pre><code class="language-ruby">before do
+  @nota = 'Oi!'
+  request.path_info = '/foo/bar/baz'
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo/*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#33B">@nota</span> <span style="color:#777">#=&gt; 'Oi!'</span>
-  params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">splat</span><span style="color:#710">'</span></span>] <span style="color:#777">#=&gt; 'bar/baz'</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/foo/*' do
+  @nota #=&gt; 'Oi!'
+  params['splat'] #=&gt; 'bar/baz'
+end
+</code></pre>
 
 <p>Filtros After são avaliados após cada requisição dentro do contexto da
 requisição e também podem modificar a requisição e a resposta. Variáveis de
 instância e rotas definidas nos filtros before são acessadas através dos
 filtros after:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>after <span style="color:#080;font-weight:bold">do</span>
+<pre><code class="language-ruby">after do
   puts response.status
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+end
+</code></pre>
 
 <p>Filtros opcionalmente têm um padrão, fazendo com que sejam avaliados
 somente se o caminho do pedido coincidir com esse padrão:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>before <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/protected/*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
+<pre><code class="language-ruby">before '/protected/*' do
   authenticate!
-<span style="color:#080;font-weight:bold">end</span>
+end
 
-after <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/create/:slug</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span> |slug|
-  session[<span style="color:#A60">:last_slug</span>] = slug
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+after '/create/:slug' do |slug|
+  session[:last_slug] = slug
+end
+</code></pre>
 
 <a name='Helpers'></a>
 <h2>Helpers</h2>
@@ -1508,141 +1280,93 @@ after <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#7
 <p>Use o método de alto nível <code>helpers</code> para definir métodos auxiliares
 para utilizar em manipuladores de rotas e modelos:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>helpers <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">bar</span>(nome)
-    <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>nome<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">bar</span><span style="color:#710">"</span></span>
-  <span style="color:#080;font-weight:bold">end</span>
-<span style="color:#080;font-weight:bold">end</span>
+<pre><code class="language-ruby">helpers do
+  def bar(nome)
+    "#{nome}bar"
+  end
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:nome</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  bar(params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">nome</span><span style="color:#710">'</span></span>])
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/:nome' do
+  bar(params['nome'])
+end
+</code></pre>
 
 <a name='Utilizando%20Sess%C3%B5es'></a>
 <h3>Utilizando Sessões</h3>
 
 <p>Sessões são usadas para manter um estado durante uma requisição. Se ativa, você terá disponível um hash de sessão para cada sessão de usuário:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>enable <span style="color:#A60">:sessions</span>
+<pre><code class="language-ruby">enable :sessions
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">value = </span><span style="color:#710">"</span></span> &lt;&lt; session[<span style="color:#A60">:value</span>].inspect
-<span style="color:#080;font-weight:bold">end</span>
+get '/' do
+  "value = " &lt;&lt; session[:value].inspect
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:value</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">value</span><span style="color:#710">'</span></span>] = params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">value</span><span style="color:#710">'</span></span>]
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/:value' do
+  session['value'] = params['value']
+end
+</code></pre>
 
 <p>Note que <code>enable :sessions</code> utilizará um cookie para guardar todos os dados da sessão. Isso nem sempre pode ser o que você quer (guardar muitos dados irá aumentar o seu tráfego, por exemplo). Você pode utilizar qualquer Rack middleware de sessão: para fazer isso <strong>não</strong> utilize o método <code>enable :sessions</code>, ao invés disso utilize seu middleware de sessão como utilizaria qualquer outro:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>use <span style="color:#036;font-weight:bold">Rack</span>::<span style="color:#036;font-weight:bold">Session</span>::<span style="color:#036;font-weight:bold">Pool</span>, <span style="color:#A60">:expire_after</span> =&gt; <span style="color:#00D">2592000</span>
+<pre><code class="language-ruby">use Rack::Session::Pool, :expire_after =&gt; 2592000
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">value = </span><span style="color:#710">"</span></span> &lt;&lt; session[<span style="color:#A60">:value</span>].inspect
-<span style="color:#080;font-weight:bold">end</span>
+get '/' do
+  "value = " &lt;&lt; session[:value].inspect
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/:value</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  session[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">value</span><span style="color:#710">'</span></span>] = params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">value</span><span style="color:#710">'</span></span>]
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/:value' do
+  session['value'] = params['value']
+end
+</code></pre>
 
 <p>Para melhorar a segurança, os dados da sessão guardados no cookie é assinado com uma chave secreta da sessão. Uma chave aleatória é gerada para você pelo Sinatra. Contudo, já que a chave mudará cada vez que você inicia sua aplicação, você talvez queira defini-la você mesmo para que todas as instâncias da aplicação compartilhe-a:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>set <span style="color:#A60">:session_secret</span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">super secret</span><span style="color:#710">'</span></span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">set :session_secret, 'super secret'
+</code></pre>
 
 <p>Se você quiser fazer outras configurações, você também pode guardar um hash com as opções nas configurações da <code>session</code>:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>set <span style="color:#A60">:sessions</span>, <span style="color:#A60">:domain</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">foo.com</span><span style="color:#710">'</span></span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">set :sessions, :domain =&gt; 'foo.com'
+</code></pre>
 
 <p>Para compartilhar sua sessão entre outros aplicativos em um subdomínio de foo.com, utilize o prefixo <em>.</em>:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>set <span style="color:#A60">:sessions</span>, <span style="color:#A60">:domain</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">.foo.com</span><span style="color:#710">'</span></span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">set :sessions, :domain =&gt; '.foo.com'
+</code></pre>
 
 <a name='Halting'></a>
 <h3>Halting</h3>
 
 <p>Para parar imediatamente uma requisição com um filtro ou rota utilize:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>halt
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">halt
+</code></pre>
 
 <p>Você também pode especificar o status quando parar…</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>halt <span style="color:#00D">410</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">halt 410
+</code></pre>
 
 <p>Ou com corpo de texto…</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>halt <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">isso será o corpo do texto</span><span style="color:#710">'</span></span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">halt 'isso será o corpo do texto'
+</code></pre>
 
 <p>Ou também…</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>halt <span style="color:#00D">401</span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">vamos embora!</span><span style="color:#710">'</span></span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">halt 401, 'vamos embora!'
+</code></pre>
 
 <p>Com cabeçalhos…</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>halt <span style="color:#00D">402</span>, {<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Content-Type</span><span style="color:#710">'</span></span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">text/plain</span><span style="color:#710">'</span></span>}, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">revanche</span><span style="color:#710">'</span></span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">halt 402, {'Content-Type' =&gt; 'text/plain'}, 'revanche'
+</code></pre>
 
 <p>É obviamente possivel combinar um template com o <code>halt</code>:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>halt erb(<span style="color:#A60">:error</span>)
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">halt erb(:error)
+</code></pre>
 
 <a name='Passing'></a>
 <h3>Passing</h3>
@@ -1650,19 +1374,15 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 <p>Uma rota pode processar aposta para a próxima rota correspondente usando
 <code>pass</code>:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/adivinhar/:quem</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  pass <span style="color:#080;font-weight:bold">unless</span> params[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">quem</span><span style="color:#710">'</span></span>] == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Frank</span><span style="color:#710">'</span></span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Você me pegou!</span><span style="color:#710">'</span></span>
-<span style="color:#080;font-weight:bold">end</span>
+<pre><code class="language-ruby">get '/adivinhar/:quem' do
+  pass unless params['quem'] == 'Frank'
+  'Você me pegou!'
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/adivinhar/*</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Você falhou!</span><span style="color:#710">'</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/adivinhar/*' do
+  'Você falhou!'
+end
+</code></pre>
 
 <p>O bloqueio da rota é imediatamente encerrado e o controle continua com a
 próxima rota de parâmetro. Se o parâmetro da rota não for encontrado, um
@@ -1673,19 +1393,15 @@ próxima rota de parâmetro. Se o parâmetro da rota não for encontrado, um
 
 <p>As vezes o <code>pass</code> não é o que você quer, ao invés dele talvez você queira obter o resultado chamando outra rota. Utilize o método <code>call</code> neste caso:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/foo</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  status, headers, body = call env.merge(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">PATH_INFO</span><span style="color:#710">"</span></span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/bar</span><span style="color:#710">'</span></span>)
-  [status, headers, body.map(&amp;<span style="color:#A60">:upcase</span>)]
-<span style="color:#080;font-weight:bold">end</span>
+<pre><code class="language-ruby">get '/foo' do
+  status, headers, body = call env.merge("PATH_INFO" =&gt; '/bar')
+  [status, headers, body.map(&amp;:upcase)]
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/bar</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">bar</span><span style="color:#710">"</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/bar' do
+  "bar"
+end
+</code></pre>
 
 <p>Note que no exemplo acima você ganharia performance ao simplemente mover o <code>"bar"</code> em um helper usado por ambos <code>/foo</code> e <code>/bar</code>.</p>
 
@@ -1698,37 +1414,25 @@ get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710
 
 <p>Rodando uma vez, na inicialização, em qualquer ambiente:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>configure <span style="color:#080;font-weight:bold">do</span>
+<pre><code class="language-ruby">configure do
   ...
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+end
+</code></pre>
 
-<p>Rodando somente quando o ambiente (<code>RACK_ENV</code> environment variável) é
+<p>Rodando somente quando o ambiente (<code>APP_ENV</code> environment variável) é
 setado para <code>:production</code>:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>configure <span style="color:#A60">:production</span> <span style="color:#080;font-weight:bold">do</span>
+<pre><code class="language-ruby">configure :production do
   ...
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+end
+</code></pre>
 
 <p>Rodando quando o ambiente é setado para <code>:production</code> ou <code>:test</code>:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>configure <span style="color:#A60">:production</span>, <span style="color:#A60">:test</span> <span style="color:#080;font-weight:bold">do</span>
+<pre><code class="language-ruby">configure :production, :test do
   ...
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+end
+</code></pre>
 
 <a name='Tratamento%20de%20Erros'></a>
 <h2>Tratamento de Erros</h2>
@@ -1743,14 +1447,10 @@ oferecer, como <code>haml</code>, <code>erb</code>, <code>halt</code>, etc.</p>
 <p>Quando um <code>Sinatra::NotFound</code> exception é levantado, ou o código de
 status da reposta é 404, o manipulador <code>not_found</code> é invocado:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>not_found <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Isto está longe de ser encontrado</span><span style="color:#710">'</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">not_found do
+  'Isto está longe de ser encontrado'
+end
+</code></pre>
 
 <a name='Erro'></a>
 <h3>Erro</h3>
@@ -1759,36 +1459,24 @@ status da reposta é 404, o manipulador <code>not_found</code> é invocado:</p>
 partir de um bloco de rota ou um filtro. O objeto da exceção pode ser
 obtido a partir da variável Rack <code>sinatra.error</code>:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>error <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Desculpe, houve um erro desagradável - </span><span style="color:#710">'</span></span> + env[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra.error</span><span style="color:#710">'</span></span>].message
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">error do
+  'Desculpe, houve um erro desagradável - ' + env['sinatra.error'].message
+end
+</code></pre>
 
 <p>Erros customizados:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>error <span style="color:#036;font-weight:bold">MeuErroCustomizado</span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Então que aconteceu foi...</span><span style="color:#710">'</span></span> + env[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra.error</span><span style="color:#710">'</span></span>].message
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">error MeuErroCustomizado do
+  'Então que aconteceu foi...' + env['sinatra.error'].message
+end
+</code></pre>
 
 <p>Então, se isso acontecer:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  raise <span style="color:#036;font-weight:bold">MeuErroCustomizado</span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">alguma coisa ruim</span><span style="color:#710">'</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">get '/' do
+  raise MeuErroCustomizado, 'alguma coisa ruim'
+end
+</code></pre>
 
 <p>Você receberá isso:</p>
 
@@ -1798,29 +1486,21 @@ obtido a partir da variável Rack <code>sinatra.error</code>:</p>
 <p>Alternativamente, você pode instalar manipulador de erro para um código
 de status:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>error <span style="color:#00D">403</span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Accesso negado</span><span style="color:#710">'</span></span>
-<span style="color:#080;font-weight:bold">end</span>
+<pre><code class="language-ruby">error 403 do
+  'Accesso negado'
+end
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/secreto</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="color:#00D">403</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/secreto' do
+  403
+end
+</code></pre>
 
 <p>Ou um range:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>error <span style="color:#00D">400</span>..<span style="color:#00D">510</span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Boom</span><span style="color:#710">'</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">error 400..510 do
+  'Boom'
+end
+</code></pre>
 
 <p>O Sinatra instala os manipuladores especiais <code>not_found</code> e <code>error</code>
 quando roda sobre o ambiente de desenvolvimento.</p>
@@ -1832,21 +1512,13 @@ quando roda sobre o ambiente de desenvolvimento.</p>
 types Sinatra não entendidos. Use <code>mime_type</code> para registrar eles por
 extensão de arquivos:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>mime_type <span style="color:#A60">:foo</span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">text/foo</span><span style="color:#710">'</span></span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">mime_type :foo, 'text/foo'
+</code></pre>
 
 <p>Você também pode utilizar isto com o helper <code>content_type</code>:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>content_type <span style="color:#A60">:foo</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">content_type :foo
+</code></pre>
 
 <a name='Rack%20Middleware'></a>
 <h2>Rack Middleware</h2>
@@ -1861,34 +1533,26 @@ vários tipos de funcionalidades comuns.</p>
 <p>O Sinatra faz construtores pipelines do middleware Rack facilmente em um
 nível superior utilizando o método <code>use</code>:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra</span><span style="color:#710">'</span></span>
-require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">meu_middleware_customizado</span><span style="color:#710">'</span></span>
+<pre><code class="language-ruby">require 'sinatra'
+require 'meu_middleware_customizado'
 
-use <span style="color:#036;font-weight:bold">Rack</span>::<span style="color:#036;font-weight:bold">Lint</span>
-use <span style="color:#036;font-weight:bold">MeuMiddlewareCustomizado</span>
+use Rack::Lint
+use MeuMiddlewareCustomizado
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/ola</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Olá mundo</span><span style="color:#710">'</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/ola' do
+  'Olá mundo'
+end
+</code></pre>
 
 <p>A semântica de <code>use</code> é idêntica aquela definida para a DSL
 <a href="http://www.rubydoc.info/github/rack/rack/master/Rack/Builder">Rack::Builder</a>
 (mais frequentemente utilizada para arquivos rackup). Por exemplo, o
 método <code>use</code> aceita múltiplos argumentos/variáveis bem como blocos:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>use <span style="color:#036;font-weight:bold">Rack</span>::<span style="color:#036;font-weight:bold">Auth</span>::<span style="color:#036;font-weight:bold">Basic</span> <span style="color:#080;font-weight:bold">do</span> |usuario, senha|
-  usuario == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">admin</span><span style="color:#710">'</span></span> &amp;&amp; senha == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">secreto</span><span style="color:#710">'</span></span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">use Rack::Auth::Basic do |usuario, senha|
+  usuario == 'admin' &amp;&amp; senha == 'secreto'
+end
+</code></pre>
 
 <p>O Rack é distribuido com uma variedade de middleware padrões para logs,
 debugs, rotas de URL, autenticação, e manipuladores de sessão. Sinatra
@@ -1902,36 +1566,32 @@ configuração, então, tipicamente você não tem <code>use</code> explicitamen
 framework de teste baseados no Rack.
 <a href="http://gitrdoc.com/brynary/rack-test">Rack::Test</a> é recomendado:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">minha_aplicacao_sinatra</span><span style="color:#710">'</span></span>
-require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rack/test</span><span style="color:#710">'</span></span>
+<pre><code class="language-ruby">require 'minha_aplicacao_sinatra'
+require 'rack/test'
 
-<span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MinhaAplicacaoTeste</span> &lt; <span style="color:#036;font-weight:bold">Minitest</span>::<span style="color:#036;font-weight:bold">Test</span>
-  include <span style="color:#036;font-weight:bold">Rack</span>::<span style="color:#036;font-weight:bold">Test</span>::<span style="color:#036;font-weight:bold">Methods</span>
+class MinhaAplicacaoTeste &lt; Minitest::Test
+  include Rack::Test::Methods
 
-  <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">app</span>
-    <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color:#036;font-weight:bold">Application</span>
-  <span style="color:#080;font-weight:bold">end</span>
+  def app
+    Sinatra::Application
+  end
 
-  <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">meu_test_default</span>
-    get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span>
-    assert_equal <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Ola Mundo!</span><span style="color:#710">'</span></span>, last_response.body
-  <span style="color:#080;font-weight:bold">end</span>
+  def meu_test_default
+    get '/'
+    assert_equal 'Ola Mundo!', last_response.body
+  end
 
-  <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">teste_com_parametros</span>
-    get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/atender</span><span style="color:#710">'</span></span>, <span style="color:#A60">:name</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Frank</span><span style="color:#710">'</span></span>
-    assert_equal <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Olá Frank!</span><span style="color:#710">'</span></span>, last_response.bodymeet
-  <span style="color:#080;font-weight:bold">end</span>
+  def teste_com_parametros
+    get '/atender', :name =&gt; 'Frank'
+    assert_equal 'Olá Frank!', last_response.bodymeet
+  end
 
-  <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">test_com_ambiente_rack</span>
-    get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span>, {}, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">HTTP_USER_AGENT</span><span style="color:#710">'</span></span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Songbird</span><span style="color:#710">'</span></span>
-    assert_equal <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Você está utilizando o Songbird!</span><span style="color:#710">"</span></span>, last_response.body
-  <span style="color:#080;font-weight:bold">end</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+  def test_com_ambiente_rack
+    get '/', {}, 'HTTP_USER_AGENT' =&gt; 'Songbird'
+    assert_equal "Você está utilizando o Songbird!", last_response.body
+  end
+end
+</code></pre>
 
 <p>NOTA: Os módulos de classe embutidos <code>Sinatra::Test</code> e
 <code>Sinatra::TestHarness</code> são depreciados na versão 0.9.2.</p>
@@ -1948,33 +1608,25 @@ estilo de configuração de micro aplicativos (exemplo: uma simples
 arquivo de aplicação, diretórios <code>./public</code> e <code>./views</code>, logs, página de
 detalhes de exceção, etc.). É onde o <code>Sinatra::Base</code> entra em jogo:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra/base</span><span style="color:#710">'</span></span>
+<pre><code class="language-ruby">require 'sinatra/base'
 
-<span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MinhaApp</span> &lt; <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color:#036;font-weight:bold">Base</span>
-  set <span style="color:#A60">:sessions</span>, <span style="color:#069">true</span>
-  set <span style="color:#A60">:foo</span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bar</span><span style="color:#710">'</span></span>
+class MinhaApp &lt; Sinatra::Base
+  set :sessions, true
+  set :foo, 'bar'
 
-  get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-    <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Ola mundo!</span><span style="color:#710">'</span></span>
-  <span style="color:#080;font-weight:bold">end</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+  get '/' do
+    'Ola mundo!'
+  end
+end
+</code></pre>
 
 <p>A classe <code>MinhaApp</code> é um componente Rack independente que pode agir como
 um middleware Rack, uma aplicação Rack, ou metal Rails. Você pode
 utilizar ou executar esta classe com um arquivo rackup <code>config.ru</code>;
 ou, controlar um componente de servidor fornecendo como biblioteca:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre><span style="color:#036;font-weight:bold">MinhaApp</span>.run! <span style="color:#A60">:host</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">localhost</span><span style="color:#710">'</span></span>, <span style="color:#A60">:port</span> =&gt; <span style="color:#00D">9090</span>
-</pre></div>
-</div>
-</div>
+<pre><code class="language-ruby">MinhaApp.run! :host =&gt; 'localhost', :port =&gt; 9090
+</code></pre>
 
 <p>Os métodos disponíveis para subclasses <code>Sinatra::Base</code> são exatamente como
 aqueles disponíveis via a DSL de nível superior. Aplicações de nível
@@ -2013,12 +1665,8 @@ principal</a></p>
 
 <p>Aplicações Sinatra podem ser executadas diretamente:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>ruby minhaapp.rb [-h] [-x] [-e AMBIENTE] [-p PORTA] [-o HOST] [-s SERVIDOR]
-</pre></div>
-</div>
-</div>
+<pre><code class="language-shell">ruby minhaapp.rb [-h] [-x] [-e AMBIENTE] [-p PORTA] [-o HOST] [-s SERVIDOR]
+</code></pre>
 
 <p>As opções são:</p>
 
@@ -2042,31 +1690,23 @@ significaria que ao iniciar o servidor, você teria que espeficiar o método de 
 para o Rack handler específico. Os seguintes exemplos é uma demonstração de como iniciar um
 servidor Thin multi-thread:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre><span style="color:#777"># app.rb</span>
+<pre><code class="language-ruby"># app.rb
 
-require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra/base</span><span style="color:#710">'</span></span>
+require 'sinatra/base'
 
-<span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">App</span> &lt; <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color:#036;font-weight:bold">Base</span>
-  get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-    <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Olá mundo</span><span style="color:#710">'</span></span>
-  <span style="color:#080;font-weight:bold">end</span>
-<span style="color:#080;font-weight:bold">end</span>
+class App &lt; Sinatra::Base
+  get '/' do
+    'Olá mundo'
+  end
+end
 
-<span style="color:#036;font-weight:bold">App</span>.run!
-</pre></div>
-</div>
-</div>
+App.run!
+</code></pre>
 
 <p>Para iniciar o servidor seria:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>thin --threaded start
-</pre></div>
-</div>
-</div>
+<pre><code class="language-shell">thin --threaded start
+</code></pre>
 
 <a name='A%20%C3%BAltima%20vers%C3%A3o'></a>
 <h2>A última versão</h2>
@@ -2075,40 +1715,28 @@ require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:
 um clone local e execute sua aplicação com o diretório <code>sinatra/lib</code> no
 <code>LOAD_PATH</code>:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>cd minhaapp
+<pre><code class="language-shell">cd minhaapp
 git clone git://github.com/sinatra/sinatra.git
 ruby -I sinatra/lib minhaapp.rb
-</pre></div>
-</div>
-</div>
+</code></pre>
 
 <p>Alternativamente, você pode adicionar o diretório do <code>sinatra/lib</code> no
 <code>LOAD_PATH</code> do seu aplicativo:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre><span style="color:#d70">$LOAD_PATH</span>.unshift <span style="color:#036;font-weight:bold">File</span>.dirname(<span style="color:#069">__FILE__</span>) + <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/sinatra/lib</span><span style="color:#710">'</span></span>
-require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rubygems</span><span style="color:#710">'</span></span>
-require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sinatra</span><span style="color:#710">'</span></span>
+<pre><code class="language-ruby">$LOAD_PATH.unshift File.dirname(__FILE__) + '/sinatra/lib'
+require 'rubygems'
+require 'sinatra'
 
-get <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/sobre</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">do</span>
-  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Estou rodando a versão</span><span style="color:#710">"</span></span> + <span style="color:#036;font-weight:bold">Sinatra</span>::<span style="color:#036;font-weight:bold">VERSION</span>
-<span style="color:#080;font-weight:bold">end</span>
-</pre></div>
-</div>
-</div>
+get '/sobre' do
+  "Estou rodando a versão" + Sinatra::VERSION
+end
+</code></pre>
 
 <p>Para atualizar o código do Sinatra no futuro:</p>
 
-<div class="highlighter-coderay">
-<div class="CodeRay">
-  <div class="code"><pre>cd meuprojeto/sinatra
+<pre><code class="language-shell">cd meuprojeto/sinatra
 git pull
-</pre></div>
-</div>
-</div>
+</code></pre>
 
 <a name='Mais'></a>
 <h2>Mais</h2>

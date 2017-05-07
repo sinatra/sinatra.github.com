@@ -1,60 +1,107 @@
 
-<h1 id="label-Sinatra-3A-3AContentFor">Sinatra::ContentFor<span><a href="#label-Sinatra-3A-3AContentFor">&para;</a> <a href="#top">&uarr;</a></span></h1>
+<h1>Sinatra::ContentFor</h1>
 
-<p><code>Sinatra::ContentFor</code> is a set of helpers that allows you to
-capture blocks inside views to be rendered later during the request. The
-most common use is to populate different parts of your layout from your
-view.</p>
+<p><tt>Sinatra::ContentFor</tt> is a set of helpers that allows you to capture
+blocks inside views to be rendered later during the request. The most
+common use is to populate different parts of your layout from your view.</p>
 
 <p>The currently supported engines are: Erb, Erubis, Haml and Slim.</p>
 
-<h2 id="label-Usage">Usage<span><a href="#label-Usage">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<h2>Usage</h2>
 
-<p>You call <code>content_for</code>, generally from a view, to capture a
-block of markup giving it an identifier:</p>
+<p>You call <tt>content_for</tt>, generally from a view, to capture a block of
+markup giving it an identifier:</p>
 
 <pre># index.erb
 &lt;% content_for :some_key do %&gt;
   &lt;chunk of=&quot;html&quot;&gt;...&lt;/chunk&gt;
 &lt;% end %&gt;</pre>
 
-<p>Then, you call <code>yield_content</code> with that identifier, generally
-from a layout, to render the captured block:</p>
+<p>Then, you call <tt>yield_content</tt> with that identifier, generally from
+a layout, to render the captured block:</p>
 
 <pre># layout.erb
 &lt;%= yield_content :some_key %&gt;</pre>
 
-<h3 id="label-Classic+Application">Classic Application<span><a href="#label-Classic+Application">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<p>If you have provided <tt>yield_content</tt> with a block and no content for
+the specified key is found, it will render the results of the block
+provided to yield_content.</p>
+
+<pre># layout.erb
+&lt;%= yield_content :some_key_with_no_content do %&gt;
+  &lt;chunk of=&quot;default html&quot;&gt;...&lt;/chunk&gt;
+&lt;% end %&gt;</pre>
+
+<h3>Classic Application</h3>
 
 <p>To use the helpers in a classic application all you need to do is require
 them:</p>
 
-<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra&quot;</span>
-<span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra/content_for&quot;</span>
+<pre>require &quot;sinatra&quot;
+require &quot;sinatra/content_for&quot;
 
-<span class="ruby-comment"># Your classic application code goes here...</span>
-</pre>
+# Your classic application code goes here...</pre>
 
-<h3 id="label-Modular+Application">Modular Application<span><a href="#label-Modular+Application">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<h3>Modular Application</h3>
 
 <p>To use the helpers in a modular application you need to require them, and
 then, tell the application you will use them:</p>
 
-<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra/base&quot;</span>
-<span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra/content_for&quot;</span>
+<pre>require &quot;sinatra/base&quot;
+require &quot;sinatra/content_for&quot;
 
-<span class="ruby-keyword">class</span> <span class="ruby-constant">MyApp</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Sinatra</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>
-  <span class="ruby-identifier">helpers</span> <span class="ruby-constant">Sinatra</span><span class="ruby-operator">::</span><span class="ruby-constant">ContentFor</span>
+class MyApp &lt; Sinatra::Base
+  helpers Sinatra::ContentFor
 
-  <span class="ruby-comment"># The rest of your modular application code goes here...</span>
-<span class="ruby-keyword">end</span>
-</pre>
+  # The rest of your modular application code goes here...
+end</pre>
 
-<h2 id="label-And+How+Is+This+Useful-3F">And How Is This Useful?<span><a href="#label-And+How+Is+This+Useful-3F">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<h2>And How Is This Useful?</h2>
 
 <p>For example, some of your views might need a few javascript tags and
 stylesheets, but you don&#39;t want to force this files in all your pages.
-Then you can put <code>&lt;% yield_content :scripts_and_styles %&gt;</code>
-on your layout, inside the &lt;head&gt; tag, and each view can call
-<code>content_for</code> setting the appropriate set of tags that should be
+Then you can put <tt>&lt;%= yield_content :scripts_and_styles %&gt;</tt> on
+your layout, inside the &lt;head&gt; tag, and each view can call
+<tt>content_for</tt> setting the appropriate set of tags that should be
 added to the layout.</p>
+
+<h2>Limitations</h2>
+
+<p>Due to the rendering process limitation using <tt>&lt;%= yield_content
+%&gt;</tt> from within nested templates do not work above the
+&lt;tt&gt;&lt;%= yield %&gt; statement. For more details <a
+href="https://github.com/sinatra/sinatra-contrib/issues/140#issuecomment-48831668">github.com/sinatra/sinatra-contrib/issues/140#issuecomment-48831668</a></p>
+
+<pre># app.rb
+get &#39;/&#39; do
+  erb :body, :layout =&gt; :layout do
+    erb :foobar
+  end
+end
+
+# foobar.erb
+&lt;% content_for :one do %&gt;
+  &lt;script&gt;
+    alert(&#39;one&#39;);
+  &lt;/script&gt;
+&lt;% end %&gt;
+&lt;% content_for :two do %&gt;
+  &lt;script&gt;
+    alert(&#39;two&#39;);
+  &lt;/script&gt;
+&lt;% end %&gt;</pre>
+
+<p>Using <tt>&lt;%= yield_content %&gt;</tt> before <tt>&lt;%= yield
+%&gt;</tt> will cause only the second alert to display:</p>
+
+<pre># body.erb
+# Display only second alert
+&lt;%= yield_content :one %&gt;
+&lt;%= yield %&gt;
+&lt;%= yield_content :two %&gt;
+
+# body.erb
+# Display both alerts
+&lt;%= yield %&gt;
+&lt;%= yield_content :one %&gt;
+&lt;%= yield_content :two %&gt;</pre>

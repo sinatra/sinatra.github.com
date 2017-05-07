@@ -1,116 +1,181 @@
 
-<h1 id="label-Sinatra-3A-3ANamespace">Sinatra::Namespace<span><a href="#label-Sinatra-3A-3ANamespace">&para;</a> <a href="#top">&uarr;</a></span></h1>
+<h1>Sinatra::Namespace</h1>
 
-<p><code>Sinatra::Namespace</code> is an extension that adds namespaces to an
+<p><tt>Sinatra::Namespace</tt> is an extension that adds namespaces to an
 application.  This namespaces will allow you to share a path prefix for the
 routes within the namespace, and define filters, conditions and error
 handlers exclusively for them.  Besides that, you can also register helpers
 and extensions that will be used only within the namespace.</p>
 
-<h2 id="label-Usage">Usage<span><a href="#label-Usage">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<h2>Usage</h2>
 
 <p>Once you have loaded the extension (see below), you can use the
-<code>namespace</code> method to define namespaces in your application.</p>
+<tt>namespace</tt> method to define namespaces in your application.</p>
 
 <p>You can define a namespace by a path prefix:</p>
 
-<pre class="ruby"><span class="ruby-identifier">namespace</span> <span class="ruby-string">&#39;/blog&#39;</span> <span class="ruby-keyword">do</span>
-  <span class="ruby-identifier">get</span> { <span class="ruby-identifier">haml</span> :<span class="ruby-identifier">blog</span> }
-  <span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/:entry_permalink&#39;</span> <span class="ruby-keyword">do</span>
-    <span class="ruby-ivar">@entry</span> = <span class="ruby-constant">Entry</span>.<span class="ruby-identifier">find_by_permalink!</span>(<span class="ruby-identifier">params</span>[:<span class="ruby-identifier">entry_permalink</span>])
-    <span class="ruby-identifier">haml</span> :<span class="ruby-identifier">entry</span>
-  <span class="ruby-keyword">end</span>
+<pre>namespace &#39;/blog&#39; do
+  get { haml :blog }
+  get &#39;/:entry_permalink&#39; do
+    @entry = Entry.find_by_permalink!(params[:entry_permalink])
+    haml :entry
+  end
 
-  <span class="ruby-comment"># More blog routes...</span>
-<span class="ruby-keyword">end</span>
-</pre>
+  # More blog routes...
+end</pre>
 
 <p>by a condition:</p>
 
-<pre class="ruby"><span class="ruby-identifier">namespace</span> :<span class="ruby-identifier">host_name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;localhost&#39;</span> <span class="ruby-keyword">do</span>
-  <span class="ruby-identifier">get</span>(<span class="ruby-string">&#39;/admin/dashboard&#39;</span>) { <span class="ruby-identifier">haml</span> :<span class="ruby-identifier">dashboard</span> }
-  <span class="ruby-identifier">get</span>(<span class="ruby-string">&#39;/admin/login&#39;</span>)     { <span class="ruby-identifier">haml</span> :<span class="ruby-identifier">login</span> }
+<pre>namespace :host_name =&gt; &#39;localhost&#39; do
+  get(&#39;/admin/dashboard&#39;) { haml :dashboard }
+  get(&#39;/admin/login&#39;)     { haml :login }
 
-  <span class="ruby-comment"># More admin routes...</span>
-<span class="ruby-keyword">end</span>
-</pre>
+  # More admin routes...
+end</pre>
 
 <p>or both:</p>
 
-<pre class="ruby"><span class="ruby-identifier">namespace</span> <span class="ruby-string">&#39;/admin&#39;</span>, :<span class="ruby-identifier">host_name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;localhost&#39;</span> <span class="ruby-keyword">do</span>
-  <span class="ruby-identifier">get</span>(<span class="ruby-string">&#39;/dashboard&#39;</span>)  { <span class="ruby-identifier">haml</span> :<span class="ruby-identifier">dashboard</span> }
-  <span class="ruby-identifier">get</span>(<span class="ruby-string">&#39;/login&#39;</span>)      { <span class="ruby-identifier">haml</span> :<span class="ruby-identifier">login</span> }
-  <span class="ruby-identifier">post</span>(<span class="ruby-string">&#39;/login&#39;</span>)     { <span class="ruby-identifier">login_user</span> }
+<pre>namespace &#39;/admin&#39;, :host_name =&gt; &#39;localhost&#39; do
+  get(&#39;/dashboard&#39;)  { haml :dashboard }
+  get(&#39;/login&#39;)      { haml :login }
+  post(&#39;/login&#39;)     { login_user }
 
-  <span class="ruby-comment"># More admin routes...</span>
-<span class="ruby-keyword">end</span>
-</pre>
+  # More admin routes...
+end</pre>
+
+<p>Regex is also accepted:</p>
+
+<pre>namespace /\/posts\/([^\/&amp;?]+)\// do
+  get { haml :blog }
+
+  # More blog routes...
+end</pre>
 
 <p>When you define a filter or an error handler, or register an extension or a
 set of helpers within a namespace, they only affect the routes defined in
 it.  For instance, lets define a before filter to prevent the access of
 unauthorized users to the admin section of the application:</p>
 
-<pre class="ruby"><span class="ruby-identifier">namespace</span> <span class="ruby-string">&#39;/admin&#39;</span> <span class="ruby-keyword">do</span>
-  <span class="ruby-identifier">helpers</span> <span class="ruby-constant">AdminHelpers</span>
-  <span class="ruby-identifier">before</span>  { <span class="ruby-identifier">authenticate</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">path_info</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;/admin/login&#39;</span> }
+<pre>namespace &#39;/admin&#39; do
+  helpers AdminHelpers
+  before  { authenticate unless request.path_info == &#39;/admin/login&#39; }
 
-  <span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/dashboard&#39;</span> <span class="ruby-keyword">do</span>
-    <span class="ruby-comment"># Only authenticated users can access here...</span>
-    <span class="ruby-identifier">haml</span> :<span class="ruby-identifier">dashboard</span>
-  <span class="ruby-keyword">end</span>
+  get &#39;/dashboard&#39; do
+    # Only authenticated users can access here...
+    haml :dashboard
+  end
 
-  <span class="ruby-comment"># More admin routes...</span>
-<span class="ruby-keyword">end</span>
+  # More admin routes...
+end
 
-<span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/&#39;</span> <span class="ruby-keyword">do</span>
-  <span class="ruby-comment"># Any user can access here...</span>
-  <span class="ruby-identifier">haml</span> :<span class="ruby-identifier">index</span>
-<span class="ruby-keyword">end</span>
-</pre>
+get &#39;/&#39; do
+  # Any user can access here...
+  haml :index
+end</pre>
 
 <p>Well, they actually also affect the nested namespaces:</p>
 
-<pre class="ruby"><span class="ruby-identifier">namespace</span> <span class="ruby-string">&#39;/admin&#39;</span> <span class="ruby-keyword">do</span>
-  <span class="ruby-identifier">helpers</span> <span class="ruby-constant">AdminHelpers</span>
-  <span class="ruby-identifier">before</span>  { <span class="ruby-identifier">authenticate</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">path_info</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;/admin/login&#39;</span> }
+<pre>namespace &#39;/admin&#39; do
+  helpers AdminHelpers
+  before  { authenticate unless request.path_info == &#39;/admin/login&#39; }
 
-  <span class="ruby-identifier">namespace</span> <span class="ruby-string">&#39;/users&#39;</span> <span class="ruby-keyword">do</span>
-    <span class="ruby-identifier">get</span> <span class="ruby-keyword">do</span>
-      <span class="ruby-comment"># Only authenticated users can access here...</span>
-      <span class="ruby-ivar">@users</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">all</span>
-      <span class="ruby-identifier">haml</span> :<span class="ruby-identifier">users</span>
-    <span class="ruby-keyword">end</span>
+  namespace &#39;/users&#39; do
+    get do
+      # Only authenticated users can access here...
+      @users = User.all
+      haml :users
+    end
 
-    <span class="ruby-comment"># More user admin routes...</span>
-  <span class="ruby-keyword">end</span>
+    # More user admin routes...
+  end
 
-  <span class="ruby-comment"># More admin routes...</span>
-<span class="ruby-keyword">end</span>
-</pre>
+  # More admin routes...
+end</pre>
 
-<h3 id="label-Classic+Application+Setup">Classic Application Setup<span><a href="#label-Classic+Application+Setup">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<p>Redirecting within the namespace can be done using redirect_to:</p>
+
+<pre>namespace &#39;/admin&#39; do
+  get &#39;/foo&#39;  do
+    redirect_to &#39;/bar&#39; # Redirects to /admin/bar
+  end
+
+  get &#39;/foo&#39; do
+    redirect &#39;/bar&#39; # Redirects to /bar
+  end
+end</pre>
+
+<h3>Classic Application Setup</h3>
 
 <p>To be able to use namespaces in a classic application all you need to do is
 require the extension:</p>
 
-<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra&quot;</span>
-<span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra/namespace&quot;</span>
+<pre>require &quot;sinatra&quot;
+require &quot;sinatra/namespace&quot;
 
-<span class="ruby-comment"># The rest of your classic application code goes here...</span>
-</pre>
+namespace &#39;/users&#39; do
+end</pre>
 
-<h3 id="label-Modular+Application+Setup">Modular Application Setup<span><a href="#label-Modular+Application+Setup">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<h3>Modular Application Setup</h3>
 
 <p>To be able to use namespaces in a modular application all you need to do is
 require the extension, and then, register it:</p>
 
-<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra/base&quot;</span>
-<span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra/namespace&quot;</span>
+<pre>require &quot;sinatra/base&quot;
+require &quot;sinatra/namespace&quot;
 
-<span class="ruby-keyword">class</span> <span class="ruby-constant">MyApp</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Sinatra</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>
-  <span class="ruby-identifier">register</span> <span class="ruby-constant">Sinatra</span><span class="ruby-operator">::</span><span class="ruby-constant">Namespace</span>
+class MyApp &lt; Sinatra::Base
+  register Sinatra::Namespace
 
-  <span class="ruby-comment"># The rest of your modular application code goes here...</span>
-<span class="ruby-keyword">end</span>
-</pre>
+  namespace &#39;/users&#39; do
+  end
+end</pre>
+
+<h3>Within an extension</h3>
+
+<p>To be able to use namespaces within an extension, you need to first create
+an extension. This includes defining the `registered(app)` method in the
+module.</p>
+
+<pre>require &#39;sinatra/base&#39; # For creating Sinatra extensions
+require &#39;sinatra/namespace&#39; # To create namespaces
+
+module Zomg # Keep everything under &quot;Zomg&quot; namespace for sanity
+  module Routes # Define a new &quot;Routes&quot; module
+
+    self.registered(app)
+      # First, register the Namespace extension
+      app.register Sinatra::Namespace
+
+      # This defines an `/api` namespace on the application
+      app.namespace &#39;/api&#39; do
+        get &#39;/users&#39; do
+          # do something with `GET &quot;/api/users&quot;`
+        end
+      end
+
+    end
+  end
+
+  # Lastly, register the extension to use in our app
+  Sinatra.register Routes
+end</pre>
+
+<p>In order to use this extension, is the same as any other Sinatra extension:</p>
+
+<pre>module Zomg
+  # Define our app class, we use modular app for this example
+  class App &lt; Sinatra::Base
+    # this gives us all the namespaces we defined earlier
+    register Routes
+
+    get &#39;/&#39; do
+      &quot;Welcome to my application!&quot;
+    end
+  end
+end
+
+Zomg::App.run! # Don&#39;t forget to start your app ;)</pre>
+
+<p>Phew! That was a mouthful.</p>
+
+<p>I hope that helps you use `Sinatra::Namespace` in every way imaginable!</p>

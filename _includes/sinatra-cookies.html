@@ -1,56 +1,51 @@
 
-<h1 id="label-Sinatra-3A-3ACookies">Sinatra::Cookies<span><a href="#label-Sinatra-3A-3ACookies">&para;</a> <a href="#top">&uarr;</a></span></h1>
+<h1>Sinatra::Cookies</h1>
 
 <p>Easy way to deal with cookies</p>
 
-<h2 id="label-Usage">Usage<span><a href="#label-Usage">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<h2>Usage</h2>
 
 <p>Allows you to read cookies:</p>
 
-<pre class="ruby"><span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/&#39;</span> <span class="ruby-keyword">do</span>
-  <span class="ruby-node">&quot;value: #{cookies[:something]}&quot;</span>
-<span class="ruby-keyword">end</span>
-</pre>
+<pre>get &#39;/&#39; do
+  &quot;value: #{cookies[:something]}&quot;
+end</pre>
 
 <p>And of course to write cookies:</p>
 
-<pre class="ruby"><span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/set&#39;</span> <span class="ruby-keyword">do</span>
-  <span class="ruby-identifier">cookies</span>[:<span class="ruby-identifier">something</span>] = <span class="ruby-string">&#39;foobar&#39;</span>
-  <span class="ruby-identifier">redirect</span> <span class="ruby-identifier">to</span>(<span class="ruby-string">&#39;/&#39;</span>)
-<span class="ruby-keyword">end</span>
-</pre>
+<pre>get &#39;/set&#39; do
+  cookies[:something] = &#39;foobar&#39;
+  redirect to(&#39;/&#39;)
+end</pre>
 
 <p>And generally behaves like a hash:</p>
 
-<pre class="ruby"><span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/demo&#39;</span> <span class="ruby-keyword">do</span>
-  <span class="ruby-identifier">cookies</span>.<span class="ruby-identifier">merge!</span> <span class="ruby-string">&#39;foo&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;bar&#39;</span>, <span class="ruby-string">&#39;bar&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;baz&#39;</span>
-  <span class="ruby-identifier">cookies</span>.<span class="ruby-identifier">keep_if</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">start_with?</span> <span class="ruby-string">&#39;b&#39;</span> }
-  <span class="ruby-identifier">foo</span>, <span class="ruby-identifier">bar</span> = <span class="ruby-identifier">cookies</span>.<span class="ruby-identifier">values_at</span> <span class="ruby-string">&#39;foo&#39;</span>, <span class="ruby-string">&#39;bar&#39;</span>
-  <span class="ruby-node">&quot;size: #{cookies.length}&quot;</span>
-<span class="ruby-keyword">end</span>
-</pre>
+<pre>get &#39;/demo&#39; do
+  cookies.merge! &#39;foo&#39; =&gt; &#39;bar&#39;, &#39;bar&#39; =&gt; &#39;baz&#39;
+  cookies.keep_if { |key, value| key.start_with? &#39;b&#39; }
+  foo, bar = cookies.values_at &#39;foo&#39;, &#39;bar&#39;
+  &quot;size: #{cookies.length}&quot;
+end</pre>
 
-<h3 id="label-Classic+Application">Classic Application<span><a href="#label-Classic+Application">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<h3>Classic Application</h3>
 
 <p>In a classic application simply require the helpers, and start using them:</p>
 
-<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra&quot;</span>
-<span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra/cookies&quot;</span>
+<pre>require &quot;sinatra&quot;
+require &quot;sinatra/cookies&quot;
 
-<span class="ruby-comment"># The rest of your classic application code goes here...</span>
-</pre>
+# The rest of your classic application code goes here...</pre>
 
-<h3 id="label-Modular+Application">Modular Application<span><a href="#label-Modular+Application">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<h3>Modular Application</h3>
 
 <p>In a modular application you need to require the helpers, and then tell the
 application to use them:</p>
 
-<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra/base&quot;</span>
-<span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra/cookies&quot;</span>
+<pre>require &quot;sinatra/base&quot;
+require &quot;sinatra/cookies&quot;
 
-<span class="ruby-keyword">class</span> <span class="ruby-constant">MyApp</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Sinatra</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>
-  <span class="ruby-identifier">helpers</span> <span class="ruby-constant">Sinatra</span><span class="ruby-operator">::</span><span class="ruby-constant">Cookies</span>
+class MyApp &lt; Sinatra::Base
+  helpers Sinatra::Cookies
 
-  <span class="ruby-comment"># The rest of your modular application code goes here...</span>
-<span class="ruby-keyword">end</span>
-</pre>
+  # The rest of your modular application code goes here...
+end</pre>

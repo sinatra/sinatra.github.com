@@ -1,17 +1,17 @@
 
-<h1 id="label-Sinatra-3A-3AConfigFile">Sinatra::ConfigFile<span><a href="#label-Sinatra-3A-3AConfigFile">&para;</a> <a href="#top">&uarr;</a></span></h1>
+<h1>Sinatra::ConfigFile</h1>
 
-<p><code>Sinatra::ConfigFile</code> is an extension that allows you to load
-the application&#39;s configuration from YAML files.  It automatically
-detects if the files contains specific environment settings and it will use
-the corresponding to the current one.</p>
+<p><tt>Sinatra::ConfigFile</tt> is an extension that allows you to load the
+application&#39;s configuration from YAML files.  It automatically detects
+if the files contains specific environment settings and it will use the
+corresponding to the current one.</p>
 
-<p>You can access those options through <code>settings</code> within the
+<p>You can access those options through <tt>settings</tt> within the
 application. If you try to get the value for a setting that hasn&#39;t been
 defined in the config file for the current environment, you will get
 whatever it was set to in the application.</p>
 
-<h2 id="label-Usage">Usage<span><a href="#label-Usage">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<h2>Usage</h2>
 
 <p>Once you have written your configurations to a YAML file you can tell the
 extension to load them.  See below for more information about how these
@@ -21,41 +21,39 @@ files are interpreted.</p>
 
 <pre>greeting: Welcome to my file configurable application</pre>
 
-<h3 id="label-Classic+Application">Classic Application<span><a href="#label-Classic+Application">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<h3>Classic Application</h3>
 
-<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra&quot;</span>
-<span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra/config_file&quot;</span>
+<pre>require &quot;sinatra&quot;
+require &quot;sinatra/config_file&quot;
 
-<span class="ruby-identifier">config_file</span> <span class="ruby-string">&#39;path/to/config.yml&#39;</span>
+config_file &#39;path/to/config.yml&#39;
 
-<span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/&#39;</span> <span class="ruby-keyword">do</span>
-  <span class="ruby-ivar">@greeting</span> = <span class="ruby-identifier">settings</span>.<span class="ruby-identifier">greeting</span>
-  <span class="ruby-identifier">haml</span> :<span class="ruby-identifier">index</span>
-<span class="ruby-keyword">end</span>
+get &#39;/&#39; do
+  @greeting = settings.greeting
+  haml :index
+end
 
-<span class="ruby-comment"># The rest of your classic application code goes here...</span>
-</pre>
+# The rest of your classic application code goes here...</pre>
 
-<h3 id="label-Modular+Application">Modular Application<span><a href="#label-Modular+Application">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<h3>Modular Application</h3>
 
-<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra/base&quot;</span>
-<span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra/config_file&quot;</span>
+<pre>require &quot;sinatra/base&quot;
+require &quot;sinatra/config_file&quot;
 
-<span class="ruby-keyword">class</span> <span class="ruby-constant">MyApp</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Sinatra</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>
-  <span class="ruby-identifier">register</span> <span class="ruby-constant">Sinatra</span><span class="ruby-operator">::</span><span class="ruby-constant">ConfigFile</span>
+class MyApp &lt; Sinatra::Base
+  register Sinatra::ConfigFile
 
-  <span class="ruby-identifier">config_file</span> <span class="ruby-string">&#39;path/to/config.yml&#39;</span>
+  config_file &#39;path/to/config.yml&#39;
 
-  <span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/&#39;</span> <span class="ruby-keyword">do</span>
-    <span class="ruby-ivar">@greeting</span> = <span class="ruby-identifier">settings</span>.<span class="ruby-identifier">greeting</span>
-    <span class="ruby-identifier">haml</span> :<span class="ruby-identifier">index</span>
-  <span class="ruby-keyword">end</span>
+  get &#39;/&#39; do
+    @greeting = settings.greeting
+    haml :index
+  end
 
-  <span class="ruby-comment"># The rest of your modular application code goes here...</span>
-<span class="ruby-keyword">end</span>
-</pre>
+  # The rest of your modular application code goes here...
+end</pre>
 
-<h3 id="label-Config+File+Format">Config File Format<span><a href="#label-Config+File+Format">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<h3>Config File Format</h3>
 
 <p>In its most simple form this file is just a key-value list:</p>
 
@@ -88,16 +86,15 @@ production:
   production: production
 bar: bar</pre>
 
-<p>In either case, <code>settings.foo</code> will return the environment name,
-and <code>settings.bar</code> will return <code>&quot;bar&quot;</code>.</p>
+<p>In either case, <tt>settings.foo</tt> will return the environment name, and
+<tt>settings.bar</tt> will return <tt>&quot;bar&quot;</tt>.</p>
 
 <p>Be aware that if you have a different environment, besides development,
-test and production, you will also need to adjust the
-<code>environments</code> setting, otherwise the settings will not load. 
-For instance, when you also have a staging environment:</p>
+test and production, you will also need to adjust the <tt>environments</tt>
+setting, otherwise the settings will not load.  For instance, when you also
+have a staging environment:</p>
 
-<pre class="ruby"><span class="ruby-identifier">set</span> :<span class="ruby-identifier">environments</span>, <span class="ruby-node">%w{development test production staging}</span>
-</pre>
+<pre>set :environments, %w{development test production staging}</pre>
 
 <p>If you wish to provide defaults that may be shared among all the
 environments, this can be done by using one of the existing environments as
