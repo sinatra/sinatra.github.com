@@ -93,7 +93,12 @@ desc "Build outdated static files and API docs"
 task :build => [:pull, 'build:static']
 
 desc "Build outdated static files"
-task 'build:static' => readme("_includes/%s.html") + contrib("_includes/%s.html") + protection("_includes/%s.html")
+task 'build:static' =>
+  readme("_includes/%s.html") +
+  contrib("_includes/%s.html") +
+  protection("_includes/%s.html") +
+  ["_includes/sinatra-contrib-readme.html"] +
+  ["_includes/rack-protection-readme.html"]
 
 desc "Build anything that's outdated and stage changes for next commit"
 task :regen => [:build] do
@@ -107,7 +112,7 @@ task :pull => ['pull:sinatra']
 
 directory "_sinatra" do
   puts 'Cloning sinatra repo'
-  sh "git clone git://github.com/sinatra/sinatra.git _sinatra" 
+  sh "git clone git://github.com/sinatra/sinatra.git _sinatra"
 end
 
 desc 'Pull in the latest from the sinatra repo'
@@ -121,13 +126,36 @@ file 'AUTHORS' => '_sinatra'
 
 readme do |fn|
   file "_includes/#{fn}.html" => ["_sinatra/#{fn}.md", "Rakefile"] do |f|
-    markdown_string = File.read("_sinatra/#{fn}.md").encode('UTF-16le', :invalid => :replace, :replace => "").encode("UTF-8")
-    markdown_string.gsub!(/```(\s?(\w+\n))?/) do |match|
-      match =~ /```\s?\n/ ? "~~~~~\n" : match.sub(/```\s?/, "~~~~")
+    readme_to_html(f.name, "_sinatra/#{fn}.md")
+  end
+
+  file "_includes/sinatra-contrib-readme.html" => ["_sinatra/sinatra-contrib/README.md"] do |f|
+    readme_to_html(f.name, "_sinatra/sinatra-contrib/README.md")
+  end
+
+  file "_includes/rack-protection-readme.html" => ["_sinatra/rack-protection/README.md"] do |f|
+    readme_to_html(f.name, "_sinatra/rack-protection/README.md")
+  end
+end
+
+def readme_to_html(fname, path, with_toc=false)
+  markdown_string = File.read(path).
+    encode('UTF-16le', :invalid => :replace, :replace => "").
+    encode("UTF-8")
+  markdown_string.gsub!(/```(\s?(\w+\n))?/) do |match|
+    match =~ /```\s?\n/ ? "~~~~~\n" : match.sub(/```\s?/, "~~~~")
+  end
+  markdown = Kramdown::Document.new(markdown_string,
+    :fenced_code_blocks => true,
+    :coderay_line_numbers => nil,
+    :auto_ids => false)
+  html = cleanup(markdown.to_html)
+  File.open(fname, 'w') do |io|
+    if with_toc
+      io.write with_toc(html)
+    else
+      io.write html
     end
-    markdown = Kramdown::Document.new(markdown_string, :fenced_code_blocks => true, :coderay_line_numbers => nil, :auto_ids => false)
-    html = cleanup(markdown.to_html)
-    File.open(f.name, 'w') { |io| io.write with_toc(html) }
   end
 end
 
@@ -142,9 +170,15 @@ protection("_sinatra/rack-protection/doc/%s.rdoc") { |fn| file fn => '_sinatra/r
 
 protection do |fn|
   file "_includes/#{fn}.html" => ["build:protection_docs", "_sinatra/rack-protection/doc/#{fn}.rdoc", "Rakefile"] do |f|
-    html =
-      RDoc::Markup::ToHtml.new
-      .convert(File.read("_sinatra/rack-protection/doc/#{fn}.rdoc"))
+    path_to_file = "_sinatra/rack-protection/doc/#{fn}"
+
+    begin
+      file_to_convert = File.read(path_to_file + ".rdoc")
+    rescue
+      file_to_convert = File.read(path_to_file + ".md")
+    end
+
+    html = RDoc::Markup::ToHtml.new.convert(file_to_convert)
     File.open(f.name, 'wb') { |io| io.write html }
   end
 end
@@ -159,9 +193,15 @@ contrib("_sinatra/sinatra-contrib/doc/%s.rdoc") { |fn| file fn => '_sinatra/sina
 
 contrib do |fn|
   file "_includes/#{fn}.html" => ["build:contrib_docs", "_sinatra/sinatra-contrib/doc/#{fn}.rdoc", "Rakefile"] do |f|
-    html =
-      RDoc::Markup::ToHtml.new
-      .convert(File.read("_sinatra/sinatra-contrib/doc/#{fn}.rdoc"))
+    path_to_file = "_sinatra/sinatra-contrib/doc/#{fn}"
+
+    begin
+      file_to_convert = File.read(path_to_file + ".rdoc")
+    rescue
+      file_to_convert = File.read(path_to_file + ".md")
+    end
+
+    html = RDoc::Markup::ToHtml.new.convert(file_to_convert)
     File.open(f.name, 'wb') { |io| io.write html }
   end
 end
