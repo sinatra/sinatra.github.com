@@ -9,13 +9,20 @@ require 'nokogiri'
 require 'kramdown'
 
 
-def cleanup(html)
-  html_doc = Nokogiri::HTML(html)
-  html_doc.xpath("//h1").first.remove # Removes Sinatra Heading
-  html_doc.xpath("//ul").first.remove # Removes the ToC in Markdown
-  toc_header = html_doc.xpath("//h2").first
-  toc_header.remove if toc_header.inner_html == "Table of Contents"
-  html_doc.to_html
+def cleanup(html, fragment)
+  if fragment
+    html_doc = Nokogiri::HTML.fragment(html)
+    html_doc.xpath("h1").first.remove # Removes Heading
+    html_doc.xpath("p").first.remove # Removes badges
+    html_doc.to_html
+  else
+    html_doc = Nokogiri::HTML(html)
+    html_doc.xpath("//h1").first.remove # Removes Sinatra Heading
+    html_doc.xpath("//ul").first.remove # Removes the ToC in Markdown
+    toc_header = html_doc.xpath("//h2").first
+    toc_header.remove if toc_header.inner_html == "Table of Contents"
+    html_doc.to_html
+  end
 end
 
 
@@ -130,15 +137,15 @@ readme do |fn|
   end
 
   file "_includes/sinatra-contrib-readme.html" => ["_sinatra/sinatra-contrib/README.md"] do |f|
-    readme_to_html(f.name, "_sinatra/sinatra-contrib/README.md")
+    readme_to_html(f.name, "_sinatra/sinatra-contrib/README.md", false, true)
   end
 
   file "_includes/rack-protection-readme.html" => ["_sinatra/rack-protection/README.md"] do |f|
-    readme_to_html(f.name, "_sinatra/rack-protection/README.md")
+    readme_to_html(f.name, "_sinatra/rack-protection/README.md", false, true)
   end
 end
 
-def readme_to_html(fname, path, with_toc=false)
+def readme_to_html(fname, path, with_toc = false, fragment = false)
   markdown_string = File.read(path).
     encode('UTF-16le', :invalid => :replace, :replace => "").
     encode("UTF-8")
@@ -149,7 +156,8 @@ def readme_to_html(fname, path, with_toc=false)
     :fenced_code_blocks => true,
     :coderay_line_numbers => nil,
     :auto_ids => false)
-  html = cleanup(markdown.to_html)
+
+  html = cleanup(markdown.to_html, fragment)
   File.open(fname, 'w') do |io|
     if with_toc
       io.write with_toc(html)
