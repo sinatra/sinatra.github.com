@@ -1,39 +1,3 @@
-<div class='toc'>
-	<ol class='level-1'>
-		<li><a href='#Rotas'>Rotas</a></li>
-		<li><a href='#Arquivos%20est%C3%A1ticos'>Arquivos estáticos</a></li>
-		<li><a href='#Views%20/%20Templates'>Views / Templates</a></li>
-		<ol class='level-2'>
-			<li><a href='#Haml%20Templates'>Haml Templates</a></li>
-			<li><a href='#Erb%20Templates'>Erb Templates</a></li>
-			<li><a href='#Erubis'>Erubis</a></li>
-			<li><a href='#Builder%20Templates'>Builder Templates</a></li>
-			<li><a href='#Sass%20Templates'>Sass Templates</a></li>
-			<li><a href='#Less%20Templates'>Less Templates</a></li>
-			<li><a href='#Templates%20Inline'>Templates Inline</a></li>
-			<li><a href='#Acedendo%20a%20Vari%C3%A1veis%20nos%20Templates'>Acedendo a Variáveis nos Templates</a></li>
-			<li><a href='#Templates%20Inline'>Templates Inline</a></li>
-			<li><a href='#Templates%20nomeados'>Templates nomeados</a></li>
-		</ol>
-		<li><a href='#Helpers'>Helpers</a></li>
-		<li><a href='#Filtros'>Filtros</a></li>
-		<li><a href='#Halting'>Halting</a></li>
-		<li><a href='#Passing'>Passing</a></li>
-		<li><a href='#Configura%C3%A7%C3%A3o'>Configuração</a></li>
-		<li><a href='#Lidar%20com%20Erros'>Lidar com Erros</a></li>
-		<ol class='level-2'>
-			<li><a href='#N%C3%A3o%20Encontrado'>Não Encontrado</a></li>
-			<li><a href='#Erro'>Erro</a></li>
-		</ol>
-		<li><a href='#Mime%20Types'>Mime Types</a></li>
-		<li><a href='#Middleware%20Rack'>Middleware Rack</a></li>
-		<li><a href='#Testando'>Testando</a></li>
-		<li><a href='#Sinatra::Base%20-%20Middleware,%20Bibliotecas%20e%20aplicativos%20modulares'>Sinatra::Base - Middleware, Bibliotecas e aplicativos modulares</a></li>
-		<li><a href='#Linha%20de%20Comandos'>Linha de Comandos</a></li>
-		<li><a href='#A%20%C3%BAltima%20vers%C3%A3o'>A última versão</a></li>
-		<li><a href='#Mais'>Mais</a></li>
-	</ol>
-</div>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <html><body>
 
@@ -60,7 +24,6 @@ ruby minhaapp.rb
 
 <p>Aceda em: <a href="http://localhost:4567">http://localhost:4567</a></p>
 
-<a name='Rotas'></a>
 <h2>Rotas</h2>
 
 <p>No Sinatra, uma rota é um metodo HTTP associado a uma URL correspondente
@@ -143,7 +106,6 @@ get '/foo' do
 end
 </code></pre>
 
-<a name='Arquivos%20est%C3%A1ticos'></a>
 <h2>Arquivos estáticos</h2>
 
 <p>Arquivos estáticos são disponibilizados a partir do directório
@@ -157,7 +119,6 @@ end
 <code>./public/css/style.css</code> é disponibilizado como
 <code>http://example.com/css/style.css</code>.</p>
 
-<a name='Views%20/%20Templates'></a>
 <h2>Views / Templates</h2>
 
 <p>Templates presumem-se estar localizados sob o directório <code>./views</code>. Para
@@ -171,7 +132,6 @@ dos templates como símbolos, mesmo se eles estiverem num sub-directório
 (nesse caso utilize <code>:'subdir/template'</code>). Métodos de renderização irão
 processar qualquer string passada directamente para elas.</p>
 
-<a name='Haml%20Templates'></a>
 <h3>Haml Templates</h3>
 
 <p>A gem/biblioteca haml é necessária para renderizar templates HAML:</p>
@@ -200,7 +160,6 @@ get '/' do
 end
 </code></pre>
 
-<a name='Erb%20Templates'></a>
 <h3>Erb Templates</h3>
 
 <pre><code class="language-ruby"># É necessário requerir 'erb' na aplicação.
@@ -213,7 +172,6 @@ end
 
 <p>Renderiza <code>./views/index.erb</code></p>
 
-<a name='Erubis'></a>
 <h3>Erubis</h3>
 
 <p>A gem/biblioteca erubis é necessária para renderizar templates erubis:</p>
@@ -228,7 +186,6 @@ end
 
 <p>Renderiza <code>./views/index.erubis</code></p>
 
-<a name='Builder%20Templates'></a>
 <h3>Builder Templates</h3>
 
 <p>A gem/biblioteca builder é necessária para renderizar templates builder:</p>
@@ -244,7 +201,6 @@ end
 
 <p>Renderiza <code>./views/index.builder</code>.</p>
 
-<a name='Sass%20Templates'></a>
 <h3>Sass Templates</h3>
 
 <p>A gem/biblioteca sass é necessária para renderizar templates sass:</p>
@@ -275,7 +231,6 @@ get '/stylesheet.css' do
 end
 </code></pre>
 
-<a name='Less%20Templates'></a>
 <h3>Less Templates</h3>
 
 <p>A gem/biblioteca less é necessária para renderizar templates Less:</p>
@@ -291,7 +246,6 @@ end
 
 <p>Renderiza <code>./views/stylesheet.less</code>.</p>
 
-<a name='Templates%20Inline'></a>
 <h3>Templates Inline</h3>
 
 <pre><code class="language-ruby">get '/' do
@@ -301,7 +255,6 @@ end
 
 <p>Renderiza a string, em uma linha, no template.</p>
 
-<a name='Acedendo%20a%20Vari%C3%A1veis%20nos%20Templates'></a>
 <h3>Acedendo a Variáveis nos Templates</h3>
 
 <p>Templates são avaliados dentro do mesmo contexto que os manipuladores de
@@ -325,7 +278,6 @@ end
 <p>Isso é tipicamente utilizado quando renderizamos templates parciais
 (partials) dentro de outros templates.</p>
 
-<a name='Templates%20Inline'></a>
 <h3>Templates Inline</h3>
 
 <p>Templates podem ser definidos no final do arquivo fonte(.rb):</p>
@@ -351,7 +303,6 @@ __END__
 carregados pelo sinatra. Digite `enable :inline_templates` se tem
 templates inline no outro arquivo fonte.</p>
 
-<a name='Templates%20nomeados'></a>
 <h3>Templates nomeados</h3>
 
 <p>Templates também podem ser definidos utilizando o método top-level
@@ -379,7 +330,6 @@ um template for renderizado. Pode desactivar layouts usando
 end
 </code></pre>
 
-<a name='Helpers'></a>
 <h2>Helpers</h2>
 
 <p>Use o método de alto nível <code>helpers</code> para definir métodos auxiliares
@@ -396,7 +346,6 @@ get '/:nome' do
 end
 </code></pre>
 
-<a name='Filtros'></a>
 <h2>Filtros</h2>
 
 <p>Filtros Before são avaliados antes de cada requisição dentro do contexto
@@ -437,7 +386,6 @@ after '/create/:slug' do |slug|
 end
 </code></pre>
 
-<a name='Halting'></a>
 <h2>Halting</h2>
 
 <p>Para parar imediatamente uma requisição dentro de um filtro ou rota
@@ -466,7 +414,6 @@ utilize:</p>
 <pre><code class="language-ruby">halt 402, {'Content-Type' =&gt; 'text/plain'}, 'revanche'
 </code></pre>
 
-<a name='Passing'></a>
 <h2>Passing</h2>
 
 <p>Dentro de uma rota, pode passar para a próxima rota correspondente
@@ -486,7 +433,6 @@ end
 próxima rota de parâmetro. Se o parâmetro da rota não for encontrado, um
 404 é retornado.</p>
 
-<a name='Configura%C3%A7%C3%A3o'></a>
 <h2>Configuração</h2>
 
 <p>Correndo uma vez, na inicialização, em qualquer ambiente:</p>
@@ -511,13 +457,11 @@ end
 end
 </code></pre>
 
-<a name='Lidar%20com%20Erros'></a>
 <h2>Lidar com Erros</h2>
 
 <p>Lida-se com erros no mesmo contexto das rotas e filtros before, o que
 signifca que <code>haml</code>, <code>erb</code>, etc, estão disponíveis.</p>
 
-<a name='N%C3%A3o%20Encontrado'></a>
 <h3>Não Encontrado</h3>
 
 <p>Quando um <code>Sinatra::NotFound</code> exception é levantado, ou o código de
@@ -528,7 +472,6 @@ status da reposta é 404, o manipulador <code>not_found</code> é invocado:</p>
 end
 </code></pre>
 
-<a name='Erro'></a>
 <h3>Erro</h3>
 
 <p>O manipulador <code>error</code> é invocado sempre que uma exceção é lançada a
@@ -581,7 +524,6 @@ end
 <p>O Sinatra define os manipuladores especiais <code>not_found</code> e <code>error</code> quando
 corre no ambiente de desenvolvimento.</p>
 
-<a name='Mime%20Types'></a>
 <h2>Mime Types</h2>
 
 <p>Quando utilizamos <code>send_file</code> ou arquivos estáticos pode ter mime types
@@ -596,7 +538,6 @@ arquivos:</p>
 <pre><code class="language-ruby">content_type :foo
 </code></pre>
 
-<a name='Middleware%20Rack'></a>
 <h2>Middleware Rack</h2>
 
 <p>O Sinatra corre no <a href="http://rack.github.io/">Rack</a>, uma interface
@@ -636,7 +577,6 @@ utiliza muitos desses componentes automaticamente dependendo da
 configuração, por isso, tipicamente nao é necessário utilizar <code>use</code>
 explicitamente.</p>
 
-<a name='Testando'></a>
 <h2>Testando</h2>
 
 <p>Testes no Sinatra podem ser escritos utilizando qualquer biblioteca ou
@@ -673,7 +613,6 @@ end
 <p>NOTA: Os módulos de classe embutidos <code>Sinatra::Test</code> e
 <code>Sinatra::TestHarness</code> são depreciados na versão 0.9.2.</p>
 
-<a name='Sinatra::Base%20-%20Middleware,%20Bibliotecas%20e%20aplicativos%20modulares'></a>
 <h2>Sinatra::Base - Middleware, Bibliotecas e aplicativos modulares</h2>
 
 <p>Definir sua aplicação a um nível superior de trabalho funciona bem para
@@ -727,7 +666,6 @@ mixin</a>
 sendo <a href="http://github.com/sinatra/sinatra/blob/ceac46f0bc129a6e994a06100aa854f606fe5992/lib/sinatra/main.rb#L28">incluido dentro de um espaço
 principal</a></p>
 
-<a name='Linha%20de%20Comandos'></a>
 <h2>Linha de Comandos</h2>
 
 <p>As aplicações Sinatra podem ser executadas directamente:</p>
@@ -745,7 +683,6 @@ principal</a></p>
 -x # activa o bloqueio (padrão é desligado)
 </code></pre>
 
-<a name='A%20%C3%BAltima%20vers%C3%A3o'></a>
 <h2>A última versão</h2>
 
 <p>Se gostaria de utilizar o código da última versão do Sinatra, crie um
@@ -775,7 +712,6 @@ end
 git pull
 </code></pre>
 
-<a name='Mais'></a>
 <h2>Mais</h2>
 
 <ul>

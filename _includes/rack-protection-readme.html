@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body>
+
+<p><a href="http://travis-ci.org/sinatra/rack-protection"><img src="https://secure.travis-ci.org/sinatra/rack-protection.png" alt="Build Status"></a></p>
+
+<p>This gem protects against typical web attacks.
+Should work for all Rack apps, including Rails.</p>
+
+<h1>Usage</h1>
+
+<p>Use all protections you probably want to use:</p>
+
+<pre><code class="language-ruby"># config.ru
+require 'rack/protection'
+use Rack::Protection
+run MyApp
+</code></pre>
+
+<p>Skip a single protection middleware:</p>
+
+<pre><code class="language-ruby"># config.ru
+require 'rack/protection'
+use Rack::Protection, :except =&gt; :path_traversal
+run MyApp
+</code></pre>
+
+<p>Use a single protection middleware:</p>
+
+<pre><code class="language-ruby"># config.ru
+require 'rack/protection'
+use Rack::Protection::AuthenticityToken
+run MyApp
+</code></pre>
+
+<h1>Prevented Attacks</h1>
+
+<h2>Cross Site Request Forgery</h2>
+
+<p>Prevented by:</p>
+
+
+
+<h2>Cross Site Scripting</h2>
+
+<p>Prevented by:</p>
+
+<ul>
+  <li>
+<code>Rack::Protection::EscapedParams</code> (not included by <code>use Rack::Protection</code>)</li>
+  <li>
+<code>Rack::Protection::XSSHeader</code> (Internet Explorer and Chrome only)</li>
+  <li><code>Rack::Protection::ContentSecurityPolicy</code></li>
+</ul>
+
+<h2>Clickjacking</h2>
+
+<p>Prevented by:</p>
+
+<ul>
+  <li><code>Rack::Protection::FrameOptions</code></li>
+</ul>
+
+<h2>Directory Traversal</h2>
+
+<p>Prevented by:</p>
+
+<ul>
+  <li><code>Rack::Protection::PathTraversal</code></li>
+</ul>
+
+<h2>Session Hijacking</h2>
+
+<p>Prevented by:</p>
+
+<ul>
+  <li><code>Rack::Protection::SessionHijacking</code></li>
+</ul>
+
+<h2>Cookie Tossing</h2>
+
+<p>Prevented by:
+* <code>Rack::Protection::CookieTossing</code> (not included by <code>use Rack::Protection</code>)</p>
+
+<h2>IP Spoofing</h2>
+
+<p>Prevented by:</p>
+
+<ul>
+  <li><code>Rack::Protection::IPSpoofing</code></li>
+</ul>
+
+<h2>Helps to protect against protocol downgrade attacks and cookie hijacking</h2>
+
+<p>Prevented by:</p>
+
+<ul>
+  <li>
+<code>Rack::Protection::StrictTransport</code> (not included by <code>use Rack::Protection</code>)</li>
+</ul>
+
+<h1>Installation</h1>
+
+<pre><code>gem install rack-protection
+</code></pre>
+
+<h1>Instrumentation</h1>
+
+<p>Instrumentation is enabled by passing in an instrumenter as an option.
+~~~~
+use Rack::Protection, instrumenter: ActiveSupport::Notifications
+~~~~</p>
+
+<p>The instrumenter is passed a namespace (String) and environment (Hash). The namespace is ‘rack.protection’ and the attack type can be obtained from the environment key ‘rack.protection.attack’.</p>
+</body></html>

@@ -1,112 +1,3 @@
-<div class='toc'>
-	<ol class='level-1'>
-		<li><a href='#%E7%9B%AE%E5%BD%95'>目录</a></li>
-		<li><a href='#%E8%B7%AF%E7%94%B1'>路由</a></li>
-		<ol class='level-2'>
-			<li><a href='#%E6%9D%A1%E4%BB%B6'>条件</a></li>
-			<li><a href='#%E8%BF%94%E5%9B%9E%E5%80%BC'>返回值</a></li>
-			<li><a href='#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%B7%AF%E7%94%B1%E5%8C%B9%E9%85%8D%E5%99%A8'>自定义路由匹配器</a></li>
-		</ol>
-		<li><a href='#%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6'>静态文件</a></li>
-		<li><a href='#%E8%A7%86%E5%9B%BE%20/%20%E6%A8%A1%E6%9D%BF'>视图 / 模板</a></li>
-		<ol class='level-2'>
-			<li><a href='#%E5%AD%97%E9%9D%A2%E9%87%8F%E6%A8%A1%E6%9D%BF'>字面量模板</a></li>
-			<li><a href='#%E5%8F%AF%E9%80%89%E7%9A%84%E6%A8%A1%E6%9D%BF%E8%AF%AD%E8%A8%80'>可选的模板语言</a></li>
-			<ol class='level-3'>
-				<li><a href='#Haml%20%E6%A8%A1%E6%9D%BF'>Haml 模板</a></li>
-				<li><a href='#Erb%20%E6%A8%A1%E6%9D%BF'>Erb 模板</a></li>
-				<li><a href='#Builder%20%E6%A8%A1%E6%9D%BF'>Builder 模板</a></li>
-				<li><a href='#Nokogiri%20%E6%A8%A1%E6%9D%BF'>Nokogiri 模板</a></li>
-				<li><a href='#Sass%20%E6%A8%A1%E6%9D%BF'>Sass 模板</a></li>
-				<li><a href='#SCSS%20%E6%A8%A1%E6%9D%BF'>SCSS 模板</a></li>
-				<li><a href='#Less%20%E6%A8%A1%E6%9D%BF'>Less 模板</a></li>
-				<li><a href='#Liquid%20%E6%A8%A1%E6%9D%BF'>Liquid 模板</a></li>
-				<li><a href='#Markdown%20%E6%A8%A1%E6%9D%BF'>Markdown 模板</a></li>
-				<li><a href='#Textile%20%E6%A8%A1%E6%9D%BF'>Textile 模板</a></li>
-				<li><a href='#RDoc%20%E6%A8%A1%E6%9D%BF'>RDoc 模板</a></li>
-				<li><a href='#AsciiDoc%20%E6%A8%A1%E6%9D%BF'>AsciiDoc 模板</a></li>
-				<li><a href='#Radius%20%E6%A8%A1%E6%9D%BF'>Radius 模板</a></li>
-				<li><a href='#Markaby%20%E6%A8%A1%E6%9D%BF'>Markaby 模板</a></li>
-				<li><a href='#RABL%20%E6%A8%A1%E6%9D%BF'>RABL 模板</a></li>
-				<li><a href='#Slim%20%E6%A8%A1%E6%9D%BF'>Slim 模板</a></li>
-				<li><a href='#Creole%20%E6%A8%A1%E6%9D%BF'>Creole 模板</a></li>
-				<li><a href='#MediaWiki%20%E6%A8%A1%E6%9D%BF'>MediaWiki 模板</a></li>
-				<li><a href='#CoffeeScript%20%E6%A8%A1%E6%9D%BF'>CoffeeScript 模板</a></li>
-				<li><a href='#Stylus%20%E6%A8%A1%E6%9D%BF'>Stylus 模板</a></li>
-				<li><a href='#Yajl%20%E6%A8%A1%E6%9D%BF'>Yajl 模板</a></li>
-				<li><a href='#WLang%20%E6%A8%A1%E6%9D%BF'>WLang 模板</a></li>
-			</ol>
-			<li><a href='#%E5%9C%A8%E6%A8%A1%E6%9D%BF%E4%B8%AD%E8%AE%BF%E9%97%AE%E5%8F%98%E9%87%8F'>在模板中访问变量</a></li>
-			<li><a href='#%E5%B8%A6%20%3Ccode%3Eyield%3C/code%3E%20%E7%9A%84%E6%A8%A1%E6%9D%BF%E5%92%8C%E5%B5%8C%E5%A5%97%E5%B8%83%E5%B1%80'>带 <code>yield</code> 的模板和嵌套布局</a></li>
-			<li><a href='#%E5%86%85%E8%81%94%E6%A8%A1%E6%9D%BF'>内联模板</a></li>
-			<li><a href='#%E5%85%B7%E5%90%8D%E6%A8%A1%E6%9D%BF'>具名模板</a></li>
-			<li><a href='#%E5%85%B3%E8%81%94%E6%96%87%E4%BB%B6%E6%89%A9%E5%B1%95%E5%90%8D'>关联文件扩展名</a></li>
-			<li><a href='#%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E'>添加自定义模板引擎</a></li>
-			<li><a href='#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E6%9D%BF%E6%9F%A5%E6%89%BE%E9%80%BB%E8%BE%91'>自定义模板查找逻辑</a></li>
-		</ol>
-		<li><a href='#%E8%BF%87%E6%BB%A4%E5%99%A8'>过滤器</a></li>
-		<li><a href='#%E8%BE%85%E5%8A%A9%E6%96%B9%E6%B3%95'>辅助方法</a></li>
-		<ol class='level-2'>
-			<li><a href='#%E4%BD%BF%E7%94%A8%E4%BC%9A%E8%AF%9D'>使用会话</a></li>
-			<li><a href='#%E4%B8%AD%E6%96%AD%E8%AF%B7%E6%B1%82'>中断请求</a></li>
-			<li><a href='#%E4%BC%A0%E9%80%92%E8%AF%B7%E6%B1%82'>传递请求</a></li>
-			<li><a href='#%E8%A7%A6%E5%8F%91%E5%8F%A6%E4%B8%80%E4%B8%AA%E8%B7%AF%E7%94%B1'>触发另一个路由</a></li>
-			<li><a href='#%E8%AE%BE%E7%BD%AE%E5%93%8D%E5%BA%94%E4%B8%BB%E4%BD%93%E3%80%81%E7%8A%B6%E6%80%81%E7%A0%81%E5%92%8C%E5%93%8D%E5%BA%94%E9%A6%96%E9%83%A8'>设置响应主体、状态码和响应首部</a></li>
-			<li><a href='#%E5%93%8D%E5%BA%94%E7%9A%84%E6%B5%81%E5%BC%8F%E4%BC%A0%E8%BE%93'>响应的流式传输</a></li>
-			<li><a href='#%E6%97%A5%E5%BF%97'>日志</a></li>
-			<li><a href='#%E5%AA%92%E4%BD%93%E7%B1%BB%E5%9E%8B'>媒体类型</a></li>
-			<li><a href='#%E7%94%9F%E6%88%90%20URL'>生成 URL</a></li>
-			<li><a href='#%E6%B5%8F%E8%A7%88%E5%99%A8%E9%87%8D%E5%AE%9A%E5%90%91'>浏览器重定向</a></li>
-			<li><a href='#%E7%BC%93%E5%AD%98%E6%8E%A7%E5%88%B6'>缓存控制</a></li>
-			<li><a href='#%E5%8F%91%E9%80%81%E6%96%87%E4%BB%B6'>发送文件</a></li>
-			<li><a href='#%E8%AE%BF%E9%97%AE%E8%AF%B7%E6%B1%82%E5%AF%B9%E8%B1%A1'>访问请求对象</a></li>
-			<li><a href='#%E9%99%84%E4%BB%B6'>附件</a></li>
-			<li><a href='#%E5%A4%84%E7%90%86%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4'>处理日期和时间</a></li>
-			<li><a href='#%E6%9F%A5%E6%89%BE%E6%A8%A1%E6%9D%BF%E6%96%87%E4%BB%B6'>查找模板文件</a></li>
-		</ol>
-		<li><a href='#%E9%85%8D%E7%BD%AE'>配置</a></li>
-		<ol class='level-2'>
-			<li><a href='#%E9%85%8D%E7%BD%AE%E6%94%BB%E5%87%BB%E9%98%B2%E6%8A%A4'>配置攻击防护</a></li>
-			<li><a href='#%E5%8F%AF%E9%80%89%E7%9A%84%E8%AE%BE%E7%BD%AE'>可选的设置</a></li>
-		</ol>
-		<li><a href='#%E7%8E%AF%E5%A2%83'>环境</a></li>
-		<li><a href='#%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86'>错误处理</a></li>
-		<ol class='level-2'>
-			<li><a href='#%E6%9C%AA%E6%89%BE%E5%88%B0'>未找到</a></li>
-			<li><a href='#%E9%94%99%E8%AF%AF'>错误</a></li>
-		</ol>
-		<li><a href='#Rack%20%E4%B8%AD%E9%97%B4%E4%BB%B6'>Rack 中间件</a></li>
-		<li><a href='#%E6%B5%8B%E8%AF%95'>测试</a></li>
-		<li><a href='#Sinatra::Base%20-%20%E4%B8%AD%E9%97%B4%E4%BB%B6%E3%80%81%E5%BA%93%E5%92%8C%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BA%94%E7%94%A8'>Sinatra::Base - 中间件、库和模块化应用</a></li>
-		<ol class='level-2'>
-			<li><a href='#%E6%A8%A1%E5%9D%97%E5%8C%96%E9%A3%8E%E6%A0%BC%20vs.%20%E7%BB%8F%E5%85%B8%E9%A3%8E%E6%A0%BC'>模块化风格 vs. 经典风格</a></li>
-			<li><a href='#%E8%BF%90%E8%A1%8C%E4%B8%80%E4%B8%AA%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BA%94%E7%94%A8'>运行一个模块化应用</a></li>
-			<li><a href='#%E4%BD%BF%E7%94%A8%20config.ru%20%E8%BF%90%E8%A1%8C%E7%BB%8F%E5%85%B8%E9%A3%8E%E6%A0%BC%E7%9A%84%E5%BA%94%E7%94%A8'>使用 config.ru 运行经典风格的应用</a></li>
-			<li><a href='#%E4%BD%95%E6%97%B6%E4%BD%BF%E7%94%A8%20config.ru%EF%BC%9F'>何时使用 config.ru？</a></li>
-			<li><a href='#%E6%8A%8A%20Sinatra%20%E5%BD%93%E4%BD%9C%E4%B8%AD%E9%97%B4%E4%BB%B6%E4%BD%BF%E7%94%A8'>把 Sinatra 当作中间件使用</a></li>
-			<li><a href='#%E5%88%9B%E5%BB%BA%E5%8A%A8%E6%80%81%E5%BA%94%E7%94%A8'>创建动态应用</a></li>
-		</ol>
-		<li><a href='#%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E7%BB%91%E5%AE%9A'>作用域和绑定</a></li>
-		<ol class='level-2'>
-			<li><a href='#%E5%BA%94%E7%94%A8/%E7%B1%BB%E4%BD%9C%E7%94%A8%E5%9F%9F'>应用/类作用域</a></li>
-			<li><a href='#%E8%AF%B7%E6%B1%82/%E5%AE%9E%E4%BE%8B%E4%BD%9C%E7%94%A8%E5%9F%9F'>请求/实例作用域</a></li>
-			<li><a href='#%E4%BB%A3%E7%90%86%E4%BD%9C%E7%94%A8%E5%9F%9F'>代理作用域</a></li>
-		</ol>
-		<li><a href='#%E5%91%BD%E4%BB%A4%E8%A1%8C'>命令行</a></li>
-		<ol class='level-2'>
-			<li><a href='#%E5%A4%9A%E7%BA%BF%E7%A8%8B'>多线程</a></li>
-		</ol>
-		<li><a href='#%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6'>必要条件</a></li>
-		<li><a href='#%E7%B4%A7%E8%B7%9F%E5%89%8D%E6%B2%BF'>紧跟前沿</a></li>
-		<ol class='level-2'>
-			<li><a href='#%E9%80%9A%E8%BF%87%20Bundler%20%E4%BD%BF%E7%94%A8%20Sinatra'>通过 Bundler 使用 Sinatra</a></li>
-			<li><a href='#%E4%BD%BF%E7%94%A8%E8%87%AA%E5%B7%B1%E6%9C%AC%E5%9C%B0%E7%9A%84%20Sinatra'>使用自己本地的 Sinatra</a></li>
-			<li><a href='#%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85'>全局安装</a></li>
-		</ol>
-		<li><a href='#%E7%89%88%E6%9C%AC'>版本</a></li>
-		<li><a href='#%E6%9B%B4%E5%A4%9A%E8%B5%84%E6%96%99'>更多资料</a></li>
-	</ol>
-</div>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <html><body>
 
@@ -137,12 +28,10 @@ end
 
 <p>推荐运行 <code>gem install thin</code> 安装 Thin。这样，Sinatra 会优先选择 Thin 作为服务器。</p>
 
-<a name='%E7%9B%AE%E5%BD%95'></a>
 <h2>目录</h2>
 
 
 
-<a name='%E8%B7%AF%E7%94%B1'></a>
 <h2>路由</h2>
 
 <p>在 Sinatra 中，一个路由分为两部分：HTTP 方法和 URL 匹配范式。每个路由都有一个要执行的代码块：</p>
@@ -254,7 +143,6 @@ end
 </code></pre>
 <p>顺便一提，除非你禁用了路径遍历攻击防护（见下文），请求路径可能在匹配路由前发生改变。</p>
 
-<a name='%E6%9D%A1%E4%BB%B6'></a>
 <h3>条件</h3>
 
 <p>路由可以包含各种匹配条件，比如 user agent：</p>
@@ -317,7 +205,6 @@ get "/only/admin/", :auth =&gt; :admin do
 end
 </code></pre>
 
-<a name='%E8%BF%94%E5%9B%9E%E5%80%BC'></a>
 <h3>返回值</h3>
 
 <p>路由代码块的返回值至少决定了返回给
@@ -348,7 +235,6 @@ get('/') { Stream.new }
 
 <p>也可以使用 <code>stream</code> 辅助方法（见下文描述）以减少样板代码并在路由中直接使用流式传输。</p>
 
-<a name='%E8%87%AA%E5%AE%9A%E4%B9%89%E8%B7%AF%E7%94%B1%E5%8C%B9%E9%85%8D%E5%99%A8'></a>
 <h3>自定义路由匹配器</h3>
 
 <p>如上文所示，Sinatra
@@ -391,7 +277,6 @@ end
 end
 </code></pre>
 
-<a name='%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6'></a>
 <h2>静态文件</h2>
 
 <p>静态文件从 <code>./public</code> 目录提供服务。可以通过设置<code>:public_folder</code> 选项设定一个不同的位置：</p>
@@ -404,7 +289,6 @@ end
 
 <p>可以使用 <code>:static_cache_control</code> 设置（见下文）添加 <code>Cache-Control</code> 首部信息。</p>
 
-<a name='%E8%A7%86%E5%9B%BE%20/%20%E6%A8%A1%E6%9D%BF'></a>
 <h2>视图 / 模板</h2>
 
 <p>每一门模板语言都将自身的渲染方法暴露给
@@ -505,7 +389,6 @@ end
 （在这种情况下，使用 <code>:'subdir/template'</code> 或 <code>'subdir/template'.to_sym</code>）。
 如果你不使用符号，渲染方法会直接渲染你传入的任何字符串。</p>
 
-<a name='%E5%AD%97%E9%9D%A2%E9%87%8F%E6%A8%A1%E6%9D%BF'></a>
 <h3>字面量模板</h3>
 
 <pre><code class="language-ruby">get '/' do
@@ -515,7 +398,6 @@ end
 
 <p>这段代码直接渲染模板字符串。</p>
 
-<a name='%E5%8F%AF%E9%80%89%E7%9A%84%E6%A8%A1%E6%9D%BF%E8%AF%AD%E8%A8%80'></a>
 <h3>可选的模板语言</h3>
 
 <p>一些语言有多种实现。为了确定使用哪种实现（以及保证线程安全），你应该首先引入该实现：</p>
@@ -524,7 +406,6 @@ end
 get('/') { markdown :index }
 </code></pre>
 
-<a name='Haml%20%E6%A8%A1%E6%9D%BF'></a>
 <h4>Haml 模板</h4>
 
 <table>
@@ -542,7 +423,6 @@ get('/') { markdown :index }
   </tr>
 </table>
 
-<a name='Erb%20%E6%A8%A1%E6%9D%BF'></a>
 <h4>Erb 模板</h4>
 
 <table>
@@ -564,7 +444,6 @@ get('/') { markdown :index }
   </tr>
 </table>
 
-<a name='Builder%20%E6%A8%A1%E6%9D%BF'></a>
 <h4>Builder 模板</h4>
 
 <table>
@@ -586,7 +465,6 @@ get('/') { markdown :index }
 
 <p><code>builder</code> 渲染方法也接受一个代码块，用于内联模板（见例子）。</p>
 
-<a name='Nokogiri%20%E6%A8%A1%E6%9D%BF'></a>
 <h4>Nokogiri 模板</h4>
 
 <table>
@@ -606,7 +484,6 @@ get('/') { markdown :index }
 
 <p><code>nokogiri</code> 渲染方法也接受一个代码块，用于内联模板（见例子）。</p>
 
-<a name='Sass%20%E6%A8%A1%E6%9D%BF'></a>
 <h4>Sass 模板</h4>
 
 <table>
@@ -624,7 +501,6 @@ get('/') { markdown :index }
   </tr>
 </table>
 
-<a name='SCSS%20%E6%A8%A1%E6%9D%BF'></a>
 <h4>SCSS 模板</h4>
 
 <table>
@@ -642,7 +518,6 @@ get('/') { markdown :index }
   </tr>
 </table>
 
-<a name='Less%20%E6%A8%A1%E6%9D%BF'></a>
 <h4>Less 模板</h4>
 
 <table>
@@ -660,7 +535,6 @@ get('/') { markdown :index }
   </tr>
 </table>
 
-<a name='Liquid%20%E6%A8%A1%E6%9D%BF'></a>
 <h4>Liquid 模板</h4>
 
 <table>
@@ -680,7 +554,6 @@ get('/') { markdown :index }
 
 <p>因为不能在 Liquid 模板中调用 Ruby 方法（除了 <code>yield</code>），你几乎总是需要传递 locals 对象给它。</p>
 
-<a name='Markdown%20%E6%A8%A1%E6%9D%BF'></a>
 <h4>Markdown 模板</h4>
 
 <table>
@@ -722,7 +595,6 @@ get('/') { markdown :index }
 <p>因为不能在 Markdown 中使用 Ruby 语言，你不能使用 Markdown 书写的布局。
 不过，使用其它渲染引擎作为模板的布局是可能的，这需要通过传入 <code>:layout_engine</code> 选项。</p>
 
-<a name='Textile%20%E6%A8%A1%E6%9D%BF'></a>
 <h4>Textile 模板</h4>
 
 <table>
@@ -755,7 +627,6 @@ get('/') { markdown :index }
 <p>因为不能在 Textile 中调用 Ruby 方法，你不能用 Textile 书写布局。
 不过，使用其它渲染引擎作为模版的布局是可能的，这需要通过传递 <code>:layout_engine</code> 选项。</p>
 
-<a name='RDoc%20%E6%A8%A1%E6%9D%BF'></a>
 <h4>RDoc 模板</h4>
 
 <table>
@@ -788,7 +659,6 @@ get('/') { markdown :index }
 <p>因为不能在 RDoc 中调用 Ruby 方法，你不能用 RDoc 书写布局。
 不过，使用其它渲染引擎作为模版的布局是可能的，这需要通过传递 <code>:layout_engine</code> 选项。</p>
 
-<a name='AsciiDoc%20%E6%A8%A1%E6%9D%BF'></a>
 <h4>AsciiDoc 模板</h4>
 
 <table>
@@ -810,7 +680,6 @@ get('/') { markdown :index }
 
 <p>因为不能在 AsciiDoc 模板中直接调用 Ruby 方法，你几乎总是需要传递 locals 对象给它。</p>
 
-<a name='Radius%20%E6%A8%A1%E6%9D%BF'></a>
 <h4>Radius 模板</h4>
 
 <table>
@@ -830,7 +699,6 @@ get('/') { markdown :index }
 
 <p>因为不能在 Radius 模板中直接调用 Ruby 方法，你几乎总是可以传递 locals 对象给它。</p>
 
-<a name='Markaby%20%E6%A8%A1%E6%9D%BF'></a>
 <h4>Markaby 模板</h4>
 
 <table>
@@ -850,7 +718,6 @@ get('/') { markdown :index }
 
 <p><code>markaby</code> 渲染方法也接受一个代码块，用于内联模板（见例子）。</p>
 
-<a name='RABL%20%E6%A8%A1%E6%9D%BF'></a>
 <h4>RABL 模板</h4>
 
 <table>
@@ -868,7 +735,6 @@ get('/') { markdown :index }
   </tr>
 </table>
 
-<a name='Slim%20%E6%A8%A1%E6%9D%BF'></a>
 <h4>Slim 模板</h4>
 
 <table>
@@ -886,7 +752,6 @@ get('/') { markdown :index }
   </tr>
 </table>
 
-<a name='Creole%20%E6%A8%A1%E6%9D%BF'></a>
 <h4>Creole 模板</h4>
 
 <table>
@@ -919,7 +784,6 @@ get('/') { markdown :index }
 <p>因为不能在 Creole 模板文件内调用 Ruby 方法，你不能用 Creole 书写布局文件。
 然而，使用其它渲染引擎作为模版的布局是可能的，这需要通过传递 <code>:layout_engine</code> 选项。</p>
 
-<a name='MediaWiki%20%E6%A8%A1%E6%9D%BF'></a>
 <h4>MediaWiki 模板</h4>
 
 <table>
@@ -954,7 +818,6 @@ get('/') { markdown :index }
 <p>因为不能在 MediaWiki 文件内调用 Ruby 方法，你不能用 MediaWiki 书写布局文件。
 然而，使用其它渲染引擎作为模版的布局是可能的，这需要通过传递 <code>:layout_engine</code> 选项。</p>
 
-<a name='CoffeeScript%20%E6%A8%A1%E6%9D%BF'></a>
 <h4>CoffeeScript 模板</h4>
 
 <table>
@@ -979,7 +842,6 @@ get('/') { markdown :index }
   </tr>
 </table>
 
-<a name='Stylus%20%E6%A8%A1%E6%9D%BF'></a>
 <h4>Stylus 模板</h4>
 
 <table>
@@ -1015,7 +877,6 @@ get '/' do
 end
 </code></pre>
 
-<a name='Yajl%20%E6%A8%A1%E6%9D%BF'></a>
 <h4>Yajl 模板</h4>
 
 <table>
@@ -1052,7 +913,6 @@ json[:baz] = key
 present(resource);
 </code></pre>
 
-<a name='WLang%20%E6%A8%A1%E6%9D%BF'></a>
 <h4>WLang 模板</h4>
 
 <table>
@@ -1073,7 +933,6 @@ present(resource);
 <p>因为在 WLang 中调用 Ruby 方法不符合语言习惯，你几乎总是需要传递 locals 给 WLang 木板。
 然而，可以用 WLang 编写布局文件，也可以在 WLang 中使用 <code>yield</code> 方法。</p>
 
-<a name='%E5%9C%A8%E6%A8%A1%E6%9D%BF%E4%B8%AD%E8%AE%BF%E9%97%AE%E5%8F%98%E9%87%8F'></a>
 <h3>在模板中访问变量</h3>
 
 <p>模板的求值发生在路由处理器内部的上下文中。模板可以直接访问路由处理器中设置的实例变量。</p>
@@ -1094,7 +953,6 @@ end
 
 <p>locals 哈希典型的使用情景是在别的模板中渲染 partials。</p>
 
-<a name='%E5%B8%A6%20%3Ccode%3Eyield%3C/code%3E%20%E7%9A%84%E6%A8%A1%E6%9D%BF%E5%92%8C%E5%B5%8C%E5%A5%97%E5%B8%83%E5%B1%80'></a>
 <h3>带 <code>yield</code> 的模板和嵌套布局</h3>
 
 <p>布局通常就是使用了 <code>yield</code> 方法的模板。
@@ -1126,7 +984,6 @@ end
 <p>当前，以下的渲染方法接受一个代码块：<code>erb</code>、<code>haml</code>、<code>liquid</code>、<code>slim </code> 和 <code>wlang</code>。
 通用的 <code>render</code> 方法也接受。</p>
 
-<a name='%E5%86%85%E8%81%94%E6%A8%A1%E6%9D%BF'></a>
 <h3>内联模板</h3>
 
 <p>模板可以在源文件的末尾定义：</p>
@@ -1150,7 +1007,6 @@ __END__
 <p>注意：在引入了 sinatra 的源文件中定义的内联模板会自动载入。
 如果你在其他源文件中也有内联模板，需要显式调用 <code>enable :inline_templates</code>。</p>
 
-<a name='%E5%85%B7%E5%90%8D%E6%A8%A1%E6%9D%BF'></a>
 <h3>具名模板</h3>
 
 <p>可以使用顶层 <code>template</code> 方法定义模板：</p>
@@ -1177,7 +1033,6 @@ end
 end
 </code></pre>
 
-<a name='%E5%85%B3%E8%81%94%E6%96%87%E4%BB%B6%E6%89%A9%E5%B1%95%E5%90%8D'></a>
 <h3>关联文件扩展名</h3>
 
 <p>为了将一个文件扩展名到对应的模版引擎，要使用 <code>Tilt.register</code>。
@@ -1186,7 +1041,6 @@ end
 <pre><code class="language-ruby">Tilt.register :tt, Tilt[:textile]
 </code></pre>
 
-<a name='%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E'></a>
 <h3>添加自定义模板引擎</h3>
 
 <p>首先，通过 Tilt 注册你自定义的引擎，然后创建一个渲染方法：</p>
@@ -1205,7 +1059,6 @@ end
 <p>这段代码将会渲染 <code>./views/index.myat</code> 文件。
 查看 https://github.com/rtomayko/tilt 以了解更多关于 Tilt 的信息。</p>
 
-<a name='%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E6%9D%BF%E6%9F%A5%E6%89%BE%E9%80%BB%E8%BE%91'></a>
 <h3>自定义模板查找逻辑</h3>
 
 <p>要实现自定义的模板查找机制，你可以构建自己的 <code>#find_template</code> 方法：</p>
@@ -1221,7 +1074,6 @@ def find_template(views, name, engine, &amp;block)
 end
 </code></pre>
 
-<a name='%E8%BF%87%E6%BB%A4%E5%99%A8'></a>
 <h2>过滤器</h2>
 
 <p><code>before</code> 过滤器在每个请求之前调用，调用的上下文与请求的上下文相同，并且可以修改请求和响应。
@@ -1271,7 +1123,6 @@ after '/blog/*', :host_name =&gt; 'example.com' do
 end
 </code></pre>
 
-<a name='%E8%BE%85%E5%8A%A9%E6%96%B9%E6%B3%95'></a>
 <h2>辅助方法</h2>
 
 <p>使用顶层的 <code>helpers</code> 方法来定义辅助方法， 以便在路由处理器和模板中使用：</p>
@@ -1302,7 +1153,6 @@ helpers FooUtils, BarUtils
 
 <p>以上代码块与在应用类中包含模块等效。</p>
 
-<a name='%E4%BD%BF%E7%94%A8%E4%BC%9A%E8%AF%9D'></a>
 <h3>使用会话</h3>
 
 <p>会话用于在请求之间保持状态。如果激活了会话，每一个用户会话都对应一个会话 hash：</p>
@@ -1350,7 +1200,6 @@ end
 <pre><code class="language-ruby">set :sessions, :domain =&gt; '.foo.com'
 </code></pre>
 
-<a name='%E4%B8%AD%E6%96%AD%E8%AF%B7%E6%B1%82'></a>
 <h3>中断请求</h3>
 
 <p>要想在过滤器或路由中立即中断一个请求：</p>
@@ -1383,7 +1232,6 @@ end
 <pre><code>halt erb(:error)
 </code></pre>
 
-<a name='%E4%BC%A0%E9%80%92%E8%AF%B7%E6%B1%82'></a>
 <h3>传递请求</h3>
 
 <p>一个路由可以放弃对请求的处理并将处理让给下一个匹配的路由，这要通过 <code>pass</code> 实现：</p>
@@ -1401,7 +1249,6 @@ end
 <p>执行 <code>pass</code> 后，控制流从该路由代码块直接退出，并继续前进到下一个匹配的路由。
 如果没有匹配的路由，将返回 404。</p>
 
-<a name='%E8%A7%A6%E5%8F%91%E5%8F%A6%E4%B8%80%E4%B8%AA%E8%B7%AF%E7%94%B1'></a>
 <h3>触发另一个路由</h3>
 
 <p>有些时候，<code>pass</code> 并不是你想要的，你希望得到的是调用另一个路由的结果。
@@ -1424,7 +1271,6 @@ end
 
 <p>如果想更多了解关于 <code>call</code> 的信息，请查看 Rack 规范。</p>
 
-<a name='%E8%AE%BE%E7%BD%AE%E5%93%8D%E5%BA%94%E4%B8%BB%E4%BD%93%E3%80%81%E7%8A%B6%E6%80%81%E7%A0%81%E5%92%8C%E5%93%8D%E5%BA%94%E9%A6%96%E9%83%A8'></a>
 <h3>设置响应主体、状态码和响应首部</h3>
 
 <p>推荐在路由代码块的返回值中设定状态码和响应主体。
@@ -1456,7 +1302,6 @@ end
 
 <p>正如 <code>body</code> 方法，不带参数调用 <code>headers</code> 和 <code>status</code> 方法可以访问它们的当前值。</p>
 
-<a name='%E5%93%8D%E5%BA%94%E7%9A%84%E6%B5%81%E5%BC%8F%E4%BC%A0%E8%BE%93'></a>
 <h3>响应的流式传输</h3>
 
 <p>有时你可能想在完全生成响应主体前返回数据。
@@ -1516,7 +1361,6 @@ post '/:message' do
 end
 </code></pre>
 
-<a name='%E6%97%A5%E5%BF%97'></a>
 <h3>日志</h3>
 
 <p>在请求作用域下，<code>logger</code> 辅助方法会返回一个 <code>Logger</code> 类的实例：</p>
@@ -1545,7 +1389,6 @@ end
 一种常见的使用场景是你想要使用自己的日志工具。
 Sinatra 会使用 <code>env['rack.logger']</code> 的值作为日志工具，无论该值是什么。</p>
 
-<a name='%E5%AA%92%E4%BD%93%E7%B1%BB%E5%9E%8B'></a>
 <h3>媒体类型</h3>
 
 <p>使用 <code>send_file</code> 或者静态文件的时候，Sinatra 可能不会识别你的媒体类型。
@@ -1562,7 +1405,6 @@ Sinatra 会使用 <code>env['rack.logger']</code> 的值作为日志工具，无
 end
 </code></pre>
 
-<a name='%E7%94%9F%E6%88%90%20URL'></a>
 <h3>生成 URL</h3>
 
 <p>为了生成 URL，你应当使用 <code>url</code> 辅助方法，例如，在 Haml 中：</p>
@@ -1574,7 +1416,6 @@ end
 
 <p>这个方法还有一个别名 <code>to</code> (见下面的例子)。</p>
 
-<a name='%E6%B5%8F%E8%A7%88%E5%99%A8%E9%87%8D%E5%AE%9A%E5%90%91'></a>
 <h3>浏览器重定向</h3>
 
 <p>你可以通过 <code>redirect</code> 辅助方法触发浏览器重定向：</p>
@@ -1621,7 +1462,6 @@ get '/bar' do
 end
 </code></pre>
 
-<a name='%E7%BC%93%E5%AD%98%E6%8E%A7%E5%88%B6'></a>
 <h3>缓存控制</h3>
 
 <p>正确设置响应首部是合理利用 HTTP 缓存的基础。</p>
@@ -1701,7 +1541,6 @@ end
 <pre><code class="language-ruby">etag '', :new_resource =&gt; true, :kind =&gt; :weak
 </code></pre>
 
-<a name='%E5%8F%91%E9%80%81%E6%96%87%E4%BB%B6'></a>
 <h3>发送文件</h3>
 
 <p>为了将文件的内容作为响应返回，可以使用 <code>send_file</code> 辅助方法：</p>
@@ -1747,7 +1586,6 @@ end
   </dd>
 </dl>
 
-<a name='%E8%AE%BF%E9%97%AE%E8%AF%B7%E6%B1%82%E5%AF%B9%E8%B1%A1'></a>
 <h3>访问请求对象</h3>
 
 <p>传入的请求对象可以在请求层（过滤器、路由、错误处理器内部）通过 <code>request</code> 方法访问：</p>
@@ -1802,7 +1640,6 @@ end
 end
 </code></pre>
 
-<a name='%E9%99%84%E4%BB%B6'></a>
 <h3>附件</h3>
 
 <p>你可以使用 <code>attachment</code> 辅助方法来告诉浏览器响应应当被写入磁盘而不是在浏览器中显示。</p>
@@ -1821,7 +1658,6 @@ end
 end
 </code></pre>
 
-<a name='%E5%A4%84%E7%90%86%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4'></a>
 <h3>处理日期和时间</h3>
 
 <p>Sinatra 提供了一个 <code>time_for</code> 辅助方法，其目的是根据给定的值生成 Time 对象。
@@ -1853,7 +1689,6 @@ get '/' do
 end
 </code></pre>
 
-<a name='%E6%9F%A5%E6%89%BE%E6%A8%A1%E6%9D%BF%E6%96%87%E4%BB%B6'></a>
 <h3>查找模板文件</h3>
 
 <p><code>find_template</code> 辅助方法用于在渲染时查找模板文件：</p>
@@ -1895,7 +1730,6 @@ end
 同样的，模板的路径（和内容）会在 development 以外的模式下被缓存。
 你应该时刻提醒自己这一点， 如果你真的想写一个非常疯狂的方法的话。</p>
 
-<a name='%E9%85%8D%E7%BD%AE'></a>
 <h2>配置</h2>
 
 <p>在启动时运行一次，在任何环境下都是如此：</p>
@@ -1945,7 +1779,6 @@ get '/' do
 end
 </code></pre>
 
-<a name='%E9%85%8D%E7%BD%AE%E6%94%BB%E5%87%BB%E9%98%B2%E6%8A%A4'></a>
 <h3>配置攻击防护</h3>
 
 <p>Sinatra 使用 <a href="https://github.com/sinatra/rack-protection#readme">Rack::Protection</a>
@@ -1972,7 +1805,6 @@ end
 set :protection, :session =&gt; true
 </code></pre>
 
-<a name='%E5%8F%AF%E9%80%89%E7%9A%84%E8%AE%BE%E7%BD%AE'></a>
 <h3>可选的设置</h3>
 
 <dl>
@@ -2122,7 +1954,6 @@ set :protection, :session =&gt; true
   <dd>若没有路由匹配，是否设置 X-Cascade 首部。默认为 <tt>true</tt>。</dd>
 </dl>
 
-<a name='%E7%8E%AF%E5%A2%83'></a>
 <h2>环境</h2>
 
 <p>Sinatra 中有三种预先定义的环境：”development”、”production” 和 “test”。
@@ -2147,13 +1978,11 @@ set :protection, :session =&gt; true
 end
 </code></pre>
 
-<a name='%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86'></a>
 <h2>错误处理</h2>
 
 <p>错误处理器在与路由和 before 过滤器相同的上下文中运行，
 这意味着你可以使用许多好东西，比如 <code>haml</code>, <code>erb</code>, <code>halt</code>，等等。</p>
 
-<a name='%E6%9C%AA%E6%89%BE%E5%88%B0'></a>
 <h3>未找到</h3>
 
 <p>当一个 <code>Sinatra::NotFound</code> 错误被抛出时，或者当响应的状态码是 404 时，
@@ -2164,7 +1993,6 @@ end
 end
 </code></pre>
 
-<a name='%E9%94%99%E8%AF%AF'></a>
 <h3>错误</h3>
 
 <p>在任何路由代码块或过滤器抛出异常时，会调用 <code>error</code> 处理器。
@@ -2220,7 +2048,6 @@ end
 <p>在开发环境下，Sinatra会使用特殊的 <code>not_found</code> 和 <code>error</code> 处理器，
 以便在浏览器中显示美观的 stack traces 和额外的调试信息。</p>
 
-<a name='Rack%20%E4%B8%AD%E9%97%B4%E4%BB%B6'></a>
 <h2>Rack 中间件</h2>
 
 <p>Sinatra 依赖 <a href="http://rack.github.io/">Rack</a>, 一个面向 Ruby 网络框架的最小化标准接口。
@@ -2258,7 +2085,6 @@ end
 <a href="https://github.com/rack/rack/wiki/List-of-Middleware">Rack wiki</a>
 中找到有用的中间件。</p>
 
-<a name='%E6%B5%8B%E8%AF%95'></a>
 <h2>测试</h2>
 
 <p>可以使用任何基于 Rack 的测试程序库或者框架来编写Sinatra的测试。
@@ -2294,7 +2120,6 @@ end
 
 <p>注意：如果你使用 Sinatra 的模块化风格，应该用你应用的类名替代 <code>Sinatra::Application</code>。</p>
 
-<a name='Sinatra::Base%20-%20%E4%B8%AD%E9%97%B4%E4%BB%B6%E3%80%81%E5%BA%93%E5%92%8C%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BA%94%E7%94%A8'></a>
 <h2>Sinatra::Base - 中间件、库和模块化应用</h2>
 
 <p>在顶层定义你的应用很适合微型项目，
@@ -2343,7 +2168,6 @@ class MyApp &lt; Sinatra::Application
 end
 </code></pre>
 
-<a name='%E6%A8%A1%E5%9D%97%E5%8C%96%E9%A3%8E%E6%A0%BC%20vs.%20%E7%BB%8F%E5%85%B8%E9%A3%8E%E6%A0%BC'></a>
 <h3>模块化风格 vs. 经典风格</h3>
 
 <p>与通常的认识相反，经典风格并没有任何错误。
@@ -2406,7 +2230,6 @@ end
   </tr>
 </table>
 
-<a name='%E8%BF%90%E8%A1%8C%E4%B8%80%E4%B8%AA%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BA%94%E7%94%A8'></a>
 <h3>运行一个模块化应用</h3>
 
 <p>模块化应用的启动有两种常见方式，其中之一是使用 <code>run!</code> 方法主动启动:</p>
@@ -2439,7 +2262,6 @@ run MyApp
 <pre><code class="language-shell">rackup -p 4567
 </code></pre>
 
-<a name='%E4%BD%BF%E7%94%A8%20config.ru%20%E8%BF%90%E8%A1%8C%E7%BB%8F%E5%85%B8%E9%A3%8E%E6%A0%BC%E7%9A%84%E5%BA%94%E7%94%A8'></a>
 <h3>使用 config.ru 运行经典风格的应用</h3>
 
 <p>编写你的应用:</p>
@@ -2458,7 +2280,6 @@ end
 run Sinatra::Application
 </code></pre>
 
-<a name='%E4%BD%95%E6%97%B6%E4%BD%BF%E7%94%A8%20config.ru%EF%BC%9F'></a>
 <h3>何时使用 config.ru？</h3>
 
 <p>下列情况，推荐使用 <code>config.ru</code>：</p>
@@ -2472,7 +2293,6 @@ run Sinatra::Application
 <p><strong>你不必仅仅因为想使用模块化风格而切换到 <code>config.ru</code>，同样的，
 你也不必仅仅因为要运行 <code>config.ru</code> 而切换到模块化风格。</strong></p>
 
-<a name='%E6%8A%8A%20Sinatra%20%E5%BD%93%E4%BD%9C%E4%B8%AD%E9%97%B4%E4%BB%B6%E4%BD%BF%E7%94%A8'></a>
 <h3>把 Sinatra 当作中间件使用</h3>
 
 <p>Sinatra 可以使用其它 Rack 中间件，
@@ -2509,7 +2329,6 @@ class MyApp &lt; Sinatra::Base
 end
 </code></pre>
 
-<a name='%E5%88%9B%E5%BB%BA%E5%8A%A8%E6%80%81%E5%BA%94%E7%94%A8'></a>
 <h3>创建动态应用</h3>
 
 <p>有时你希望在运行时创建新应用，而不必把应用预先赋值给常量。这时可以使用 <code>Sinatra.new</code>：</p>
@@ -2551,12 +2370,10 @@ end
 run RailsProject::Application
 </code></pre>
 
-<a name='%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E7%BB%91%E5%AE%9A'></a>
 <h2>作用域和绑定</h2>
 
 <p>当前作用域决定了可以使用的方法和变量。</p>
 
-<a name='%E5%BA%94%E7%94%A8/%E7%B1%BB%E4%BD%9C%E7%94%A8%E5%9F%9F'></a>
 <h3>应用/类作用域</h3>
 
 <p>每个 Sinatra 应用都对应 <code>Sinatra::Base</code> 类的一个子类。
@@ -2592,7 +2409,6 @@ end
 * 通过传递给 configure 代码块的对象 (<code>configure { |c| ... }</code>)
 * 在请求作用域中使用 <code>settings</code></p>
 
-<a name='%E8%AF%B7%E6%B1%82/%E5%AE%9E%E4%BE%8B%E4%BD%9C%E7%94%A8%E5%9F%9F'></a>
 <h3>请求/实例作用域</h3>
 
 <p>对于每个请求，Sinatra 会创建应用类的一个新实例。所有的处理器代码块都在该实例对象的作用域中运行。
@@ -2625,7 +2441,6 @@ end
   <li>模板/视图内部</li>
 </ul>
 
-<a name='%E4%BB%A3%E7%90%86%E4%BD%9C%E7%94%A8%E5%9F%9F'></a>
 <h3>代理作用域</h3>
 
 <p>代理作用域只是把方法转送到类作用域。
@@ -2643,7 +2458,6 @@ mixin</a>
 已经
 <a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/main.rb#L28-30">被扩展进了 main 对象</a>。</p>
 
-<a name='%E5%91%BD%E4%BB%A4%E8%A1%8C'></a>
 <h2>命令行</h2>
 
 <p>可以直接运行 Sinatra 应用：</p>
@@ -2661,7 +2475,6 @@ mixin</a>
 -x # 打开互斥锁 (默认是 off)
 </code></pre>
 
-<a name='%E5%A4%9A%E7%BA%BF%E7%A8%8B'></a>
 <h3>多线程</h3>
 
 <p><em>根据 Konstantin 的 <a href="http://stackoverflow.com/questions/6278817/is-sinatra-multi-threaded/6282999#6282999)">这个 StackOverflow 答案</a> 改写</em></p>
@@ -2691,7 +2504,6 @@ App.run!
 <pre><code class="language-shell">thin --threaded start
 </code></pre>
 
-<a name='%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6'></a>
 <h2>必要条件</h2>
 
 <p>以下 Ruby 版本受官方支持:</p>
@@ -2755,7 +2567,6 @@ App.run!
 
 <p>Sinatra 目前不支持 Cardinal、SmallRuby、BlueRuby 或其它 1.8.7 之前的 Ruby 版本。</p>
 
-<a name='%E7%B4%A7%E8%B7%9F%E5%89%8D%E6%B2%BF'></a>
 <h2>紧跟前沿</h2>
 
 <p>如果你想使用 Sinatra 的最新代码，请放心使用 master 分支来运行你的程序，它是相当稳定的。</p>
@@ -2767,7 +2578,6 @@ App.run!
 
 <p>来获得最新的特性。</p>
 
-<a name='%E9%80%9A%E8%BF%87%20Bundler%20%E4%BD%BF%E7%94%A8%20Sinatra'></a>
 <h3>通过 Bundler 使用 Sinatra</h3>
 
 <p>如果你想在应用中使用最新的 Sinatra，推荐使用 <a href="http://bundler.io">Bundler</a>。</p>
@@ -2795,7 +2605,6 @@ gem 'activerecord', '~&gt; 3.0'  # 也许你还需要 ActiveRecord 3.x
 <pre><code class="language-shell">bundle exec ruby myapp.rb
 </code></pre>
 
-<a name='%E4%BD%BF%E7%94%A8%E8%87%AA%E5%B7%B1%E6%9C%AC%E5%9C%B0%E7%9A%84%20Sinatra'></a>
 <h3>使用自己本地的 Sinatra</h3>
 
 <p>创建一个本地克隆，并通过 <code>$LOAD_PATH</code> 里的 <code>sinatra/lib</code> 目录运行你的应用：</p>
@@ -2811,7 +2620,6 @@ ruby -I sinatra/lib myapp.rb
 git pull
 </code></pre>
 
-<a name='%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85'></a>
 <h3>全局安装</h3>
 
 <p>你可以自行编译 Sinatra gem：</p>
@@ -2827,12 +2635,10 @@ rake install
 <pre><code class="language-shell">sudo rake install
 </code></pre>
 
-<a name='%E7%89%88%E6%9C%AC'></a>
 <h2>版本</h2>
 
 <p>Sinatra 遵循<a href="http://semver.org">语义化版本</a>，无论是 SemVer 还是 SemVerTag。</p>
 
-<a name='%E6%9B%B4%E5%A4%9A%E8%B5%84%E6%96%99'></a>
 <h2>更多资料</h2>
 
 <ul>

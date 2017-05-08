@@ -1,112 +1,3 @@
-<div class='toc'>
-	<ol class='level-1'>
-		<li><a href='#%E7%9B%AE%E6%AC%A1'>目次</a></li>
-		<li><a href='#%E3%83%AB%E3%83%BC%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0(Routes)'>ルーティング(Routes)</a></li>
-		<li><a href='#%E6%9D%A1%E4%BB%B6(Conditions)'>条件(Conditions)</a></li>
-		<li><a href='#%E6%88%BB%E3%82%8A%E5%80%A4(Return%20Values)'>戻り値(Return Values)</a></li>
-		<li><a href='#%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%83%AB%E3%83%BC%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E3%83%9E%E3%83%83%E3%83%81%E3%83%A3%E3%83%BC(Custom%20Route%20Matchers)'>カスタムルーティングマッチャー(Custom Route Matchers)</a></li>
-		<li><a href='#%E9%9D%99%E7%9A%84%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB(Static%20Files)'>静的ファイル(Static Files)</a></li>
-		<li><a href='#%E3%83%93%E3%83%A5%E3%83%BC%20/%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88(Views%20/%20Templates)'>ビュー / テンプレート(Views / Templates)</a></li>
-		<ol class='level-2'>
-			<li><a href='#%E3%83%AA%E3%83%86%E3%83%A9%E3%83%AB%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88(Literal%20Templates)'>リテラルテンプレート(Literal Templates)</a></li>
-			<li><a href='#%E5%88%A9%E7%94%A8%E5%8F%AF%E8%83%BD%E3%81%AA%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E8%A8%80%E8%AA%9E'>利用可能なテンプレート言語</a></li>
-			<ol class='level-3'>
-				<li><a href='#Haml%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>Haml テンプレート</a></li>
-				<li><a href='#Erb%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>Erb テンプレート</a></li>
-				<li><a href='#Builder%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>Builder テンプレート</a></li>
-				<li><a href='#Nokogiri%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>Nokogiri テンプレート</a></li>
-				<li><a href='#Sass%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>Sass テンプレート</a></li>
-				<li><a href='#Scss%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>Scss テンプレート</a></li>
-				<li><a href='#Less%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>Less テンプレート</a></li>
-				<li><a href='#Liquid%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>Liquid テンプレート</a></li>
-				<li><a href='#Markdown%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>Markdown テンプレート</a></li>
-				<li><a href='#Textile%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>Textile テンプレート</a></li>
-				<li><a href='#RDoc%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>RDoc テンプレート</a></li>
-				<li><a href='#AsciiDoc%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>AsciiDoc テンプレート</a></li>
-				<li><a href='#Radius%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>Radius テンプレート</a></li>
-				<li><a href='#Markaby%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>Markaby テンプレート</a></li>
-				<li><a href='#RABL%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>RABL テンプレート</a></li>
-				<li><a href='#Slim%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>Slim テンプレート</a></li>
-				<li><a href='#Creole%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>Creole テンプレート</a></li>
-				<li><a href='#MediaWiki%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>MediaWiki テンプレート</a></li>
-				<li><a href='#CoffeeScript%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>CoffeeScript テンプレート</a></li>
-				<li><a href='#Stylus%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>Stylus テンプレート</a></li>
-				<li><a href='#Yajl%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>Yajl テンプレート</a></li>
-				<li><a href='#WLang%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'>WLang テンプレート</a></li>
-			</ol>
-			<li><a href='#%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E5%86%85%E3%81%A7%E3%81%AE%E5%A4%89%E6%95%B0%E3%81%B8%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9'>テンプレート内での変数へのアクセス</a></li>
-			<li><a href='#%E3%82%A4%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88(Inline%20Templates)'>インラインテンプレート(Inline Templates)</a></li>
-			<li><a href='#%E5%90%8D%E5%89%8D%E4%BB%98%E3%81%8D%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88(Named%20Templates)'>名前付きテンプレート(Named Templates)</a></li>
-			<li><a href='#%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%8B%A1%E5%BC%B5%E5%AD%90%E3%81%AE%E9%96%A2%E9%80%A3%E4%BB%98%E3%81%91'>ファイル拡張子の関連付け</a></li>
-			<li><a href='#%E3%82%AA%E3%83%AA%E3%82%B8%E3%83%8A%E3%83%AB%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3%E3%81%AE%E8%BF%BD%E5%8A%A0'>オリジナルテンプレートエンジンの追加</a></li>
-			<li><a href='#%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%83%AD%E3%82%B8%E3%83%83%E3%82%AF%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%9F%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%81%AE%E6%8E%A2%E7%B4%A2'>カスタムロジックを使用したテンプレートの探索</a></li>
-		</ol>
-		<li><a href='#%E3%83%95%E3%82%A3%E3%83%AB%E3%82%BF(Filters)'>フィルタ(Filters)</a></li>
-		<li><a href='#%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC(Helpers)'>ヘルパー(Helpers)</a></li>
-		<ol class='level-2'>
-			<li><a href='#%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E4%BD%BF%E7%94%A8'>セッションの使用</a></li>
-			<ol class='level-3'>
-				<li><a href='#%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%9F%E3%83%89%E3%83%AB%E3%82%A6%E3%82%A7%E3%82%A2%E3%81%AE%E9%81%B8%E6%8A%9E'>セッションミドルウェアの選択</a></li>
-			</ol>
-			<li><a href='#%E5%81%9C%E6%AD%A2(Halting)'>停止(Halting)</a></li>
-			<li><a href='#%E3%83%91%E3%83%83%E3%82%B7%E3%83%B3%E3%82%B0(Passing)'>パッシング(Passing)</a></li>
-			<li><a href='#%E5%88%A5%E3%83%AB%E3%83%BC%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%AE%E8%AA%98%E7%99%BA'>別ルーティングの誘発</a></li>
-			<li><a href='#%E3%83%9C%E3%83%87%E3%82%A3%E3%80%81%E3%82%B9%E3%83%86%E3%83%BC%E3%82%BF%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89%E3%81%8A%E3%82%88%E3%81%B3%E3%83%98%E3%83%83%E3%83%80%E3%81%AE%E8%A8%AD%E5%AE%9A'>ボディ、ステータスコードおよびヘッダの設定</a></li>
-			<li><a href='#%E3%82%B9%E3%83%88%E3%83%AA%E3%83%BC%E3%83%9F%E3%83%B3%E3%82%B0%E3%83%AC%E3%82%B9%E3%83%9D%E3%83%B3%E3%82%B9(Streaming%20Responses)'>ストリーミングレスポンス(Streaming Responses)</a></li>
-			<li><a href='#%E3%83%AD%E3%82%AE%E3%83%B3%E3%82%B0(Logging)'>ロギング(Logging)</a></li>
-			<li><a href='#MIME%E3%82%BF%E3%82%A4%E3%83%97(Mime%20Types)'>MIMEタイプ(Mime Types)</a></li>
-			<li><a href='#URL%E3%81%AE%E7%94%9F%E6%88%90'>URLの生成</a></li>
-			<li><a href='#%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E3%83%AA%E3%83%80%E3%82%A4%E3%83%AC%E3%82%AF%E3%83%88(Browser%20Redirect)'>ブラウザリダイレクト(Browser Redirect)</a></li>
-			<li><a href='#%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5%E5%88%B6%E5%BE%A1(Cache%20Control)'>キャッシュ制御(Cache Control)</a></li>
-			<li><a href='#%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E9%80%81%E4%BF%A1'>ファイルの送信</a></li>
-			<li><a href='#%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%B8%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9'>リクエストオブジェクトへのアクセス</a></li>
-			<li><a href='#%E3%82%A2%E3%82%BF%E3%83%83%E3%83%81%E3%83%A1%E3%83%B3%E3%83%88(Attachments)'>アタッチメント(Attachments)</a></li>
-			<li><a href='#%E6%97%A5%E4%BB%98%E3%81%A8%E6%99%82%E5%88%BB%E3%81%AE%E5%8F%96%E3%82%8A%E6%89%B1%E3%81%84'>日付と時刻の取り扱い</a></li>
-			<li><a href='#%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E6%8E%A2%E7%B4%A2'>テンプレートファイルの探索</a></li>
-		</ol>
-		<li><a href='#%E3%82%B3%E3%83%B3%E3%83%95%E3%82%A3%E3%82%AE%E3%83%A5%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3(Configuration)'>コンフィギュレーション(Configuration)</a></li>
-		<ol class='level-2'>
-			<li><a href='#%E6%94%BB%E6%92%83%E9%98%B2%E5%BE%A1%E3%81%AB%E5%AF%BE%E3%81%99%E3%82%8B%E8%A8%AD%E5%AE%9A'>攻撃防御に対する設定</a></li>
-			<li><a href='#%E5%88%A9%E7%94%A8%E5%8F%AF%E8%83%BD%E3%81%AA%E8%A8%AD%E5%AE%9A'>利用可能な設定</a></li>
-		</ol>
-		<li><a href='#%E7%92%B0%E5%A2%83%E8%A8%AD%E5%AE%9A(Environments)'>環境設定(Environments)</a></li>
-		<li><a href='#%E3%82%A8%E3%83%A9%E3%83%BC%E3%83%8F%E3%83%B3%E3%83%89%E3%83%AA%E3%83%B3%E3%82%B0(Error%20Handling)'>エラーハンドリング(Error Handling)</a></li>
-		<ol class='level-2'>
-			<li><a href='#%E6%9C%AA%E6%A4%9C%E5%87%BA(Not%20Found)'>未検出(Not Found)</a></li>
-			<li><a href='#%E3%82%A8%E3%83%A9%E3%83%BC(Error)'>エラー(Error)</a></li>
-		</ol>
-		<li><a href='#Rack%E3%83%9F%E3%83%89%E3%83%AB%E3%82%A6%E3%82%A7%E3%82%A2(Rack%20Middleware)'>Rackミドルウェア(Rack Middleware)</a></li>
-		<li><a href='#%E3%83%86%E3%82%B9%E3%83%88(Testing)'>テスト(Testing)</a></li>
-		<li><a href='#Sinatra::Base%20-%20%E3%83%9F%E3%83%89%E3%83%AB%E3%82%A6%E3%82%A7%E3%82%A2%E3%80%81%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA%E3%81%8A%E3%82%88%E3%81%B3%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%A9%E3%83%BC%E3%82%A2%E3%83%97%E3%83%AA'>Sinatra::Base - ミドルウェア、ライブラリおよびモジュラーアプリ</a></li>
-		<ol class='level-2'>
-			<li><a href='#%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%A9%E3%83%BC%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AB%20vs%20%E3%82%AF%E3%83%A9%E3%83%83%E3%82%B7%E3%83%83%E3%82%AF%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AB'>モジュラースタイル vs クラッシックスタイル</a></li>
-			<li><a href='#%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%A9%E3%83%BC%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E6%8F%90%E4%BE%9B'>モジュラーアプリケーションの提供</a></li>
-			<li><a href='#config.ru%E3%82%92%E7%94%A8%E3%81%84%E3%81%9F%E3%82%AF%E3%83%A9%E3%83%83%E3%82%B7%E3%83%83%E3%82%AF%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AB%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E4%BD%BF%E7%94%A8'>config.ruを用いたクラッシックスタイルアプリケーションの使用</a></li>
-			<li><a href='#config.ru%E3%81%AF%E3%81%84%E3%81%A4%E4%BD%BF%E3%81%86%E3%81%AE%E3%81%8B%EF%BC%9F'>config.ruはいつ使うのか？</a></li>
-			<li><a href='#Sinatra%E3%81%AE%E3%83%9F%E3%83%89%E3%83%AB%E3%82%A6%E3%82%A7%E3%82%A2%E3%81%A8%E3%81%97%E3%81%A6%E3%81%AE%E5%88%A9%E7%94%A8'>Sinatraのミドルウェアとしての利用</a></li>
-			<li><a href='#%E5%8B%95%E7%9A%84%E3%81%AA%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E7%94%9F%E6%88%90'>動的なアプリケーションの生成</a></li>
-		</ol>
-		<li><a href='#%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97%E3%81%A8%E3%83%90%E3%82%A4%E3%83%B3%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0(Scopes%20and%20Binding)'>スコープとバインディング(Scopes and Binding)</a></li>
-		<ol class='level-2'>
-			<li><a href='#%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3/%E3%82%AF%E3%83%A9%E3%82%B9%E3%81%AE%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97'>アプリケーション/クラスのスコープ</a></li>
-			<li><a href='#%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88/%E3%82%A4%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%B3%E3%82%B9%E3%81%AE%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97'>リクエスト/インスタンスのスコープ</a></li>
-			<li><a href='#%E3%83%87%E3%83%AA%E3%82%B2%E3%83%BC%E3%83%88%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97'>デリゲートスコープ</a></li>
-		</ol>
-		<li><a href='#%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%83%A9%E3%82%A4%E3%83%B3'>コマンドライン</a></li>
-		<ol class='level-2'>
-			<li><a href='#%E3%83%9E%E3%83%AB%E3%83%81%E3%82%B9%E3%83%AC%E3%83%83%E3%83%89'>マルチスレッド</a></li>
-		</ol>
-		<li><a href='#%E5%BF%85%E8%A6%81%E7%92%B0%E5%A2%83'>必要環境</a></li>
-		<li><a href='#%E6%9C%80%E6%96%B0%E9%96%8B%E7%99%BA%E7%89%88'>最新開発版</a></li>
-		<ol class='level-2'>
-			<li><a href='#Bundler%E3%82%92%E4%BD%BF%E3%81%86%E5%A0%B4%E5%90%88'>Bundlerを使う場合</a></li>
-			<li><a href='#%E7%9B%B4%E6%8E%A5%E7%B5%84%E3%81%BF%E8%BE%BC%E3%82%80%E5%A0%B4%E5%90%88'>直接組み込む場合</a></li>
-			<li><a href='#%E3%82%B0%E3%83%AD%E3%83%BC%E3%83%90%E3%83%AB%E7%92%B0%E5%A2%83%E3%81%AB%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B%E5%A0%B4%E5%90%88'>グローバル環境にインストールする場合</a></li>
-		</ol>
-		<li><a href='#%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%8B%E3%83%B3%E3%82%B0(Versioning)'>バージョニング(Versioning)</a></li>
-		<li><a href='#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE'>参考文献</a></li>
-	</ol>
-</div>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <html><body>
 
@@ -137,12 +28,10 @@ end
 
 <p>ThinがあればSinatraはこれを利用するので、<code>gem install thin</code>することをお薦めします。</p>
 
-<a name='%E7%9B%AE%E6%AC%A1'></a>
 <h2>目次</h2>
 
 
 
-<a name='%E3%83%AB%E3%83%BC%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0(Routes)'></a>
 <h2>ルーティング(Routes)</h2>
 
 <p>Sinatraでは、ルーティングはHTTPメソッドとURLマッチングパターンがペアになっています。
@@ -256,7 +145,6 @@ end
 <p>ところで、ディレクトリトラバーサル攻撃防御設定を無効にしないと（下記参照）、
 ルーティングにマッチする前にリクエストパスが修正される可能性があります。</p>
 
-<a name='%E6%9D%A1%E4%BB%B6(Conditions)'></a>
 <h2>条件(Conditions)</h2>
 
 <p>ルーティングにはユーザエージェントのようなさまざまな条件を含めることができます。</p>
@@ -317,7 +205,6 @@ get "/only/admin/", :auth =&gt; :admin do
 end
 </code></pre>
 
-<a name='%E6%88%BB%E3%82%8A%E5%80%A4(Return%20Values)'></a>
 <h2>戻り値(Return Values)</h2>
 
 <p>ルーティングブロックの戻り値は、HTTPクライアントまたはRackスタックでの次のミドルウェアに渡されるレスポンスボディを決定します。</p>
@@ -352,7 +239,6 @@ get('/') { Stream.new }
 
 <p>後述する<code>stream</code>ヘルパーメソッドを使って、定型パターンを減らしつつストリーミングロジックをルーティングに埋め込むこともできます。</p>
 
-<a name='%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%83%AB%E3%83%BC%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E3%83%9E%E3%83%83%E3%83%81%E3%83%A3%E3%83%BC(Custom%20Route%20Matchers)'></a>
 <h2>カスタムルーティングマッチャー(Custom Route Matchers)</h2>
 
 <p>先述のようにSinatraはルーティングマッチャーとして、文字列パターンと正規表現を使うことをビルトインでサポートしています。しかしこれに留まらず、独自のマッチャーを簡単に定義することもできるのです。</p>
@@ -394,7 +280,6 @@ end
 end
 </code></pre>
 
-<a name='%E9%9D%99%E7%9A%84%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB(Static%20Files)'></a>
 <h2>静的ファイル(Static Files)</h2>
 
 <p>静的ファイルは<code>./public</code>ディレクトリから配信されます。
@@ -408,7 +293,6 @@ end
 
 <p><code>Cache-Control</code>の設定をヘッダーへ追加するには<code>:static_cache_control</code>の設定(下記参照)を加えてください。</p>
 
-<a name='%E3%83%93%E3%83%A5%E3%83%BC%20/%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88(Views%20/%20Templates)'></a>
 <h2>ビュー / テンプレート(Views / Templates)</h2>
 
 <p>各テンプレート言語はそれ自身のレンダリングメソッドを通して展開されます。それらのメソッドは単に文字列を返します。</p>
@@ -511,7 +395,6 @@ end
 （これは<code>:'subdir/template'</code>または<code>'subdir/template'.to_sym</code>のように指定することを意味します。）
 レンダリングメソッドにシンボルではなく文字列を渡してしまうと、そのまま文字列として出力してしまいます。</p>
 
-<a name='%E3%83%AA%E3%83%86%E3%83%A9%E3%83%AB%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88(Literal%20Templates)'></a>
 <h3>リテラルテンプレート(Literal Templates)</h3>
 
 <pre><code class="language-ruby">get '/' do
@@ -527,7 +410,6 @@ end
 end
 </code></pre>
 
-<a name='%E5%88%A9%E7%94%A8%E5%8F%AF%E8%83%BD%E3%81%AA%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E8%A8%80%E8%AA%9E'></a>
 <h3>利用可能なテンプレート言語</h3>
 
 <p>いくつかの言語には複数の実装があります。使用する（そしてスレッドセーフにする）実装を指定するには、それを最初にrequireしてください。</p>
@@ -536,7 +418,6 @@ end
 get('/') { markdown :index }
 </code></pre>
 
-<a name='Haml%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>Haml テンプレート</h4>
 
 <table>
@@ -554,7 +435,6 @@ get('/') { markdown :index }
   </tr>
 </table>
 
-<a name='Erb%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>Erb テンプレート</h4>
 
 <table>
@@ -576,7 +456,6 @@ get('/') { markdown :index }
   </tr>
 </table>
 
-<a name='Builder%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>Builder テンプレート</h4>
 
 <table>
@@ -598,7 +477,6 @@ get('/') { markdown :index }
 
 <p>インラインテンプレート用にブロックを取ることもできます（例を参照）。</p>
 
-<a name='Nokogiri%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>Nokogiri テンプレート</h4>
 
 <table>
@@ -618,7 +496,6 @@ get('/') { markdown :index }
 
 <p>インラインテンプレート用にブロックを取ることもできます（例を参照）。</p>
 
-<a name='Sass%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>Sass テンプレート</h4>
 
 <table>
@@ -636,7 +513,6 @@ get('/') { markdown :index }
   </tr>
 </table>
 
-<a name='Scss%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>Scss テンプレート</h4>
 
 <table>
@@ -654,7 +530,6 @@ get('/') { markdown :index }
   </tr>
 </table>
 
-<a name='Less%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>Less テンプレート</h4>
 
 <table>
@@ -672,7 +547,6 @@ get('/') { markdown :index }
   </tr>
 </table>
 
-<a name='Liquid%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>Liquid テンプレート</h4>
 
 <table>
@@ -692,7 +566,6 @@ get('/') { markdown :index }
 
 <p>LiquidテンプレートからRubyのメソッド(<code>yield</code>を除く)を呼び出すことができないため、ほぼ全ての場合にlocalsを指定する必要があるでしょう。</p>
 
-<a name='Markdown%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>Markdown テンプレート</h4>
 
 <table>
@@ -733,7 +606,6 @@ get('/') { markdown :index }
 
 <p>MarkdownからはRubyを呼ぶことができないので、Markdownで書かれたレイアウトを使うことはできません。しかしながら、<code>:layout_engine</code>オプションを渡すことでテンプレートのものとは異なるレンダリングエンジンをレイアウトのために使うことができます。</p>
 
-<a name='Textile%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>Textile テンプレート</h4>
 
 <table>
@@ -765,7 +637,6 @@ get('/') { markdown :index }
 
 <p>TexttileからはRubyを呼ぶことができないので、Textileで書かれたレイアウトを使うことはできません。しかしながら、<code>:layout_engine</code>オプションを渡すことでテンプレートのものとは異なるレンダリングエンジンをレイアウトのために使うことができます。</p>
 
-<a name='RDoc%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>RDoc テンプレート</h4>
 
 <table>
@@ -797,7 +668,6 @@ get('/') { markdown :index }
 
 <p>RDocからはRubyを呼ぶことができないので、RDocで書かれたレイアウトを使うことはできません。しかしながら、<code>:layout_engine</code>オプションを渡すことでテンプレートのものとは異なるレンダリングエンジンをレイアウトのために使うことができます。</p>
 
-<a name='AsciiDoc%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>AsciiDoc テンプレート</h4>
 
 <table>
@@ -819,7 +689,6 @@ get('/') { markdown :index }
 
 <p>AsciiDocテンプレートからRubyのメソッドを直接呼び出すことができないため、ほぼ全ての場合にlocalsを指定する必要があるでしょう。</p>
 
-<a name='Radius%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>Radius テンプレート</h4>
 
 <table>
@@ -839,7 +708,6 @@ get('/') { markdown :index }
 
 <p>RadiusテンプレートからRubyのメソッドを直接呼び出すことができないため、ほぼ全ての場合にlocalsを指定する必要があるでしょう。</p>
 
-<a name='Markaby%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>Markaby テンプレート</h4>
 
 <table>
@@ -859,7 +727,6 @@ get('/') { markdown :index }
 
 <p>インラインテンプレート用にブロックを取ることもできます（例を参照）。</p>
 
-<a name='RABL%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>RABL テンプレート</h4>
 
 <table>
@@ -877,7 +744,6 @@ get('/') { markdown :index }
   </tr>
 </table>
 
-<a name='Slim%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>Slim テンプレート</h4>
 
 <table>
@@ -895,7 +761,6 @@ get('/') { markdown :index }
   </tr>
 </table>
 
-<a name='Creole%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>Creole テンプレート</h4>
 
 <table>
@@ -927,7 +792,6 @@ get('/') { markdown :index }
 
 <p>CreoleからはRubyを呼ぶことができないので、Creoleで書かれたレイアウトを使うことはできません。しかしながら、<code>:layout_engine</code>オプションを渡すことでテンプレートのものとは異なるレンダリングエンジンをレイアウトのために使うことができます。</p>
 
-<a name='MediaWiki%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>MediaWiki テンプレート</h4>
 
 <table>
@@ -954,7 +818,6 @@ get('/') { markdown :index }
 
 <p>ノート: 他のテンプレートから部分的に<code>mediawiki</code>メソッドを呼び出すことも可能です。</p>
 
-<a name='CoffeeScript%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>CoffeeScript テンプレート</h4>
 
 <table>
@@ -979,7 +842,6 @@ get('/') { markdown :index }
   </tr>
 </table>
 
-<a name='Stylus%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>Stylus テンプレート</h4>
 
 <table>
@@ -1015,7 +877,6 @@ get '/' do
 end
 </code></pre>
 
-<a name='Yajl%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>Yajl テンプレート</h4>
 
 <table>
@@ -1051,7 +912,6 @@ json[:baz] = key
 <pre><code class="language-ruby">var resource = {"foo":"bar","baz":"qux"}; present(resource);
 </code></pre>
 
-<a name='WLang%20%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88'></a>
 <h4>WLang テンプレート</h4>
 
 <table>
@@ -1071,7 +931,6 @@ json[:baz] = key
 
 <p>WLang内でのRubyメソッドの呼び出しは一般的ではないので、ほとんどの場合にlocalsを指定する必要があるでしょう。しかしながら、WLangで書かれたレイアウトは<code>yield</code>をサポートしています。</p>
 
-<a name='%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E5%86%85%E3%81%A7%E3%81%AE%E5%A4%89%E6%95%B0%E3%81%B8%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9'></a>
 <h3>テンプレート内での変数へのアクセス</h3>
 
 <p>テンプレートはルーティングハンドラと同じコンテキストの中で評価されます。ルーティングハンドラでセットされたインスタンス変数はテンプレート内で直接使うことができます。</p>
@@ -1125,7 +984,6 @@ end
 <code>liquid</code>, <code>slim </code>, <code>wlang</code>。
 また汎用の<code>render</code>メソッドもブロックを取れます。</p>
 
-<a name='%E3%82%A4%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88(Inline%20Templates)'></a>
 <h3>インラインテンプレート(Inline Templates)</h3>
 
 <p>テンプレートはソースファイルの最後で定義することもできます。</p>
@@ -1148,7 +1006,6 @@ __END__
 
 <p>ノート: Sinatraをrequireするソースファイル内で定義されたインラインテンプレートは自動的に読み込まれます。他のソースファイル内にインラインテンプレートがある場合には<code>enable :inline_templates</code>を明示的に呼んでください。</p>
 
-<a name='%E5%90%8D%E5%89%8D%E4%BB%98%E3%81%8D%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88(Named%20Templates)'></a>
 <h3>名前付きテンプレート(Named Templates)</h3>
 
 <p>テンプレートはトップレベルの<code>template</code>メソッドで定義することもできます。</p>
@@ -1173,7 +1030,6 @@ end
 end
 </code></pre>
 
-<a name='%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%8B%A1%E5%BC%B5%E5%AD%90%E3%81%AE%E9%96%A2%E9%80%A3%E4%BB%98%E3%81%91'></a>
 <h3>ファイル拡張子の関連付け</h3>
 
 <p>任意のテンプレートエンジンにファイル拡張子を関連付ける場合は、<code>Tilt.register</code>を使います。例えば、Textileテンプレートに<code>tt</code>というファイル拡張子を使いたい場合は、以下のようにします。</p>
@@ -1181,7 +1037,6 @@ end
 <pre><code class="language-ruby">Tilt.register :tt, Tilt[:textile]
 </code></pre>
 
-<a name='%E3%82%AA%E3%83%AA%E3%82%B8%E3%83%8A%E3%83%AB%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3%E3%81%AE%E8%BF%BD%E5%8A%A0'></a>
 <h3>オリジナルテンプレートエンジンの追加</h3>
 
 <p>まず、Tiltでそのエンジンを登録し、次にレンダリングメソッドを作ります。</p>
@@ -1199,7 +1054,6 @@ end
 
 <p>これは、<code>./views/index.myat</code>をレンダリングします。Tiltについての詳細は、https://github.com/rtomayko/tilt を参照してください。</p>
 
-<a name='%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%83%AD%E3%82%B8%E3%83%83%E3%82%AF%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%9F%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%81%AE%E6%8E%A2%E7%B4%A2'></a>
 <h3>カスタムロジックを使用したテンプレートの探索</h3>
 
 <p>オリジナルテンプレートの検索メカニズムを実装するためには、<code>#find_template</code>メソッドを実装します。</p>
@@ -1215,7 +1069,6 @@ def find_template(views, name, engine, &amp;block)
 end
 </code></pre>
 
-<a name='%E3%83%95%E3%82%A3%E3%83%AB%E3%82%BF(Filters)'></a>
 <h2>フィルタ(Filters)</h2>
 
 <p>beforeフィルタは、リクエストのルーティングと同じコンテキストで各リクエストの前に評価され、それによってリクエストとレスポンスを変更可能にします。フィルタ内でセットされたインスタンス変数はルーティングとテンプレートからアクセスすることができます。</p>
@@ -1262,7 +1115,6 @@ after '/blog/*', :host_name =&gt; 'example.com' do
 end
 </code></pre>
 
-<a name='%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC(Helpers)'></a>
 <h2>ヘルパー(Helpers)</h2>
 
 <p>トップレベルの<code>helpers</code>メソッドを使用してルーティングハンドラやテンプレートで使うヘルパーメソッドを定義できます。</p>
@@ -1293,7 +1145,6 @@ helpers FooUtils, BarUtils
 
 <p>その効果は、アプリケーションクラスにモジュールをインクルードするのと同じです。</p>
 
-<a name='%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E4%BD%BF%E7%94%A8'></a>
 <h3>セッションの使用</h3>
 
 <p>セッションはリクエスト間での状態維持のために使用されます。セッションを有効化すると、ユーザセッションごとに一つのセッションハッシュが与えられます。</p>
@@ -1337,7 +1188,6 @@ end
 <pre><code class="language-ruby">set :sessions, :domain =&gt; '.foo.com'
 </code></pre>
 
-<a name='%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%9F%E3%83%89%E3%83%AB%E3%82%A6%E3%82%A7%E3%82%A2%E3%81%AE%E9%81%B8%E6%8A%9E'></a>
 <h4>セッションミドルウェアの選択</h4>
 
 <p><code>enable :sessions</code>とすることで、クッキー内の全てのデータを実際に保存してしまうことに注意してください。
@@ -1367,7 +1217,6 @@ use Rack::Protection::SessionHijacking
 
 <p>より詳しい情報は、「攻撃防御に対する設定」の項を参照してください。</p>
 
-<a name='%E5%81%9C%E6%AD%A2(Halting)'></a>
 <h3>停止(Halting)</h3>
 
 <p>フィルタまたはルーティング内で直ちにリクエストを止める場合</p>
@@ -1400,7 +1249,6 @@ use Rack::Protection::SessionHijacking
 <pre><code class="language-ruby">halt erb(:error)
 </code></pre>
 
-<a name='%E3%83%91%E3%83%83%E3%82%B7%E3%83%B3%E3%82%B0(Passing)'></a>
 <h3>パッシング(Passing)</h3>
 
 <p>ルーティングは<code>pass</code>を使って次のルーティングに飛ばすことができます。</p>
@@ -1417,7 +1265,6 @@ end
 
 <p>ルーティングブロックからすぐに抜け出し、次にマッチするルーティングを実行します。マッチするルーティングが見当たらない場合は404が返されます。</p>
 
-<a name='%E5%88%A5%E3%83%AB%E3%83%BC%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%AE%E8%AA%98%E7%99%BA'></a>
 <h3>別ルーティングの誘発</h3>
 
 <p><code>pass</code>を使ってルーティングを飛ばすのではなく、他のルーティングを呼んだ結果を得たいという場合があります。
@@ -1439,7 +1286,6 @@ end
 
 <p><code>call</code>についての詳細はRackの仕様を参照してください。</p>
 
-<a name='%E3%83%9C%E3%83%87%E3%82%A3%E3%80%81%E3%82%B9%E3%83%86%E3%83%BC%E3%82%BF%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89%E3%81%8A%E3%82%88%E3%81%B3%E3%83%98%E3%83%83%E3%83%80%E3%81%AE%E8%A8%AD%E5%AE%9A'></a>
 <h3>ボディ、ステータスコードおよびヘッダの設定</h3>
 
 <p>ステータスコードおよびレスポンスボディを、ルーティングブロックの戻り値にセットすることが可能であり、これは推奨されています。しかし、あるケースでは実行フローの任意のタイミングでボディをセットしたくなるかもしれません。<code>body</code>ヘルパーメソッドを使えばそれができます。そうすると、それ以降、ボディにアクセスするためにそのメソッドを使うことができるようになります。</p>
@@ -1468,7 +1314,6 @@ end
 
 <p>引数を伴わない<code>body</code>、<code>headers</code>、<code>status</code>などは、それらの現在の値にアクセスするために使えます。</p>
 
-<a name='%E3%82%B9%E3%83%88%E3%83%AA%E3%83%BC%E3%83%9F%E3%83%B3%E3%82%B0%E3%83%AC%E3%82%B9%E3%83%9D%E3%83%B3%E3%82%B9(Streaming%20Responses)'></a>
 <h3>ストリーミングレスポンス(Streaming Responses)</h3>
 
 <p>レスポンスボディの部分を未だ生成している段階で、データを送り出したいということがあります。極端な例では、クライアントがコネクションを閉じるまでデータを送り続けたいことがあります。<code>stream</code>ヘルパーを使えば、独自ラッパーを作る必要はありません。</p>
@@ -1520,7 +1365,6 @@ end
 
 <p>クライアントはソケットに書き込もうとしている接続を閉じることも可能です。そのため、記述しようとする前に<code>out.closed?</code>をチェックすることを勧めます。</p>
 
-<a name='%E3%83%AD%E3%82%AE%E3%83%B3%E3%82%B0(Logging)'></a>
 <h3>ロギング(Logging)</h3>
 
 <p>リクエストスコープにおいて、<code>logger</code>ヘルパーは<code>Logger</code>インスタンスを作り出します。</p>
@@ -1544,7 +1388,6 @@ end
 
 <p>ロギングミドルウェアが設定されてしまうのを避けるには、<code>logging</code>設定を<code>nil</code>にセットします。しかしこの場合、<code>logger</code>が<code>nil</code>を返すことを忘れないように。よくあるユースケースは、オリジナルのロガーをセットしたいときです。Sinatraは、とにかく<code>env['rack.logger']</code>で見つかるものを使います。</p>
 
-<a name='MIME%E3%82%BF%E3%82%A4%E3%83%97(Mime%20Types)'></a>
 <h3>MIMEタイプ(Mime Types)</h3>
 
 <p><code>send_file</code>か静的ファイルを使う時、SinatraがMIMEタイプを理解できない場合があります。その時は <code>mime_type</code> を使ってファイル拡張子毎に登録してください。</p>
@@ -1562,7 +1405,6 @@ end
 end
 </code></pre>
 
-<a name='URL%E3%81%AE%E7%94%9F%E6%88%90'></a>
 <h3>URLの生成</h3>
 
 <p>URLを生成するためには<code>url</code>ヘルパーメソッドが使えます。Hamlではこのようにします。</p>
@@ -1574,7 +1416,6 @@ end
 
 <p>このメソッドには<code>to</code>というエイリアスがあります(以下の例を参照)。</p>
 
-<a name='%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E3%83%AA%E3%83%80%E3%82%A4%E3%83%AC%E3%82%AF%E3%83%88(Browser%20Redirect)'></a>
 <h3>ブラウザリダイレクト(Browser Redirect)</h3>
 
 <p><code>redirect</code> ヘルパーメソッドを使うことで、ブラウザをリダイレクトさせることができます。</p>
@@ -1621,7 +1462,6 @@ get '/bar' do
 end
 </code></pre>
 
-<a name='%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5%E5%88%B6%E5%BE%A1(Cache%20Control)'></a>
 <h3>キャッシュ制御(Cache Control)</h3>
 
 <p>ヘッダを正しく設定することが、適切なHTTPキャッシングのための基礎となります。</p>
@@ -1693,7 +1533,6 @@ end
 <pre><code class="language-ruby">etag '', :new_resource =&gt; true, :kind =&gt; :weak
 </code></pre>
 
-<a name='%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E9%80%81%E4%BF%A1'></a>
 <h3>ファイルの送信</h3>
 
 <p>ファイルを送信するには、<code>send_file</code>ヘルパーメソッドを使います。</p>
@@ -1737,7 +1576,6 @@ end
     </dd>
 </dl>
 
-<a name='%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%B8%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9'></a>
 <h3>リクエストオブジェクトへのアクセス</h3>
 
 <p>受信するリクエストオブジェクトは、<code>request</code>メソッドを通じてリクエストレベル(フィルタ、ルーティング、エラーハンドラ)からアクセスすることができます。</p>
@@ -1792,7 +1630,6 @@ end
 end
 </code></pre>
 
-<a name='%E3%82%A2%E3%82%BF%E3%83%83%E3%83%81%E3%83%A1%E3%83%B3%E3%83%88(Attachments)'></a>
 <h3>アタッチメント(Attachments)</h3>
 
 <p><code>attachment</code>ヘルパーを使って、レスポンスがブラウザに表示されるのではなく、ディスクに保存されることをブラウザに対し通知することができます。</p>
@@ -1811,7 +1648,6 @@ end
 end
 </code></pre>
 
-<a name='%E6%97%A5%E4%BB%98%E3%81%A8%E6%99%82%E5%88%BB%E3%81%AE%E5%8F%96%E3%82%8A%E6%89%B1%E3%81%84'></a>
 <h3>日付と時刻の取り扱い</h3>
 
 <p>Sinatraは<code>time_for</code>ヘルパーメソッドを提供しており、それは与えられた値からTimeオブジェクトを生成します。これはまた<code>DateTime</code>、<code>Date</code>および類似のクラスを変換できます。</p>
@@ -1841,7 +1677,6 @@ get '/' do
 end
 </code></pre>
 
-<a name='%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E6%8E%A2%E7%B4%A2'></a>
 <h3>テンプレートファイルの探索</h3>
 
 <p><code>find_template</code>ヘルパーは、レンダリングのためのテンプレートファイルを見つけるために使われます。</p>
@@ -1879,7 +1714,6 @@ end
 
 <p>ノート: <code>find_template</code>はファイルが実際に存在するかのチェックをしませんが、与えられたブロックをすべての可能なパスに対し呼び出します。これがパフォーマンス上の問題にはならないのは、<code>render</code>はファイルを見つけると直ちに<code>break</code>を使うからです。また、テンプレートの場所（および内容）は、developmentモードでの起動でない限りはキャッシュされます。このことは、複雑なメソッド(a really crazy method)を書いた場合は記憶しておく必要があります。</p>
 
-<a name='%E3%82%B3%E3%83%B3%E3%83%95%E3%82%A3%E3%82%AE%E3%83%A5%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3(Configuration)'></a>
 <h2>コンフィギュレーション(Configuration)</h2>
 
 <p>どの環境でも起動時に１回だけ実行されます。</p>
@@ -1929,7 +1763,6 @@ get '/' do
 end
 </code></pre>
 
-<a name='%E6%94%BB%E6%92%83%E9%98%B2%E5%BE%A1%E3%81%AB%E5%AF%BE%E3%81%99%E3%82%8B%E8%A8%AD%E5%AE%9A'></a>
 <h3>攻撃防御に対する設定</h3>
 
 <p>Sinatraは<a href="https://github.com/sinatra/rack-protection#readme">Rack::Protection</a>を使用することで、アプリケーションを一般的な日和見的攻撃から守っています。これは簡単に無効化できます（が、アプリケーションに大量の一般的な脆弱性を埋め込むことになってしまいます）。</p>
@@ -1953,7 +1786,6 @@ end
 set :protection, :session =&gt; true
 </code></pre>
 
-<a name='%E5%88%A9%E7%94%A8%E5%8F%AF%E8%83%BD%E3%81%AA%E8%A8%AD%E5%AE%9A'></a>
 <h3>利用可能な設定</h3>
 
 <dl>
@@ -2099,7 +1931,6 @@ set :protection, :session =&gt; true
   </dd>
 </dl>
 
-<a name='%E7%92%B0%E5%A2%83%E8%A8%AD%E5%AE%9A(Environments)'></a>
 <h2>環境設定(Environments)</h2>
 
 <p>3種類の既定環境、<code>"development"</code>、<code>"production"</code>および<code>"test"</code>があります。環境は、<code>APP_ENV</code>環境変数を通して設定できます。デフォルト値は、<code>"development"</code>です。<code>"development"</code>環境において、すべてのテンプレートは、各リクエスト間で再ロードされ、そして、特別の<code>not_found</code>および<code>error</code>ハンドラがブラウザにスタックトレースを表示します。<code>"production"</code>および<code>"test"</code>環境においては、テンプレートはデフォルトでキャッシュされます。</p>
@@ -2120,12 +1951,10 @@ set :protection, :session =&gt; true
 end
 </code></pre>
 
-<a name='%E3%82%A8%E3%83%A9%E3%83%BC%E3%83%8F%E3%83%B3%E3%83%89%E3%83%AA%E3%83%B3%E3%82%B0(Error%20Handling)'></a>
 <h2>エラーハンドリング(Error Handling)</h2>
 
 <p>エラーハンドラはルーティングおよびbeforeフィルタと同じコンテキストで実行されます。すなわちこれは、<code>haml</code>、<code>erb</code>、<code>halt</code>といった便利なものが全て使えることを意味します。</p>
 
-<a name='%E6%9C%AA%E6%A4%9C%E5%87%BA(Not%20Found)'></a>
 <h3>未検出(Not Found)</h3>
 
 <p><code>Sinatra::NotFound</code>例外が発生したとき、またはレスポンスのステータスコードが404のときに、<code>not_found</code>ハンドラが発動します。</p>
@@ -2135,7 +1964,6 @@ end
 end
 </code></pre>
 
-<a name='%E3%82%A8%E3%83%A9%E3%83%BC(Error)'></a>
 <h3>エラー(Error)</h3>
 
 <p><code>error</code>ハンドラはルーティングブロックまたはフィルタ内で例外が発生したときはいつでも発動します。
@@ -2190,7 +2018,6 @@ end
 
 <p>Sinatraを開発環境の下で実行している場合は、特別な<code>not_found</code>および<code>error</code>ハンドラが導入され、これは親切なスタックトレースと追加のデバッギング情報をブラウザに表示します。</p>
 
-<a name='Rack%E3%83%9F%E3%83%89%E3%83%AB%E3%82%A6%E3%82%A7%E3%82%A2(Rack%20Middleware)'></a>
 <h2>Rackミドルウェア(Rack Middleware)</h2>
 
 <p>SinatraはRuby製Webフレームワークのミニマルな標準的インタフェースである<a href="http://rack.github.io/">Rack</a>上に構築されています。アプリケーションデベロッパーにとってRackにおける最も興味深い機能は、「ミドルウェア(middleware)」をサポートしていることであり、これは、サーバとアプリケーションとの間に置かれ、HTTPリクエスト/レスポンスを監視および/または操作することで、各種の汎用的機能を提供するコンポーネントです。</p>
@@ -2223,7 +2050,6 @@ end
 <a href="https://github.com/rack/rack-contrib#readm">rack-contrib</a>、
 または<a href="https://github.com/rack/rack/wiki/List-of-Middleware">Rack wiki</a>。</p>
 
-<a name='%E3%83%86%E3%82%B9%E3%83%88(Testing)'></a>
 <h2>テスト(Testing)</h2>
 
 <p>SinatraでのテストはRackベースのテストライブラリまたはフレームワークを使って書くことができます。<a href="http://www.rubydoc.info/github/brynary/rack-test/master/frames">Rack::Test</a>をお薦めします。</p>
@@ -2258,7 +2084,6 @@ end
 
 <p>ノート: モジュラースタイルでSinatraを使う場合は、上記<code>Sinatra::Application</code>をアプリケーションのクラス名に置き換えてください。</p>
 
-<a name='Sinatra::Base%20-%20%E3%83%9F%E3%83%89%E3%83%AB%E3%82%A6%E3%82%A7%E3%82%A2%E3%80%81%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA%E3%81%8A%E3%82%88%E3%81%B3%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%A9%E3%83%BC%E3%82%A2%E3%83%97%E3%83%AA'></a>
 <h2>Sinatra::Base - ミドルウェア、ライブラリおよびモジュラーアプリ</h2>
 
 <p>軽量なアプリケーションであれば、トップレベルでアプリケーションを定義していくことはうまくいきますが、再利用性可能なコンポーネント、例えばRackミドルウェア、RailsのMetal、サーバコンポーネントを含むシンプルなライブラリ、あるいはSinatraの拡張プログラムを構築するような場合、これは無視できない欠点を持つものとなります。トップレベルは、軽量なアプリケーションのスタイルにおける設定（例えば、単一のアプリケーションファイル、<code>./public</code>および<code>./views</code>ディレクトリ、ロギング、例外詳細ページなど）を仮定しています。そこで<code>Sinatra::Base</code>の出番です。</p>
@@ -2297,7 +2122,6 @@ class MyApp &lt; Sinatra::Application
 end
 </code></pre>
 
-<a name='%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%A9%E3%83%BC%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AB%20vs%20%E3%82%AF%E3%83%A9%E3%83%83%E3%82%B7%E3%83%83%E3%82%AF%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AB'></a>
 <h3>モジュラースタイル vs クラッシックスタイル</h3>
 
 <p>一般的認識と違って、クラッシックスタイルを使うことに問題はなにもありません。それがそのアプリケーションに合っているのであれば、モジュラーアプリケーションに移行する必要はありません。</p>
@@ -2357,7 +2181,6 @@ end
   </tr>
 </table>
 
-<a name='%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%A9%E3%83%BC%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E6%8F%90%E4%BE%9B'></a>
 <h3>モジュラーアプリケーションの提供</h3>
 
 <p>モジュラーアプリケーションを開始、つまり<code>run!</code>を使って開始させる二種類のやり方があります。</p>
@@ -2390,7 +2213,6 @@ run MyApp
 <pre><code class="language-shell">rackup -p 4567
 </code></pre>
 
-<a name='config.ru%E3%82%92%E7%94%A8%E3%81%84%E3%81%9F%E3%82%AF%E3%83%A9%E3%83%83%E3%82%B7%E3%83%83%E3%82%AF%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AB%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E4%BD%BF%E7%94%A8'></a>
 <h3>config.ruを用いたクラッシックスタイルアプリケーションの使用</h3>
 
 <p>アプリケーションファイルと、</p>
@@ -2409,7 +2231,6 @@ end
 run Sinatra::Application
 </code></pre>
 
-<a name='config.ru%E3%81%AF%E3%81%84%E3%81%A4%E4%BD%BF%E3%81%86%E3%81%AE%E3%81%8B%EF%BC%9F'></a>
 <h3>config.ruはいつ使うのか？</h3>
 
 <p><code>config.ru</code>ファイルは、以下の場合に適しています。</p>
@@ -2423,7 +2244,6 @@ run Sinatra::Application
 
 <p><strong>モジュラースタイルに移行したという理由だけで、<code>config.ru</code>に移行する必要はなく、<code>config.ru</code>で起動するためにモジュラースタイルを使う必要はありません。</strong></p>
 
-<a name='Sinatra%E3%81%AE%E3%83%9F%E3%83%89%E3%83%AB%E3%82%A6%E3%82%A7%E3%82%A2%E3%81%A8%E3%81%97%E3%81%A6%E3%81%AE%E5%88%A9%E7%94%A8'></a>
 <h3>Sinatraのミドルウェアとしての利用</h3>
 
 <p>Sinatraは他のRackミドルウェアを利用することができるだけでなく、
@@ -2461,7 +2281,6 @@ class MyApp &lt; Sinatra::Base
 end
 </code></pre>
 
-<a name='%E5%8B%95%E7%9A%84%E3%81%AA%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E7%94%9F%E6%88%90'></a>
 <h3>動的なアプリケーションの生成</h3>
 
 <p>新しいアプリケーションを実行時に、定数に割り当てることなく生成したくなる場合があるでしょう。<code>Sinatra.new</code>を使えばそれができます。</p>
@@ -2503,12 +2322,10 @@ end
 run RailsProject::Application
 </code></pre>
 
-<a name='%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97%E3%81%A8%E3%83%90%E3%82%A4%E3%83%B3%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0(Scopes%20and%20Binding)'></a>
 <h2>スコープとバインディング(Scopes and Binding)</h2>
 
 <p>現在のスコープはどのメソッドや変数が利用可能かを決定します。</p>
 
-<a name='%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3/%E3%82%AF%E3%83%A9%E3%82%B9%E3%81%AE%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97'></a>
 <h3>アプリケーション/クラスのスコープ</h3>
 
 <p>全てのSinatraアプリケーションはSinatra::Baseのサブクラスに相当します。
@@ -2551,7 +2368,6 @@ end
 </li>
 </ul>
 
-<a name='%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88/%E3%82%A4%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%B3%E3%82%B9%E3%81%AE%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97'></a>
 <h3>リクエスト/インスタンスのスコープ</h3>
 
 <p>やってくるリクエストごとに、あなたのアプリケーションクラスの新しいインスタンスが作成され、全てのハンドラブロックがそのスコープで実行されます。
@@ -2583,7 +2399,6 @@ end
   <li>テンプレート/ビュー</li>
 </ul>
 
-<a name='%E3%83%87%E3%83%AA%E3%82%B2%E3%83%BC%E3%83%88%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97'></a>
 <h3>デリゲートスコープ</h3>
 
 <p>デリゲートスコープは、単にクラススコープにメソッドを転送します。
@@ -2603,7 +2418,6 @@ end
 <p>コードをご覧ください: ここでは <a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/base.rb#L1609-1633">Sinatra::Delegator
 mixin</a>は<a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/main.rb#L28-30">mainオブジェクトにextendされています</a>。</p>
 
-<a name='%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%83%A9%E3%82%A4%E3%83%B3'></a>
 <h2>コマンドライン</h2>
 
 <p>Sinatraアプリケーションは直接実行できます。</p>
@@ -2621,7 +2435,6 @@ mixin</a>は<a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra
 -x # mutex lockを付ける (デフォルトはoff)
 </code></pre>
 
-<a name='%E3%83%9E%E3%83%AB%E3%83%81%E3%82%B9%E3%83%AC%E3%83%83%E3%83%89'></a>
 <h3>マルチスレッド</h3>
 
 <p><em>この<a href="http://stackoverflow.com/questions/6278817/is-sinatra-multi-threaded/6282999#6282999)">StackOverflow</a>でのKonstantinによる回答を言い換えています。</em></p>
@@ -2649,7 +2462,6 @@ App.run!
 <pre><code>thin --threaded start
 </code></pre>
 
-<a name='%E5%BF%85%E8%A6%81%E7%92%B0%E5%A2%83'></a>
 <h2>必要環境</h2>
 
 <p>次のRubyバージョンが公式にサポートされています。</p>
@@ -2709,7 +2521,6 @@ App.run!
 
 <p>Sinatraは現在、Cardinal、SmallRuby、BlueRubyまたは1.8.7以前のバージョンのRuby上では動作しません。</p>
 
-<a name='%E6%9C%80%E6%96%B0%E9%96%8B%E7%99%BA%E7%89%88'></a>
 <h2>最新開発版</h2>
 
 <p>Sinatraの最新開発版のコードを使いたい場合は、マスターブランチに対してアプリケーションを走らせて構いません。ある程度安定しています。また、適宜プレリリース版gemをpushしているので、</p>
@@ -2719,7 +2530,6 @@ App.run!
 
 <p>すれば、最新の機能のいくつかを利用できます。</p>
 
-<a name='Bundler%E3%82%92%E4%BD%BF%E3%81%86%E5%A0%B4%E5%90%88'></a>
 <h3>Bundlerを使う場合</h3>
 
 <p>最新のSinatraでアプリケーションを動作させたい場合には、<a href="http://bundler.io">Bundler</a>を使うのがお薦めのやり方です。</p>
@@ -2746,7 +2556,6 @@ gem 'activerecord', '~&gt; 3.0'  # ActiveRecord 3.xが必要かもしれませ�
 <pre><code class="language-shell">bundle exec ruby myapp.rb
 </code></pre>
 
-<a name='%E7%9B%B4%E6%8E%A5%E7%B5%84%E3%81%BF%E8%BE%BC%E3%82%80%E5%A0%B4%E5%90%88'></a>
 <h3>直接組み込む場合</h3>
 
 <p>ローカルにクローンを作って、<code>sinatra/lib</code>ディレクトリを<code>$LOAD_PATH</code>に追加してアプリケーションを起動します。</p>
@@ -2762,7 +2571,6 @@ ruby -I sinatra/lib myapp.rb
 git pull
 </code></pre>
 
-<a name='%E3%82%B0%E3%83%AD%E3%83%BC%E3%83%90%E3%83%AB%E7%92%B0%E5%A2%83%E3%81%AB%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B%E5%A0%B4%E5%90%88'></a>
 <h3>グローバル環境にインストールする場合</h3>
 
 <p>Sinatraのgemを自身でビルドすることもできます。</p>
@@ -2778,12 +2586,10 @@ rake install
 <pre><code class="language-shell">sudo rake install
 </code></pre>
 
-<a name='%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%8B%E3%83%B3%E3%82%B0(Versioning)'></a>
 <h2>バージョニング(Versioning)</h2>
 
 <p>Sinatraは、<a href="http://semver.org/">Semantic Versioning</a>におけるSemVerおよびSemVerTagの両方に準拠しています。</p>
 
-<a name='%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE'></a>
 <h2>参考文献</h2>
 
 <ul>
