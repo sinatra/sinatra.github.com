@@ -1,7 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-<html><body>
 
-<p><a href="http://travis-ci.org/sinatra/rack-protection"><img src="https://secure.travis-ci.org/sinatra/rack-protection.png" alt="Build Status"></a></p>
+
+
 
 <p>This gem protects against typical web attacks.
 Should work for all Rack apps, including Rails.</p>
@@ -38,7 +37,17 @@ run MyApp
 
 <p>Prevented by:</p>
 
-
+<ul>
+  <li>
+<code>Rack::Protection::AuthenticityToken</code> (not included by <code>use Rack::Protection</code>)</li>
+  <li>
+<code>Rack::Protection::FormToken</code> (not included by <code>use Rack::Protection</code>)</li>
+  <li><code>Rack::Protection::JsonCsrf</code></li>
+  <li>
+<code>Rack::Protection::RemoteReferrer</code> (not included by <code>use Rack::Protection</code>)</li>
+  <li><code>Rack::Protection::RemoteToken</code></li>
+  <li><code>Rack::Protection::HttpOrigin</code></li>
+</ul>
 
 <h2>Cross Site Scripting</h2>
 
@@ -111,4 +120,3 @@ use Rack::Protection, instrumenter: ActiveSupport::Notifications
 ~~~~</p>
 
 <p>The instrumenter is passed a namespace (String) and environment (Hash). The namespace is ‘rack.protection’ and the attack type can be obtained from the environment key ‘rack.protection.attack’.</p>
-</body></html>
