@@ -48,6 +48,13 @@ def contrib(pattern = "%s", &block)
     sinatra-streaming
     sinatra-json
     sinatra-link-header
+    sinatra-webdav
+    sinatra-runner
+    sinatra-test-helpers
+    sinatra-required-params
+    sinatra-custom-logger
+    sinatra-capture
+    sinatra-engine-tracking
   ].map do |extension|
     pattern % extension
   end

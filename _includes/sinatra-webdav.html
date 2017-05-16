@@ -1,0 +1,27 @@
+
+<h1>Sinatra::WebDAV</h1>
+
+<p>This extensions provides WebDAV verbs, as defined by RFC 4918 (<a
+href="https://tools.ietf.org/html/rfc4918">tools.ietf.org/html/rfc4918</a>).
+To use this in your app, just <tt>register</tt> it:</p>
+
+<pre>require &#39;sinatra/base&#39;
+require &#39;sinatra/webdav&#39;
+
+class Application &lt; Sinatra::Base
+  register Sinatra::WebDAV
+
+  # Now you can use any WebDAV verb:
+  propfind &#39;/2014/january/21&#39; do
+    &#39;I have a lunch at 9 PM&#39;
+  end
+end</pre>
+
+<p>You can use it in classic application just by requring the extension:</p>
+
+<pre>require &#39;sinatra&#39;
+require &#39;sinatra/webdav&#39;
+
+mkcol &#39;/2015&#39; do
+  &#39;You started 2015!&#39;
+end</pre>

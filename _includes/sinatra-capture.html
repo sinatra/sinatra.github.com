@@ -1,0 +1,75 @@
+
+<h1>Sinatra::Capture</h1>
+
+<p>Extension that enables blocks inside other extensions. It currently works
+for erb, slim and haml. Enables mixing of different template languages.</p>
+
+<p>Example:</p>
+
+<pre># in hello_world.erb
+
+Say
+&lt;% a = capture do %&gt;World&lt;% end %&gt;
+Hello &lt;%= a %&gt;!
+
+# in hello_world.slim
+
+| Say
+- a = capture do
+  | World
+|  Hello #{a}!
+
+# in hello_world.haml
+
+Say
+- a = capture do
+  World
+  Hello #{a.strip}!</pre>
+
+<p>You can also use nested blocks.</p>
+
+<p>Example</p>
+
+<pre># in hello_world.erb
+
+Say
+&lt;% a = capture do %&gt;
+  &lt;% b = capture do %&gt;World&lt;% end %&gt;
+    &lt;%= b %&gt;!
+&lt;% end %&gt;
+Hello &lt;%= a.strip %&gt;</pre>
+
+<p>The main advantage of capture is mixing of different template engines.</p>
+
+<p>Example</p>
+
+<pre># in mix_me_up.slim
+
+- two = capture do
+  - erb &quot;&lt;%= 1 + 1 %&gt;&quot;
+| 1 + 1 = #{two}</pre>
+
+<h2>Usage</h2>
+
+<h3>Classic Application</h3>
+
+<p>In a classic application simply require the helpers, and start using them:</p>
+
+<pre>require &quot;sinatra&quot;
+require &quot;sinatra/capture&quot;
+
+# The rest of your classic application code goes here...</pre>
+
+<h3>Modular Application</h3>
+
+<p>In a modular application you need to require the helpers, and then tell the
+application you will use them:</p>
+
+<pre>require &quot;sinatra/base&quot;
+require &quot;sinatra/capture&quot;
+
+class MyApp &lt; Sinatra::Base
+  helpers Sinatra::Capture
+
+  # The rest of your modular application code goes here...
+end</pre>

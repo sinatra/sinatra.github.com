@@ -1,0 +1,46 @@
+
+<h1>Sinatra::CustomLogger</h1>
+
+<p>CustomLogger extension allows you to define your own logger instance using
+<tt>logger</tt> setting. That logger then will be available as #logger
+helper method in your routes and views.</p>
+
+<h2>Usage</h2>
+
+<h3>Classic Application</h3>
+
+<p>To define your custom logger instance in a classic application:</p>
+
+<pre>require &#39;sinatra&#39;
+require &#39;sinatra/custom_logger&#39;
+require &#39;logger&#39;
+
+set :logger, Logger.new(STDOUT)
+
+get &#39;/&#39; do
+  logger.info &#39;Some message&#39; # STDOUT logger is used
+  # Other code...
+end</pre>
+
+<h3>Modular Application</h3>
+
+<p>The same for modular application:</p>
+
+<pre>require &#39;sinatra/base&#39;
+require &#39;sinatra/custom_logger&#39;
+require &#39;logger&#39;
+
+class MyApp &lt; Sinatra::Base
+  helpers Sinatra::CustomLogger
+
+  configure :development, :production do
+    logger = Logger.new(File.open(&quot;#{root}/log/#{environment}.log&quot;, &#39;a&#39;))
+    logger.level = Logger::DEBUG if development?
+    set :logger, logger
+  end
+
+  get &#39;/&#39; do
+    logger.info &#39;Some message&#39; # File-based logger is used
+    # Other code...
+  end
+end</pre>
