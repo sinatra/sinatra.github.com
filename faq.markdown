@@ -12,7 +12,7 @@ Frequently Asked Questions
 How do I make my Sinatra app reload on changes? {#reloading}
 -----------------------------------------------
 
-First off, in-process code reloading in Ruby [is hard](http://rkh.im/code-reloading)
+First off, in-process code reloading in Ruby [is hard](http://blog.rkh.im/code-reloading)
 and having a solution that works for every scenario is technically impossible.
 
 Which is why we recommend you to do out-of-process reloading.
@@ -93,7 +93,7 @@ The `request` object probably has what you're looking for:
       request.url         # => 'http://example.com/hello-world?foo=bar'
     end
 
-See [Rack::Request](http://rack.rubyforge.org/doc/classes/Rack/Request.html)
+See [Rack::Request](http://www.rubydoc.info/gems/rack/Rack/Request)
 for a detailed list of methods supported by the `request` object.
 
 How do I access helpers from within my views? {#helpview}
@@ -196,7 +196,7 @@ That should give you an exception and backtrace on `stderr`.
 How do I send email from Sinatra? {#email}
 ---------------------------------
 
-How about a [Pony](http://adam.heroku.com/past/2008/11/2/pony_the_express_way_to_send_email_from_ruby/)
+How about a [Pony](http://adam.herokuapp.com/past/2008/11/2/pony_the_express_way_to_send_email_from_ruby/)
 (`sudo gem install pony`):
 
     require 'pony'
@@ -226,7 +226,7 @@ And in `mailerapp.rb`:
 How do I escape HTML? {#escape_html}
 ---------------------
 
-Use [Rack::Utils](http://rack.rubyforge.org/doc/classes/Rack/Utils.html)
+Use [Rack::Utils](http://www.rubydoc.info/github/rack/rack/Rack/Utils)
 in your helpers as follows:
 
     helpers do
@@ -245,7 +245,7 @@ for the tip!
 How do I automatically escape HTML? {#auto_escape_html}
 ---------------------
 
-Require [Erubis](http://rubygems.org/gems/erubis) and set `escape_html` to `true`:
+Require [Erubis](https://rubygems.org/gems/erubis) and set `escape_html` to `true`:
 
     require 'erubis'
     set :erb, :escape_html => true
@@ -256,7 +256,7 @@ Then, any templates rendered with Erubis will be automatically escaped:
       erb :index
     end
 
-Read more on the [Tilt Google Group](https://groups.google.com/forum/#!topic/tiltrb/PPm-sMz6Swc) and see [this example app](http://flowcoder.com/177) for details.
+Read more on the [Tilt Google Group](https://groups.google.com/forum/#!topic/tiltrb/PPm-sMz6Swc) for details.
 
 How do I use ActiveRecord migrations? {#ar-migrations}
 -------------------------------------
