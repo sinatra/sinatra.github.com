@@ -13,13 +13,9 @@ Applications {#apps}
 - [MagneticHTML](http://play.magnetichtml.com) Drag-and-drop magnetic tiles to create (and save) your own webpage!
 - [SequenceServer](http://www.sequenceserver.com/) An easy-to-setup BLAST sequence search server
 - [Flickr Group Viewer](http://gv.vqvz.com) is a (nicer?) way to view photos in a flickr group -- [on GitHub](https://github.com/funkaoshi/gv.vqvz.com).
-- [OnBoard](http://dev.vemarsas.it/onboard/) a web interface to manage Linux-based network appliances.
 - [Tweetrad.io](http://tweetrad.io/sinatra) text to speech conversion for twitter
-- [Tweeps](http://tweeps.webdirections.org) conference app to aggregate
-  tweets by attendees
 - [Integrity](http://integrityapp.com) the easy and fun
   Continuous Integration server
-- [Sum](http://sumapp.com) is an email-based budgeting application
 - [Marley](https://github.com/karmi/marley) the blog engine
   without &lt;textareas&gt;
 - [Postview](https://github.com/codigorama/postview) a simple blog-engine that
@@ -76,7 +72,6 @@ Applications {#apps}
 - [streetart.io](http://itunes.com/app/streetartio) streetart.io allows you to share and discover interesting street art, public art and sculptures around you and your city. API is powered by Sinatra and Redis.
 - [TaskwarriorWeb](http://theunraveler.github.com/taskwarrior-web/) - A Sinatra-based web interface for the Taskwarrior todo application. Because being a neck-beard is only fun sometimes.
 - [Travis CI](https://travis-ci.org/) - Free Hosted Continuous Integration Platform for the Open Source Community
-- [Rank Captain](http://rankcaptain.com) - Keyword based mass landing page generator with live template editor
 - [VDGB](http://vdgb.dk) - Subscription based online video training platform for schools and teachers
 - [The Myndflame Bucket](http://buckateers.com) - Innovative platform for Twitch.tv show to automatically collect donations from viewers, provide limited rewards and to encourage fellowship to continuously support the show through gamification
 - [Beathound](http://beathound.com) - helping you stay on top of new releases from the artists you love
@@ -149,15 +144,11 @@ Websites {#sites}
 - [LinkedIn](http://www.linkedin.com/) is a social network for business contacts
 - [I Shoot Film](http://film.vqvz.com) presents Funkaoshi's film photography posted to Flickr organized by film rolls -- [on GitHub](https://github.com/funkaoshi/I-Shoot-Film).
 - [Speed of Animals](http://www.speedofanimals.com/): imagine being a spotted hyena...
-- [Bloor and Lansdowne is Blansdowne](http://blansdowne.ca) is a photoblog about a neighbourhood in Toronto.
-- [NYLS Upload Tool](http://upload.citylaw.org) Web-based replacement of FTP
 - [Fabulously40 Mobile](http://iphone.fabulously40.com) Sinatra powered mobile
   site of [Fabulously40](http://fabulously40.com/)
 - [UploadBooth](http://uploadbooth.com) Sinatra powered Upload Service
 - [PasteBooth](http://pastebooth.com) Sinatra powered multi-lingual Paste Service
 - [ShrinkBooth](http://shrinkbooth.com) Sinatra powered multi-lingual URL shortening Service
-- [Calendar About Nothing](http://calendaraboutnothing.com) Seinfeld calendar
-  for hackers
 - [irclogger](http://irclogger.com) Logging urz IRC channel
   [#sinatra](http://irclogger.com/sinatra)
 - [Does Follow](http://doesfollow.com) Twitter tool for figuring out who
@@ -177,17 +168,13 @@ Websites {#sites}
 - [Chirp-chirp](http://blog.saush.com/2009/04/write-a-sinatra-based-twitter-clone-in-200-lines-of-ruby-code/) Write a Sinatra-based Twitter clone in 200 lines of Ruby code
 - [Rdoc.info](http://rdoc.info/) Auto-generate and host Ruby library documentation using GitHub web hooks
 - [All Sorts](http://all-sorts.org/) An aggregator for novel *collective nouns*, driven by Twitter
-- [Congrelate](http://congrelate.com) Congress data mashup visualization tool.
 - [Scholas](http://schol.as) Social file-sharing for academics.
 - [Gemcutter](http://gemcutter.org) Awesome gem hosting.
-- [SavvyFranchises](http://www.savvyfranchises.com/) Franchise Search + Discovery for the Savvy Entrepreneur.
 - [The Setup](http://usesthis.com/) The setup is a bunch of nerdy interviews ([Source](https://github.com/waferbaby/usesthis/))
 - [A Good Company](http://www.weareagoodcompany.com/) An awesome little portfolio for a great design company.
 - [dbpedia lite](http://dbpedialite.org/) takes some of the structured data in Wikipedia and presents it as Linked Data ([Source](https://github.com/njh/dbpedialite/)).
 - [Evan Lecklider](http://lecklider.com/) Website showing off work, code examples and experiments built with Sinatra and Compass.
-- [happens.co.za](http://www.happens.co.za/) Add countdown times for any "happening" or event and share it with others.
 - [DarkArts Studios](http://www.darkarts.co.za/) Projects and source code of Clive Crous
-- [Ant genome database](http://fourmidable.unil.ch)
 - [Conker Software](http://conkersoftware.co.uk) Micro-company of Tom Philip that makes Web, Android and Boxee apps.
 - [Similander](http://similar.heroku.com) extracts keywords from a given URL to find similar pages ([Source](https://github.com/ema/similander)).
 - [Sombras de Papel](http://sombrasdepapel.com) Website of a pop-rock band from Barcelona (Spain) entirely made using Sinatra + HTML5. There's also an automatic mobile site.
@@ -239,3 +226,17 @@ Companies using Sinatra {#biz}
 - [Icicle - Ruby Development Company](http://www.icicletech.com/)
 - [Robocat](http://robo.cat/)
 - [Planet Argon](https://www.planetargon.com/)
+
+Alumni {#alumni}
+------
+
+- _OnBoard_ - a web interface to manage Linux-based network appliances
+- _Tweeps_ - conference app to aggregate tweets by attendees
+- _Rank Captain_ - Keyword based mass landing page generator with live template editor
+- _Sum_ - an email-based budgeting application
+- _Bloor and Lansdowne is Blansdowne_ - a photoblog about a neighbourhood in Toronto
+- _NYLS Upload Tool_ - Web-based replacement of FTP
+- _Calendar About Nothing_ - Seinfeld calendar for hackers
+- _Congrelate_ - Congress data mashup visualization tool.
+- _SavvyFranchises_ - Franchise Search + Discovery for the Savvy Entrepreneur.
+- _happens.co.za_ - Add countdown times for any "happening" or event and share it with others
