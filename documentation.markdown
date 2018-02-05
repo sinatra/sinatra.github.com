@@ -183,10 +183,9 @@ Screencasts and Presentations
 
 ### [Sinatra, rack and middleware](http://www.slideshare.net/benschwarz/sinatra-rack-and-middleware-1509268)
 
-Ben Schwarz presents Sinatra and his realisations of its inner workings in regard to 
-rack and rack middlware at Melbourne RORO shortly after Railsconf (US).
+Ben Schwarz presents Sinatra and his realisations of its inner workings in regard to Rack and Rack middleware at Melbourne RORO shortly after RailsConf (US).
 
-### [RubyConf 08: Lightweight Web Services](http://rubyconf2008.confreaks.com/lightweight-web-services.html)
+### [RubyConf 08: Lightweight Web Services](https://confreaks.tv/videos/rubyconf2008-lightweight-web-services)
 
 Adam Wiggins and Blake Mizerany present Sinatra and
 [RestClient](https://github.com/adamwiggins/rest-client)
