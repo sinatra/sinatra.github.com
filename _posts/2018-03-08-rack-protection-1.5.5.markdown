@@ -12,7 +12,7 @@ I have just released Rack Protection v1.5.5 for backporting security fix.
 
 The v1.5.5 contains a security fix for [CVE-2018-1000119](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-1000119).
 
-It was determined a timing attack vulnerability in the CSRF token checking that can result in signatures can be exposed.
+It was determined a timing attack vulnerability in the CSRF token checking that can result in signatures being exposed.
 
 [The original fix](https://github.com/sinatra/sinatra/commit/8aa6c42ef724f93ae309fb7c5668e19ad547eceb) has already been merged at rack-protection v2.0.0.rc3. Therefore, there is no problem if you are using rack-protection v2.0.0.rc3 or later.
 
