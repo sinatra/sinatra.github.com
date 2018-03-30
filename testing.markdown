@@ -10,9 +10,18 @@ Testing Sinatra with Rack::Test
 All examples in the following  sections assume that [`Test::Unit`][Test::Unit] is being
 used in an attempt to be as general as possible. See the [Test Framework
 Examples](#frameworks) for information on using the test helpers in
-other testing environments. To use `Rack::Test` library used when you require `rack/test`, you'll need to install the `rack-test` gem.
+other testing environments. To use the [`Rack::Test`](https://github.com/rack-test/rack-test)
+library used when you require `rack/test`, you'll need to install the `rack-test` gem:
 
-  gem install rack-test
+```shell
+gem install rack-test
+```
+
+You can also add it to your applications `Gemfile` like this:
+
+```ruby
+gem 'rack-test'
+```
 
 
 Example App: `hello_world.rb`
