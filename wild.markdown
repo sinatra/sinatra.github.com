@@ -226,6 +226,7 @@ Companies using Sinatra {#biz}
 - [Icicle - Ruby Development Company](http://www.icicletech.com/)
 - [Robocat](http://robo.cat/)
 - [Planet Argon](https://www.planetargon.com/)
+- [Green Touch](https://green-touch.org/)
 
 Alumni {#alumni}
 ------
