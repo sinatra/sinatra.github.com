@@ -349,7 +349,7 @@ Assuming you have this simple implementation of HTTP authentication in your `app
 
 You can test it like this with [_Rack::Test_](https://github.com/brynary/rack-test):
 
-    ENV['RACK_ENV'] = 'test'
+    ENV['APP_ENV'] = 'test'
     require 'test/unit'
     require 'rack/test'
 
