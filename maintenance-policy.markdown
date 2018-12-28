@@ -12,7 +12,7 @@ The sinatra team develops according to the following rules.
 
 ### Patch version
 
-Basically bug fixes are mostly. However, a simple feature that does not break backward compatibility may be added.
+Mostly bug fixes. However, a simple feature that does not break backward compatibility may be added.
 
 ### Minor version
 
