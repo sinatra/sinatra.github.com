@@ -82,8 +82,8 @@ Built-in Settings
 
 A symbol specifying the deployment environment; typically set to one of
 `:development`, `:test`, or `:production`. The `:environment` defaults to
-the value of the `RACK_ENV` environment variable (`ENV['RACK_ENV']`), or
-`:development` when no `RACK_ENV` environment variable is set.
+the value of the `APP_ENV` environment variable (`ENV['APP_ENV']`), or
+`:development` when no `APP_ENV` environment variable is set.
 
 The environment can be set explicitly:
 
