@@ -88,6 +88,10 @@ GitHub to track patch requests.
   The translations tend to fall behind the English version. Translations into other
   languages would also be appreciated.
 
+## When will my contribution be released?
+
+See: [Maintenance Policy for Sinatra](http://sinatrarb.com/maintenance-policy-html)
+
 ## Looking for something to do?
 
 If you'd like to help out but aren't sure how, pick something that looks
