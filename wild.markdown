@@ -137,6 +137,7 @@ Libraries and extensions {#libs}
 - [SinatraLogger](https://github.com/wshihadeh/sinatra_logger) Provides logging functionaly to Sinatra application.
 - [Sinja](https://github.com/mwpastore/sinja) RESTful, {json:api}-compliant web services in Sinatra
 - [React::Sinatra](https://github.com/namusyaka/react-sinatra) React on Sinatra Integration
+- [Sinatra::StrongParams](https://github.com/evanleck/sinatra-strong-params) Parameter filtering implementation for Sinatra.
 
 Websites {#sites}
 --------
