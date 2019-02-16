@@ -222,9 +222,4 @@ Around The Web
 Peter Cooper's compendium with links to tutorials, example
 applications, and presentations.
 
-### [Chris Schneider's Blog: GITTR](http://www.gittr.com/)
-
-Christopher's blog is a treasure-trove of useful Sinatra related
-information.
-
 ### [Using Compass for CSS in your Sinatra application](http://openmonkey.com/blog/2009/01/27/using-compass-for-css-in-your-sinatra-application/)
