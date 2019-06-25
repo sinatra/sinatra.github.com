@@ -197,7 +197,7 @@ included within the `describe` block:
     require 'rspec'
     require 'rack/test'
 
-    describe 'The HelloWorld App' do
+    RSpec.describe 'The HelloWorld App' do
       include Rack::Test::Methods
 
       def app
@@ -346,14 +346,14 @@ See Also
 See the source for [Rack::Test][] for
 more information on `get`, `post`, `put`, `delete` and friends.
 
-[Test::Unit]: http://www.ruby-doc.org/stdlib/libdoc/test/unit/rdoc/classes/Test/Unit.html
+[Test::Unit]: http://www.ruby-doc.org/stdlib-2.1.1/libdoc/test/unit/rdoc/classes/Test/Unit.html
 [RSpec]: http://rspec.info
-[Bacon]: https://github.com/chneukirchen/bacon
+[Bacon]: https://github.com/leahneukirchen/bacon
 [Test::Spec]: http://rubydoc.info/gems/test-spec/
-[Rack::Test]: https://github.com/brynary/rack-test/
+[Rack::Test]: https://github.com/rack-test/rack-test
 [spec]: http://rubydoc.info/github/rack/rack/master/file/SPEC
 [Rack::MockRequest]: http://rubydoc.info/github/rack/rack/master/Rack/MockRequest
 [Rack::MockResponse]: http://rubydoc.info/github/rack/rack/master/Rack/MockResponse
 [Webrat]: https://github.com/brynary/webrat
 [examples]: https://github.com/brynary/webrat/wiki/sinatra
-[Capybara]: https://github.com/jnicklas/capybara
+[Capybara]: https://github.com/teamcapybara/capybara
