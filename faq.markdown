@@ -136,9 +136,9 @@ follows:
 
     <%= erb :mypartial, :layout => false %>
 
-If you are interested in more robust partials solutions, check out the 
+If you are interested in more robust partials solutions, check out the
 [sinatra-recipes project](http://recipes.sinatrarb.com/), which has articles on
-using the [sinatra-partial gem](http://recipes.sinatrarb.com/p/helpers/partials_using_the_sinatra-partial_gem?#article) or 
+using the [sinatra-partial gem](http://recipes.sinatrarb.com/p/helpers/partials_using_the_sinatra-partial_gem?#article) or
 [implementing your own Rails-style partials](http://recipes.sinatrarb.com/p/helpers/partials?#article).
 
 
@@ -283,6 +283,7 @@ From [Adam Wiggins's blog](http://adam.herokuapp.com/past/2009/2/28/activerecord
 > (I prefer the old sequential method for numbering migrations vs. the
 > datetime method used since Rails 2.1, but either will work.)
 
+For another option, check out the [Sinatra ActiveRecord Extension](https://github.com/janko/sinatra-activerecord).
 
 How do I use HTTP authentication? {#auth}
 ---------------------------------
