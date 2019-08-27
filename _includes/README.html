@@ -1358,7 +1358,7 @@ set :session_store, Rack::Session::Pool
 
 <p>Or to set up sessions with a hash of options:</p>
 
-<pre><code class="language-ruby">set :sessions, :expire_after =&gt; 2592000
+<pre><code class="language-ruby">set :sessions, :expire_after =&gt; 2592000 # seconds
 set :session_store, Rack::Session::Pool
 </code></pre>
 
@@ -1370,7 +1370,7 @@ protection <strong>will not be enabled by default</strong>.</p>
 
 <p>The Rack middleware to do that will also need to be added:</p>
 
-<pre><code class="language-ruby">use Rack::Session::Pool, :expire_after =&gt; 2592000
+<pre><code class="language-ruby">use Rack::Session::Pool, :expire_after =&gt; 2592000 # seconds
 use Rack::Protection::RemoteToken
 use Rack::Protection::SessionHijacking
 </code></pre>
