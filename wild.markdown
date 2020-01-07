@@ -228,6 +228,7 @@ Companies using Sinatra {#biz}
 - [Robocat](http://robo.cat/)
 - [Planet Argon](https://www.planetargon.com/)
 - [Green Touch](https://green-touch.org/)
+- [Ondokuz Mayıs University](http://omu.edu.tr)
 
 Alumni {#alumni}
 ------
