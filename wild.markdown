@@ -77,6 +77,7 @@ Applications {#apps}
 - [Beathound](http://beathound.com) - helping you stay on top of new releases from the artists you love
 - [Metaflop](http://www.metaflop.com) An easy to use web application for generating and modulating your own fonts.
 - [puresong](https://github.com/al-kivi/puresong.git) - A lightweight responsive application with PureCSS and SQLite and Sequel.
+- [Gleis PaaS](https://gleis.cloud) - The Swiss Ruby on Rails Platform as a Service for your web apps
 
 Libraries and extensions {#libs}
 ------------------------
@@ -228,6 +229,7 @@ Companies using Sinatra {#biz}
 - [Robocat](http://robo.cat/)
 - [Planet Argon](https://www.planetargon.com/)
 - [Green Touch](https://green-touch.org/)
+- [towards](https://towards.ch)
 - [Ondokuz Mayıs University](http://omu.edu.tr)
 
 Alumni {#alumni}
