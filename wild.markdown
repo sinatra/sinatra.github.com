@@ -230,6 +230,7 @@ Companies using Sinatra {#biz}
 - [Planet Argon](https://www.planetargon.com/)
 - [Green Touch](https://green-touch.org/)
 - [towards](https://towards.ch)
+- [Ondokuz Mayıs University](http://omu.edu.tr)
 
 Alumni {#alumni}
 ------
