@@ -31,8 +31,8 @@ end
 
 ### Deferring evaluation
 
-When the setting value is a `Proc`, evaluation is performed when the setting
-is read so that other settings may be used to calculate the value:
+When the setting value is a `Proc`, evaluation is performed every time the
+setting is read so that other settings may be used to calculate the value:
 
 {% highlight ruby %}
 set :foo, 'bar'
