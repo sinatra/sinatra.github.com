@@ -245,9 +245,9 @@ for the tip!
 How do I automatically escape HTML? {#auto_escape_html}
 ---------------------
 
-Require [Erubis](https://rubygems.org/gems/erubis) and set `escape_html` to `true`:
+Require [Erubis](https://rubygems.org/gems/erubis) or [Erubi](https://rubygems.org/gems/erubi) and set `escape_html` to `true`:
 
-    require 'erubis'
+    require 'erubis' # or 'erubi'
     set :erb, :escape_html => true
 
 Then, any templates rendered with Erubis will be automatically escaped:
