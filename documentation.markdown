@@ -57,7 +57,7 @@ in `#sinatra`.
 
 ### Release Notes
 
-See the `CHANGES` file included for release notes about each release:
+See the `CHANGELOG.md` file included for release notes about each release:
 
  * [2.0.8.1](https://github.com/sinatra/sinatra/blob/v2.0.8.1/CHANGELOG.md)
    January 2, 2020
