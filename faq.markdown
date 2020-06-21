@@ -233,11 +233,23 @@ in your helpers as follows:
       def h(text)
         Rack::Utils.escape_html(text)
       end
+
+      def hattr(text)
+        Rack::Utils.escape_path(text)
+      end
     end
 
-Now you can escape HTML in your templates like this:
+Now you can escape HTML entities inside outputted text in your templates in one of two ways:
 
-    <%= h scary_output %>
+    <div><%= h scary_output %></div>
+
+or using the `<%==` feature:
+
+    <div><%== scary_output %></div>
+
+And you can escape text inside element attributes in your templates like this:
+
+    <a href="<%= hattr scary_output %>" >A nice safe link!</a>
 
 Thanks to [Chris Schneider](http://www.gittr.com/index.php/archive/using-rackutils-in-sinatra-escape_html-h-in-rails/)
 for the tip!
