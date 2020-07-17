@@ -161,7 +161,7 @@ def readme_to_html(fname, path, with_toc = false, fragment = false)
   end
   markdown = Kramdown::Document.new(markdown_string,
     :fenced_code_blocks => true,
-    :coderay_line_numbers => nil,
+    :syntax_highlighter => :rouge,
     :auto_ids => false)
 
   html = cleanup(markdown.to_html, fragment)
