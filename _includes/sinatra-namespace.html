@@ -1,16 +1,16 @@
 
-<h1>Sinatra::Namespace</h1>
+<h1 id="label-Sinatra%3A%3ANamespace">Sinatra::Namespace</h1>
 
-<p><tt>Sinatra::Namespace</tt> is an extension that adds namespaces to an
+<p><code>Sinatra::Namespace</code> is an extension that adds namespaces to an
 application.  This namespaces will allow you to share a path prefix for the
 routes within the namespace, and define filters, conditions and error
 handlers exclusively for them.  Besides that, you can also register helpers
 and extensions that will be used only within the namespace.</p>
 
-<h2>Usage</h2>
+<h2 id="label-Usage">Usage</h2>
 
 <p>Once you have loaded the extension (see below), you can use the
-<tt>namespace</tt> method to define namespaces in your application.</p>
+<code>namespace</code> method to define namespaces in your application.</p>
 
 <p>You can define a namespace by a path prefix:</p>
 
@@ -26,22 +26,24 @@ end</pre>
 
 <p>by a condition:</p>
 
-<pre>namespace :host_name =&gt; &#39;localhost&#39; do
-  get(&#39;/admin/dashboard&#39;) { haml :dashboard }
-  get(&#39;/admin/login&#39;)     { haml :login }
+<pre class="ruby"><span class="ruby-identifier">namespace</span> :<span class="ruby-identifier">host_name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;localhost&#39;</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">get</span>(<span class="ruby-string">&#39;/admin/dashboard&#39;</span>) { <span class="ruby-identifier">haml</span> :<span class="ruby-identifier">dashboard</span> }
+  <span class="ruby-identifier">get</span>(<span class="ruby-string">&#39;/admin/login&#39;</span>)     { <span class="ruby-identifier">haml</span> :<span class="ruby-identifier">login</span> }
 
-  # More admin routes...
-end</pre>
+  <span class="ruby-comment"># More admin routes...</span>
+<span class="ruby-keyword">end</span>
+</pre>
 
 <p>or both:</p>
 
-<pre>namespace &#39;/admin&#39;, :host_name =&gt; &#39;localhost&#39; do
-  get(&#39;/dashboard&#39;)  { haml :dashboard }
-  get(&#39;/login&#39;)      { haml :login }
-  post(&#39;/login&#39;)     { login_user }
+<pre class="ruby"><span class="ruby-identifier">namespace</span> <span class="ruby-string">&#39;/admin&#39;</span>, :<span class="ruby-identifier">host_name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;localhost&#39;</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">get</span>(<span class="ruby-string">&#39;/dashboard&#39;</span>)  { <span class="ruby-identifier">haml</span> :<span class="ruby-identifier">dashboard</span> }
+  <span class="ruby-identifier">get</span>(<span class="ruby-string">&#39;/login&#39;</span>)      { <span class="ruby-identifier">haml</span> :<span class="ruby-identifier">login</span> }
+  <span class="ruby-identifier">post</span>(<span class="ruby-string">&#39;/login&#39;</span>)     { <span class="ruby-identifier">login_user</span> }
 
-  # More admin routes...
-end</pre>
+  <span class="ruby-comment"># More admin routes...</span>
+<span class="ruby-keyword">end</span>
+</pre>
 
 <p>Regex is also accepted:</p>
 
@@ -104,77 +106,81 @@ end</pre>
   end
 end</pre>
 
-<h3>Classic Application Setup</h3>
+<h3 id="label-Classic+Application+Setup">Classic Application Setup</h3>
 
 <p>To be able to use namespaces in a classic application all you need to do is
 require the extension:</p>
 
-<pre>require &quot;sinatra&quot;
-require &quot;sinatra/namespace&quot;
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra&quot;</span>
+<span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra/namespace&quot;</span>
 
-namespace &#39;/users&#39; do
-end</pre>
+<span class="ruby-identifier">namespace</span> <span class="ruby-string">&#39;/users&#39;</span> <span class="ruby-keyword">do</span>
+<span class="ruby-keyword">end</span>
+</pre>
 
-<h3>Modular Application Setup</h3>
+<h3 id="label-Modular+Application+Setup">Modular Application Setup</h3>
 
 <p>To be able to use namespaces in a modular application all you need to do is
 require the extension, and then, register it:</p>
 
-<pre>require &quot;sinatra/base&quot;
-require &quot;sinatra/namespace&quot;
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra/base&quot;</span>
+<span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra/namespace&quot;</span>
 
-class MyApp &lt; Sinatra::Base
-  register Sinatra::Namespace
+<span class="ruby-keyword">class</span> <span class="ruby-constant">MyApp</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Sinatra</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>
+  <span class="ruby-identifier">register</span> <span class="ruby-constant">Sinatra</span><span class="ruby-operator">::</span><span class="ruby-constant">Namespace</span>
 
-  namespace &#39;/users&#39; do
-  end
-end</pre>
+  <span class="ruby-identifier">namespace</span> <span class="ruby-string">&#39;/users&#39;</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
 
-<h3>Within an extension</h3>
+<h3 id="label-Within+an+extension">Within an extension</h3>
 
 <p>To be able to use namespaces within an extension, you need to first create
 an extension. This includes defining the `registered(app)` method in the
 module.</p>
 
-<pre>require &#39;sinatra/base&#39; # For creating Sinatra extensions
-require &#39;sinatra/namespace&#39; # To create namespaces
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;sinatra/base&#39;</span> <span class="ruby-comment"># For creating Sinatra extensions</span>
+<span class="ruby-identifier">require</span> <span class="ruby-string">&#39;sinatra/namespace&#39;</span> <span class="ruby-comment"># To create namespaces</span>
 
-module Zomg # Keep everything under &quot;Zomg&quot; namespace for sanity
-  module Routes # Define a new &quot;Routes&quot; module
+<span class="ruby-keyword">module</span> <span class="ruby-constant">Zomg</span> <span class="ruby-comment"># Keep everything under &quot;Zomg&quot; namespace for sanity</span>
+  <span class="ruby-keyword">module</span> <span class="ruby-constant">Routes</span> <span class="ruby-comment"># Define a new &quot;Routes&quot; module</span>
 
-    self.registered(app)
-      # First, register the Namespace extension
-      app.register Sinatra::Namespace
+    <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">registered</span>(<span class="ruby-identifier">app</span>)
+      <span class="ruby-comment"># First, register the Namespace extension</span>
+      <span class="ruby-identifier">app</span>.<span class="ruby-identifier">register</span> <span class="ruby-constant">Sinatra</span><span class="ruby-operator">::</span><span class="ruby-constant">Namespace</span>
 
-      # This defines an `/api` namespace on the application
-      app.namespace &#39;/api&#39; do
-        get &#39;/users&#39; do
-          # do something with `GET &quot;/api/users&quot;`
-        end
-      end
+      <span class="ruby-comment"># This defines an `/api` namespace on the application</span>
+      <span class="ruby-identifier">app</span>.<span class="ruby-identifier">namespace</span> <span class="ruby-string">&#39;/api&#39;</span> <span class="ruby-keyword">do</span>
+        <span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/users&#39;</span> <span class="ruby-keyword">do</span>
+          <span class="ruby-comment"># do something with `GET &quot;/api/users&quot;`</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
 
-    end
-  end
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
 
-  # Lastly, register the extension to use in our app
-  Sinatra.register Routes
-end</pre>
+  <span class="ruby-comment"># Lastly, register the extension to use in our app</span>
+  <span class="ruby-constant">Sinatra</span>.<span class="ruby-identifier">register</span> <span class="ruby-constant">Routes</span>
+<span class="ruby-keyword">end</span>
+</pre>
 
 <p>In order to use this extension, is the same as any other Sinatra extension:</p>
 
-<pre>module Zomg
-  # Define our app class, we use modular app for this example
-  class App &lt; Sinatra::Base
-    # this gives us all the namespaces we defined earlier
-    register Routes
+<pre class="ruby"><span class="ruby-keyword">module</span> <span class="ruby-constant">Zomg</span>
+  <span class="ruby-comment"># Define our app class, we use modular app for this example</span>
+  <span class="ruby-keyword">class</span> <span class="ruby-constant">App</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Sinatra</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>
+    <span class="ruby-comment"># this gives us all the namespaces we defined earlier</span>
+    <span class="ruby-identifier">register</span> <span class="ruby-constant">Routes</span>
 
-    get &#39;/&#39; do
-      &quot;Welcome to my application!&quot;
-    end
-  end
-end
+    <span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/&#39;</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-string">&quot;Welcome to my application!&quot;</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
 
-Zomg::App.run! # Don&#39;t forget to start your app ;)</pre>
+<span class="ruby-constant">Zomg</span><span class="ruby-operator">::</span><span class="ruby-constant">App</span>.<span class="ruby-identifier">run!</span> <span class="ruby-comment"># Don&#39;t forget to start your app ;)</span>
+</pre>
 
 <p>Phew! That was a mouthful.</p>
 
