@@ -1,0 +1,51 @@
+---
+layout: post
+title: Sinatra v2.1.0
+author: Kunpei Sakai
+author_url: https://github.com/namusyaka
+publish_date: Monday, September 05, 2020
+---
+
+Today we would like to inform you that we have released Sinatra v2.1.0. It's a big milestore for us and contains some bug fixes and new features.
+
+## Releases
+
+This release includes the release of the following gems:
+
+* `sinatra`: v2.1.0
+* `sinatra-contrib`: v2.1.0
+* `rack-protection`: v2.1.0
+
+## Key Updates
+
+### Ruby 2.2. support was dropped
+
+Ruby 2.2 support is dropped from this version. We will no longer check the operation on Ruby 2.2.
+Please upgrade your ruby version if you're still using Ruby 2.2.
+
+### Migrating from Thin to Rainbows in our development environment
+
+From this version, we migrated from thin to rainbows in our development environment. This does not mean that the stream block will be immediately broken.
+The change was triggered by [the removal of the thin handler in rack](https://github.com/rack/rack/commit/98d9cf5834d4e27e34bbaa017cdfc68795763b55), but in fact thin hasn't been maintained for a long time.
+
+## Rainbows on the stream feature
+
+Our stream feature has been tested by thin for many years. From this version, it is replaced with rainbows.
+This does not mean that the stream block will be immediately broken by thin.
+
+However, we recommend migrating to rainbows if you want to use the stream feature.
+Please have a look at [our README](https://github.com/sinatra/sinatra#streaming-responses) to know how to integrate with Rainbows.
+
+## Changes
+
+Find out what's new in v2.1.0 in [CHANGELOG](https://github.com/sinatra/sinatra/blob/v2.1.0/CHANGELOG.md)
+
+## Thank you
+
+Thank you everyone who has contributed over the years to this project, and continues to ensure it lives on.
+In addition, want to give a special thanks to the key contributor for this release: [@rkmathi](https://github.com/rkmathi)
+
+## Join us
+
+We are looking for fellows who can actively help with our development.
+I would be pleased if you could actively triage bugs on github, help with issues, and cooperate for [v3.0.0](https://github.com/sinatra/sinatra/issues/1531).
