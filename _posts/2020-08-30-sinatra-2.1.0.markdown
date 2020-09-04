@@ -6,38 +6,7 @@ author_url: https://github.com/namusyaka
 publish_date: Monday, August 30, 2020
 ---
 
-Today we would like to inform you that we have released Sinatra v2.1.0. It's a big milestore for us and contains some bug fixes and supported runtime changes.
-
-## Key Updates
-
-### Ruby 2.2. support was dropped
-
-Ruby 2.2 support is dropped from this version. We will no longer check the operation on Ruby 2.2.
-Please upgrade your ruby version if you're still using Ruby 2.2.
-
-### Thin support dropped
-
-From this verseion, we dropped the support for thin. This does not mean that the stream block will be immediately broken by thin.
-The change was triggered by the removal of the thin handler in rack, but in fact thin hasn't been maintained for a long time.
-
-For example, in the case where the sinatra `run!` method is called for self-hosting the sinatra application with rack `>= 2.3.0` (not released yet), it may not work properly due to the following causes.
-
-- [The rack handler for thin was removed from Rack](https://github.com/rack/rack/commit/98d9cf5834d4e27e34bbaa017cdfc68795763b55)
-- [Thin was removed from sinatra's default servers](https://github.com/sinatra/sinatra/commit/607346295924c75a86f12ecbad9430cfc430c032#diff-f2bc16b264ca20ca842cf15d82960d34L1852)
-
-If you still want to use thin in the above scenario, you should load [the newly added rack handler for thin](https://github.com/macournoyer/thin/commit/b201525f0db7d7e9faf26681b68646e0be9f96ec) and specify your server like the following:
-
-```ruby
-set :server, :thin
-```
-
-#### Rainbows support on the stream feature
-
-Our stream feature has been tested by thin for many years. From this version, it is replaced with rainbows.
-This does not mean that the stream block will be immediately broken by thin.
-
-However, we recommend migrating to rainbows if you want to use the stream feature.
-Please have a look at [our README](https://github.com/sinatra/sinatra#streaming-responses) to know how to integrate with Rainbows.
+Today we would like to inform you that we have released Sinatra v2.1.0. It's a big milestore for us and contains some bug fixes and new features.
 
 ## Releases
 
@@ -46,6 +15,26 @@ This release includes the release of the following gems:
 * `sinatra`: v2.1.0
 * `sinatra-contrib`: v2.1.0
 * `rack-protection`: v2.1.0
+
+## Key Updates
+
+### Ruby 2.2. support was dropped
+
+Ruby 2.2 support is dropped from this version. We will no longer check the operation on Ruby 2.2.
+Please upgrade your ruby version if you're still using Ruby 2.2.
+
+### Migrating from Thin to Rainbows in our development environment
+
+From this verseion, we migrated from thin to rainbows in our development environment. This does not mean that the stream block will be immediately broken by thin.
+The change was triggered by [the removal of the thin handler in rack](https://github.com/rack/rack/commit/98d9cf5834d4e27e34bbaa017cdfc68795763b55), but in fact thin hasn't been maintained for a long time.
+
+## Rainbows on the stream feature
+
+Our stream feature has been tested by thin for many years. From this version, it is replaced with rainbows.
+This does not mean that the stream block will be immediately broken by thin.
+
+However, we recommend migrating to rainbows if you want to use the stream feature.
+Please have a look at [our README](https://github.com/sinatra/sinatra#streaming-responses) to know how to integrate with Rainbows.
 
 ## Changes
 
