@@ -10,23 +10,17 @@ We'll take care of the rest.
 
 Applications {#apps}
 ------------
-- [MagneticHTML](http://play.magnetichtml.com) Drag-and-drop magnetic tiles to create (and save) your own webpage!
-- [SequenceServer](http://www.sequenceserver.com/) An easy-to-setup BLAST sequence search server
-- [Flickr Group Viewer](http://gv.vqvz.com) is a (nicer?) way to view photos in a flickr group -- [on GitHub](https://github.com/funkaoshi/gv.vqvz.com).
-- [Tweetrad.io](http://tweetrad.io/sinatra) text to speech conversion for twitter
-- [Integrity](http://integrityapp.com) the easy and fun
-  Continuous Integration server
-- [Marley](https://github.com/karmi/marley) the blog engine
-  without &lt;textareas&gt;
+- [SequenceServer](http://www.sequenceserver.com/) An easy-to-setup BLAST sequence 
+search server
+- [Marley](https://github.com/karmi/marley) the blog engine without &lt;textareas&gt;
 - [Postview](https://github.com/codigorama/postview) a simple blog-engine that
   render text files written in [Markdown](http://daringfireball.net/projects/markdown).
-- [Scanty](https://github.com/adamwiggins/scanty) an even more minimalist
-  blogging engine
+- [Scanty](https://github.com/adamwiggins/scanty) an even more minimalist blogging engine
 - [Scanty using CouchDB](https://github.com/jtulloch/scanty/tree/master)
 - [Haze](https://github.com/madx/haze) a lightweight and minimalist blogging
   engine using flat text files.
 - [Wind](https://github.com/wagnerandrade/wind) HTML5 blog engine focused in a easy, extensible and fast admin.
-- [git-wiki](https://github.com/sr/git-wiki) a git-powered wiki
+- [git-wiki](https://github.com/sr/git-wiki) - a git-powered wiki
 - [Wordnatra](https://github.com/gnugeek/wordnatra) an interface to Princeton's
   WordNet lexical dictionary
 - [GitHub-FogBuz](https://github.com/johnreilly/github-fogbugz) logs your GitHub
@@ -35,16 +29,15 @@ Applications {#apps}
   your notes and then displays them back to you
 - [Dash Sinatra](https://github.com/fiveruns/dash-sinatra) provides a Ruby API
   to push metrics from an app to the
-  [FiveRuns Dash service](http://dash.fiveruns.com/)
 - [Giftsmas](https://github.com/jeremyevans/giftsmas) Gift Tracking Website
   using Sinatra, Sequel, and Scaffolding Extensions
 - [Toopaste](https://github.com/zapnap/toopaste) Pastebin site created with
   Sinatra and DataMapper
 - [Columnlog](https://github.com/quirkey/columnlog) Tiny feed fetching app
 - [Kapow](http://code.google.com/p/kapow/) Comics on your iPhone
-- [Knapsack](https://github.com/joseph/knapsack/tree/master) Pack pages into
+- [Knapsack](https://github.com/joseph/knapsack) Pack pages into
   data URIs
-- [Thumblmonks](https://github.com/thumblemonks/evoke/tree/master) Delayed HTTP
+- [Thumblmonks](https://github.com/thumblemonks/evoke) Delayed HTTP
   Requests
 - [weaky](https://github.com/benatkin/weaky) a basic CouchDB wiki
 - [Amnesia](https://github.com/benschwarz/amnesia) an app that presents
@@ -60,11 +53,8 @@ Applications {#apps}
   middleware client for the Hancock server, written in Sinatra
 - [Sinatra Saucer](https://github.com/angelic/sinatra_saucer) JRuby web application frontend for Flying Saucer, which converts XHTML into a PDF
 - [WineAdds](http://wineadds.com) micro-app that calculates common additions to wine
-- [Deltacloud](http://www.deltacloud.org) Deltacloud protects your apps from cloud API changes and incompatibilies. REST API is written using Sinatra
 - [Jaconda](http://jaconda.im) A simple team collaboration service that allows you to create chat rooms for groups through Gtalk/Jabber protocol. REST API is written in Sinatra
 - [Picky](https://github.com/floere/picky) - a fast &amp; clever semantic search engine.
-- [Headhunter](http://headhunter.heroku.com) - giving Twitter profile pics a permanent URL
-- [blitz.io](http://blitz.io) - Making load and performance testing a fun sport
 - [GitHub High Scores](https://github.com/leereilly/github-high-scores) - A fun way to rank GitHub repository contributors in a 8-bit, 80's-tastic aracdey viewing environment.
 - [Git-Webby](https://github.com/codigorama/git-webby) - Git Smart HTTP Ruby/Sinatra implementation with useful features.
 - [Trudy](https://github.com/quimarche/trudy) - A Nabaztag server.
@@ -73,8 +63,6 @@ Applications {#apps}
 - [TaskwarriorWeb](http://theunraveler.github.com/taskwarrior-web/) - A Sinatra-based web interface for the Taskwarrior todo application. Because being a neck-beard is only fun sometimes.
 - [Travis CI](https://travis-ci.org/) - Free Hosted Continuous Integration Platform for the Open Source Community
 - [VDGB](http://vdgb.dk) - Subscription based online video training platform for schools and teachers
-- [The Myndflame Bucket](http://buckateers.com) - Innovative platform for Twitch.tv show to automatically collect donations from viewers, provide limited rewards and to encourage fellowship to continuously support the show through gamification
-- [Beathound](http://beathound.com) - helping you stay on top of new releases from the artists you love
 - [Metaflop](http://www.metaflop.com) An easy to use web application for generating and modulating your own fonts.
 - [puresong](https://github.com/al-kivi/puresong.git) - A lightweight responsive application with PureCSS and SQLite and Sequel.
 - [Gleis PaaS](https://gleis.cloud) - The Swiss Ruby on Rails Platform as a Service for your web apps
@@ -151,10 +139,6 @@ Websites {#sites}
 - [UploadBooth](http://uploadbooth.com) Sinatra powered Upload Service
 - [PasteBooth](http://pastebooth.com) Sinatra powered multi-lingual Paste Service
 - [ShrinkBooth](http://shrinkbooth.com) Sinatra powered multi-lingual URL shortening Service
-- [irclogger](http://irclogger.com) Logging urz IRC channel
-  [#sinatra](http://irclogger.com/sinatra)
-- [Does Follow](http://doesfollow.com) Twitter tool for figuring out who
-  follows whom
 - [Gusg.us](http://gusg.us/) Blog - Ridding the long bus
 - [Deleanotes](http://delanotes.com/)
 - [themoviedb.org](http://api.themoviedb.org/) The name says it all :)
