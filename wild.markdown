@@ -66,6 +66,7 @@ search server
 - [Metaflop](http://www.metaflop.com) An easy to use web application for generating and modulating your own fonts.
 - [puresong](https://github.com/al-kivi/puresong.git) - A lightweight responsive application with PureCSS and SQLite and Sequel.
 - [Gleis PaaS](https://gleis.cloud) - The Swiss Ruby on Rails Platform as a Service for your web apps
+- [Stardew Valley Crop Assistant](https://stardew-valley-crop-assistant.herokuapp.com/) - The go-to application for planning seasonal crops in the game *Stardew Valley*.
 
 Libraries and extensions {#libs}
 ------------------------
