@@ -57,7 +57,7 @@ in `#sinatra`.
 
 ### Release Notes
 
-See the [`CHANGES`](https://github.com/sinatra/sinatra/blob/master/CHANGELOG.md) file included for release notes about each release:
+See the [`CHANGELOG`](https://github.com/sinatra/sinatra/blob/master/CHANGELOG.md) for notes about each release.
 
 
 ### [API Documentation](http://rubydoc.info/gems/sinatra)
