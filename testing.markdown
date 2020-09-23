@@ -221,37 +221,6 @@ Make `Rack::Test` available to all spec contexts by including it via
       conf.include Rack::Test::Methods
     end
 
-### [Bacon][]
-
-Testing with Bacon is similar to `test/unit` and RSpec:
-
-    ENV['APP_ENV'] = 'test'
-
-    require 'hello_world'  # <-- your sinatra app
-    require 'bacon'
-    require 'rack/test'
-
-    describe 'The HelloWorld App' do
-      extend Rack::Test::Methods
-
-      def app
-        Sinatra::Application
-      end
-
-      it "says hello" do
-        get '/'
-        last_response.should.be.ok
-        last_response.body.should.equal 'Hello World'
-      end
-    end
-
-Make `Rack::Test` available to all spec contexts by including it in
-`Bacon::Context`:
-
-    class Bacon::Context
-      include Rack::Test::Methods
-    end
-
 ### [Test::Spec][]
 
 The `Rack::Test` module should be included within the context of the
@@ -285,34 +254,6 @@ Make `Rack::Test` available to all spec contexts by including it in
 
     Test::Unit::TestCase.send :include, Rack::Test::Methods
 
-### [Webrat][]
-
-From `Webrat`'s wiki where you'll find more [examples][].
-
-    ENV['APP_ENV'] = 'test'
-
-    require 'hello_world'  # <-- your sinatra app
-    require 'rack/test'
-    require 'test/unit'
-
-    Webrat.configure do |config|
-      config.mode = :rack
-    end
-
-    class HelloWorldTest < Test::Unit::TestCase
-      include Rack::Test::Methods
-      include Webrat::Methods
-      include Webrat::Matchers
-
-      def app
-        Sinatra::Application.new
-      end
-
-      def test_it_works
-        visit '/'
-        assert_contain('Hello World')
-      end
-    end
 
 ### [Capybara][]
 
@@ -348,12 +289,10 @@ more information on `get`, `post`, `put`, `delete` and friends.
 
 [Test::Unit]: http://www.ruby-doc.org/stdlib-2.1.1/libdoc/test/unit/rdoc/classes/Test/Unit.html
 [RSpec]: http://rspec.info
-[Bacon]: https://github.com/leahneukirchen/bacon
 [Test::Spec]: http://rubydoc.info/gems/test-spec/
 [Rack::Test]: https://github.com/rack-test/rack-test
 [spec]: http://rubydoc.info/github/rack/rack/master/file/SPEC
 [Rack::MockRequest]: http://rubydoc.info/github/rack/rack/master/Rack/MockRequest
 [Rack::MockResponse]: http://rubydoc.info/github/rack/rack/master/Rack/MockResponse
-[Webrat]: https://github.com/brynary/webrat
 [examples]: https://github.com/brynary/webrat/wiki/sinatra
 [Capybara]: https://github.com/teamcapybara/capybara
