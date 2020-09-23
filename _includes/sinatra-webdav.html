@@ -1,27 +1,29 @@
 
-<h1>Sinatra::WebDAV</h1>
+<h1 id="label-Sinatra%3A%3AWebDAV">Sinatra::WebDAV</h1>
 
 <p>This extensions provides WebDAV verbs, as defined by RFC 4918 (<a
 href="https://tools.ietf.org/html/rfc4918">tools.ietf.org/html/rfc4918</a>).
-To use this in your app, just <tt>register</tt> it:</p>
+To use this in your app, just <code>register</code> it:</p>
 
-<pre>require &#39;sinatra/base&#39;
-require &#39;sinatra/webdav&#39;
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;sinatra/base&#39;</span>
+<span class="ruby-identifier">require</span> <span class="ruby-string">&#39;sinatra/webdav&#39;</span>
 
-class Application &lt; Sinatra::Base
-  register Sinatra::WebDAV
+<span class="ruby-keyword">class</span> <span class="ruby-constant">Application</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Sinatra</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>
+  <span class="ruby-identifier">register</span> <span class="ruby-constant">Sinatra</span><span class="ruby-operator">::</span><span class="ruby-constant">WebDAV</span>
 
-  # Now you can use any WebDAV verb:
-  propfind &#39;/2014/january/21&#39; do
-    &#39;I have a lunch at 9 PM&#39;
-  end
-end</pre>
+  <span class="ruby-comment"># Now you can use any WebDAV verb:</span>
+  <span class="ruby-identifier">propfind</span> <span class="ruby-string">&#39;/2014/january/21&#39;</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-string">&#39;I have a lunch at 9 PM&#39;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
 
 <p>You can use it in classic application just by requring the extension:</p>
 
-<pre>require &#39;sinatra&#39;
-require &#39;sinatra/webdav&#39;
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;sinatra&#39;</span>
+<span class="ruby-identifier">require</span> <span class="ruby-string">&#39;sinatra/webdav&#39;</span>
 
-mkcol &#39;/2015&#39; do
-  &#39;You started 2015!&#39;
-end</pre>
+<span class="ruby-identifier">mkcol</span> <span class="ruby-string">&#39;/2015&#39;</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-string">&#39;You started 2015!&#39;</span>
+<span class="ruby-keyword">end</span>
+</pre>

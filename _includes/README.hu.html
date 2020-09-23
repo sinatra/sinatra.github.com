@@ -7,18 +7,22 @@ változatnak, és lehet, hogy nem naprakész.</em></p>
 webalkalmazások Ruby nyelven történő fejlesztéséhez, minimális
 energiabefektetéssel:</p>
 
-<pre><code class="language-ruby">  # myapp.rb
-  require 'sinatra'
-  get '/' do
-    'Helló Világ!'
-  end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="c1"># myapp.rb</span>
+  <span class="nb">require</span> <span class="s1">'sinatra'</span>
+  <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="s1">'Helló Világ!'</span>
+  <span class="k">end</span>
 </code></pre>
+</div>
 
 <p>Telepítsd a gem-et és indítsd el az alkalmazást a következőképpen:</p>
 
-<pre><code class="language-ruby">  sudo gem install sinatra
-  ruby myapp.rb
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="n">sudo</span> <span class="n">gem</span> <span class="n">install</span> <span class="n">sinatra</span>
+  <span class="n">ruby</span> <span class="n">myapp</span><span class="p">.</span><span class="nf">rb</span>
 </code></pre>
+</div>
 
 <p>Az alkalmazás elérhető lesz itt: <a href="http://localhost:4567">http://localhost:4567</a></p>
 
@@ -27,103 +31,117 @@ energiabefektetéssel:</p>
 <p>A Sinatrában az útvonalat egy HTTP metódus és egy URL-re illeszkedő minta
 párosa alkotja. Minden egyes útvonalhoz tartozik egy blokk:</p>
 
-<pre><code class="language-ruby">  get '/' do
-    .. megjelenítünk valamit ..
-  end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="p">.</span><span class="nf">.</span> <span class="n">megjelen</span><span class="err">í</span><span class="n">t</span><span class="err">ü</span><span class="n">nk</span> <span class="n">valamit</span> <span class="p">.</span><span class="nf">.</span>
+  <span class="k">end</span>
 
-  post '/' do
-    .. létrehozunk valamit ..
-  end
+  <span class="n">post</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="p">.</span><span class="nf">.</span> <span class="n">l</span><span class="err">é</span><span class="n">trehozunk</span> <span class="n">valamit</span> <span class="p">.</span><span class="nf">.</span>
+  <span class="k">end</span>
 
-  put '/' do
-    .. frissítünk valamit ..
-  end
+  <span class="n">put</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="p">.</span><span class="nf">.</span> <span class="n">friss</span><span class="err">í</span><span class="n">t</span><span class="err">ü</span><span class="n">nk</span> <span class="n">valamit</span> <span class="p">.</span><span class="nf">.</span>
+  <span class="k">end</span>
 
-  delete '/' do
-    .. törlünk valamit ..
-  end
+  <span class="n">delete</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="p">.</span><span class="nf">.</span> <span class="n">t</span><span class="err">ö</span><span class="n">rl</span><span class="err">ü</span><span class="n">nk</span> <span class="n">valamit</span> <span class="p">.</span><span class="nf">.</span>
+  <span class="k">end</span>
 </code></pre>
+</div>
 
 <p>Az útvonalak illeszkedését a rendszer a definiálásuk sorrendjében
 ellenőrzi. Sorrendben mindig az első illeszkedő útvonalhoz tartozó metódus kerül
 meghívásra.</p>
 
-<p>Az útvonalminták tartalmazhatnak paramétereket is, melyeket a <code>params</code>
+<p>Az útvonalminták tartalmazhatnak paramétereket is, melyeket a <code class="highlighter-rouge">params</code>
 hash-ből érhetünk el:</p>
 
-<pre><code class="language-ruby">  get '/hello/:name' do
-    # illeszkedik a "GET /hello/foo" és a "GET /hello/bar" útvonalakra
-    # ekkor params['name'] értéke 'foo' vagy 'bar' lesz
-    "Helló #{params['name']}!"
-  end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="n">get</span> <span class="s1">'/hello/:name'</span> <span class="k">do</span>
+    <span class="c1"># illeszkedik a "GET /hello/foo" és a "GET /hello/bar" útvonalakra</span>
+    <span class="c1"># ekkor params['name'] értéke 'foo' vagy 'bar' lesz</span>
+    <span class="s2">"Helló </span><span class="si">#{</span><span class="n">params</span><span class="p">[</span><span class="s1">'name'</span><span class="p">]</span><span class="si">}</span><span class="s2">!"</span>
+  <span class="k">end</span>
 </code></pre>
+</div>
 
 <p>A kulcsszavas argumentumokat (named parameters) blokk paraméterek útján
 is el tudod érni:</p>
 
-<pre><code class="language-ruby">  get '/hello/:name' do |n|
-    "Helló #{n}!"
-  end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="n">get</span> <span class="s1">'/hello/:name'</span> <span class="k">do</span> <span class="o">|</span><span class="n">n</span><span class="o">|</span>
+    <span class="s2">"Helló </span><span class="si">#{</span><span class="n">n</span><span class="si">}</span><span class="s2">!"</span>
+  <span class="k">end</span>
 </code></pre>
+</div>
 
 <p>Az útvonalmintákban szerepelhetnek joker paraméterek is, melyeket a
-<code>params['splat']</code> tömbön keresztül tudunk elérni.</p>
+<code class="highlighter-rouge">params['splat']</code> tömbön keresztül tudunk elérni.</p>
 
-<pre><code class="language-ruby">  get '/say/*/to/*' do
-    # illeszkedik a /say/hello/to/world mintára
-    params['splat'] # =&gt; ["hello", "world"]
-  end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="n">get</span> <span class="s1">'/say/*/to/*'</span> <span class="k">do</span>
+    <span class="c1"># illeszkedik a /say/hello/to/world mintára</span>
+    <span class="n">params</span><span class="p">[</span><span class="s1">'splat'</span><span class="p">]</span> <span class="c1"># =&gt; ["hello", "world"]</span>
+  <span class="k">end</span>
 
-  get '/download/*.*' do
-    # illeszkedik a /download/path/to/file.xml mintára
-    params['splat'] # =&gt; ["path/to/file", "xml"]
-  end
+  <span class="n">get</span> <span class="s1">'/download/*.*'</span> <span class="k">do</span>
+    <span class="c1"># illeszkedik a /download/path/to/file.xml mintára</span>
+    <span class="n">params</span><span class="p">[</span><span class="s1">'splat'</span><span class="p">]</span> <span class="c1"># =&gt; ["path/to/file", "xml"]</span>
+  <span class="k">end</span>
 </code></pre>
+</div>
 
 <p>Reguláris kifejezéseket is felvehetünk az útvonalba:</p>
 
-<pre><code class="language-ruby">  get /\/hello\/([\w]+)/ do
-    "Helló, #{params['captures'].first}!"
-  end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="n">get</span> <span class="sr">/\/hello\/([\w]+)/</span> <span class="k">do</span>
+    <span class="s2">"Helló, </span><span class="si">#{</span><span class="n">params</span><span class="p">[</span><span class="s1">'captures'</span><span class="p">].</span><span class="nf">first</span><span class="si">}</span><span class="s2">!"</span>
+  <span class="k">end</span>
 </code></pre>
+</div>
 
 <p>Vagy blokk paramétereket:</p>
 
-<pre><code class="language-ruby">  get %r{/hello/([\w]+)} do |c|
-    "Helló, #{c}!"
-  end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="n">get</span> <span class="sr">%r{/hello/([</span><span class="se">\w</span><span class="sr">]+)}</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span>
+    <span class="s2">"Helló, </span><span class="si">#{</span><span class="n">c</span><span class="si">}</span><span class="s2">!"</span>
+  <span class="k">end</span>
 </code></pre>
+</div>
 
 <p>Az útvonalak azonban számos egyéb illeszkedési feltétel szerint is
 tervezhetők, így például az user agent karakterláncot alapul véve:</p>
 
-<pre><code class="language-ruby">  get '/foo', :agent =&gt; /Songbird (\d\.\d)[\d\/]*?/ do
-    "A Songbird #{params['agent'][0]} verzióját használod"
-  end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="n">get</span> <span class="s1">'/foo'</span><span class="p">,</span> <span class="ss">:agent</span> <span class="o">=&gt;</span> <span class="sr">/Songbird (\d\.\d)[\d\/]*?/</span> <span class="k">do</span>
+    <span class="s2">"A Songbird </span><span class="si">#{</span><span class="n">params</span><span class="p">[</span><span class="s1">'agent'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> verzióját használod"</span>
+  <span class="k">end</span>
 
-  get '/foo' do
-    # illeszkedik az egyéb user agentekre
-  end
+  <span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
+    <span class="c1"># illeszkedik az egyéb user agentekre</span>
+  <span class="k">end</span>
 </code></pre>
+</div>
 
 <h2>Statikus állományok</h2>
 
-<p>A statikus fájlok kiszolgálása a <code>./public</code> könyvtárból
+<p>A statikus fájlok kiszolgálása a <code class="highlighter-rouge">./public</code> könyvtárból
 történik, de természetesen más könyvtárat is megadhatsz erre a célra,
 mégpedig a :public_folder kapcsoló beállításával:</p>
 
-<p>set :public_folder, File.dirname(<strong>FILE</strong>) + ‘/static’</p>
+<p>set :public_folder, <strong>dir</strong> + ‘/static’</p>
 
 <p>Fontos megjegyezni, hogy a nyilvános könyvtár neve nem szerepel az URL-ben.
 A ./public/css/style.css fájl az
-<code>http://example.com/css/style.css</code> URL-en lesz elérhető.</p>
+<code class="highlighter-rouge">http://example.com/css/style.css</code> URL-en lesz elérhető.</p>
 
 <h2>Nézetek és Sablonok</h2>
 
-<p>A sablonfájlokat rendszerint a  <code>./views</code> könyvtárba helyezzük, de
+<p>A sablonfájlokat rendszerint a  <code class="highlighter-rouge">./views</code> könyvtárba helyezzük, de
 itt is lehetőség nyílik egyéb könyvtár használatára:</p>
 
-<p>set :views, File.dirname(<strong>FILE</strong>) + ‘/templates’</p>
+<p>set :views, <strong>dir</strong> + ‘/templates’</p>
 
 <p>Nagyon fontos észben tartani, hogy a sablononkra mindig szimbólumokkal
 hivatkozunk, még akkor is, ha egyéb (ebben az esetben a
@@ -134,40 +152,46 @@ metódusok minden, nekik közvetlenül átadott karakterláncot megjelenítenek.
 
 <p>HAML sablonok rendereléséhez szükségünk lesz a haml gem-re vagy könyvtárra:</p>
 
-<pre><code class="language-ruby">  # Importáljuk be a haml-t az alkalmazásba
-  require 'haml'
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="c1"># Importáljuk be a haml-t az alkalmazásba</span>
+  <span class="nb">require</span> <span class="s1">'haml'</span>
 
-  get '/' do
-    haml :index
-  end
+  <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="n">haml</span> <span class="ss">:index</span>
+  <span class="k">end</span>
 </code></pre>
+</div>
 
-<p>Ez szépen lerendereli a <code>./views/index.haml</code> sablont.</p>
+<p>Ez szépen lerendereli a <code class="highlighter-rouge">./views/index.haml</code> sablont.</p>
 
 <p>A <a href="http://haml.hamptoncatlin.com/docs/rdoc/classes/Haml.html">Haml kapcsolói</a>
 globálisan is beállíthatók a Sinatra konfigurációi között, lásd az
 <a href="http://www.sinatrarb.com/configuration.html">Options and Configurations</a> lapot.
 A globális beállításokat lehetőségünk van felülírni metódus szinten is.</p>
 
-<pre><code class="language-ruby">  set :haml, {:format =&gt; :html5 } # az alapértelmezett Haml formátum az :xhtml
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="n">set</span> <span class="ss">:haml</span><span class="p">,</span> <span class="p">{</span><span class="ss">:format</span> <span class="o">=&gt;</span> <span class="ss">:html5</span> <span class="p">}</span> <span class="c1"># az alapértelmezett Haml formátum az :xhtml</span>
 
-  get '/' do
-    haml :index, :haml_options =&gt; {:format =&gt; :html4 } # immár felülírva
-  end
+  <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="n">haml</span> <span class="ss">:index</span><span class="p">,</span> <span class="ss">:haml_options</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:format</span> <span class="o">=&gt;</span> <span class="ss">:html4</span> <span class="p">}</span> <span class="c1"># immár felülírva</span>
+  <span class="k">end</span>
 </code></pre>
+</div>
 
 <h3>Erb sablonok</h3>
 
 <p># Importáljuk be az erb-t az alkalmazásba</p>
 
-<pre><code class="language-ruby">  require 'erb'
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="nb">require</span> <span class="s1">'erb'</span>
 
-  get '/' do
-    erb :index
-  end
+  <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="n">erb</span> <span class="ss">:index</span>
+  <span class="k">end</span>
 </code></pre>
+</div>
 
-<p>Ez a <code>./views/index.erb</code> sablont fogja lerenderelni.</p>
+<p>Ez a <code class="highlighter-rouge">./views/index.erb</code> sablont fogja lerenderelni.</p>
 
 <h3>Builder sablonok</h3>
 
@@ -176,14 +200,16 @@ rendereléséhez:</p>
 
 <p># Importáljuk be a builder-t az alkalmazásba</p>
 
-<pre><code class="language-ruby">  require 'builder'
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="nb">require</span> <span class="s1">'builder'</span>
 
-  get '/' do
-    builder :index
-  end
+  <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="n">builder</span> <span class="ss">:index</span>
+  <span class="k">end</span>
 </code></pre>
+</div>
 
-<p>Ez pedig a <code>./views/index.builder</code> állományt fogja renderelni.</p>
+<p>Ez pedig a <code class="highlighter-rouge">./views/index.builder</code> állományt fogja renderelni.</p>
 
 <h3>Sass sablonok</h3>
 
@@ -191,33 +217,39 @@ rendereléséhez:</p>
 
 <p># Be kell importálni a haml, vagy a sass könyvtárat</p>
 
-<pre><code class="language-ruby">  require 'sass'
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="nb">require</span> <span class="s1">'sass'</span>
 
-  get '/stylesheet.css' do
-    sass :stylesheet
-  end
+  <span class="n">get</span> <span class="s1">'/stylesheet.css'</span> <span class="k">do</span>
+    <span class="n">sass</span> <span class="ss">:stylesheet</span>
+  <span class="k">end</span>
 </code></pre>
+</div>
 
-<p>Így a <code>./views/stylesheet.sass</code> fájl máris renderelhető.</p>
+<p>Így a <code class="highlighter-rouge">./views/stylesheet.sass</code> fájl máris renderelhető.</p>
 
 <p>A <a href="http://haml.hamptoncatlin.com/docs/rdoc/classes/Sass.html">Sass kapcsolói</a>
 globálisan is beállíthatók a Sinatra konfigurációi között, lásd az
 <a href="http://www.sinatrarb.com/configuration.html">Options and Configurations</a> lapot.
 A globális beállításokat lehetőségünk van felülírni metódus szinten is.</p>
 
-<pre><code class="language-ruby">  set :sass, {:style =&gt; :compact } # az alapértelmezett Sass stílus a :nested
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="n">set</span> <span class="ss">:sass</span><span class="p">,</span> <span class="p">{</span><span class="ss">:style</span> <span class="o">=&gt;</span> <span class="ss">:compact</span> <span class="p">}</span> <span class="c1"># az alapértelmezett Sass stílus a :nested</span>
 
-  get '/stylesheet.css' do
-    sass :stylesheet, :sass_options =&gt; {:style =&gt; :expanded } # felülírva
-  end
+  <span class="n">get</span> <span class="s1">'/stylesheet.css'</span> <span class="k">do</span>
+    <span class="n">sass</span> <span class="ss">:stylesheet</span><span class="p">,</span> <span class="ss">:sass_options</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:style</span> <span class="o">=&gt;</span> <span class="ss">:expanded</span> <span class="p">}</span> <span class="c1"># felülírva</span>
+  <span class="k">end</span>
 </code></pre>
+</div>
 
 <h3>Beágyazott sablonok</h3>
 
-<pre><code class="language-ruby">  get '/' do
-    haml '%div.title Helló Világ'
-  end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="n">haml</span> <span class="s1">'%div.title Helló Világ'</span>
+  <span class="k">end</span>
 </code></pre>
+</div>
 
 <p>Lerendereli a beágyazott sablon karakerláncát.</p>
 
@@ -227,19 +259,23 @@ A globális beállításokat lehetőségünk van felülírni metódus szinten is
 útvonal metódusok (route handlers). Az útvonal metódusokban megadott
 változók közvetlenül elérhetőek lesznek a sablonokban:</p>
 
-<pre><code class="language-ruby">  get '/:id' do
-    @foo = Foo.find(params['id'])
-    haml '%h1= @foo.name'
-  end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="n">get</span> <span class="s1">'/:id'</span> <span class="k">do</span>
+    <span class="vi">@foo</span> <span class="o">=</span> <span class="no">Foo</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">'id'</span><span class="p">])</span>
+    <span class="n">haml</span> <span class="s1">'%h1= @foo.name'</span>
+  <span class="k">end</span>
 </code></pre>
+</div>
 
 <p>De megadhatod egy lokális változókat tartalmazó explicit hash-ben is:</p>
 
-<pre><code class="language-ruby">  get '/:id' do
-    foo = Foo.find(params['id'])
-    haml '%h1= foo.name', :locals =&gt; { :foo =&gt; foo }
-  end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="n">get</span> <span class="s1">'/:id'</span> <span class="k">do</span>
+    <span class="n">foo</span> <span class="o">=</span> <span class="no">Foo</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">'id'</span><span class="p">])</span>
+    <span class="n">haml</span> <span class="s1">'%h1= foo.name'</span><span class="p">,</span> <span class="ss">:locals</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:foo</span> <span class="o">=&gt;</span> <span class="n">foo</span> <span class="p">}</span>
+  <span class="k">end</span>
 </code></pre>
+</div>
 
 <p>Ezt leginkább akkor érdemes megtenni, ha partial-eket akarunk renderelni
 valamely más sablonból.</p>
@@ -249,14 +285,15 @@ valamely más sablonból.</p>
 <p>Sablonokat úgy is megadhatunk, hogy egyszerűen az alkalmazás fájl
 végére begépeljük őket:</p>
 
-<pre><code class="language-ruby">  require 'rubygems'
-  require 'sinatra'
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="nb">require</span> <span class="s1">'rubygems'</span>
+  <span class="nb">require</span> <span class="s1">'sinatra'</span>
 
-  get '/' do
-    haml :index
-  end
+  <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="n">haml</span> <span class="ss">:index</span>
+  <span class="k">end</span>
 
-  __END__
+  <span class="cp">__END__
 
   @@ layout
   %html
@@ -264,7 +301,8 @@ végére begépeljük őket:</p>
 
   @@ index
   %div.title Helló Világ!!!!!
-</code></pre>
+</span></code></pre>
+</div>
 
 <p>Megjegyzés: azok a fájlon belüli sablonok, amelyek az alkalmazás fájl végére
 kerülnek és függnek a sinatra könyvtártól, automatikusan betöltődnek.
@@ -276,27 +314,31 @@ a <tt>use_in_file_templates!</tt> metódust az adott fájlban.</p>
 <p>Sablonokat végül a felsőszintű <tt>template</tt> metódussal is
 definiálhatunk:</p>
 
-<pre><code class="language-ruby">  template :layout do
-    "%html\n  =yield\n"
-  end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="n">template</span> <span class="ss">:layout</span> <span class="k">do</span>
+    <span class="s2">"%html</span><span class="se">\n</span><span class="s2">  =yield</span><span class="se">\n</span><span class="s2">"</span>
+  <span class="k">end</span>
 
-  template :index do
-    '%div.title Helló Világ!'
-  end
+  <span class="n">template</span> <span class="ss">:index</span> <span class="k">do</span>
+    <span class="s1">'%div.title Helló Világ!'</span>
+  <span class="k">end</span>
 
-  get '/' do
-    haml :index
-  end
+  <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="n">haml</span> <span class="ss">:index</span>
+  <span class="k">end</span>
 </code></pre>
+</div>
 
 <p>Ha létezik “layout” nevű sablon, akkor az minden esetben meghívódik, amikor
 csak egy sablon renderelésre kerül. A layoutokat ki lehet kapcsolni a
-<code>:layout =&gt; false</code> meghívásával.</p>
+<code class="highlighter-rouge">:layout =&gt; false</code> meghívásával.</p>
 
-<pre><code class="language-ruby">  get '/' do
-    haml :index, :layout =&gt; !request.xhr?
-  end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="n">haml</span> <span class="ss">:index</span><span class="p">,</span> <span class="ss">:layout</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="n">request</span><span class="p">.</span><span class="nf">xhr?</span>
+  <span class="k">end</span>
 </code></pre>
+</div>
 
 <h2>Helperek</h2>
 
@@ -304,16 +346,18 @@ csak egy sablon renderelésre kerül. A layoutokat ki lehet kapcsolni a
 függvényekhez, amiket az útvonal metódusokban és a sablonokban akarsz
 használni:</p>
 
-<pre><code class="language-ruby">  helpers do
-    def bar(name)
-      "#{name}bar"
-    end
-  end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="n">helpers</span> <span class="k">do</span>
+    <span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+      <span class="s2">"</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">bar"</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
 
-  get '/:name' do
-    bar(params['name'])
-  end
+  <span class="n">get</span> <span class="s1">'/:name'</span> <span class="k">do</span>
+    <span class="n">bar</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">'name'</span><span class="p">])</span>
+  <span class="k">end</span>
 </code></pre>
+</div>
 
 <h2>Szűrők (filters)</h2>
 
@@ -322,26 +366,30 @@ kérés alkalmával kiértékelődnek, így módosíthatják a kérést és a
 választ egyaránt. A szűrőkbe felvett példányváltozók elérhetőek lesznek
 az útvonalakban és a sablonokban is:</p>
 
-<pre><code class="language-ruby">  before do
-    @note = 'Csá!'
-    request.path_info = '/foo/bar/baz'
-  end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="n">before</span> <span class="k">do</span>
+    <span class="vi">@note</span> <span class="o">=</span> <span class="s1">'Csá!'</span>
+    <span class="n">request</span><span class="p">.</span><span class="nf">path_info</span> <span class="o">=</span> <span class="s1">'/foo/bar/baz'</span>
+  <span class="k">end</span>
 
-  get '/foo/*' do
-    @note #=&gt; 'Szeva!'
-    params['splat'] #=&gt; 'bar/baz'
-  end
+  <span class="n">get</span> <span class="s1">'/foo/*'</span> <span class="k">do</span>
+    <span class="vi">@note</span> <span class="c1">#=&gt; 'Szeva!'</span>
+    <span class="n">params</span><span class="p">[</span><span class="s1">'splat'</span><span class="p">]</span> <span class="c1">#=&gt; 'bar/baz'</span>
+  <span class="k">end</span>
 </code></pre>
+</div>
 
 <p>Az utószűrők az egyes kérések után, az adott kérés kontextusában kerülnek
 kiértékelésre, így ezek is képesek módosítani a kérést és a választ egyaránt.
 Az előszűrőkben és úvonalakban létrehozott példányváltozók elérhetőek lesznek
 az utószűrők számára:</p>
 
-<pre><code class="language-ruby">  after do
-    puts response.status
-  end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="n">after</span> <span class="k">do</span>
+    <span class="nb">puts</span> <span class="n">response</span><span class="p">.</span><span class="nf">status</span>
+  <span class="k">end</span>
 </code></pre>
+</div>
 
 <h2>Megállítás</h2>
 
@@ -361,17 +409,19 @@ használd a következő parancsot:</p>
 <h2>Passzolás</h2>
 
 <p>Az útvonalak továbbadhatják a végrehajtást egy másik útvonalnak
-a <code>pass</code> függvényhívással:</p>
+a <code class="highlighter-rouge">pass</code> függvényhívással:</p>
 
-<pre><code class="language-ruby">  get '/guess/:who' do
-    pass unless params['who'] == 'Frici'
-    "Elkaptál!"
-  end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="n">get</span> <span class="s1">'/guess/:who'</span> <span class="k">do</span>
+    <span class="n">pass</span> <span class="k">unless</span> <span class="n">params</span><span class="p">[</span><span class="s1">'who'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'Frici'</span>
+    <span class="s2">"Elkaptál!"</span>
+  <span class="k">end</span>
 
-  get '/guess/*' do
-    "Elhibáztál!"
-  end
+  <span class="n">get</span> <span class="s1">'/guess/*'</span> <span class="k">do</span>
+    <span class="s2">"Elhibáztál!"</span>
+  <span class="k">end</span>
 </code></pre>
+</div>
 
 <p>Az útvonal blokkja azonnal kilép és átadja a vezérlést a következő
 illeszkedő útvonalnak. Ha nem talál megfelelő útvonalat, a Sinatra
@@ -381,84 +431,100 @@ egy 404-es hibával tér vissza.</p>
 
 <p>Csak indításkor, de minden környezetre érvényesen fusson le:</p>
 
-<pre><code class="language-ruby">  configure do
-    ...
-  end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="n">configure</span> <span class="k">do</span>
+    <span class="p">.</span><span class="nf">.</span><span class="p">.</span>
+  <span class="nf">end</span>
 </code></pre>
+</div>
 
 <p>Csak akkor fusson le, ha a környezet (a APP_ENV környezeti változóban)
-<code>:production</code>-ra van állítva:</p>
+<code class="highlighter-rouge">:production</code>-ra van állítva:</p>
 
-<pre><code class="language-ruby">  configure :production do
-    ...
-  end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="n">configure</span> <span class="ss">:production</span> <span class="k">do</span>
+    <span class="p">.</span><span class="nf">.</span><span class="p">.</span>
+  <span class="nf">end</span>
 </code></pre>
+</div>
 
 <p>Csak akkor fusson le, ha a környezet <tt>:production</tt> vagy <tt>:test</tt>:</p>
 
-<pre><code class="language-ruby">  configure :production, :test do
-    ...
-  end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="n">configure</span> <span class="ss">:production</span><span class="p">,</span> <span class="ss">:test</span> <span class="k">do</span>
+    <span class="p">.</span><span class="nf">.</span><span class="p">.</span>
+  <span class="nf">end</span>
 </code></pre>
+</div>
 
 <h2>Hibakezelés</h2>
 
 <p>A hibakezelők ugyanabban a kontextusban futnak le, mint az útvonalak és
 előszűrők, ezért számukra is elérhetőek mindazok a könyvtárak, amelyek
-az utóbbiak rendelkezésére is állnak; így például a <code>haml</code>,
-az <code>erb</code>, a <code>halt</code> stb.</p>
+az utóbbiak rendelkezésére is állnak; így például a <code class="highlighter-rouge">haml</code>,
+az <code class="highlighter-rouge">erb</code>, a <code class="highlighter-rouge">halt</code> stb.</p>
 
 <h3>Nem található</h3>
 
-<p>Amikor a <code>Sinatra::NotFound</code> kivétel fellép, vagy a válasz HTTP
-státuszkódja 404-es, mindig a <code>not_found</code> metódus hívódik meg.</p>
+<p>Amikor a <code class="highlighter-rouge">Sinatra::NotFound</code> kivétel fellép, vagy a válasz HTTP
+státuszkódja 404-es, mindig a <code class="highlighter-rouge">not_found</code> metódus hívódik meg.</p>
 
-<pre><code class="language-ruby">  not_found do
-    'Sehol sem találom, amit keresel'
-  end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="n">not_found</span> <span class="k">do</span>
+    <span class="s1">'Sehol sem találom, amit keresel'</span>
+  <span class="k">end</span>
 </code></pre>
+</div>
 
 <h3>Hiba</h3>
 
-<p>Az <code>error</code> metódus hívódik meg olyankor, amikor egy útvonal, blokk vagy
+<p>Az <code class="highlighter-rouge">error</code> metódus hívódik meg olyankor, amikor egy útvonal, blokk vagy
 előszűrő kivételt vált ki. A kivétel objektum lehívható a
-<code>sinatra.error</code> Rack változótól:</p>
+<code class="highlighter-rouge">sinatra.error</code> Rack változótól:</p>
 
-<pre><code class="language-ruby">  error do
-    'Elnézést, de valami szörnyű hiba lépett fel - ' + env['sinatra.error'].message
-  end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="n">error</span> <span class="k">do</span>
+    <span class="s1">'Elnézést, de valami szörnyű hiba lépett fel - '</span> <span class="o">+</span> <span class="n">env</span><span class="p">[</span><span class="s1">'sinatra.error'</span><span class="p">].</span><span class="nf">message</span>
+  <span class="k">end</span>
 </code></pre>
+</div>
 
 <p>Egyéni hibakezelés:</p>
 
-<pre><code class="language-ruby">  error MyCustomError do
-    'Szóval az van, hogy...' + env['sinatra.error'].message
-  end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="n">error</span> <span class="no">MyCustomError</span> <span class="k">do</span>
+    <span class="s1">'Szóval az van, hogy...'</span> <span class="o">+</span> <span class="n">env</span><span class="p">[</span><span class="s1">'sinatra.error'</span><span class="p">].</span><span class="nf">message</span>
+  <span class="k">end</span>
 </code></pre>
+</div>
 
 <p>És amikor fellép:</p>
 
-<pre><code class="language-ruby">  get '/' do
-    raise MyCustomError, 'valami nem stimmel!'
-  end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="k">raise</span> <span class="no">MyCustomError</span><span class="p">,</span> <span class="s1">'valami nem stimmel!'</span>
+  <span class="k">end</span>
 </code></pre>
+</div>
 
 <p>Ez fog megjelenni:</p>
 
 <p>Szóval az van, hogy… valami nem stimmel!</p>
 
-<p>A Sinatra speciális <code>not_found</code> és <code>error</code> hibakezelőket
+<p>A Sinatra speciális <code class="highlighter-rouge">not_found</code> és <code class="highlighter-rouge">error</code> hibakezelőket
 használ, amikor a futtatási környezet fejlesztői módba van kapcsolva.</p>
 
 <h2>Mime típusok</h2>
 
-<p>A <code>send_file</code> metódus használatakor, vagy statikus fájlok
+<p>A <code class="highlighter-rouge">send_file</code> metódus használatakor, vagy statikus fájlok
 kiszolgálásakor előfordulhat, hogy a Sinatra nem ismeri fel a fájlok
 mime típusát. Ilyenkor használd a +mime_type+ kapcsolót a fájlkiterjesztés
 bevezetéséhez:</p>
 
-<pre><code class="language-ruby">  mime_type :foo, 'text/foo'
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="n">mime_type</span> <span class="ss">:foo</span><span class="p">,</span> <span class="s1">'text/foo'</span>
 </code></pre>
+</div>
 
 <h2>Rack Middleware</h2>
 
@@ -471,29 +537,33 @@ kéréseket és válaszokat. Segítségükkel különféle, egységesen működ�
 funkciókat építhetünk be rendszerünkbe.</p>
 
 <p>A Sinatra keretrendszerben gyerekjáték a Rack middleware-ek behúzása a
-<code>use</code> metódus segítségével:</p>
+<code class="highlighter-rouge">use</code> metódus segítségével:</p>
 
-<pre><code class="language-ruby">  require 'sinatra'
-  require 'my_custom_middleware'
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="nb">require</span> <span class="s1">'sinatra'</span>
+  <span class="nb">require</span> <span class="s1">'my_custom_middleware'</span>
 
-  use Rack::Lint
-  use MyCustomMiddleware
+  <span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Lint</span>
+  <span class="n">use</span> <span class="no">MyCustomMiddleware</span>
 
-  get '/hello' do
-    'Helló Világ'
-  end
+  <span class="n">get</span> <span class="s1">'/hello'</span> <span class="k">do</span>
+    <span class="s1">'Helló Világ'</span>
+  <span class="k">end</span>
 </code></pre>
+</div>
 
-<p>A <code>use</code> metódus szemantikája megegyezik a
+<p>A <code class="highlighter-rouge">use</code> metódus szemantikája megegyezik a
 <a href="http://www.rubydoc.info/github/rack/rack/master/Rack/Builder">Rack::Builder</a> DSL-ben
 használt +use+ metóduséval (az említett DSL-t leginkább rackup állományokban
-használják). Hogy egy példát említsünk, a <code>use</code> metódus elfogad
+használják). Hogy egy példát említsünk, a <code class="highlighter-rouge">use</code> metódus elfogad
 változókat és blokkokat egyaránt, akár kombinálva is ezeket:</p>
 
-<pre><code class="language-ruby">  use Rack::Auth::Basic do |username, password|
-    username == 'admin' &amp;&amp; password == 'titkos'
-  end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Auth</span><span class="o">::</span><span class="no">Basic</span> <span class="k">do</span> <span class="o">|</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">|</span>
+    <span class="n">username</span> <span class="o">==</span> <span class="s1">'admin'</span> <span class="o">&amp;&amp;</span> <span class="n">password</span> <span class="o">==</span> <span class="s1">'titkos'</span>
+  <span class="k">end</span>
 </code></pre>
+</div>
 
 <p>A Rack terjesztéssel egy csomó alap middleware komponens is érkezik,
 amelyekkel a naplózás, URL útvonalak megadása, autentikáció és
@@ -507,32 +577,34 @@ explicit betöltésével (+use+) nem kell bajlódnod.</p>
 keretrendszerrel készíthetsz. Mi a <a href="http://gitrdoc.com/brynary/rack-test">Rack::Test</a>
 könyvtárat ajánljuk:</p>
 
-<pre><code class="language-ruby">  require 'my_sinatra_app'
-  require 'rack/test'
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="nb">require</span> <span class="s1">'my_sinatra_app'</span>
+  <span class="nb">require</span> <span class="s1">'rack/test'</span>
 
-  class MyAppTest &lt; Minitest::Test
-    include Rack::Test::Methods
+  <span class="k">class</span> <span class="nc">MyAppTest</span> <span class="o">&lt;</span> <span class="no">Minitest</span><span class="o">::</span><span class="no">Test</span>
+    <span class="kp">include</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Test</span><span class="o">::</span><span class="no">Methods</span>
 
-    def app
-      Sinatra::Application
-    end
+    <span class="k">def</span> <span class="nf">app</span>
+      <span class="no">Sinatra</span><span class="o">::</span><span class="no">Application</span>
+    <span class="k">end</span>
 
-    def test_my_default
-      get '/'
-      assert_equal 'Helló Világ!', last_response.body
-    end
+    <span class="k">def</span> <span class="nf">test_my_default</span>
+      <span class="n">get</span> <span class="s1">'/'</span>
+      <span class="n">assert_equal</span> <span class="s1">'Helló Világ!'</span><span class="p">,</span> <span class="n">last_response</span><span class="p">.</span><span class="nf">body</span>
+    <span class="k">end</span>
 
-    def test_with_params
-      get '/meet', :name =&gt; 'Frici'
-      assert_equal 'Helló Frici!', last_response.body
-    end
+    <span class="k">def</span> <span class="nf">test_with_params</span>
+      <span class="n">get</span> <span class="s1">'/meet'</span><span class="p">,</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s1">'Frici'</span>
+      <span class="n">assert_equal</span> <span class="s1">'Helló Frici!'</span><span class="p">,</span> <span class="n">last_response</span><span class="p">.</span><span class="nf">body</span>
+    <span class="k">end</span>
 
-    def test_with_user_agent
-      get '/', {}, 'HTTP_USER_AGENT' =&gt; 'Songbird'
-      assert_equal "Songbird-öt használsz!", last_response.body
-    end
-  end
+    <span class="k">def</span> <span class="nf">test_with_user_agent</span>
+      <span class="n">get</span> <span class="s1">'/'</span><span class="p">,</span> <span class="p">{},</span> <span class="s1">'HTTP_USER_AGENT'</span> <span class="o">=&gt;</span> <span class="s1">'Songbird'</span>
+      <span class="n">assert_equal</span> <span class="s2">"Songbird-öt használsz!"</span><span class="p">,</span> <span class="n">last_response</span><span class="p">.</span><span class="nf">body</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
 </code></pre>
+</div>
 
 <p>Megjegyzés: A beépített Sinatra::Test és Sinatra::TestHarness osztályok
 a 0.9.2-es kiadástól kezdve elavultnak számítanak.</p>
@@ -546,30 +618,34 @@ middleware, Rails metal, egyszerűbb kiszolgáló komponenssel bíró
 könyvtárak vagy éppen Sinatra kiterjesztések. A felső szintű DSL
 bepiszkítja az Objektum névteret, ráadásul kisalkalmazásokra szabott
 beállításokat feltételez (így például egyetlen alkalmazásfájl,
-<code>./public</code>
-és <code>./views</code> könyvtár meglétét, naplózást, kivételkezelő oldalt stb.).
+<code class="highlighter-rouge">./public</code>
+és <code class="highlighter-rouge">./views</code> könyvtár meglétét, naplózást, kivételkezelő oldalt stb.).
 Itt jön a képbe a Sinatra::Base osztály:</p>
 
-<pre><code class="language-ruby">  require 'sinatra/base'
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="nb">require</span> <span class="s1">'sinatra/base'</span>
 
-  class MyApp &lt; Sinatra::Base
-    set :sessions, true
-    set :foo, 'bar'
+  <span class="k">class</span> <span class="nc">MyApp</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+    <span class="n">set</span> <span class="ss">:sessions</span><span class="p">,</span> <span class="kp">true</span>
+    <span class="n">set</span> <span class="ss">:foo</span><span class="p">,</span> <span class="s1">'bar'</span>
 
-    get '/' do
-      'Helló Világ!'
-    end
-  end
+    <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+      <span class="s1">'Helló Világ!'</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
 </code></pre>
+</div>
 
 <p>A MyApp osztály immár önálló Rack komponensként, mondjuk Rack middleware-ként
 vagy alkalmazásként, esetleg Rails metal-ként is tud működni. Közvetlenül
-használhatod (<code>use</code>) vagy futtathatod (<code>run</code>) az osztályodat egy rackup
-konfigurációs állományban (<code>config.ru</code>), vagy egy szerverkomponenst
+használhatod (<code class="highlighter-rouge">use</code>) vagy futtathatod (<code class="highlighter-rouge">run</code>) az osztályodat egy rackup
+konfigurációs állományban (<code class="highlighter-rouge">config.ru</code>), vagy egy szerverkomponenst
 tartalmazó könyvtár vezérlésekor:</p>
 
-<pre><code class="language-ruby">   MyApp.run! :host =&gt; 'localhost', :port =&gt; 9090
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>   <span class="no">MyApp</span><span class="p">.</span><span class="nf">run!</span> <span class="ss">:host</span> <span class="o">=&gt;</span> <span class="s1">'localhost'</span><span class="p">,</span> <span class="ss">:port</span> <span class="o">=&gt;</span> <span class="mi">9090</span>
 </code></pre>
+</div>
 
 <p>A Sinatra::Base gyermekosztályaiban elérhető metódusok egyúttal a felső
 szintű DSL-en keresztül is hozzáférhetők. A legtöbb felső szintű
@@ -577,7 +653,7 @@ alkalmazás átalakítható Sinatra::Base alapú komponensekké két lépésben:
 
 
 
-<p>A <code>Sinatra::Base</code> osztály igazából egy üres lap: a legtöbb funkció
+<p>A <code class="highlighter-rouge">Sinatra::Base</code> osztály igazából egy üres lap: a legtöbb funkció
 alapból ki van kapcsolva, beleértve a beépített szervert is. A
 beállításokkal és az egyes kapcsolók hatásával az
 <a href="http://www.sinatrarb.com/configuration.html">Options and Configuration</a> lap
@@ -596,8 +672,10 @@ a fő névtérbe.</p>
 
 <p>Sinatra alkalmazásokat közvetlenül futtathatunk:</p>
 
-<pre><code>  ruby myapp.rb [-h] [-x] [-e ENVIRONMENT] [-p PORT] [-s HANDLER]
+<div class="highlighter-rouge">
+<pre class="highlight"><code>  ruby myapp.rb [-h] [-x] [-e ENVIRONMENT] [-p PORT] [-s HANDLER]
 </code></pre>
+</div>
 
 <p>Az alábbi kapcsolókat ismeri fel a rendszer:</p>
 
@@ -618,54 +696,64 @@ adódik, ha a Rack kezelő többszálú konkurenciamodellt használ. Ezek szerin
 szerverindításkor meg kell adni a Rack szervernek megfelelő indítási módot.
 A következő példa egy többszálú Thin szerver indítását mutatja be.</p>
 
-<pre><code class="language-ruby"># app.rb
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="c1"># app.rb</span>
 
-require 'sinatra/base'
+<span class="nb">require</span> <span class="s1">'sinatra/base'</span>
 
-class App &lt; Sinatra::Base
-  get '/' do
-    "Hello, World"
-  end
-end
+<span class="k">class</span> <span class="nc">App</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="s2">"Hello, World"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-App.run!
+<span class="no">App</span><span class="p">.</span><span class="nf">run!</span>
 
 </code></pre>
+</div>
 
 <p>A szerverindítás parancsa a következő lenne:</p>
 
-<pre><code class="language-shell">thin --threaded start
+<div class="language-shell highlighter-rouge">
+<pre class="highlight"><code>thin --threaded start
 </code></pre>
+</div>
 
 <h2>Fejlesztői változat</h2>
 
 <p>Ha a Sinatra legfrissebb, fejlesztői változatát szeretnéd használni,
 készíts egy helyi másolatot és indítsd az alkalmazásodat úgy,
-hogy a <code>sinatra/lib</code> könyvtár elérhető legyen a
-<code>LOAD_PATH</code>-on:</p>
+hogy a <code class="highlighter-rouge">sinatra/lib</code> könyvtár elérhető legyen a
+<code class="highlighter-rouge">LOAD_PATH</code>-on:</p>
 
-<pre><code>  cd myapp
+<div class="highlighter-rouge">
+<pre class="highlight"><code>  cd myapp
   git clone git://github.com/sinatra/sinatra.git
   ruby -Isinatra/lib myapp.rb
 </code></pre>
+</div>
 
 <p>De hozzá is adhatod a <tt>sinatra/lib</tt> könyvtárat a <tt>LOAD_PATH</tt>-hoz
 az alkalmazásodban:</p>
 
-<pre><code class="language-ruby">  $LOAD_PATH.unshift File.dirname(__FILE__) + '/sinatra/lib'
-  require 'rubygems'
-  require 'sinatra'
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="vg">$LOAD_PATH</span><span class="p">.</span><span class="nf">unshift</span> <span class="n">__dir__</span> <span class="o">+</span> <span class="s1">'/sinatra/lib'</span>
+  <span class="nb">require</span> <span class="s1">'rubygems'</span>
+  <span class="nb">require</span> <span class="s1">'sinatra'</span>
 
-  get '/about' do
-    "A következő változatot futtatom " + Sinatra::VERSION
-  end
+  <span class="n">get</span> <span class="s1">'/about'</span> <span class="k">do</span>
+    <span class="s2">"A következő változatot futtatom "</span> <span class="o">+</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">VERSION</span>
+  <span class="k">end</span>
 </code></pre>
+</div>
 
 <p>A Sinatra frissítését később így végezheted el:</p>
 
-<pre><code>  cd myproject/sinatra
+<div class="highlighter-rouge">
+<pre class="highlight"><code>  cd myproject/sinatra
   git pull
 </code></pre>
+</div>
 
 <h2>További információk</h2>
 

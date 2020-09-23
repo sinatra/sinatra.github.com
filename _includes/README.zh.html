@@ -6,27 +6,33 @@
 <p>Sinatra 是一门基于
 Ruby 的<a href="https://en.wikipedia.org/wiki/Domain-specific_language">领域专属语言</a>，致力于轻松、快速地创建网络应用：</p>
 
-<pre><code class="language-ruby"># myapp.rb
-require 'sinatra'
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="c1"># myapp.rb</span>
+<span class="nb">require</span> <span class="s1">'sinatra'</span>
 
-get '/' do
-  'Hello world!'
-end
+<span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="s1">'Hello world!'</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>安装 Sinatra 这个 gem：</p>
 
-<pre><code class="language-shell">gem install sinatra
+<div class="language-shell highlighter-rouge">
+<pre class="highlight"><code>gem install sinatra
 </code></pre>
+</div>
 
 <p>然后运行 myapp.rb 中的代码：</p>
 
-<pre><code class="language-shell">ruby myapp.rb
+<div class="language-shell highlighter-rouge">
+<pre class="highlight"><code>ruby myapp.rb
 </code></pre>
+</div>
 
 <p>在该地址查看： <a href="http://localhost:4567">http://localhost:4567</a></p>
 
-<p>推荐运行 <code>gem install thin</code> 安装 Thin。这样，Sinatra 会优先选择 Thin 作为服务器。</p>
+<p>推荐运行 <code class="highlighter-rouge">gem install thin</code> 安装 Thin。这样，Sinatra 会优先选择 Thin 作为服务器。</p>
 
 <h2>目录</h2>
 
@@ -36,174 +42,212 @@ end
 
 <p>在 Sinatra 中，一个路由分为两部分：HTTP 方法和 URL 匹配范式。每个路由都有一个要执行的代码块：</p>
 
-<pre><code class="language-ruby">get '/' do
-  .. 显示内容 ..
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="p">.</span><span class="nf">.</span> <span class="err">显示内容</span> <span class="p">.</span><span class="nf">.</span>
+<span class="k">end</span>
 
-post '/' do
-  .. 创建内容 ..
-end
+<span class="n">post</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="p">.</span><span class="nf">.</span> <span class="err">创建内容</span> <span class="p">.</span><span class="nf">.</span>
+<span class="k">end</span>
 
-put '/' do
-  .. 替换内容 ..
-end
+<span class="n">put</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="p">.</span><span class="nf">.</span> <span class="err">替换内容</span> <span class="p">.</span><span class="nf">.</span>
+<span class="k">end</span>
 
-patch '/' do
-  .. 修改内容 ..
-end
+<span class="n">patch</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="p">.</span><span class="nf">.</span> <span class="err">修改内容</span> <span class="p">.</span><span class="nf">.</span>
+<span class="k">end</span>
 
-delete '/' do
-  .. 删除内容 ..
-end
+<span class="n">delete</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="p">.</span><span class="nf">.</span> <span class="err">删除内容</span> <span class="p">.</span><span class="nf">.</span>
+<span class="k">end</span>
 
-options '/' do
-  .. 显示命令列表 ..
-end
+<span class="n">options</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="p">.</span><span class="nf">.</span> <span class="err">显示命令列表</span> <span class="p">.</span><span class="nf">.</span>
+<span class="k">end</span>
 
-link '/' do
-  .. 建立某种联系 ..
-end
+<span class="n">link</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="p">.</span><span class="nf">.</span> <span class="err">建立某种联系</span> <span class="p">.</span><span class="nf">.</span>
+<span class="k">end</span>
 
-unlink '/' do
-  .. 解除某种联系 ..
-end
+<span class="n">unlink</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="p">.</span><span class="nf">.</span> <span class="err">解除某种联系</span> <span class="p">.</span><span class="nf">.</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>路由按照它们定义时的顺序进行匹配。第一个与请求匹配的路由会被调用。</p>
 
-<p>路由范式可以包括具名参数，具名参数可以通过 <code>params</code> hash 访问：</p>
+<p>路由范式可以包括具名参数，具名参数可以通过 <code class="highlighter-rouge">params</code> hash 访问：</p>
 
-<pre><code class="language-ruby">get '/hello/:name' do
-  # 匹配 "GET /hello/foo" 和 "GET /hello/bar"
-  # params['name'] 的值是 'foo' 或者 'bar'
-  "Hello #{params['name']}!"
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/hello/:name'</span> <span class="k">do</span>
+  <span class="c1"># 匹配 "GET /hello/foo" 和 "GET /hello/bar"</span>
+  <span class="c1"># params['name'] 的值是 'foo' 或者 'bar'</span>
+  <span class="s2">"Hello </span><span class="si">#{</span><span class="n">params</span><span class="p">[</span><span class="s1">'name'</span><span class="p">]</span><span class="si">}</span><span class="s2">!"</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>也可以通过代码块参数访问具名参数：</p>
 
-<pre><code class="language-ruby">get '/hello/:name' do |n|
-  # 匹配 "GET /hello/foo" 和 "GET /hello/bar"
-  # params['name'] 的值是 'foo' 或者 'bar'
-  # n 存储 params['name'] 的值
-  "Hello #{n}!"
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/hello/:name'</span> <span class="k">do</span> <span class="o">|</span><span class="n">n</span><span class="o">|</span>
+  <span class="c1"># 匹配 "GET /hello/foo" 和 "GET /hello/bar"</span>
+  <span class="c1"># params['name'] 的值是 'foo' 或者 'bar'</span>
+  <span class="c1"># n 存储 params['name'] 的值</span>
+  <span class="s2">"Hello </span><span class="si">#{</span><span class="n">n</span><span class="si">}</span><span class="s2">!"</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
-<p>路由范式也可以包含通配符参数， 参数值可以通过 <code>params['splat']</code> 数组访问。</p>
+<p>路由范式也可以包含通配符参数， 参数值可以通过 <code class="highlighter-rouge">params['splat']</code> 数组访问。</p>
 
-<pre><code class="language-ruby">get '/say/*/to/*' do
-  # 匹配 "GET /say/hello/to/world"
-  params['splat'] # =&gt; ["hello", "world"]
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/say/*/to/*'</span> <span class="k">do</span>
+  <span class="c1"># 匹配 "GET /say/hello/to/world"</span>
+  <span class="n">params</span><span class="p">[</span><span class="s1">'splat'</span><span class="p">]</span> <span class="c1"># =&gt; ["hello", "world"]</span>
+<span class="k">end</span>
 
-get '/download/*.*' do
-  # 匹配 "GET /download/path/to/file.xml"
-  params['splat'] # =&gt; ["path/to/file", "xml"]
-end
+<span class="n">get</span> <span class="s1">'/download/*.*'</span> <span class="k">do</span>
+  <span class="c1"># 匹配 "GET /download/path/to/file.xml"</span>
+  <span class="n">params</span><span class="p">[</span><span class="s1">'splat'</span><span class="p">]</span> <span class="c1"># =&gt; ["path/to/file", "xml"]</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>或者通过代码块参数访问：</p>
 
-<pre><code class="language-ruby">get '/download/*.*' do |path, ext|
-  [path, ext] # =&gt; ["path/to/file", "xml"]
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/download/*.*'</span> <span class="k">do</span> <span class="o">|</span><span class="n">path</span><span class="p">,</span> <span class="n">ext</span><span class="o">|</span>
+  <span class="p">[</span><span class="n">path</span><span class="p">,</span> <span class="n">ext</span><span class="p">]</span> <span class="c1"># =&gt; ["path/to/file", "xml"]</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>通过正则表达式匹配路由：</p>
 
-<pre><code class="language-ruby">get /\/hello\/([\w]+)/ do
-  "Hello, #{params['captures'].first}!"
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="sr">/\/hello\/([\w]+)/</span> <span class="k">do</span>
+  <span class="s2">"Hello, </span><span class="si">#{</span><span class="n">params</span><span class="p">[</span><span class="s1">'captures'</span><span class="p">].</span><span class="nf">first</span><span class="si">}</span><span class="s2">!"</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>或者使用代码块参数：</p>
 
-<pre><code class="language-ruby">get %r{/hello/([\w]+)} do |c|
-  # 匹配 "GET /meta/hello/world"、"GET /hello/world/1234" 等
-  "Hello, #{c}!"
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="sr">%r{/hello/([</span><span class="se">\w</span><span class="sr">]+)}</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span>
+  <span class="c1"># 匹配 "GET /meta/hello/world"、"GET /hello/world/1234" 等</span>
+  <span class="s2">"Hello, </span><span class="si">#{</span><span class="n">c</span><span class="si">}</span><span class="s2">!"</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>路由范式可以包含可选参数：</p>
 
-<pre><code class="language-ruby">get '/posts/:format?' do
-  # 匹配 "GET /posts/" 和任意扩展 "GET /posts/json"、"GET /posts/xml" 等
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/posts/:format?'</span> <span class="k">do</span>
+  <span class="c1"># 匹配 "GET /posts/" 和任意扩展 "GET /posts/json"、"GET /posts/xml" 等</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>路由也可以使用查询参数：</p>
 
-<pre><code class="language-ruby">get '/posts' do
-  # 匹配 "GET /posts?title=foo&amp;author=bar"
-  title = params['title']
-  author = params['author']
-  # 使用 title 和 author 变量；对于 /posts 路由来说，查询字符串是可选的
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/posts'</span> <span class="k">do</span>
+  <span class="c1"># 匹配 "GET /posts?title=foo&amp;author=bar"</span>
+  <span class="n">title</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s1">'title'</span><span class="p">]</span>
+  <span class="n">author</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s1">'author'</span><span class="p">]</span>
+  <span class="c1"># 使用 title 和 author 变量；对于 /posts 路由来说，查询字符串是可选的</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 <p>顺便一提，除非你禁用了路径遍历攻击防护（见下文），请求路径可能在匹配路由前发生改变。</p>
+
+<p>你也可以通过<code class="highlighter-rouge">:mustermann_opt</code>选项定义<a href="https://github.com/sinatra/mustermann">Mustermann</a>来匹配路由。</p>
+
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'\A/posts\z'</span><span class="p">,</span> <span class="ss">:mustermann_opts</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:type</span> <span class="o">=&gt;</span> <span class="ss">:regexp</span><span class="p">,</span> <span class="ss">:check_anchors</span> <span class="o">=&gt;</span> <span class="kp">false</span> <span class="p">}</span> <span class="k">do</span>
+  <span class="c1"># matches /posts exactly, with explicit anchoring</span>
+  <span class="s2">"If you match an anchored pattern clap your hands!"</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>它看起来像一个<a href="https://github.com/sinatra/sinatra/blob/master/README.zh.md#%E6%9D%A1%E4%BB%B6">条件</a>，但实际不是！这些选项将被合并到全局的<code class="highlighter-rouge">mustermann_opts</code>。</p>
 
 <h3>条件</h3>
 
 <p>路由可以包含各种匹配条件，比如 user agent：</p>
 
-<pre><code class="language-ruby">get '/foo', :agent =&gt; /Songbird (\d\.\d)[\d\/]*?/ do
-  "你正在使用 Songbird，版本是 #{params['agent'][0]}"
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/foo'</span><span class="p">,</span> <span class="ss">:agent</span> <span class="o">=&gt;</span> <span class="sr">/Songbird (\d\.\d)[\d\/]*?/</span> <span class="k">do</span>
+  <span class="s2">"你正在使用 Songbird，版本是 </span><span class="si">#{</span><span class="n">params</span><span class="p">[</span><span class="s1">'agent'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
 
-get '/foo' do
-  # 匹配非 Songbird 浏览器
-end
+<span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
+  <span class="c1"># 匹配非 Songbird 浏览器</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
-<p>其它可以使用的条件有 <code>host_name</code> 和 <code>provides</code>：</p>
+<p>其它可以使用的条件有 <code class="highlighter-rouge">host_name</code> 和 <code class="highlighter-rouge">provides</code>：</p>
 
-<pre><code class="language-ruby">get '/', :host_name =&gt; /^admin\./ do
-  "管理员区域，无权进入！"
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span><span class="p">,</span> <span class="ss">:host_name</span> <span class="o">=&gt;</span> <span class="sr">/^admin\./</span> <span class="k">do</span>
+  <span class="s2">"管理员区域，无权进入！"</span>
+<span class="k">end</span>
 
-get '/', :provides =&gt; 'html' do
-  haml :index
-end
+<span class="n">get</span> <span class="s1">'/'</span><span class="p">,</span> <span class="ss">:provides</span> <span class="o">=&gt;</span> <span class="s1">'html'</span> <span class="k">do</span>
+  <span class="n">haml</span> <span class="ss">:index</span>
+<span class="k">end</span>
 
-get '/', :provides =&gt; ['rss', 'atom', 'xml'] do
-  builder :feed
-end
+<span class="n">get</span> <span class="s1">'/'</span><span class="p">,</span> <span class="ss">:provides</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'rss'</span><span class="p">,</span> <span class="s1">'atom'</span><span class="p">,</span> <span class="s1">'xml'</span><span class="p">]</span> <span class="k">do</span>
+  <span class="n">builder</span> <span class="ss">:feed</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
-<p><code>provides</code> 会搜索请求的 Accept 首部字段。</p>
+<p><code class="highlighter-rouge">provides</code> 会搜索请求的 Accept 首部字段。</p>
 
 <p>也可以轻易地使用自定义条件：</p>
 
-<pre><code class="language-ruby">set(:probability) { |value| condition { rand &lt;= value } }
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">set</span><span class="p">(</span><span class="ss">:probability</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">value</span><span class="o">|</span> <span class="n">condition</span> <span class="p">{</span> <span class="nb">rand</span> <span class="o">&lt;=</span> <span class="n">value</span> <span class="p">}</span> <span class="p">}</span>
 
-get '/win_a_car', :probability =&gt; 0.1 do
-  "You won!"
-end
+<span class="n">get</span> <span class="s1">'/win_a_car'</span><span class="p">,</span> <span class="ss">:probability</span> <span class="o">=&gt;</span> <span class="mi">0</span><span class="o">.</span><span class="mi">1</span> <span class="k">do</span>
+  <span class="s2">"You won!"</span>
+<span class="k">end</span>
 
-get '/win_a_car' do
-  "Sorry, you lost."
-end
+<span class="n">get</span> <span class="s1">'/win_a_car'</span> <span class="k">do</span>
+  <span class="s2">"Sorry, you lost."</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>对于一个需要提供多个值的条件，可以使用 splat：</p>
 
-<pre><code class="language-ruby">set(:auth) do |*roles|   # &lt;- 注意此处使用了 splat
-  condition do
-    unless logged_in? &amp;&amp; roles.any? {|role| current_user.in_role? role }
-      redirect "/login/", 303
-    end
-  end
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">set</span><span class="p">(</span><span class="ss">:auth</span><span class="p">)</span> <span class="k">do</span> <span class="o">|*</span><span class="n">roles</span><span class="o">|</span>   <span class="c1"># &lt;- 注意此处使用了 splat</span>
+  <span class="n">condition</span> <span class="k">do</span>
+    <span class="k">unless</span> <span class="n">logged_in?</span> <span class="o">&amp;&amp;</span> <span class="n">roles</span><span class="p">.</span><span class="nf">any?</span> <span class="p">{</span><span class="o">|</span><span class="n">role</span><span class="o">|</span> <span class="n">current_user</span><span class="p">.</span><span class="nf">in_role?</span> <span class="n">role</span> <span class="p">}</span>
+      <span class="n">redirect</span> <span class="s2">"/login/"</span><span class="p">,</span> <span class="mi">303</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-get "/my/account/", :auth =&gt; [:user, :admin] do
-  "Your Account Details"
-end
+<span class="n">get</span> <span class="s2">"/my/account/"</span><span class="p">,</span> <span class="ss">:auth</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="ss">:user</span><span class="p">,</span> <span class="ss">:admin</span><span class="p">]</span> <span class="k">do</span>
+  <span class="s2">"Your Account Details"</span>
+<span class="k">end</span>
 
-get "/only/admin/", :auth =&gt; :admin do
-  "Only admins are allowed here!"
-end
+<span class="n">get</span> <span class="s2">"/only/admin/"</span><span class="p">,</span> <span class="ss">:auth</span> <span class="o">=&gt;</span> <span class="ss">:admin</span> <span class="k">do</span>
+  <span class="s2">"Only admins are allowed here!"</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <h3>返回值</h3>
 
@@ -214,128 +258,148 @@ Rack 堆栈中的下一个中间件。大多数情况下，返回值是一个字
 <p>你可以返回任何对象，该对象要么是一个合理的 Rack 响应，要么是一个 Rack body 对象，要么是 HTTP 状态码：</p>
 
 <ul>
-  <li>一个包含三个元素的数组: <code>[状态 (Fixnum), 响应首部 (Hash), 响应主体 (可以响应 #each 方法)]</code>
+  <li>一个包含三个元素的数组: <code class="highlighter-rouge">[状态 (Integer), 响应首部 (Hash), 响应主体 (可以响应 #each 方法)]</code>
 </li>
-  <li>一个包含两个元素的数组: <code>[状态 (Fixnum), 响应主体 (可以响应 #each 方法)]</code>
+  <li>一个包含两个元素的数组: <code class="highlighter-rouge">[状态 (Integer), 响应主体 (可以响应 #each 方法)]</code>
 </li>
-  <li>一个响应 <code>#each</code> 方法，只传回字符串的对象</li>
+  <li>一个响应 <code class="highlighter-rouge">#each</code> 方法，只传回字符串的对象</li>
   <li>一个代表状态码的数字</li>
 </ul>
 
 <p>例如，我们可以轻松地实现流式传输：</p>
 
-<pre><code class="language-ruby">class Stream
-  def each
-    100.times { |i| yield "#{i}\n" }
-  end
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="k">class</span> <span class="nc">Stream</span>
+  <span class="k">def</span> <span class="nf">each</span>
+    <span class="mi">100</span><span class="p">.</span><span class="nf">times</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="k">yield</span> <span class="s2">"</span><span class="si">#{</span><span class="n">i</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-get('/') { Stream.new }
+<span class="n">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)</span> <span class="p">{</span> <span class="no">Stream</span><span class="p">.</span><span class="nf">new</span> <span class="p">}</span>
 </code></pre>
+</div>
 
-<p>也可以使用 <code>stream</code> 辅助方法（见下文描述）以减少样板代码并在路由中直接使用流式传输。</p>
+<p>也可以使用 <code class="highlighter-rouge">stream</code> 辅助方法（见下文描述）以减少样板代码并在路由中直接使用流式传输。</p>
 
 <h3>自定义路由匹配器</h3>
 
 <p>如上文所示，Sinatra
 本身支持使用字符串和正则表达式作为路由匹配。但不限于此，你可以轻松地定义自己的匹配器：</p>
 
-<pre><code class="language-ruby">class AllButPattern
-  Match = Struct.new(:captures)
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="k">class</span> <span class="nc">AllButPattern</span>
+  <span class="nc">Match</span> <span class="o">=</span> <span class="no">Struct</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:captures</span><span class="p">)</span>
 
-  def initialize(except)
-    @except   = except
-    @captures = Match.new([])
-  end
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">except</span><span class="p">)</span>
+    <span class="vi">@except</span>   <span class="o">=</span> <span class="n">except</span>
+    <span class="vi">@captures</span> <span class="o">=</span> <span class="no">Match</span><span class="p">.</span><span class="nf">new</span><span class="p">([])</span>
+  <span class="k">end</span>
 
-  def match(str)
-    @captures unless @except === str
-  end
-end
+  <span class="k">def</span> <span class="nf">match</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
+    <span class="vi">@captures</span> <span class="k">unless</span> <span class="vi">@except</span> <span class="o">===</span> <span class="n">str</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-def all_but(pattern)
-  AllButPattern.new(pattern)
-end
+<span class="k">def</span> <span class="nf">all_but</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+  <span class="no">AllButPattern</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+<span class="k">end</span>
 
-get all_but("/index") do
-  # ...
-end
+<span class="n">get</span> <span class="n">all_but</span><span class="p">(</span><span class="s2">"/index"</span><span class="p">)</span> <span class="k">do</span>
+  <span class="c1"># ...</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>上面的例子可能太繁琐了， 因为它也可以用更简单的方式表述：</p>
 
-<pre><code class="language-ruby">get // do
-  pass if request.path_info == "/index"
-  # ...
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="sr">//</span> <span class="k">do</span>
+  <span class="n">pass</span> <span class="k">if</span> <span class="n">request</span><span class="p">.</span><span class="nf">path_info</span> <span class="o">==</span> <span class="s2">"/index"</span>
+  <span class="c1"># ...</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>或者，使用消极向前查找:</p>
 
-<pre><code class="language-ruby">get %r{(?!/index)} do
-  # ...
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="sr">%r{(?!/index)}</span> <span class="k">do</span>
+  <span class="c1"># ...</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <h2>静态文件</h2>
 
-<p>静态文件从 <code>./public</code> 目录提供服务。可以通过设置<code>:public_folder</code> 选项设定一个不同的位置：</p>
+<p>静态文件从 <code class="highlighter-rouge">./public</code> 目录提供服务。可以通过设置<code class="highlighter-rouge">:public_folder</code> 选项设定一个不同的位置：</p>
 
-<pre><code class="language-ruby">set :public_folder, File.dirname(__FILE__) + '/static'
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">set</span> <span class="ss">:public_folder</span><span class="p">,</span> <span class="n">__dir__</span> <span class="o">+</span> <span class="s1">'/static'</span>
 </code></pre>
+</div>
 
-<p>请注意 public 目录名并没有包含在 URL 中。文件 <code>./public/css/style.css</code> 可以通过
-<code>http://example.com/css/style.css</code> 访问。</p>
+<p>请注意 public 目录名并没有包含在 URL 中。文件 <code class="highlighter-rouge">./public/css/style.css</code> 可以通过
+<code class="highlighter-rouge">http://example.com/css/style.css</code> 访问。</p>
 
-<p>可以使用 <code>:static_cache_control</code> 设置（见下文）添加 <code>Cache-Control</code> 首部信息。</p>
+<p>可以使用 <code class="highlighter-rouge">:static_cache_control</code> 设置（见下文）添加 <code class="highlighter-rouge">Cache-Control</code> 首部信息。</p>
 
 <h2>视图 / 模板</h2>
 
 <p>每一门模板语言都将自身的渲染方法暴露给
 Sinatra 调用。这些渲染方法只是简单地返回字符串。</p>
 
-<pre><code class="language-ruby">get '/' do
-  erb :index
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">erb</span> <span class="ss">:index</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
-<p>这段代码会渲染 <code>views/index.erb</code> 文件。</p>
+<p>这段代码会渲染 <code class="highlighter-rouge">views/index.erb</code> 文件。</p>
 
 <p>除了模板文件名，也可以直接传入模板内容：</p>
 
-<pre><code class="language-ruby">get '/' do
-  code = "&lt;%= Time.now %&gt;"
-  erb code
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">code</span> <span class="o">=</span> <span class="s2">"&lt;%= Time.now %&gt;"</span>
+  <span class="n">erb</span> <span class="n">code</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>渲染方法接受第二个参数，即选项 hash：</p>
 
-<pre><code class="language-ruby">get '/' do
-  erb :index, :layout =&gt; :post
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">erb</span> <span class="ss">:index</span><span class="p">,</span> <span class="ss">:layout</span> <span class="o">=&gt;</span> <span class="ss">:post</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
-<p>这段代码会将 <code>views/index.erb</code> 嵌入在 <code>views/post.erb</code>
-布局中并一起渲染（<code>views/layout.erb</code> 是默认的布局，如果它存在的话）。</p>
+<p>这段代码会将 <code class="highlighter-rouge">views/index.erb</code> 嵌入在 <code class="highlighter-rouge">views/post.erb</code>
+布局中并一起渲染（<code class="highlighter-rouge">views/layout.erb</code> 是默认的布局，如果它存在的话）。</p>
 
 <p>任何 Sinatra 不能理解的选项都会传递给模板引擎。</p>
 
-<pre><code class="language-ruby">get '/' do
-  haml :index, :format =&gt; :html5
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">haml</span> <span class="ss">:index</span><span class="p">,</span> <span class="ss">:format</span> <span class="o">=&gt;</span> <span class="ss">:html5</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>也可以为每种模板语言设置通用的选项：</p>
 
-<pre><code class="language-ruby">set :haml, :format =&gt; :html5
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">set</span> <span class="ss">:haml</span><span class="p">,</span> <span class="ss">:format</span> <span class="o">=&gt;</span> <span class="ss">:html5</span>
 
-get '/' do
-  haml :index
-end
+<span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">haml</span> <span class="ss">:index</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
-<p>在渲染方法中传入的选项会覆盖通过 <code>set</code> 设置的通用选项。</p>
+<p>在渲染方法中传入的选项会覆盖通过 <code class="highlighter-rouge">set</code> 设置的通用选项。</p>
 
 <p>可用的选项：</p>
 
@@ -380,21 +444,25 @@ end
   </dd>
 </dl>
 
-<p>Sinatra 假定模板文件直接位于 <code>./views</code> 目录。要使用不同的视图目录：</p>
+<p>Sinatra 假定模板文件直接位于 <code class="highlighter-rouge">./views</code> 目录。要使用不同的视图目录：</p>
 
-<pre><code class="language-ruby">set :views, settings.root + '/templates'
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">set</span> <span class="ss">:views</span><span class="p">,</span> <span class="n">settings</span><span class="p">.</span><span class="nf">root</span> <span class="o">+</span> <span class="s1">'/templates'</span>
 </code></pre>
+</div>
 
 <p>需要牢记的一点是，你必须通过符号引用模板， 即使它们存放在子目录下
-（在这种情况下，使用 <code>:'subdir/template'</code> 或 <code>'subdir/template'.to_sym</code>）。
+（在这种情况下，使用 <code class="highlighter-rouge">:'subdir/template'</code> 或 <code class="highlighter-rouge">'subdir/template'.to_sym</code>）。
 如果你不使用符号，渲染方法会直接渲染你传入的任何字符串。</p>
 
 <h3>字面量模板</h3>
 
-<pre><code class="language-ruby">get '/' do
-  haml '%div.title Hello World'
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">haml</span> <span class="s1">'%div.title Hello World'</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>这段代码直接渲染模板字符串。</p>
 
@@ -402,9 +470,11 @@ end
 
 <p>一些语言有多种实现。为了确定使用哪种实现（以及保证线程安全），你应该首先引入该实现：</p>
 
-<pre><code class="language-ruby">require 'rdiscount' # 或 require 'bluecloth'
-get('/') { markdown :index }
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="nb">require</span> <span class="s1">'rdiscount'</span> <span class="c1"># 或 require 'bluecloth'</span>
+<span class="n">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)</span> <span class="p">{</span> <span class="n">markdown</span> <span class="ss">:index</span> <span class="p">}</span>
 </code></pre>
+</div>
 
 <h4>Haml 模板</h4>
 
@@ -463,7 +533,7 @@ get('/') { markdown :index }
   </tr>
 </table>
 
-<p><code>builder</code> 渲染方法也接受一个代码块，用于内联模板（见例子）。</p>
+<p><code class="highlighter-rouge">builder</code> 渲染方法也接受一个代码块，用于内联模板（见例子）。</p>
 
 <h4>Nokogiri 模板</h4>
 
@@ -482,7 +552,7 @@ get('/') { markdown :index }
   </tr>
 </table>
 
-<p><code>nokogiri</code> 渲染方法也接受一个代码块，用于内联模板（见例子）。</p>
+<p><code class="highlighter-rouge">nokogiri</code> 渲染方法也接受一个代码块，用于内联模板（见例子）。</p>
 
 <h4>Sass 模板</h4>
 
@@ -540,7 +610,7 @@ get('/') { markdown :index }
 <table>
   <tr>
     <td>依赖项</td>
-    <td><a href="http://liquidmarkup.org/" title="liquid">liquid</a></td>
+    <td><a href="https://shopify.github.io/liquid/" title="liquid">liquid</a></td>
   </tr>
   <tr>
     <td>文件扩展名</td>
@@ -552,7 +622,7 @@ get('/') { markdown :index }
   </tr>
 </table>
 
-<p>因为不能在 Liquid 模板中调用 Ruby 方法（除了 <code>yield</code>），你几乎总是需要传递 locals 对象给它。</p>
+<p>因为不能在 Liquid 模板中调用 Ruby 方法（除了 <code class="highlighter-rouge">yield</code>），你几乎总是需要传递 locals 对象给它。</p>
 
 <h4>Markdown 模板</h4>
 
@@ -563,7 +633,7 @@ get('/') { markdown :index }
       下列任一:
         <a href="https://github.com/davidfstr/rdiscount" title="RDiscount">RDiscount</a>,
         <a href="https://github.com/vmg/redcarpet" title="RedCarpet">RedCarpet</a>,
-        <a href="http://deveiate.org/projects/BlueCloth" title="BlueCloth">BlueCloth</a>,
+        <a href="https://github.com/ged/bluecloth" title="bluecloth">BlueCloth</a>,
         <a href="http://kramdown.gettalong.org/" title="kramdown">kramdown</a>,
         <a href="https://github.com/bhollis/maruku" title="maruku">maruku</a>
     </td>
@@ -583,17 +653,21 @@ get('/') { markdown :index }
 <p>不能在 markdown 中调用 Ruby 方法，也不能传递 locals 给它。
 因此，你一般会结合其它的渲染引擎来使用它：</p>
 
-<pre><code class="language-ruby">erb :overview, :locals =&gt; { :text =&gt; markdown(:introduction) }
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">erb</span> <span class="ss">:overview</span><span class="p">,</span> <span class="ss">:locals</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="n">markdown</span><span class="p">(</span><span class="ss">:introduction</span><span class="p">)</span> <span class="p">}</span>
 </code></pre>
+</div>
 
 <p>请注意你也可以在其它模板中调用 markdown 方法：</p>
 
-<pre><code class="language-ruby">%h1 Hello From Haml!
-%p= markdown(:greetings)
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="o">%</span><span class="n">h1</span> <span class="no">Hello</span> <span class="no">From</span> <span class="no">Haml</span><span class="o">!</span>
+<span class="o">%</span><span class="nb">p</span><span class="o">=</span> <span class="n">markdown</span><span class="p">(</span><span class="ss">:greetings</span><span class="p">)</span>
 </code></pre>
+</div>
 
 <p>因为不能在 Markdown 中使用 Ruby 语言，你不能使用 Markdown 书写的布局。
-不过，使用其它渲染引擎作为模板的布局是可能的，这需要通过传入 <code>:layout_engine</code> 选项。</p>
+不过，使用其它渲染引擎作为模板的布局是可能的，这需要通过传入 <code class="highlighter-rouge">:layout_engine</code> 选项。</p>
 
 <h4>Textile 模板</h4>
 
@@ -615,17 +689,21 @@ get('/') { markdown :index }
 <p>不能在 textile 中调用 Ruby 方法，也不能传递 locals 给它。
 因此，你一般会结合其它的渲染引擎来使用它：</p>
 
-<pre><code class="language-ruby">erb :overview, :locals =&gt; { :text =&gt; textile(:introduction) }
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">erb</span> <span class="ss">:overview</span><span class="p">,</span> <span class="ss">:locals</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="n">textile</span><span class="p">(</span><span class="ss">:introduction</span><span class="p">)</span> <span class="p">}</span>
 </code></pre>
+</div>
 
-<p>请注意你也可以在其他模板中调用 <code>textile</code> 方法：</p>
+<p>请注意你也可以在其他模板中调用 <code class="highlighter-rouge">textile</code> 方法：</p>
 
-<pre><code class="language-ruby">%h1 Hello From Haml!
-%p= textile(:greetings)
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="o">%</span><span class="n">h1</span> <span class="no">Hello</span> <span class="no">From</span> <span class="no">Haml</span><span class="o">!</span>
+<span class="o">%</span><span class="nb">p</span><span class="o">=</span> <span class="n">textile</span><span class="p">(</span><span class="ss">:greetings</span><span class="p">)</span>
 </code></pre>
+</div>
 
 <p>因为不能在 Textile 中调用 Ruby 方法，你不能用 Textile 书写布局。
-不过，使用其它渲染引擎作为模版的布局是可能的，这需要通过传递 <code>:layout_engine</code> 选项。</p>
+不过，使用其它渲染引擎作为模版的布局是可能的，这需要通过传递 <code class="highlighter-rouge">:layout_engine</code> 选项。</p>
 
 <h4>RDoc 模板</h4>
 
@@ -647,17 +725,21 @@ get('/') { markdown :index }
 <p>不能在 rdoc 中调用 Ruby 方法，也不能传递 locals 给它。
 因此，你一般会结合其它的渲染引擎来使用它：</p>
 
-<pre><code class="language-ruby">erb :overview, :locals =&gt; { :text =&gt; rdoc(:introduction) }
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">erb</span> <span class="ss">:overview</span><span class="p">,</span> <span class="ss">:locals</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="n">rdoc</span><span class="p">(</span><span class="ss">:introduction</span><span class="p">)</span> <span class="p">}</span>
 </code></pre>
+</div>
 
-<p>请注意你也可以在其他模板中调用 <code>rdoc</code> 方法：</p>
+<p>请注意你也可以在其他模板中调用 <code class="highlighter-rouge">rdoc</code> 方法：</p>
 
-<pre><code class="language-ruby">%h1 Hello From Haml!
-%p= rdoc(:greetings)
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="o">%</span><span class="n">h1</span> <span class="no">Hello</span> <span class="no">From</span> <span class="no">Haml</span><span class="o">!</span>
+<span class="o">%</span><span class="nb">p</span><span class="o">=</span> <span class="n">rdoc</span><span class="p">(</span><span class="ss">:greetings</span><span class="p">)</span>
 </code></pre>
+</div>
 
 <p>因为不能在 RDoc 中调用 Ruby 方法，你不能用 RDoc 书写布局。
-不过，使用其它渲染引擎作为模版的布局是可能的，这需要通过传递 <code>:layout_engine</code> 选项。</p>
+不过，使用其它渲染引擎作为模版的布局是可能的，这需要通过传递 <code class="highlighter-rouge">:layout_engine</code> 选项。</p>
 
 <h4>AsciiDoc 模板</h4>
 
@@ -716,7 +798,7 @@ get('/') { markdown :index }
   </tr>
 </table>
 
-<p><code>markaby</code> 渲染方法也接受一个代码块，用于内联模板（见例子）。</p>
+<p><code class="highlighter-rouge">markaby</code> 渲染方法也接受一个代码块，用于内联模板（见例子）。</p>
 
 <h4>RABL 模板</h4>
 
@@ -772,17 +854,21 @@ get('/') { markdown :index }
 <p>不能在 creole 中调用 Ruby 方法，也不能传递 locals 对象给它。
 因此你一般会结合其它的渲染引擎来使用它：</p>
 
-<pre><code class="language-ruby">erb :overview, :locals =&gt; { :text =&gt; creole(:introduction) }
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">erb</span> <span class="ss">:overview</span><span class="p">,</span> <span class="ss">:locals</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="n">creole</span><span class="p">(</span><span class="ss">:introduction</span><span class="p">)</span> <span class="p">}</span>
 </code></pre>
+</div>
 
-<p>注意你也可以在其它模板内调用 <code>creole</code> 方法：</p>
+<p>注意你也可以在其它模板内调用 <code class="highlighter-rouge">creole</code> 方法：</p>
 
-<pre><code class="language-ruby">%h1 Hello From Haml!
-%p= creole(:greetings)
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="o">%</span><span class="n">h1</span> <span class="no">Hello</span> <span class="no">From</span> <span class="no">Haml</span><span class="o">!</span>
+<span class="o">%</span><span class="nb">p</span><span class="o">=</span> <span class="n">creole</span><span class="p">(</span><span class="ss">:greetings</span><span class="p">)</span>
 </code></pre>
+</div>
 
 <p>因为不能在 Creole 模板文件内调用 Ruby 方法，你不能用 Creole 书写布局文件。
-然而，使用其它渲染引擎作为模版的布局是可能的，这需要通过传递 <code>:layout_engine</code> 选项。</p>
+然而，使用其它渲染引擎作为模版的布局是可能的，这需要通过传递 <code class="highlighter-rouge">:layout_engine</code> 选项。</p>
 
 <h4>MediaWiki 模板</h4>
 
@@ -806,17 +892,21 @@ get('/') { markdown :index }
 <p>在 MediaWiki 标记文件内不能调用 Ruby 方法，也不能传递 locals 对象给它。
 因此你一般会结合其它的渲染引擎来使用它：</p>
 
-<pre><code class="language-ruby">erb :overview, :locals =&gt; { :text =&gt; mediawiki(:introduction) }
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">erb</span> <span class="ss">:overview</span><span class="p">,</span> <span class="ss">:locals</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="n">mediawiki</span><span class="p">(</span><span class="ss">:introduction</span><span class="p">)</span> <span class="p">}</span>
 </code></pre>
+</div>
 
-<p>注意你也可以在其它模板内调用 <code>mediawiki</code> 方法：</p>
+<p>注意你也可以在其它模板内调用 <code class="highlighter-rouge">mediawiki</code> 方法：</p>
 
-<pre><code class="language-ruby">%h1 Hello From Haml!
-%p= mediawiki(:greetings)
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="o">%</span><span class="n">h1</span> <span class="no">Hello</span> <span class="no">From</span> <span class="no">Haml</span><span class="o">!</span>
+<span class="o">%</span><span class="nb">p</span><span class="o">=</span> <span class="n">mediawiki</span><span class="p">(</span><span class="ss">:greetings</span><span class="p">)</span>
 </code></pre>
+</div>
 
 <p>因为不能在 MediaWiki 文件内调用 Ruby 方法，你不能用 MediaWiki 书写布局文件。
-然而，使用其它渲染引擎作为模版的布局是可能的，这需要通过传递 <code>:layout_engine</code> 选项。</p>
+然而，使用其它渲染引擎作为模版的布局是可能的，这需要通过传递 <code class="highlighter-rouge">:layout_engine</code> 选项。</p>
 
 <h4>CoffeeScript 模板</h4>
 
@@ -866,16 +956,18 @@ get('/') { markdown :index }
   </tr>
 </table>
 
-<p>在使用 Stylus 模板之前，你需要先加载 <code>stylus</code> 和 <code>stylus/tilt</code>：</p>
+<p>在使用 Stylus 模板之前，你需要先加载 <code class="highlighter-rouge">stylus</code> 和 <code class="highlighter-rouge">stylus/tilt</code>：</p>
 
-<pre><code class="language-ruby">require 'sinatra'
-require 'stylus'
-require 'stylus/tilt'
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="nb">require</span> <span class="s1">'sinatra'</span>
+<span class="nb">require</span> <span class="s1">'stylus'</span>
+<span class="nb">require</span> <span class="s1">'stylus/tilt'</span>
 
-get '/' do
-  stylus :example
-end
+<span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">stylus</span> <span class="ss">:example</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <h4>Yajl 模板</h4>
 
@@ -901,17 +993,21 @@ end
   </tr>
 </table>
 
-<p>模板文件的源码作为一个 Ruby 字符串被求值，得到的 json 变量是通过 <code>#to_json</code> 方法转换的：</p>
+<p>模板文件的源码作为一个 Ruby 字符串被求值，得到的 json 变量是通过 <code class="highlighter-rouge">#to_json</code> 方法转换的：</p>
 
-<pre><code class="language-ruby">json = { :foo =&gt; 'bar' }
-json[:baz] = key
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">json</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">:foo</span> <span class="o">=&gt;</span> <span class="s1">'bar'</span> <span class="p">}</span>
+<span class="n">json</span><span class="p">[</span><span class="ss">:baz</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
 </code></pre>
+</div>
 
-<p>可以使用 <code>:callback</code> 和 <code>:variable</code> 选项装饰被渲染的对象：</p>
+<p>可以使用 <code class="highlighter-rouge">:callback</code> 和 <code class="highlighter-rouge">:variable</code> 选项装饰被渲染的对象：</p>
 
-<pre><code class="language-javascript">var resource = {"foo":"bar","baz":"qux"};
-present(resource);
+<div class="language-javascript highlighter-rouge">
+<pre class="highlight"><code><span class="kd">var</span> <span class="nx">resource</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"foo"</span><span class="p">:</span><span class="s2">"bar"</span><span class="p">,</span><span class="s2">"baz"</span><span class="p">:</span><span class="s2">"qux"</span><span class="p">};</span>
+<span class="nx">present</span><span class="p">(</span><span class="nx">resource</span><span class="p">);</span>
 </code></pre>
+</div>
 
 <h4>WLang 模板</h4>
 
@@ -931,70 +1027,81 @@ present(resource);
 </table>
 
 <p>因为在 WLang 中调用 Ruby 方法不符合语言习惯，你几乎总是需要传递 locals 给 WLang 木板。
-然而，可以用 WLang 编写布局文件，也可以在 WLang 中使用 <code>yield</code> 方法。</p>
+然而，可以用 WLang 编写布局文件，也可以在 WLang 中使用 <code class="highlighter-rouge">yield</code> 方法。</p>
 
 <h3>在模板中访问变量</h3>
 
 <p>模板的求值发生在路由处理器内部的上下文中。模板可以直接访问路由处理器中设置的实例变量。</p>
 
-<pre><code class="language-ruby">get '/:id' do
-  @foo = Foo.find(params['id'])
-  haml '%h1= @foo.name'
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/:id'</span> <span class="k">do</span>
+  <span class="vi">@foo</span> <span class="o">=</span> <span class="no">Foo</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">'id'</span><span class="p">])</span>
+  <span class="n">haml</span> <span class="s1">'%h1= @foo.name'</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>或者，也可以显式地指定一个由局部变量组成的 locals 哈希：</p>
 
-<pre><code class="language-ruby">get '/:id' do
-  foo = Foo.find(params['id'])
-  haml '%h1= foo.name', :locals =&gt; { :foo =&gt; foo }
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/:id'</span> <span class="k">do</span>
+  <span class="n">foo</span> <span class="o">=</span> <span class="no">Foo</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">'id'</span><span class="p">])</span>
+  <span class="n">haml</span> <span class="s1">'%h1= foo.name'</span><span class="p">,</span> <span class="ss">:locals</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:foo</span> <span class="o">=&gt;</span> <span class="n">foo</span> <span class="p">}</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>locals 哈希典型的使用情景是在别的模板中渲染 partials。</p>
 
-<h3>带 <code>yield</code> 的模板和嵌套布局</h3>
+<h3>带 <code class="highlighter-rouge">yield</code> 的模板和嵌套布局</h3>
 
-<p>布局通常就是使用了 <code>yield</code> 方法的模板。
-这样的布局文件可以通过上面描述的 <code>:template</code> 选项指定，也可以通过下面的代码块渲染：</p>
+<p>布局通常就是使用了 <code class="highlighter-rouge">yield</code> 方法的模板。
+这样的布局文件可以通过上面描述的 <code class="highlighter-rouge">:template</code> 选项指定，也可以通过下面的代码块渲染：</p>
 
-<pre><code class="language-ruby">erb :post, :layout =&gt; false do
-  erb :index
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">erb</span> <span class="ss">:post</span><span class="p">,</span> <span class="ss">:layout</span> <span class="o">=&gt;</span> <span class="kp">false</span> <span class="k">do</span>
+  <span class="n">erb</span> <span class="ss">:index</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
-<p>这段代码几乎完全等同于 <code>erb :index, :layout =&gt; :post</code>。</p>
+<p>这段代码几乎完全等同于 <code class="highlighter-rouge">erb :index, :layout =&gt; :post</code>。</p>
 
 <p>向渲染方法传递代码块对于创建嵌套布局是最有用的：</p>
 
-<pre><code class="language-ruby">erb :main_layout, :layout =&gt; false do
-  erb :admin_layout do
-    erb :user
-  end
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">erb</span> <span class="ss">:main_layout</span><span class="p">,</span> <span class="ss">:layout</span> <span class="o">=&gt;</span> <span class="kp">false</span> <span class="k">do</span>
+  <span class="n">erb</span> <span class="ss">:admin_layout</span> <span class="k">do</span>
+    <span class="n">erb</span> <span class="ss">:user</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>代码行数可以更少：</p>
 
-<pre><code class="language-ruby">erb :admin_layout, :layout =&gt; :main_layout do
-  erb :user
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">erb</span> <span class="ss">:admin_layout</span><span class="p">,</span> <span class="ss">:layout</span> <span class="o">=&gt;</span> <span class="ss">:main_layout</span> <span class="k">do</span>
+  <span class="n">erb</span> <span class="ss">:user</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
-<p>当前，以下的渲染方法接受一个代码块：<code>erb</code>、<code>haml</code>、<code>liquid</code>、<code>slim </code> 和 <code>wlang</code>。
-通用的 <code>render</code> 方法也接受。</p>
+<p>当前，以下的渲染方法接受一个代码块：<code class="highlighter-rouge">erb</code>、<code class="highlighter-rouge">haml</code>、<code class="highlighter-rouge">liquid</code>、<code class="highlighter-rouge">slim </code> 和 <code class="highlighter-rouge">wlang</code>。
+通用的 <code class="highlighter-rouge">render</code> 方法也接受。</p>
 
 <h3>内联模板</h3>
 
 <p>模板可以在源文件的末尾定义：</p>
 
-<pre><code class="language-ruby">require 'sinatra'
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="nb">require</span> <span class="s1">'sinatra'</span>
 
-get '/' do
-  haml :index
-end
+<span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">haml</span> <span class="ss">:index</span>
+<span class="k">end</span>
 
-__END__
+<span class="cp">__END__
 
 @@ layout
 %html
@@ -1002,154 +1109,177 @@ __END__
 
 @@ index
 %div.title Hello world.
-</code></pre>
+</span></code></pre>
+</div>
 
 <p>注意：在引入了 sinatra 的源文件中定义的内联模板会自动载入。
-如果你在其他源文件中也有内联模板，需要显式调用 <code>enable :inline_templates</code>。</p>
+如果你在其他源文件中也有内联模板，需要显式调用 <code class="highlighter-rouge">enable :inline_templates</code>。</p>
 
 <h3>具名模板</h3>
 
-<p>可以使用顶层 <code>template</code> 方法定义模板：</p>
+<p>可以使用顶层 <code class="highlighter-rouge">template</code> 方法定义模板：</p>
 
-<pre><code class="language-ruby">template :layout do
-  "%html\n  =yield\n"
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">template</span> <span class="ss">:layout</span> <span class="k">do</span>
+  <span class="s2">"%html</span><span class="se">\n</span><span class="s2">  =yield</span><span class="se">\n</span><span class="s2">"</span>
+<span class="k">end</span>
 
-template :index do
-  '%div.title Hello World!'
-end
+<span class="n">template</span> <span class="ss">:index</span> <span class="k">do</span>
+  <span class="s1">'%div.title Hello World!'</span>
+<span class="k">end</span>
 
-get '/' do
-  haml :index
-end
+<span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">haml</span> <span class="ss">:index</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>如果存在名为 “layout” 的模板，该模板会在每个模板渲染的时候作为布局使用。
-你可以为渲染方法传送 <code>:layout =&gt; false</code> 来禁用该次渲染的布局，
-也可以设置 <code>set :haml, :layout =&gt; false</code> 来默认禁用布局。</p>
+你可以为渲染方法传送 <code class="highlighter-rouge">:layout =&gt; false</code> 来禁用该次渲染的布局，
+也可以设置 <code class="highlighter-rouge">set :haml, :layout =&gt; false</code> 来默认禁用布局。</p>
 
-<pre><code class="language-ruby">get '/' do
-  haml :index, :layout =&gt; !request.xhr?
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">haml</span> <span class="ss">:index</span><span class="p">,</span> <span class="ss">:layout</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="n">request</span><span class="p">.</span><span class="nf">xhr?</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <h3>关联文件扩展名</h3>
 
-<p>为了将一个文件扩展名到对应的模版引擎，要使用 <code>Tilt.register</code>。
-比如，如果你喜欢使用 <code>tt</code> 作为 Textile 模版的扩展名，你可以这样做:</p>
+<p>为了将一个文件扩展名到对应的模版引擎，要使用 <code class="highlighter-rouge">Tilt.register</code>。
+比如，如果你喜欢使用 <code class="highlighter-rouge">tt</code> 作为 Textile 模版的扩展名，你可以这样做:</p>
 
-<pre><code class="language-ruby">Tilt.register :tt, Tilt[:textile]
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="no">Tilt</span><span class="p">.</span><span class="nf">register</span> <span class="ss">:tt</span><span class="p">,</span> <span class="no">Tilt</span><span class="p">[</span><span class="ss">:textile</span><span class="p">]</span>
 </code></pre>
+</div>
 
 <h3>添加自定义模板引擎</h3>
 
 <p>首先，通过 Tilt 注册你自定义的引擎，然后创建一个渲染方法：</p>
 
-<pre><code class="language-ruby">Tilt.register :myat, MyAwesomeTemplateEngine
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="no">Tilt</span><span class="p">.</span><span class="nf">register</span> <span class="ss">:myat</span><span class="p">,</span> <span class="no">MyAwesomeTemplateEngine</span>
 
-helpers do
-  def myat(*args) render(:myat, *args) end
-end
+<span class="n">helpers</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="nf">myat</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span> <span class="n">render</span><span class="p">(</span><span class="ss">:myat</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span> <span class="k">end</span>
+<span class="k">end</span>
 
-get '/' do
-  myat :index
-end
+<span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">myat</span> <span class="ss">:index</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
-<p>这段代码将会渲染 <code>./views/index.myat</code> 文件。
+<p>这段代码将会渲染 <code class="highlighter-rouge">./views/index.myat</code> 文件。
 查看 https://github.com/rtomayko/tilt 以了解更多关于 Tilt 的信息。</p>
 
 <h3>自定义模板查找逻辑</h3>
 
-<p>要实现自定义的模板查找机制，你可以构建自己的 <code>#find_template</code> 方法：</p>
+<p>要实现自定义的模板查找机制，你可以构建自己的 <code class="highlighter-rouge">#find_template</code> 方法：</p>
 
-<pre><code class="language-ruby">configure do
-  set :views, [ './views/a', './views/b' ]
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">configure</span> <span class="k">do</span>
+  <span class="n">set</span> <span class="ss">:views</span><span class="p">,</span> <span class="p">[</span> <span class="s1">'./views/a'</span><span class="p">,</span> <span class="s1">'./views/b'</span> <span class="p">]</span>
+<span class="k">end</span>
 
-def find_template(views, name, engine, &amp;block)
-  Array(views).each do |v|
-    super(v, name, engine, &amp;block)
-  end
-end
+<span class="k">def</span> <span class="nf">find_template</span><span class="p">(</span><span class="n">views</span><span class="p">,</span> <span class="nb">name</span><span class="p">,</span> <span class="n">engine</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+  <span class="no">Array</span><span class="p">(</span><span class="n">views</span><span class="p">).</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">v</span><span class="o">|</span>
+    <span class="k">super</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">name</span><span class="p">,</span> <span class="n">engine</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <h2>过滤器</h2>
 
-<p><code>before</code> 过滤器在每个请求之前调用，调用的上下文与请求的上下文相同，并且可以修改请求和响应。
+<p><code class="highlighter-rouge">before</code> 过滤器在每个请求之前调用，调用的上下文与请求的上下文相同，并且可以修改请求和响应。
 在过滤器中设置的变量可以被路由和模板访问：</p>
 
-<pre><code class="language-ruby">before do
-  @note = 'Hi!'
-  request.path_info = '/foo/bar/baz'
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">before</span> <span class="k">do</span>
+  <span class="vi">@note</span> <span class="o">=</span> <span class="s1">'Hi!'</span>
+  <span class="n">request</span><span class="p">.</span><span class="nf">path_info</span> <span class="o">=</span> <span class="s1">'/foo/bar/baz'</span>
+<span class="k">end</span>
 
-get '/foo/*' do
-  @note #=&gt; 'Hi!'
-  params['splat'] #=&gt; 'bar/baz'
-end
+<span class="n">get</span> <span class="s1">'/foo/*'</span> <span class="k">do</span>
+  <span class="vi">@note</span> <span class="c1">#=&gt; 'Hi!'</span>
+  <span class="n">params</span><span class="p">[</span><span class="s1">'splat'</span><span class="p">]</span> <span class="c1">#=&gt; 'bar/baz'</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
-<p><code>after</code> 过滤器在每个请求之后调用，调用上下文与请求的上下文相同，并且也会修改请求和响应。
-在 <code>before</code> 过滤器和路由中设置的实例变量可以被 <code>after</code> 过滤器访问：</p>
+<p><code class="highlighter-rouge">after</code> 过滤器在每个请求之后调用，调用上下文与请求的上下文相同，并且也会修改请求和响应。
+在 <code class="highlighter-rouge">before</code> 过滤器和路由中设置的实例变量可以被 <code class="highlighter-rouge">after</code> 过滤器访问：</p>
 
-<pre><code class="language-ruby">after do
-  puts response.status
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">after</span> <span class="k">do</span>
+  <span class="nb">puts</span> <span class="n">response</span><span class="p">.</span><span class="nf">status</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
-<p>请注意：除非你显式使用 <code>body</code> 方法，而不是在路由中直接返回字符串，
-响应主体在 <code>after</code> 过滤器是不可访问的， 因为它在之后才会生成。</p>
+<p>请注意：除非你显式使用 <code class="highlighter-rouge">body</code> 方法，而不是在路由中直接返回字符串，
+响应主体在 <code class="highlighter-rouge">after</code> 过滤器是不可访问的， 因为它在之后才会生成。</p>
 
 <p>过滤器可以可选地带有范式， 只有请求路径满足该范式时才会执行：</p>
 
-<pre><code class="language-ruby">before '/protected/*' do
-  authenticate!
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">before</span> <span class="s1">'/protected/*'</span> <span class="k">do</span>
+  <span class="n">authenticate!</span>
+<span class="k">end</span>
 
-after '/create/:slug' do |slug|
-  session['last_slug'] = slug
-end
+<span class="n">after</span> <span class="s1">'/create/:slug'</span> <span class="k">do</span> <span class="o">|</span><span class="n">slug</span><span class="o">|</span>
+  <span class="n">session</span><span class="p">[</span><span class="s1">'last_slug'</span><span class="p">]</span> <span class="o">=</span> <span class="n">slug</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>和路由一样，过滤器也可以带有条件：</p>
 
-<pre><code class="language-ruby">before :agent =&gt; /Songbird/ do
-  # ...
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">before</span> <span class="ss">:agent</span> <span class="o">=&gt;</span> <span class="sr">/Songbird/</span> <span class="k">do</span>
+  <span class="c1"># ...</span>
+<span class="k">end</span>
 
-after '/blog/*', :host_name =&gt; 'example.com' do
-  # ...
-end
+<span class="n">after</span> <span class="s1">'/blog/*'</span><span class="p">,</span> <span class="ss">:host_name</span> <span class="o">=&gt;</span> <span class="s1">'example.com'</span> <span class="k">do</span>
+  <span class="c1"># ...</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <h2>辅助方法</h2>
 
-<p>使用顶层的 <code>helpers</code> 方法来定义辅助方法， 以便在路由处理器和模板中使用：</p>
+<p>使用顶层的 <code class="highlighter-rouge">helpers</code> 方法来定义辅助方法， 以便在路由处理器和模板中使用：</p>
 
-<pre><code class="language-ruby">helpers do
-  def bar(name)
-    "#{name}bar"
-  end
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">helpers</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+    <span class="s2">"</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">bar"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-get '/:name' do
-  bar(params['name'])
-end
+<span class="n">get</span> <span class="s1">'/:name'</span> <span class="k">do</span>
+  <span class="n">bar</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">'name'</span><span class="p">])</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>也可以在多个分散的模块中定义辅助方法：</p>
 
-<pre><code class="language-ruby">module FooUtils
-  def foo(name) "#{name}foo" end
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="k">module</span> <span class="nn">FooUtils</span>
+  <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">foo"</span> <span class="k">end</span>
+<span class="k">end</span>
 
-module BarUtils
-  def bar(name) "#{name}bar" end
-end
+<span class="k">module</span> <span class="nn">BarUtils</span>
+  <span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">bar"</span> <span class="k">end</span>
+<span class="k">end</span>
 
-helpers FooUtils, BarUtils
+<span class="n">helpers</span> <span class="no">FooUtils</span><span class="p">,</span> <span class="no">BarUtils</span>
 </code></pre>
+</div>
 
 <p>以上代码块与在应用类中包含模块等效。</p>
 
@@ -1157,310 +1287,418 @@ helpers FooUtils, BarUtils
 
 <p>会话用于在请求之间保持状态。如果激活了会话，每一个用户会话都对应一个会话 hash：</p>
 
-<pre><code class="language-ruby">enable :sessions
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">enable</span> <span class="ss">:sessions</span>
 
-get '/' do
-  "value = " &lt;&lt; session['value'].inspect
-end
+<span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="s2">"value = "</span> <span class="o">&lt;&lt;</span> <span class="n">session</span><span class="p">[</span><span class="s1">'value'</span><span class="p">].</span><span class="nf">inspect</span>
+<span class="k">end</span>
 
-get '/:value' do
-  session['value'] = params['value']
-end
+<span class="n">get</span> <span class="s1">'/:value'</span> <span class="k">do</span>
+  <span class="n">session</span><span class="p">[</span><span class="s1">'value'</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s1">'value'</span><span class="p">]</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
-<p>请注意 <code>enable :sessions</code> 实际将所有的数据保存在一个 cookie 中。
-这可能并不总是你想要的（cookie 中存储大量的数据会增加你的流量）。
-你可以使用任何 Rack session 中间件：要达到此目的，<strong>不要</strong>使用 <code>enable :sessions</code>，
-而是按照自己的需要引入想使用的中间件：</p>
+<h4>会话加密</h4>
 
-<pre><code class="language-ruby">use Rack::Session::Pool, :expire_after =&gt; 2592000
+<p>为提高安全性，cookie 中的会话数据使用<code class="highlighter-rouge">HMAC-SHA1</code>进行加密。会话加密的最佳实践应当是像<code class="highlighter-rouge">HMAC-SHA1</code>这样生成大于或等于64字节 (512 bits, 128 hex characters)的随机值。应当避免使用少于32字节(256 bits, 64 hex characters)的随机值。应当使用生成器来创建安全的密钥，而不是拍脑袋决定。</p>
 
-get '/' do
-  "value = " &lt;&lt; session['value'].inspect
-end
+<p>默认情况下，Sinatra会生成一个32字节的密钥，但随着应用程序的每次重新启动，它都会发生改变。如果有多个应用程序的实例，使用Sinatra生成密钥，每个实例将有不同的密钥，这可能不是您想要的。</p>
 
-get '/:value' do
-  session['value'] = params['value']
-end
+<p>为了更好的安全性和可用性，<a href="https://12factor.net/config">建议</a>生成安全的随机密钥，并将其存储在运行应用程序的每个主机上的环境变量中，以便所有应用程序实例都将共享相同的密钥。并且应该定期更新会话密钥。下面是一些创建64比特密钥的例子:</p>
+
+<h4>生成密钥</h4>
+
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="err">$</span> <span class="n">ruby</span> <span class="o">-</span><span class="n">e</span> <span class="s2">"require 'securerandom'; puts SecureRandom.hex(64)"</span>
+<span class="mi">99</span><span class="n">ae8af</span><span class="p">.</span><span class="nf">.</span><span class="p">.</span><span class="nf">snip</span><span class="p">.</span><span class="nf">.</span><span class="p">.</span><span class="nf">ec0f262ac</span>
 </code></pre>
+</div>
 
-<p>为提高安全性，cookie 中的会话数据会被一个会话密码保护。Sinatra 会为你生成一个随机的密码。
-然而，每次启动应用时，该密码都会变化，你也可以自己设置该密码，以便所有的应用实例共享：</p>
+<h4>生成密钥(小贴士)</h4>
 
-<pre><code>set :session_secret, 'super secret'
+<p>MRI Ruby目前认为<a href="https://github.com/cryptosphere/sysrandom">sysrandom gem</a>使用系统的随机数生成器要比用户态的<code class="highlighter-rouge">OpenSSL</code>好。</p>
+
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="err">$</span> <span class="n">gem</span> <span class="n">install</span> <span class="n">sysrandom</span>
+<span class="no">Building</span> <span class="n">native</span> <span class="n">extensions</span><span class="o">.</span>  <span class="no">This</span> <span class="n">could</span> <span class="n">take</span> <span class="n">a</span> <span class="k">while</span><span class="p">.</span><span class="nf">.</span><span class="o">.</span>
+<span class="no">Successfully</span> <span class="n">installed</span> <span class="n">sysrandom</span><span class="o">-</span><span class="mi">1</span><span class="p">.</span><span class="nf">x</span>
+<span class="mi">1</span> <span class="n">gem</span> <span class="n">installed</span>
+
+<span class="err">$</span> <span class="n">ruby</span> <span class="o">-</span><span class="n">e</span> <span class="s2">"require 'sysrandom/securerandom'; puts SecureRandom.hex(64)"</span>
+<span class="mi">99</span><span class="n">ae8af</span><span class="p">.</span><span class="nf">.</span><span class="p">.</span><span class="nf">snip</span><span class="p">.</span><span class="nf">.</span><span class="p">.</span><span class="nf">ec0f262ac</span>
 </code></pre>
+</div>
 
-<p>如果你想进一步配置会话，可以在设置 <code>sessions</code> 时提供一个选项 hash 作为第二个参数：</p>
+<h4>从环境变量使用密钥</h4>
 
-<pre><code>set :sessions, :domain =&gt; 'foo.com'
+<p>将Sinatra的SESSION_SECRET环境变量设置为生成的值。在主机的重新启动之间保存这个值。由于这样做的方法会因系统而异，仅供说明之用：
+~~~~
+# echo “export SESSION_SECRET=99ae8af…snip…ec0f262ac” » ~/.bashrc
+~~~~</p>
+
+<h4>应用的密钥配置</h4>
+
+<p>如果SESSION SECRET环境变量不可用，将把应用的随机密钥设置为不安全的。</p>
+
+<p>关于<a href="https://github.com/cryptosphere/sysrandom">sysrandom gem</a>的更多用法:</p>
+
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="nb">require</span> <span class="s1">'securerandom'</span>
+<span class="c1"># -or- require 'sysrandom/securerandom'</span>
+<span class="n">set</span> <span class="ss">:session_secret</span><span class="p">,</span> <span class="no">ENV</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="s1">'SESSION_SECRET'</span><span class="p">)</span> <span class="p">{</span> <span class="no">SecureRandom</span><span class="p">.</span><span class="nf">hex</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span> <span class="p">}</span>
 </code></pre>
+</div>
+
+<h4>会话配置</h4>
+
+<p>如果你想进一步配置会话，可以在设置 <code class="highlighter-rouge">sessions</code> 时提供一个选项 hash 作为第二个参数：</p>
+
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">set</span> <span class="ss">:sessions</span><span class="p">,</span> <span class="ss">:domain</span> <span class="o">=&gt;</span> <span class="s1">'foo.com'</span>
+</code></pre>
+</div>
 
 <p>为了在 foo.com 的子域名间共享会话数据，可以在域名前添加一个 <em>.</em>：</p>
 
-<pre><code class="language-ruby">set :sessions, :domain =&gt; '.foo.com'
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">set</span> <span class="ss">:sessions</span><span class="p">,</span> <span class="ss">:domain</span> <span class="o">=&gt;</span> <span class="s1">'.foo.com'</span>
 </code></pre>
+</div>
+
+<h4>选择你自己的会话中间件</h4>
+
+<p>请注意 <code class="highlighter-rouge">enable :sessions</code> 实际将所有的数据保存在一个 cookie 中。
+这可能并不总是你想要的（cookie 中存储大量的数据会增加你的流量）。
+你可以使用任何 Rack session 中间件：要达到此目的，<strong>不要</strong>使用 <code class="highlighter-rouge">enable :sessions</code>，
+而是按照自己的需要引入想使用的中间件：</p>
+
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">enable</span> <span class="ss">:sessions</span>
+<span class="n">set</span> <span class="ss">:session_store</span><span class="p">,</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Session</span><span class="o">::</span><span class="no">Pool</span>
+</code></pre>
+</div>
+
+<p>另一种选择是不要调用enable：sessions，而是像你想要的其他中间件一样加入你的中间件。</p>
+
+<p>重要的是要注意，使用此方法时，默认情况下不会启用基于会话的保护。</p>
+
+<p>还需要添加Rack中间件：</p>
+
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Session</span><span class="o">::</span><span class="no">Pool</span><span class="p">,</span> <span class="ss">:expire_after</span> <span class="o">=&gt;</span> <span class="mi">2592000</span>
+<span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Protection</span><span class="o">::</span><span class="no">RemoteToken</span>
+<span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Protection</span><span class="o">::</span><span class="no">SessionHijacking</span>
+</code></pre>
+</div>
+<p>更多<a href="https://github.com/sinatra/sinatra#configuring-attack-protection">安全防护配置</a>的信息。</p>
 
 <h3>中断请求</h3>
 
 <p>要想在过滤器或路由中立即中断一个请求：</p>
 
-<pre><code class="language-ruby">halt
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">halt</span>
 </code></pre>
+</div>
 
 <p>你也可以指定中断时的状态码：</p>
 
-<pre><code class="language-ruby">halt 410
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">halt</span> <span class="mi">410</span>
 </code></pre>
+</div>
 
 <p>或者响应主体：</p>
 
-<pre><code class="language-ruby">halt 'this will be the body'
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">halt</span> <span class="s1">'this will be the body'</span>
 </code></pre>
+</div>
 
 <p>或者同时指定两者：</p>
 
-<pre><code class="language-ruby">halt 401, 'go away!'
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">halt</span> <span class="mi">401</span><span class="p">,</span> <span class="s1">'go away!'</span>
 </code></pre>
+</div>
 
 <p>也可以指定响应首部：</p>
 
-<pre><code class="language-ruby">halt 402, {'Content-Type' =&gt; 'text/plain'}, 'revenge'
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">halt</span> <span class="mi">402</span><span class="p">,</span> <span class="p">{</span><span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'text/plain'</span><span class="p">},</span> <span class="s1">'revenge'</span>
 </code></pre>
+</div>
 
 <p>当然也可以使用模板：</p>
 
-<pre><code>halt erb(:error)
+<div class="highlighter-rouge">
+<pre class="highlight"><code>halt erb(:error)
 </code></pre>
+</div>
 
 <h3>传递请求</h3>
 
-<p>一个路由可以放弃对请求的处理并将处理让给下一个匹配的路由，这要通过 <code>pass</code> 实现：</p>
+<p>一个路由可以放弃对请求的处理并将处理让给下一个匹配的路由，这要通过 <code class="highlighter-rouge">pass</code> 实现：</p>
 
-<pre><code class="language-ruby">get '/guess/:who' do
-  pass unless params['who'] == 'Frank'
-  'You got me!'
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/guess/:who'</span> <span class="k">do</span>
+  <span class="n">pass</span> <span class="k">unless</span> <span class="n">params</span><span class="p">[</span><span class="s1">'who'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'Frank'</span>
+  <span class="s1">'You got me!'</span>
+<span class="k">end</span>
 
-get '/guess/*' do
-  'You missed!'
-end
+<span class="n">get</span> <span class="s1">'/guess/*'</span> <span class="k">do</span>
+  <span class="s1">'You missed!'</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
-<p>执行 <code>pass</code> 后，控制流从该路由代码块直接退出，并继续前进到下一个匹配的路由。
+<p>执行 <code class="highlighter-rouge">pass</code> 后，控制流从该路由代码块直接退出，并继续前进到下一个匹配的路由。
 如果没有匹配的路由，将返回 404。</p>
 
 <h3>触发另一个路由</h3>
 
-<p>有些时候，<code>pass</code> 并不是你想要的，你希望得到的是调用另一个路由的结果。
-使用 <code>call</code> 就可以做到这一点:</p>
+<p>有些时候，<code class="highlighter-rouge">pass</code> 并不是你想要的，你希望得到的是调用另一个路由的结果。
+使用 <code class="highlighter-rouge">call</code> 就可以做到这一点:</p>
 
-<pre><code class="language-ruby">get '/foo' do
-  status, headers, body = call env.merge("PATH_INFO" =&gt; '/bar')
-  [status, headers, body.map(&amp;:upcase)]
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
+  <span class="n">status</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">body</span> <span class="o">=</span> <span class="n">call</span> <span class="n">env</span><span class="p">.</span><span class="nf">merge</span><span class="p">(</span><span class="s2">"PATH_INFO"</span> <span class="o">=&gt;</span> <span class="s1">'/bar'</span><span class="p">)</span>
+  <span class="p">[</span><span class="n">status</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">body</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:upcase</span><span class="p">)]</span>
+<span class="k">end</span>
 
-get '/bar' do
-  "bar"
-end
+<span class="n">get</span> <span class="s1">'/bar'</span> <span class="k">do</span>
+  <span class="s2">"bar"</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
-<p>请注意在以上例子中，你只需简单地移动 <code>"bar"</code> 到一个被 <code>/foo</code> 和 <code>/bar</code> 同时使用的辅助方法中，
+<p>请注意在以上例子中，你只需简单地移动 <code class="highlighter-rouge">"bar"</code> 到一个被 <code class="highlighter-rouge">/foo</code> 和 <code class="highlighter-rouge">/bar</code> 同时使用的辅助方法中，
 就可以简化测试和增加性能。</p>
 
-<p>如果你希望请求发送到同一个应用，而不是应用副本，应使用 <code>call!</code> 而不是 <code>call</code>。</p>
+<p>如果你希望请求发送到同一个应用，而不是应用副本，应使用 <code class="highlighter-rouge">call!</code> 而不是 <code class="highlighter-rouge">call</code>。</p>
 
-<p>如果想更多了解关于 <code>call</code> 的信息，请查看 Rack 规范。</p>
+<p>如果想更多了解关于 <code class="highlighter-rouge">call</code> 的信息，请查看 Rack 规范。</p>
 
 <h3>设置响应主体、状态码和响应首部</h3>
 
 <p>推荐在路由代码块的返回值中设定状态码和响应主体。
-但是，在某些场景下你可能想在别处设置响应主体，这时你可以使用 <code>body</code> 辅助方法。
+但是，在某些场景下你可能想在别处设置响应主体，这时你可以使用 <code class="highlighter-rouge">body</code> 辅助方法。
 设置之后，你可以在那以后使用该方法访问响应主体：</p>
 
-<pre><code class="language-ruby">get '/foo' do
-  body "bar"
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
+  <span class="n">body</span> <span class="s2">"bar"</span>
+<span class="k">end</span>
 
-after do
-  puts body
-end
+<span class="n">after</span> <span class="k">do</span>
+  <span class="nb">puts</span> <span class="n">body</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
-<p>也可以传递一个代码块给 <code>body</code> 方法，
+<p>也可以传递一个代码块给 <code class="highlighter-rouge">body</code> 方法，
 它会被 Rack 处理器执行（这可以用来实现流式传输，参见“返回值”）。</p>
 
 <p>与响应主体类似，你也可以设定状态码和响应首部：</p>
 
-<pre><code class="language-ruby">get '/foo' do
-  status 418
-  headers \
-    "Allow"   =&gt; "BREW, POST, GET, PROPFIND, WHEN",
-    "Refresh" =&gt; "Refresh: 20; http://www.ietf.org/rfc/rfc2324.txt"
-  body "I'm a tea pot!"
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
+  <span class="n">status</span> <span class="mi">418</span>
+  <span class="n">headers</span> <span class="p">\</span>
+    <span class="s2">"Allow"</span>   <span class="o">=&gt;</span> <span class="s2">"BREW, POST, GET, PROPFIND, WHEN"</span><span class="p">,</span>
+    <span class="s2">"Refresh"</span> <span class="o">=&gt;</span> <span class="s2">"Refresh: 20; http://www.ietf.org/rfc/rfc2324.txt"</span>
+  <span class="n">body</span> <span class="s2">"I'm a tea pot!"</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
-<p>正如 <code>body</code> 方法，不带参数调用 <code>headers</code> 和 <code>status</code> 方法可以访问它们的当前值。</p>
+<p>正如 <code class="highlighter-rouge">body</code> 方法，不带参数调用 <code class="highlighter-rouge">headers</code> 和 <code class="highlighter-rouge">status</code> 方法可以访问它们的当前值。</p>
 
 <h3>响应的流式传输</h3>
 
 <p>有时你可能想在完全生成响应主体前返回数据。
 更极端的情况是，你希望在客户端关闭连接前一直发送数据。
-为满足这些需求，可以使用 <code>stream</code> 辅助方法而不必重新造轮子：</p>
+为满足这些需求，可以使用 <code class="highlighter-rouge">stream</code> 辅助方法而不必重新造轮子：</p>
 
-<pre><code class="language-ruby">get '/' do
-  stream do |out|
-    out &lt;&lt; "It's gonna be legen -\n"
-    sleep 0.5
-    out &lt;&lt; " (wait for it) \n"
-    sleep 1
-    out &lt;&lt; "- dary!\n"
-  end
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">stream</span> <span class="k">do</span> <span class="o">|</span><span class="n">out</span><span class="o">|</span>
+    <span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="s2">"It's gonna be legen -</span><span class="se">\n</span><span class="s2">"</span>
+    <span class="nb">sleep</span> <span class="mi">0</span><span class="o">.</span><span class="mi">5</span>
+    <span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="s2">" (wait for it) </span><span class="se">\n</span><span class="s2">"</span>
+    <span class="nb">sleep</span> <span class="mi">1</span>
+    <span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="s2">"- dary!</span><span class="se">\n</span><span class="s2">"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
-<p><code>stream</code> 辅助方法允许你实现流式 API 和
+<p><code class="highlighter-rouge">stream</code> 辅助方法允许你实现流式 API 和
 <a href="https://w3c.github.io/eventsource/">服务器端发送事件</a>，
 同时它也是实现 <a href="https://en.wikipedia.org/wiki/WebSocket">WebSockets</a> 的基础。
 如果你应用的部分（不是全部）内容依赖于访问缓慢的资源，它也可以用来提高并发能力。</p>
 
 <p>请注意流式传输，尤其是并发请求数，高度依赖于应用所使用的服务器。
 一些服务器可能根本不支持流式传输。
-如果服务器不支持，传递给 <code>stream</code> 方法的代码块执行完毕之后，响应主体会一次性地发送给客户端。
+如果服务器不支持，传递给 <code class="highlighter-rouge">stream</code> 方法的代码块执行完毕之后，响应主体会一次性地发送给客户端。
 Shotgun 完全不支持流式传输。</p>
 
-<p>如果 <code>:keep_open</code> 作为可选参数传递给 <code>stream</code> 方法，将不会在流对象上调用 <code>close</code> 方法，
+<p>如果 <code class="highlighter-rouge">:keep_open</code> 作为可选参数传递给 <code class="highlighter-rouge">stream</code> 方法，将不会在流对象上调用 <code class="highlighter-rouge">close</code> 方法，
 这允许你在控制流的下游某处手动关闭。该参数只对事件驱动的服务器（如 Thin 和 Rainbows）生效。
 其它服务器仍会关闭流式传输：</p>
 
-<pre><code class="language-ruby"># 长轮询
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="c1"># 长轮询</span>
 
-set :server, :thin
-connections = []
+<span class="n">set</span> <span class="ss">:server</span><span class="p">,</span> <span class="ss">:thin</span>
+<span class="n">connections</span> <span class="o">=</span> <span class="p">[]</span>
 
-get '/subscribe' do
-  # 在服务器端的事件中注册客户端
-  stream(:keep_open) do |out|
-    connections &lt;&lt; out
-    # 清除关闭的连接
-    connections.reject!(&amp;:closed?)
-  end
-end
+<span class="n">get</span> <span class="s1">'/subscribe'</span> <span class="k">do</span>
+  <span class="c1"># 在服务器端的事件中注册客户端</span>
+  <span class="n">stream</span><span class="p">(</span><span class="ss">:keep_open</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">out</span><span class="o">|</span>
+    <span class="n">connections</span> <span class="o">&lt;&lt;</span> <span class="n">out</span>
+    <span class="c1"># 清除关闭的连接</span>
+    <span class="n">connections</span><span class="p">.</span><span class="nf">reject!</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:closed?</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-post '/:message' do
-  connections.each do |out|
-    # 通知客户端有条新消息
-    out &lt;&lt; params['message'] &lt;&lt; "\n"
+<span class="n">post</span> <span class="s1">'/:message'</span> <span class="k">do</span>
+  <span class="n">connections</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">out</span><span class="o">|</span>
+    <span class="c1"># 通知客户端有条新消息</span>
+    <span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="n">params</span><span class="p">[</span><span class="s1">'message'</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
 
-    # 使客户端重新连接
-    out.close
-  end
+    <span class="c1"># 使客户端重新连接</span>
+    <span class="n">out</span><span class="p">.</span><span class="nf">close</span>
+  <span class="k">end</span>
 
-  # 确认
-  "message received"
-end
+  <span class="c1"># 确认</span>
+  <span class="s2">"message received"</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <h3>日志</h3>
 
-<p>在请求作用域下，<code>logger</code> 辅助方法会返回一个 <code>Logger</code> 类的实例：</p>
+<p>在请求作用域下，<code class="highlighter-rouge">logger</code> 辅助方法会返回一个 <code class="highlighter-rouge">Logger</code> 类的实例：</p>
 
-<pre><code class="language-ruby">get '/' do
-  logger.info "loading data"
-  # ...
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">logger</span><span class="p">.</span><span class="nf">info</span> <span class="s2">"loading data"</span>
+  <span class="c1"># ...</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
-<p>该 <code>logger</code> 方法会自动参考 Rack 处理器的日志设置。
+<p>该 <code class="highlighter-rouge">logger</code> 方法会自动参考 Rack 处理器的日志设置。
 若日志被禁用，该方法会返回一个无关痛痒的对象，所以你完全不必担心这会影响路由和过滤器。</p>
 
-<p>注意只有 <code>Sinatra::Application</code> 默认开启了日志，若你的应用继承自 <code>Sinatra::Base</code>，
+<p>注意只有 <code class="highlighter-rouge">Sinatra::Application</code> 默认开启了日志，若你的应用继承自 <code class="highlighter-rouge">Sinatra::Base</code>，
 很可能需要手动开启：</p>
 
-<pre><code class="language-ruby">class MyApp &lt; Sinatra::Base
-  configure :production, :development do
-    enable :logging
-  end
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="k">class</span> <span class="nc">MyApp</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">configure</span> <span class="ss">:production</span><span class="p">,</span> <span class="ss">:development</span> <span class="k">do</span>
+    <span class="n">enable</span> <span class="ss">:logging</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
-<p>为避免使用任何与日志有关的中间件，需要将 <code>logging</code> 设置项设为 <code>nil</code>。
-然而，在这种情况下，<code>logger</code> 辅助方法会返回 <code>nil</code>。
+<p>为避免使用任何与日志有关的中间件，需要将 <code class="highlighter-rouge">logging</code> 设置项设为 <code class="highlighter-rouge">nil</code>。
+然而，在这种情况下，<code class="highlighter-rouge">logger</code> 辅助方法会返回 <code class="highlighter-rouge">nil</code>。
 一种常见的使用场景是你想要使用自己的日志工具。
-Sinatra 会使用 <code>env['rack.logger']</code> 的值作为日志工具，无论该值是什么。</p>
+Sinatra 会使用 <code class="highlighter-rouge">env['rack.logger']</code> 的值作为日志工具，无论该值是什么。</p>
 
 <h3>媒体类型</h3>
 
-<p>使用 <code>send_file</code> 或者静态文件的时候，Sinatra 可能不会识别你的媒体类型。
-使用 <code>mime_type</code> 通过文件扩展名来注册媒体类型：</p>
+<p>使用 <code class="highlighter-rouge">send_file</code> 或者静态文件的时候，Sinatra 可能不会识别你的媒体类型。
+使用 <code class="highlighter-rouge">mime_type</code> 通过文件扩展名来注册媒体类型：</p>
 
-<pre><code class="language-ruby">mime_type :foo, 'text/foo'
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">mime_type</span> <span class="ss">:foo</span><span class="p">,</span> <span class="s1">'text/foo'</span>
 </code></pre>
+</div>
 
-<p>你也可以使用 <code>content_type</code> 辅助方法：</p>
+<p>你也可以使用 <code class="highlighter-rouge">content_type</code> 辅助方法：</p>
 
-<pre><code class="language-ruby">get '/' do
-  content_type :foo
-  "foo foo foo"
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">content_type</span> <span class="ss">:foo</span>
+  <span class="s2">"foo foo foo"</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <h3>生成 URL</h3>
 
-<p>为了生成 URL，你应当使用 <code>url</code> 辅助方法，例如，在 Haml 中：</p>
+<p>为了生成 URL，你应当使用 <code class="highlighter-rouge">url</code> 辅助方法，例如，在 Haml 中：</p>
 
-<pre><code class="language-ruby">%a{:href =&gt; url('/foo')} foo
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="o">%</span><span class="n">a</span><span class="p">{</span><span class="ss">:href</span> <span class="o">=&gt;</span> <span class="n">url</span><span class="p">(</span><span class="s1">'/foo'</span><span class="p">)}</span> <span class="n">foo</span>
 </code></pre>
+</div>
 
 <p>如果使用了反向代理和 Rack 路由，生成 URL 的时候会考虑这些因素。</p>
 
-<p>这个方法还有一个别名 <code>to</code> (见下面的例子)。</p>
+<p>这个方法还有一个别名 <code class="highlighter-rouge">to</code> (见下面的例子)。</p>
 
 <h3>浏览器重定向</h3>
 
-<p>你可以通过 <code>redirect</code> 辅助方法触发浏览器重定向：</p>
+<p>你可以通过 <code class="highlighter-rouge">redirect</code> 辅助方法触发浏览器重定向：</p>
 
-<pre><code class="language-ruby">get '/foo' do
-  redirect to('/bar')
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
+  <span class="n">redirect</span> <span class="n">to</span><span class="p">(</span><span class="s1">'/bar'</span><span class="p">)</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
-<p>其他参数的用法，与 <code>halt</code> 相同：</p>
+<p>其他参数的用法，与 <code class="highlighter-rouge">halt</code> 相同：</p>
 
-<pre><code class="language-ruby">redirect to('/bar'), 303
-redirect 'http://www.google.com/', 'wrong place, buddy'
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">redirect</span> <span class="n">to</span><span class="p">(</span><span class="s1">'/bar'</span><span class="p">),</span> <span class="mi">303</span>
+<span class="n">redirect</span> <span class="s1">'http://www.google.com/'</span><span class="p">,</span> <span class="s1">'wrong place, buddy'</span>
 </code></pre>
+</div>
 
-<p>用 <code>redirect back</code> 可以把用户重定向到原始页面：</p>
+<p>用 <code class="highlighter-rouge">redirect back</code> 可以把用户重定向到原始页面：</p>
 
-<pre><code class="language-ruby">get '/foo' do
-  "&lt;a href='/bar'&gt;do something&lt;/a&gt;"
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
+  <span class="s2">"&lt;a href='/bar'&gt;do something&lt;/a&gt;"</span>
+<span class="k">end</span>
 
-get '/bar' do
-  do_something
-  redirect back
-end
+<span class="n">get</span> <span class="s1">'/bar'</span> <span class="k">do</span>
+  <span class="n">do_something</span>
+  <span class="n">redirect</span> <span class="n">back</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>如果想传递参数给 redirect，可以用查询字符串：</p>
 
-<pre><code class="language-ruby">redirect to('/bar?sum=42')
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">redirect</span> <span class="n">to</span><span class="p">(</span><span class="s1">'/bar?sum=42'</span><span class="p">)</span>
 </code></pre>
+</div>
 
 <p>或者使用会话：</p>
 
-<pre><code class="language-ruby">enable :sessions
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">enable</span> <span class="ss">:sessions</span>
 
-get '/foo' do
-  session['secret'] = 'foo'
-  redirect to('/bar')
-end
+<span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
+  <span class="n">session</span><span class="p">[</span><span class="s1">'secret'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'foo'</span>
+  <span class="n">redirect</span> <span class="n">to</span><span class="p">(</span><span class="s1">'/bar'</span><span class="p">)</span>
+<span class="k">end</span>
 
-get '/bar' do
-  session['secret']
-end
+<span class="n">get</span> <span class="s1">'/bar'</span> <span class="k">do</span>
+  <span class="n">session</span><span class="p">[</span><span class="s1">'secret'</span><span class="p">]</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <h3>缓存控制</h3>
 
@@ -1468,92 +1706,112 @@ end
 
 <p>可以这样设定 Cache-Control 首部字段：</p>
 
-<pre><code class="language-ruby">get '/' do
-  cache_control :public
-  "cache it!"
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">cache_control</span> <span class="ss">:public</span>
+  <span class="s2">"cache it!"</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
-<p>核心提示: 应当在 <code>before</code> 过滤器中设定缓存。</p>
+<p>核心提示: 应当在 <code class="highlighter-rouge">before</code> 过滤器中设定缓存。</p>
 
-<pre><code class="language-ruby">before do
-  cache_control :public, :must_revalidate, :max_age =&gt; 60
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">before</span> <span class="k">do</span>
+  <span class="n">cache_control</span> <span class="ss">:public</span><span class="p">,</span> <span class="ss">:must_revalidate</span><span class="p">,</span> <span class="ss">:max_age</span> <span class="o">=&gt;</span> <span class="mi">60</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
-<p>如果你使用 <code>expires</code> 辅助方法设定响应的响应首部， 会自动设定 <code>Cache-Control</code> 字段：</p>
+<p>如果你使用 <code class="highlighter-rouge">expires</code> 辅助方法设定响应的响应首部， 会自动设定 <code class="highlighter-rouge">Cache-Control</code> 字段：</p>
 
-<pre><code class="language-ruby">before do
-  expires 500, :public, :must_revalidate
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">before</span> <span class="k">do</span>
+  <span class="n">expires</span> <span class="mi">500</span><span class="p">,</span> <span class="ss">:public</span><span class="p">,</span> <span class="ss">:must_revalidate</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
-<p>为了合理使用缓存，你应该考虑使用 <code>etag</code> 或 <code>last_modified</code> 方法。
+<p>为了合理使用缓存，你应该考虑使用 <code class="highlighter-rouge">etag</code> 或 <code class="highlighter-rouge">last_modified</code> 方法。
 推荐在执行繁重任务<em>之前</em>使用这些辅助方法，这样一来，
 如果客户端在缓存中已经有相关内容，就会立即得到响应：</p>
 
-<pre><code class="language-ruby">get '/article/:id' do
-  @article = Article.find params['id']
-  last_modified @article.updated_at
-  etag @article.sha1
-  erb :article
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/article/:id'</span> <span class="k">do</span>
+  <span class="vi">@article</span> <span class="o">=</span> <span class="no">Article</span><span class="p">.</span><span class="nf">find</span> <span class="n">params</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span>
+  <span class="n">last_modified</span> <span class="vi">@article</span><span class="p">.</span><span class="nf">updated_at</span>
+  <span class="n">etag</span> <span class="vi">@article</span><span class="p">.</span><span class="nf">sha1</span>
+  <span class="n">erb</span> <span class="ss">:article</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>也可以使用 <a href="https://en.wikipedia.org/wiki/HTTP_ETag#Strong_and_weak_validation">weak ETag</a>：</p>
 
-<pre><code class="language-ruby">etag @article.sha1, :weak
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">etag</span> <span class="vi">@article</span><span class="p">.</span><span class="nf">sha1</span><span class="p">,</span> <span class="ss">:weak</span>
 </code></pre>
+</div>
 
 <p>这些辅助方法并不会为你做任何缓存，而是将必要的信息发送给你的缓存。
 如果你正在寻找快捷的反向代理缓存方案，可以尝试
 <a href="https://github.com/rtomayko/rack-cache">rack-cache</a>：</p>
 
-<pre><code class="language-ruby">require "rack/cache"
-require "sinatra"
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="nb">require</span> <span class="s2">"rack/cache"</span>
+<span class="nb">require</span> <span class="s2">"sinatra"</span>
 
-use Rack::Cache
+<span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Cache</span>
 
-get '/' do
-  cache_control :public, :max_age =&gt; 36000
-  sleep 5
-  "hello"
-end
+<span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">cache_control</span> <span class="ss">:public</span><span class="p">,</span> <span class="ss">:max_age</span> <span class="o">=&gt;</span> <span class="mi">36000</span>
+  <span class="nb">sleep</span> <span class="mi">5</span>
+  <span class="s2">"hello"</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
-<p>使用 <code>:statis_cache_control</code> 设置（见下文）为静态文件添加 <code>Cache-Control</code> 首部字段。</p>
+<p>使用 <code class="highlighter-rouge">:statis_cache_control</code> 设置（见下文）为静态文件添加 <code class="highlighter-rouge">Cache-Control</code> 首部字段。</p>
 
-<p>根据 RFC 2616，如果 If-Match 或 If-None-Match 首部设置为 <code>*</code>，根据所请求的资源存在与否，
+<p>根据 RFC 2616，如果 If-Match 或 If-None-Match 首部设置为 <code class="highlighter-rouge">*</code>，根据所请求的资源存在与否，
 你的应用应当有不同的行为。
 Sinatra 假设安全请求（如 GET）和幂等性请求（如 PUT）所访问的资源是已经存在的，
 而其它请求（如 POST 请求）所访问的资源是新资源。
-你可以通过传入 <code>:new_resource</code> 选项改变这一行为。</p>
+你可以通过传入 <code class="highlighter-rouge">:new_resource</code> 选项改变这一行为。</p>
 
-<pre><code class="language-ruby">get '/create' do
-  etag '', :new_resource =&gt; true
-  Article.create
-  erb :new_article
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/create'</span> <span class="k">do</span>
+  <span class="n">etag</span> <span class="s1">''</span><span class="p">,</span> <span class="ss">:new_resource</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+  <span class="no">Article</span><span class="p">.</span><span class="nf">create</span>
+  <span class="n">erb</span> <span class="ss">:new_article</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
-<p>如果你仍想使用 weak ETag，可以传入一个 <code>:kind</code> 选项：</p>
+<p>如果你仍想使用 weak ETag，可以传入一个 <code class="highlighter-rouge">:kind</code> 选项：</p>
 
-<pre><code class="language-ruby">etag '', :new_resource =&gt; true, :kind =&gt; :weak
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">etag</span> <span class="s1">''</span><span class="p">,</span> <span class="ss">:new_resource</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">:kind</span> <span class="o">=&gt;</span> <span class="ss">:weak</span>
 </code></pre>
+</div>
 
 <h3>发送文件</h3>
 
-<p>为了将文件的内容作为响应返回，可以使用 <code>send_file</code> 辅助方法：</p>
+<p>为了将文件的内容作为响应返回，可以使用 <code class="highlighter-rouge">send_file</code> 辅助方法：</p>
 
-<pre><code class="language-ruby">get '/' do
-  send_file 'foo.png'
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">send_file</span> <span class="s1">'foo.png'</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>该辅助方法接受一些选项:</p>
 
-<pre><code class="language-ruby">send_file 'foo.png', :type =&gt; :jpg
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">send_file</span> <span class="s1">'foo.png'</span><span class="p">,</span> <span class="ss">:type</span> <span class="o">=&gt;</span> <span class="ss">:jpg</span>
 </code></pre>
+</div>
 
 <p>可用的选项有:</p>
 
@@ -1588,145 +1846,165 @@ end
 
 <h3>访问请求对象</h3>
 
-<p>传入的请求对象可以在请求层（过滤器、路由、错误处理器内部）通过 <code>request</code> 方法访问：</p>
+<p>传入的请求对象可以在请求层（过滤器、路由、错误处理器内部）通过 <code class="highlighter-rouge">request</code> 方法访问：</p>
 
-<pre><code class="language-ruby"># 在 http://example.com/example 上运行的应用
-get '/foo' do
-  t = %w[text/css text/html application/javascript]
-  request.accept              # ['text/html', '*/*']
-  request.accept? 'text/xml'  # true
-  request.preferred_type(t)   # 'text/html'
-  request.body                # 客户端设定的请求主体（见下文）
-  request.scheme              # "http"
-  request.script_name         # "/example"
-  request.path_info           # "/foo"
-  request.port                # 80
-  request.request_method      # "GET"
-  request.query_string        # ""
-  request.content_length      # request.body 的长度
-  request.media_type          # request.body 的媒体类型
-  request.host                # "example.com"
-  request.get?                # true (其它动词也具有类似方法)
-  request.form_data?          # false
-  request["some_param"]       # some_param 参数的值。[] 是访问 params hash 的捷径
-  request.referrer            # 客户端的 referrer 或者 '/'
-  request.user_agent          # 用户代理 (:agent 条件使用该值)
-  request.cookies             # 浏览器 cookies 哈希
-  request.xhr?                # 这是否是 ajax 请求？
-  request.url                 # "http://example.com/example/foo"
-  request.path                # "/example/foo"
-  request.ip                  # 客户端 IP 地址
-  request.secure?             # false （如果是 ssl 则为 true）
-  request.forwarded?          # true （如果是运行在反向代理之后）
-  request.env                 # Rack 中使用的未处理的 env hash
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="c1"># 在 http://example.com/example 上运行的应用</span>
+<span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
+  <span class="n">t</span> <span class="o">=</span> <span class="sx">%w[text/css text/html application/javascript]</span>
+  <span class="n">request</span><span class="p">.</span><span class="nf">accept</span>              <span class="c1"># ['text/html', '*/*']</span>
+  <span class="n">request</span><span class="p">.</span><span class="nf">accept?</span> <span class="s1">'text/xml'</span>  <span class="c1"># true</span>
+  <span class="n">request</span><span class="p">.</span><span class="nf">preferred_type</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>   <span class="c1"># 'text/html'</span>
+  <span class="n">request</span><span class="p">.</span><span class="nf">body</span>                <span class="c1"># 客户端设定的请求主体（见下文）</span>
+  <span class="n">request</span><span class="p">.</span><span class="nf">scheme</span>              <span class="c1"># "http"</span>
+  <span class="n">request</span><span class="p">.</span><span class="nf">script_name</span>         <span class="c1"># "/example"</span>
+  <span class="n">request</span><span class="p">.</span><span class="nf">path_info</span>           <span class="c1"># "/foo"</span>
+  <span class="n">request</span><span class="p">.</span><span class="nf">port</span>                <span class="c1"># 80</span>
+  <span class="n">request</span><span class="p">.</span><span class="nf">request_method</span>      <span class="c1"># "GET"</span>
+  <span class="n">request</span><span class="p">.</span><span class="nf">query_string</span>        <span class="c1"># ""</span>
+  <span class="n">request</span><span class="p">.</span><span class="nf">content_length</span>      <span class="c1"># request.body 的长度</span>
+  <span class="n">request</span><span class="p">.</span><span class="nf">media_type</span>          <span class="c1"># request.body 的媒体类型</span>
+  <span class="n">request</span><span class="p">.</span><span class="nf">host</span>                <span class="c1"># "example.com"</span>
+  <span class="n">request</span><span class="p">.</span><span class="nf">get?</span>                <span class="c1"># true (其它动词也具有类似方法)</span>
+  <span class="n">request</span><span class="p">.</span><span class="nf">form_data?</span>          <span class="c1"># false</span>
+  <span class="n">request</span><span class="p">[</span><span class="s2">"some_param"</span><span class="p">]</span>       <span class="c1"># some_param 参数的值。[] 是访问 params hash 的捷径</span>
+  <span class="n">request</span><span class="p">.</span><span class="nf">referrer</span>            <span class="c1"># 客户端的 referrer 或者 '/'</span>
+  <span class="n">request</span><span class="p">.</span><span class="nf">user_agent</span>          <span class="c1"># 用户代理 (:agent 条件使用该值)</span>
+  <span class="n">request</span><span class="p">.</span><span class="nf">cookies</span>             <span class="c1"># 浏览器 cookies 哈希</span>
+  <span class="n">request</span><span class="p">.</span><span class="nf">xhr?</span>                <span class="c1"># 这是否是 ajax 请求？</span>
+  <span class="n">request</span><span class="p">.</span><span class="nf">url</span>                 <span class="c1"># "http://example.com/example/foo"</span>
+  <span class="n">request</span><span class="p">.</span><span class="nf">path</span>                <span class="c1"># "/example/foo"</span>
+  <span class="n">request</span><span class="p">.</span><span class="nf">ip</span>                  <span class="c1"># 客户端 IP 地址</span>
+  <span class="n">request</span><span class="p">.</span><span class="nf">secure?</span>             <span class="c1"># false （如果是 ssl 则为 true）</span>
+  <span class="n">request</span><span class="p">.</span><span class="nf">forwarded?</span>          <span class="c1"># true （如果是运行在反向代理之后）</span>
+  <span class="n">request</span><span class="p">.</span><span class="nf">env</span>                 <span class="c1"># Rack 中使用的未处理的 env hash</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
-<p>一些选项，例如 <code>script_name</code> 或者 <code>path_info</code> 也是可写的：</p>
+<p>一些选项，例如 <code class="highlighter-rouge">script_name</code> 或者 <code class="highlighter-rouge">path_info</code> 也是可写的：</p>
 
-<pre><code class="language-ruby">before { request.path_info = "/" }
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">before</span> <span class="p">{</span> <span class="n">request</span><span class="p">.</span><span class="nf">path_info</span> <span class="o">=</span> <span class="s2">"/"</span> <span class="p">}</span>
 
-get "/" do
-  "all requests end up here"
-end
+<span class="n">get</span> <span class="s2">"/"</span> <span class="k">do</span>
+  <span class="s2">"all requests end up here"</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
-<p><code>request.body</code> 是一个 IO 或者 StringIO 对象：</p>
+<p><code class="highlighter-rouge">request.body</code> 是一个 IO 或者 StringIO 对象：</p>
 
-<pre><code class="language-ruby">post "/api" do
-  request.body.rewind  # 如果已经有人读了它
-  data = JSON.parse request.body.read
-  "Hello #{data['name']}!"
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">post</span> <span class="s2">"/api"</span> <span class="k">do</span>
+  <span class="n">request</span><span class="p">.</span><span class="nf">body</span><span class="p">.</span><span class="nf">rewind</span>  <span class="c1"># 如果已经有人读了它</span>
+  <span class="n">data</span> <span class="o">=</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span> <span class="n">request</span><span class="p">.</span><span class="nf">body</span><span class="p">.</span><span class="nf">read</span>
+  <span class="s2">"Hello </span><span class="si">#{</span><span class="n">data</span><span class="p">[</span><span class="s1">'name'</span><span class="p">]</span><span class="si">}</span><span class="s2">!"</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <h3>附件</h3>
 
-<p>你可以使用 <code>attachment</code> 辅助方法来告诉浏览器响应应当被写入磁盘而不是在浏览器中显示。</p>
+<p>你可以使用 <code class="highlighter-rouge">attachment</code> 辅助方法来告诉浏览器响应应当被写入磁盘而不是在浏览器中显示。</p>
 
-<pre><code class="language-ruby">get '/' do
-  attachment
-  "store it!"
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">attachment</span>
+  <span class="s2">"store it!"</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>你也可以传递给该方法一个文件名：</p>
 
-<pre><code class="language-ruby">get '/' do
-  attachment "info.txt"
-  "store it!"
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">attachment</span> <span class="s2">"info.txt"</span>
+  <span class="s2">"store it!"</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <h3>处理日期和时间</h3>
 
-<p>Sinatra 提供了一个 <code>time_for</code> 辅助方法，其目的是根据给定的值生成 Time 对象。
-该方法也能够转换 <code>DateTime</code>、<code>Date</code> 和类似的类：</p>
+<p>Sinatra 提供了一个 <code class="highlighter-rouge">time_for</code> 辅助方法，其目的是根据给定的值生成 Time 对象。
+该方法也能够转换 <code class="highlighter-rouge">DateTime</code>、<code class="highlighter-rouge">Date</code> 和类似的类：</p>
 
-<pre><code class="language-ruby">get '/' do
-  pass if Time.now &gt; time_for('Dec 23, 2012')
-  "still time"
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">pass</span> <span class="k">if</span> <span class="no">Time</span><span class="p">.</span><span class="nf">now</span> <span class="o">&gt;</span> <span class="n">time_for</span><span class="p">(</span><span class="s1">'Dec 23, 2012'</span><span class="p">)</span>
+  <span class="s2">"still time"</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
-<p><code>expires</code>、<code>last_modified</code> 和类似方法都在内部使用了该方法。
-因此，通过在应用中重写 <code>time_for</code> 方法，你可以轻松地扩展这些方法的行为：</p>
+<p><code class="highlighter-rouge">expires</code>、<code class="highlighter-rouge">last_modified</code> 和类似方法都在内部使用了该方法。
+因此，通过在应用中重写 <code class="highlighter-rouge">time_for</code> 方法，你可以轻松地扩展这些方法的行为：</p>
 
-<pre><code class="language-ruby">helpers do
-  def time_for(value)
-    case value
-    when :yesterday then Time.now - 24*60*60
-    when :tomorrow then Time.now + 24*60*60
-    else super
-    end
-  end
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">helpers</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="nf">time_for</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">case</span> <span class="n">value</span>
+    <span class="k">when</span> <span class="ss">:yesterday</span> <span class="k">then</span> <span class="no">Time</span><span class="p">.</span><span class="nf">now</span> <span class="o">-</span> <span class="mi">24</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span>
+    <span class="k">when</span> <span class="ss">:tomorrow</span> <span class="k">then</span> <span class="no">Time</span><span class="p">.</span><span class="nf">now</span> <span class="o">+</span> <span class="mi">24</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span>
+    <span class="k">else</span> <span class="k">super</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-get '/' do
-  last_modified :yesterday
-  expires :tomorrow
-  "hello"
-end
+<span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">last_modified</span> <span class="ss">:yesterday</span>
+  <span class="n">expires</span> <span class="ss">:tomorrow</span>
+  <span class="s2">"hello"</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <h3>查找模板文件</h3>
 
-<p><code>find_template</code> 辅助方法用于在渲染时查找模板文件：</p>
+<p><code class="highlighter-rouge">find_template</code> 辅助方法用于在渲染时查找模板文件：</p>
 
-<pre><code class="language-ruby">find_template settings.views, 'foo', Tilt[:haml] do |file|
-  puts "could be #{file}"
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">find_template</span> <span class="n">settings</span><span class="p">.</span><span class="nf">views</span><span class="p">,</span> <span class="s1">'foo'</span><span class="p">,</span> <span class="no">Tilt</span><span class="p">[</span><span class="ss">:haml</span><span class="p">]</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
+  <span class="nb">puts</span> <span class="s2">"could be </span><span class="si">#{</span><span class="n">file</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>这其实并不是很有用，除非你需要重载这个方法来实现你自己的查找机制。
 比如，如果你想使用不只一个视图目录：</p>
 
-<pre><code class="language-ruby">set :views, ['views', 'templates']
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">set</span> <span class="ss">:views</span><span class="p">,</span> <span class="p">[</span><span class="s1">'views'</span><span class="p">,</span> <span class="s1">'templates'</span><span class="p">]</span>
 
-helpers do
-  def find_template(views, name, engine, &amp;block)
-    Array(views).each { |v| super(v, name, engine, &amp;block) }
-  end
-end
+<span class="n">helpers</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="nf">find_template</span><span class="p">(</span><span class="n">views</span><span class="p">,</span> <span class="nb">name</span><span class="p">,</span> <span class="n">engine</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+    <span class="no">Array</span><span class="p">(</span><span class="n">views</span><span class="p">).</span><span class="nf">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">v</span><span class="o">|</span> <span class="k">super</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">name</span><span class="p">,</span> <span class="n">engine</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>另一个例子是对不同的引擎使用不同的目录:</p>
 
-<pre><code class="language-ruby">set :views, :sass =&gt; 'views/sass', :haml =&gt; 'templates', :default =&gt; 'views'
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">set</span> <span class="ss">:views</span><span class="p">,</span> <span class="ss">:sass</span> <span class="o">=&gt;</span> <span class="s1">'views/sass'</span><span class="p">,</span> <span class="ss">:haml</span> <span class="o">=&gt;</span> <span class="s1">'templates'</span><span class="p">,</span> <span class="ss">:default</span> <span class="o">=&gt;</span> <span class="s1">'views'</span>
 
-helpers do
-  def find_template(views, name, engine, &amp;block)
-    _, folder = views.detect { |k,v| engine == Tilt[k] }
-    folder ||= views[:default]
-    super(folder, name, engine, &amp;block)
-  end
-end
+<span class="n">helpers</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="nf">find_template</span><span class="p">(</span><span class="n">views</span><span class="p">,</span> <span class="nb">name</span><span class="p">,</span> <span class="n">engine</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">folder</span> <span class="o">=</span> <span class="n">views</span><span class="p">.</span><span class="nf">detect</span> <span class="p">{</span> <span class="o">|</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="o">|</span> <span class="n">engine</span> <span class="o">==</span> <span class="no">Tilt</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="p">}</span>
+    <span class="n">folder</span> <span class="o">||=</span> <span class="n">views</span><span class="p">[</span><span class="ss">:default</span><span class="p">]</span>
+    <span class="k">super</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="nb">name</span><span class="p">,</span> <span class="n">engine</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>你可以很容易地封装成一个扩展，然后与他人分享！</p>
 
-<p>请注意 <code>find_template</code> 并不会检查文件是否存在，而是为任何可能的路径调用传入的代码块。
-这并不会导致性能问题，因为 <code>render</code> 会在找到文件的时候马上使用 <code>break</code>。
+<p>请注意 <code class="highlighter-rouge">find_template</code> 并不会检查文件是否存在，而是为任何可能的路径调用传入的代码块。
+这并不会导致性能问题，因为 <code class="highlighter-rouge">render</code> 会在找到文件的时候马上使用 <code class="highlighter-rouge">break</code>。
 同样的，模板的路径（和内容）会在 development 以外的模式下被缓存。
 你应该时刻提醒自己这一点， 如果你真的想写一个非常疯狂的方法的话。</p>
 
@@ -1734,76 +2012,92 @@ end
 
 <p>在启动时运行一次，在任何环境下都是如此：</p>
 
-<pre><code class="language-ruby">configure do
-  # 设置一个选项
-  set :option, 'value'
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">configure</span> <span class="k">do</span>
+  <span class="c1"># 设置一个选项</span>
+  <span class="n">set</span> <span class="ss">:option</span><span class="p">,</span> <span class="s1">'value'</span>
 
-  # 设置多个选项
-  set :a =&gt; 1, :b =&gt; 2
+  <span class="c1"># 设置多个选项</span>
+  <span class="n">set</span> <span class="ss">:a</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="ss">:b</span> <span class="o">=&gt;</span> <span class="mi">2</span>
 
-  # 等同于 `set :option, true`
-  enable :option
+  <span class="c1"># 等同于 `set :option, true`</span>
+  <span class="n">enable</span> <span class="ss">:option</span>
 
-  # 等同于 `set :option, false`
-  disable :option
+  <span class="c1"># 等同于 `set :option, false`</span>
+  <span class="n">disable</span> <span class="ss">:option</span>
 
-  # 也可以用代码块做动态设置
-  set(:css_dir) { File.join(views, 'css') }
-end
+  <span class="c1"># 也可以用代码块做动态设置</span>
+  <span class="n">set</span><span class="p">(</span><span class="ss">:css_dir</span><span class="p">)</span> <span class="p">{</span> <span class="no">File</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">views</span><span class="p">,</span> <span class="s1">'css'</span><span class="p">)</span> <span class="p">}</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
-<p>只有当环境 (<code>APP_ENV</code> 环境变量) 被设定为 <code>:production</code> 时才运行：</p>
+<p>只有当环境 (<code class="highlighter-rouge">APP_ENV</code> 环境变量) 被设定为 <code class="highlighter-rouge">:production</code> 时才运行：</p>
 
-<pre><code class="language-ruby">configure :production do
-  ...
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">configure</span> <span class="ss">:production</span> <span class="k">do</span>
+  <span class="p">.</span><span class="nf">.</span><span class="p">.</span>
+<span class="nf">end</span>
 </code></pre>
+</div>
 
-<p>当环境被设定为 <code>:production</code> 或者 <code>:test</code> 时运行：</p>
+<p>当环境被设定为 <code class="highlighter-rouge">:production</code> 或者 <code class="highlighter-rouge">:test</code> 时运行：</p>
 
-<pre><code class="language-ruby">configure :production, :test do
-  ...
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">configure</span> <span class="ss">:production</span><span class="p">,</span> <span class="ss">:test</span> <span class="k">do</span>
+  <span class="p">.</span><span class="nf">.</span><span class="p">.</span>
+<span class="nf">end</span>
 </code></pre>
+</div>
 
-<p>你可以用 <code>settings</code> 访问这些配置项：</p>
+<p>你可以用 <code class="highlighter-rouge">settings</code> 访问这些配置项：</p>
 
-<pre><code class="language-ruby">configure do
-  set :foo, 'bar'
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">configure</span> <span class="k">do</span>
+  <span class="n">set</span> <span class="ss">:foo</span><span class="p">,</span> <span class="s1">'bar'</span>
+<span class="k">end</span>
 
-get '/' do
-  settings.foo? # =&gt; true
-  settings.foo  # =&gt; 'bar'
-  ...
-end
+<span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="n">settings</span><span class="p">.</span><span class="nf">foo?</span> <span class="c1"># =&gt; true</span>
+  <span class="n">settings</span><span class="p">.</span><span class="nf">foo</span>  <span class="c1"># =&gt; 'bar'</span>
+  <span class="p">.</span><span class="nf">.</span><span class="p">.</span>
+<span class="nf">end</span>
 </code></pre>
+</div>
 
 <h3>配置攻击防护</h3>
 
-<p>Sinatra 使用 <a href="https://github.com/sinatra/rack-protection#readme">Rack::Protection</a>
+<p>Sinatra 使用 <a href="https://github.com/sinatra/sinatra/tree/master/rack-protection#readme">Rack::Protection</a>
 来抵御常见的攻击。你可以轻易地禁用该行为（但这会大大增加应用被攻击的概率）。</p>
 
-<pre><code class="language-ruby">disable :protection
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">disable</span> <span class="ss">:protection</span>
 </code></pre>
+</div>
 
-<p>为了绕过某单层防护，可以设置 <code>protection</code> 为一个选项 hash：</p>
+<p>为了绕过某单层防护，可以设置 <code class="highlighter-rouge">protection</code> 为一个选项 hash：</p>
 
-<pre><code class="language-ruby">set :protection, :except =&gt; :path_traversal
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">set</span> <span class="ss">:protection</span><span class="p">,</span> <span class="ss">:except</span> <span class="o">=&gt;</span> <span class="ss">:path_traversal</span>
 </code></pre>
+</div>
 
 <p>你可以传入一个数组，以禁用一系列防护措施：</p>
 
-<pre><code class="language-ruby">set :protection, :except =&gt; [:path_traversal, :session_hijacking]
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">set</span> <span class="ss">:protection</span><span class="p">,</span> <span class="ss">:except</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="ss">:path_traversal</span><span class="p">,</span> <span class="ss">:session_hijacking</span><span class="p">]</span>
 </code></pre>
+</div>
 
-<p>默认地，如果 <code>:sessions</code> 是启用的，Sinatra 只会使用基于会话的防护措施。
+<p>默认地，如果 <code class="highlighter-rouge">:sessions</code> 是启用的，Sinatra 只会使用基于会话的防护措施。
 当然，有时你可能想根据自己的需要设置会话。
-在这种情况下，你可以通过传入 <code>:session</code> 选项来开启基于会话的防护。</p>
+在这种情况下，你可以通过传入 <code class="highlighter-rouge">:session</code> 选项来开启基于会话的防护。</p>
 
-<pre><code class="language-ruby">use Rack::Session::Pool
-set :protection, :session =&gt; true
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Session</span><span class="o">::</span><span class="no">Pool</span>
+<span class="n">set</span> <span class="ss">:protection</span><span class="p">,</span> <span class="ss">:session</span> <span class="o">=&gt;</span> <span class="kp">true</span>
 </code></pre>
+</div>
 
 <h3>可选的设置</h3>
 
@@ -1957,95 +2251,115 @@ set :protection, :session =&gt; true
 <h2>环境</h2>
 
 <p>Sinatra 中有三种预先定义的环境：”development”、”production” 和 “test”。
-环境可以通过 <code>APP_ENV</code> 环境变量设置。默认值为 “development”。
+环境可以通过 <code class="highlighter-rouge">APP_ENV</code> 环境变量设置。默认值为 “development”。
 在开发环境下，每次请求都会重新加载所有模板，
-特殊的 <code>not_found</code> 和 <code>error</code> 错误处理器会在浏览器中显示 stack trace。
+特殊的 <code class="highlighter-rouge">not_found</code> 和 <code class="highlighter-rouge">error</code> 错误处理器会在浏览器中显示 stack trace。
 在测试和生产环境下，模板默认会缓存。</p>
 
-<p>在不同的环境下运行，设置 <code>APP_ENV</code> 环境变量：</p>
+<p>在不同的环境下运行，设置 <code class="highlighter-rouge">APP_ENV</code> 环境变量：</p>
 
-<pre><code class="language-shell">APP_ENV=production ruby my_app.rb
+<div class="language-shell highlighter-rouge">
+<pre class="highlight"><code><span class="nv">APP_ENV</span><span class="o">=</span>production ruby my_app.rb
 </code></pre>
+</div>
 
-<p>可以使用预定义的三种方法： <code>development?</code>、<code>test?</code> 和 <code>production?</code> 来检查当前环境：</p>
+<p>可以使用预定义的三种方法： <code class="highlighter-rouge">development?</code>、<code class="highlighter-rouge">test?</code> 和 <code class="highlighter-rouge">production?</code> 来检查当前环境：</p>
 
-<pre><code class="language-ruby">get '/' do
-  if settings.development?
-    "development!"
-  else
-    "not development"
-  end
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="k">if</span> <span class="n">settings</span><span class="p">.</span><span class="nf">development?</span>
+    <span class="s2">"development!"</span>
+  <span class="k">else</span>
+    <span class="s2">"not development"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <h2>错误处理</h2>
 
 <p>错误处理器在与路由和 before 过滤器相同的上下文中运行，
-这意味着你可以使用许多好东西，比如 <code>haml</code>, <code>erb</code>, <code>halt</code>，等等。</p>
+这意味着你可以使用许多好东西，比如 <code class="highlighter-rouge">haml</code>, <code class="highlighter-rouge">erb</code>, <code class="highlighter-rouge">halt</code>，等等。</p>
 
 <h3>未找到</h3>
 
-<p>当一个 <code>Sinatra::NotFound</code> 错误被抛出时，或者当响应的状态码是 404 时，
-会调用 <code>not_found</code> 处理器：</p>
+<p>当一个 <code class="highlighter-rouge">Sinatra::NotFound</code> 错误被抛出时，或者当响应的状态码是 404 时，
+会调用 <code class="highlighter-rouge">not_found</code> 处理器：</p>
 
-<pre><code class="language-ruby">not_found do
-  'This is nowhere to be found.'
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">not_found</span> <span class="k">do</span>
+  <span class="s1">'This is nowhere to be found.'</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <h3>错误</h3>
 
-<p>在任何路由代码块或过滤器抛出异常时，会调用 <code>error</code> 处理器。
-但注意在开发环境下只有将 show exceptions 项设置为 <code>:after_handler</code> 时，才会生效。</p>
+<p>在任何路由代码块或过滤器抛出异常时，会调用 <code class="highlighter-rouge">error</code> 处理器。
+但注意在开发环境下只有将 show exceptions 项设置为 <code class="highlighter-rouge">:after_handler</code> 时，才会生效。</p>
 
-<pre><code class="language-ruby">set :show_exceptions, :after_handler
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">set</span> <span class="ss">:show_exceptions</span><span class="p">,</span> <span class="ss">:after_handler</span>
 </code></pre>
+</div>
 
-<p>可以用 Rack 变量 <code>sinatra.error</code> 访问异常对象：</p>
+<p>可以用 Rack 变量 <code class="highlighter-rouge">sinatra.error</code> 访问异常对象：</p>
 
-<pre><code class="language-ruby">error do
-  'Sorry there was a nasty error - ' + env['sinatra.error'].message
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">error</span> <span class="k">do</span>
+  <span class="s1">'Sorry there was a nasty error - '</span> <span class="o">+</span> <span class="n">env</span><span class="p">[</span><span class="s1">'sinatra.error'</span><span class="p">].</span><span class="nf">message</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>自定义错误：</p>
 
-<pre><code class="language-ruby">error MyCustomError do
-  'So what happened was...' + env['sinatra.error'].message
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">error</span> <span class="no">MyCustomError</span> <span class="k">do</span>
+  <span class="s1">'So what happened was...'</span> <span class="o">+</span> <span class="n">env</span><span class="p">[</span><span class="s1">'sinatra.error'</span><span class="p">].</span><span class="nf">message</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>当下面的代码执行时：</p>
 
-<pre><code class="language-ruby">get '/' do
-  raise MyCustomError, 'something bad'
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="k">raise</span> <span class="no">MyCustomError</span><span class="p">,</span> <span class="s1">'something bad'</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>你会得到错误信息：</p>
 
-<pre><code>So what happened was... something bad
+<div class="highlighter-rouge">
+<pre class="highlight"><code>So what happened was... something bad
 </code></pre>
+</div>
 
 <p>或者，你也可以为状态码设置错误处理器：</p>
 
-<pre><code class="language-ruby">error 403 do
-  'Access forbidden'
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">error</span> <span class="mi">403</span> <span class="k">do</span>
+  <span class="s1">'Access forbidden'</span>
+<span class="k">end</span>
 
-get '/secret' do
-  403
-end
+<span class="n">get</span> <span class="s1">'/secret'</span> <span class="k">do</span>
+  <span class="mi">403</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>或者为某个范围内的状态码统一设置错误处理器：</p>
 
-<pre><code class="language-ruby">error 400..510 do
-  'Boom'
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">error</span> <span class="mi">400</span><span class="p">.</span><span class="nf">.</span><span class="mi">510</span> <span class="k">do</span>
+  <span class="s1">'Boom'</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
-<p>在开发环境下，Sinatra会使用特殊的 <code>not_found</code> 和 <code>error</code> 处理器，
+<p>在开发环境下，Sinatra会使用特殊的 <code class="highlighter-rouge">not_found</code> 和 <code class="highlighter-rouge">error</code> 处理器，
 以便在浏览器中显示美观的 stack traces 和额外的调试信息。</p>
 
 <h2>Rack 中间件</h2>
@@ -2054,31 +2368,35 @@ end
 Rack 最有趣的功能之一是支持“中间件”——位于服务器和你的应用之间的组件，
 它们监控或操作 HTTP 请求/响应以提供多种常用功能。</p>
 
-<p>Sinatra 通过顶层的 <code>use</code> 方法，让建立 Rack 中间件管道异常简单：</p>
+<p>Sinatra 通过顶层的 <code class="highlighter-rouge">use</code> 方法，让建立 Rack 中间件管道异常简单：</p>
 
-<pre><code class="language-ruby">require 'sinatra'
-require 'my_custom_middleware'
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="nb">require</span> <span class="s1">'sinatra'</span>
+<span class="nb">require</span> <span class="s1">'my_custom_middleware'</span>
 
-use Rack::Lint
-use MyCustomMiddleware
+<span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Lint</span>
+<span class="n">use</span> <span class="no">MyCustomMiddleware</span>
 
-get '/hello' do
-  'Hello World'
-end
+<span class="n">get</span> <span class="s1">'/hello'</span> <span class="k">do</span>
+  <span class="s1">'Hello World'</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
-<p><code>use</code> 的语义和在  <a href="http://www.rubydoc.info/github/rack/rack/master/Rack/Builder">Rack::Builder</a>
-DSL (在 rackup 文件中最频繁使用)中定义的完全一样。例如，<code>use</code> 方法接受
+<p><code class="highlighter-rouge">use</code> 的语义和在  <a href="http://www.rubydoc.info/github/rack/rack/master/Rack/Builder">Rack::Builder</a>
+DSL (在 rackup 文件中最频繁使用)中定义的完全一样。例如，<code class="highlighter-rouge">use</code> 方法接受
 多个/可变参数，以及代码块：</p>
 
-<pre><code class="language-ruby">use Rack::Auth::Basic do |username, password|
-  username == 'admin' &amp;&amp; password == 'secret'
-end
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Auth</span><span class="o">::</span><span class="no">Basic</span> <span class="k">do</span> <span class="o">|</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">|</span>
+  <span class="n">username</span> <span class="o">==</span> <span class="s1">'admin'</span> <span class="o">&amp;&amp;</span> <span class="n">password</span> <span class="o">==</span> <span class="s1">'secret'</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>Rack 拥有有多种标准中间件，用于日志、调试、URL 路由、认证和会话处理。
 根据配置，Sinatra 可以自动使用这里面的许多组件，
-所以你一般不需要显式地 <code>use</code> 它们。</p>
+所以你一般不需要显式地 <code class="highlighter-rouge">use</code> 它们。</p>
 
 <p>你可以在 <a href="https://github.com/rack/rack/tree/master/lib/rack">rack</a>、
 <a href="https://github.com/rack/rack-contrib#readm">rack-contrib</a> 或
@@ -2090,35 +2408,37 @@ end
 <p>可以使用任何基于 Rack 的测试程序库或者框架来编写Sinatra的测试。
 推荐使用 <a href="http://www.rubydoc.info/github/brynary/rack-test/master/frames">Rack::Test</a>：</p>
 
-<pre><code class="language-ruby">require 'my_sinatra_app'
-require 'minitest/autorun'
-require 'rack/test'
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="nb">require</span> <span class="s1">'my_sinatra_app'</span>
+<span class="nb">require</span> <span class="s1">'minitest/autorun'</span>
+<span class="nb">require</span> <span class="s1">'rack/test'</span>
 
-class MyAppTest &lt; Minitest::Test
-  include Rack::Test::Methods
+<span class="k">class</span> <span class="nc">MyAppTest</span> <span class="o">&lt;</span> <span class="no">Minitest</span><span class="o">::</span><span class="no">Test</span>
+  <span class="kp">include</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Test</span><span class="o">::</span><span class="no">Methods</span>
 
-  def app
-    Sinatra::Application
-  end
+  <span class="k">def</span> <span class="nf">app</span>
+    <span class="no">Sinatra</span><span class="o">::</span><span class="no">Application</span>
+  <span class="k">end</span>
 
-  def test_my_default
-    get '/'
-    assert_equal 'Hello World!', last_response.body
-  end
+  <span class="k">def</span> <span class="nf">test_my_default</span>
+    <span class="n">get</span> <span class="s1">'/'</span>
+    <span class="n">assert_equal</span> <span class="s1">'Hello World!'</span><span class="p">,</span> <span class="n">last_response</span><span class="p">.</span><span class="nf">body</span>
+  <span class="k">end</span>
 
-  def test_with_params
-    get '/meet', :name =&gt; 'Frank'
-    assert_equal 'Hello Frank!', last_response.body
-  end
+  <span class="k">def</span> <span class="nf">test_with_params</span>
+    <span class="n">get</span> <span class="s1">'/meet'</span><span class="p">,</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s1">'Frank'</span>
+    <span class="n">assert_equal</span> <span class="s1">'Hello Frank!'</span><span class="p">,</span> <span class="n">last_response</span><span class="p">.</span><span class="nf">body</span>
+  <span class="k">end</span>
 
-  def test_with_rack_env
-    get '/', {}, 'HTTP_USER_AGENT' =&gt; 'Songbird'
-    assert_equal "You're using Songbird!", last_response.body
-  end
-end
+  <span class="k">def</span> <span class="nf">test_with_rack_env</span>
+    <span class="n">get</span> <span class="s1">'/'</span><span class="p">,</span> <span class="p">{},</span> <span class="s1">'HTTP_USER_AGENT'</span> <span class="o">=&gt;</span> <span class="s1">'Songbird'</span>
+    <span class="n">assert_equal</span> <span class="s2">"You're using Songbird!"</span><span class="p">,</span> <span class="n">last_response</span><span class="p">.</span><span class="nf">body</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
-<p>注意：如果你使用 Sinatra 的模块化风格，应该用你应用的类名替代 <code>Sinatra::Application</code>。</p>
+<p>注意：如果你使用 Sinatra 的模块化风格，应该用你应用的类名替代 <code class="highlighter-rouge">Sinatra::Application</code>。</p>
 
 <h2>Sinatra::Base - 中间件、库和模块化应用</h2>
 
@@ -2126,27 +2446,29 @@ end
 但是在构建可复用的组件（如 Rack 中间件、Rails metal、带服务器组件的库或 Sinatra 扩展）时，
 却有相当大的缺陷。
 顶层 DSL 认为你采用的是微型应用风格的配置 (例如：唯一应用文件、
-<code>./public</code> 和 <code>./views</code> 目录、日志、异常细节页面等）。
-如果你的项目不采用微型应用风格，应该使用 <code>Sinatra::Base</code>：</p>
+<code class="highlighter-rouge">./public</code> 和 <code class="highlighter-rouge">./views</code> 目录、日志、异常细节页面等）。
+如果你的项目不采用微型应用风格，应该使用 <code class="highlighter-rouge">Sinatra::Base</code>：</p>
 
-<pre><code class="language-ruby">require 'sinatra/base'
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="nb">require</span> <span class="s1">'sinatra/base'</span>
 
-class MyApp &lt; Sinatra::Base
-  set :sessions, true
-  set :foo, 'bar'
+<span class="k">class</span> <span class="nc">MyApp</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">set</span> <span class="ss">:sessions</span><span class="p">,</span> <span class="kp">true</span>
+  <span class="n">set</span> <span class="ss">:foo</span><span class="p">,</span> <span class="s1">'bar'</span>
 
-  get '/' do
-    'Hello world!'
-  end
-end
+  <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="s1">'Hello world!'</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>Sinatra::Base 的子类可以使用的方法实际上就是顶层 DSL 中可以使用的方法。
 大部分顶层应用可以通过两方面的改变转换为 Sinatra::Base 组件：</p>
 
 <ul>
   <li>
-    <p>你的文件应当引入 <code>sinatra/base</code> 而不是 <code>sinatra</code>；
+    <p>你的文件应当引入 <code class="highlighter-rouge">sinatra/base</code> 而不是 <code class="highlighter-rouge">sinatra</code>；
 否则，Sinatra 的所有 DSL 方法将会被导入主命名空间。</p>
   </li>
   <li>
@@ -2154,19 +2476,21 @@ end
   </li>
 </ul>
 
-<p><code>Sinatra::Base</code> 是一个白板。大部分选项（包括内置的服务器）默认是禁用的。
+<p><code class="highlighter-rouge">Sinatra::Base</code> 是一个白板。大部分选项（包括内置的服务器）默认是禁用的。
 可以参考<a href="http://www.sinatrarb.com/configuration.html">配置</a>
 以查看可用选项的具体细节和它们的行为。如果你想让你的应用更像顶层定义的应用（即经典风格），
-你可以继承 <code>Sinatra::Applicaiton</code>。</p>
+你可以继承 <code class="highlighter-rouge">Sinatra::Applicaiton</code>。</p>
 
-<pre><code class="language-ruby">require 'sinatra/base'
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="nb">require</span> <span class="s1">'sinatra/base'</span>
 
-class MyApp &lt; Sinatra::Application
-  get '/' do
-    'Hello world!'
-  end
-end
+<span class="k">class</span> <span class="nc">MyApp</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Application</span>
+  <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="s1">'Hello world!'</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <h3>模块化风格 vs. 经典风格</h3>
 
@@ -2232,66 +2556,78 @@ end
 
 <h3>运行一个模块化应用</h3>
 
-<p>模块化应用的启动有两种常见方式，其中之一是使用 <code>run!</code> 方法主动启动:</p>
+<p>模块化应用的启动有两种常见方式，其中之一是使用 <code class="highlighter-rouge">run!</code> 方法主动启动:</p>
 
-<pre><code class="language-ruby"># my_app.rb
-require 'sinatra/base'
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="c1"># my_app.rb</span>
+<span class="nb">require</span> <span class="s1">'sinatra/base'</span>
 
-class MyApp &lt; Sinatra::Base
-  # ... 这里是应用代码 ...
+<span class="k">class</span> <span class="nc">MyApp</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+  <span class="c1"># ... 这里是应用代码 ...</span>
 
-  # 如果直接执行该文件，那么启动服务器
-  run! if app_file == $0
-end
+  <span class="c1"># 如果直接执行该文件，那么启动服务器</span>
+  <span class="n">run!</span> <span class="k">if</span> <span class="n">app_file</span> <span class="o">==</span> <span class="vg">$0</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>执行该文件就会启动服务器：</p>
 
-<pre><code class="language-shell">ruby my_app.rb
+<div class="language-shell highlighter-rouge">
+<pre class="highlight"><code>ruby my_app.rb
 </code></pre>
+</div>
 
-<p>另一种方式是使用 <code>config.ru</code> 文件，这种方式允许你使用任何 Rack 处理器：</p>
+<p>另一种方式是使用 <code class="highlighter-rouge">config.ru</code> 文件，这种方式允许你使用任何 Rack 处理器：</p>
 
-<pre><code class="language-ruby"># config.ru （用 rackup 启动）
-require './my_app'
-run MyApp
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="c1"># config.ru （用 rackup 启动）</span>
+<span class="nb">require</span> <span class="s1">'./my_app'</span>
+<span class="n">run</span> <span class="no">MyApp</span>
 </code></pre>
+</div>
 
 <p>运行：</p>
 
-<pre><code class="language-shell">rackup -p 4567
+<div class="language-shell highlighter-rouge">
+<pre class="highlight"><code>rackup -p 4567
 </code></pre>
+</div>
 
 <h3>使用 config.ru 运行经典风格的应用</h3>
 
 <p>编写你的应用:</p>
 
-<pre><code class="language-ruby"># app.rb
-require 'sinatra'
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="c1"># app.rb</span>
+<span class="nb">require</span> <span class="s1">'sinatra'</span>
 
-get '/' do
-  'Hello world!'
-end
+<span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="s1">'Hello world!'</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
-<p>添加相应的 <code>config.ru</code>：</p>
+<p>添加相应的 <code class="highlighter-rouge">config.ru</code>：</p>
 
-<pre><code class="language-ruby">require './app'
-run Sinatra::Application
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="nb">require</span> <span class="s1">'./app'</span>
+<span class="n">run</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Application</span>
 </code></pre>
+</div>
 
 <h3>何时使用 config.ru？</h3>
 
-<p>下列情况，推荐使用 <code>config.ru</code>：</p>
+<p>下列情况，推荐使用 <code class="highlighter-rouge">config.ru</code>：</p>
 
 <ul>
   <li>部署时使用不同的 Rack 处理器 (Passenger、Unicorn、Heroku 等)。</li>
-  <li>使用多个 <code>Sinatra::Base</code> 的子类。</li>
+  <li>使用多个 <code class="highlighter-rouge">Sinatra::Base</code> 的子类。</li>
   <li>把 Sinatra 当作中间件使用，而非端点。</li>
 </ul>
 
-<p><strong>你不必仅仅因为想使用模块化风格而切换到 <code>config.ru</code>，同样的，
-你也不必仅仅因为要运行 <code>config.ru</code> 而切换到模块化风格。</strong></p>
+<p><strong>你不必仅仅因为想使用模块化风格而切换到 <code class="highlighter-rouge">config.ru</code>，同样的，
+你也不必仅仅因为要运行 <code class="highlighter-rouge">config.ru</code> 而切换到模块化风格。</strong></p>
 
 <h3>把 Sinatra 当作中间件使用</h3>
 
@@ -2299,76 +2635,84 @@ run Sinatra::Application
 反过来，任何 Sinatra 应用程序自身都可以被当作中间件，添加到任何 Rack 端点前面。
 此端点可以是任何 Sinatra 应用，或任何基于 Rack 的应用程序 (Rails/Ramaze/Camping/…)：</p>
 
-<pre><code class="language-ruby">require 'sinatra/base'
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="nb">require</span> <span class="s1">'sinatra/base'</span>
 
-class LoginScreen &lt; Sinatra::Base
-  enable :sessions
+<span class="k">class</span> <span class="nc">LoginScreen</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">enable</span> <span class="ss">:sessions</span>
 
-  get('/login') { haml :login }
+  <span class="n">get</span><span class="p">(</span><span class="s1">'/login'</span><span class="p">)</span> <span class="p">{</span> <span class="n">haml</span> <span class="ss">:login</span> <span class="p">}</span>
 
-  post('/login') do
-    if params['name'] == 'admin' &amp;&amp; params['password'] == 'admin'
-      session['user_name'] = params['name']
-    else
-      redirect '/login'
-    end
-  end
-end
+  <span class="n">post</span><span class="p">(</span><span class="s1">'/login'</span><span class="p">)</span> <span class="k">do</span>
+    <span class="k">if</span> <span class="n">params</span><span class="p">[</span><span class="s1">'name'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'admin'</span> <span class="o">&amp;&amp;</span> <span class="n">params</span><span class="p">[</span><span class="s1">'password'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'admin'</span>
+      <span class="n">session</span><span class="p">[</span><span class="s1">'user_name'</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s1">'name'</span><span class="p">]</span>
+    <span class="k">else</span>
+      <span class="n">redirect</span> <span class="s1">'/login'</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-class MyApp &lt; Sinatra::Base
-  # 中间件的执行发生在 before 过滤器之前
-  use LoginScreen
+<span class="k">class</span> <span class="nc">MyApp</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+  <span class="c1"># 中间件的执行发生在 before 过滤器之前</span>
+  <span class="n">use</span> <span class="no">LoginScreen</span>
 
-  before do
-    unless session['user_name']
-      halt "Access denied, please &lt;a href='/login'&gt;login&lt;/a&gt;."
-    end
-  end
+  <span class="n">before</span> <span class="k">do</span>
+    <span class="k">unless</span> <span class="n">session</span><span class="p">[</span><span class="s1">'user_name'</span><span class="p">]</span>
+      <span class="n">halt</span> <span class="s2">"Access denied, please &lt;a href='/login'&gt;login&lt;/a&gt;."</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
 
-  get('/') { "Hello #{session['user_name']}." }
-end
+  <span class="n">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)</span> <span class="p">{</span> <span class="s2">"Hello </span><span class="si">#{</span><span class="n">session</span><span class="p">[</span><span class="s1">'user_name'</span><span class="p">]</span><span class="si">}</span><span class="s2">."</span> <span class="p">}</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <h3>创建动态应用</h3>
 
-<p>有时你希望在运行时创建新应用，而不必把应用预先赋值给常量。这时可以使用 <code>Sinatra.new</code>：</p>
+<p>有时你希望在运行时创建新应用，而不必把应用预先赋值给常量。这时可以使用 <code class="highlighter-rouge">Sinatra.new</code>：</p>
 
-<pre><code class="language-ruby">require 'sinatra/base'
-my_app = Sinatra.new { get('/') { "hi" } }
-my_app.run!
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="nb">require</span> <span class="s1">'sinatra/base'</span>
+<span class="n">my_app</span> <span class="o">=</span> <span class="no">Sinatra</span><span class="p">.</span><span class="nf">new</span> <span class="p">{</span> <span class="n">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)</span> <span class="p">{</span> <span class="s2">"hi"</span> <span class="p">}</span> <span class="p">}</span>
+<span class="n">my_app</span><span class="p">.</span><span class="nf">run!</span>
 </code></pre>
+</div>
 
-<p><code>Sinatra.new</code> 接受一个可选的参数，表示要继承的应用：</p>
+<p><code class="highlighter-rouge">Sinatra.new</code> 接受一个可选的参数，表示要继承的应用：</p>
 
-<pre><code class="language-ruby"># config.ru (用 rackup 启动)
-require 'sinatra/base'
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="c1"># config.ru (用 rackup 启动)</span>
+<span class="nb">require</span> <span class="s1">'sinatra/base'</span>
 
-controller = Sinatra.new do
-  enable :logging
-  helpers MyHelpers
-end
+<span class="n">controller</span> <span class="o">=</span> <span class="no">Sinatra</span><span class="p">.</span><span class="nf">new</span> <span class="k">do</span>
+  <span class="n">enable</span> <span class="ss">:logging</span>
+  <span class="n">helpers</span> <span class="no">MyHelpers</span>
+<span class="k">end</span>
 
-map('/a') do
-  run Sinatra.new(controller) { get('/') { 'a' } }
-end
+<span class="n">map</span><span class="p">(</span><span class="s1">'/a'</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">run</span> <span class="no">Sinatra</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">controller</span><span class="p">)</span> <span class="p">{</span> <span class="n">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)</span> <span class="p">{</span> <span class="s1">'a'</span> <span class="p">}</span> <span class="p">}</span>
+<span class="k">end</span>
 
-map('/b') do
-  run Sinatra.new(controller) { get('/') { 'b' } }
-end
+<span class="n">map</span><span class="p">(</span><span class="s1">'/b'</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">run</span> <span class="no">Sinatra</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">controller</span><span class="p">)</span> <span class="p">{</span> <span class="n">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)</span> <span class="p">{</span> <span class="s1">'b'</span> <span class="p">}</span> <span class="p">}</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>当你测试 Sinatra 扩展或在自己的类库中使用 Sinatra 时，这非常有用。</p>
 
 <p>这也让把 Sinatra 当作中间件使用变得极其容易：</p>
 
-<pre><code class="language-ruby">require 'sinatra/base'
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="nb">require</span> <span class="s1">'sinatra/base'</span>
 
-use Sinatra do
-  get('/') { ... }
-end
+<span class="n">use</span> <span class="no">Sinatra</span> <span class="k">do</span>
+  <span class="n">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)</span> <span class="p">{</span> <span class="p">.</span><span class="nf">.</span><span class="o">.</span> <span class="p">}</span>
+<span class="k">end</span>
 
-run RailsProject::Application
+<span class="n">run</span> <span class="no">RailsProject</span><span class="o">::</span><span class="no">Application</span>
 </code></pre>
+</div>
 
 <h2>作用域和绑定</h2>
 
@@ -2376,61 +2720,65 @@ run RailsProject::Application
 
 <h3>应用/类作用域</h3>
 
-<p>每个 Sinatra 应用都对应 <code>Sinatra::Base</code> 类的一个子类。
-如果你在使用顶层 DSL (<code>require 'sinatra'</code>)，那么这个类就是 <code>Sinatra::Application</code>，
+<p>每个 Sinatra 应用都对应 <code class="highlighter-rouge">Sinatra::Base</code> 类的一个子类。
+如果你在使用顶层 DSL (<code class="highlighter-rouge">require 'sinatra'</code>)，那么这个类就是 <code class="highlighter-rouge">Sinatra::Application</code>，
 否则该类是你显式创建的子类。
-在类层面，你可以使用 <code>get</code> 或 <code>before</code> 这样的方法，
-但不能访问 <code>request</code> 或 <code>session</code> 对象, 因为对于所有的请求，只有单一的应用类。</p>
+在类层面，你可以使用 <code class="highlighter-rouge">get</code> 或 <code class="highlighter-rouge">before</code> 这样的方法，
+但不能访问 <code class="highlighter-rouge">request</code> 或 <code class="highlighter-rouge">session</code> 对象, 因为对于所有的请求，只有单一的应用类。</p>
 
-<p>通过 <code>set</code> 创建的选项是类方法：</p>
+<p>通过 <code class="highlighter-rouge">set</code> 创建的选项是类方法：</p>
 
-<pre><code class="language-ruby">class MyApp &lt; Sinatra::Base
-  # 嘿，我在应用作用域！
-  set :foo, 42
-  foo # =&gt; 42
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="k">class</span> <span class="nc">MyApp</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+  <span class="c1"># 嘿，我在应用作用域！</span>
+  <span class="n">set</span> <span class="ss">:foo</span><span class="p">,</span> <span class="mi">42</span>
+  <span class="n">foo</span> <span class="c1"># =&gt; 42</span>
 
-  get '/foo' do
-    # 嘿，我已经不在应用作用域了！
-  end
-end
+  <span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
+    <span class="c1"># 嘿，我已经不在应用作用域了！</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>下列位置绑定的是应用作用域：</p>
 
 <ul>
   <li>应用类内部</li>
   <li>通过扩展定义的方法内部</li>
-  <li>传递给 <code>helpers</code> 方法的代码块内部</li>
-  <li>作为 <code>set</code> 值的 procs/blocks 内部</li>
-  <li>传递给 <code>Sinatra.new</code> 的代码块内部</li>
+  <li>传递给 <code class="highlighter-rouge">helpers</code> 方法的代码块内部</li>
+  <li>作为 <code class="highlighter-rouge">set</code> 值的 procs/blocks 内部</li>
+  <li>传递给 <code class="highlighter-rouge">Sinatra.new</code> 的代码块内部</li>
 </ul>
 
 <p>你可以这样访问变量域对象（应用类）：
-* 通过传递给 configure 代码块的对象 (<code>configure { |c| ... }</code>)
-* 在请求作用域中使用 <code>settings</code></p>
+* 通过传递给 configure 代码块的对象 (<code class="highlighter-rouge">configure { |c| ... }</code>)
+* 在请求作用域中使用 <code class="highlighter-rouge">settings</code></p>
 
 <h3>请求/实例作用域</h3>
 
 <p>对于每个请求，Sinatra 会创建应用类的一个新实例。所有的处理器代码块都在该实例对象的作用域中运行。
-在该作用域中， 你可以访问 <code>request</code> 和 <code>session</code> 对象，
-或调用渲染方法（如 <code>erb</code>、<code>haml</code>）。你可以在请求作用域中通过 <code>settings</code> 辅助方法
+在该作用域中， 你可以访问 <code class="highlighter-rouge">request</code> 和 <code class="highlighter-rouge">session</code> 对象，
+或调用渲染方法（如 <code class="highlighter-rouge">erb</code>、<code class="highlighter-rouge">haml</code>）。你可以在请求作用域中通过 <code class="highlighter-rouge">settings</code> 辅助方法
 访问应用作用域：</p>
 
-<pre><code class="language-ruby">class MyApp &lt; Sinatra::Base
-  # 嘿，我在应用作用域!
-  get '/define_route/:name' do
-    # '/define_route/:name' 的请求作用域
-    @value = 42
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="k">class</span> <span class="nc">MyApp</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+  <span class="c1"># 嘿，我在应用作用域!</span>
+  <span class="n">get</span> <span class="s1">'/define_route/:name'</span> <span class="k">do</span>
+    <span class="c1"># '/define_route/:name' 的请求作用域</span>
+    <span class="vi">@value</span> <span class="o">=</span> <span class="mi">42</span>
 
-    settings.get("/#{params['name']}") do
-      # "/#{params['name']}" 的请求作用域
-      @value # =&gt; nil (并不是同一个请求)
-    end
+    <span class="n">settings</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"/</span><span class="si">#{</span><span class="n">params</span><span class="p">[</span><span class="s1">'name'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span> <span class="k">do</span>
+      <span class="c1"># "/#{params['name']}" 的请求作用域</span>
+      <span class="vi">@value</span> <span class="c1"># =&gt; nil (并不是同一个请求)</span>
+    <span class="k">end</span>
 
-    "Route defined!"
-  end
-end
+    <span class="s2">"Route defined!"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 </code></pre>
+</div>
 
 <p>以下位置绑定的是请求作用域：</p>
 
@@ -2446,12 +2794,12 @@ end
 <p>代理作用域只是把方法转送到类作用域。
 然而，它与类作用域的行为并不完全相同, 因为你并不能在代理作用域获得类的绑定。
 只有显式地标记为供代理使用的方法才是可用的，
-而且你不能和类作用域共享变量/状态。(解释：你有了一个不同的 <code>self</code>)。
-你可以通过调用 <code>Sinatra::Delegator.delegate :method_name</code> 显式地添加方法代理。</p>
+而且你不能和类作用域共享变量/状态。(解释：你有了一个不同的 <code class="highlighter-rouge">self</code>)。
+你可以通过调用 <code class="highlighter-rouge">Sinatra::Delegator.delegate :method_name</code> 显式地添加方法代理。</p>
 
 <p>以下位置绑定的是代理变量域：
-* 顶层绑定，如果你执行了 <code>require "sinatra"</code>
-* 扩展了 <code>Sinatra::Delegator</code> 这一 mixin 的对象内部</p>
+* 顶层绑定，如果你执行了 <code class="highlighter-rouge">require "sinatra"</code>
+* 扩展了 <code class="highlighter-rouge">Sinatra::Delegator</code> 这一 mixin 的对象内部</p>
 
 <p>自己在这里看一下源码：<a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/base.rb#L1609-1633">Sinatra::Delegator
 mixin</a>
@@ -2462,18 +2810,22 @@ mixin</a>
 
 <p>可以直接运行 Sinatra 应用：</p>
 
-<pre><code class="language-shell">ruby myapp.rb [-h] [-x] [-e ENVIRONMENT] [-p PORT] [-o HOST] [-s HANDLER]
+<div class="language-shell highlighter-rouge">
+<pre class="highlight"><code>ruby myapp.rb <span class="o">[</span>-h] <span class="o">[</span>-x] <span class="o">[</span>-e ENVIRONMENT] <span class="o">[</span>-p PORT] <span class="o">[</span>-o HOST] <span class="o">[</span>-s HANDLER]
 </code></pre>
+</div>
 
 <p>选项是：</p>
 
-<pre><code>-h # 显示帮助
+<div class="highlighter-rouge">
+<pre class="highlight"><code>-h # 显示帮助
 -p # 设置端口号 (默认是 4567)
 -o # 设定主机名 (默认是 0.0.0.0)
 -e # 设置环境 (默认是 development)
 -s # 声明 rack 服务器/处理器 (默认是 thin)
 -x # 打开互斥锁 (默认是 off)
 </code></pre>
+</div>
 
 <h3>多线程</h3>
 
@@ -2485,24 +2837,28 @@ Rack 处理器使用多线程并发模型并无任何问题。这意味着在启
 Rack 处理器的正确调用方法。
 下面的例子展示了如何启动一个多线程的 Thin 服务器：</p>
 
-<pre><code class="language-ruby"># app.rb
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="c1"># app.rb</span>
 
-require 'sinatra/base'
+<span class="nb">require</span> <span class="s1">'sinatra/base'</span>
 
-class App &lt; Sinatra::Base
-  get '/' do
-    "Hello, World"
-  end
-end
+<span class="k">class</span> <span class="nc">App</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="s2">"Hello, World"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-App.run!
+<span class="no">App</span><span class="p">.</span><span class="nf">run!</span>
 
 </code></pre>
+</div>
 
 <p>启动服务器的命令是：</p>
 
-<pre><code class="language-shell">thin --threaded start
+<div class="language-shell highlighter-rouge">
+<pre class="highlight"><code>thin --threaded start
 </code></pre>
+</div>
 
 <h2>必要条件</h2>
 
@@ -2563,7 +2919,7 @@ App.run!
 
 <p>Sinatra 应该会运行在任何支持上述 Ruby 实现的操作系统上。</p>
 
-<p>如果你使用 MacRuby，你应该 <code>gem install control_tower</code>。</p>
+<p>如果你使用 MacRuby，你应该 <code class="highlighter-rouge">gem install control_tower</code>。</p>
 
 <p>Sinatra 目前不支持 Cardinal、SmallRuby、BlueRuby 或其它 1.8.7 之前的 Ruby 版本。</p>
 
@@ -2573,8 +2929,10 @@ App.run!
 
 <p>我们也会不定期推出 prerelease gems，所以你也可以运行</p>
 
-<pre><code class="language-shell">gem install sinatra --pre
+<div class="language-shell highlighter-rouge">
+<pre class="highlight"><code>gem install sinatra --pre
 </code></pre>
+</div>
 
 <p>来获得最新的特性。</p>
 
@@ -2584,56 +2942,70 @@ App.run!
 
 <p>首先，安装 Bundler，如果你还没有安装的话：</p>
 
-<pre><code class="language-shell">gem install bundler
+<div class="language-shell highlighter-rouge">
+<pre class="highlight"><code>gem install bundler
 </code></pre>
+</div>
 
-<p>然后，在你的项目目录下创建一个 <code>Gemfile</code>：</p>
+<p>然后，在你的项目目录下创建一个 <code class="highlighter-rouge">Gemfile</code>：</p>
 
-<pre><code class="language-ruby">source 'https://rubygems.org'
-gem 'sinatra', :github =&gt; "sinatra/sinatra"
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code><span class="n">source</span> <span class="s1">'https://rubygems.org'</span>
+<span class="n">gem</span> <span class="s1">'sinatra'</span><span class="p">,</span> <span class="ss">:github</span> <span class="o">=&gt;</span> <span class="s2">"sinatra/sinatra"</span>
 
-# 其它依赖
-gem 'haml'                    # 假如你使用 haml
-gem 'activerecord', '~&gt; 3.0'  # 也许你还需要 ActiveRecord 3.x
+<span class="c1"># 其它依赖</span>
+<span class="n">gem</span> <span class="s1">'haml'</span>                    <span class="c1"># 假如你使用 haml</span>
+<span class="n">gem</span> <span class="s1">'activerecord'</span><span class="p">,</span> <span class="s1">'~&gt; 3.0'</span>  <span class="c1"># 也许你还需要 ActiveRecord 3.x</span>
 </code></pre>
+</div>
 
-<p>请注意你必须在 <code>Gemfile</code> 中列出应用的所有依赖项。
+<p>请注意你必须在 <code class="highlighter-rouge">Gemfile</code> 中列出应用的所有依赖项。
 然而， Sinatra 的直接依赖项 (Rack 和 Tilt) 则会被 Bundler 自动获取和添加。</p>
 
 <p>现在你可以这样运行你的应用:</p>
 
-<pre><code class="language-shell">bundle exec ruby myapp.rb
+<div class="language-shell highlighter-rouge">
+<pre class="highlight"><code>bundle <span class="nb">exec </span>ruby myapp.rb
 </code></pre>
+</div>
 
 <h3>使用自己本地的 Sinatra</h3>
 
-<p>创建一个本地克隆，并通过 <code>$LOAD_PATH</code> 里的 <code>sinatra/lib</code> 目录运行你的应用：</p>
+<p>创建一个本地克隆，并通过 <code class="highlighter-rouge">$LOAD_PATH</code> 里的 <code class="highlighter-rouge">sinatra/lib</code> 目录运行你的应用：</p>
 
-<pre><code class="language-shell">cd myapp
+<div class="language-shell highlighter-rouge">
+<pre class="highlight"><code><span class="nb">cd </span>myapp
 git clone git://github.com/sinatra/sinatra.git
 ruby -I sinatra/lib myapp.rb
 </code></pre>
+</div>
 
 <p>为了在未来更新 Sinatra 源代码：</p>
 
-<pre><code class="language-shell">cd myapp/sinatra
+<div class="language-shell highlighter-rouge">
+<pre class="highlight"><code><span class="nb">cd </span>myapp/sinatra
 git pull
 </code></pre>
+</div>
 
 <h3>全局安装</h3>
 
 <p>你可以自行编译 Sinatra gem：</p>
 
-<pre><code class="language-shell">git clone git://github.com/sinatra/sinatra.git
-cd sinatra
+<div class="language-shell highlighter-rouge">
+<pre class="highlight"><code>git clone git://github.com/sinatra/sinatra.git
+<span class="nb">cd </span>sinatra
 rake sinatra.gemspec
 rake install
 </code></pre>
+</div>
 
 <p>如果你以 root 身份安装 gems，最后一步应该是：</p>
 
-<pre><code class="language-shell">sudo rake install
+<div class="language-shell highlighter-rouge">
+<pre class="highlight"><code>sudo rake install
 </code></pre>
+</div>
 
 <h2>版本</h2>
 

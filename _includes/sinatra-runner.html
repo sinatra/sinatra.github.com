@@ -7,34 +7,36 @@ backend.</p>
 
 <p>The backend server could look like the following (in test/server.rb).</p>
 
-<pre>require &quot;sinatra&quot;
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra&quot;</span>
 
-get &quot;/&quot; do
-  &quot;Cheers from test server&quot;
-end
+<span class="ruby-identifier">get</span> <span class="ruby-string">&quot;/&quot;</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-string">&quot;Cheers from test server&quot;</span>
+<span class="ruby-keyword">end</span>
 
-get &quot;/ping&quot; do
-  &quot;1&quot;
-end</pre>
+<span class="ruby-identifier">get</span> <span class="ruby-string">&quot;/ping&quot;</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-string">&quot;1&quot;</span>
+<span class="ruby-keyword">end</span>
+</pre>
 
 <p>Note that you need to implement a ping action for internal use.</p>
 
 <p>Next, you need to write your runner.</p>
 
-<pre>require &#39;sinatra/runner&#39;
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;sinatra/runner&#39;</span>
 
-class Runner &lt; Sinatra::Runner
-  def app_file
-    File.expand_path(&quot;../server.rb&quot;, __FILE__)
-  end
-end</pre>
+<span class="ruby-keyword">class</span> <span class="ruby-constant">Runner</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Sinatra</span><span class="ruby-operator">::</span><span class="ruby-constant">Runner</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">app_file</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-string">&quot;../server.rb&quot;</span>, <span class="ruby-keyword">__FILE__</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
 
 <p>Override Runner#app_file, #command, #port, #protocol and #ping_path for
 customization.</p>
 
 <p>**Don&#39;t forget to override #app_file specific to your application!**</p>
 
-<p>Whereever you need this test backend, here&#39;s how you manage it. The
+<p>Wherever you need this test backend, here&#39;s how you manage it. The
 following example assumes you have a test in your app that needs to be run
 against your test backend.</p>
 

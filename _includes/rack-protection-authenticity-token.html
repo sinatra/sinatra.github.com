@@ -1,21 +1,88 @@
-<table class="rdoc-list"><tr><td class="rdoc-term"><p>Prevented attack</p></td>
-<td>
+<dl class="rdoc-list note-list"><dt>Prevented attack
+<dd>
 <p>CSRF</p>
-</td></tr><tr><td class="rdoc-term"><p>Supported browsers</p></td>
-<td>
+</dd><dt>Supported browsers
+<dd>
 <p>all</p>
-</td></tr><tr><td class="rdoc-term"><p>More infos</p></td>
-<td>
+</dd><dt>More infos
+<dd>
 <p><a
 href="http://en.wikipedia.org/wiki/Cross-site_request_forgery">en.wikipedia.org/wiki/Cross-site_request_forgery</a></p>
-</td></tr></table>
+</dd></dl>
 
-<p>Only accepts unsafe HTTP requests if a given access token matches the token
-included in the session.</p>
+<p>This middleware only accepts requests other than <code>GET</code>,
+<code>HEAD</code>, <code>OPTIONS</code>, <code>TRACE</code> if their given
+access token matches the token included in the session.</p>
 
-<p>Compatible with rack-csrf.</p>
+<p>It checks the <code>X-CSRF-Token</code> header and the <code>POST</code>
+form data.</p>
 
-<p>Options:</p>
+<p>Compatible with the <a
+href="https://rubygems.org/gems/rack_csrf">rack-csrf</a> gem.</p>
 
-<p>authenticity_param: Defines the param&#39;s name that should contain the
-token on a request.</p>
+<h2 id="label-Options">Options</h2>
+<dl class="rdoc-list label-list"><dt><code>:authenticity_param</code>
+<dd>
+<p>the name of the param that should contain the token on a request. Default
+value: <code>&quot;authenticity_token&quot;</code></p>
+</dd></dl>
+
+<h2 id="label-Example%3A+Forms+application">Example: Forms application</h2>
+
+<p>To show what the AuthenticityToken does, this section includes a sample
+program which shows two forms. One with, and one without a CSRF token The
+one without CSRF token field will get a 403 Forbidden response.</p>
+
+<p>Install the gem, then run the program:</p>
+
+<pre>gem install &#39;rack-protection&#39;
+ruby server.rb</pre>
+
+<p>Here is <code>server.rb</code>:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;rack/protection&#39;</span>
+
+<span class="ruby-identifier">app</span> = <span class="ruby-constant">Rack</span><span class="ruby-operator">::</span><span class="ruby-constant">Builder</span>.<span class="ruby-identifier">app</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">use</span> <span class="ruby-constant">Rack</span><span class="ruby-operator">::</span><span class="ruby-constant">Session</span><span class="ruby-operator">::</span><span class="ruby-constant">Cookie</span>, <span class="ruby-identifier">secret</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;secret&#39;</span>
+  <span class="ruby-identifier">use</span> <span class="ruby-constant">Rack</span><span class="ruby-operator">::</span><span class="ruby-constant">Protection</span><span class="ruby-operator">::</span><span class="ruby-constant">AuthenticityToken</span>
+
+  <span class="ruby-identifier">run</span> <span class="ruby-operator">-</span><span class="ruby-operator">&gt;</span> (<span class="ruby-identifier">env</span>) <span class="ruby-keyword">do</span>
+    [<span class="ruby-value">200</span>, {}, [
+      <span class="ruby-operator">&lt;&lt;</span><span class="ruby-operator">~</span><span class="ruby-constant">EOS</span>
+        <span class="ruby-operator">&lt;</span><span class="ruby-operator">!</span><span class="ruby-constant">DOCTYPE</span> <span class="ruby-identifier">html</span><span class="ruby-operator">&gt;</span>
+        <span class="ruby-operator">&lt;</span><span class="ruby-identifier">html</span> <span class="ruby-identifier">lang</span>=<span class="ruby-string">&quot;en&quot;</span><span class="ruby-operator">&gt;</span>
+        <span class="ruby-operator">&lt;</span><span class="ruby-identifier">head</span><span class="ruby-operator">&gt;</span>
+          <span class="ruby-operator">&lt;</span><span class="ruby-identifier">meta</span> <span class="ruby-identifier">charset</span>=<span class="ruby-string">&quot;UTF-8&quot;</span> <span class="ruby-operator">/</span><span class="ruby-operator">&gt;</span>
+          <span class="ruby-operator">&lt;</span><span class="ruby-identifier">title</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">rack</span><span class="ruby-operator">-</span><span class="ruby-identifier">protection</span> <span class="ruby-identifier">minimal</span> <span class="ruby-identifier">example</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">%rtitle&gt;
+        &lt;/</span><span class="ruby-identifier">head</span><span class="ruby-operator">&gt;</span>
+        <span class="ruby-operator">&lt;</span><span class="ruby-identifier">body</span><span class="ruby-operator">&gt;</span>
+          <span class="ruby-operator">&lt;</span><span class="ruby-identifier">h1</span><span class="ruby-operator">&gt;</span><span class="ruby-constant">Without</span> <span class="ruby-constant">Authenticity</span> <span class="ruby-constant">Token</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">%rh1&gt;
+          &lt;p&gt;This takes you to &lt;tt&gt;Forbidden&lt;/</span><span class="ruby-identifier">tt</span><span class="ruby-operator">&gt;</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">%rp&gt;
+          &lt;form action=&quot;&quot; method=&quot;post&quot;&gt;
+            &lt;input type=&quot;text&quot; name=&quot;foo&quot; /</span><span class="ruby-operator">&gt;</span>
+            <span class="ruby-operator">&lt;</span><span class="ruby-identifier">input</span> <span class="ruby-identifier">type</span>=<span class="ruby-string">&quot;submit&quot;</span> <span class="ruby-operator">/</span><span class="ruby-operator">&gt;</span>
+          <span class="ruby-operator">&lt;</span><span class="ruby-regexp">%rform&gt;
+
+          &lt;h1&gt;With Authenticity Token&lt;/</span><span class="ruby-identifier">h1</span><span class="ruby-operator">&gt;</span>
+          <span class="ruby-operator">&lt;</span><span class="ruby-identifier">p</span><span class="ruby-operator">&gt;</span><span class="ruby-constant">This</span> <span class="ruby-identifier">successfully</span> <span class="ruby-identifier">takes</span> <span class="ruby-identifier">you</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">back</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">this</span> <span class="ruby-identifier">form</span>.<span class="ruby-operator">&lt;</span><span class="ruby-operator">/</span><span class="ruby-identifier">p</span><span class="ruby-operator">&gt;</span>
+          <span class="ruby-operator">&lt;</span><span class="ruby-identifier">form</span> <span class="ruby-identifier">action</span>=<span class="ruby-string">&quot;&quot;</span> <span class="ruby-identifier">method</span>=<span class="ruby-string">&quot;post&quot;</span><span class="ruby-operator">&gt;</span>
+            <span class="ruby-operator">&lt;</span><span class="ruby-identifier">input</span> <span class="ruby-identifier">type</span>=<span class="ruby-string">&quot;hidden&quot;</span> <span class="ruby-identifier">name</span>=<span class="ruby-string">&quot;authenticity_token&quot;</span> <span class="ruby-identifier">value</span>=<span class="ruby-node">&quot;#{env[&#39;rack.session&#39;][:csrf]}&quot;</span> <span class="ruby-operator">/</span><span class="ruby-operator">&gt;</span>
+            <span class="ruby-operator">&lt;</span><span class="ruby-identifier">input</span> <span class="ruby-identifier">type</span>=<span class="ruby-string">&quot;text&quot;</span> <span class="ruby-identifier">name</span>=<span class="ruby-string">&quot;foo&quot;</span> <span class="ruby-operator">/</span><span class="ruby-operator">&gt;</span>
+            <span class="ruby-operator">&lt;</span><span class="ruby-identifier">input</span> <span class="ruby-identifier">type</span>=<span class="ruby-string">&quot;submit&quot;</span> <span class="ruby-operator">/</span><span class="ruby-operator">&gt;</span>
+          <span class="ruby-operator">&lt;</span><span class="ruby-regexp">%rform&gt;
+        &lt;/</span><span class="ruby-identifier">body</span><span class="ruby-operator">&gt;</span>
+        <span class="ruby-operator">&lt;</span><span class="ruby-regexp">%rhtml&gt;
+      EOS
+    ]]
+  end
+end
+
+Rack::Handler::WEBrick.run app
+</span></pre>
+
+<h2 id="label-Example%3A+Customize+which+POST+parameter+holds+the+token">Example: Customize which POST parameter holds the token</h2>
+
+<p>To customize the authenticity parameter for form data, use the
+<code>:authenticity_param</code> option:</p>
+
+<pre>use Rack::Protection::AuthenticityToken, authenticity_param: &#39;your_token_param_name&#39;</pre>
