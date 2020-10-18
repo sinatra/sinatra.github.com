@@ -67,6 +67,7 @@ search server
 - [puresong](https://github.com/al-kivi/puresong.git) - A lightweight responsive application with PureCSS and SQLite and Sequel.
 - [Gleis PaaS](https://gleis.cloud) - The Swiss Ruby on Rails Platform as a Service for your web apps
 - [Stardew Valley Crop Assistant](https://stardew-valley-crop-assistant.herokuapp.com/) - The go-to application for planning seasonal crops in the game *Stardew Valley*.
+- [Onetime secret](https://github.com/franko108/onetime) - Secure secret sharing of sensitive content
 
 Libraries and extensions {#libs}
 ------------------------
