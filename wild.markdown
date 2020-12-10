@@ -68,6 +68,8 @@ search server
 - [Gleis PaaS](https://gleis.cloud) - The Swiss Ruby on Rails Platform as a Service for your web apps
 - [Stardew Valley Crop Assistant](https://stardew-valley-crop-assistant.herokuapp.com/) - The go-to application for planning seasonal crops in the game *Stardew Valley*.
 - [Onetime secret](https://github.com/franko108/onetime) - Secure secret sharing of sensitive content
+- [CuttingEdge](https://github.com/repotag/cutting_edge) - Dependency monitoring for projects in multiple languages, including shiny badges and e-mail notifications.
+- [Gollum](https://github.com/gollum/gollum) - Gollum is a wiki system that uses git for storage. It supports a variety of markup languages.
 
 Libraries and extensions {#libs}
 ------------------------
