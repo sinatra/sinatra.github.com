@@ -12,7 +12,7 @@ Frequently Asked Questions
 How do I make my Sinatra app reload on changes? {#reloading}
 -----------------------------------------------
 
-First off, in-process code reloading in Ruby [is hard](http://blog.rkh.im/code-reloading)
+First off, in-process code reloading in Ruby [is hard](https://web.archive.org/web/20190210151114/http://blog.rkh.im/code-reloading)
 and having a solution that works for every scenario is technically impossible.
 
 Which is why we recommend you to do out-of-process reloading.
