@@ -205,7 +205,7 @@ options used for a given route by passing in a <code class="highlighter-rouge">:
 be merged into the global <code class="highlighter-rouge">:mustermann_opts</code> hash described
 <a href="#available-settings">below</a>.</p>
 
-<h2>Conditions</h2>
+<h2 id="conditions">Conditions</h2>
 
 <p>Routes may include a variety of matching conditions, such as the user agent:</p>
 
@@ -274,7 +274,7 @@ be merged into the global <code class="highlighter-rouge">:mustermann_opts</code
 </code></pre>
 </div>
 
-<h2>Return Values</h2>
+<h2 id="return-values">Return Values</h2>
 
 <p>The return value of a route block determines at least the response body
 passed on to the HTTP client, or at least the next middleware in the
@@ -1177,7 +1177,7 @@ layouts:</p>
 <p>Currently, the following rendering methods accept a block: <code class="highlighter-rouge">erb</code>, <code class="highlighter-rouge">haml</code>,
 <code class="highlighter-rouge">liquid</code>, <code class="highlighter-rouge">slim </code>, <code class="highlighter-rouge">wlang</code>. Also the general <code class="highlighter-rouge">render</code> method accepts a block.</p>
 
-<h3>Inline Templates</h3>
+<h3 id="inline-templates">Inline Templates</h3>
 
 <p>Templates may be defined at the end of the source file:</p>
 
@@ -1380,7 +1380,7 @@ route handlers and templates:</p>
 
 <p>The effect is the same as including the modules in the application class.</p>
 
-<h3>Using Sessions</h3>
+<h3 id="using-sessions">Using Sessions</h3>
 
 <p>A session is used to keep state during requests. If activated, you have one
 session hash per user session:</p>
@@ -1658,7 +1658,7 @@ Rack handler (this can be used to implement streaming, <a href="#return-values">
 <p>Like <code class="highlighter-rouge">body</code>, <code class="highlighter-rouge">headers</code> and <code class="highlighter-rouge">status</code> with no arguments can be used to access
 their current values.</p>
 
-<h3>Streaming Responses</h3>
+<h3 id="streaming-responses">Streaming Responses</h3>
 
 <p>Sometimes you want to start sending out data while still generating parts of
 the response body. In extreme examples, you want to keep sending data until
@@ -1855,7 +1855,7 @@ Haml:</p>
 </code></pre>
 </div>
 
-<h3>Cache Control</h3>
+<h3 id="cache-control">Cache Control</h3>
 
 <p>Setting your headers correctly is the foundation for proper HTTP caching.</p>
 
@@ -1930,7 +1930,7 @@ reverse-proxy caching solution, try
 </code></pre>
 </div>
 
-<p>Use the <code class="highlighter-rouge">:static_cache_control</code> setting (see <a href="#cache-control">below</a>) to add
+<p>Use the <code class="highlighter-rouge">:static_cache_control</code> setting (see <a href="#static-cache-control">below</a>) to add
 <code class="highlighter-rouge">Cache-Control</code> header info to static files.</p>
 
 <p>According to RFC 2616, your application should behave differently if the
@@ -2236,7 +2236,7 @@ really crazy method.</p>
 </code></pre>
 </div>
 
-<h3>Configuring attack protection</h3>
+<h3 id="configuring-attack-protection">Configuring attack protection</h3>
 
 <p>Sinatra is using
 <a href="https://github.com/sinatra/sinatra/tree/master/rack-protection#readme">Rack::Protection</a> to
@@ -2273,7 +2273,7 @@ based protection by passing the <code class="highlighter-rouge">:session</code> 
 </code></pre>
 </div>
 
-<h3>Available Settings</h3>
+<h3 id="available-settings">Available Settings</h3>
 
 <dl>
   <dt>absolute_redirects</dt>
@@ -2461,7 +2461,7 @@ based protection by passing the <code class="highlighter-rouge">:session</code> 
       Enabled by default in classic style, disabled for modular apps.
     </dd>
 
-  <dt>static_cache_control</dt>
+  <dt id="static-cache-control">static_cache_control</dt>
     <dd>
       When Sinatra is serving static files, set this to add
       <tt>Cache-Control</tt> headers to the responses. Uses the
