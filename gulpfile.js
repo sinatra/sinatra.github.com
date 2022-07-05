@@ -74,7 +74,7 @@ gulp.task('purify', function() {
   return gulp.src(['css/prefixed/*.css'])
     .pipe(purify(['_site/*.html'], { minify: true, rejected: true }))
     .pipe(gulp.dest('css/'));
-});
+}); 
 
 gulp.task('clean-css', function() {
   return del('css/prefixed');
