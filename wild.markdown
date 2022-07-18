@@ -10,7 +10,7 @@ We'll take care of the rest.
 
 Applications {#apps}
 ------------
-- [SequenceServer](http://www.sequenceserver.com/) An easy-to-setup BLAST sequence 
+- [SequenceServer](http://www.sequenceserver.com/) An easy-to-setup BLAST sequence
 search server
 - [Marley](https://github.com/karmi/marley) the blog engine without &lt;textareas&gt;
 - [Postview](https://github.com/codigorama/postview) a simple blog-engine that
@@ -51,6 +51,7 @@ search server
   provider based on OpenID
 - [Hancock Client](https://github.com/atmos/hancock-client/tree/master) Rack
   middleware client for the Hancock server, written in Sinatra
+- [JubiGems](https://www.jubigems.org/) Custom RubyGems server.
 - [Sinatra Saucer](https://github.com/angelic/sinatra_saucer) JRuby web application frontend for Flying Saucer, which converts XHTML into a PDF
 - [WineAdds](http://wineadds.com) micro-app that calculates common additions to wine
 - [Jaconda](http://jaconda.im) A simple team collaboration service that allows you to create chat rooms for groups through Gtalk/Jabber protocol. REST API is written in Sinatra
@@ -117,6 +118,7 @@ Libraries and extensions {#libs}
 - [Sinatra::MoreServer](https://github.com/rkh/sinatra-more-server) Adds support for more web servers to Sinatra::Base#run!
 - [Sinatra::Namespace](https://github.com/rkh/sinatra-namespace) Adds namespaces, allows namespaces to have local helpers.
 - [Sinatra::Reloader](https://github.com/rkh/sinatra-reloader) Advanced and fast code reloader
+- [Sinatra::Static](https://github.com/jubishop/sinatra-static) Cache-smart serving of static assets for Sinatra.
 - [Sinatra::Sugar](https://github.com/rkh/sinatra-sugar) Extensions for Sinatra's standard methods, like #set or #register
 - [Sinatra::TestHelper](https://github.com/rkh/sinatra-test-helper) Adds helper methods and better integration for various testing frameworks
 - [Sinatra::WebInspector](https://github.com/rkh/sinatra-web-inspector) Allows you to inspect a running app
