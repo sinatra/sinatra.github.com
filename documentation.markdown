@@ -76,10 +76,6 @@ Maintained by [Chris Schneider][cschneid] and [Zachary Scott][zzak].
 [cschneid]: https://github.com/cschneid
 [zzak]: https://github.com/zzak
 
-### [Sinatra Recipes](http://recipes.sinatrarb.com/)
-
-Community contributed recipes and tutorials for Sinatra.
-
 Screencasts and Presentations
 -----------------------------
 
