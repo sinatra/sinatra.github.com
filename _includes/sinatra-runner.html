@@ -1,9 +1,7 @@
 
 <p>NOTE: This feature is experimental, and missing tests!</p>
 
-<p>Helps you spinning up and shutting down your own sinatra app. This is
-especially helpful for running real network tests against a sinatra
-backend.</p>
+<p>Helps you spinning up and shutting down your own sinatra app. This is especially helpful for running real network tests against a sinatra backend.</p>
 
 <p>The backend server could look like the following (in test/server.rb).</p>
 
@@ -25,27 +23,24 @@ backend.</p>
 <pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;sinatra/runner&#39;</span>
 
 <span class="ruby-keyword">class</span> <span class="ruby-constant">Runner</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Sinatra</span><span class="ruby-operator">::</span><span class="ruby-constant">Runner</span>
-  <span class="ruby-keyword">def</span> <span class="ruby-identifier">app_file</span>
-    <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-string">&quot;../server.rb&quot;</span>, <span class="ruby-keyword">__FILE__</span>)
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">app_file</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-string">&quot;server.rb&quot;</span>, <span class="ruby-identifier">__dir__</span>)
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span>
 </pre>
 
-<p>Override Runner#app_file, #command, #port, #protocol and #ping_path for
-customization.</p>
+<p>Override Runner#app_file, #command, #port, #protocol and #ping_path for customization.</p>
 
-<p>**Don&#39;t forget to override #app_file specific to your application!**</p>
+<p>**Don’t forget to override #app_file specific to your application!**</p>
 
-<p>Wherever you need this test backend, here&#39;s how you manage it. The
-following example assumes you have a test in your app that needs to be run
-against your test backend.</p>
+<p>Wherever you need this test backend, here’s how you manage it. The following example assumes you have a test in your app that needs to be run against your test backend.</p>
 
-<pre>runner = ServerRunner.new
-runner.run
+<pre class="ruby"><span class="ruby-identifier">runner</span> = <span class="ruby-constant">ServerRunner</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">runner</span>.<span class="ruby-identifier">run</span>
 
-# ..tests against localhost:4567 here..
+<span class="ruby-comment"># ..tests against localhost:4567 here..</span>
 
-runner.kill</pre>
+<span class="ruby-identifier">runner</span>.<span class="ruby-identifier">kill</span>
+</pre>
 
-<p>For an example, check <a
-href="https://github.com/apotonick/roar/blob/master/test/integration/runner.rb">github.com/apotonick/roar/blob/master/test/integration/runner.rb</a></p>
+<p>For an example, check <a href="https://github.com/apotonick/roar/blob/master/test/integration/runner.rb">github.com/apotonick/roar/blob/master/test/integration/runner.rb</a></p>

@@ -1,13 +1,11 @@
 
-<h1 id="label-Sinatra%3A%3ACustomLogger">Sinatra::CustomLogger</h1>
+<h1 id="label-Sinatra-3A-3ACustomLogger">Sinatra::CustomLogger<span><a href="#label-Sinatra-3A-3ACustomLogger">&para;</a> <a href="#top">&uarr;</a></span></h1>
 
-<p>CustomLogger extension allows you to define your own logger instance using
-<code>logger</code> setting. That logger then will be available as #logger
-helper method in your routes and views.</p>
+<p>CustomLogger extension allows you to define your own logger instance using <code>logger</code> setting. That logger then will be available as #logger helper method in your routes and views.</p>
 
-<h2 id="label-Usage">Usage</h2>
+<h2 id="label-Usage">Usage<span><a href="#label-Usage">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
-<h3 id="label-Classic+Application">Classic Application</h3>
+<h3 id="label-Classic+Application">Classic Application<span><a href="#label-Classic+Application">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
 <p>To define your custom logger instance in a classic application:</p>
 
@@ -15,7 +13,7 @@ helper method in your routes and views.</p>
 <span class="ruby-identifier">require</span> <span class="ruby-string">&#39;sinatra/custom_logger&#39;</span>
 <span class="ruby-identifier">require</span> <span class="ruby-string">&#39;logger&#39;</span>
 
-<span class="ruby-identifier">set</span> :<span class="ruby-identifier">logger</span>, <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">STDOUT</span>)
+<span class="ruby-identifier">set</span> <span class="ruby-value">:logger</span>, <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">STDOUT</span>)
 
 <span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/&#39;</span> <span class="ruby-keyword">do</span>
   <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span> <span class="ruby-string">&#39;Some message&#39;</span> <span class="ruby-comment"># STDOUT logger is used</span>
@@ -23,7 +21,7 @@ helper method in your routes and views.</p>
 <span class="ruby-keyword">end</span>
 </pre>
 
-<h3 id="label-Modular+Application">Modular Application</h3>
+<h3 id="label-Modular+Application">Modular Application<span><a href="#label-Modular+Application">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
 <p>The same for modular application:</p>
 
@@ -34,10 +32,10 @@ helper method in your routes and views.</p>
 <span class="ruby-keyword">class</span> <span class="ruby-constant">MyApp</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Sinatra</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>
   <span class="ruby-identifier">helpers</span> <span class="ruby-constant">Sinatra</span><span class="ruby-operator">::</span><span class="ruby-constant">CustomLogger</span>
 
-  <span class="ruby-identifier">configure</span> :<span class="ruby-identifier">development</span>, :<span class="ruby-identifier">production</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">configure</span> <span class="ruby-value">:development</span>, <span class="ruby-value">:production</span> <span class="ruby-keyword">do</span>
     <span class="ruby-identifier">logger</span> = <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-node">&quot;#{root}/log/#{environment}.log&quot;</span>, <span class="ruby-string">&#39;a&#39;</span>))
     <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">level</span> = <span class="ruby-constant">Logger</span><span class="ruby-operator">::</span><span class="ruby-constant">DEBUG</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">development?</span>
-    <span class="ruby-identifier">set</span> :<span class="ruby-identifier">logger</span>, <span class="ruby-identifier">logger</span>
+    <span class="ruby-identifier">set</span> <span class="ruby-value">:logger</span>, <span class="ruby-identifier">logger</span>
   <span class="ruby-keyword">end</span>
 
   <span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/&#39;</span> <span class="ruby-keyword">do</span>

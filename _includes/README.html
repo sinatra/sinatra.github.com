@@ -1,44 +1,39 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <html><body>
 
-<p><a href="http://badge.fury.io/rb/sinatra"><img src="https://badge.fury.io/rb/sinatra.svg" alt="Gem Version"></a>
-<a href="https://travis-ci.org/sinatra/sinatra"><img src="https://secure.travis-ci.org/sinatra/sinatra.svg" alt="Build Status"></a>
-<a href="https://dependabot.com/compatibility-score.html?dependency-name=sinatra&amp;package-manager=bundler&amp;version-scheme=semver"><img src="https://api.dependabot.com/badges/compatibility_score?dependency-name=sinatra&amp;package-manager=bundler&amp;version-scheme=semver" alt="SemVer"></a></p>
+<p><a href="https://badge.fury.io/rb/sinatra"><img src="https://badge.fury.io/rb/sinatra.svg" alt="Gem Version"></a>
+<a href="https://github.com/sinatra/sinatra/actions/workflows/test.yml"><img src="https://github.com/sinatra/sinatra/actions/workflows/test.yml/badge.svg" alt="Testing"></a></p>
 
 <p>Sinatra is a <a href="https://en.wikipedia.org/wiki/Domain-specific_language">DSL</a> for
 quickly creating web applications in Ruby with minimal effort:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="c1"># myapp.rb</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># myapp.rb</span>
 <span class="nb">require</span> <span class="s1">'sinatra'</span>
 
 <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
   <span class="s1">'Hello world!'</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Install the gem:</p>
 
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code>gem install sinatra
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>sinatra
+gem <span class="nb">install </span>puma <span class="c"># or any other server</span>
+</code></pre></div></div>
 
 <p>And run with:</p>
 
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code>ruby myapp.rb
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ruby myapp.rb
+</code></pre></div></div>
 
 <p>View at: <a href="http://localhost:4567">http://localhost:4567</a></p>
 
 <p>The code you changed will not take effect until you restart the server.
-Please restart the server every time you change or use
-<a href="http://www.sinatrarb.com/contrib/reloader">sinatra/reloader</a>.</p>
+Please restart the server every time you change or use a code reloader
+like <a href="https://github.com/alexch/rerun">rerun</a> or
+<a href="https://github.com/jeremyevans/rack-unreloader">rack-unreloader</a>.</p>
 
-<p>It is recommended to also run <code class="highlighter-rouge">gem install thin</code>, which Sinatra will
+<p>It is recommended to also run <code>gem install puma</code>, which Sinatra will
 pick up if available.</p>
 
 
@@ -50,82 +45,73 @@ pick up if available.</p>
 <p>In Sinatra, a route is an HTTP method paired with a URL-matching pattern.
 Each route is associated with a block:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
-  <span class="p">.</span><span class="nf">.</span> <span class="n">show</span> <span class="n">something</span> <span class="p">.</span><span class="nf">.</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="o">..</span> <span class="n">show</span> <span class="n">something</span> <span class="o">..</span>
 <span class="k">end</span>
 
 <span class="n">post</span> <span class="s1">'/'</span> <span class="k">do</span>
-  <span class="p">.</span><span class="nf">.</span> <span class="n">create</span> <span class="n">something</span> <span class="p">.</span><span class="nf">.</span>
+  <span class="o">..</span> <span class="n">create</span> <span class="n">something</span> <span class="o">..</span>
 <span class="k">end</span>
 
 <span class="n">put</span> <span class="s1">'/'</span> <span class="k">do</span>
-  <span class="p">.</span><span class="nf">.</span> <span class="n">replace</span> <span class="n">something</span> <span class="p">.</span><span class="nf">.</span>
+  <span class="o">..</span> <span class="n">replace</span> <span class="n">something</span> <span class="o">..</span>
 <span class="k">end</span>
 
 <span class="n">patch</span> <span class="s1">'/'</span> <span class="k">do</span>
-  <span class="p">.</span><span class="nf">.</span> <span class="n">modify</span> <span class="n">something</span> <span class="p">.</span><span class="nf">.</span>
+  <span class="o">..</span> <span class="n">modify</span> <span class="n">something</span> <span class="o">..</span>
 <span class="k">end</span>
 
 <span class="n">delete</span> <span class="s1">'/'</span> <span class="k">do</span>
-  <span class="p">.</span><span class="nf">.</span> <span class="n">annihilate</span> <span class="n">something</span> <span class="p">.</span><span class="nf">.</span>
+  <span class="o">..</span> <span class="n">annihilate</span> <span class="n">something</span> <span class="o">..</span>
 <span class="k">end</span>
 
 <span class="n">options</span> <span class="s1">'/'</span> <span class="k">do</span>
-  <span class="p">.</span><span class="nf">.</span> <span class="n">appease</span> <span class="n">something</span> <span class="p">.</span><span class="nf">.</span>
+  <span class="o">..</span> <span class="n">appease</span> <span class="n">something</span> <span class="o">..</span>
 <span class="k">end</span>
 
 <span class="n">link</span> <span class="s1">'/'</span> <span class="k">do</span>
-  <span class="p">.</span><span class="nf">.</span> <span class="n">affiliate</span> <span class="n">something</span> <span class="p">.</span><span class="nf">.</span>
+  <span class="o">..</span> <span class="n">affiliate</span> <span class="n">something</span> <span class="o">..</span>
 <span class="k">end</span>
 
 <span class="n">unlink</span> <span class="s1">'/'</span> <span class="k">do</span>
-  <span class="p">.</span><span class="nf">.</span> <span class="n">separate</span> <span class="n">something</span> <span class="p">.</span><span class="nf">.</span>
+  <span class="o">..</span> <span class="n">separate</span> <span class="n">something</span> <span class="o">..</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Routes are matched in the order they are defined. The first route that
 matches the request is invoked.</p>
 
 <p>Routes with trailing slashes are different from the ones without:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
   <span class="c1"># Does not match "GET /foo/"</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Route patterns may include named parameters, accessible via the
-<code class="highlighter-rouge">params</code> hash:</p>
+<code>params</code> hash:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/hello/:name'</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/hello/:name'</span> <span class="k">do</span>
   <span class="c1"># matches "GET /hello/foo" and "GET /hello/bar"</span>
   <span class="c1"># params['name'] is 'foo' or 'bar'</span>
   <span class="s2">"Hello </span><span class="si">#{</span><span class="n">params</span><span class="p">[</span><span class="s1">'name'</span><span class="p">]</span><span class="si">}</span><span class="s2">!"</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>You can also access named parameters via block parameters:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/hello/:name'</span> <span class="k">do</span> <span class="o">|</span><span class="n">n</span><span class="o">|</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/hello/:name'</span> <span class="k">do</span> <span class="o">|</span><span class="n">n</span><span class="o">|</span>
   <span class="c1"># matches "GET /hello/foo" and "GET /hello/bar"</span>
   <span class="c1"># params['name'] is 'foo' or 'bar'</span>
   <span class="c1"># n stores params['name']</span>
   <span class="s2">"Hello </span><span class="si">#{</span><span class="n">n</span><span class="si">}</span><span class="s2">!"</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Route patterns may also include splat (or wildcard) parameters, accessible
-via the <code class="highlighter-rouge">params['splat']</code> array:</p>
+via the <code>params['splat']</code> array:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/say/*/to/*'</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/say/*/to/*'</span> <span class="k">do</span>
   <span class="c1"># matches /say/hello/to/world</span>
   <span class="n">params</span><span class="p">[</span><span class="s1">'splat'</span><span class="p">]</span> <span class="c1"># =&gt; ["hello", "world"]</span>
 <span class="k">end</span>
@@ -134,96 +120,80 @@ via the <code class="highlighter-rouge">params['splat']</code> array:</p>
   <span class="c1"># matches /download/path/to/file.xml</span>
   <span class="n">params</span><span class="p">[</span><span class="s1">'splat'</span><span class="p">]</span> <span class="c1"># =&gt; ["path/to/file", "xml"]</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Or with block parameters:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/download/*.*'</span> <span class="k">do</span> <span class="o">|</span><span class="n">path</span><span class="p">,</span> <span class="n">ext</span><span class="o">|</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/download/*.*'</span> <span class="k">do</span> <span class="o">|</span><span class="n">path</span><span class="p">,</span> <span class="n">ext</span><span class="o">|</span>
   <span class="p">[</span><span class="n">path</span><span class="p">,</span> <span class="n">ext</span><span class="p">]</span> <span class="c1"># =&gt; ["path/to/file", "xml"]</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Route matching with Regular Expressions:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="sr">/\/hello\/([\w]+)/</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="sr">/\/hello\/([\w]+)/</span> <span class="k">do</span>
   <span class="s2">"Hello, </span><span class="si">#{</span><span class="n">params</span><span class="p">[</span><span class="s1">'captures'</span><span class="p">].</span><span class="nf">first</span><span class="si">}</span><span class="s2">!"</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Or with a block parameter:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="sr">%r{/hello/([</span><span class="se">\w</span><span class="sr">]+)}</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="sr">%r{/hello/([</span><span class="se">\w</span><span class="sr">]+)}</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span>
   <span class="c1"># Matches "GET /meta/hello/world", "GET /hello/world/1234" etc.</span>
   <span class="s2">"Hello, </span><span class="si">#{</span><span class="n">c</span><span class="si">}</span><span class="s2">!"</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Route patterns may have optional parameters:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/posts/:format?'</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/posts/:format?'</span> <span class="k">do</span>
   <span class="c1"># matches "GET /posts/" and any extension "GET /posts/json", "GET /posts/xml" etc</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Routes may also utilize query parameters:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/posts'</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/posts'</span> <span class="k">do</span>
   <span class="c1"># matches "GET /posts?title=foo&amp;author=bar"</span>
   <span class="n">title</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s1">'title'</span><span class="p">]</span>
   <span class="n">author</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s1">'author'</span><span class="p">]</span>
   <span class="c1"># uses title and author variables; query is optional to the /posts route</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>By the way, unless you disable the path traversal attack protection (see
 <a href="#configuring-attack-protection">below</a>), the request path might be modified before
 matching against your routes.</p>
 
 <p>You may customize the <a href="https://github.com/sinatra/mustermann#readme">Mustermann</a>
-options used for a given route by passing in a <code class="highlighter-rouge">:mustermann_opts</code> hash:</p>
+options used for a given route by passing in a <code>:mustermann_opts</code> hash:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'\A/posts\z'</span><span class="p">,</span> <span class="ss">:mustermann_opts</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:type</span> <span class="o">=&gt;</span> <span class="ss">:regexp</span><span class="p">,</span> <span class="ss">:check_anchors</span> <span class="o">=&gt;</span> <span class="kp">false</span> <span class="p">}</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'\A/posts\z'</span><span class="p">,</span> <span class="ss">:mustermann_opts</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:type</span> <span class="o">=&gt;</span> <span class="ss">:regexp</span><span class="p">,</span> <span class="ss">:check_anchors</span> <span class="o">=&gt;</span> <span class="kp">false</span> <span class="p">}</span> <span class="k">do</span>
   <span class="c1"># matches /posts exactly, with explicit anchoring</span>
   <span class="s2">"If you match an anchored pattern clap your hands!"</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>It looks like a <a href="#conditions">condition</a>, but it isn’t one! These options will
-be merged into the global <code class="highlighter-rouge">:mustermann_opts</code> hash described
+be merged into the global <code>:mustermann_opts</code> hash described
 <a href="#available-settings">below</a>.</p>
 
-<h2 id="conditions">Conditions</h2>
+<h2>Conditions</h2>
 
 <p>Routes may include a variety of matching conditions, such as the user agent:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/foo'</span><span class="p">,</span> <span class="ss">:agent</span> <span class="o">=&gt;</span> <span class="sr">/Songbird (\d\.\d)[\d\/]*?/</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/foo'</span><span class="p">,</span> <span class="ss">:agent</span> <span class="o">=&gt;</span> <span class="sr">/Songbird (\d\.\d)[\d\/]*?/</span> <span class="k">do</span>
   <span class="s2">"You're using Songbird version </span><span class="si">#{</span><span class="n">params</span><span class="p">[</span><span class="s1">'agent'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
 <span class="k">end</span>
 
 <span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
   <span class="c1"># Matches non-songbird browsers</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>Other available conditions are <code class="highlighter-rouge">host_name</code> and <code class="highlighter-rouge">provides</code>:</p>
+<p>Other available conditions are <code>host_name</code> and <code>provides</code>:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span><span class="p">,</span> <span class="ss">:host_name</span> <span class="o">=&gt;</span> <span class="sr">/^admin\./</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span><span class="p">,</span> <span class="ss">:host_name</span> <span class="o">=&gt;</span> <span class="sr">/^admin\./</span> <span class="k">do</span>
   <span class="s2">"Admin Area, Access denied!"</span>
 <span class="k">end</span>
 
@@ -234,29 +204,25 @@ be merged into the global <code class="highlighter-rouge">:mustermann_opts</code
 <span class="n">get</span> <span class="s1">'/'</span><span class="p">,</span> <span class="ss">:provides</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'rss'</span><span class="p">,</span> <span class="s1">'atom'</span><span class="p">,</span> <span class="s1">'xml'</span><span class="p">]</span> <span class="k">do</span>
   <span class="n">builder</span> <span class="ss">:feed</span>
 <span class="k">end</span>
-</code></pre>
-</div>
-<p><code class="highlighter-rouge">provides</code> searches the request’s Accept header.</p>
+</code></pre></div></div>
+<p><code>provides</code> searches the request’s Accept header.</p>
 
 <p>You can easily define your own conditions:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">set</span><span class="p">(</span><span class="ss">:probability</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">value</span><span class="o">|</span> <span class="n">condition</span> <span class="p">{</span> <span class="nb">rand</span> <span class="o">&lt;=</span> <span class="n">value</span> <span class="p">}</span> <span class="p">}</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set</span><span class="p">(</span><span class="ss">:probability</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">value</span><span class="o">|</span> <span class="n">condition</span> <span class="p">{</span> <span class="nb">rand</span> <span class="o">&lt;=</span> <span class="n">value</span> <span class="p">}</span> <span class="p">}</span>
 
-<span class="n">get</span> <span class="s1">'/win_a_car'</span><span class="p">,</span> <span class="ss">:probability</span> <span class="o">=&gt;</span> <span class="mi">0</span><span class="o">.</span><span class="mi">1</span> <span class="k">do</span>
+<span class="n">get</span> <span class="s1">'/win_a_car'</span><span class="p">,</span> <span class="ss">:probability</span> <span class="o">=&gt;</span> <span class="mf">0.1</span> <span class="k">do</span>
   <span class="s2">"You won!"</span>
 <span class="k">end</span>
 
 <span class="n">get</span> <span class="s1">'/win_a_car'</span> <span class="k">do</span>
   <span class="s2">"Sorry, you lost."</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>For a condition that takes multiple values use a splat:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">set</span><span class="p">(</span><span class="ss">:auth</span><span class="p">)</span> <span class="k">do</span> <span class="o">|*</span><span class="n">roles</span><span class="o">|</span>   <span class="c1"># &lt;- notice the splat here</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set</span><span class="p">(</span><span class="ss">:auth</span><span class="p">)</span> <span class="k">do</span> <span class="o">|*</span><span class="n">roles</span><span class="o">|</span>   <span class="c1"># &lt;- notice the splat here</span>
   <span class="n">condition</span> <span class="k">do</span>
     <span class="k">unless</span> <span class="n">logged_in?</span> <span class="o">&amp;&amp;</span> <span class="n">roles</span><span class="p">.</span><span class="nf">any?</span> <span class="p">{</span><span class="o">|</span><span class="n">role</span><span class="o">|</span> <span class="n">current_user</span><span class="p">.</span><span class="nf">in_role?</span> <span class="n">role</span> <span class="p">}</span>
       <span class="n">redirect</span> <span class="s2">"/login/"</span><span class="p">,</span> <span class="mi">303</span>
@@ -271,46 +237,43 @@ be merged into the global <code class="highlighter-rouge">:mustermann_opts</code
 <span class="n">get</span> <span class="s2">"/only/admin/"</span><span class="p">,</span> <span class="ss">:auth</span> <span class="o">=&gt;</span> <span class="ss">:admin</span> <span class="k">do</span>
   <span class="s2">"Only admins are allowed here!"</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<h2 id="return-values">Return Values</h2>
+<h2>Return Values</h2>
 
 <p>The return value of a route block determines at least the response body
-passed on to the HTTP client, or at least the next middleware in the
+passed on to the HTTP client or at least the next middleware in the
 Rack stack. Most commonly, this is a string, as in the above examples.
 But other values are also accepted.</p>
 
-<p>You can return any object that would either be a valid Rack response, Rack
+<p>You can return an object that would either be a valid Rack response, Rack
 body object or HTTP status code:</p>
 
 <ul>
-  <li>An Array with three elements: <code class="highlighter-rouge">[status (Integer), headers (Hash), response
+  <li>An Array with three elements: <code>[status (Integer), headers (Hash), response
 body (responds to #each)]</code>
 </li>
-  <li>An Array with two elements: <code class="highlighter-rouge">[status (Integer), response body (responds to
+  <li>An Array with two elements: <code>[status (Integer), response body (responds to
 #each)]</code>
 </li>
-  <li>An object that responds to <code class="highlighter-rouge">#each</code> and passes nothing but strings to
+  <li>An object that responds to <code>#each</code> and passes nothing but strings to
 the given block</li>
   <li>A Integer representing the status code</li>
 </ul>
 
 <p>That way we can, for instance, easily implement a streaming example:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="k">class</span> <span class="nc">Stream</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Stream</span>
   <span class="k">def</span> <span class="nf">each</span>
     <span class="mi">100</span><span class="p">.</span><span class="nf">times</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="k">yield</span> <span class="s2">"</span><span class="si">#{</span><span class="n">i</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span> <span class="p">}</span>
   <span class="k">end</span>
 <span class="k">end</span>
 
 <span class="n">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)</span> <span class="p">{</span> <span class="no">Stream</span><span class="p">.</span><span class="nf">new</span> <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>You can also use the <code class="highlighter-rouge">stream</code> helper method (<a href="#streaming-responses">described below</a>) to reduce
-boiler plate and embed the streaming logic in the route.</p>
+<p>You can also use the <code>stream</code> helper method (<a href="#streaming-responses">described below</a>) to reduce
+boilerplate and embed the streaming logic in the route.</p>
 
 <h2>Custom Route Matchers</h2>
 
@@ -318,17 +281,17 @@ boiler plate and embed the streaming logic in the route.</p>
 patterns and regular expressions as route matches. However, it does not
 stop there. You can easily define your own matchers:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="k">class</span> <span class="nc">AllButPattern</span>
-  <span class="nc">Match</span> <span class="o">=</span> <span class="no">Struct</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:captures</span><span class="p">)</span>
-
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">AllButPattern</span>
   <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">except</span><span class="p">)</span>
-    <span class="vi">@except</span>   <span class="o">=</span> <span class="n">except</span>
-    <span class="vi">@captures</span> <span class="o">=</span> <span class="no">Match</span><span class="p">.</span><span class="nf">new</span><span class="p">([])</span>
+    <span class="vi">@except</span> <span class="o">=</span> <span class="n">except</span>
   <span class="k">end</span>
 
-  <span class="k">def</span> <span class="nf">match</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
-    <span class="vi">@captures</span> <span class="k">unless</span> <span class="vi">@except</span> <span class="o">===</span> <span class="n">str</span>
+  <span class="k">def</span> <span class="nf">to_pattern</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">self</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">params</span><span class="p">(</span><span class="n">route</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{}</span> <span class="k">unless</span> <span class="vi">@except</span> <span class="o">===</span> <span class="n">route</span>
   <span class="k">end</span>
 <span class="k">end</span>
 
@@ -339,105 +302,81 @@ stop there. You can easily define your own matchers:</p>
 <span class="n">get</span> <span class="n">all_but</span><span class="p">(</span><span class="s2">"/index"</span><span class="p">)</span> <span class="k">do</span>
   <span class="c1"># ...</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Note that the above example might be over-engineered, as it can also be
 expressed as:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="sr">//</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="sr">/.*/</span> <span class="k">do</span>
   <span class="n">pass</span> <span class="k">if</span> <span class="n">request</span><span class="p">.</span><span class="nf">path_info</span> <span class="o">==</span> <span class="s2">"/index"</span>
   <span class="c1"># ...</span>
 <span class="k">end</span>
-</code></pre>
-</div>
-
-<p>Or, using negative look ahead:</p>
-
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="sr">%r{(?!/index)}</span> <span class="k">do</span>
-  <span class="c1"># ...</span>
-<span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2>Static Files</h2>
 
-<p>Static files are served from the <code class="highlighter-rouge">./public</code> directory. You can specify
-a different location by setting the <code class="highlighter-rouge">:public_folder</code> option:</p>
+<p>Static files are served from the <code>./public</code> directory. You can specify
+a different location by setting the <code>:public_folder</code> option:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">set</span> <span class="ss">:public_folder</span><span class="p">,</span> <span class="n">__dir__</span> <span class="o">+</span> <span class="s1">'/static'</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set</span> <span class="ss">:public_folder</span><span class="p">,</span> <span class="n">__dir__</span> <span class="o">+</span> <span class="s1">'/static'</span>
+</code></pre></div></div>
 
 <p>Note that the public directory name is not included in the URL. A file
-<code class="highlighter-rouge">./public/css/style.css</code> is made available as
-<code class="highlighter-rouge">http://example.com/css/style.css</code>.</p>
+<code>./public/css/style.css</code> is made available as
+<code>http://example.com/css/style.css</code>.</p>
 
-<p>Use the <code class="highlighter-rouge">:static_cache_control</code> setting (see <a href="#cache-control">below</a>) to add
-<code class="highlighter-rouge">Cache-Control</code> header info.</p>
+<p>Use the <code>:static_cache_control</code> setting (see <a href="#cache-control">below</a>) to add
+<code>Cache-Control</code> header info.</p>
 
 <h2>Views / Templates</h2>
 
 <p>Each template language is exposed via its own rendering method. These
 methods simply return a string:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
   <span class="n">erb</span> <span class="ss">:index</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>This renders <code class="highlighter-rouge">views/index.erb</code>.</p>
+<p>This renders <code>views/index.erb</code>.</p>
 
 <p>Instead of a template name, you can also just pass in the template content
 directly:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
   <span class="n">code</span> <span class="o">=</span> <span class="s2">"&lt;%= Time.now %&gt;"</span>
   <span class="n">erb</span> <span class="n">code</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Templates take a second argument, the options hash:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
   <span class="n">erb</span> <span class="ss">:index</span><span class="p">,</span> <span class="ss">:layout</span> <span class="o">=&gt;</span> <span class="ss">:post</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>This will render <code class="highlighter-rouge">views/index.erb</code> embedded in the
-<code class="highlighter-rouge">views/post.erb</code> (default is <code class="highlighter-rouge">views/layout.erb</code>, if it exists).</p>
+<p>This will render <code>views/index.erb</code> embedded in the
+<code>views/post.erb</code> (default is <code>views/layout.erb</code>, if it exists).</p>
 
 <p>Any options not understood by Sinatra will be passed on to the template
 engine:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
   <span class="n">haml</span> <span class="ss">:index</span><span class="p">,</span> <span class="ss">:format</span> <span class="o">=&gt;</span> <span class="ss">:html5</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>You can also set options per template language in general:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">set</span> <span class="ss">:haml</span><span class="p">,</span> <span class="ss">:format</span> <span class="o">=&gt;</span> <span class="ss">:html5</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set</span> <span class="ss">:haml</span><span class="p">,</span> <span class="ss">:format</span> <span class="o">=&gt;</span> <span class="ss">:html5</span>
 
 <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
   <span class="n">haml</span> <span class="ss">:index</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>Options passed to the render method override options set via <code class="highlighter-rouge">set</code>.</p>
+<p>Options passed to the render method override options set via <code>set</code>.</p>
 
 <p>Available Options:</p>
 
@@ -493,50 +432,42 @@ engine:</p>
   </dd>
 </dl>
 
-<p>Templates are assumed to be located directly under the <code class="highlighter-rouge">./views</code>
+<p>Templates are assumed to be located directly under the <code>./views</code>
 directory. To use a different views directory:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">set</span> <span class="ss">:views</span><span class="p">,</span> <span class="n">settings</span><span class="p">.</span><span class="nf">root</span> <span class="o">+</span> <span class="s1">'/templates'</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set</span> <span class="ss">:views</span><span class="p">,</span> <span class="n">settings</span><span class="p">.</span><span class="nf">root</span> <span class="o">+</span> <span class="s1">'/templates'</span>
+</code></pre></div></div>
 
 <p>One important thing to remember is that you always have to reference
 templates with symbols, even if they’re in a subdirectory (in this case,
-use: <code class="highlighter-rouge">:'subdir/template'</code> or <code class="highlighter-rouge">'subdir/template'.to_sym</code>). You must use a
+use: <code>:'subdir/template'</code> or <code>'subdir/template'.to_sym</code>). You must use a
 symbol because otherwise rendering methods will render any strings
 passed to them directly.</p>
 
 <h3>Literal Templates</h3>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
   <span class="n">haml</span> <span class="s1">'%div.title Hello World'</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>Renders the template string. You can optionally specify <code class="highlighter-rouge">:path</code> and
-<code class="highlighter-rouge">:line</code> for a clearer backtrace if there is a filesystem path or line
+<p>Renders the template string. You can optionally specify <code>:path</code> and
+<code>:line</code> for a clearer backtrace if there is a filesystem path or line
 associated with that string:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
   <span class="n">haml</span> <span class="s1">'%div.title Hello World'</span><span class="p">,</span> <span class="ss">:path</span> <span class="o">=&gt;</span> <span class="s1">'examples/file.haml'</span><span class="p">,</span> <span class="ss">:line</span> <span class="o">=&gt;</span> <span class="mi">3</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3>Available Template Languages</h3>
 
 <p>Some languages have multiple implementations. To specify what implementation
 to use (and to be thread-safe), you should simply require it first:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="nb">require</span> <span class="s1">'rdiscount'</span> <span class="c1"># or require 'bluecloth'</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'rdiscount'</span>
 <span class="n">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)</span> <span class="p">{</span> <span class="n">markdown</span> <span class="ss">:index</span> <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h4>Haml Templates</h4>
 
@@ -562,15 +493,13 @@ to use (and to be thread-safe), you should simply require it first:</p>
     <td>Dependency</td>
     <td>
       <a href="https://github.com/jeremyevans/erubi" title="erubi">erubi</a>
-      or <a href="http://www.kuwata-lab.com/erubis/" title="erubis">erubis</a>
       or erb (included in Ruby)
     </td>
   </tr>
   <tr>
     <td>File Extensions</td>
     <td>
-<tt>.erb</tt>, <tt>.rhtml</tt> or <tt>.erubi</tt> (Erubi only)
- or <tt>.erubis</tt> (Erubis only)</td>
+<tt>.erb</tt>, <tt>.rhtml</tt> or <tt>.erubi</tt> (Erubi only)</td>
   </tr>
   <tr>
     <td>Example</td>
@@ -618,57 +547,6 @@ to use (and to be thread-safe), you should simply require it first:</p>
 
 <p>It also takes a block for inline templates (see <a href="#inline-templates">example</a>).</p>
 
-<h4>Sass Templates</h4>
-
-<table>
-  <tr>
-    <td>Dependency</td>
-    <td><a href="https://sass-lang.com/" title="sass">sass</a></td>
-  </tr>
-  <tr>
-    <td>File Extension</td>
-    <td><tt>.sass</tt></td>
-  </tr>
-  <tr>
-    <td>Example</td>
-    <td><tt>sass :stylesheet, :style =&gt; :expanded</tt></td>
-  </tr>
-</table>
-
-<h4>SCSS Templates</h4>
-
-<table>
-  <tr>
-    <td>Dependency</td>
-    <td><a href="https://sass-lang.com/" title="sass">sass</a></td>
-  </tr>
-  <tr>
-    <td>File Extension</td>
-    <td><tt>.scss</tt></td>
-  </tr>
-  <tr>
-    <td>Example</td>
-    <td><tt>scss :stylesheet, :style =&gt; :expanded</tt></td>
-  </tr>
-</table>
-
-<h4>Less Templates</h4>
-
-<table>
-  <tr>
-    <td>Dependency</td>
-    <td><a href="http://lesscss.org/" title="less">less</a></td>
-  </tr>
-  <tr>
-    <td>File Extension</td>
-    <td><tt>.less</tt></td>
-  </tr>
-  <tr>
-    <td>Example</td>
-    <td><tt>less :stylesheet</tt></td>
-  </tr>
-</table>
-
 <h4>Liquid Templates</h4>
 
 <table>
@@ -686,7 +564,7 @@ to use (and to be thread-safe), you should simply require it first:</p>
   </tr>
 </table>
 
-<p>Since you cannot call Ruby methods (except for <code class="highlighter-rouge">yield</code>) from a Liquid
+<p>Since you cannot call Ruby methods (except for <code>yield</code>) from a Liquid
 template, you almost always want to pass locals to it.</p>
 
 <h4>Markdown Templates</h4>
@@ -698,9 +576,7 @@ template, you almost always want to pass locals to it.</p>
       Anyone of:
         <a href="https://github.com/davidfstr/rdiscount" title="RDiscount">RDiscount</a>,
         <a href="https://github.com/vmg/redcarpet" title="RedCarpet">RedCarpet</a>,
-        <a href="https://github.com/ged/bluecloth" title="BlueCloth">BlueCloth</a>,
         <a href="https://kramdown.gettalong.org/" title="kramdown">kramdown</a>,
-        <a href="https://github.com/bhollis/maruku" title="maruku">maruku</a>
         <a href="https://github.com/gjtorikian/commonmarker" title="commonmarker">commonmarker</a>
         <a href="https://github.com/alphabetum/pandoc-ruby" title="pandoc">pandoc</a>
     </td>
@@ -721,61 +597,19 @@ template, you almost always want to pass locals to it.</p>
 You therefore will usually use it in combination with another rendering
 engine:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">erb</span> <span class="ss">:overview</span><span class="p">,</span> <span class="ss">:locals</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="n">markdown</span><span class="p">(</span><span class="ss">:introduction</span><span class="p">)</span> <span class="p">}</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">erb</span> <span class="ss">:overview</span><span class="p">,</span> <span class="ss">:locals</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="n">markdown</span><span class="p">(</span><span class="ss">:introduction</span><span class="p">)</span> <span class="p">}</span>
+</code></pre></div></div>
 
-<p>Note that you may also call the <code class="highlighter-rouge">markdown</code> method from within other
+<p>Note that you may also call the <code>markdown</code> method from within other
 templates:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="o">%</span><span class="n">h1</span> <span class="no">Hello</span> <span class="no">From</span> <span class="no">Haml</span><span class="o">!</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%</span><span class="n">h1</span> <span class="no">Hello</span> <span class="no">From</span> <span class="no">Haml</span><span class="o">!</span>
 <span class="o">%</span><span class="nb">p</span><span class="o">=</span> <span class="n">markdown</span><span class="p">(</span><span class="ss">:greetings</span><span class="p">)</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Since you cannot call Ruby from Markdown, you cannot use layouts written in
 Markdown. However, it is possible to use another rendering engine for the
-template than for the layout by passing the <code class="highlighter-rouge">:layout_engine</code> option.</p>
-
-<h4>Textile Templates</h4>
-
-<table>
-  <tr>
-    <td>Dependency</td>
-    <td><a href="http://redcloth.org/" title="RedCloth">RedCloth</a></td>
-  </tr>
-  <tr>
-    <td>File Extension</td>
-    <td><tt>.textile</tt></td>
-  </tr>
-  <tr>
-    <td>Example</td>
-    <td><tt>textile :index, :layout_engine =&gt; :erb</tt></td>
-  </tr>
-</table>
-
-<p>It is not possible to call methods from Textile, nor to pass locals to
-it. You therefore will usually use it in combination with another
-rendering engine:</p>
-
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">erb</span> <span class="ss">:overview</span><span class="p">,</span> <span class="ss">:locals</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="n">textile</span><span class="p">(</span><span class="ss">:introduction</span><span class="p">)</span> <span class="p">}</span>
-</code></pre>
-</div>
-
-<p>Note that you may also call the <code class="highlighter-rouge">textile</code> method from within other templates:</p>
-
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="o">%</span><span class="n">h1</span> <span class="no">Hello</span> <span class="no">From</span> <span class="no">Haml</span><span class="o">!</span>
-<span class="o">%</span><span class="nb">p</span><span class="o">=</span> <span class="n">textile</span><span class="p">(</span><span class="ss">:greetings</span><span class="p">)</span>
-</code></pre>
-</div>
-
-<p>Since you cannot call Ruby from Textile, you cannot use layouts written in
-Textile. However, it is possible to use another rendering engine for the
-template than for the layout by passing the <code class="highlighter-rouge">:layout_engine</code> option.</p>
+template than for the layout by passing the <code>:layout_engine</code> option.</p>
 
 <h4>RDoc Templates</h4>
 
@@ -797,22 +631,18 @@ template than for the layout by passing the <code class="highlighter-rouge">:lay
 <p>It is not possible to call methods from RDoc, nor to pass locals to it. You
 therefore will usually use it in combination with another rendering engine:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">erb</span> <span class="ss">:overview</span><span class="p">,</span> <span class="ss">:locals</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="n">rdoc</span><span class="p">(</span><span class="ss">:introduction</span><span class="p">)</span> <span class="p">}</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">erb</span> <span class="ss">:overview</span><span class="p">,</span> <span class="ss">:locals</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="n">rdoc</span><span class="p">(</span><span class="ss">:introduction</span><span class="p">)</span> <span class="p">}</span>
+</code></pre></div></div>
 
-<p>Note that you may also call the <code class="highlighter-rouge">rdoc</code> method from within other templates:</p>
+<p>Note that you may also call the <code>rdoc</code> method from within other templates:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="o">%</span><span class="n">h1</span> <span class="no">Hello</span> <span class="no">From</span> <span class="no">Haml</span><span class="o">!</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%</span><span class="n">h1</span> <span class="no">Hello</span> <span class="no">From</span> <span class="no">Haml</span><span class="o">!</span>
 <span class="o">%</span><span class="nb">p</span><span class="o">=</span> <span class="n">rdoc</span><span class="p">(</span><span class="ss">:greetings</span><span class="p">)</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Since you cannot call Ruby from RDoc, you cannot use layouts written in
 RDoc. However, it is possible to use another rendering engine for the
-template than for the layout by passing the <code class="highlighter-rouge">:layout_engine</code> option.</p>
+template than for the layout by passing the <code>:layout_engine</code> option.</p>
 
 <h4>AsciiDoc Templates</h4>
 
@@ -834,26 +664,6 @@ template than for the layout by passing the <code class="highlighter-rouge">:lay
 </table>
 
 <p>Since you cannot call Ruby methods directly from an AsciiDoc template, you
-almost always want to pass locals to it.</p>
-
-<h4>Radius Templates</h4>
-
-<table>
-  <tr>
-    <td>Dependency</td>
-    <td><a href="https://github.com/jlong/radius" title="Radius">Radius</a></td>
-  </tr>
-  <tr>
-    <td>File Extension</td>
-    <td><tt>.radius</tt></td>
-  </tr>
-  <tr>
-    <td>Example</td>
-    <td><tt>radius :index, :locals =&gt; { :key =&gt; 'value' }</tt></td>
-  </tr>
-</table>
-
-<p>Since you cannot call Ruby methods directly from a Radius template, you
 almost always want to pass locals to it.</p>
 
 <h4>Markaby Templates</h4>
@@ -909,146 +719,6 @@ almost always want to pass locals to it.</p>
   </tr>
 </table>
 
-<h4>Creole Templates</h4>
-
-<table>
-  <tr>
-    <td>Dependency</td>
-    <td><a href="https://github.com/minad/creole" title="Creole">Creole</a></td>
-  </tr>
-  <tr>
-    <td>File Extension</td>
-    <td><tt>.creole</tt></td>
-  </tr>
-  <tr>
-    <td>Example</td>
-    <td><tt>creole :wiki, :layout_engine =&gt; :erb</tt></td>
-  </tr>
-</table>
-
-<p>It is not possible to call methods from Creole, nor to pass locals to it. You
-therefore will usually use it in combination with another rendering engine:</p>
-
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">erb</span> <span class="ss">:overview</span><span class="p">,</span> <span class="ss">:locals</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="n">creole</span><span class="p">(</span><span class="ss">:introduction</span><span class="p">)</span> <span class="p">}</span>
-</code></pre>
-</div>
-
-<p>Note that you may also call the <code class="highlighter-rouge">creole</code> method from within other templates:</p>
-
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="o">%</span><span class="n">h1</span> <span class="no">Hello</span> <span class="no">From</span> <span class="no">Haml</span><span class="o">!</span>
-<span class="o">%</span><span class="nb">p</span><span class="o">=</span> <span class="n">creole</span><span class="p">(</span><span class="ss">:greetings</span><span class="p">)</span>
-</code></pre>
-</div>
-
-<p>Since you cannot call Ruby from Creole, you cannot use layouts written in
-Creole. However, it is possible to use another rendering engine for the
-template than for the layout by passing the <code class="highlighter-rouge">:layout_engine</code> option.</p>
-
-<h4>MediaWiki Templates</h4>
-
-<table>
-  <tr>
-    <td>Dependency</td>
-    <td><a href="https://github.com/nricciar/wikicloth" title="WikiCloth">WikiCloth</a></td>
-  </tr>
-  <tr>
-    <td>File Extension</td>
-    <td>
-<tt>.mediawiki</tt> and <tt>.mw</tt>
-</td>
-  </tr>
-  <tr>
-    <td>Example</td>
-    <td><tt>mediawiki :wiki, :layout_engine =&gt; :erb</tt></td>
-  </tr>
-</table>
-
-<p>It is not possible to call methods from MediaWiki markup, nor to pass
-locals to it. You therefore will usually use it in combination with
-another rendering engine:</p>
-
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">erb</span> <span class="ss">:overview</span><span class="p">,</span> <span class="ss">:locals</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="n">mediawiki</span><span class="p">(</span><span class="ss">:introduction</span><span class="p">)</span> <span class="p">}</span>
-</code></pre>
-</div>
-
-<p>Note that you may also call the <code class="highlighter-rouge">mediawiki</code> method from within other
-templates:</p>
-
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="o">%</span><span class="n">h1</span> <span class="no">Hello</span> <span class="no">From</span> <span class="no">Haml</span><span class="o">!</span>
-<span class="o">%</span><span class="nb">p</span><span class="o">=</span> <span class="n">mediawiki</span><span class="p">(</span><span class="ss">:greetings</span><span class="p">)</span>
-</code></pre>
-</div>
-
-<p>Since you cannot call Ruby from MediaWiki, you cannot use layouts written in
-MediaWiki. However, it is possible to use another rendering engine for the
-template than for the layout by passing the <code class="highlighter-rouge">:layout_engine</code> option.</p>
-
-<h4>CoffeeScript Templates</h4>
-
-<table>
-  <tr>
-    <td>Dependency</td>
-    <td>
-      <a href="https://github.com/josh/ruby-coffee-script" title="Ruby CoffeeScript">
-        CoffeeScript
-      </a> and a
-      <a href="https://github.com/sstephenson/execjs" title="ExecJS">
-        way to execute javascript
-      </a>
-    </td>
-  </tr>
-  <tr>
-    <td>File Extension</td>
-    <td><tt>.coffee</tt></td>
-  </tr>
-  <tr>
-    <td>Example</td>
-    <td><tt>coffee :index</tt></td>
-  </tr>
-</table>
-
-<h4>Stylus Templates</h4>
-
-<table>
-  <tr>
-    <td>Dependency</td>
-    <td>
-      <a href="https://github.com/forgecrafted/ruby-stylus" title="Ruby Stylus">
-        Stylus
-      </a> and a
-      <a href="https://github.com/sstephenson/execjs" title="ExecJS">
-        way to execute javascript
-      </a>
-    </td>
-  </tr>
-  <tr>
-    <td>File Extension</td>
-    <td><tt>.styl</tt></td>
-  </tr>
-  <tr>
-    <td>Example</td>
-    <td><tt>stylus :index</tt></td>
-  </tr>
-</table>
-
-<p>Before being able to use Stylus templates, you need to load <code class="highlighter-rouge">stylus</code> and
-<code class="highlighter-rouge">stylus/tilt</code> first:</p>
-
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="nb">require</span> <span class="s1">'sinatra'</span>
-<span class="nb">require</span> <span class="s1">'stylus'</span>
-<span class="nb">require</span> <span class="s1">'stylus/tilt'</span>
-
-<span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
-  <span class="n">stylus</span> <span class="ss">:example</span>
-<span class="k">end</span>
-</code></pre>
-</div>
-
 <h4>Yajl Templates</h4>
 
 <table>
@@ -1074,115 +744,79 @@ template than for the layout by passing the <code class="highlighter-rouge">:lay
 </table>
 
 <p>The template source is evaluated as a Ruby string, and the
-resulting json variable is converted using <code class="highlighter-rouge">#to_json</code>:</p>
+resulting json variable is converted using <code>#to_json</code>:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">json</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">:foo</span> <span class="o">=&gt;</span> <span class="s1">'bar'</span> <span class="p">}</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">json</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">:foo</span> <span class="o">=&gt;</span> <span class="s1">'bar'</span> <span class="p">}</span>
 <span class="n">json</span><span class="p">[</span><span class="ss">:baz</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>The <code class="highlighter-rouge">:callback</code> and <code class="highlighter-rouge">:variable</code> options can be used to decorate the rendered
+<p>The <code>:callback</code> and <code>:variable</code> options can be used to decorate the rendered
 object:</p>
 
-<div class="language-javascript highlighter-rouge">
-<pre class="highlight"><code><span class="kd">var</span> <span class="nx">resource</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"foo"</span><span class="p">:</span><span class="s2">"bar"</span><span class="p">,</span><span class="s2">"baz"</span><span class="p">:</span><span class="s2">"qux"</span><span class="p">};</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">resource</span> <span class="o">=</span> <span class="p">{</span><span class="dl">"</span><span class="s2">foo</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">bar</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">baz</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">qux</span><span class="dl">"</span><span class="p">};</span>
 <span class="nx">present</span><span class="p">(</span><span class="nx">resource</span><span class="p">);</span>
-</code></pre>
-</div>
-
-<h4>WLang Templates</h4>
-
-<table>
-  <tr>
-    <td>Dependency</td>
-    <td><a href="https://github.com/blambeau/wlang" title="WLang">WLang</a></td>
-  </tr>
-  <tr>
-    <td>File Extension</td>
-    <td><tt>.wlang</tt></td>
-  </tr>
-  <tr>
-    <td>Example</td>
-    <td><tt>wlang :index, :locals =&gt; { :key =&gt; 'value' }</tt></td>
-  </tr>
-</table>
-
-<p>Since calling ruby methods is not idiomatic in WLang, you almost always
-want to pass locals to it. Layouts written in WLang and <code class="highlighter-rouge">yield</code> are
-supported, though.</p>
+</code></pre></div></div>
 
 <h3>Accessing Variables in Templates</h3>
 
 <p>Templates are evaluated within the same context as route handlers. Instance
 variables set in route handlers are directly accessible by templates:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/:id'</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/:id'</span> <span class="k">do</span>
   <span class="vi">@foo</span> <span class="o">=</span> <span class="no">Foo</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">'id'</span><span class="p">])</span>
   <span class="n">haml</span> <span class="s1">'%h1= @foo.name'</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Or, specify an explicit Hash of local variables:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/:id'</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/:id'</span> <span class="k">do</span>
   <span class="n">foo</span> <span class="o">=</span> <span class="no">Foo</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">'id'</span><span class="p">])</span>
   <span class="n">haml</span> <span class="s1">'%h1= bar.name'</span><span class="p">,</span> <span class="ss">:locals</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:bar</span> <span class="o">=&gt;</span> <span class="n">foo</span> <span class="p">}</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>This is typically used when rendering templates as partials from within
 other templates.</p>
 
-<h3>Templates with <code class="highlighter-rouge">yield</code> and nested layouts</h3>
+<h3>Templates with <code>yield</code> and nested layouts</h3>
 
-<p>A layout is usually just a template that calls <code class="highlighter-rouge">yield</code>.
-Such a template can be used either through the <code class="highlighter-rouge">:template</code> option as
+<p>A layout is usually just a template that calls <code>yield</code>.
+Such a template can be used either through the <code>:template</code> option as
 described above, or it can be rendered with a block as follows:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">erb</span> <span class="ss">:post</span><span class="p">,</span> <span class="ss">:layout</span> <span class="o">=&gt;</span> <span class="kp">false</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">erb</span> <span class="ss">:post</span><span class="p">,</span> <span class="ss">:layout</span> <span class="o">=&gt;</span> <span class="kp">false</span> <span class="k">do</span>
   <span class="n">erb</span> <span class="ss">:index</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>This code is mostly equivalent to <code class="highlighter-rouge">erb :index, :layout =&gt; :post</code>.</p>
+<p>This code is mostly equivalent to <code>erb :index, :layout =&gt; :post</code>.</p>
 
 <p>Passing blocks to rendering methods is most useful for creating nested
 layouts:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">erb</span> <span class="ss">:main_layout</span><span class="p">,</span> <span class="ss">:layout</span> <span class="o">=&gt;</span> <span class="kp">false</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">erb</span> <span class="ss">:main_layout</span><span class="p">,</span> <span class="ss">:layout</span> <span class="o">=&gt;</span> <span class="kp">false</span> <span class="k">do</span>
   <span class="n">erb</span> <span class="ss">:admin_layout</span> <span class="k">do</span>
     <span class="n">erb</span> <span class="ss">:user</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>This can also be done in fewer lines of code with:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">erb</span> <span class="ss">:admin_layout</span><span class="p">,</span> <span class="ss">:layout</span> <span class="o">=&gt;</span> <span class="ss">:main_layout</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">erb</span> <span class="ss">:admin_layout</span><span class="p">,</span> <span class="ss">:layout</span> <span class="o">=&gt;</span> <span class="ss">:main_layout</span> <span class="k">do</span>
   <span class="n">erb</span> <span class="ss">:user</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>Currently, the following rendering methods accept a block: <code class="highlighter-rouge">erb</code>, <code class="highlighter-rouge">haml</code>,
-<code class="highlighter-rouge">liquid</code>, <code class="highlighter-rouge">slim </code>, <code class="highlighter-rouge">wlang</code>. Also the general <code class="highlighter-rouge">render</code> method accepts a block.</p>
+<p>Currently, the following rendering methods accept a block: <code>erb</code>, <code>haml</code>,
+<code>liquid</code>, <code>slim </code>. Also, the general <code>render</code> method accepts a block.</p>
 
-<h3 id="inline-templates">Inline Templates</h3>
+<h3>Inline Templates</h3>
 
 <p>Templates may be defined at the end of the source file:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="nb">require</span> <span class="s1">'sinatra'</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'sinatra'</span>
 
 <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
   <span class="n">haml</span> <span class="ss">:index</span>
@@ -1192,23 +826,21 @@ layouts:</p>
 
 @@ layout
 %html
-  = yield
+  != yield
 
 @@ index
 %div.title Hello world.
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 
-<p>NOTE: Inline templates defined in the source file that requires sinatra are
-automatically loaded. Call <code class="highlighter-rouge">enable :inline_templates</code> explicitly if you
+<p>NOTE: Inline templates defined in the source file that requires Sinatra are
+automatically loaded. Call <code>enable :inline_templates</code> explicitly if you
 have inline templates in other source files.</p>
 
 <h3>Named Templates</h3>
 
-<p>Templates may also be defined using the top-level <code class="highlighter-rouge">template</code> method:</p>
+<p>Templates may also be defined using the top-level <code>template</code> method:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">template</span> <span class="ss">:layout</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">template</span> <span class="ss">:layout</span> <span class="k">do</span>
   <span class="s2">"%html</span><span class="se">\n</span><span class="s2">  =yield</span><span class="se">\n</span><span class="s2">"</span>
 <span class="k">end</span>
 
@@ -1219,38 +851,32 @@ have inline templates in other source files.</p>
 <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
   <span class="n">haml</span> <span class="ss">:index</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>If a template named “layout” exists, it will be used each time a template
 is rendered. You can individually disable layouts by passing
-<code class="highlighter-rouge">:layout =&gt; false</code> or disable them by default via
-<code class="highlighter-rouge">set :haml, :layout =&gt; false</code>:</p>
+<code>:layout =&gt; false</code> or disable them by default via
+<code>set :haml, :layout =&gt; false</code>:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
   <span class="n">haml</span> <span class="ss">:index</span><span class="p">,</span> <span class="ss">:layout</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="n">request</span><span class="p">.</span><span class="nf">xhr?</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3>Associating File Extensions</h3>
 
 <p>To associate a file extension with a template engine, use
-<code class="highlighter-rouge">Tilt.register</code>. For instance, if you like to use the file extension
-<code class="highlighter-rouge">tt</code> for Textile templates, you can do the following:</p>
+<code>Tilt.register</code>. For instance, if you like to use the file extension
+<code>tt</code> for Haml templates, you can do the following:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="no">Tilt</span><span class="p">.</span><span class="nf">register</span> <span class="ss">:tt</span><span class="p">,</span> <span class="no">Tilt</span><span class="p">[</span><span class="ss">:textile</span><span class="p">]</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Tilt</span><span class="p">.</span><span class="nf">register</span> <span class="ss">:tt</span><span class="p">,</span> <span class="no">Tilt</span><span class="p">[</span><span class="ss">:haml</span><span class="p">]</span>
+</code></pre></div></div>
 
 <h3>Adding Your Own Template Engine</h3>
 
 <p>First, register your engine with Tilt, then create a rendering method:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="no">Tilt</span><span class="p">.</span><span class="nf">register</span> <span class="ss">:myat</span><span class="p">,</span> <span class="no">MyAwesomeTemplateEngine</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Tilt</span><span class="p">.</span><span class="nf">register</span> <span class="ss">:myat</span><span class="p">,</span> <span class="no">MyAwesomeTemplateEngine</span>
 
 <span class="n">helpers</span> <span class="k">do</span>
   <span class="k">def</span> <span class="nf">myat</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span> <span class="n">render</span><span class="p">(</span><span class="ss">:myat</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span> <span class="k">end</span>
@@ -1259,19 +885,17 @@ is rendered. You can individually disable layouts by passing
 <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
   <span class="n">myat</span> <span class="ss">:index</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>Renders <code class="highlighter-rouge">./views/index.myat</code>. Learn more about
+<p>Renders <code>./views/index.myat</code>. Learn more about
 <a href="https://github.com/rtomayko/tilt#readme">Tilt</a>.</p>
 
 <h3>Using Custom Logic for Template Lookup</h3>
 
 <p>To implement your own template lookup mechanism you can write your
-own <code class="highlighter-rouge">#find_template</code> method:</p>
+own <code>#find_template</code> method:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">configure</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">configure</span> <span class="k">do</span>
   <span class="n">set</span> <span class="ss">:views</span><span class="p">,</span> <span class="p">[</span> <span class="s1">'./views/a'</span><span class="p">,</span> <span class="s1">'./views/b'</span> <span class="p">]</span>
 <span class="k">end</span>
 
@@ -1280,8 +904,7 @@ own <code class="highlighter-rouge">#find_template</code> method:</p>
     <span class="k">super</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">name</span><span class="p">,</span> <span class="n">engine</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2>Filters</h2>
 
@@ -1289,8 +912,7 @@ own <code class="highlighter-rouge">#find_template</code> method:</p>
 as the routes will be and can modify the request and response. Instance
 variables set in filters are accessible by routes and templates:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">before</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">before</span> <span class="k">do</span>
   <span class="vi">@note</span> <span class="o">=</span> <span class="s1">'Hi!'</span>
   <span class="n">request</span><span class="p">.</span><span class="nf">path_info</span> <span class="o">=</span> <span class="s1">'/foo/bar/baz'</span>
 <span class="k">end</span>
@@ -1299,59 +921,51 @@ variables set in filters are accessible by routes and templates:</p>
   <span class="vi">@note</span> <span class="c1">#=&gt; 'Hi!'</span>
   <span class="n">params</span><span class="p">[</span><span class="s1">'splat'</span><span class="p">]</span> <span class="c1">#=&gt; 'bar/baz'</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>After filters are evaluated after each request within the same context
 as the routes will be and can also modify the request and response.
 Instance variables set in before filters and routes are accessible by
 after filters:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">after</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">after</span> <span class="k">do</span>
   <span class="nb">puts</span> <span class="n">response</span><span class="p">.</span><span class="nf">status</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>Note: Unless you use the <code class="highlighter-rouge">body</code> method rather than just returning a
+<p>Note: Unless you use the <code>body</code> method rather than just returning a
 String from the routes, the body will not yet be available in the after
 filter, since it is generated later on.</p>
 
 <p>Filters optionally take a pattern, causing them to be evaluated only if the
 request path matches that pattern:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">before</span> <span class="s1">'/protected/*'</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">before</span> <span class="s1">'/protected/*'</span> <span class="k">do</span>
   <span class="n">authenticate!</span>
 <span class="k">end</span>
 
 <span class="n">after</span> <span class="s1">'/create/:slug'</span> <span class="k">do</span> <span class="o">|</span><span class="n">slug</span><span class="o">|</span>
   <span class="n">session</span><span class="p">[</span><span class="ss">:last_slug</span><span class="p">]</span> <span class="o">=</span> <span class="n">slug</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Like routes, filters also take conditions:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">before</span> <span class="ss">:agent</span> <span class="o">=&gt;</span> <span class="sr">/Songbird/</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">before</span> <span class="ss">:agent</span> <span class="o">=&gt;</span> <span class="sr">/Songbird/</span> <span class="k">do</span>
   <span class="c1"># ...</span>
 <span class="k">end</span>
 
 <span class="n">after</span> <span class="s1">'/blog/*'</span><span class="p">,</span> <span class="ss">:host_name</span> <span class="o">=&gt;</span> <span class="s1">'example.com'</span> <span class="k">do</span>
   <span class="c1"># ...</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2>Helpers</h2>
 
-<p>Use the top-level <code class="highlighter-rouge">helpers</code> method to define helper methods for use in
+<p>Use the top-level <code>helpers</code> method to define helper methods for use in
 route handlers and templates:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">helpers</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">helpers</span> <span class="k">do</span>
   <span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
     <span class="s2">"</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">bar"</span>
   <span class="k">end</span>
@@ -1360,13 +974,11 @@ route handlers and templates:</p>
 <span class="n">get</span> <span class="s1">'/:name'</span> <span class="k">do</span>
   <span class="n">bar</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">'name'</span><span class="p">])</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Alternatively, helper methods can be separately defined in a module:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="k">module</span> <span class="nn">FooUtils</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nn">FooUtils</span>
   <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">foo"</span> <span class="k">end</span>
 <span class="k">end</span>
 
@@ -1375,18 +987,16 @@ route handlers and templates:</p>
 <span class="k">end</span>
 
 <span class="n">helpers</span> <span class="no">FooUtils</span><span class="p">,</span> <span class="no">BarUtils</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>The effect is the same as including the modules in the application class.</p>
 
-<h3 id="using-sessions">Using Sessions</h3>
+<h3>Using Sessions</h3>
 
 <p>A session is used to keep state during requests. If activated, you have one
 session hash per user session:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">enable</span> <span class="ss">:sessions</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">enable</span> <span class="ss">:sessions</span>
 
 <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
   <span class="s2">"value = "</span> <span class="o">&lt;&lt;</span> <span class="n">session</span><span class="p">[</span><span class="ss">:value</span><span class="p">].</span><span class="nf">inspect</span>
@@ -1395,15 +1005,14 @@ session hash per user session:</p>
 <span class="n">get</span> <span class="s1">'/:value'</span> <span class="k">do</span>
   <span class="n">session</span><span class="p">[</span><span class="s1">'value'</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s1">'value'</span><span class="p">]</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h4>Session Secret Security</h4>
 
 <p>To improve security, the session data in the cookie is signed with a session
-secret using <code class="highlighter-rouge">HMAC-SHA1</code>. This session secret should optimally be a
+secret using <code>HMAC-SHA1</code>. This session secret should optimally be a
 cryptographically secure random value of an appropriate length which for
-<code class="highlighter-rouge">HMAC-SHA1</code> is greater than or equal to 64 bytes (512 bits, 128 hex
+<code>HMAC-SHA1</code> is greater than or equal to 64 bytes (512 bits, 128 hex
 characters). You would be advised not to use a secret that is less than 32
 bytes of randomness (256 bits, 64 hex characters). It is therefore <strong>very
 important</strong> that you don’t just make the secret up, but instead use a secure
@@ -1421,24 +1030,21 @@ not what you want.</p>
 secret and store it in an environment variable on each host running your
 application so that all of your application instances will share the same
 secret. You should periodically rotate this session secret to a new value.
-Here are some examples of how you might create a 64 byte secret and set it:</p>
+Here are some examples of how you might create a 64-byte secret and set it:</p>
 
 <p><strong>Session Secret Generation</strong></p>
 
-<div class="language-text highlighter-rouge">
-<pre class="highlight"><code>$ ruby -e "require 'securerandom'; puts SecureRandom.hex(64)"
+<pre><code class="language-text">$ ruby -e "require 'securerandom'; puts SecureRandom.hex(64)"
 99ae8af...snip...ec0f262ac
 </code></pre>
-</div>
 
 <p><strong>Session Secret Generation (Bonus Points)</strong></p>
 
 <p>Use the <a href="https://github.com/cryptosphere/sysrandom#readme">sysrandom gem</a> to
-prefer use of system RNG facilities to generate random values instead of
-userspace <code class="highlighter-rouge">OpenSSL</code> which MRI Ruby currently defaults to:</p>
+use the system RNG facilities to generate random values instead of
+userspace <code>OpenSSL</code> which MRI Ruby currently defaults to:</p>
 
-<div class="language-text highlighter-rouge">
-<pre class="highlight"><code>$ gem install sysrandom
+<pre><code class="language-text">$ gem install sysrandom
 Building native extensions.  This could take a while...
 Successfully installed sysrandom-1.x
 1 gem installed
@@ -1446,75 +1052,62 @@ Successfully installed sysrandom-1.x
 $ ruby -e "require 'sysrandom/securerandom'; puts SecureRandom.hex(64)"
 99ae8af...snip...ec0f262ac
 </code></pre>
-</div>
 
 <p><strong>Session Secret Environment Variable</strong></p>
 
-<p>Set a <code class="highlighter-rouge">SESSION_SECRET</code> environment variable for Sinatra to the value you
+<p>Set a <code>SESSION_SECRET</code> environment variable for Sinatra to the value you
 generated. Make this value persistent across reboots of your host. Since the
 method for doing this will vary across systems this is for illustrative
 purposes only:</p>
 
-<div class="language-bash highlighter-rouge">
-<pre class="highlight"><code><span class="c"># echo "export SESSION_SECRET=99ae8af...snip...ec0f262ac" &gt;&gt; ~/.bashrc</span>
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># echo "export SESSION_SECRET=99ae8af...snip...ec0f262ac" &gt;&gt; ~/.bashrc</span>
+</code></pre></div></div>
 
 <p><strong>Session Secret App Config</strong></p>
 
-<p>Setup your app config to fail-safe to a secure random secret
-if the <code class="highlighter-rouge">SESSION_SECRET</code> environment variable is not available.</p>
+<p>Set up your app config to fail-safe to a secure random secret
+if the <code>SESSION_SECRET</code> environment variable is not available.</p>
 
 <p>For bonus points use the <a href="https://github.com/cryptosphere/sysrandom#readme">sysrandom
 gem</a> here as well:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="nb">require</span> <span class="s1">'securerandom'</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'securerandom'</span>
 <span class="c1"># -or- require 'sysrandom/securerandom'</span>
 <span class="n">set</span> <span class="ss">:session_secret</span><span class="p">,</span> <span class="no">ENV</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="s1">'SESSION_SECRET'</span><span class="p">)</span> <span class="p">{</span> <span class="no">SecureRandom</span><span class="p">.</span><span class="nf">hex</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span> <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h4>Session Config</h4>
 
 <p>If you want to configure it further, you may also store a hash with options
-in the <code class="highlighter-rouge">sessions</code> setting:</p>
+in the <code>sessions</code> setting:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">set</span> <span class="ss">:sessions</span><span class="p">,</span> <span class="ss">:domain</span> <span class="o">=&gt;</span> <span class="s1">'foo.com'</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set</span> <span class="ss">:sessions</span><span class="p">,</span> <span class="ss">:domain</span> <span class="o">=&gt;</span> <span class="s1">'foo.com'</span>
+</code></pre></div></div>
 
 <p>To share your session across other apps on subdomains of foo.com, prefix the
 domain with a <em>.</em> like this instead:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">set</span> <span class="ss">:sessions</span><span class="p">,</span> <span class="ss">:domain</span> <span class="o">=&gt;</span> <span class="s1">'.foo.com'</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set</span> <span class="ss">:sessions</span><span class="p">,</span> <span class="ss">:domain</span> <span class="o">=&gt;</span> <span class="s1">'.foo.com'</span>
+</code></pre></div></div>
 
 <h4>Choosing Your Own Session Middleware</h4>
 
-<p>Note that <code class="highlighter-rouge">enable :sessions</code> actually stores all data in a cookie. This
+<p>Note that <code>enable :sessions</code> actually stores all data in a cookie. This
 might not always be what you want (storing lots of data will increase your
 traffic, for instance). You can use any Rack session middleware in order to
 do so, one of the following methods can be used:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">enable</span> <span class="ss">:sessions</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">enable</span> <span class="ss">:sessions</span>
 <span class="n">set</span> <span class="ss">:session_store</span><span class="p">,</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Session</span><span class="o">::</span><span class="no">Pool</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Or to set up sessions with a hash of options:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">set</span> <span class="ss">:sessions</span><span class="p">,</span> <span class="ss">:expire_after</span> <span class="o">=&gt;</span> <span class="mi">2592000</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set</span> <span class="ss">:sessions</span><span class="p">,</span> <span class="ss">:expire_after</span> <span class="o">=&gt;</span> <span class="mi">2592000</span>
 <span class="n">set</span> <span class="ss">:session_store</span><span class="p">,</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Session</span><span class="o">::</span><span class="no">Pool</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>Another option is to <strong>not</strong> call <code class="highlighter-rouge">enable :sessions</code>, but instead pull in
+<p>Another option is to <strong>not</strong> call <code>enable :sessions</code>, but instead pull in
 your middleware of choice as you would any other middleware.</p>
 
 <p>It is important to note that when using this method, session based
@@ -1522,12 +1115,10 @@ protection <strong>will not be enabled by default</strong>.</p>
 
 <p>The Rack middleware to do that will also need to be added:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Session</span><span class="o">::</span><span class="no">Pool</span><span class="p">,</span> <span class="ss">:expire_after</span> <span class="o">=&gt;</span> <span class="mi">2592000</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Session</span><span class="o">::</span><span class="no">Pool</span><span class="p">,</span> <span class="ss">:expire_after</span> <span class="o">=&gt;</span> <span class="mi">2592000</span>
 <span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Protection</span><span class="o">::</span><span class="no">RemoteToken</span>
 <span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Protection</span><span class="o">::</span><span class="no">SessionHijacking</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>See ‘<a href="#configuring-attack-protection">Configuring attack protection</a>’ for more information.</p>
 
@@ -1535,52 +1126,39 @@ protection <strong>will not be enabled by default</strong>.</p>
 
 <p>To immediately stop a request within a filter or route use:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">halt</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">halt</span>
+</code></pre></div></div>
 
 <p>You can also specify the status when halting:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">halt</span> <span class="mi">410</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">halt</span> <span class="mi">410</span>
+</code></pre></div></div>
 
 <p>Or the body:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">halt</span> <span class="s1">'this will be the body'</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">halt</span> <span class="s1">'this will be the body'</span>
+</code></pre></div></div>
 
 <p>Or both:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">halt</span> <span class="mi">401</span><span class="p">,</span> <span class="s1">'go away!'</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">halt</span> <span class="mi">401</span><span class="p">,</span> <span class="s1">'go away!'</span>
+</code></pre></div></div>
 
 <p>With headers:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">halt</span> <span class="mi">402</span><span class="p">,</span> <span class="p">{</span><span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'text/plain'</span><span class="p">},</span> <span class="s1">'revenge'</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">halt</span> <span class="mi">402</span><span class="p">,</span> <span class="p">{</span><span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'text/plain'</span><span class="p">},</span> <span class="s1">'revenge'</span>
+</code></pre></div></div>
 
-<p>It is of course possible to combine a template with <code class="highlighter-rouge">halt</code>:</p>
+<p>It is of course possible to combine a template with <code>halt</code>:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">halt</span> <span class="n">erb</span><span class="p">(</span><span class="ss">:error</span><span class="p">)</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">halt</span> <span class="n">erb</span><span class="p">(</span><span class="ss">:error</span><span class="p">)</span>
+</code></pre></div></div>
 
 <h3>Passing</h3>
 
-<p>A route can punt processing to the next matching route using <code class="highlighter-rouge">pass</code>:</p>
+<p>A route can punt processing to the next matching route using <code>pass</code>:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/guess/:who'</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/guess/:who'</span> <span class="k">do</span>
   <span class="n">pass</span> <span class="k">unless</span> <span class="n">params</span><span class="p">[</span><span class="s1">'who'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'Frank'</span>
   <span class="s1">'You got me!'</span>
 <span class="k">end</span>
@@ -1588,19 +1166,17 @@ protection <strong>will not be enabled by default</strong>.</p>
 <span class="n">get</span> <span class="s1">'/guess/*'</span> <span class="k">do</span>
   <span class="s1">'You missed!'</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>The route block is immediately exited and control continues with the next
 matching route. If no matching route is found, a 404 is returned.</p>
 
 <h3>Triggering Another Route</h3>
 
-<p>Sometimes <code class="highlighter-rouge">pass</code> is not what you want, instead you would like to get the
-result of calling another route. Simply use <code class="highlighter-rouge">call</code> to achieve this:</p>
+<p>Sometimes <code>pass</code> is not what you want, instead, you would like to get the
+result of calling another route. Simply use <code>call</code> to achieve this:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
   <span class="n">status</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">body</span> <span class="o">=</span> <span class="n">call</span> <span class="n">env</span><span class="p">.</span><span class="nf">merge</span><span class="p">(</span><span class="s2">"PATH_INFO"</span> <span class="o">=&gt;</span> <span class="s1">'/bar'</span><span class="p">)</span>
   <span class="p">[</span><span class="n">status</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">body</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:upcase</span><span class="p">)]</span>
 <span class="k">end</span>
@@ -1608,75 +1184,68 @@ result of calling another route. Simply use <code class="highlighter-rouge">call
 <span class="n">get</span> <span class="s1">'/bar'</span> <span class="k">do</span>
   <span class="s2">"bar"</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Note that in the example above, you would ease testing and increase
-performance by simply moving <code class="highlighter-rouge">"bar"</code> into a helper used by both <code class="highlighter-rouge">/foo</code> and
-<code class="highlighter-rouge">/bar</code>.</p>
+performance by simply moving <code>"bar"</code> into a helper used by both <code>/foo</code> and
+<code>/bar</code>.</p>
 
 <p>If you want the request to be sent to the same application instance rather
-than a duplicate, use <code class="highlighter-rouge">call!</code> instead of <code class="highlighter-rouge">call</code>.</p>
+than a duplicate, use <code>call!</code> instead of <code>call</code>.</p>
 
-<p>Check out the Rack specification if you want to learn more about <code class="highlighter-rouge">call</code>.</p>
+<p>Check out the Rack specification if you want to learn more about <code>call</code>.</p>
 
-<h3>Setting Body, Status Code and Headers</h3>
+<h3>Setting Body, Status Code, and Headers</h3>
 
 <p>It is possible and recommended to set the status code and response body with
-the return value of the route block. However, in some scenarios you might
+the return value of the route block. However, in some scenarios, you might
 want to set the body at an arbitrary point in the execution flow. You can do
-so with the <code class="highlighter-rouge">body</code> helper method. If you do so, you can use that method from
-there on to access the body:</p>
+so with the <code>body</code> helper method. If you do so, you can use that method from
+thereon to access the body:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
   <span class="n">body</span> <span class="s2">"bar"</span>
 <span class="k">end</span>
 
 <span class="n">after</span> <span class="k">do</span>
   <span class="nb">puts</span> <span class="n">body</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>It is also possible to pass a block to <code class="highlighter-rouge">body</code>, which will be executed by the
+<p>It is also possible to pass a block to <code>body</code>, which will be executed by the
 Rack handler (this can be used to implement streaming, <a href="#return-values">see “Return Values”</a>).</p>
 
 <p>Similar to the body, you can also set the status code and headers:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
   <span class="n">status</span> <span class="mi">418</span>
   <span class="n">headers</span> <span class="p">\</span>
     <span class="s2">"Allow"</span>   <span class="o">=&gt;</span> <span class="s2">"BREW, POST, GET, PROPFIND, WHEN"</span><span class="p">,</span>
     <span class="s2">"Refresh"</span> <span class="o">=&gt;</span> <span class="s2">"Refresh: 20; https://ietf.org/rfc/rfc2324.txt"</span>
-  <span class="n">body</span> <span class="s2">"I'm a tea pot!"</span>
+  <span class="n">body</span> <span class="s2">"I'm a teapot!"</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>Like <code class="highlighter-rouge">body</code>, <code class="highlighter-rouge">headers</code> and <code class="highlighter-rouge">status</code> with no arguments can be used to access
+<p>Like <code>body</code>, <code>headers</code> and <code>status</code> with no arguments can be used to access
 their current values.</p>
 
-<h3 id="streaming-responses">Streaming Responses</h3>
+<h3>Streaming Responses</h3>
 
 <p>Sometimes you want to start sending out data while still generating parts of
 the response body. In extreme examples, you want to keep sending data until
-the client closes the connection. You can use the <code class="highlighter-rouge">stream</code> helper to avoid
+the client closes the connection. You can use the <code>stream</code> helper to avoid
 creating your own wrapper:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
   <span class="n">stream</span> <span class="k">do</span> <span class="o">|</span><span class="n">out</span><span class="o">|</span>
     <span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="s2">"It's gonna be legen -</span><span class="se">\n</span><span class="s2">"</span>
-    <span class="nb">sleep</span> <span class="mi">0</span><span class="o">.</span><span class="mi">5</span>
+    <span class="nb">sleep</span> <span class="mf">0.5</span>
     <span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="s2">" (wait for it) </span><span class="se">\n</span><span class="s2">"</span>
     <span class="nb">sleep</span> <span class="mi">1</span>
     <span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="s2">"- dary!</span><span class="se">\n</span><span class="s2">"</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>This allows you to implement streaming APIs,
 <a href="https://w3c.github.io/eventsource/">Server Sent Events</a>, and can be used as
@@ -1685,143 +1254,141 @@ also be used to increase throughput if some but not all content depends on a
 slow resource.</p>
 
 <p>Note that the streaming behavior, especially the number of concurrent
-requests, highly depends on the web server used to serve the application.
+requests, highly depends on the webserver used to serve the application.
 Some servers might not even support streaming at all. If the server does not
 support streaming, the body will be sent all at once after the block passed
-to <code class="highlighter-rouge">stream</code> finishes executing. Streaming does not work at all with Shotgun.</p>
+to <code>stream</code> finishes executing. Streaming does not work at all with Shotgun.</p>
 
-<p>If the optional parameter is set to <code class="highlighter-rouge">keep_open</code>, it will not call <code class="highlighter-rouge">close</code> on
+<p>If the optional parameter is set to <code>keep_open</code>, it will not call <code>close</code> on
 the stream object, allowing you to close it at any later point in the
-execution flow. This only works on evented servers, like Thin and Rainbows.
+execution flow. This only works on evented servers, like Rainbows.
 Other servers will still close the stream:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="c1"># long polling</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># config.ru</span>
+<span class="nb">require</span> <span class="s1">'sinatra/base'</span>
 
-<span class="n">set</span> <span class="ss">:server</span><span class="p">,</span> <span class="ss">:thin</span>
-<span class="n">connections</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">class</span> <span class="nc">App</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">connections</span> <span class="o">=</span> <span class="p">[]</span>
 
-<span class="n">get</span> <span class="s1">'/subscribe'</span> <span class="k">do</span>
-  <span class="c1"># register a client's interest in server events</span>
-  <span class="n">stream</span><span class="p">(</span><span class="ss">:keep_open</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">out</span><span class="o">|</span>
-    <span class="n">connections</span> <span class="o">&lt;&lt;</span> <span class="n">out</span>
-    <span class="c1"># purge dead connections</span>
-    <span class="n">connections</span><span class="p">.</span><span class="nf">reject!</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:closed?</span><span class="p">)</span>
+  <span class="n">get</span> <span class="s1">'/subscribe'</span><span class="p">,</span> <span class="ss">provides: </span><span class="s1">'text/event-stream'</span>  <span class="k">do</span>
+    <span class="c1"># register a client's interest in server events</span>
+    <span class="n">stream</span><span class="p">(</span><span class="ss">:keep_open</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">out</span><span class="o">|</span>
+      <span class="n">connections</span> <span class="o">&lt;&lt;</span> <span class="n">out</span>
+      <span class="c1"># purge dead connections</span>
+      <span class="n">connections</span><span class="p">.</span><span class="nf">reject!</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:closed?</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="n">post</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="n">connections</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">out</span><span class="o">|</span>
+      <span class="c1"># notify client that a new message has arrived</span>
+      <span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="s2">"data: </span><span class="si">#{</span><span class="n">params</span><span class="p">[</span><span class="ss">:msg</span><span class="p">]</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">"</span>
+
+      <span class="c1"># indicate client to connect again</span>
+      <span class="n">out</span><span class="p">.</span><span class="nf">close</span>
+    <span class="k">end</span>
+
+    <span class="mi">204</span> <span class="c1"># response without entity body</span>
   <span class="k">end</span>
 <span class="k">end</span>
 
-<span class="n">post</span> <span class="s1">'/:message'</span> <span class="k">do</span>
-  <span class="n">connections</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">out</span><span class="o">|</span>
-    <span class="c1"># notify client that a new message has arrived</span>
-    <span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="n">params</span><span class="p">[</span><span class="s1">'message'</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
+<span class="n">run</span> <span class="no">App</span>
+</code></pre></div></div>
 
-    <span class="c1"># indicate client to connect again</span>
-    <span class="n">out</span><span class="p">.</span><span class="nf">close</span>
-  <span class="k">end</span>
-
-  <span class="c1"># acknowledge</span>
-  <span class="s2">"message received"</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># rainbows.conf</span>
+<span class="no">Rainbows</span><span class="o">!</span> <span class="k">do</span>
+  <span class="n">use</span> <span class="ss">:EventMachine</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+<span class="o">~~~~</span><span class="sb">`
+
+Run:
+
+~~~~shell
+rainbows -c rainbows.conf
+</span></code></pre></div></div>
 
 <p>It’s also possible for the client to close the connection when trying to
 write to the socket. Because of this, it’s recommended to check
-<code class="highlighter-rouge">out.closed?</code> before trying to write.</p>
+<code>out.closed?</code> before trying to write.</p>
 
 <h3>Logging</h3>
 
-<p>In the request scope, the <code class="highlighter-rouge">logger</code> helper exposes a <code class="highlighter-rouge">Logger</code> instance:</p>
+<p>In the request scope, the <code>logger</code> helper exposes a <code>Logger</code> instance:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
   <span class="n">logger</span><span class="p">.</span><span class="nf">info</span> <span class="s2">"loading data"</span>
   <span class="c1"># ...</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>This logger will automatically take your Rack handler’s logging settings into
 account. If logging is disabled, this method will return a dummy object, so
 you do not have to worry about it in your routes and filters.</p>
 
-<p>Note that logging is only enabled for <code class="highlighter-rouge">Sinatra::Application</code> by default, so
-if you inherit from <code class="highlighter-rouge">Sinatra::Base</code>, you probably want to enable it yourself:</p>
+<p>Note that logging is only enabled for <code>Sinatra::Application</code> by default, so
+if you inherit from <code>Sinatra::Base</code>, you probably want to enable it yourself:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="k">class</span> <span class="nc">MyApp</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MyApp</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
   <span class="n">configure</span> <span class="ss">:production</span><span class="p">,</span> <span class="ss">:development</span> <span class="k">do</span>
     <span class="n">enable</span> <span class="ss">:logging</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>To avoid any logging middleware to be set up, set the <code class="highlighter-rouge">logging</code> setting to
-<code class="highlighter-rouge">nil</code>. However, keep in mind that <code class="highlighter-rouge">logger</code> will in that case return <code class="highlighter-rouge">nil</code>. A
+<p>To avoid any logging middleware to be set up, set the <code>logging</code> option to
+<code>nil</code>. However, keep in mind that <code>logger</code> will in that case return <code>nil</code>. A
 common use case is when you want to set your own logger. Sinatra will use
-whatever it will find in <code class="highlighter-rouge">env['rack.logger']</code>.</p>
+whatever it will find in <code>env['rack.logger']</code>.</p>
 
 <h3>Mime Types</h3>
 
-<p>When using <code class="highlighter-rouge">send_file</code> or static files you may have mime types Sinatra
-doesn’t understand. Use <code class="highlighter-rouge">mime_type</code> to register them by file extension:</p>
+<p>When using <code>send_file</code> or static files you may have mime types Sinatra
+doesn’t understand. Use <code>mime_type</code> to register them by file extension:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">configure</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">configure</span> <span class="k">do</span>
   <span class="n">mime_type</span> <span class="ss">:foo</span><span class="p">,</span> <span class="s1">'text/foo'</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>You can also use it with the <code class="highlighter-rouge">content_type</code> helper:</p>
+<p>You can also use it with the <code>content_type</code> helper:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
   <span class="n">content_type</span> <span class="ss">:foo</span>
   <span class="s2">"foo foo foo"</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3>Generating URLs</h3>
 
-<p>For generating URLs you should use the <code class="highlighter-rouge">url</code> helper method, for instance, in
+<p>For generating URLs you should use the <code>url</code> helper method, for instance, in
 Haml:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="o">%</span><span class="n">a</span><span class="p">{</span><span class="ss">:href</span> <span class="o">=&gt;</span> <span class="n">url</span><span class="p">(</span><span class="s1">'/foo'</span><span class="p">)}</span> <span class="n">foo</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%</span><span class="n">a</span><span class="p">{</span><span class="ss">:href</span> <span class="o">=&gt;</span> <span class="n">url</span><span class="p">(</span><span class="s1">'/foo'</span><span class="p">)}</span> <span class="n">foo</span>
+</code></pre></div></div>
 
-<p>It takes reverse proxies and Rack routers into account, if present.</p>
+<p>It takes reverse proxies and Rack routers into account - if present.</p>
 
-<p>This method is also aliased to <code class="highlighter-rouge">to</code> (see <a href="#browser-redirect">below</a> for an example).</p>
+<p>This method is also aliased to <code>to</code> (see <a href="#browser-redirect">below</a> for an example).</p>
 
 <h3>Browser Redirect</h3>
 
-<p>You can trigger a browser redirect with the <code class="highlighter-rouge">redirect</code> helper method:</p>
+<p>You can trigger a browser redirect with the <code>redirect</code> helper method:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
   <span class="n">redirect</span> <span class="n">to</span><span class="p">(</span><span class="s1">'/bar'</span><span class="p">)</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>Any additional parameters are handled like arguments passed to <code class="highlighter-rouge">halt</code>:</p>
+<p>Any additional parameters are handled like arguments passed to <code>halt</code>:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">redirect</span> <span class="n">to</span><span class="p">(</span><span class="s1">'/bar'</span><span class="p">),</span> <span class="mi">303</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">redirect</span> <span class="n">to</span><span class="p">(</span><span class="s1">'/bar'</span><span class="p">),</span> <span class="mi">303</span>
 <span class="n">redirect</span> <span class="s1">'http://www.google.com/'</span><span class="p">,</span> <span class="s1">'wrong place, buddy'</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>You can also easily redirect back to the page the user came from with
-<code class="highlighter-rouge">redirect back</code>:</p>
+<code>redirect back</code>:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
   <span class="s2">"&lt;a href='/bar'&gt;do something&lt;/a&gt;"</span>
 <span class="k">end</span>
 
@@ -1829,20 +1396,16 @@ Haml:</p>
   <span class="n">do_something</span>
   <span class="n">redirect</span> <span class="n">back</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>To pass arguments with a redirect, either add them to the query:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">redirect</span> <span class="n">to</span><span class="p">(</span><span class="s1">'/bar?sum=42'</span><span class="p">)</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">redirect</span> <span class="n">to</span><span class="p">(</span><span class="s1">'/bar?sum=42'</span><span class="p">)</span>
+</code></pre></div></div>
 
 <p>Or use a session:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">enable</span> <span class="ss">:sessions</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">enable</span> <span class="ss">:sessions</span>
 
 <span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
   <span class="n">session</span><span class="p">[</span><span class="ss">:secret</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'foo'</span>
@@ -1852,72 +1415,60 @@ Haml:</p>
 <span class="n">get</span> <span class="s1">'/bar'</span> <span class="k">do</span>
   <span class="n">session</span><span class="p">[</span><span class="ss">:secret</span><span class="p">]</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<h3 id="cache-control">Cache Control</h3>
+<h3>Cache Control</h3>
 
 <p>Setting your headers correctly is the foundation for proper HTTP caching.</p>
 
 <p>You can easily set the Cache-Control header like this:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
   <span class="n">cache_control</span> <span class="ss">:public</span>
   <span class="s2">"cache it!"</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Pro tip: Set up caching in a before filter:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">before</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">before</span> <span class="k">do</span>
   <span class="n">cache_control</span> <span class="ss">:public</span><span class="p">,</span> <span class="ss">:must_revalidate</span><span class="p">,</span> <span class="ss">:max_age</span> <span class="o">=&gt;</span> <span class="mi">60</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>If you are using the <code class="highlighter-rouge">expires</code> helper to set the corresponding header,
-<code class="highlighter-rouge">Cache-Control</code> will be set automatically for you:</p>
+<p>If you are using the <code>expires</code> helper to set the corresponding header,
+<code>Cache-Control</code> will be set automatically for you:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">before</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">before</span> <span class="k">do</span>
   <span class="n">expires</span> <span class="mi">500</span><span class="p">,</span> <span class="ss">:public</span><span class="p">,</span> <span class="ss">:must_revalidate</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>To properly use caches, you should consider using <code class="highlighter-rouge">etag</code> or <code class="highlighter-rouge">last_modified</code>.
+<p>To properly use caches, you should consider using <code>etag</code> or <code>last_modified</code>.
 It is recommended to call those helpers <em>before</em> doing any heavy lifting, as
 they will immediately flush a response if the client already has the current
 version in its cache:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s2">"/article/:id"</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s2">"/article/:id"</span> <span class="k">do</span>
   <span class="vi">@article</span> <span class="o">=</span> <span class="no">Article</span><span class="p">.</span><span class="nf">find</span> <span class="n">params</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span>
   <span class="n">last_modified</span> <span class="vi">@article</span><span class="p">.</span><span class="nf">updated_at</span>
   <span class="n">etag</span> <span class="vi">@article</span><span class="p">.</span><span class="nf">sha1</span>
   <span class="n">erb</span> <span class="ss">:article</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>It is also possible to use a
 <a href="https://en.wikipedia.org/wiki/HTTP_ETag#Strong_and_weak_validation">weak ETag</a>:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">etag</span> <span class="vi">@article</span><span class="p">.</span><span class="nf">sha1</span><span class="p">,</span> <span class="ss">:weak</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">etag</span> <span class="vi">@article</span><span class="p">.</span><span class="nf">sha1</span><span class="p">,</span> <span class="ss">:weak</span>
+</code></pre></div></div>
 
 <p>These helpers will not do any caching for you, but rather feed the necessary
 information to your cache. If you are looking for a quick
 reverse-proxy caching solution, try
 <a href="https://github.com/rtomayko/rack-cache#readme">rack-cache</a>:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="nb">require</span> <span class="s2">"rack/cache"</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s2">"rack/cache"</span>
 <span class="nb">require</span> <span class="s2">"sinatra"</span>
 
 <span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Cache</span>
@@ -1927,54 +1478,45 @@ reverse-proxy caching solution, try
   <span class="nb">sleep</span> <span class="mi">5</span>
   <span class="s2">"hello"</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>Use the <code class="highlighter-rouge">:static_cache_control</code> setting (see <a href="#static-cache-control">below</a>) to add
-<code class="highlighter-rouge">Cache-Control</code> header info to static files.</p>
+<p>Use the <code>:static_cache_control</code> setting (see <a href="#cache-control">below</a>) to add
+<code>Cache-Control</code> header info to static files.</p>
 
 <p>According to RFC 2616, your application should behave differently if the
-If-Match or If-None-Match header is set to <code class="highlighter-rouge">*</code>, depending on whether the
+If-Match or If-None-Match header is set to <code>*</code>, depending on whether the
 resource requested is already in existence. Sinatra assumes resources for
 safe (like get) and idempotent (like put) requests are already in existence,
 whereas other resources (for instance post requests) are treated as new
-resources. You can change this behavior by passing in a <code class="highlighter-rouge">:new_resource</code>
+resources. You can change this behavior by passing in a <code>:new_resource</code>
 option:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/create'</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/create'</span> <span class="k">do</span>
   <span class="n">etag</span> <span class="s1">''</span><span class="p">,</span> <span class="ss">:new_resource</span> <span class="o">=&gt;</span> <span class="kp">true</span>
   <span class="no">Article</span><span class="p">.</span><span class="nf">create</span>
   <span class="n">erb</span> <span class="ss">:new_article</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>If you still want to use a weak ETag, pass in a <code class="highlighter-rouge">:kind</code> option:</p>
+<p>If you still want to use a weak ETag, pass in a <code>:kind</code> option:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">etag</span> <span class="s1">''</span><span class="p">,</span> <span class="ss">:new_resource</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">:kind</span> <span class="o">=&gt;</span> <span class="ss">:weak</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">etag</span> <span class="s1">''</span><span class="p">,</span> <span class="ss">:new_resource</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">:kind</span> <span class="o">=&gt;</span> <span class="ss">:weak</span>
+</code></pre></div></div>
 
 <h3>Sending Files</h3>
 
-<p>To return the contents of a file as the response, you can use the <code class="highlighter-rouge">send_file</code>
+<p>To return the contents of a file as the response, you can use the <code>send_file</code>
 helper method:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
   <span class="n">send_file</span> <span class="s1">'foo.png'</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>It also takes options:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">send_file</span> <span class="s1">'foo.png'</span><span class="p">,</span> <span class="ss">:type</span> <span class="o">=&gt;</span> <span class="ss">:jpg</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">send_file</span> <span class="s1">'foo.png'</span><span class="p">,</span> <span class="ss">:type</span> <span class="o">=&gt;</span> <span class="ss">:jpg</span>
+</code></pre></div></div>
 
 <p>The options are:</p>
 
@@ -2010,10 +1552,9 @@ helper method:</p>
 <h3>Accessing the Request Object</h3>
 
 <p>The incoming request object can be accessed from request level (filter,
-routes, error handlers) through the <code class="highlighter-rouge">request</code> method:</p>
+routes, error handlers) through the <code>request</code> method:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="c1"># app running on http://example.com/example</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app running on http://example.com/example</span>
 <span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
   <span class="n">t</span> <span class="o">=</span> <span class="sx">%w[text/css text/html application/javascript]</span>
   <span class="n">request</span><span class="p">.</span><span class="nf">accept</span>              <span class="c1"># ['text/html', '*/*']</span>
@@ -2043,74 +1584,62 @@ routes, error handlers) through the <code class="highlighter-rouge">request</cod
   <span class="n">request</span><span class="p">.</span><span class="nf">forwarded?</span>          <span class="c1"># true (if running behind a reverse proxy)</span>
   <span class="n">request</span><span class="p">.</span><span class="nf">env</span>                 <span class="c1"># raw env hash handed in by Rack</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>Some options, like <code class="highlighter-rouge">script_name</code> or <code class="highlighter-rouge">path_info</code>, can also be written:</p>
+<p>Some options, like <code>script_name</code> or <code>path_info</code>, can also be written:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">before</span> <span class="p">{</span> <span class="n">request</span><span class="p">.</span><span class="nf">path_info</span> <span class="o">=</span> <span class="s2">"/"</span> <span class="p">}</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">before</span> <span class="p">{</span> <span class="n">request</span><span class="p">.</span><span class="nf">path_info</span> <span class="o">=</span> <span class="s2">"/"</span> <span class="p">}</span>
 
 <span class="n">get</span> <span class="s2">"/"</span> <span class="k">do</span>
   <span class="s2">"all requests end up here"</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>The <code class="highlighter-rouge">request.body</code> is an IO or StringIO object:</p>
+<p>The <code>request.body</code> is an IO or StringIO object:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">post</span> <span class="s2">"/api"</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">post</span> <span class="s2">"/api"</span> <span class="k">do</span>
   <span class="n">request</span><span class="p">.</span><span class="nf">body</span><span class="p">.</span><span class="nf">rewind</span>  <span class="c1"># in case someone already read it</span>
   <span class="n">data</span> <span class="o">=</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span> <span class="n">request</span><span class="p">.</span><span class="nf">body</span><span class="p">.</span><span class="nf">read</span>
   <span class="s2">"Hello </span><span class="si">#{</span><span class="n">data</span><span class="p">[</span><span class="s1">'name'</span><span class="p">]</span><span class="si">}</span><span class="s2">!"</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3>Attachments</h3>
 
-<p>You can use the <code class="highlighter-rouge">attachment</code> helper to tell the browser the response should
+<p>You can use the <code>attachment</code> helper to tell the browser the response should
 be stored on disk rather than displayed in the browser:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
   <span class="n">attachment</span>
   <span class="s2">"store it!"</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>You can also pass it a file name:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
   <span class="n">attachment</span> <span class="s2">"info.txt"</span>
   <span class="s2">"store it!"</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3>Dealing with Date and Time</h3>
 
-<p>Sinatra offers a <code class="highlighter-rouge">time_for</code> helper method that generates a Time object from
-the given value. It is also able to convert <code class="highlighter-rouge">DateTime</code>, <code class="highlighter-rouge">Date</code> and similar
+<p>Sinatra offers a <code>time_for</code> helper method that generates a Time object from
+the given value. It is also able to convert <code>DateTime</code>, <code>Date</code> and similar
 classes:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
   <span class="n">pass</span> <span class="k">if</span> <span class="no">Time</span><span class="p">.</span><span class="nf">now</span> <span class="o">&gt;</span> <span class="n">time_for</span><span class="p">(</span><span class="s1">'Dec 23, 2016'</span><span class="p">)</span>
   <span class="s2">"still time"</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>This method is used internally by <code class="highlighter-rouge">expires</code>, <code class="highlighter-rouge">last_modified</code> and akin. You
+<p>This method is used internally by <code>expires</code>, <code>last_modified</code> and akin. You
 can therefore easily extend the behavior of those methods by overriding
-<code class="highlighter-rouge">time_for</code> in your application:</p>
+<code>time_for</code> in your application:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">helpers</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">helpers</span> <span class="k">do</span>
   <span class="k">def</span> <span class="nf">time_for</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
     <span class="k">case</span> <span class="n">value</span>
     <span class="k">when</span> <span class="ss">:yesterday</span> <span class="k">then</span> <span class="no">Time</span><span class="p">.</span><span class="nf">now</span> <span class="o">-</span> <span class="mi">24</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span>
@@ -2125,39 +1654,33 @@ can therefore easily extend the behavior of those methods by overriding
   <span class="n">expires</span> <span class="ss">:tomorrow</span>
   <span class="s2">"hello"</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3>Looking Up Template Files</h3>
 
-<p>The <code class="highlighter-rouge">find_template</code> helper is used to find template files for rendering:</p>
+<p>The <code>find_template</code> helper is used to find template files for rendering:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">find_template</span> <span class="n">settings</span><span class="p">.</span><span class="nf">views</span><span class="p">,</span> <span class="s1">'foo'</span><span class="p">,</span> <span class="no">Tilt</span><span class="p">[</span><span class="ss">:haml</span><span class="p">]</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">find_template</span> <span class="n">settings</span><span class="p">.</span><span class="nf">views</span><span class="p">,</span> <span class="s1">'foo'</span><span class="p">,</span> <span class="no">Tilt</span><span class="p">[</span><span class="ss">:haml</span><span class="p">]</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
   <span class="nb">puts</span> <span class="s2">"could be </span><span class="si">#{</span><span class="n">file</span><span class="si">}</span><span class="s2">"</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>This is not really useful. But it is useful that you can actually override
 this method to hook in your own lookup mechanism. For instance, if you want
 to be able to use more than one view directory:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">set</span> <span class="ss">:views</span><span class="p">,</span> <span class="p">[</span><span class="s1">'views'</span><span class="p">,</span> <span class="s1">'templates'</span><span class="p">]</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set</span> <span class="ss">:views</span><span class="p">,</span> <span class="p">[</span><span class="s1">'views'</span><span class="p">,</span> <span class="s1">'templates'</span><span class="p">]</span>
 
 <span class="n">helpers</span> <span class="k">do</span>
   <span class="k">def</span> <span class="nf">find_template</span><span class="p">(</span><span class="n">views</span><span class="p">,</span> <span class="nb">name</span><span class="p">,</span> <span class="n">engine</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
     <span class="no">Array</span><span class="p">(</span><span class="n">views</span><span class="p">).</span><span class="nf">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">v</span><span class="o">|</span> <span class="k">super</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">name</span><span class="p">,</span> <span class="n">engine</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span> <span class="p">}</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Another example would be using different directories for different engines:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">set</span> <span class="ss">:views</span><span class="p">,</span> <span class="ss">:sass</span> <span class="o">=&gt;</span> <span class="s1">'views/sass'</span><span class="p">,</span> <span class="ss">:haml</span> <span class="o">=&gt;</span> <span class="s1">'templates'</span><span class="p">,</span> <span class="ss">:default</span> <span class="o">=&gt;</span> <span class="s1">'views'</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set</span> <span class="ss">:views</span><span class="p">,</span> <span class="ss">:haml</span> <span class="o">=&gt;</span> <span class="s1">'templates'</span><span class="p">,</span> <span class="ss">:default</span> <span class="o">=&gt;</span> <span class="s1">'views'</span>
 
 <span class="n">helpers</span> <span class="k">do</span>
   <span class="k">def</span> <span class="nf">find_template</span><span class="p">(</span><span class="n">views</span><span class="p">,</span> <span class="nb">name</span><span class="p">,</span> <span class="n">engine</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
@@ -2166,14 +1689,13 @@ to be able to use more than one view directory:</p>
     <span class="k">super</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="nb">name</span><span class="p">,</span> <span class="n">engine</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>You can also easily wrap this up in an extension and share with others!</p>
+<p>You can also easily wrap this up in an extension and share it with others!</p>
 
-<p>Note that <code class="highlighter-rouge">find_template</code> does not check if the file really exists but
+<p>Note that <code>find_template</code> does not check if the file really exists but
 rather calls the given block for all possible paths. This is not a
-performance issue, since <code class="highlighter-rouge">render</code> will use <code class="highlighter-rouge">break</code> as soon as a file is
+performance issue, since <code>render</code> will use <code>break</code> as soon as a file is
 found. Also, template locations (and content) will be cached if you are not
 running in development mode. You should keep that in mind if you write a
 really crazy method.</p>
@@ -2182,8 +1704,7 @@ really crazy method.</p>
 
 <p>Run once, at startup, in any environment:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">configure</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">configure</span> <span class="k">do</span>
   <span class="c1"># setting one option</span>
   <span class="n">set</span> <span class="ss">:option</span><span class="p">,</span> <span class="s1">'value'</span>
 
@@ -2199,44 +1720,37 @@ really crazy method.</p>
   <span class="c1"># you can also have dynamic settings with blocks</span>
   <span class="n">set</span><span class="p">(</span><span class="ss">:css_dir</span><span class="p">)</span> <span class="p">{</span> <span class="no">File</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">views</span><span class="p">,</span> <span class="s1">'css'</span><span class="p">)</span> <span class="p">}</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>Run only when the environment (<code class="highlighter-rouge">APP_ENV</code> environment variable) is set to
-<code class="highlighter-rouge">:production</code>:</p>
+<p>Run only when the environment (<code>APP_ENV</code> environment variable) is set to
+<code>:production</code>:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">configure</span> <span class="ss">:production</span> <span class="k">do</span>
-  <span class="p">.</span><span class="nf">.</span><span class="p">.</span>
-<span class="nf">end</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">configure</span> <span class="ss">:production</span> <span class="k">do</span>
+  <span class="o">...</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
-<p>Run when the environment is set to either <code class="highlighter-rouge">:production</code> or <code class="highlighter-rouge">:test</code>:</p>
+<p>Run when the environment is set to either <code>:production</code> or <code>:test</code>:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">configure</span> <span class="ss">:production</span><span class="p">,</span> <span class="ss">:test</span> <span class="k">do</span>
-  <span class="p">.</span><span class="nf">.</span><span class="p">.</span>
-<span class="nf">end</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">configure</span> <span class="ss">:production</span><span class="p">,</span> <span class="ss">:test</span> <span class="k">do</span>
+  <span class="o">...</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
-<p>You can access those options via <code class="highlighter-rouge">settings</code>:</p>
+<p>You can access those options via <code>settings</code>:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">configure</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">configure</span> <span class="k">do</span>
   <span class="n">set</span> <span class="ss">:foo</span><span class="p">,</span> <span class="s1">'bar'</span>
 <span class="k">end</span>
 
 <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
   <span class="n">settings</span><span class="p">.</span><span class="nf">foo?</span> <span class="c1"># =&gt; true</span>
   <span class="n">settings</span><span class="p">.</span><span class="nf">foo</span>  <span class="c1"># =&gt; 'bar'</span>
-  <span class="p">.</span><span class="nf">.</span><span class="p">.</span>
-<span class="nf">end</span>
-</code></pre>
-</div>
+  <span class="o">...</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
-<h3 id="configuring-attack-protection">Configuring attack protection</h3>
+<h3>Configuring attack protection</h3>
 
 <p>Sinatra is using
 <a href="https://github.com/sinatra/sinatra/tree/master/rack-protection#readme">Rack::Protection</a> to
@@ -2244,36 +1758,28 @@ defend your application against common, opportunistic attacks. You can
 easily disable this behavior (which will open up your application to tons
 of common vulnerabilities):</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">disable</span> <span class="ss">:protection</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">disable</span> <span class="ss">:protection</span>
+</code></pre></div></div>
 
-<p>To skip a single defense layer, set <code class="highlighter-rouge">protection</code> to an options hash:</p>
+<p>To skip a single defense layer, set <code>protection</code> to an options hash:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">set</span> <span class="ss">:protection</span><span class="p">,</span> <span class="ss">:except</span> <span class="o">=&gt;</span> <span class="ss">:path_traversal</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set</span> <span class="ss">:protection</span><span class="p">,</span> <span class="ss">:except</span> <span class="o">=&gt;</span> <span class="ss">:path_traversal</span>
+</code></pre></div></div>
 <p>You can also hand in an array in order to disable a list of protections:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">set</span> <span class="ss">:protection</span><span class="p">,</span> <span class="ss">:except</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="ss">:path_traversal</span><span class="p">,</span> <span class="ss">:session_hijacking</span><span class="p">]</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set</span> <span class="ss">:protection</span><span class="p">,</span> <span class="ss">:except</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="ss">:path_traversal</span><span class="p">,</span> <span class="ss">:session_hijacking</span><span class="p">]</span>
+</code></pre></div></div>
 
-<p>By default, Sinatra will only set up session based protection if <code class="highlighter-rouge">:sessions</code>
+<p>By default, Sinatra will only set up session based protection if <code>:sessions</code>
 have been enabled. See ‘<a href="#using-sessions">Using Sessions</a>’. Sometimes you may want to set up
 sessions “outside” of the Sinatra app, such as in the config.ru or with a
-separate <code class="highlighter-rouge">Rack::Builder</code> instance. In that case you can still set up session
-based protection by passing the <code class="highlighter-rouge">:session</code> option:</p>
+separate <code>Rack::Builder</code> instance. In that case, you can still set up session
+based protection by passing the <code>:session</code> option:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">set</span> <span class="ss">:protection</span><span class="p">,</span> <span class="ss">:session</span> <span class="o">=&gt;</span> <span class="kp">true</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set</span> <span class="ss">:protection</span><span class="p">,</span> <span class="ss">:session</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+</code></pre></div></div>
 
-<h3 id="available-settings">Available Settings</h3>
+<h3>Available Settings</h3>
 
 <dl>
   <dt>absolute_redirects</dt>
@@ -2323,7 +1829,7 @@ based protection by passing the <code class="highlighter-rouge">:session</code> 
     <dd>Encoding to assume if unknown (defaults to <tt>"utf-8"</tt>).</dd>
 
   <dt>dump_errors</dt>
-    <dd>Display errors in the log.</dd>
+    <dd>Display errors in the log. Enabled by default unless environment is "test".</dd>
 
   <dt>environment</dt>
     <dd>
@@ -2423,7 +1929,7 @@ based protection by passing the <code class="highlighter-rouge">:session</code> 
       If you are using a WEBrick web server, presumably for your development
       environment, you can pass a hash of options to <tt>server_settings</tt>,
       such as <tt>SSLEnable</tt> or <tt>SSLVerifyClient</tt>. However, web
-      servers such as Puma and Thin do not support this, so you can set
+      servers such as Puma do not support this, so you can set
       <tt>server_settings</tt> by defining it as a method when you call
       <tt>configure</tt>.
     </dd>
@@ -2461,7 +1967,7 @@ based protection by passing the <code class="highlighter-rouge">:session</code> 
       Enabled by default in classic style, disabled for modular apps.
     </dd>
 
-  <dt id="static-cache-control">static_cache_control</dt>
+  <dt>static_cache_control</dt>
     <dd>
       When Sinatra is serving static files, set this to add
       <tt>Cache-Control</tt> headers to the responses. Uses the
@@ -2474,7 +1980,7 @@ based protection by passing the <code class="highlighter-rouge">:session</code> 
 
   <dt>threaded</dt>
     <dd>
-      If set to <tt>true</tt>, will tell Thin to use
+      If set to <tt>true</tt>, will tell server to use
       <tt>EventMachine.defer</tt> for processing the request.
     </dd>
 
@@ -2496,121 +2002,101 @@ based protection by passing the <code class="highlighter-rouge">:session</code> 
 
 <h2>Environments</h2>
 
-<p>There are three predefined <code class="highlighter-rouge">environments</code>: <code class="highlighter-rouge">"development"</code>,
-<code class="highlighter-rouge">"production"</code> and <code class="highlighter-rouge">"test"</code>. Environments can be set through the
-<code class="highlighter-rouge">APP_ENV</code> environment variable. The default value is <code class="highlighter-rouge">"development"</code>.
-In the <code class="highlighter-rouge">"development"</code> environment all templates are reloaded between
-requests, and special <code class="highlighter-rouge">not_found</code> and <code class="highlighter-rouge">error</code> handlers display stack
-traces in your browser. In the <code class="highlighter-rouge">"production"</code> and <code class="highlighter-rouge">"test"</code> environments,
+<p>There are three predefined <code>environments</code>: <code>"development"</code>,
+<code>"production"</code> and <code>"test"</code>. Environments can be set through the
+<code>APP_ENV</code> environment variable. The default value is <code>"development"</code>.
+In the <code>"development"</code> environment all templates are reloaded between
+requests, and special <code>not_found</code> and <code>error</code> handlers display stack
+traces in your browser. In the <code>"production"</code> and <code>"test"</code> environments,
 templates are cached by default.</p>
 
-<p>To run different environments, set the <code class="highlighter-rouge">APP_ENV</code> environment variable:</p>
+<p>To run different environments, set the <code>APP_ENV</code> environment variable:</p>
 
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code><span class="nv">APP_ENV</span><span class="o">=</span>production ruby my_app.rb
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">APP_ENV</span><span class="o">=</span>production ruby my_app.rb
+</code></pre></div></div>
 
-<p>You can use predefined methods: <code class="highlighter-rouge">development?</code>, <code class="highlighter-rouge">test?</code> and <code class="highlighter-rouge">production?</code> to
+<p>You can use predefined methods: <code>development?</code>, <code>test?</code> and <code>production?</code> to
 check the current environment setting:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
   <span class="k">if</span> <span class="n">settings</span><span class="p">.</span><span class="nf">development?</span>
     <span class="s2">"development!"</span>
   <span class="k">else</span>
     <span class="s2">"not development!"</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2>Error Handling</h2>
 
 <p>Error handlers run within the same context as routes and before filters,
-which means you get all the goodies it has to offer, like <code class="highlighter-rouge">haml</code>, <code class="highlighter-rouge">erb</code>,
-<code class="highlighter-rouge">halt</code>, etc.</p>
+which means you get all the goodies it has to offer, like <code>haml</code>, <code>erb</code>,
+<code>halt</code>, etc.</p>
 
 <h3>Not Found</h3>
 
-<p>When a <code class="highlighter-rouge">Sinatra::NotFound</code> exception is raised, or the response’s status
-code is 404, the <code class="highlighter-rouge">not_found</code> handler is invoked:</p>
+<p>When a <code>Sinatra::NotFound</code> exception is raised, or the response’s status
+code is 404, the <code>not_found</code> handler is invoked:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">not_found</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">not_found</span> <span class="k">do</span>
   <span class="s1">'This is nowhere to be found.'</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3>Error</h3>
 
-<p>The <code class="highlighter-rouge">error</code> handler is invoked any time an exception is raised from a route
+<p>The <code>error</code> handler is invoked any time an exception is raised from a route
 block or a filter. But note in development it will only run if you set the
-show exceptions option to <code class="highlighter-rouge">:after_handler</code>:</p>
+show exceptions option to <code>:after_handler</code>:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">set</span> <span class="ss">:show_exceptions</span><span class="p">,</span> <span class="ss">:after_handler</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set</span> <span class="ss">:show_exceptions</span><span class="p">,</span> <span class="ss">:after_handler</span>
+</code></pre></div></div>
 
-<p>The exception object can be obtained from the <code class="highlighter-rouge">sinatra.error</code> Rack variable:</p>
+<p>The exception object can be obtained from the <code>sinatra.error</code> Rack variable:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">error</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">error</span> <span class="k">do</span>
   <span class="s1">'Sorry there was a nasty error - '</span> <span class="o">+</span> <span class="n">env</span><span class="p">[</span><span class="s1">'sinatra.error'</span><span class="p">].</span><span class="nf">message</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Custom errors:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">error</span> <span class="no">MyCustomError</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">error</span> <span class="no">MyCustomError</span> <span class="k">do</span>
   <span class="s1">'So what happened was...'</span> <span class="o">+</span> <span class="n">env</span><span class="p">[</span><span class="s1">'sinatra.error'</span><span class="p">].</span><span class="nf">message</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Then, if this happens:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
   <span class="k">raise</span> <span class="no">MyCustomError</span><span class="p">,</span> <span class="s1">'something bad'</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>You get this:</p>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>So what happened was... something bad
+<pre><code>So what happened was... something bad
 </code></pre>
-</div>
 
 <p>Alternatively, you can install an error handler for a status code:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">error</span> <span class="mi">403</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">error</span> <span class="mi">403</span> <span class="k">do</span>
   <span class="s1">'Access forbidden'</span>
 <span class="k">end</span>
 
 <span class="n">get</span> <span class="s1">'/secret'</span> <span class="k">do</span>
   <span class="mi">403</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Or a range:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">error</span> <span class="mi">400</span><span class="p">.</span><span class="nf">.</span><span class="mi">510</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">error</span> <span class="mi">400</span><span class="o">..</span><span class="mi">510</span> <span class="k">do</span>
   <span class="s1">'Boom'</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>Sinatra installs special <code class="highlighter-rouge">not_found</code> and <code class="highlighter-rouge">error</code> handlers when
+<p>Sinatra installs special <code>not_found</code> and <code>error</code> handlers when
 running under the development environment to display nice stack traces
 and additional debugging information in your browser.</p>
 
@@ -2624,10 +2110,9 @@ and/or manipulating the HTTP request/response to provide various types
 of common functionality.</p>
 
 <p>Sinatra makes building Rack middleware pipelines a cinch via a top-level
-<code class="highlighter-rouge">use</code> method:</p>
+<code>use</code> method:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="nb">require</span> <span class="s1">'sinatra'</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'sinatra'</span>
 <span class="nb">require</span> <span class="s1">'my_custom_middleware'</span>
 
 <span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Lint</span>
@@ -2636,25 +2121,22 @@ of common functionality.</p>
 <span class="n">get</span> <span class="s1">'/hello'</span> <span class="k">do</span>
   <span class="s1">'Hello World'</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>The semantics of <code class="highlighter-rouge">use</code> are identical to those defined for the
+<p>The semantics of <code>use</code> are identical to those defined for the
 <a href="http://www.rubydoc.info/github/rack/rack/master/Rack/Builder">Rack::Builder</a> DSL
-(most frequently used from rackup files). For example, the <code class="highlighter-rouge">use</code> method
+(most frequently used from rackup files). For example, the <code>use</code> method
 accepts multiple/variable args as well as blocks:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Auth</span><span class="o">::</span><span class="no">Basic</span> <span class="k">do</span> <span class="o">|</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">|</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Auth</span><span class="o">::</span><span class="no">Basic</span> <span class="k">do</span> <span class="o">|</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">|</span>
   <span class="n">username</span> <span class="o">==</span> <span class="s1">'admin'</span> <span class="o">&amp;&amp;</span> <span class="n">password</span> <span class="o">==</span> <span class="s1">'secret'</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Rack is distributed with a variety of standard middleware for logging,
 debugging, URL routing, authentication, and session handling. Sinatra uses
 many of these components automatically based on configuration so you
-typically don’t have to <code class="highlighter-rouge">use</code> them explicitly.</p>
+typically don’t have to <code>use</code> them explicitly.</p>
 
 <p>You can find useful middleware in
 <a href="https://github.com/rack/rack/tree/master/lib/rack">rack</a>,
@@ -2668,8 +2150,7 @@ framework.
 <a href="http://www.rubydoc.info/github/brynary/rack-test/master/frames">Rack::Test</a>
 is recommended:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="nb">require</span> <span class="s1">'my_sinatra_app'</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'my_sinatra_app'</span>
 <span class="nb">require</span> <span class="s1">'minitest/autorun'</span>
 <span class="nb">require</span> <span class="s1">'rack/test'</span>
 
@@ -2695,11 +2176,10 @@ is recommended:</p>
     <span class="n">assert_equal</span> <span class="s2">"You're using Songbird!"</span><span class="p">,</span> <span class="n">last_response</span><span class="p">.</span><span class="nf">body</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Note: If you are using Sinatra in the modular style, replace
-<code class="highlighter-rouge">Sinatra::Application</code> above with the class name of your app.</p>
+<code>Sinatra::Application</code> above with the class name of your app.</p>
 
 <h2>Sinatra::Base - Middleware, Libraries, and Modular Apps</h2>
 
@@ -2707,12 +2187,11 @@ is recommended:</p>
 considerable drawbacks when building reusable components such as Rack
 middleware, Rails metal, simple libraries with a server component, or even
 Sinatra extensions. The top-level assumes a micro-app style configuration
-(e.g., a single application file, <code class="highlighter-rouge">./public</code> and <code class="highlighter-rouge">./views</code>
+(e.g., a single application file, <code>./public</code> and <code>./views</code>
 directories, logging, exception detail page, etc.). That’s where
-<code class="highlighter-rouge">Sinatra::Base</code> comes into play:</p>
+<code>Sinatra::Base</code> comes into play:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="nb">require</span> <span class="s1">'sinatra/base'</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'sinatra/base'</span>
 
 <span class="k">class</span> <span class="nc">MyApp</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
   <span class="n">set</span> <span class="ss">:sessions</span><span class="p">,</span> <span class="kp">true</span>
@@ -2722,38 +2201,35 @@ directories, logging, exception detail page, etc.). That’s where
     <span class="s1">'Hello world!'</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>The methods available to <code class="highlighter-rouge">Sinatra::Base</code> subclasses are exactly the same
+<p>The methods available to <code>Sinatra::Base</code> subclasses are exactly the same
 as those available via the top-level DSL. Most top-level apps can be
-converted to <code class="highlighter-rouge">Sinatra::Base</code> components with two modifications:</p>
+converted to <code>Sinatra::Base</code> components with two modifications:</p>
 
 <ul>
-  <li>Your file should require <code class="highlighter-rouge">sinatra/base</code> instead of <code class="highlighter-rouge">sinatra</code>;
+  <li>Your file should require <code>sinatra/base</code> instead of <code>sinatra</code>;
 otherwise, all of Sinatra’s DSL methods are imported into the main
 namespace.</li>
   <li>Put your app’s routes, error handlers, filters, and options in a subclass
-of <code class="highlighter-rouge">Sinatra::Base</code>.</li>
+of <code>Sinatra::Base</code>.</li>
 </ul>
 
-<p><code class="highlighter-rouge">Sinatra::Base</code> is a blank slate. Most options are disabled by default,
+<p><code>Sinatra::Base</code> is a blank slate. Most options are disabled by default,
 including the built-in server. See <a href="http://www.sinatrarb.com/configuration.html">Configuring
 Settings</a> for details on
 available options and their behavior. If you want behavior more similar
 to when you define your app at the top level (also known as Classic
-style), you can subclass <code class="highlighter-rouge">Sinatra::Application</code>:</p>
+style), you can subclass <code>Sinatra::Application</code>:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="nb">require</span> <span class="s1">'sinatra/base'</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'sinatra/base'</span>
 
 <span class="k">class</span> <span class="nc">MyApp</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Application</span>
   <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
     <span class="s1">'Hello world!'</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3>Modular vs. Classic Style</h3>
 
@@ -2764,7 +2240,7 @@ modular application.</p>
 <p>The main disadvantage of using the classic style rather than the modular
 style is that you will only have one Sinatra application per Ruby
 process. If you plan to use more than one, switch to the modular style.
-There is no reason you cannot mix the modular and the classic styles.</p>
+There is no reason you cannot mix the modular and classic styles.</p>
 
 <p>If switching from one style to the other, you should be aware of
 slightly different default settings:</p>
@@ -2823,10 +2299,9 @@ slightly different default settings:</p>
 <h3>Serving a Modular Application</h3>
 
 <p>There are two common options for starting a modular app, actively
-starting with <code class="highlighter-rouge">run!</code>:</p>
+starting with <code>run!</code>:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="c1"># my_app.rb</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># my_app.rb</span>
 <span class="nb">require</span> <span class="s1">'sinatra/base'</span>
 
 <span class="k">class</span> <span class="nc">MyApp</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
@@ -2835,78 +2310,66 @@ starting with <code class="highlighter-rouge">run!</code>:</p>
   <span class="c1"># start the server if ruby file executed directly</span>
   <span class="n">run!</span> <span class="k">if</span> <span class="n">app_file</span> <span class="o">==</span> <span class="vg">$0</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Start with:</p>
 
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code>ruby my_app.rb
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ruby my_app.rb
+</code></pre></div></div>
 
-<p>Or with a <code class="highlighter-rouge">config.ru</code> file, which allows using any Rack handler:</p>
+<p>Or with a <code>config.ru</code> file, which allows using any Rack handler:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="c1"># config.ru (run with rackup)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># config.ru (run with rackup)</span>
 <span class="nb">require</span> <span class="s1">'./my_app'</span>
 <span class="n">run</span> <span class="no">MyApp</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Run:</p>
 
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code>rackup -p 4567
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rackup <span class="nt">-p</span> 4567
+</code></pre></div></div>
 
 <h3>Using a Classic Style Application with a config.ru</h3>
 
 <p>Write your app file:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="c1"># app.rb</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app.rb</span>
 <span class="nb">require</span> <span class="s1">'sinatra'</span>
 
 <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
   <span class="s1">'Hello world!'</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>And a corresponding <code class="highlighter-rouge">config.ru</code>:</p>
+<p>And a corresponding <code>config.ru</code>:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="nb">require</span> <span class="s1">'./app'</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'./app'</span>
 <span class="n">run</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Application</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3>When to use a config.ru?</h3>
 
-<p>A <code class="highlighter-rouge">config.ru</code> file is recommended if:</p>
+<p>A <code>config.ru</code> file is recommended if:</p>
 
 <ul>
   <li>You want to deploy with a different Rack handler (Passenger, Unicorn,
 Heroku, …).</li>
-  <li>You want to use more than one subclass of <code class="highlighter-rouge">Sinatra::Base</code>.</li>
+  <li>You want to use more than one subclass of <code>Sinatra::Base</code>.</li>
   <li>You want to use Sinatra only for middleware, and not as an endpoint.</li>
 </ul>
 
-<p><strong>There is no need to switch to a <code class="highlighter-rouge">config.ru</code> simply because you
+<p><strong>There is no need to switch to a <code>config.ru</code> simply because you
 switched to the modular style, and you don’t have to use the modular
-style for running with a <code class="highlighter-rouge">config.ru</code>.</strong></p>
+style for running with a <code>config.ru</code>.</strong></p>
 
 <h3>Using Sinatra as Middleware</h3>
 
 <p>Not only is Sinatra able to use other Rack middleware, any Sinatra
-application can in turn be added in front of any Rack endpoint as
+application can, in turn, be added in front of any Rack endpoint as
 middleware itself. This endpoint could be another Sinatra application,
 or any other Rack-based application (Rails/Hanami/Roda/…):</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="nb">require</span> <span class="s1">'sinatra/base'</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'sinatra/base'</span>
 
 <span class="k">class</span> <span class="nc">LoginScreen</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
   <span class="n">enable</span> <span class="ss">:sessions</span>
@@ -2934,25 +2397,21 @@ or any other Rack-based application (Rails/Hanami/Roda/…):</p>
 
   <span class="n">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)</span> <span class="p">{</span> <span class="s2">"Hello </span><span class="si">#{</span><span class="n">session</span><span class="p">[</span><span class="s1">'user_name'</span><span class="p">]</span><span class="si">}</span><span class="s2">."</span> <span class="p">}</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3>Dynamic Application Creation</h3>
 
 <p>Sometimes you want to create new applications at runtime without having to
-assign them to a constant. You can do this with <code class="highlighter-rouge">Sinatra.new</code>:</p>
+assign them to a constant. You can do this with <code>Sinatra.new</code>:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="nb">require</span> <span class="s1">'sinatra/base'</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'sinatra/base'</span>
 <span class="n">my_app</span> <span class="o">=</span> <span class="no">Sinatra</span><span class="p">.</span><span class="nf">new</span> <span class="p">{</span> <span class="n">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)</span> <span class="p">{</span> <span class="s2">"hi"</span> <span class="p">}</span> <span class="p">}</span>
 <span class="n">my_app</span><span class="p">.</span><span class="nf">run!</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>It takes the application to inherit from as an optional argument:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="c1"># config.ru (run with rackup)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># config.ru (run with rackup)</span>
 <span class="nb">require</span> <span class="s1">'sinatra/base'</span>
 
 <span class="n">controller</span> <span class="o">=</span> <span class="no">Sinatra</span><span class="p">.</span><span class="nf">new</span> <span class="k">do</span>
@@ -2967,24 +2426,21 @@ assign them to a constant. You can do this with <code class="highlighter-rouge">
 <span class="n">map</span><span class="p">(</span><span class="s1">'/b'</span><span class="p">)</span> <span class="k">do</span>
   <span class="n">run</span> <span class="no">Sinatra</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">controller</span><span class="p">)</span> <span class="p">{</span> <span class="n">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)</span> <span class="p">{</span> <span class="s1">'b'</span> <span class="p">}</span> <span class="p">}</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>This is especially useful for testing Sinatra extensions or using Sinatra in
 your own library.</p>
 
 <p>This also makes using Sinatra as middleware extremely easy:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="nb">require</span> <span class="s1">'sinatra/base'</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'sinatra/base'</span>
 
 <span class="n">use</span> <span class="no">Sinatra</span> <span class="k">do</span>
-  <span class="n">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)</span> <span class="p">{</span> <span class="p">.</span><span class="nf">.</span><span class="o">.</span> <span class="p">}</span>
+  <span class="n">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
 <span class="k">end</span>
 
 <span class="n">run</span> <span class="no">RailsProject</span><span class="o">::</span><span class="no">Application</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2>Scopes and Binding</h2>
 
@@ -2993,17 +2449,16 @@ available.</p>
 
 <h3>Application/Class Scope</h3>
 
-<p>Every Sinatra application corresponds to a subclass of <code class="highlighter-rouge">Sinatra::Base</code>.
-If you are using the top-level DSL (<code class="highlighter-rouge">require 'sinatra'</code>), then this
-class is <code class="highlighter-rouge">Sinatra::Application</code>, otherwise it is the subclass you
-created explicitly. At class level you have methods like <code class="highlighter-rouge">get</code> or
-<code class="highlighter-rouge">before</code>, but you cannot access the <code class="highlighter-rouge">request</code> or <code class="highlighter-rouge">session</code> objects, as
+<p>Every Sinatra application corresponds to a subclass of <code>Sinatra::Base</code>.
+If you are using the top-level DSL (<code>require 'sinatra'</code>), then this
+class is <code>Sinatra::Application</code>, otherwise it is the subclass you
+created explicitly. At the class level, you have methods like <code>get</code> or
+<code>before</code>, but you cannot access the <code>request</code> or <code>session</code> objects, as
 there is only a single application class for all requests.</p>
 
-<p>Options created via <code class="highlighter-rouge">set</code> are methods at class level:</p>
+<p>Options created via <code>set</code> are methods at class level:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="k">class</span> <span class="nc">MyApp</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MyApp</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
   <span class="c1"># Hey, I'm in the application scope!</span>
   <span class="n">set</span> <span class="ss">:foo</span><span class="p">,</span> <span class="mi">42</span>
   <span class="n">foo</span> <span class="c1"># =&gt; 42</span>
@@ -3012,40 +2467,38 @@ there is only a single application class for all requests.</p>
     <span class="c1"># Hey, I'm no longer in the application scope!</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>You have the application scope binding inside:</p>
 
 <ul>
   <li>Your application class body</li>
   <li>Methods defined by extensions</li>
-  <li>The block passed to <code class="highlighter-rouge">helpers</code>
+  <li>The block passed to <code>helpers</code>
 </li>
-  <li>Procs/blocks used as value for <code class="highlighter-rouge">set</code>
+  <li>Procs/blocks used as a value for <code>set</code>
 </li>
-  <li>The block passed to <code class="highlighter-rouge">Sinatra.new</code>
+  <li>The block passed to <code>Sinatra.new</code>
 </li>
 </ul>
 
 <p>You can reach the scope object (the class) like this:</p>
 
 <ul>
-  <li>Via the object passed to configure blocks (<code class="highlighter-rouge">configure { |c| ... }</code>)</li>
+  <li>Via the object passed to configure blocks (<code>configure { |c| ... }</code>)</li>
   <li>
-<code class="highlighter-rouge">settings</code> from within the request scope</li>
+<code>settings</code> from within the request scope</li>
 </ul>
 
 <h3>Request/Instance Scope</h3>
 
 <p>For every incoming request, a new instance of your application class is
 created, and all handler blocks run in that scope. From within this scope you
-can access the <code class="highlighter-rouge">request</code> and <code class="highlighter-rouge">session</code> objects or call rendering methods like
-<code class="highlighter-rouge">erb</code> or <code class="highlighter-rouge">haml</code>. You can access the application scope from within the request
-scope via the <code class="highlighter-rouge">settings</code> helper:</p>
+can access the <code>request</code> and <code>session</code> objects or call rendering methods like
+<code>erb</code> or <code>haml</code>. You can access the application scope from within the request
+scope via the <code>settings</code> helper:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="k">class</span> <span class="nc">MyApp</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MyApp</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
   <span class="c1"># Hey, I'm in the application scope!</span>
   <span class="n">get</span> <span class="s1">'/define_route/:name'</span> <span class="k">do</span>
     <span class="c1"># Request scope for '/define_route/:name'</span>
@@ -3059,8 +2512,7 @@ scope via the <code class="highlighter-rouge">settings</code> helper:</p>
     <span class="s2">"Route defined!"</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>You have the request scope binding inside:</p>
 
@@ -3077,15 +2529,15 @@ scope via the <code class="highlighter-rouge">settings</code> helper:</p>
 does not behave exactly like the class scope, as you do not have the class
 binding. Only methods explicitly marked for delegation are available, and you
 do not share variables/state with the class scope (read: you have a different
-<code class="highlighter-rouge">self</code>). You can explicitly add method delegations by calling
-<code class="highlighter-rouge">Sinatra::Delegator.delegate :method_name</code>.</p>
+<code>self</code>). You can explicitly add method delegations by calling
+<code>Sinatra::Delegator.delegate :method_name</code>.</p>
 
 <p>You have the delegate scope binding inside:</p>
 
 <ul>
-  <li>The top level binding, if you did <code class="highlighter-rouge">require "sinatra"</code>
+  <li>The top-level binding, if you did <code>require "sinatra"</code>
 </li>
-  <li>An object extended with the <code class="highlighter-rouge">Sinatra::Delegator</code> mixin</li>
+  <li>An object extended with the <code>Sinatra::Delegator</code> mixin</li>
 </ul>
 
 <p>Have a look at the code for yourself: here’s the
@@ -3096,23 +2548,19 @@ being <a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/main.
 
 <p>Sinatra applications can be run directly:</p>
 
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code>ruby myapp.rb <span class="o">[</span>-h] <span class="o">[</span>-x] <span class="o">[</span>-q] <span class="o">[</span>-e ENVIRONMENT] <span class="o">[</span>-p PORT] <span class="o">[</span>-o HOST] <span class="o">[</span>-s HANDLER]
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ruby myapp.rb <span class="o">[</span><span class="nt">-h</span><span class="o">]</span> <span class="o">[</span><span class="nt">-x</span><span class="o">]</span> <span class="o">[</span><span class="nt">-q</span><span class="o">]</span> <span class="o">[</span><span class="nt">-e</span> ENVIRONMENT] <span class="o">[</span><span class="nt">-p</span> PORT] <span class="o">[</span><span class="nt">-o</span> HOST] <span class="o">[</span><span class="nt">-s</span> HANDLER]
+</code></pre></div></div>
 
 <p>Options are:</p>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>-h # help
+<pre><code>-h # help
 -p # set the port (default is 4567)
 -o # set the host (default is 0.0.0.0)
 -e # set the environment (default is development)
--s # specify rack server/handler (default is thin)
+-s # specify rack server/handler (default is puma)
 -q # turn on quiet mode for server (default is off)
 -x # turn on the mutex lock (default is off)
 </code></pre>
-</div>
 
 <h3>Multi-threading</h3>
 
@@ -3120,16 +2568,15 @@ being <a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/main.
 <a href="https://stackoverflow.com/a/6282999/5245129">this StackOverflow answer</a>
 by Konstantin</em></p>
 
-<p>Sinatra doesn’t impose any concurrency model, but leaves that to the
-underlying Rack handler (server) like Thin, Puma or WEBrick. Sinatra
+<p>Sinatra doesn’t impose any concurrency model but leaves that to the
+underlying Rack handler (server) like Puma or WEBrick. Sinatra
 itself is thread-safe, so there won’t be any problem if the Rack handler
 uses a threaded model of concurrency. This would mean that when starting
 the server, you’d have to specify the correct invocation method for the
 specific Rack handler. The following example is a demonstration of how
-to start a multi-threaded Thin server:</p>
+to start a multi-threaded Rainbows server:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="c1"># app.rb</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># config.ru</span>
 
 <span class="nb">require</span> <span class="s1">'sinatra/base'</span>
 
@@ -3139,25 +2586,29 @@ to start a multi-threaded Thin server:</p>
   <span class="k">end</span>
 <span class="k">end</span>
 
-<span class="no">App</span><span class="p">.</span><span class="nf">run!</span>
+<span class="n">run</span> <span class="no">App</span>
+</code></pre></div></div>
 
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># rainbows.conf</span>
+
+<span class="c1"># Rainbows configurator is based on Unicorn.</span>
+<span class="no">Rainbows</span><span class="o">!</span> <span class="k">do</span>
+  <span class="n">use</span> <span class="ss">:ThreadSpawn</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <p>To start the server, the command would be:</p>
 
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code>thin --threaded start
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rainbows <span class="nt">-c</span> rainbows.conf
+</code></pre></div></div>
 
 <h2>Requirement</h2>
 
 <p>The following Ruby versions are officially supported:</p>
 <dl>
-  <dt>Ruby 2.3</dt>
+  <dt>Ruby 2.6</dt>
   <dd>
-    2.3 is fully supported and recommended. There are currently no plans to
+    2.6 is fully supported and recommended. There are currently no plans to
     drop official support for it.
   </dd>
 
@@ -3175,34 +2626,15 @@ to start a multi-threaded Thin server:</p>
   </dd>
 </dl>
 
-<p>Versions of Ruby prior to 2.3 are no longer supported as of Sinatra 2.1.0.</p>
+<p>Versions of Ruby before 2.6 are no longer supported as of Sinatra 3.0.0.</p>
 
-<p>We also keep an eye on upcoming Ruby versions.</p>
-
-<p>The following Ruby implementations are not officially supported but still are
-known to run Sinatra:</p>
-
-<ul>
-  <li>Older versions of JRuby and Rubinius</li>
-  <li>Ruby Enterprise Edition</li>
-  <li>MacRuby, Maglev, IronRuby</li>
-  <li>Ruby 1.9.0 and 1.9.1 (but we do recommend against using those)</li>
-</ul>
-
-<p>Not being officially supported means if things only break there and not on a
-supported platform, we assume it’s not our issue but theirs.</p>
-
-<p>We also run our CI against ruby-head (future releases of MRI), but we
-can’t guarantee anything, since it is constantly moving. Expect upcoming
-2.x releases to be fully supported.</p>
+<p>We also keep an eye on upcoming Ruby versions. Expect upcoming
+3.x releases to be fully supported.</p>
 
 <p>Sinatra should work on any operating system supported by the chosen Ruby
 implementation.</p>
 
-<p>If you run MacRuby, you should <code class="highlighter-rouge">gem install control_tower</code>.</p>
-
-<p>Sinatra currently doesn’t run on Cardinal, SmallRuby, BlueRuby or any
-Ruby version prior to 2.2.</p>
+<p>Running Sinatra on a not officially supported Ruby flavor means that if things only break there we assume it’s not our issue but theirs.</p>
 
 <h2>The Bleeding Edge</h2>
 
@@ -3212,10 +2644,8 @@ stable.</p>
 
 <p>We also push out prerelease gems from time to time, so you can do a</p>
 
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code>gem install sinatra --pre
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>sinatra <span class="nt">--pre</span>
+</code></pre></div></div>
 
 <p>to get some of the latest features.</p>
 
@@ -3226,38 +2656,31 @@ stable.</p>
 
 <p>First, install bundler, if you haven’t:</p>
 
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code>gem install bundler
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>bundler
+</code></pre></div></div>
 
-<p>Then, in your project directory, create a <code class="highlighter-rouge">Gemfile</code>:</p>
+<p>Then, in your project directory, create a <code>Gemfile</code>:</p>
 
-<div class="language-ruby highlighter-rouge">
-<pre class="highlight"><code><span class="n">source</span> <span class="s1">'https://rubygems.org'</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">source</span> <span class="s1">'https://rubygems.org'</span>
 <span class="n">gem</span> <span class="s1">'sinatra'</span><span class="p">,</span> <span class="ss">:github</span> <span class="o">=&gt;</span> <span class="s1">'sinatra/sinatra'</span>
 
 <span class="c1"># other dependencies</span>
 <span class="n">gem</span> <span class="s1">'haml'</span>                    <span class="c1"># for instance, if you use haml</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Note that you will have to list all your application’s dependencies in
-the <code class="highlighter-rouge">Gemfile</code>. Sinatra’s direct dependencies (Rack and Tilt) will,
+the <code>Gemfile</code>. Sinatra’s direct dependencies (Rack and Tilt) will,
 however, be automatically fetched and added by Bundler.</p>
 
 <p>Now you can run your app like this:</p>
 
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code>bundle <span class="nb">exec </span>ruby myapp.rb
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">exec </span>ruby myapp.rb
+</code></pre></div></div>
 
 <h2>Versioning</h2>
 
-<p>Basically, Sinatra follows <a href="http://semver.org/">Semantic Versioning</a>, both SemVer and SemVerTag,<br>
-but there are some differences. Please see also: <a href="http://www.sinatrarb.com/maintenance-policy.html"></a>
-</p>
+<p>Sinatra follows <a href="https://semver.org/">Semantic Versioning</a>, both SemVer and
+SemVerTag.</p>
 
 <h2>Further Reading</h2>
 

@@ -28,8 +28,11 @@ end
 
 def readme(pattern = "%s", &block)
   return readme(pattern).each(&block) if block_given?
-  %w[en de es fr hu ja zh ru ko pt-br pt-pt].map do |lang|
-    pattern % "README#{lang == "en" ? "" : ".#{lang}"}"
+
+  %w[
+   README
+  ].map do |extension|
+    pattern % extension
   end
 end
 
@@ -126,13 +129,13 @@ task :pull => ['pull:sinatra']
 
 directory "_sinatra" do
   puts 'Cloning sinatra repo'
-  sh "git clone git://github.com/sinatra/sinatra.git _sinatra"
+  sh "git clone git@github.com:sinatra/sinatra.git _sinatra"
 end
 
 desc 'Pull in the latest from the sinatra repo'
 task 'pull:sinatra' => "_sinatra" do
     puts 'Pulling sinatra.git'
-    sh "cd _sinatra && git pull &>/dev/null"
+    sh "cd _sinatra && git pull &>/dev/null || true"
 end
 
 readme("_sinatra/%s.md") { |fn| file fn => '_sinatra' }
@@ -193,7 +196,7 @@ protection do |fn|
       file_to_convert = File.read(path_to_file + ".md")
     end
 
-    html = RDoc::Markup::ToHtml.new.convert(file_to_convert)
+    html = RDoc::Markup::ToHtml.new(RDoc::Options.new).convert(file_to_convert)
     File.open(f.name, 'wb') { |io| io.write html }
   end
 end
@@ -216,7 +219,7 @@ contrib do |fn|
       file_to_convert = File.read(path_to_file + ".md")
     end
 
-    html = RDoc::Markup::ToHtml.new.convert(file_to_convert)
+    html = RDoc::Markup::ToHtml.new(RDoc::Options.new).convert(file_to_convert)
     File.open(f.name, 'wb') { |io| io.write html }
   end
 end
@@ -234,5 +237,5 @@ task :server do
   exec 'jekyll serve --watch'
 end
 
-CLEAN.include '_site', "_includes/*.html"
+CLEAN.include('_site', "_includes/*.html").exclude('_includes/navbar.html', '_includes/head.html')
 CLOBBER.include "_sinatra/sinatra-contrib", "_sinatra/rack-protection", "_sinatra"

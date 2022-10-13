@@ -28,12 +28,12 @@ Detailed documentation on all of Sinatra's built-in settings and using `set`,
 
 Guide to testing Sinatra apps.
 
-### [Sinatra::Contrib](/contrib)
+### [Sinatra::Contrib](contrib)
 
 A collection of common Sinatra extensions, that tries to include the stuff
 developers ask for a lot and isn't part of Sinatra.
 
-### [Using Extensions](/extensions-wild.html)
+### [Using Extensions](extensions-wild.html)
 
 How to use Sinatra extensions in your application and links to
 extensions in the wild.
@@ -42,7 +42,7 @@ extensions in the wild.
 
 How to add new functionality to Sinatra using the extension APIs.
 
-### [Rack::Protection](/protection)
+### [Rack::Protection](protection)
 
 This gem protects against typical web attacks. Should work for all Rack apps,
 including Rails.
@@ -64,7 +64,7 @@ See the [`CHANGELOG`](https://github.com/sinatra/sinatra/blob/master/CHANGELOG.m
 
 RDoc documentation courtesy of `rubydoc.info`.
 
-### [In the Wild](/wild.html)
+### [In the Wild](wild.html)
 
 List of applications, libraries, websites and companies using Sinatra.
 
