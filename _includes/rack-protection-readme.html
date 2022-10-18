@@ -6,27 +6,27 @@
 
 <p>Use all protections you probably want to use:</p>
 
-<pre><code class="language-ruby"># config.ru
-require 'rack/protection'
-use Rack::Protection
-run MyApp
-</code></pre>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># config.ru</span>
+<span class="nb">require</span> <span class="s1">'rack/protection'</span>
+<span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Protection</span>
+<span class="n">run</span> <span class="no">MyApp</span>
+</code></pre></div></div>
 
 <p>Skip a single protection middleware:</p>
 
-<pre><code class="language-ruby"># config.ru
-require 'rack/protection'
-use Rack::Protection, :except =&gt; :path_traversal
-run MyApp
-</code></pre>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># config.ru</span>
+<span class="nb">require</span> <span class="s1">'rack/protection'</span>
+<span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Protection</span><span class="p">,</span> <span class="ss">:except</span> <span class="o">=&gt;</span> <span class="ss">:path_traversal</span>
+<span class="n">run</span> <span class="no">MyApp</span>
+</code></pre></div></div>
 
 <p>Use a single protection middleware:</p>
 
-<pre><code class="language-ruby"># config.ru
-require 'rack/protection'
-use Rack::Protection::AuthenticityToken
-run MyApp
-</code></pre>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># config.ru</span>
+<span class="nb">require</span> <span class="s1">'rack/protection'</span>
+<span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Protection</span><span class="o">::</span><span class="no">AuthenticityToken</span>
+<span class="n">run</span> <span class="no">MyApp</span>
+</code></pre></div></div>
 
 <h1>Prevented Attacks</h1>
 
@@ -36,14 +36,14 @@ run MyApp
 
 <ul>
   <li>
-<a href="/protection/authenticity_token"><code>Rack::Protection::AuthenticityToken</code></a> (not included by <code>use Rack::Protection</code>)</li>
+<a href="http://www.sinatrarb.com/protection/authenticity_token"><code>Rack::Protection::AuthenticityToken</code></a> (not included by <code>use Rack::Protection</code>)</li>
   <li>
-<a href="/protection/form_token"><code>Rack::Protection::FormToken</code></a> (not included by <code>use Rack::Protection</code>)</li>
-  <li><a href="/protection/json_csrf"><code>Rack::Protection::JsonCsrf</code></a></li>
+<a href="http://www.sinatrarb.com/protection/form_token"><code>Rack::Protection::FormToken</code></a> (not included by <code>use Rack::Protection</code>)</li>
+  <li><a href="http://www.sinatrarb.com/protection/json_csrf"><code>Rack::Protection::JsonCsrf</code></a></li>
   <li>
-<a href="/protection/remote_referrer"><code>Rack::Protection::RemoteReferrer</code></a> (not included by <code>use Rack::Protection</code>)</li>
-  <li><a href="/protection/remote_token"><code>Rack::Protection::RemoteToken</code></a></li>
-  <li><a href="/protection/http_origin"><code>Rack::Protection::HttpOrigin</code></a></li>
+<a href="http://www.sinatrarb.com/protection/remote_referrer"><code>Rack::Protection::RemoteReferrer</code></a> (not included by <code>use Rack::Protection</code>)</li>
+  <li><a href="http://www.sinatrarb.com/protection/remote_token"><code>Rack::Protection::RemoteToken</code></a></li>
+  <li><a href="http://www.sinatrarb.com/protection/http_origin"><code>Rack::Protection::HttpOrigin</code></a></li>
 </ul>
 
 <h2>Cross Site Scripting</h2>
@@ -52,10 +52,10 @@ run MyApp
 
 <ul>
   <li>
-<a href="/protection/escaped_params"><code>Rack::Protection::EscapedParams</code></a> (not included by <code>use Rack::Protection</code>)</li>
+<a href="http://www.sinatrarb.com/protection/escaped_params"><code>Rack::Protection::EscapedParams</code></a> (not included by <code>use Rack::Protection</code>)</li>
   <li>
-<a href="/protection/xss_header"><code>Rack::Protection::XSSHeader</code></a> (Internet Explorer and Chrome only)</li>
-  <li><a href="/protection/content_security_policy"><code>Rack::Protection::ContentSecurityPolicy</code></a></li>
+<a href="http://www.sinatrarb.com/protection/xss_header"><code>Rack::Protection::XSSHeader</code></a> (Internet Explorer and Chrome only)</li>
+  <li><a href="http://www.sinatrarb.com/protection/content_security_policy"><code>Rack::Protection::ContentSecurityPolicy</code></a></li>
 </ul>
 
 <h2>Clickjacking</h2>
@@ -63,7 +63,7 @@ run MyApp
 <p>Prevented by:</p>
 
 <ul>
-  <li><a href="/protection/frame_options"><code>Rack::Protection::FrameOptions</code></a></li>
+  <li><a href="http://www.sinatrarb.com/protection/frame_options"><code>Rack::Protection::FrameOptions</code></a></li>
 </ul>
 
 <h2>Directory Traversal</h2>
@@ -71,7 +71,7 @@ run MyApp
 <p>Prevented by:</p>
 
 <ul>
-  <li><a href="/protection/path_traversal"><code>Rack::Protection::PathTraversal</code></a></li>
+  <li><a href="http://www.sinatrarb.com/protection/path_traversal"><code>Rack::Protection::PathTraversal</code></a></li>
 </ul>
 
 <h2>Session Hijacking</h2>
@@ -79,20 +79,20 @@ run MyApp
 <p>Prevented by:</p>
 
 <ul>
-  <li><a href="/protection/session_hijacking"><code>Rack::Protection::SessionHijacking</code></a></li>
+  <li><a href="http://www.sinatrarb.com/protection/session_hijacking"><code>Rack::Protection::SessionHijacking</code></a></li>
 </ul>
 
 <h2>Cookie Tossing</h2>
 
 <p>Prevented by:
-* <a href="/protection/cookie_tossing"><code>Rack::Protection::CookieTossing</code></a> (not included by <code>use Rack::Protection</code>)</p>
+* <a href="http://www.sinatrarb.com/protection/cookie_tossing"><code>Rack::Protection::CookieTossing</code></a> (not included by <code>use Rack::Protection</code>)</p>
 
 <h2>IP Spoofing</h2>
 
 <p>Prevented by:</p>
 
 <ul>
-  <li><a href="/protection/ip_spoofing"><code>Rack::Protection::IPSpoofing</code></a></li>
+  <li><a href="http://www.sinatrarb.com/protection/ip_spoofing"><code>Rack::Protection::IPSpoofing</code></a></li>
 </ul>
 
 <h2>Helps to protect against protocol downgrade attacks and cookie hijacking</h2>
@@ -101,12 +101,12 @@ run MyApp
 
 <ul>
   <li>
-<a href="/protection/strict_transport"><code>Rack::Protection::StrictTransport</code></a> (not included by <code>use Rack::Protection</code>)</li>
+<a href="http://www.sinatrarb.com/protection/strict_transport"><code>Rack::Protection::StrictTransport</code></a> (not included by <code>use Rack::Protection</code>)</li>
 </ul>
 
 <h1>Installation</h1>
 
-<pre><code>gem install rack-protection (only for Sinatra < 2)
+<pre><code>gem install rack-protection
 </code></pre>
 
 <h1>Instrumentation</h1>

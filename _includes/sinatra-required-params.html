@@ -1,25 +1,25 @@
 
-<h1 id="label-Sinatra%3A%3ARequiredParams">Sinatra::RequiredParams</h1>
+<h1 id="label-Sinatra-3A-3ARequiredParams">Sinatra::RequiredParams<span><a href="#label-Sinatra-3A-3ARequiredParams">&para;</a> <a href="#top">&uarr;</a></span></h1>
 
 <p>Ensure required query parameters</p>
 
-<h2 id="label-Usage">Usage</h2>
+<h2 id="label-Usage">Usage<span><a href="#label-Usage">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
-<p>Set required query parameter keys in the argument. It&#39;ll halt with 400
-if required keys don&#39;t exist.</p>
+<p>Set required query parameter keys in the argument. It’ll halt with 400 if required keys don’t exist.</p>
 
-<pre>get &#39;/simple_keys&#39; do
-  required_params :p1, :p2
-end</pre>
+<pre class="ruby"><span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/simple_keys&#39;</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">required_params</span> <span class="ruby-value">:p1</span>, <span class="ruby-value">:p2</span>
+<span class="ruby-keyword">end</span>
+</pre>
 
 <p>Complicated pattern is also fine.</p>
 
 <pre class="ruby"><span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/complicated_keys&#39;</span> <span class="ruby-keyword">do</span>
-  <span class="ruby-identifier">required_params</span> :<span class="ruby-identifier">p1</span>, :<span class="ruby-identifier">p2</span> =<span class="ruby-operator">&gt;</span> [:<span class="ruby-identifier">p3</span>, :<span class="ruby-identifier">p4</span>]
+  <span class="ruby-identifier">required_params</span> <span class="ruby-value">:p1</span>, <span class="ruby-value">:p2</span> <span class="ruby-operator">=&gt;</span> [<span class="ruby-value">:p3</span>, <span class="ruby-value">:p4</span>]
 <span class="ruby-keyword">end</span>
 </pre>
 
-<h3 id="label-Classic+Application">Classic Application</h3>
+<h3 id="label-Classic+Application">Classic Application<span><a href="#label-Classic+Application">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
 <p>In a classic application simply require the helpers, and start using them:</p>
 
@@ -29,10 +29,9 @@ end</pre>
 <span class="ruby-comment"># The rest of your classic application code goes here...</span>
 </pre>
 
-<h3 id="label-Modular+Application">Modular Application</h3>
+<h3 id="label-Modular+Application">Modular Application<span><a href="#label-Modular+Application">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
-<p>In a modular application you need to require the helpers, and then tell the
-application to use them:</p>
+<p>In a modular application you need to require the helpers, and then tell the application to use them:</p>
 
 <pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra/base&quot;</span>
 <span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra/required_params&quot;</span>

@@ -1,12 +1,11 @@
 
-<h1 id="label-Sinatra%3A%3AJSON">Sinatra::JSON</h1>
+<h1 id="label-Sinatra-3A-3AJSON">Sinatra::JSON<span><a href="#label-Sinatra-3A-3AJSON">&para;</a> <a href="#top">&uarr;</a></span></h1>
 
-<p><code>Sinatra::JSON</code> adds a helper method, called <code>json</code>,
-for (obviously) json generation.</p>
+<p><code>Sinatra::JSON</code> adds a helper method, called <code>json</code>, for (obviously) json generation.</p>
 
-<h2 id="label-Usage">Usage</h2>
+<h2 id="label-Usage">Usage<span><a href="#label-Usage">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
-<h3 id="label-Classic+Application">Classic Application</h3>
+<h3 id="label-Classic+Application">Classic Application<span><a href="#label-Classic+Application">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
 <p>In a classic application simply require the helper, and start using it:</p>
 
@@ -15,16 +14,15 @@ for (obviously) json generation.</p>
 
 <span class="ruby-comment"># define a route that uses the helper</span>
 <span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/&#39;</span> <span class="ruby-keyword">do</span>
-  <span class="ruby-identifier">json</span> :<span class="ruby-identifier">foo</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;bar&#39;</span>
+  <span class="ruby-identifier">json</span> <span class="ruby-value">:foo</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;bar&#39;</span>
 <span class="ruby-keyword">end</span>
 
 <span class="ruby-comment"># The rest of your classic application code goes here...</span>
 </pre>
 
-<h3 id="label-Modular+Application">Modular Application</h3>
+<h3 id="label-Modular+Application">Modular Application<span><a href="#label-Modular+Application">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
-<p>In a modular application you need to require the helper, and then tell the
-application you will use it:</p>
+<p>In a modular application you need to require the helper, and then tell the application you will use it:</p>
 
 <pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra/base&quot;</span>
 <span class="ruby-identifier">require</span> <span class="ruby-string">&quot;sinatra/json&quot;</span>
@@ -33,19 +31,16 @@ application you will use it:</p>
 
   <span class="ruby-comment"># define a route that uses the helper</span>
   <span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/&#39;</span> <span class="ruby-keyword">do</span>
-    <span class="ruby-identifier">json</span> :<span class="ruby-identifier">foo</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;bar&#39;</span>
+    <span class="ruby-identifier">json</span> <span class="ruby-value">:foo</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;bar&#39;</span>
   <span class="ruby-keyword">end</span>
 
   <span class="ruby-comment"># The rest of your modular application code goes here...</span>
 <span class="ruby-keyword">end</span>
 </pre>
 
-<h3 id="label-Encoders">Encoders</h3>
+<h3 id="label-Encoders">Encoders<span><a href="#label-Encoders">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
-<p>By default it will try to call <code>to_json</code> on the object, but if
-it doesn&#39;t respond to that message, it will use its own rather simple
-encoder.  You can easily change that anyways. To use <code>JSON</code>,
-simply require it:</p>
+<p>By default it will try to call <code>to_json</code> on the object, but if it doesn’t respond to that message, it will use its own rather simple encoder.  You can easily change that anyways. To use <code>JSON</code>, simply require it:</p>
 
 <pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;json&#39;</span>
 </pre>
@@ -55,40 +50,34 @@ simply require it:</p>
 <pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;yajl&#39;</span>
 </pre>
 
-<p>For other encoders, besides requiring them, you need to define the
-<code>:json_encoder</code> setting.  For instance, for the
-<code>Whatever</code> encoder:</p>
+<p>For other encoders, besides requiring them, you need to define the <code>:json_encoder</code> setting.  For instance, for the <code>Whatever</code> encoder:</p>
 
 <pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;whatever&#39;</span>
-<span class="ruby-identifier">set</span> :<span class="ruby-identifier">json_encoder</span>, <span class="ruby-constant">Whatever</span>
+<span class="ruby-identifier">set</span> <span class="ruby-value">:json_encoder</span>, <span class="ruby-constant">Whatever</span>
 </pre>
 
-<p>To force <code>json</code> to simply call <code>to_json</code> on the
-object:</p>
+<p>To force <code>json</code> to simply call <code>to_json</code> on the object:</p>
 
-<pre>set :json_encoder, :to_json</pre>
+<pre class="ruby"><span class="ruby-identifier">set</span> <span class="ruby-value">:json_encoder</span>, <span class="ruby-value">:to_json</span>
+</pre>
 
 <p>Actually, it can call any method:</p>
 
-<pre>set :json_encoder, :my_fancy_json_method</pre>
+<pre class="ruby"><span class="ruby-identifier">set</span> <span class="ruby-value">:json_encoder</span>, <span class="ruby-value">:my_fancy_json_method</span>
+</pre>
 
-<h3 id="label-Content-Type">Content-Type</h3>
+<h3 id="label-Content-Type">Content-Type<span><a href="#label-Content-Type">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
-<p>It will automatically set the content type to “application/json”.  As
-usual, you can easily change that, with the <code>:json_content_type</code>
-setting:</p>
+<p>It will automatically set the content type to “application/json”.  As usual, you can easily change that, with the <code>:json_content_type</code> setting:</p>
 
-<pre>set :json_content_type, :json</pre>
+<pre class="ruby"><span class="ruby-identifier">set</span> <span class="ruby-value">:json_content_type</span>, <span class="ruby-value">:js</span>
+</pre>
 
-<h3 id="label-Overriding+the+Encoder+and+the+Content-Type">Overriding the Encoder and the Content-Type</h3>
+<h3 id="label-Overriding+the+Encoder+and+the+Content-Type">Overriding the Encoder and the Content-Type<span><a href="#label-Overriding+the+Encoder+and+the+Content-Type">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
-<p>The <code>json</code> helper will also take two options
-<code>:encoder</code> and <code>:content_type</code>.  The values of this
-options are the same as the <code>:json_encoder</code> and
-<code>:json_content_type</code> settings, respectively.  You can also pass
-those to the json method:</p>
+<p>The <code>json</code> helper will also take two options <code>:encoder</code> and <code>:content_type</code>.  The values of this options are the same as the <code>:json_encoder</code> and <code>:json_content_type</code> settings, respectively.  You can also pass those to the json method:</p>
 
 <pre class="ruby"><span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/&#39;</span>  <span class="ruby-keyword">do</span>
-  <span class="ruby-identifier">json</span>({:<span class="ruby-identifier">foo</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;bar&#39;</span>}, :<span class="ruby-identifier">encoder</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-identifier">to_json</span>, :<span class="ruby-identifier">content_type</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-identifier">json</span>)
+  <span class="ruby-identifier">json</span>({<span class="ruby-value">:foo</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;bar&#39;</span>}, <span class="ruby-value">:encoder</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">:to_json</span>, <span class="ruby-value">:content_type</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">:js</span>)
 <span class="ruby-keyword">end</span>
 </pre>
