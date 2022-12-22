@@ -84,8 +84,11 @@
 
 <h2>Cookie Tossing</h2>
 
-<p>Prevented by:
-* <a href="http://www.sinatrarb.com/protection/cookie_tossing"><code>Rack::Protection::CookieTossing</code></a> (not included by <code>use Rack::Protection</code>)</p>
+<p>Prevented by:</p>
+
+<ul>
+  <li><a href="http://www.sinatrarb.com/protection/cookie_tossing"><code>Rack::Protection::CookieTossing</code></a> (not included by <code>use Rack::Protection</code>)</li>
+</ul>
 
 <h2>IP Spoofing</h2>
 
@@ -112,9 +115,9 @@
 <h1>Instrumentation</h1>
 
 <p>Instrumentation is enabled by passing in an instrumenter as an option.
-~~~~
-use Rack::Protection, instrumenter: ActiveSupport::Notifications
-~~~~</p>
 
-<p>The instrumenter is passed a namespace (String) and environment (Hash). The namespace is ‘rack.protection’ and the attack type can be obtained from the environment key ‘rack.protection.attack’.</p>
+<pre><code> use Rack::Protection, instrumenter: ActiveSupport::Notifications
+</code></pre>
+
+<p>The instrumenter is passed a namespace (String) and environment (Hash). The namespace is <code>rack.protection</code> and the attack type can be obtained from the environment key <code>rack.protection.attack</code>.</p>
 
