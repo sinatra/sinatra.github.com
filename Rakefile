@@ -165,7 +165,7 @@ def readme_to_html(fname, path, with_toc = false, fragment = false)
   markdown = Kramdown::Document.new(markdown_string,
     :fenced_code_blocks => true,
     :syntax_highlighter => :rouge,
-    :auto_ids => false)
+    :auto_ids => true)
 
   html = cleanup(markdown.to_html, fragment)
   File.open(fname, 'w') do |io|

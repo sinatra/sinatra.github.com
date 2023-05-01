@@ -2,7 +2,7 @@
 
 
 
-<h1>Usage</h1>
+<h1 id="usage">Usage</h1>
 
 <p>Use all protections you probably want to use:</p>
 
@@ -28,9 +28,9 @@
 <span class="n">run</span> <span class="no">MyApp</span>
 </code></pre></div></div>
 
-<h1>Prevented Attacks</h1>
+<h1 id="prevented-attacks">Prevented Attacks</h1>
 
-<h2>Cross Site Request Forgery</h2>
+<h2 id="cross-site-request-forgery">Cross Site Request Forgery</h2>
 
 <p>Prevented by:</p>
 
@@ -46,7 +46,7 @@
   <li><a href="http://www.sinatrarb.com/protection/http_origin"><code>Rack::Protection::HttpOrigin</code></a></li>
 </ul>
 
-<h2>Cross Site Scripting</h2>
+<h2 id="cross-site-scripting">Cross Site Scripting</h2>
 
 <p>Prevented by:</p>
 
@@ -58,7 +58,7 @@
   <li><a href="http://www.sinatrarb.com/protection/content_security_policy"><code>Rack::Protection::ContentSecurityPolicy</code></a></li>
 </ul>
 
-<h2>Clickjacking</h2>
+<h2 id="clickjacking">Clickjacking</h2>
 
 <p>Prevented by:</p>
 
@@ -66,7 +66,7 @@
   <li><a href="http://www.sinatrarb.com/protection/frame_options"><code>Rack::Protection::FrameOptions</code></a></li>
 </ul>
 
-<h2>Directory Traversal</h2>
+<h2 id="directory-traversal">Directory Traversal</h2>
 
 <p>Prevented by:</p>
 
@@ -74,7 +74,7 @@
   <li><a href="http://www.sinatrarb.com/protection/path_traversal"><code>Rack::Protection::PathTraversal</code></a></li>
 </ul>
 
-<h2>Session Hijacking</h2>
+<h2 id="session-hijacking">Session Hijacking</h2>
 
 <p>Prevented by:</p>
 
@@ -82,7 +82,7 @@
   <li><a href="http://www.sinatrarb.com/protection/session_hijacking"><code>Rack::Protection::SessionHijacking</code></a></li>
 </ul>
 
-<h2>Cookie Tossing</h2>
+<h2 id="cookie-tossing">Cookie Tossing</h2>
 
 <p>Prevented by:</p>
 
@@ -90,7 +90,7 @@
   <li><a href="http://www.sinatrarb.com/protection/cookie_tossing"><code>Rack::Protection::CookieTossing</code></a> (not included by <code>use Rack::Protection</code>)</li>
 </ul>
 
-<h2>IP Spoofing</h2>
+<h2 id="ip-spoofing">IP Spoofing</h2>
 
 <p>Prevented by:</p>
 
@@ -98,7 +98,7 @@
   <li><a href="http://www.sinatrarb.com/protection/ip_spoofing"><code>Rack::Protection::IPSpoofing</code></a></li>
 </ul>
 
-<h2>Helps to protect against protocol downgrade attacks and cookie hijacking</h2>
+<h2 id="helps-to-protect-against-protocol-downgrade-attacks-and-cookie-hijacking">Helps to protect against protocol downgrade attacks and cookie hijacking</h2>
 
 <p>Prevented by:</p>
 
@@ -107,17 +107,17 @@
 <a href="http://www.sinatrarb.com/protection/strict_transport"><code>Rack::Protection::StrictTransport</code></a> (not included by <code>use Rack::Protection</code>)</li>
 </ul>
 
-<h1>Installation</h1>
+<h1 id="installation">Installation</h1>
 
 <pre><code>gem install rack-protection
 </code></pre>
 
-<h1>Instrumentation</h1>
+<h1 id="instrumentation">Instrumentation</h1>
 
 <p>Instrumentation is enabled by passing in an instrumenter as an option.
 
 <pre><code> use Rack::Protection, instrumenter: ActiveSupport::Notifications
 </code></pre>
 
-<p>The instrumenter is passed a namespace (String) and environment (Hash). The namespace is <code>rack.protection</code> and the attack type can be obtained from the environment key <code>rack.protection.attack</code>.</p>
+<p>The instrumenter is passed a namespace (String) and environment (Hash). The namespace is ‘rack.protection’ and the attack type can be obtained from the environment key ‘rack.protection.attack’.</p>
 

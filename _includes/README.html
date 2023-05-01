@@ -40,7 +40,7 @@ pick up if available.</p>
 
 
 
-<h2>Routes</h2>
+<h2 id="routes">Routes</h2>
 
 <p>In Sinatra, a route is an HTTP method paired with a URL-matching pattern.
 Each route is associated with a block:</p>
@@ -178,7 +178,7 @@ options used for a given route by passing in a <code>:mustermann_opts</code> has
 be merged into the global <code>:mustermann_opts</code> hash described
 <a href="#available-settings">below</a>.</p>
 
-<h2>Conditions</h2>
+<h2 id="conditions">Conditions</h2>
 
 <p>Routes may include a variety of matching conditions, such as the user agent:</p>
 
@@ -239,7 +239,7 @@ be merged into the global <code>:mustermann_opts</code> hash described
 <span class="k">end</span>
 </code></pre></div></div>
 
-<h2>Return Values</h2>
+<h2 id="return-values">Return Values</h2>
 
 <p>The return value of a route block determines at least the response body
 passed on to the HTTP client or at least the next middleware in the
@@ -275,7 +275,7 @@ the given block</li>
 <p>You can also use the <code>stream</code> helper method (<a href="#streaming-responses">described below</a>) to reduce
 boilerplate and embed the streaming logic in the route.</p>
 
-<h2>Custom Route Matchers</h2>
+<h2 id="custom-route-matchers">Custom Route Matchers</h2>
 
 <p>As shown above, Sinatra ships with built-in support for using String
 patterns and regular expressions as route matches. However, it does not
@@ -313,7 +313,7 @@ expressed as:</p>
 <span class="k">end</span>
 </code></pre></div></div>
 
-<h2>Static Files</h2>
+<h2 id="static-files">Static Files</h2>
 
 <p>Static files are served from the <code>./public</code> directory. You can specify
 a different location by setting the <code>:public_folder</code> option:</p>
@@ -328,7 +328,7 @@ a different location by setting the <code>:public_folder</code> option:</p>
 <p>Use the <code>:static_cache_control</code> setting (see <a href="#cache-control">below</a>) to add
 <code>Cache-Control</code> header info.</p>
 
-<h2>Views / Templates</h2>
+<h2 id="views--templates">Views / Templates</h2>
 
 <p>Each template language is exposed via its own rendering method. These
 methods simply return a string:</p>
@@ -444,7 +444,7 @@ use: <code>:'subdir/template'</code> or <code>'subdir/template'.to_sym</code>). 
 symbol because otherwise rendering methods will render any strings
 passed to them directly.</p>
 
-<h3>Literal Templates</h3>
+<h3 id="literal-templates">Literal Templates</h3>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
   <span class="n">haml</span> <span class="s1">'%div.title Hello World'</span>
@@ -460,7 +460,7 @@ associated with that string:</p>
 <span class="k">end</span>
 </code></pre></div></div>
 
-<h3>Available Template Languages</h3>
+<h3 id="available-template-languages">Available Template Languages</h3>
 
 <p>Some languages have multiple implementations. To specify what implementation
 to use (and to be thread-safe), you should simply require it first:</p>
@@ -469,7 +469,7 @@ to use (and to be thread-safe), you should simply require it first:</p>
 <span class="n">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)</span> <span class="p">{</span> <span class="n">markdown</span> <span class="ss">:index</span> <span class="p">}</span>
 </code></pre></div></div>
 
-<h4>Haml Templates</h4>
+<h4 id="haml-templates">Haml Templates</h4>
 
 <table>
   <tr>
@@ -486,7 +486,7 @@ to use (and to be thread-safe), you should simply require it first:</p>
   </tr>
 </table>
 
-<h4>Erb Templates</h4>
+<h4 id="erb-templates">Erb Templates</h4>
 
 <table>
   <tr>
@@ -507,7 +507,7 @@ to use (and to be thread-safe), you should simply require it first:</p>
   </tr>
 </table>
 
-<h4>Builder Templates</h4>
+<h4 id="builder-templates">Builder Templates</h4>
 
 <table>
   <tr>
@@ -528,7 +528,7 @@ to use (and to be thread-safe), you should simply require it first:</p>
 
 <p>It also takes a block for inline templates (see <a href="#inline-templates">example</a>).</p>
 
-<h4>Nokogiri Templates</h4>
+<h4 id="nokogiri-templates">Nokogiri Templates</h4>
 
 <table>
   <tr>
@@ -547,7 +547,7 @@ to use (and to be thread-safe), you should simply require it first:</p>
 
 <p>It also takes a block for inline templates (see <a href="#inline-templates">example</a>).</p>
 
-<h4>Liquid Templates</h4>
+<h4 id="liquid-templates">Liquid Templates</h4>
 
 <table>
   <tr>
@@ -567,7 +567,7 @@ to use (and to be thread-safe), you should simply require it first:</p>
 <p>Since you cannot call Ruby methods (except for <code>yield</code>) from a Liquid
 template, you almost always want to pass locals to it.</p>
 
-<h4>Markdown Templates</h4>
+<h4 id="markdown-templates">Markdown Templates</h4>
 
 <table>
   <tr>
@@ -611,7 +611,7 @@ templates:</p>
 Markdown. However, it is possible to use another rendering engine for the
 template than for the layout by passing the <code>:layout_engine</code> option.</p>
 
-<h4>RDoc Templates</h4>
+<h4 id="rdoc-templates">RDoc Templates</h4>
 
 <table>
   <tr>
@@ -644,7 +644,7 @@ therefore will usually use it in combination with another rendering engine:</p>
 RDoc. However, it is possible to use another rendering engine for the
 template than for the layout by passing the <code>:layout_engine</code> option.</p>
 
-<h4>AsciiDoc Templates</h4>
+<h4 id="asciidoc-templates">AsciiDoc Templates</h4>
 
 <table>
   <tr>
@@ -666,7 +666,7 @@ template than for the layout by passing the <code>:layout_engine</code> option.<
 <p>Since you cannot call Ruby methods directly from an AsciiDoc template, you
 almost always want to pass locals to it.</p>
 
-<h4>Markaby Templates</h4>
+<h4 id="markaby-templates">Markaby Templates</h4>
 
 <table>
   <tr>
@@ -685,7 +685,7 @@ almost always want to pass locals to it.</p>
 
 <p>It also takes a block for inline templates (see <a href="#inline-templates">example</a>).</p>
 
-<h4>RABL Templates</h4>
+<h4 id="rabl-templates">RABL Templates</h4>
 
 <table>
   <tr>
@@ -702,7 +702,7 @@ almost always want to pass locals to it.</p>
   </tr>
 </table>
 
-<h4>Slim Templates</h4>
+<h4 id="slim-templates">Slim Templates</h4>
 
 <table>
   <tr>
@@ -719,7 +719,7 @@ almost always want to pass locals to it.</p>
   </tr>
 </table>
 
-<h4>Yajl Templates</h4>
+<h4 id="yajl-templates">Yajl Templates</h4>
 
 <table>
   <tr>
@@ -757,7 +757,7 @@ object:</p>
 <span class="nx">present</span><span class="p">(</span><span class="nx">resource</span><span class="p">);</span>
 </code></pre></div></div>
 
-<h3>Accessing Variables in Templates</h3>
+<h3 id="accessing-variables-in-templates">Accessing Variables in Templates</h3>
 
 <p>Templates are evaluated within the same context as route handlers. Instance
 variables set in route handlers are directly accessible by templates:</p>
@@ -779,7 +779,7 @@ variables set in route handlers are directly accessible by templates:</p>
 <p>This is typically used when rendering templates as partials from within
 other templates.</p>
 
-<h3>Templates with <code>yield</code> and nested layouts</h3>
+<h3 id="templates-with-yield-and-nested-layouts">Templates with <code>yield</code> and nested layouts</h3>
 
 <p>A layout is usually just a template that calls <code>yield</code>.
 Such a template can be used either through the <code>:template</code> option as
@@ -812,7 +812,7 @@ layouts:</p>
 <p>Currently, the following rendering methods accept a block: <code>erb</code>, <code>haml</code>,
 <code>liquid</code>, <code>slim </code>. Also, the general <code>render</code> method accepts a block.</p>
 
-<h3>Inline Templates</h3>
+<h3 id="inline-templates">Inline Templates</h3>
 
 <p>Templates may be defined at the end of the source file:</p>
 
@@ -836,7 +836,7 @@ layouts:</p>
 automatically loaded. Call <code>enable :inline_templates</code> explicitly if you
 have inline templates in other source files.</p>
 
-<h3>Named Templates</h3>
+<h3 id="named-templates">Named Templates</h3>
 
 <p>Templates may also be defined using the top-level <code>template</code> method:</p>
 
@@ -863,20 +863,20 @@ is rendered. You can individually disable layouts by passing
 <span class="k">end</span>
 </code></pre></div></div>
 
-<h3>Associating File Extensions</h3>
+<h3 id="associating-file-extensions">Associating File Extensions</h3>
 
 <p>To associate a file extension with a template engine, use
 <code>Tilt.register</code>. For instance, if you like to use the file extension
 <code>tt</code> for Haml templates, you can do the following:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Tilt</span><span class="p">.</span><span class="nf">register</span> <span class="ss">:tt</span><span class="p">,</span> <span class="no">Tilt</span><span class="p">[</span><span class="ss">:haml</span><span class="p">]</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Tilt</span><span class="p">.</span><span class="nf">register</span> <span class="no">Tilt</span><span class="p">[</span><span class="ss">:haml</span><span class="p">],</span> <span class="ss">:tt</span>
 </code></pre></div></div>
 
-<h3>Adding Your Own Template Engine</h3>
+<h3 id="adding-your-own-template-engine">Adding Your Own Template Engine</h3>
 
 <p>First, register your engine with Tilt, then create a rendering method:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Tilt</span><span class="p">.</span><span class="nf">register</span> <span class="ss">:myat</span><span class="p">,</span> <span class="no">MyAwesomeTemplateEngine</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Tilt</span><span class="p">.</span><span class="nf">register</span> <span class="no">MyAwesomeTemplateEngine</span><span class="p">,</span> <span class="ss">:myat</span>
 
 <span class="n">helpers</span> <span class="k">do</span>
   <span class="k">def</span> <span class="nf">myat</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span> <span class="n">render</span><span class="p">(</span><span class="ss">:myat</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span> <span class="k">end</span>
@@ -890,7 +890,7 @@ is rendered. You can individually disable layouts by passing
 <p>Renders <code>./views/index.myat</code>. Learn more about
 <a href="https://github.com/rtomayko/tilt#readme">Tilt</a>.</p>
 
-<h3>Using Custom Logic for Template Lookup</h3>
+<h3 id="using-custom-logic-for-template-lookup">Using Custom Logic for Template Lookup</h3>
 
 <p>To implement your own template lookup mechanism you can write your
 own <code>#find_template</code> method:</p>
@@ -906,7 +906,7 @@ own <code>#find_template</code> method:</p>
 <span class="k">end</span>
 </code></pre></div></div>
 
-<h2>Filters</h2>
+<h2 id="filters">Filters</h2>
 
 <p>Before filters are evaluated before each request within the same context
 as the routes will be and can modify the request and response. Instance
@@ -960,7 +960,7 @@ request path matches that pattern:</p>
 <span class="k">end</span>
 </code></pre></div></div>
 
-<h2>Helpers</h2>
+<h2 id="helpers">Helpers</h2>
 
 <p>Use the top-level <code>helpers</code> method to define helper methods for use in
 route handlers and templates:</p>
@@ -991,7 +991,7 @@ route handlers and templates:</p>
 
 <p>The effect is the same as including the modules in the application class.</p>
 
-<h3>Using Sessions</h3>
+<h3 id="using-sessions">Using Sessions</h3>
 
 <p>A session is used to keep state during requests. If activated, you have one
 session hash per user session:</p>
@@ -1007,7 +1007,7 @@ session hash per user session:</p>
 <span class="k">end</span>
 </code></pre></div></div>
 
-<h4>Session Secret Security</h4>
+<h4 id="session-secret-security">Session Secret Security</h4>
 
 <p>To improve security, the session data in the cookie is signed with a session
 secret using <code>HMAC-SHA1</code>. This session secret should optimally be a
@@ -1076,7 +1076,7 @@ gem</a> here as well:</p>
 <span class="n">set</span> <span class="ss">:session_secret</span><span class="p">,</span> <span class="no">ENV</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="s1">'SESSION_SECRET'</span><span class="p">)</span> <span class="p">{</span> <span class="no">SecureRandom</span><span class="p">.</span><span class="nf">hex</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span> <span class="p">}</span>
 </code></pre></div></div>
 
-<h4>Session Config</h4>
+<h4 id="session-config">Session Config</h4>
 
 <p>If you want to configure it further, you may also store a hash with options
 in the <code>sessions</code> setting:</p>
@@ -1090,7 +1090,7 @@ domain with a <em>.</em> like this instead:</p>
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set</span> <span class="ss">:sessions</span><span class="p">,</span> <span class="ss">:domain</span> <span class="o">=&gt;</span> <span class="s1">'.foo.com'</span>
 </code></pre></div></div>
 
-<h4>Choosing Your Own Session Middleware</h4>
+<h4 id="choosing-your-own-session-middleware">Choosing Your Own Session Middleware</h4>
 
 <p>Note that <code>enable :sessions</code> actually stores all data in a cookie. This
 might not always be what you want (storing lots of data will increase your
@@ -1122,7 +1122,7 @@ protection <strong>will not be enabled by default</strong>.</p>
 
 <p>See ‘<a href="#configuring-attack-protection">Configuring attack protection</a>’ for more information.</p>
 
-<h3>Halting</h3>
+<h3 id="halting">Halting</h3>
 
 <p>To immediately stop a request within a filter or route use:</p>
 
@@ -1154,7 +1154,7 @@ protection <strong>will not be enabled by default</strong>.</p>
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">halt</span> <span class="n">erb</span><span class="p">(</span><span class="ss">:error</span><span class="p">)</span>
 </code></pre></div></div>
 
-<h3>Passing</h3>
+<h3 id="passing">Passing</h3>
 
 <p>A route can punt processing to the next matching route using <code>pass</code>:</p>
 
@@ -1171,7 +1171,7 @@ protection <strong>will not be enabled by default</strong>.</p>
 <p>The route block is immediately exited and control continues with the next
 matching route. If no matching route is found, a 404 is returned.</p>
 
-<h3>Triggering Another Route</h3>
+<h3 id="triggering-another-route">Triggering Another Route</h3>
 
 <p>Sometimes <code>pass</code> is not what you want, instead, you would like to get the
 result of calling another route. Simply use <code>call</code> to achieve this:</p>
@@ -1195,7 +1195,7 @@ than a duplicate, use <code>call!</code> instead of <code>call</code>.</p>
 
 <p>Check out the Rack specification if you want to learn more about <code>call</code>.</p>
 
-<h3>Setting Body, Status Code, and Headers</h3>
+<h3 id="setting-body-status-code-and-headers">Setting Body, Status Code, and Headers</h3>
 
 <p>It is possible and recommended to set the status code and response body with
 the return value of the route block. However, in some scenarios, you might
@@ -1229,7 +1229,7 @@ Rack handler (this can be used to implement streaming, <a href="#return-values">
 <p>Like <code>body</code>, <code>headers</code> and <code>status</code> with no arguments can be used to access
 their current values.</p>
 
-<h3>Streaming Responses</h3>
+<h3 id="streaming-responses">Streaming Responses</h3>
 
 <p>Sometimes you want to start sending out data while still generating parts of
 the response body. In extreme examples, you want to keep sending data until
@@ -1311,7 +1311,7 @@ rainbows -c rainbows.conf
 write to the socket. Because of this, it’s recommended to check
 <code>out.closed?</code> before trying to write.</p>
 
-<h3>Logging</h3>
+<h3 id="logging">Logging</h3>
 
 <p>In the request scope, the <code>logger</code> helper exposes a <code>Logger</code> instance:</p>
 
@@ -1340,7 +1340,7 @@ if you inherit from <code>Sinatra::Base</code>, you probably want to enable it y
 common use case is when you want to set your own logger. Sinatra will use
 whatever it will find in <code>env['rack.logger']</code>.</p>
 
-<h3>Mime Types</h3>
+<h3 id="mime-types">Mime Types</h3>
 
 <p>When using <code>send_file</code> or static files you may have mime types Sinatra
 doesn’t understand. Use <code>mime_type</code> to register them by file extension:</p>
@@ -1358,7 +1358,7 @@ doesn’t understand. Use <code>mime_type</code> to register them by file extens
 <span class="k">end</span>
 </code></pre></div></div>
 
-<h3>Generating URLs</h3>
+<h3 id="generating-urls">Generating URLs</h3>
 
 <p>For generating URLs you should use the <code>url</code> helper method, for instance, in
 Haml:</p>
@@ -1370,7 +1370,7 @@ Haml:</p>
 
 <p>This method is also aliased to <code>to</code> (see <a href="#browser-redirect">below</a> for an example).</p>
 
-<h3>Browser Redirect</h3>
+<h3 id="browser-redirect">Browser Redirect</h3>
 
 <p>You can trigger a browser redirect with the <code>redirect</code> helper method:</p>
 
@@ -1417,7 +1417,7 @@ Haml:</p>
 <span class="k">end</span>
 </code></pre></div></div>
 
-<h3>Cache Control</h3>
+<h3 id="cache-control">Cache Control</h3>
 
 <p>Setting your headers correctly is the foundation for proper HTTP caching.</p>
 
@@ -1503,7 +1503,7 @@ option:</p>
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">etag</span> <span class="s1">''</span><span class="p">,</span> <span class="ss">:new_resource</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">:kind</span> <span class="o">=&gt;</span> <span class="ss">:weak</span>
 </code></pre></div></div>
 
-<h3>Sending Files</h3>
+<h3 id="sending-files">Sending Files</h3>
 
 <p>To return the contents of a file as the response, you can use the <code>send_file</code>
 helper method:</p>
@@ -1549,7 +1549,7 @@ helper method:</p>
     </dd>
 </dl>
 
-<h3>Accessing the Request Object</h3>
+<h3 id="accessing-the-request-object">Accessing the Request Object</h3>
 
 <p>The incoming request object can be accessed from request level (filter,
 routes, error handlers) through the <code>request</code> method:</p>
@@ -1604,7 +1604,7 @@ routes, error handlers) through the <code>request</code> method:</p>
 <span class="k">end</span>
 </code></pre></div></div>
 
-<h3>Attachments</h3>
+<h3 id="attachments">Attachments</h3>
 
 <p>You can use the <code>attachment</code> helper to tell the browser the response should
 be stored on disk rather than displayed in the browser:</p>
@@ -1623,7 +1623,7 @@ be stored on disk rather than displayed in the browser:</p>
 <span class="k">end</span>
 </code></pre></div></div>
 
-<h3>Dealing with Date and Time</h3>
+<h3 id="dealing-with-date-and-time">Dealing with Date and Time</h3>
 
 <p>Sinatra offers a <code>time_for</code> helper method that generates a Time object from
 the given value. It is also able to convert <code>DateTime</code>, <code>Date</code> and similar
@@ -1656,7 +1656,7 @@ can therefore easily extend the behavior of those methods by overriding
 <span class="k">end</span>
 </code></pre></div></div>
 
-<h3>Looking Up Template Files</h3>
+<h3 id="looking-up-template-files">Looking Up Template Files</h3>
 
 <p>The <code>find_template</code> helper is used to find template files for rendering:</p>
 
@@ -1700,7 +1700,7 @@ found. Also, template locations (and content) will be cached if you are not
 running in development mode. You should keep that in mind if you write a
 really crazy method.</p>
 
-<h2>Configuration</h2>
+<h2 id="configuration">Configuration</h2>
 
 <p>Run once, at startup, in any environment:</p>
 
@@ -1750,10 +1750,10 @@ really crazy method.</p>
 <span class="k">end</span>
 </code></pre></div></div>
 
-<h3>Configuring attack protection</h3>
+<h3 id="configuring-attack-protection">Configuring attack protection</h3>
 
 <p>Sinatra is using
-<a href="https://github.com/sinatra/sinatra/tree/master/rack-protection#readme">Rack::Protection</a> to
+<a href="https://github.com/sinatra/sinatra/tree/main/rack-protection#readme">Rack::Protection</a> to
 defend your application against common, opportunistic attacks. You can
 easily disable this behavior (which will open up your application to tons
 of common vulnerabilities):</p>
@@ -1779,7 +1779,7 @@ based protection by passing the <code>:session</code> option:</p>
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set</span> <span class="ss">:protection</span><span class="p">,</span> <span class="ss">:session</span> <span class="o">=&gt;</span> <span class="kp">true</span>
 </code></pre></div></div>
 
-<h3>Available Settings</h3>
+<h3 id="available-settings">Available Settings</h3>
 
 <dl>
   <dt>absolute_redirects</dt>
@@ -2000,7 +2000,7 @@ based protection by passing the <code>:session</code> option:</p>
     </dd>
 </dl>
 
-<h2>Environments</h2>
+<h2 id="environments">Environments</h2>
 
 <p>There are three predefined <code>environments</code>: <code>"development"</code>,
 <code>"production"</code> and <code>"test"</code>. Environments can be set through the
@@ -2027,13 +2027,13 @@ check the current environment setting:</p>
 <span class="k">end</span>
 </code></pre></div></div>
 
-<h2>Error Handling</h2>
+<h2 id="error-handling">Error Handling</h2>
 
 <p>Error handlers run within the same context as routes and before filters,
 which means you get all the goodies it has to offer, like <code>haml</code>, <code>erb</code>,
 <code>halt</code>, etc.</p>
 
-<h3>Not Found</h3>
+<h3 id="not-found">Not Found</h3>
 
 <p>When a <code>Sinatra::NotFound</code> exception is raised, or the response’s status
 code is 404, the <code>not_found</code> handler is invoked:</p>
@@ -2043,7 +2043,7 @@ code is 404, the <code>not_found</code> handler is invoked:</p>
 <span class="k">end</span>
 </code></pre></div></div>
 
-<h3>Error</h3>
+<h3 id="error">Error</h3>
 
 <p>The <code>error</code> handler is invoked any time an exception is raised from a route
 block or a filter. But note in development it will only run if you set the
@@ -2100,7 +2100,7 @@ show exceptions option to <code>:after_handler</code>:</p>
 running under the development environment to display nice stack traces
 and additional debugging information in your browser.</p>
 
-<h2>Rack Middleware</h2>
+<h2 id="rack-middleware">Rack Middleware</h2>
 
 <p>Sinatra rides on <a href="https://rack.github.io/">Rack</a>, a minimal standard
 interface for Ruby web frameworks. One of Rack’s most interesting
@@ -2124,7 +2124,7 @@ of common functionality.</p>
 </code></pre></div></div>
 
 <p>The semantics of <code>use</code> are identical to those defined for the
-<a href="http://www.rubydoc.info/github/rack/rack/master/Rack/Builder">Rack::Builder</a> DSL
+<a href="https://www.rubydoc.info/github/rack/rack/main/Rack/Builder">Rack::Builder</a> DSL
 (most frequently used from rackup files). For example, the <code>use</code> method
 accepts multiple/variable args as well as blocks:</p>
 
@@ -2139,15 +2139,15 @@ many of these components automatically based on configuration so you
 typically don’t have to <code>use</code> them explicitly.</p>
 
 <p>You can find useful middleware in
-<a href="https://github.com/rack/rack/tree/master/lib/rack">rack</a>,
+<a href="https://github.com/rack/rack/tree/main/lib/rack">rack</a>,
 <a href="https://github.com/rack/rack-contrib#readme">rack-contrib</a>,
 or in the <a href="https://github.com/rack/rack/wiki/List-of-Middleware">Rack wiki</a>.</p>
 
-<h2>Testing</h2>
+<h2 id="testing">Testing</h2>
 
 <p>Sinatra tests can be written using any Rack-based testing library or
 framework.
-<a href="http://www.rubydoc.info/github/brynary/rack-test/master/frames">Rack::Test</a>
+<a href="https://www.rubydoc.info/github/rack/rack-test/main/frames">Rack::Test</a>
 is recommended:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'my_sinatra_app'</span>
@@ -2181,7 +2181,7 @@ is recommended:</p>
 <p>Note: If you are using Sinatra in the modular style, replace
 <code>Sinatra::Application</code> above with the class name of your app.</p>
 
-<h2>Sinatra::Base - Middleware, Libraries, and Modular Apps</h2>
+<h2 id="sinatrabase---middleware-libraries-and-modular-apps">Sinatra::Base - Middleware, Libraries, and Modular Apps</h2>
 
 <p>Defining your app at the top-level works well for micro-apps but has
 considerable drawbacks when building reusable components such as Rack
@@ -2231,7 +2231,7 @@ style), you can subclass <code>Sinatra::Application</code>:</p>
 <span class="k">end</span>
 </code></pre></div></div>
 
-<h3>Modular vs. Classic Style</h3>
+<h3 id="modular-vs-classic-style">Modular vs. Classic Style</h3>
 
 <p>Contrary to common belief, there is nothing wrong with the classic
 style. If it suits your application, you do not have to switch to a
@@ -2296,7 +2296,7 @@ slightly different default settings:</p>
   </tr>
 </table>
 
-<h3>Serving a Modular Application</h3>
+<h3 id="serving-a-modular-application">Serving a Modular Application</h3>
 
 <p>There are two common options for starting a modular app, actively
 starting with <code>run!</code>:</p>
@@ -2329,7 +2329,7 @@ starting with <code>run!</code>:</p>
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rackup <span class="nt">-p</span> 4567
 </code></pre></div></div>
 
-<h3>Using a Classic Style Application with a config.ru</h3>
+<h3 id="using-a-classic-style-application-with-a-configru">Using a Classic Style Application with a config.ru</h3>
 
 <p>Write your app file:</p>
 
@@ -2347,7 +2347,7 @@ starting with <code>run!</code>:</p>
 <span class="n">run</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Application</span>
 </code></pre></div></div>
 
-<h3>When to use a config.ru?</h3>
+<h3 id="when-to-use-a-configru">When to use a config.ru?</h3>
 
 <p>A <code>config.ru</code> file is recommended if:</p>
 
@@ -2362,7 +2362,7 @@ Heroku, …).</li>
 switched to the modular style, and you don’t have to use the modular
 style for running with a <code>config.ru</code>.</strong></p>
 
-<h3>Using Sinatra as Middleware</h3>
+<h3 id="using-sinatra-as-middleware">Using Sinatra as Middleware</h3>
 
 <p>Not only is Sinatra able to use other Rack middleware, any Sinatra
 application can, in turn, be added in front of any Rack endpoint as
@@ -2399,7 +2399,7 @@ or any other Rack-based application (Rails/Hanami/Roda/…):</p>
 <span class="k">end</span>
 </code></pre></div></div>
 
-<h3>Dynamic Application Creation</h3>
+<h3 id="dynamic-application-creation">Dynamic Application Creation</h3>
 
 <p>Sometimes you want to create new applications at runtime without having to
 assign them to a constant. You can do this with <code>Sinatra.new</code>:</p>
@@ -2442,12 +2442,12 @@ your own library.</p>
 <span class="n">run</span> <span class="no">RailsProject</span><span class="o">::</span><span class="no">Application</span>
 </code></pre></div></div>
 
-<h2>Scopes and Binding</h2>
+<h2 id="scopes-and-binding">Scopes and Binding</h2>
 
 <p>The scope you are currently in determines what methods and variables are
 available.</p>
 
-<h3>Application/Class Scope</h3>
+<h3 id="applicationclass-scope">Application/Class Scope</h3>
 
 <p>Every Sinatra application corresponds to a subclass of <code>Sinatra::Base</code>.
 If you are using the top-level DSL (<code>require 'sinatra'</code>), then this
@@ -2490,7 +2490,7 @@ there is only a single application class for all requests.</p>
 <code>settings</code> from within the request scope</li>
 </ul>
 
-<h3>Request/Instance Scope</h3>
+<h3 id="requestinstance-scope">Request/Instance Scope</h3>
 
 <p>For every incoming request, a new instance of your application class is
 created, and all handler blocks run in that scope. From within this scope you
@@ -2523,7 +2523,7 @@ scope via the <code>settings</code> helper:</p>
   <li>templates/views</li>
 </ul>
 
-<h3>Delegation Scope</h3>
+<h3 id="delegation-scope">Delegation Scope</h3>
 
 <p>The delegation scope just forwards methods to the class scope. However, it
 does not behave exactly like the class scope, as you do not have the class
@@ -2544,7 +2544,7 @@ do not share variables/state with the class scope (read: you have a different
 <a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/base.rb#L1609-1633">Sinatra::Delegator mixin</a>
 being <a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/main.rb#L28-30">extending the main object</a>.</p>
 
-<h2>Command Line</h2>
+<h2 id="command-line">Command Line</h2>
 
 <p>Sinatra applications can be run directly:</p>
 
@@ -2562,7 +2562,7 @@ being <a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/main.
 -x # turn on the mutex lock (default is off)
 </code></pre>
 
-<h3>Multi-threading</h3>
+<h3 id="multi-threading">Multi-threading</h3>
 
 <p><em>Paraphrasing from
 <a href="https://stackoverflow.com/a/6282999/5245129">this StackOverflow answer</a>
@@ -2602,7 +2602,7 @@ to start a multi-threaded Rainbows server:</p>
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rainbows <span class="nt">-c</span> rainbows.conf
 </code></pre></div></div>
 
-<h2>Requirement</h2>
+<h2 id="requirement">Requirement</h2>
 
 <p>The following Ruby versions are officially supported:</p>
 <dl>
@@ -2636,10 +2636,10 @@ implementation.</p>
 
 <p>Running Sinatra on a not officially supported Ruby flavor means that if things only break there we assume it’s not our issue but theirs.</p>
 
-<h2>The Bleeding Edge</h2>
+<h2 id="the-bleeding-edge">The Bleeding Edge</h2>
 
 <p>If you would like to use Sinatra’s latest bleeding-edge code, feel free
-to run your application against the master branch, it should be rather
+to run your application against the main branch, it should be rather
 stable.</p>
 
 <p>We also push out prerelease gems from time to time, so you can do a</p>
@@ -2649,7 +2649,7 @@ stable.</p>
 
 <p>to get some of the latest features.</p>
 
-<h3>With Bundler</h3>
+<h3 id="with-bundler">With Bundler</h3>
 
 <p>If you want to run your application with the latest Sinatra, using
 <a href="https://bundler.io">Bundler</a> is the recommended way.</p>
@@ -2677,19 +2677,19 @@ however, be automatically fetched and added by Bundler.</p>
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">exec </span>ruby myapp.rb
 </code></pre></div></div>
 
-<h2>Versioning</h2>
+<h2 id="versioning">Versioning</h2>
 
 <p>Sinatra follows <a href="https://semver.org/">Semantic Versioning</a>, both SemVer and
 SemVerTag.</p>
 
-<h2>Further Reading</h2>
+<h2 id="further-reading">Further Reading</h2>
 
 <ul>
   <li>
-<a href="http://www.sinatrarb.com/">Project Website</a> - Additional documentation,
+<a href="https://sinatrarb.com/">Project Website</a> - Additional documentation,
 news, and links to other resources.</li>
   <li>
-<a href="http://www.sinatrarb.com/contributing">Contributing</a> - Find a bug? Need
+<a href="https://sinatrarb.com/contributing">Contributing</a> - Find a bug? Need
 help? Have a patch?</li>
   <li><a href="https://github.com/sinatra/sinatra/issues">Issue tracker</a></li>
   <li><a href="https://twitter.com/sinatra">Twitter</a></li>
@@ -2697,17 +2697,16 @@ help? Have a patch?</li>
   <li>IRC: <a href="irc://chat.freenode.net/#sinatra">#sinatra</a> on <a href="https://freenode.net">Freenode</a>
 </li>
   <li>
-<a href="https://sinatrarb.slack.com">Sinatra &amp; Friends</a> on Slack
-(<a href="https://sinatra-slack.herokuapp.com/">get an invite</a>)</li>
+<a href="https://discord.gg/ncjsfsNHh7">Sinatra &amp; Friends</a> on Discord</li>
   <li>
 <a href="https://github.com/sinatra/sinatra-book">Sinatra Book</a> - Cookbook Tutorial</li>
   <li>
 <a href="http://recipes.sinatrarb.com/">Sinatra Recipes</a> - Community contributed
 recipes</li>
-  <li>API documentation for the <a href="http://www.rubydoc.info/gems/sinatra">latest release</a>
-or the <a href="http://www.rubydoc.info/github/sinatra/sinatra">current HEAD</a> on
-<a href="http://www.rubydoc.info/">RubyDoc</a>
+  <li>API documentation for the <a href="https://www.rubydoc.info/gems/sinatra">latest release</a>
+or the <a href="https://www.rubydoc.info/github/sinatra/sinatra">current HEAD</a> on
+<a href="https://www.rubydoc.info/">RubyDoc</a>
 </li>
-  <li><a href="https://travis-ci.org/sinatra/sinatra">CI server</a></li>
+  <li><a href="https://github.com/sinatra/sinatra/actions">CI Actions</a></li>
 </ul>
 </body></html>
