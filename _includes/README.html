@@ -1905,8 +1905,12 @@ based protection by passing the <code>:session</code> option:</p>
 
   <dt>raise_errors</dt>
     <dd>
-      Raise exceptions (will stop application). Enabled by default when
+      Raise unhandled errors (will stop application). Enabled by default when
       <tt>environment</tt> is set to <tt>"test"</tt>, disabled otherwise.
+    </dd>
+    <dd>
+      Any explicitly defined error handlers always override this setting. See 
+      the "Error" section below.
     </dd>
 
   <dt>run</dt>
@@ -2052,6 +2056,13 @@ show exceptions option to <code>:after_handler</code>:</p>
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set</span> <span class="ss">:show_exceptions</span><span class="p">,</span> <span class="ss">:after_handler</span>
 </code></pre></div></div>
 
+<p>A catch-all error handler can be defined with <code>error</code> and a block:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">error</span> <span class="k">do</span>
+  <span class="s1">'Sorry there was a nasty error'</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
 <p>The exception object can be obtained from the <code>sinatra.error</code> Rack variable:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">error</span> <span class="k">do</span>
@@ -2059,7 +2070,7 @@ show exceptions option to <code>:after_handler</code>:</p>
 <span class="k">end</span>
 </code></pre></div></div>
 
-<p>Custom errors:</p>
+<p>Pass an error class as an argument to create handlers for custom errors:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">error</span> <span class="no">MyCustomError</span> <span class="k">do</span>
   <span class="s1">'So what happened was...'</span> <span class="o">+</span> <span class="n">env</span><span class="p">[</span><span class="s1">'sinatra.error'</span><span class="p">].</span><span class="nf">message</span>
@@ -2099,6 +2110,58 @@ show exceptions option to <code>:after_handler</code>:</p>
 <p>Sinatra installs special <code>not_found</code> and <code>error</code> handlers when
 running under the development environment to display nice stack traces
 and additional debugging information in your browser.</p>
+
+<h3 id="behavior-with-raiseerrors-option">Behavior with <code>raise_errors</code> option</h3>
+
+<p>When <code>raise_errors</code> option is <code>true</code>, errors that are unhandled are raised 
+outside of the application. Additionally, any errors that would have been 
+caught by the catch-all error handler are raised.</p>
+
+<p>For example, consider the following configuration:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># First handler</span>
+<span class="n">error</span> <span class="no">MyCustomError</span> <span class="k">do</span>
+  <span class="s1">'A custom message'</span>
+<span class="k">end</span>
+
+<span class="c1"># Second handler</span>
+<span class="n">error</span> <span class="k">do</span>
+  <span class="s1">'A catch-all message'</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>If <code>raise_errors</code> is <code>false</code>:</p>
+
+<ul>
+  <li>When <code>MyCustomError</code> or descendant is raised, the first handler is invoked.
+The HTTP response body will contain <code>"A custom message"</code>.</li>
+  <li>When any other error is raised, the second handler is invoked. The HTTP 
+response body will contain <code>"A catch-all message"</code>.</li>
+</ul>
+
+<p>If <code>raise_errors</code> is <code>true</code>:</p>
+
+<ul>
+  <li>When <code>MyCustomError</code> or descendant is raised, the behavior is identical to 
+when <code>raise_errors</code> is <code>false</code>, described above.</li>
+  <li>When any other error is raised, the second handler is <em>not</em> invoked, and 
+the error is raised outside of the application.
+    <ul>
+      <li>If the environment is <code>production</code>, the HTTP response body will contain 
+a generic error message, e.g. <code>"An unhandled lowlevel error occurred. The
+application logs may have details."</code>
+</li>
+      <li>If the environment is not <code>production</code>, the HTTP response body will contain
+the verbose error backtrace.</li>
+      <li>Regardless of environment, if <code>show_exceptions</code> is set to <code>:after_handler</code>, 
+the HTTP response body will contain the verbose error backtrace.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>In the <code>test</code> environment, <code>raise_errors</code> is set to <code>true</code> by default. This 
+means that in order to write a test for a catch-all error handler, 
+<code>raise_errors</code> must temporarily be set to <code>false</code> for that particular test.</p>
 
 <h2 id="rack-middleware">Rack Middleware</h2>
 
