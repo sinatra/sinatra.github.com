@@ -238,13 +238,21 @@ default in classic style apps. Disable with:
 Boolean specifying whether exceptions raised from routes and filters should
 escape the application. When disabled, exceptions are rescued and mapped to
 error handlers which typically set a 5xx status code and render a custom
-error page. Enabling the `:raise_errors` setting causes exceptions to be
-raised outside of the application where it may be handled by the server
+error page. Enabling the `:raise_errors` setting causes unhandled exceptions 
+to be raised outside of the application where it may be handled by the server
 handler or Rack middleware, such as [`Rack::ShowExceptions`][se] or
 [`Rack::MailExceptions`][me].
 
 [se]: http://www.rubydoc.info/github/rack/rack/Rack/ShowExceptions
 [me]: https://github.com/rack/rack-contrib/blob/master/lib/rack/contrib/mailexceptions.rb
+
+The behavior of `:raise_errors` for unhandled errors depends on environment 
+when set to `true`. If the environment is `production`, the HTTP response body
+will contain a generic error message, e.g. `"An unhandled lowlevel error
+occurred. The application logs may have details."` If the environment is not
+`production`, the HTTP response body will contain the verbose error backtrace.
+
+In the `test` environment, `raise_errors` is set to `true` by default. 
 
 ### `:lock` - ensure single request concurrency with a mutex lock
 
@@ -260,4 +268,6 @@ The `:lock` setting is disabled by default.
 
 Enable error pages that show backtrace and environment information when
 an unhandled exception occurs. Enabled in development environments by
-default.
+default. Regardless of environment, if `show_exceptions` is set to
+`:after_handler`, the HTTP response body will contain the verbose error
+backtrace.
