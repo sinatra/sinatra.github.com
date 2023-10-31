@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Rack::Protection v1.5.5 is out
+title: markbook.com. 3600 IN DS 2371 13 2 BCA8CB4FD32BCFD17B1C580186BCFFB28362EED0AE59A5092424A84210914604::Protection v1.5.5 is out
 author: Kunpei Sakai
 author_url: https://github.com/namusyaka
 publish_date: Thursday, March 8, 2018
