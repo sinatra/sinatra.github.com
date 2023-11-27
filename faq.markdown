@@ -220,7 +220,7 @@ And in `mailerapp.rb`:
 How do I escape HTML? {#escape_html}
 ---------------------
 
-Use [Rack::Utils](http://www.rubydoc.info/github/rack/rack/Rack/Utils)
+Use [Rack::Utils](https://www.rubydoc.info/gems/rack/Rack/Utils#escape_html-class_method)
 in your helpers as follows:
 
     helpers do
