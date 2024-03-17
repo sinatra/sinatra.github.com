@@ -10,11 +10,11 @@ We'll take care of the rest.
 
 Applications {#apps}
 ------------
-- [SequenceServer](http://www.sequenceserver.com/) An easy-to-setup BLAST sequence
+- [SequenceServer](https://www.sequenceserver.com/) An easy-to-setup BLAST sequence
 search server
 - [Marley](https://github.com/karmi/marley) the blog engine without &lt;textareas&gt;
 - [Postview](https://github.com/codigorama/postview) a simple blog-engine that
-  render text files written in [Markdown](http://daringfireball.net/projects/markdown).
+  render text files written in [Markdown](https://daringfireball.net/projects/markdown).
 - [Scanty](https://github.com/adamwiggins/scanty) an even more minimalist blogging engine
 - [Scanty using CouchDB](https://github.com/jtulloch/scanty/tree/master)
 - [Haze](https://github.com/madx/haze) a lightweight and minimalist blogging
@@ -34,7 +34,7 @@ search server
 - [Toopaste](https://github.com/zapnap/toopaste) Pastebin site created with
   Sinatra and DataMapper
 - [Columnlog](https://github.com/quirkey/columnlog) Tiny feed fetching app
-- [Kapow](http://code.google.com/p/kapow/) Comics on your iPhone
+- [Kapow](https://code.google.com/p/kapow/) Comics on your iPhone
 - [Knapsack](https://github.com/joseph/knapsack) Pack pages into
   data URIs
 - [Thumblmonks](https://github.com/thumblemonks/evoke) Delayed HTTP
@@ -46,25 +46,25 @@ search server
   control iTunes, Rhythmbox or MPD
 - [sinatra-rubygems](https://github.com/jnewland/sinatra-rubygems) A complete
   reimplementation of the gem server command as a Sinatra application
-- [Nesta](http://nestacms.com/) is an SEO oriented CMS/blog for developers
+- [Nesta](https://nestacms.com/) is an SEO oriented CMS/blog for developers
 - [Hancock](https://github.com/atmos/hancock/tree/master) A Single Sign On
   provider based on OpenID
 - [Hancock Client](https://github.com/atmos/hancock-client/tree/master) Rack
   middleware client for the Hancock server, written in Sinatra
 - [JubiGems](https://www.jubigems.org/) Custom RubyGems server.
 - [Sinatra Saucer](https://github.com/angelic/sinatra_saucer) JRuby web application frontend for Flying Saucer, which converts XHTML into a PDF
-- [WineAdds](http://wineadds.com) micro-app that calculates common additions to wine
-- [Jaconda](http://jaconda.im) A simple team collaboration service that allows you to create chat rooms for groups through Gtalk/Jabber protocol. REST API is written in Sinatra
+- [WineAdds](https://wineadds.com) micro-app that calculates common additions to wine
+- [Jaconda](https://jaconda.im) A simple team collaboration service that allows you to create chat rooms for groups through Gtalk/Jabber protocol. REST API is written in Sinatra
 - [Picky](https://github.com/floere/picky) - a fast &amp; clever semantic search engine.
 - [GitHub High Scores](https://github.com/leereilly/github-high-scores) - A fun way to rank GitHub repository contributors in a 8-bit, 80's-tastic aracdey viewing environment.
 - [Git-Webby](https://github.com/codigorama/git-webby) - Git Smart HTTP Ruby/Sinatra implementation with useful features.
 - [Trudy](https://github.com/quimarche/trudy) - A Nabaztag server.
 - [Markdown Tree](https://github.com/mil/markdown-tree) - Serve a Hierarchy of Markdown files simply (like mksite or other site generators, only dynamic)
-- [streetart.io](http://itunes.com/app/streetartio) streetart.io allows you to share and discover interesting street art, public art and sculptures around you and your city. API is powered by Sinatra and Redis.
-- [TaskwarriorWeb](http://theunraveler.github.com/taskwarrior-web/) - A Sinatra-based web interface for the Taskwarrior todo application. Because being a neck-beard is only fun sometimes.
+- [streetart.io](https://itunes.com/app/streetartio) streetart.io allows you to share and discover interesting street art, public art and sculptures around you and your city. API is powered by Sinatra and Redis.
+- [TaskwarriorWeb](https://theunraveler.github.com/taskwarrior-web/) - A Sinatra-based web interface for the Taskwarrior todo application. Because being a neck-beard is only fun sometimes.
 - [Travis CI](https://travis-ci.org/) - Free Hosted Continuous Integration Platform for the Open Source Community
-- [VDGB](http://vdgb.dk) - Subscription based online video training platform for schools and teachers
-- [Metaflop](http://www.metaflop.com) An easy to use web application for generating and modulating your own fonts.
+- [VDGB](https://vdgb.dk) - Subscription based online video training platform for schools and teachers
+- [Metaflop](https://www.metaflop.com) An easy to use web application for generating and modulating your own fonts.
 - [puresong](https://github.com/al-kivi/puresong.git) - A lightweight responsive application with PureCSS and SQLite and Sequel.
 - [Gleis PaaS](https://gleis.cloud) - The Swiss Ruby on Rails Platform as a Service for your web apps
 - [Stardew Valley Crop Assistant](https://stardew-valley-crop-assistant.herokuapp.com/) - The go-to application for planning seasonal crops in the game *Stardew Valley*.
@@ -94,7 +94,7 @@ Libraries and extensions {#libs}
 - [Sinatra Application Template](https://github.com/zapnap/sinatra-template)
   Base app with DataMapper, Haml and RSpec. Fork and build.
 - [Sinatra OAuth Provider](https://github.com/eddanger/sinatra-oauth-provider)
-  an [OAuth](http://oauth.net) provider implemented with Sinatra
+  an [OAuth](https://oauth.net) provider implemented with Sinatra
 - [Spork](https://github.com/deadprogrammer/spork) Executes some aynchronous
   code using Sinatra running under Passenger
 - [Retweet](https://github.com/zapnap/retweet) Create Twitter apps like
@@ -136,91 +136,91 @@ Libraries and extensions {#libs}
 
 Websites {#sites}
 --------
-- [CrowdfundHQ](http://crowdfundhq.com) Create your own Crowdfunding site, no coding required.
-- [LinkedIn](http://www.linkedin.com/) is a social network for business contacts
-- [I Shoot Film](http://film.vqvz.com) presents Funkaoshi's film photography posted to Flickr organized by film rolls -- [on GitHub](https://github.com/funkaoshi/I-Shoot-Film).
-- [Speed of Animals](http://www.speedofanimals.com/): imagine being a spotted hyena...
-- [Fabulously40 Mobile](http://iphone.fabulously40.com) Sinatra powered mobile
-  site of [Fabulously40](http://fabulously40.com/)
-- [UploadBooth](http://uploadbooth.com) Sinatra powered Upload Service
-- [PasteBooth](http://pastebooth.com) Sinatra powered multi-lingual Paste Service
-- [ShrinkBooth](http://shrinkbooth.com) Sinatra powered multi-lingual URL shortening Service
-- [Gusg.us](http://gusg.us/) Blog - Ridding the long bus
-- [Deleanotes](http://delanotes.com/)
-- [themoviedb.org](http://api.themoviedb.org/) The name says it all :)
+- [CrowdfundHQ](https://crowdfundhq.com) Create your own Crowdfunding site, no coding required.
+- [LinkedIn](https://www.linkedin.com/) is a social network for business contacts
+- [I Shoot Film](https://film.vqvz.com) presents Funkaoshi's film photography posted to Flickr organized by film rolls -- [on GitHub](https://github.com/funkaoshi/I-Shoot-Film).
+- [Speed of Animals](https://www.speedofanimals.com/): imagine being a spotted hyena...
+- [Fabulously40 Mobile](https://iphone.fabulously40.com) Sinatra powered mobile
+  site of [Fabulously40](https://fabulously40.com/)
+- [UploadBooth](https://uploadbooth.com) Sinatra powered Upload Service
+- [PasteBooth](https://pastebooth.com) Sinatra powered multi-lingual Paste Service
+- [ShrinkBooth](https://shrinkbooth.com) Sinatra powered multi-lingual URL shortening Service
+- [Gusg.us](https://gusg.us/) Blog - Ridding the long bus
+- [Deleanotes](https://delanotes.com/)
+- [themoviedb.org](https://api.themoviedb.org/) The name says it all :)
 - [columnlog](https://github.com/quirkey/columnlog) Tiny feed fetching app
-- [IronRuby](http://ironruby.info) Watch their great stats here
-- [MooURL](http://moourl.com/) The web's cutest URL shortening service
-- [FlexCode](http://flexcode.com.br/) iPhone development
-- [California PATH program - UC Berkley](http://www.path.berkeley.edu/)
+- [IronRuby](https://ironruby.info) Watch their great stats here
+- [MooURL](https://moourl.com/) The web's cutest URL shortening service
+- [FlexCode](https://flexcode.com.br/) iPhone development
+- [California PATH program - UC Berkley](https://www.path.berkeley.edu/)
   In-vehicle applications on their Vehicle-Infrastructure Integration server
-- [TweepDiff](http://tweepdiff.com) Compare friends/followers of two Twitter
+- [TweepDiff](https://tweepdiff.com) Compare friends/followers of two Twitter
   users
-- [Effectif Development](http://effectif.com)
-- [Chirp-chirp](http://blog.saush.com/2009/04/write-a-sinatra-based-twitter-clone-in-200-lines-of-ruby-code/) Write a Sinatra-based Twitter clone in 200 lines of Ruby code
-- [Rdoc.info](http://rdoc.info/) Auto-generate and host Ruby library documentation using GitHub web hooks
-- [All Sorts](http://all-sorts.org/) An aggregator for novel *collective nouns*, driven by Twitter
-- [Scholas](http://schol.as) Social file-sharing for academics.
-- [Gemcutter](http://gemcutter.org) Awesome gem hosting.
-- [The Setup](http://usesthis.com/) The setup is a bunch of nerdy interviews ([Source](https://github.com/waferbaby/usesthis/))
-- [A Good Company](http://www.weareagoodcompany.com/) An awesome little portfolio for a great design company.
-- [dbpedia lite](http://dbpedialite.org/) takes some of the structured data in Wikipedia and presents it as Linked Data ([Source](https://github.com/njh/dbpedialite/)).
-- [Evan Lecklider](http://lecklider.com/) Website showing off work, code examples and experiments built with Sinatra and Compass.
-- [DarkArts Studios](http://www.darkarts.co.za/) Projects and source code of Clive Crous
-- [Conker Software](http://conkersoftware.co.uk) Micro-company of Tom Philip that makes Web, Android and Boxee apps.
-- [Similander](http://similar.heroku.com) extracts keywords from a given URL to find similar pages ([Source](https://github.com/ema/similander)).
-- [Sombras de Papel](http://sombrasdepapel.com) Website of a pop-rock band from Barcelona (Spain) entirely made using Sinatra + HTML5. There's also an automatic mobile site.
-- [Scrum Primer](http://www.scrumprimer.org) - A short introduction to Scrum. The code is at [Scrum Primer @ Github](https://github.com/basvodde/scrumprimer). Also uses [r18n for Sinatra](https://github.com/ai/r18n)
-- [hike.io](http://hike.io) - The best place to find beautiful hikes online. Hike.io is free, open source, and anyone can make an edit. [(Source)](https://github.com/zaknelson/hike.io)
-- [Goodnot.es](http://goodnot.es) - Listen to the 5 most popular songs of any artist of band. [(Source)](https://github.com/javonharper/goodnotes)
-- [PC & Network Monitoring](http://pcwdld.com) - Network/PC monitoring site backed with URL shortening service.
+- [Effectif Development](https://effectif.com)
+- [Chirp-chirp](https://blog.saush.com/2009/04/write-a-sinatra-based-twitter-clone-in-200-lines-of-ruby-code/) Write a Sinatra-based Twitter clone in 200 lines of Ruby code
+- [Rdoc.info](https://rdoc.info/) Auto-generate and host Ruby library documentation using GitHub web hooks
+- [All Sorts](https://all-sorts.org/) An aggregator for novel *collective nouns*, driven by Twitter
+- [Scholas](https://schol.as) Social file-sharing for academics.
+- [Gemcutter](https://gemcutter.org) Awesome gem hosting.
+- [The Setup](https://usesthis.com/) The setup is a bunch of nerdy interviews ([Source](https://github.com/waferbaby/usesthis/))
+- [A Good Company](https://www.weareagoodcompany.com/) An awesome little portfolio for a great design company.
+- [dbpedia lite](https://dbpedialite.org/) takes some of the structured data in Wikipedia and presents it as Linked Data ([Source](https://github.com/njh/dbpedialite/)).
+- [Evan Lecklider](https://lecklider.com/) Website showing off work, code examples and experiments built with Sinatra and Compass.
+- [DarkArts Studios](https://www.darkarts.co.za/) Projects and source code of Clive Crous
+- [Conker Software](https://conkersoftware.co.uk) Micro-company of Tom Philip that makes Web, Android and Boxee apps.
+- [Similander](https://similar.heroku.com) extracts keywords from a given URL to find similar pages ([Source](https://github.com/ema/similander)).
+- [Sombras de Papel](https://sombrasdepapel.com) Website of a pop-rock band from Barcelona (Spain) entirely made using Sinatra + HTML5. There's also an automatic mobile site.
+- [Scrum Primer](https://www.scrumprimer.org) - A short introduction to Scrum. The code is at [Scrum Primer @ Github](https://github.com/basvodde/scrumprimer). Also uses [r18n for Sinatra](https://github.com/ai/r18n)
+- [hike.io](https://hike.io) - The best place to find beautiful hikes online. Hike.io is free, open source, and anyone can make an edit. [(Source)](https://github.com/zaknelson/hike.io)
+- [Goodnot.es](https://goodnot.es) - Listen to the 5 most popular songs of any artist of band. [(Source)](https://github.com/javonharper/goodnotes)
+- [PC & Network Monitoring](https://pcwdld.com) - Network/PC monitoring site backed with URL shortening service.
 
 Companies using Sinatra {#biz}
 -----------------------
-- [Heroku](http://heroku.com)
+- [Heroku](https://heroku.com)
 - [GitHub](https://github.com/blog/53-github-services-ipo)
-- [Apple](http://www.apple.com/)
-- [BBC](http://www.bbc.co.uk/)
-- [LinkedIn](http://www.linkedin.com/)
-- [National Security Agency](http://www.nsa.gov/)
-- [Agency Rainford](http://agencyrainford.com)
-- [Curbed Network](http://curbed.com)
-- [Solutious](http://solutious.com/)
-- [Centro](http://www.centro.net/)
-- [Apartment Therapy](http://www.apartmenttherapy.com)
-- [Inventive Labs](http://inventivelabs.com.au/)
-- [ENTP](http://entp.com)
-- [Engine Yard](http://engineyard.com)
-- [Citrusbyte](http://www.citrusbyte.com/)
-- [Lomographic Society International](http://beta.lomography.com)
-- [Nth Metal Interactive](http://nthmetal.com)
-- [Osborne Brook](http://osbornebrook.co.uk)
-- [Robot Mode](http://robotmo.de)
-- [thoughtbot](http://thoughtbot.com)
-- [Forward](http://forward.co.uk)
-- [WyeWorks](http://www.wyeworks.com)
-- [Idealist Digital](http://idealistdigital.fi)
-- [A Good Company](http://www.weareagoodcompany.com)
-- [Ylastic](http://ylastic.com)
-- [Fork](http://usefork.com)
-- [Ant genomics database - Fourmidable](http://antgenomes.org/)
-- [Mu Dynamics](http://www.mudynamics.com)
-- [Scribble Squad](http://www.scribblesquad.com)
-- [Stanford](http://www.stanford.edu)
-- [Hiboux](http://www.hiboux.ca)
-- [PentesterLab](http://www.pentesterlab.com)
-- [Animoto](http://www.animoto.com)
-- [Red Hat](http://www.redhat.com)
+- [Apple](https://www.apple.com/)
+- [BBC](https://www.bbc.co.uk/)
+- [LinkedIn](https://www.linkedin.com/)
+- [National Security Agency](https://www.nsa.gov/)
+- [Agency Rainford](https://agencyrainford.com)
+- [Curbed Network](https://curbed.com)
+- [Solutious](https://solutious.com/)
+- [Centro](https://www.centro.net/)
+- [Apartment Therapy](https://www.apartmenttherapy.com)
+- [Inventive Labs](https://inventivelabs.com.au/)
+- [ENTP](https://entp.com)
+- [Engine Yard](https://engineyard.com)
+- [Citrusbyte](https://www.citrusbyte.com/)
+- [Lomographic Society International](https://beta.lomography.com)
+- [Nth Metal Interactive](https://nthmetal.com)
+- [Osborne Brook](https://osbornebrook.co.uk)
+- [Robot Mode](https://robotmo.de)
+- [thoughtbot](https://thoughtbot.com)
+- [Forward](https://forward.co.uk)
+- [WyeWorks](https://www.wyeworks.com)
+- [Idealist Digital](https://idealistdigital.fi)
+- [A Good Company](https://www.weareagoodcompany.com)
+- [Ylastic](https://ylastic.com)
+- [Fork](https://usefork.com)
+- [Ant genomics database - Fourmidable](https://antgenomes.org/)
+- [Mu Dynamics](https://www.mudynamics.com)
+- [Scribble Squad](https://www.scribblesquad.com)
+- [Stanford](https://www.stanford.edu)
+- [Hiboux](https://www.hiboux.ca)
+- [PentesterLab](https://www.pentesterlab.com)
+- [Animoto](https://www.animoto.com)
+- [Red Hat](https://www.redhat.com)
 - [Travis CI](https://travis-ci.com)
 - [Clearhaus](https://www.clearhaus.com)
-- [Odd-e](http://www.odd-e.com)
-- [Digital Deployment](http://www.digitaldeployment.com)
-- [Icicle - Ruby Development Company](http://www.icicletech.com/)
-- [Robocat](http://robo.cat/)
+- [Odd-e](https://www.odd-e.com)
+- [Digital Deployment](https://www.digitaldeployment.com)
+- [Icicle - Ruby Development Company](https://www.icicletech.com/)
+- [Robocat](https://robo.cat/)
 - [Planet Argon](https://www.planetargon.com/)
 - [Green Touch](https://green-touch.org/)
 - [towards](https://towards.ch)
-- [Ondokuz Mayıs University](http://omu.edu.tr)
+- [Ondokuz Mayıs University](https://omu.edu.tr)
 
 Alumni {#alumni}
 ------

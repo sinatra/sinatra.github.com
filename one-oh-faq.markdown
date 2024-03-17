@@ -52,12 +52,12 @@ The following is a comprehensive list of features obsoleted in the
  * The `sinatra/test` library is obsolete. This includes the `Sinatra::Test`
    module, the `Sinatra::TestHarness` class, and the `get_it`, `post_it`,
    `put_it`, `delete_it`, and `head_it` helper methods. The
-   [`Rack::Test` library](http://gitrdoc.com/brynary/rack-test) should
+   [`Rack::Test` library](https://gitrdoc.com/brynary/rack-test) should
    be used instead.
 
  * Test framework specific libraries (`sinatra/test/spec`,
    `sinatra/test/bacon`,`sinatra/test/rspec`, etc.) are obsolete. See
-   [Testing Sinatra](http://www.sinatrarb.com/testing.html)
+   [Testing Sinatra](https://www.sinatrarb.com/testing.html)
    for instructions on setting up a testing environment under each of
    these frameworks.
 
@@ -86,7 +86,7 @@ The following is a comprehensive list of features obsoleted in the
 
  * The `Sinatra::Event` and `Sinatra::EventContext` classes are no longer
    supported. This may effect extensions written for versions prior to 0.9.2.
-   See [Writing Sinatra Extensions](http://www.sinatrarb.com/extensions.html)
+   See [Writing Sinatra Extensions](https://www.sinatrarb.com/extensions.html)
    for the officially supported extensions API.
 
  * The `set_option` and `set_options` methods are obsolete; use `set`
@@ -124,13 +124,13 @@ release. There's also a comprehensive diff of all changes [between the
 Lastly, the [1.0 Lighthouse milestone page][li] includes 80 tickets with
 details on various features and bug fixes.
 
-[ch]: http://github.com/sinatra/sinatra/blob/1.0/CHANGES
-[cv]: http://github.com/sinatra/sinatra/compare/0.9.x...1.0
+[ch]: https://github.com/sinatra/sinatra/blob/1.0/CHANGES
+[cv]: https://github.com/sinatra/sinatra/compare/0.9.x...1.0
 [li]: https://sinatra.lighthouseapp.com/projects/9779-sinatra/milestones/41832-10
 
 ## How will versions be handled in the 1.x series?
 
-We've adopted the [Semantic Versioning Model](http://semver.org/).
+We've adopted the [Semantic Versioning Model](https://semver.org/).
 All 1.x releases will be backward compatible with the initial
 1.0 release.
 

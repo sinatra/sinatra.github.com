@@ -9,7 +9,7 @@ Documentation
 <!---
 <div style="float: right; margin: 0  0 20px 20px; clear: both">
 <h3>Book</h3>
-<iframe src="http://cdn.oreillystatic.com/widgets/author/61.html" height="500px" width="200px" scrolling="no" frameborder="0" style="margin-top:10px">
+<iframe src="https://cdn.oreillystatic.com/widgets/author/61.html" height="500px" width="200px" scrolling="no" frameborder="0" style="margin-top:10px">
   ...
 </iframe>
 </div>
@@ -60,7 +60,7 @@ in `#sinatra`.
 See the [`CHANGELOG`](https://github.com/sinatra/sinatra/blob/master/CHANGELOG.md) for notes about each release.
 
 
-### [API Documentation](http://rubydoc.info/gems/sinatra)
+### [API Documentation](https://rubydoc.info/gems/sinatra)
 
 RDoc documentation courtesy of `rubydoc.info`.
 
@@ -68,7 +68,7 @@ RDoc documentation courtesy of `rubydoc.info`.
 
 List of applications, libraries, websites and companies using Sinatra.
 
-### [The Sinatra Book](http://sinatra-org-book.herokuapp.com/)
+### [The Sinatra Book](https://sinatra-org-book.herokuapp.com/)
 
 An in-depth look at building and deploying Sinatra applications.
 Maintained by [Chris Schneider][cschneid] and [Zachary Scott][zzak].
@@ -79,7 +79,7 @@ Maintained by [Chris Schneider][cschneid] and [Zachary Scott][zzak].
 Screencasts and Presentations
 -----------------------------
 
-### [Sinatra, rack and middleware](http://www.slideshare.net/benschwarz/sinatra-rack-and-middleware-1509268)
+### [Sinatra, rack and middleware](https://www.slideshare.net/benschwarz/sinatra-rack-and-middleware-1509268)
 
 Ben Schwarz presents Sinatra and his realisations of its inner workings in regard to Rack and Rack middleware at Melbourne RORO shortly after RailsConf (US).
 
@@ -94,30 +94,30 @@ reflects on using Sinatra to build real world applications.
 
 Dan Benjamin introduces Sinatra in an hour-long screencast. Build an ad server with DataMapper, JavaScript, HAML, and Sinatra. In collaboration with Sinatra creator Blake Mizerany. Only $9.
 
-### [Classy Web Development with Sinatra](http://pragprog.com/screencasts/v-aksinatra/classy-web-development-with-sinatra) (Prag's Screencast Series)
+### [Classy Web Development with Sinatra](https://pragprog.com/screencasts/v-aksinatra/classy-web-development-with-sinatra) (Prag's Screencast Series)
 
 Adam Keys and The Pragmatic Programmers have started a series of screencasts
 on Sinatra. The first two episodes cover creating a tiny web app and creating
 a REST service. <em>$5 a pop.</em>
 
-### [Sinatra at Locos x Rails](http://www.slideshare.net/godfoca/sinatra-1282891), in Buenos Aires
+### [Sinatra at Locos x Rails](https://www.slideshare.net/godfoca/sinatra-1282891), in Buenos Aires
 
 By [Nicolás Sanguinetti](https://github.com/foca), April 2009.
 
-### [Introduction to Sinatra](http://screencasts.org/episodes/introduction-to-sinatra) (screencasts.org)
+### [Introduction to Sinatra](https://screencasts.org/episodes/introduction-to-sinatra) (screencasts.org)
 
-The first episode in [screencasts.org's Sinatra series](http://screencasts.org/topics/sinatra).
+The first episode in [screencasts.org's Sinatra series](https://screencasts.org/topics/sinatra).
 
-An introduction to [sinatra as a rest server](http://www.slideshare.net/emadb/sinatra-for-rest-services) from [WebNet Conference](http://webnetconf.eu/)
+An introduction to [sinatra as a rest server](https://www.slideshare.net/emadb/sinatra-for-rest-services) from [WebNet Conference](https://webnetconf.eu/)
 
-[Sinatra autopsy](http://vimeo.com/album/2121090/video/51898788) by Aleksander Dabrowski
+[Sinatra autopsy](https://vimeo.com/album/2121090/video/51898788) by Aleksander Dabrowski
 
 Around The Web
 --------------
 
-### [RubyInside's 29 Links and Resources](http://www.rubyinside.com/sinatra-29-links-and-resources-for-a-quicker-easier-way-to-build-webapps-1371.html)
+### [RubyInside's 29 Links and Resources](https://www.rubyinside.com/sinatra-29-links-and-resources-for-a-quicker-easier-way-to-build-webapps-1371.html)
 
 Peter Cooper's compendium with links to tutorials, example
 applications, and presentations.
 
-### [Using Compass for CSS in your Sinatra application](http://openmonkey.com/blog/2009/01/27/using-compass-for-css-in-your-sinatra-application/)
+### [Using Compass for CSS in your Sinatra application](https://openmonkey.com/blog/2009/01/27/using-compass-for-css-in-your-sinatra-application/)
