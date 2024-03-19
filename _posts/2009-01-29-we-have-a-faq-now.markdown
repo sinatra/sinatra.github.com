@@ -2,7 +2,7 @@
 layout: post
 title: We Have a FAQ Now
 author: Ryan Tomayko
-author_url: http://tomayko.com/about
+author_url: https://tomayko.com/about
 publish_date: Thursday, January 29, 2009
 ---
 

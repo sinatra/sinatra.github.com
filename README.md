@@ -2,7 +2,7 @@ Sinatra Website / Documentation
 ===============================
 
 This repo contains the Sinatra website and documentation sources published
-at [http://sinatra.github.com/](http://sinatra.github.io/).
+at [https://sinatra.github.com/](https://sinatra.github.io/).
 
 Working Locally
 ---------------
@@ -27,9 +27,9 @@ Run the test server:
 Changes are immediately available at:
 
     http://localhost:4000/sinatra.github.com/
-    
 
-    
+
+
 Sass / CSS / Gulp
 --------------
 
@@ -73,7 +73,7 @@ and the API docs:
     $ gem install thor
     $ gem install rdoc -v 2.3.0
     $ gem install haml -v 2.0.4
-    $ gem install mislav-hanna --source=http://gems.github.com/
+    $ gem install mislav-hanna --source=https://gems.github.com/
 
 The prebuilt file sources are maintained under the [sinatra](https://github.com/sinatra/sinatra) and
 [sinatra-book](https://github.com/sinatra/sinatra-book) projects. To pull in the latest versions and build them:

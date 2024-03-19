@@ -287,12 +287,12 @@ See Also
 See the source for [Rack::Test][] for
 more information on `get`, `post`, `put`, `delete` and friends.
 
-[Test::Unit]: http://www.ruby-doc.org/stdlib-2.1.1/libdoc/test/unit/rdoc/classes/Test/Unit.html
-[RSpec]: http://rspec.info
-[Test::Spec]: http://rubydoc.info/gems/test-spec/
+[Test::Unit]: https://www.ruby-doc.org/stdlib-2.1.1/libdoc/test/unit/rdoc/classes/Test/Unit.html
+[RSpec]: https://rspec.info
+[Test::Spec]: https://rubydoc.info/gems/test-spec/
 [Rack::Test]: https://github.com/rack-test/rack-test
-[spec]: http://rubydoc.info/github/rack/rack/master/file/SPEC
-[Rack::MockRequest]: http://rubydoc.info/github/rack/rack/master/Rack/MockRequest
-[Rack::MockResponse]: http://rubydoc.info/github/rack/rack/master/Rack/MockResponse
+[spec]: https://rubydoc.info/github/rack/rack/master/file/SPEC
+[Rack::MockRequest]: https://rubydoc.info/github/rack/rack/master/Rack/MockRequest
+[Rack::MockResponse]: https://rubydoc.info/github/rack/rack/master/Rack/MockResponse
 [examples]: https://github.com/brynary/webrat/wiki/sinatra
 [Capybara]: https://github.com/teamcapybara/capybara

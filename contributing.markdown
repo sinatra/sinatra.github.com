@@ -11,7 +11,7 @@ Want to show Sinatra some love? Help out by contributing!
 
 Log it in our [issue tracker][ghi] or send a note to
 the [mailing list][ml]. Be sure to include all relevant information, like
-the versions of Sinatra and Ruby you're using. A [gist](http://gist.github.com/)
+the versions of Sinatra and Ruby you're using. A [gist](https://gist.github.com/)
 of the code that caused the issue as well as any error messages are also very
 helpful.
 
@@ -20,7 +20,7 @@ helpful.
 The [Sinatra mailing list][ml] has over 900 subscribers, many of which are happy
 to help out newbies or talk about potential feature additions. You can also drop
 by the [#sinatra](irc://chat.freenode.net/#sinatra) channel on
-[irc.freenode.net](http://freenode.net).
+[irc.freenode.net](https://freenode.net).
 
 ## Have a patch?
 
@@ -28,10 +28,10 @@ Bugs and feature requests that include patches are much more likely to
 get attention. Here are some guidelines that will help ensure your patch
 can be applied as quickly as possible:
 
-1. **Use [Git](http://git-scm.com) and [GitHub](http://github.com):**
+1. **Use [Git](https://git-scm.com) and [GitHub](https://github.com):**
    The easiest way to get setup is to fork the
-   [sinatra/sinatra repo](http://github.com/sinatra/sinatra/).
-   Or, the [sinatra.github.com repo](http://github.com/sinatra/sinatra.github.com/),
+   [sinatra/sinatra repo](https://github.com/sinatra/sinatra/).
+   Or, the [sinatra.github.com repo](https://github.com/sinatra/sinatra.github.com/),
    if the patch is doc related.
 
 2. **Write unit tests:** If you add or modify functionality, it must
@@ -45,7 +45,7 @@ can be applied as quickly as possible:
 4. **Push it:** Once you're ready, push your changes to a topic branch
    and add a note to the ticket with the URL to your branch. Or, say
    something like, "you can find the patch on johndoe/foobranch". We also
-   gladly accept GitHub [pull requests](http://help.github.com/pull-requests/).
+   gladly accept GitHub [pull requests](https://help.github.com/pull-requests/).
 
 __NOTE:__ _we will take whatever we can get._ If you prefer to
 attach diffs in emails to the mailing list, that's fine; but do know
@@ -58,23 +58,23 @@ The process for contributing to Sinatra's website, documentation or the book
 is the same as contributing code. We use git for versions control and
 GitHub to track patch requests.
 
-* [The sinatra.github.com repo](http://github.com/sinatra/sinatra.github.com/)
+* [The sinatra.github.com repo](https://github.com/sinatra/sinatra.github.com/)
   is where the website sources are managed. There are almost always people in
   `#sinatra` that are happy to discuss, apply, and publish website patches.
 
-* [The Book](http://sinatra-org-book.herokuapp.com/) has its own [git
-  repository](http://github.com/sinatra/sinatra-book/) and build process but is
+* [The Book](https://sinatra-org-book.herokuapp.com/) has its own [git
+  repository](https://github.com/sinatra/sinatra-book/) and build process but is
   managed the same as the website and project codebase.
 
-* [Sinatra Recipes](http://github.com/sinatra/sinatra-recipes) is a community
+* [Sinatra Recipes](https://github.com/sinatra/sinatra-recipes) is a community
   project where anyone is free to contribute ideas, recipes and tutorials.
 
 * [The Introduction](intro.html) is generated from Sinatra's
-  [README file](http://github.com/sinatra/sinatra/blob/master/README.md).
+  [README file](https://github.com/sinatra/sinatra/blob/master/README.md).
 
 * If you want to help translating the documentation, the README is already available in
   [Japanese](https://github.com/sinatra/sinatra/blob/master/README.ja.md),
-  [German](http://github.com/sinatra/sinatra/blob/master/README.de.md),
+  [German](https://github.com/sinatra/sinatra/blob/master/README.de.md),
   [Chinese](https://github.com/sinatra/sinatra/blob/master/README.zh.md),
   [Russian](https://github.com/sinatra/sinatra/blob/master/README.ru.md),
   [European](https://github.com/sinatra/sinatra/blob/master/README.pt-pt.md) and
@@ -88,7 +88,7 @@ GitHub to track patch requests.
 
 ## When will my contribution be released?
 
-See: [Maintenance Policy for Sinatra](http://sinatrarb.com/maintenance-policy.html)
+See: [Maintenance Policy for Sinatra](https://sinatrarb.com/maintenance-policy.html)
 
 ## Looking for something to do?
 
@@ -97,5 +97,5 @@ interesting from the [issues][ghi] list and hack on. Make sure to leave a
 comment on the ticket noting that you're investigating (a simple "Taking..."
 is fine).
 
-[ghi]: http://github.com/sinatra/sinatra/issues
-[ml]: http://groups.google.com/group/sinatrarb/topics "Sinatra Mailing List"
+[ghi]: https://github.com/sinatra/sinatra/issues
+[ml]: https://groups.google.com/group/sinatrarb/topics "Sinatra Mailing List"

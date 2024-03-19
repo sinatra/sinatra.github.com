@@ -2,7 +2,7 @@
 layout: post
 title: Blog revived
 author: Konstantin Haase
-author_url: http://rkh.im
+author_url: https://rkh.im
 publish_date: Thursday, March 3, 2011
 ---
 

@@ -59,11 +59,11 @@ Sessions are disabled by default. You need to enable them and then use the
       session[:message]   # => 'Hello World!'
     end
 
-See the [Sinatra README](http://www.sinatrarb.com/intro.html#Using%20Sessions)
+See the [Sinatra README](https://www.sinatrarb.com/intro.html#Using%20Sessions)
 on how to set additional parameters for sessions, like the session secret
 or expiration date.
 
-You can also use [`Rack::Session::Cookie`](http://www.rubydoc.info/github/rack/rack/Rack/Session/Cookie) directly instead of `enable :sessions` (example from _Rack_ documentation):
+You can also use [`Rack::Session::Cookie`](https://www.rubydoc.info/github/rack/rack/Rack/Session/Cookie) directly instead of `enable :sessions` (example from _Rack_ documentation):
 
     use Rack::Session::Cookie, :key => 'rack.session',
                                :domain => 'foo.com',
@@ -90,10 +90,10 @@ The `request` object probably has what you're looking for:
     get '/hello-world' do
       request.path_info   # => '/hello-world'
       request.fullpath    # => '/hello-world?foo=bar'
-      request.url         # => 'http://example.com/hello-world?foo=bar'
+      request.url         # => 'https://example.com/hello-world?foo=bar'
     end
 
-See [Rack::Request](http://www.rubydoc.info/gems/rack/Rack/Request)
+See [Rack::Request](https://www.rubydoc.info/gems/rack/Rack/Request)
 for a detailed list of methods supported by the `request` object.
 
 How do I access helpers from within my views? {#helpview}
@@ -190,7 +190,7 @@ That should give you an exception and backtrace on `stderr`.
 How do I send email from Sinatra? {#email}
 ---------------------------------
 
-How about a [Pony](http://adam.herokuapp.com/past/2008/11/2/pony_the_express_way_to_send_email_from_ruby/)
+How about a [Pony](https://adam.herokuapp.com/past/2008/11/2/pony_the_express_way_to_send_email_from_ruby/)
 (`sudo gem install pony`):
 
     require 'pony'
@@ -245,7 +245,7 @@ And you can escape text inside element attributes in your templates like this:
 
     <a href="<%= hattr scary_output %>" >A nice safe link!</a>
 
-Thanks to [Chris Schneider](http://www.gittr.com/index.php/archive/using-rackutils-in-sinatra-escape_html-h-in-rails/)
+Thanks to [Chris Schneider](https://www.gittr.com/index.php/archive/using-rackutils-in-sinatra-escape_html-h-in-rails/)
 for the tip!
 
 How do I automatically escape HTML? {#auto_escape_html}
@@ -267,7 +267,7 @@ Read more on the [Tilt Google Group](https://groups.google.com/forum/#!topic/til
 How do I use ActiveRecord migrations? {#ar-migrations}
 -------------------------------------
 
-From [Adam Wiggins's blog](http://adam.herokuapp.com/past/2009/2/28/activerecord_migrations_outside_rails/):
+From [Adam Wiggins's blog](https://adam.herokuapp.com/past/2009/2/28/activerecord_migrations_outside_rails/):
 
 > To use ActiveRecord’s migrations with Sinatra (or other non-Rails project),
 > add the following to your Rakefile:

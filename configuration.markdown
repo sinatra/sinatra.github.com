@@ -99,7 +99,7 @@ are disabled by default. Enable them with:
 Sessions are implemented by inserting the [`Rack::Session::Cookie`][c]
 component into the application's middleware pipeline.
 
-[c]: http://www.rubydoc.info/github/rack/rack/Rack/Session/Cookie
+[c]: https://www.rubydoc.info/github/rack/rack/Rack/Session/Cookie
 
 ### `:logging` - log requests to `STDERR`
 
@@ -110,7 +110,7 @@ default in `Sinatra::Base` subclasses.
 Internally, the [`Rack::CommonLogger`][cl] component is used to generate
 log messages.
 
-[cl]: http://www.rubydoc.info/github/rack/rack/master/Rack/CommonLogger
+[cl]: https://www.rubydoc.info/github/rack/rack/master/Rack/CommonLogger
 
 ### `:method_override` - enable/disable the POST `_method` hack
 
@@ -124,7 +124,7 @@ HTML form submission -- that do not support the full range of HTTP methods.
 The POST `_method` hack is implemented by inserting the
 [`Rack::MethodOverride`][mo] component into the middleware pipeline.
 
-[mo]: http://www.rubydoc.info/github/rack/rack/Rack/MethodOverride
+[mo]: https://www.rubydoc.info/github/rack/rack/Rack/MethodOverride
 
 ### `:root` - The application's root directory
 
@@ -222,7 +222,7 @@ within the main application file:
     set :app_file, __FILE__
 
 It's also used to detect whether Sinatra should boot a web server when
-using [classic-style](http://www.sinatrarb.com/extensions.html#background)
+using [classic-style](https://www.sinatrarb.com/extensions.html#background)
 applications.
 
 ### `:dump_errors` - log exception backtraces to `STDERR`
@@ -243,7 +243,7 @@ raised outside of the application where it may be handled by the server
 handler or Rack middleware, such as [`Rack::ShowExceptions`][se] or
 [`Rack::MailExceptions`][me].
 
-[se]: http://www.rubydoc.info/github/rack/rack/Rack/ShowExceptions
+[se]: https://www.rubydoc.info/github/rack/rack/Rack/ShowExceptions
 [me]: https://github.com/rack/rack-contrib/blob/master/lib/rack/contrib/mailexceptions.rb
 
 ### `:lock` - ensure single request concurrency with a mutex lock
