@@ -12,13 +12,15 @@ California.
 
 Sinatra would not have been possible without strong company backing.
 In the past, financial and emotional support have been provided mainly by
-[Heroku](https://heroku.com), [GitHub](https://github.com) and
-[Engine Yard](https://www.engineyard.com/), and is now taken care of by
-[Travis CI](https://travis-ci.com/).
+[Heroku](https://heroku.com), [GitHub](https://github.com),
+[Engine Yard](http://www.engineyard.com/) and [Travis CI](https://travis-ci.com/),
+and is now taken care of by [84codes](https://www.84codes.com/).
 
 Special thanks to the following extraordinary individuals, without whom
 Sinatra would not be possible:
 
+* [Benoit Daloze](https://eregon.me/blog/) (eregon) for help around TruffleRuby
+  and keyword arguments use in mustermann.
 * [Ryan Tomayko](https://tomayko.com/) ([rtomayko](https://github.com/rtomayko)) for constantly fixing
   whitespace errors __60d5006__
 * [Ezra Zygmuntowicz](https://brainspl.at/) ([ezmobius](https://github.com/ezmobius)) for initial help and
