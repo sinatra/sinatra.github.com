@@ -1811,36 +1811,37 @@ based protection by passing the <code>:session</code> option:</p>
 
   <dt>host_authorization</dt>
   <dd>
-    You can pass a hash of options to <tt>host_authorization</tt>,
-    to be used by the <tt>Rack::Protection::HostAuthorization</tt> middleware.
-  <dd>
-  <dd>
-    The middleware can block requests with unrecognized hostnames, to prevent DNS rebinding
-    and other host header attacks. It checks the <tt>Host</tt>, <tt>X-Forwarded-Host</tt>
-    and <tt>Forwarded</tt> headers.
-  </dd>
-  <dd>
-    Useful options are:
-    <ul>
-      <li>
+    <p>
+      You can pass a hash of options to <tt>host_authorization</tt>,
+      to be used by the <tt>Rack::Protection::HostAuthorization</tt> middleware.
+    </p>
+    <p>
+      The middleware can block requests with unrecognized hostnames, to prevent DNS rebinding
+      and other host header attacks. It checks the <tt>Host</tt>, <tt>X-Forwarded-Host</tt>
+      and <tt>Forwarded</tt> headers.
+    </p>
+    <p>
+      Useful options are:
+      </p>
+<ul>
+        <li>
 <tt>permitted_hosts</tt> – an array of hostnames (and <tt>IPAddr</tt> objects) your app recognizes
-        <ul>
-          <li>in the <tt>development</tt> environment, it is set to <tt>.localhost</tt>, <tt>.test</tt> and any IPv4/IPv6 address</li>
-          <li>if empty, any hostname is permitted (the default for any other environment)</li>
-        </ul>
-      </li>
-      <li>
+          <ul>
+            <li>in the <tt>development</tt> environment, it is set to <tt>.localhost</tt>, <tt>.test</tt> and any IPv4/IPv6 address</li>
+            <li>if empty, any hostname is permitted (the default for any other environment)</li>
+          </ul>
+        </li>
+        <li>
 <tt>status</tt> – the HTTP status code used in the response when a request is blocked (defaults to <tt>403</tt>)</li>
-      <li>
+        <li>
 <tt>message</tt> – the body used in the response when a request is blocked (defaults to <tt>Host not permitted</tt>)</li>
-      <li>
+        <li>
 <tt>allow_if</tt> – supply a <tt>Proc</tt> to use custom allow/deny logic, the proc is passed the request environment</li>
-    </ul>
+      </ul>
+    
   </dd>
 
-  </dd>
-</dd>
-<dt>logging</dt>
+  <dt>logging</dt>
     <dd>Use the logger.</dd>
 
   <dt>lock</dt>
@@ -2001,336 +2002,328 @@ based protection by passing the <code>:session</code> option:</p>
       Whether or not to set the X-Cascade header if no route matches.
       Defaults to <tt>true</tt>.
     </dd>
-&lt;/dl&gt;
+</dl>
 
-## Lifecycle Events
+<h2 id="lifecycle-events">Lifecycle Events</h2>
 
-There are 2 lifecycle events currently exposed by Sinatra. One when the server starts and one when it stops.
+<p>There are 2 lifecycle events currently exposed by Sinatra. One when the server starts and one when it stops.</p>
 
-They can be used like this:
+<p>They can be used like this:</p>
 
-~~~~ruby
-on_start do
-  puts "===== Booting up ====="
-end
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">on_start</span> <span class="k">do</span>
+  <span class="nb">puts</span> <span class="s2">"===== Booting up ====="</span>
+<span class="k">end</span>
 
-on_stop do
-  puts "===== Shutting down ====="
-end
-~~~~
+<span class="n">on_stop</span> <span class="k">do</span>
+  <span class="nb">puts</span> <span class="s2">"===== Shutting down ====="</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
-Note that these callbacks only work when using Sinatra to start the web server.
+<p>Note that these callbacks only work when using Sinatra to start the web server.</p>
 
-## Environments
+<h2 id="environments">Environments</h2>
 
-There are three predefined `environments`: `"development"`,
-`"production"` and `"test"`. Environments can be set through the
-`APP_ENV` environment variable. The default value is `"development"`.
-In the `"development"` environment all templates are reloaded between
-requests, and special `not_found` and `error` handlers display stack
-traces in your browser. In the `"production"` and `"test"` environments,
-templates are cached by default.
+<p>There are three predefined <code>environments</code>: <code>"development"</code>,
+<code>"production"</code> and <code>"test"</code>. Environments can be set through the
+<code>APP_ENV</code> environment variable. The default value is <code>"development"</code>.
+In the <code>"development"</code> environment all templates are reloaded between
+requests, and special <code>not_found</code> and <code>error</code> handlers display stack
+traces in your browser. In the <code>"production"</code> and <code>"test"</code> environments,
+templates are cached by default.</p>
 
-To run different environments, set the `APP_ENV` environment variable:
+<p>To run different environments, set the <code>APP_ENV</code> environment variable:</p>
 
-~~~~shell
-APP_ENV=production ruby my_app.rb
-~~~~
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">APP_ENV</span><span class="o">=</span>production ruby my_app.rb
+</code></pre></div></div>
 
-You can use predefined methods: `development?`, `test?` and `production?` to
-check the current environment setting:
+<p>You can use predefined methods: <code>development?</code>, <code>test?</code> and <code>production?</code> to
+check the current environment setting:</p>
 
-~~~~ruby
-get '/' do
-  if settings.development?
-    "development!"
-  else
-    "not development!"
-  end
-end
-~~~~
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="k">if</span> <span class="n">settings</span><span class="p">.</span><span class="nf">development?</span>
+    <span class="s2">"development!"</span>
+  <span class="k">else</span>
+    <span class="s2">"not development!"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
-## Error Handling
+<h2 id="error-handling">Error Handling</h2>
 
-Error handlers run within the same context as routes and before filters,
-which means you get all the goodies it has to offer, like `haml`, `erb`,
-`halt`, etc.
+<p>Error handlers run within the same context as routes and before filters,
+which means you get all the goodies it has to offer, like <code>haml</code>, <code>erb</code>,
+<code>halt</code>, etc.</p>
 
-### Not Found
+<h3 id="not-found">Not Found</h3>
 
-When a `Sinatra::NotFound` exception is raised, or the response's status
-code is 404, the `not_found` handler is invoked:
+<p>When a <code>Sinatra::NotFound</code> exception is raised, or the response’s status
+code is 404, the <code>not_found</code> handler is invoked:</p>
 
-~~~~ruby
-not_found do
-  'This is nowhere to be found.'
-end
-~~~~
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">not_found</span> <span class="k">do</span>
+  <span class="s1">'This is nowhere to be found.'</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
-### Error
+<h3 id="error">Error</h3>
 
-The `error` handler is invoked any time an exception is raised from a route
+<p>The <code>error</code> handler is invoked any time an exception is raised from a route
 block or a filter. But note in development it will only run if you set the
-show exceptions option to `:after_handler`:
+show exceptions option to <code>:after_handler</code>:</p>
 
-~~~~ruby
-set :show_exceptions, :after_handler
-~~~~
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set</span> <span class="ss">:show_exceptions</span><span class="p">,</span> <span class="ss">:after_handler</span>
+</code></pre></div></div>
 
-A catch-all error handler can be defined with `error` and a block:
+<p>A catch-all error handler can be defined with <code>error</code> and a block:</p>
 
-~~~~ruby
-error do
-  'Sorry there was a nasty error'
-end
-~~~~
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">error</span> <span class="k">do</span>
+  <span class="s1">'Sorry there was a nasty error'</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
-The exception object can be obtained from the `sinatra.error` Rack variable:
+<p>The exception object can be obtained from the <code>sinatra.error</code> Rack variable:</p>
 
-~~~~ruby
-error do
-  'Sorry there was a nasty error - ' + env['sinatra.error'].message
-end
-~~~~
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">error</span> <span class="k">do</span>
+  <span class="s1">'Sorry there was a nasty error - '</span> <span class="o">+</span> <span class="n">env</span><span class="p">[</span><span class="s1">'sinatra.error'</span><span class="p">].</span><span class="nf">message</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
-Pass an error class as an argument to create handlers for custom errors:
+<p>Pass an error class as an argument to create handlers for custom errors:</p>
 
-~~~~ruby
-error MyCustomError do
-  'So what happened was...' + env['sinatra.error'].message
-end
-~~~~
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">error</span> <span class="no">MyCustomError</span> <span class="k">do</span>
+  <span class="s1">'So what happened was...'</span> <span class="o">+</span> <span class="n">env</span><span class="p">[</span><span class="s1">'sinatra.error'</span><span class="p">].</span><span class="nf">message</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
-Then, if this happens:
+<p>Then, if this happens:</p>
 
-~~~~ruby
-get '/' do
-  raise MyCustomError, 'something bad'
-end
-~~~~
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="k">raise</span> <span class="no">MyCustomError</span><span class="p">,</span> <span class="s1">'something bad'</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
-You get this:
+<p>You get this:</p>
 
-~~~~
-So what happened was... something bad
-~~~~
+<pre><code>So what happened was... something bad
+</code></pre>
 
-Alternatively, you can install an error handler for a status code:
+<p>Alternatively, you can install an error handler for a status code:</p>
 
-~~~~ruby
-error 403 do
-  'Access forbidden'
-end
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">error</span> <span class="mi">403</span> <span class="k">do</span>
+  <span class="s1">'Access forbidden'</span>
+<span class="k">end</span>
 
-get '/secret' do
-  403
-end
-~~~~
+<span class="n">get</span> <span class="s1">'/secret'</span> <span class="k">do</span>
+  <span class="mi">403</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
-Or a range:
+<p>Or a range:</p>
 
-~~~~ruby
-error 400..510 do
-  'Boom'
-end
-~~~~
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">error</span> <span class="mi">400</span><span class="o">..</span><span class="mi">510</span> <span class="k">do</span>
+  <span class="s1">'Boom'</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
-Sinatra installs special `not_found` and `error` handlers when
+<p>Sinatra installs special <code>not_found</code> and <code>error</code> handlers when
 running under the development environment to display nice stack traces
-and additional debugging information in your browser.
+and additional debugging information in your browser.</p>
 
-### Behavior with `raise_errors` option
+<h3 id="behavior-with-raiseerrors-option">Behavior with <code>raise_errors</code> option</h3>
 
-When `raise_errors` option is `true`, errors that are unhandled are raised 
+<p>When <code>raise_errors</code> option is <code>true</code>, errors that are unhandled are raised 
 outside of the application. Additionally, any errors that would have been 
-caught by the catch-all error handler are raised.
+caught by the catch-all error handler are raised.</p>
 
-For example, consider the following configuration:
+<p>For example, consider the following configuration:</p>
 
-~~~~ruby
-# First handler
-error MyCustomError do
-  'A custom message'
-end
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># First handler</span>
+<span class="n">error</span> <span class="no">MyCustomError</span> <span class="k">do</span>
+  <span class="s1">'A custom message'</span>
+<span class="k">end</span>
 
-# Second handler
-error do
-  'A catch-all message'
-end
-~~~~
+<span class="c1"># Second handler</span>
+<span class="n">error</span> <span class="k">do</span>
+  <span class="s1">'A catch-all message'</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
-If `raise_errors` is `false`:
+<p>If <code>raise_errors</code> is <code>false</code>:</p>
 
-* When `MyCustomError` or descendant is raised, the first handler is invoked.
-  The HTTP response body will contain `"A custom message"`.
-* When any other error is raised, the second handler is invoked. The HTTP 
-  response body will contain `"A catch-all message"`.
+<ul>
+  <li>When <code>MyCustomError</code> or descendant is raised, the first handler is invoked.
+The HTTP response body will contain <code>"A custom message"</code>.</li>
+  <li>When any other error is raised, the second handler is invoked. The HTTP 
+response body will contain <code>"A catch-all message"</code>.</li>
+</ul>
 
-If `raise_errors` is `true`:
+<p>If <code>raise_errors</code> is <code>true</code>:</p>
 
-* When `MyCustomError` or descendant is raised, the behavior is identical to 
-  when `raise_errors` is `false`, described above.
-* When any other error is raised, the second handler is *not* invoked, and 
-  the error is raised outside of the application.
-  * If the environment is `production`, the HTTP response body will contain 
-    a generic error message, e.g. `"An unhandled lowlevel error occurred. The
-    application logs may have details."`
-  * If the environment is not `production`, the HTTP response body will contain
-    the verbose error backtrace.
-  * Regardless of environment, if `show_exceptions` is set to `:after_handler`, 
-    the HTTP response body will contain the verbose error backtrace.
+<ul>
+  <li>When <code>MyCustomError</code> or descendant is raised, the behavior is identical to 
+when <code>raise_errors</code> is <code>false</code>, described above.</li>
+  <li>When any other error is raised, the second handler is <em>not</em> invoked, and 
+the error is raised outside of the application.
+    <ul>
+      <li>If the environment is <code>production</code>, the HTTP response body will contain 
+a generic error message, e.g. <code>"An unhandled lowlevel error occurred. The
+application logs may have details."</code>
+</li>
+      <li>If the environment is not <code>production</code>, the HTTP response body will contain
+the verbose error backtrace.</li>
+      <li>Regardless of environment, if <code>show_exceptions</code> is set to <code>:after_handler</code>, 
+the HTTP response body will contain the verbose error backtrace.</li>
+    </ul>
+  </li>
+</ul>
 
-In the `test` environment, `raise_errors` is set to `true` by default. This 
+<p>In the <code>test</code> environment, <code>raise_errors</code> is set to <code>true</code> by default. This 
 means that in order to write a test for a catch-all error handler, 
-`raise_errors` must temporarily be set to `false` for that particular test.
+<code>raise_errors</code> must temporarily be set to <code>false</code> for that particular test.</p>
 
-## Rack Middleware
+<h2 id="rack-middleware">Rack Middleware</h2>
 
-Sinatra rides on [Rack](https://rack.github.io/), a minimal standard
-interface for Ruby web frameworks. One of Rack's most interesting
-capabilities for application developers is support for "middleware" --
+<p>Sinatra rides on <a href="https://rack.github.io/">Rack</a>, a minimal standard
+interface for Ruby web frameworks. One of Rack’s most interesting
+capabilities for application developers is support for “middleware” –
 components that sit between the server and your application monitoring
 and/or manipulating the HTTP request/response to provide various types
-of common functionality.
+of common functionality.</p>
 
-Sinatra makes building Rack middleware pipelines a cinch via a top-level
-`use` method:
+<p>Sinatra makes building Rack middleware pipelines a cinch via a top-level
+<code>use</code> method:</p>
 
-~~~~ruby
-require 'sinatra'
-require 'my_custom_middleware'
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'sinatra'</span>
+<span class="nb">require</span> <span class="s1">'my_custom_middleware'</span>
 
-use Rack::Lint
-use MyCustomMiddleware
+<span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Lint</span>
+<span class="n">use</span> <span class="no">MyCustomMiddleware</span>
 
-get '/hello' do
-  'Hello World'
-end
-~~~~
+<span class="n">get</span> <span class="s1">'/hello'</span> <span class="k">do</span>
+  <span class="s1">'Hello World'</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
-The semantics of `use` are identical to those defined for the
-[Rack::Builder](https://www.rubydoc.info/github/rack/rack/main/Rack/Builder) DSL
-(most frequently used from rackup files). For example, the `use` method
-accepts multiple/variable args as well as blocks:
+<p>The semantics of <code>use</code> are identical to those defined for the
+<a href="https://www.rubydoc.info/github/rack/rack/main/Rack/Builder">Rack::Builder</a> DSL
+(most frequently used from rackup files). For example, the <code>use</code> method
+accepts multiple/variable args as well as blocks:</p>
 
-~~~~ruby
-use Rack::Auth::Basic do |username, password|
-  username == 'admin' &amp;&amp; password == 'secret'
-end
-~~~~
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Auth</span><span class="o">::</span><span class="no">Basic</span> <span class="k">do</span> <span class="o">|</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">|</span>
+  <span class="n">username</span> <span class="o">==</span> <span class="s1">'admin'</span> <span class="o">&amp;&amp;</span> <span class="n">password</span> <span class="o">==</span> <span class="s1">'secret'</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
-Rack is distributed with a variety of standard middleware for logging,
+<p>Rack is distributed with a variety of standard middleware for logging,
 debugging, URL routing, authentication, and session handling. Sinatra uses
 many of these components automatically based on configuration so you
-typically don't have to `use` them explicitly.
+typically don’t have to <code>use</code> them explicitly.</p>
 
-You can find useful middleware in
-[rack](https://github.com/rack/rack/tree/main/lib/rack),
-[rack-contrib](https://github.com/rack/rack-contrib#readme),
-or in the [Rack wiki](https://github.com/rack/rack/wiki/List-of-Middleware).
+<p>You can find useful middleware in
+<a href="https://github.com/rack/rack/tree/main/lib/rack">rack</a>,
+<a href="https://github.com/rack/rack-contrib#readme">rack-contrib</a>,
+or in the <a href="https://github.com/rack/rack/wiki/List-of-Middleware">Rack wiki</a>.</p>
 
-## Testing
+<h2 id="testing">Testing</h2>
 
-Sinatra tests can be written using any Rack-based testing library or
+<p>Sinatra tests can be written using any Rack-based testing library or
 framework.
-[Rack::Test](https://www.rubydoc.info/github/rack/rack-test/main/frames)
-is recommended:
+<a href="https://www.rubydoc.info/github/rack/rack-test/main/frames">Rack::Test</a>
+is recommended:</p>
 
-~~~~ruby
-require 'my_sinatra_app'
-require 'minitest/autorun'
-require 'rack/test'
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'my_sinatra_app'</span>
+<span class="nb">require</span> <span class="s1">'minitest/autorun'</span>
+<span class="nb">require</span> <span class="s1">'rack/test'</span>
 
-class MyAppTest &lt; Minitest::Test
-  include Rack::Test::Methods
+<span class="k">class</span> <span class="nc">MyAppTest</span> <span class="o">&lt;</span> <span class="no">Minitest</span><span class="o">::</span><span class="no">Test</span>
+  <span class="kp">include</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Test</span><span class="o">::</span><span class="no">Methods</span>
 
-  def app
-    Sinatra::Application
-  end
+  <span class="k">def</span> <span class="nf">app</span>
+    <span class="no">Sinatra</span><span class="o">::</span><span class="no">Application</span>
+  <span class="k">end</span>
 
-  def test_my_default
-    get '/'
-    assert_equal 'Hello World!', last_response.body
-  end
+  <span class="k">def</span> <span class="nf">test_my_default</span>
+    <span class="n">get</span> <span class="s1">'/'</span>
+    <span class="n">assert_equal</span> <span class="s1">'Hello World!'</span><span class="p">,</span> <span class="n">last_response</span><span class="p">.</span><span class="nf">body</span>
+  <span class="k">end</span>
 
-  def test_with_params
-    get '/meet', :name =&gt; 'Frank'
-    assert_equal 'Hello Frank!', last_response.body
-  end
+  <span class="k">def</span> <span class="nf">test_with_params</span>
+    <span class="n">get</span> <span class="s1">'/meet'</span><span class="p">,</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s1">'Frank'</span>
+    <span class="n">assert_equal</span> <span class="s1">'Hello Frank!'</span><span class="p">,</span> <span class="n">last_response</span><span class="p">.</span><span class="nf">body</span>
+  <span class="k">end</span>
 
-  def test_with_user_agent
-    get '/', {}, 'HTTP_USER_AGENT' =&gt; 'Songbird'
-    assert_equal "You're using Songbird!", last_response.body
-  end
-end
-~~~~
+  <span class="k">def</span> <span class="nf">test_with_user_agent</span>
+    <span class="n">get</span> <span class="s1">'/'</span><span class="p">,</span> <span class="p">{},</span> <span class="s1">'HTTP_USER_AGENT'</span> <span class="o">=&gt;</span> <span class="s1">'Songbird'</span>
+    <span class="n">assert_equal</span> <span class="s2">"You're using Songbird!"</span><span class="p">,</span> <span class="n">last_response</span><span class="p">.</span><span class="nf">body</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
-Note: If you are using Sinatra in the modular style, replace
-`Sinatra::Application` above with the class name of your app.
+<p>Note: If you are using Sinatra in the modular style, replace
+<code>Sinatra::Application</code> above with the class name of your app.</p>
 
-## Sinatra::Base - Middleware, Libraries, and Modular Apps
+<h2 id="sinatrabase---middleware-libraries-and-modular-apps">Sinatra::Base - Middleware, Libraries, and Modular Apps</h2>
 
-Defining your app at the top-level works well for micro-apps but has
+<p>Defining your app at the top-level works well for micro-apps but has
 considerable drawbacks when building reusable components such as Rack
 middleware, Rails metal, simple libraries with a server component, or even
 Sinatra extensions. The top-level assumes a micro-app style configuration
-(e.g., a single application file, `./public` and `./views`
-directories, logging, exception detail page, etc.). That's where
-`Sinatra::Base` comes into play:
+(e.g., a single application file, <code>./public</code> and <code>./views</code>
+directories, logging, exception detail page, etc.). That’s where
+<code>Sinatra::Base</code> comes into play:</p>
 
-~~~~ruby
-require 'sinatra/base'
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'sinatra/base'</span>
 
-class MyApp &lt; Sinatra::Base
-  set :sessions, true
-  set :foo, 'bar'
+<span class="k">class</span> <span class="nc">MyApp</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">set</span> <span class="ss">:sessions</span><span class="p">,</span> <span class="kp">true</span>
+  <span class="n">set</span> <span class="ss">:foo</span><span class="p">,</span> <span class="s1">'bar'</span>
 
-  get '/' do
-    'Hello world!'
-  end
-end
-~~~~
+  <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="s1">'Hello world!'</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
-The methods available to `Sinatra::Base` subclasses are exactly the same
+<p>The methods available to <code>Sinatra::Base</code> subclasses are exactly the same
 as those available via the top-level DSL. Most top-level apps can be
-converted to `Sinatra::Base` components with two modifications:
+converted to <code>Sinatra::Base</code> components with two modifications:</p>
 
-* Your file should require `sinatra/base` instead of `sinatra`;
-  otherwise, all of Sinatra's DSL methods are imported into the main
-  namespace.
-* Put your app's routes, error handlers, filters, and options in a subclass
-  of `Sinatra::Base`.
+<ul>
+  <li>Your file should require <code>sinatra/base</code> instead of <code>sinatra</code>;
+otherwise, all of Sinatra’s DSL methods are imported into the main
+namespace.</li>
+  <li>Put your app’s routes, error handlers, filters, and options in a subclass
+of <code>Sinatra::Base</code>.</li>
+</ul>
 
-`Sinatra::Base` is a blank slate. Most options are disabled by default,
-including the built-in server. See [Configuring
-Settings](http://www.sinatrarb.com/configuration.html) for details on
+<p><code>Sinatra::Base</code> is a blank slate. Most options are disabled by default,
+including the built-in server. See <a href="http://www.sinatrarb.com/configuration.html">Configuring
+Settings</a> for details on
 available options and their behavior. If you want behavior more similar
 to when you define your app at the top level (also known as Classic
-style), you can subclass `Sinatra::Application`:
+style), you can subclass <code>Sinatra::Application</code>:</p>
 
-~~~~ruby
-require 'sinatra/base'
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'sinatra/base'</span>
 
-class MyApp &lt; Sinatra::Application
-  get '/' do
-    'Hello world!'
-  end
-end
-~~~~
+<span class="k">class</span> <span class="nc">MyApp</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Application</span>
+  <span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+    <span class="s1">'Hello world!'</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
-### Modular vs. Classic Style
+<h3 id="modular-vs-classic-style">Modular vs. Classic Style</h3>
 
-Contrary to common belief, there is nothing wrong with the classic
+<p>Contrary to common belief, there is nothing wrong with the classic
 style. If it suits your application, you do not have to switch to a
-modular application.
+modular application.</p>
 
-The main disadvantage of using the classic style rather than the modular
+<p>The main disadvantage of using the classic style rather than the modular
 style is that you will only have one Sinatra application per Ruby
 process. If you plan to use more than one, switch to the modular style.
-There is no reason you cannot mix the modular and classic styles.
+There is no reason you cannot mix the modular and classic styles.</p>
 
-If switching from one style to the other, you should be aware of
-slightly different default settings:
+<p>If switching from one style to the other, you should be aware of
+slightly different default settings:</p>
 
 <table>
   <tr>
@@ -2383,285 +2376,286 @@ slightly different default settings:
   </tr>
 </table>
 
-### Serving a Modular Application
+<h3 id="serving-a-modular-application">Serving a Modular Application</h3>
 
-There are two common options for starting a modular app, actively
-starting with `run!`:
+<p>There are two common options for starting a modular app, actively
+starting with <code>run!</code>:</p>
 
-~~~~ruby
-# my_app.rb
-require 'sinatra/base'
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># my_app.rb</span>
+<span class="nb">require</span> <span class="s1">'sinatra/base'</span>
 
-class MyApp &lt; Sinatra::Base
-  # ... app code here ...
+<span class="k">class</span> <span class="nc">MyApp</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+  <span class="c1"># ... app code here ...</span>
 
-  # start the server if ruby file executed directly
-  run! if app_file == $0
-end
-~~~~
+  <span class="c1"># start the server if ruby file executed directly</span>
+  <span class="n">run!</span> <span class="k">if</span> <span class="n">app_file</span> <span class="o">==</span> <span class="vg">$0</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
-Start with:
+<p>Start with:</p>
 
-~~~~shell
-ruby my_app.rb
-~~~~
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ruby my_app.rb
+</code></pre></div></div>
 
-Or with a `config.ru` file, which allows using any Rack handler:
+<p>Or with a <code>config.ru</code> file, which allows using any Rack handler:</p>
 
-~~~~ruby
-# config.ru (run with rackup)
-require './my_app'
-run MyApp
-~~~~
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># config.ru (run with rackup)</span>
+<span class="nb">require</span> <span class="s1">'./my_app'</span>
+<span class="n">run</span> <span class="no">MyApp</span>
+</code></pre></div></div>
 
-Run:
+<p>Run:</p>
 
-~~~~shell
-rackup -p 4567
-~~~~
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rackup <span class="nt">-p</span> 4567
+</code></pre></div></div>
 
-### Using a Classic Style Application with a config.ru
+<h3 id="using-a-classic-style-application-with-a-configru">Using a Classic Style Application with a config.ru</h3>
 
-Write your app file:
+<p>Write your app file:</p>
 
-~~~~ruby
-# app.rb
-require 'sinatra'
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app.rb</span>
+<span class="nb">require</span> <span class="s1">'sinatra'</span>
 
-get '/' do
-  'Hello world!'
-end
-~~~~
+<span class="n">get</span> <span class="s1">'/'</span> <span class="k">do</span>
+  <span class="s1">'Hello world!'</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
-And a corresponding `config.ru`:
+<p>And a corresponding <code>config.ru</code>:</p>
 
-~~~~ruby
-require './app'
-run Sinatra::Application
-~~~~
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'./app'</span>
+<span class="n">run</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Application</span>
+</code></pre></div></div>
 
-### When to use a config.ru?
+<h3 id="when-to-use-a-configru">When to use a config.ru?</h3>
 
-A `config.ru` file is recommended if:
+<p>A <code>config.ru</code> file is recommended if:</p>
 
-* You want to deploy with a different Rack handler (Passenger, Unicorn,
-  Heroku, ...).
-* You want to use more than one subclass of `Sinatra::Base`.
-* You want to use Sinatra only for middleware, and not as an endpoint.
+<ul>
+  <li>You want to deploy with a different Rack handler (Passenger, Unicorn,
+Heroku, …).</li>
+  <li>You want to use more than one subclass of <code>Sinatra::Base</code>.</li>
+  <li>You want to use Sinatra only for middleware, and not as an endpoint.</li>
+</ul>
 
-**There is no need to switch to a `config.ru` simply because you
-switched to the modular style, and you don't have to use the modular
-style for running with a `config.ru`.**
+<p><strong>There is no need to switch to a <code>config.ru</code> simply because you
+switched to the modular style, and you don’t have to use the modular
+style for running with a <code>config.ru</code>.</strong></p>
 
-### Using Sinatra as Middleware
+<h3 id="using-sinatra-as-middleware">Using Sinatra as Middleware</h3>
 
-Not only is Sinatra able to use other Rack middleware, any Sinatra
+<p>Not only is Sinatra able to use other Rack middleware, any Sinatra
 application can, in turn, be added in front of any Rack endpoint as
 middleware itself. This endpoint could be another Sinatra application,
-or any other Rack-based application (Rails/Hanami/Roda/...):
+or any other Rack-based application (Rails/Hanami/Roda/…):</p>
 
-~~~~ruby
-require 'sinatra/base'
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'sinatra/base'</span>
 
-class LoginScreen &lt; Sinatra::Base
-  enable :sessions
+<span class="k">class</span> <span class="nc">LoginScreen</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">enable</span> <span class="ss">:sessions</span>
 
-  get('/login') { haml :login }
+  <span class="n">get</span><span class="p">(</span><span class="s1">'/login'</span><span class="p">)</span> <span class="p">{</span> <span class="n">haml</span> <span class="ss">:login</span> <span class="p">}</span>
 
-  post('/login') do
-    if params['name'] == 'admin' &amp;&amp; params['password'] == 'admin'
-      session['user_name'] = params['name']
-    else
-      redirect '/login'
-    end
-  end
-end
+  <span class="n">post</span><span class="p">(</span><span class="s1">'/login'</span><span class="p">)</span> <span class="k">do</span>
+    <span class="k">if</span> <span class="n">params</span><span class="p">[</span><span class="s1">'name'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'admin'</span> <span class="o">&amp;&amp;</span> <span class="n">params</span><span class="p">[</span><span class="s1">'password'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'admin'</span>
+      <span class="n">session</span><span class="p">[</span><span class="s1">'user_name'</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s1">'name'</span><span class="p">]</span>
+    <span class="k">else</span>
+      <span class="n">redirect</span> <span class="s1">'/login'</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-class MyApp &lt; Sinatra::Base
-  # middleware will run before filters
-  use LoginScreen
+<span class="k">class</span> <span class="nc">MyApp</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+  <span class="c1"># middleware will run before filters</span>
+  <span class="n">use</span> <span class="no">LoginScreen</span>
 
-  before do
-    unless session['user_name']
-      halt "Access denied, please <a href="/login">login</a>."
-    end
-  end
+  <span class="n">before</span> <span class="k">do</span>
+    <span class="k">unless</span> <span class="n">session</span><span class="p">[</span><span class="s1">'user_name'</span><span class="p">]</span>
+      <span class="n">halt</span> <span class="s2">"Access denied, please &lt;a href='/login'&gt;login&lt;/a&gt;."</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
 
-  get('/') { "Hello #{session['user_name']}." }
-end
-~~~~
+  <span class="n">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)</span> <span class="p">{</span> <span class="s2">"Hello </span><span class="si">#{</span><span class="n">session</span><span class="p">[</span><span class="s1">'user_name'</span><span class="p">]</span><span class="si">}</span><span class="s2">."</span> <span class="p">}</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
-### Dynamic Application Creation
+<h3 id="dynamic-application-creation">Dynamic Application Creation</h3>
 
-Sometimes you want to create new applications at runtime without having to
-assign them to a constant. You can do this with `Sinatra.new`:
+<p>Sometimes you want to create new applications at runtime without having to
+assign them to a constant. You can do this with <code>Sinatra.new</code>:</p>
 
-~~~~ruby
-require 'sinatra/base'
-my_app = Sinatra.new { get('/') { "hi" } }
-my_app.run!
-~~~~
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'sinatra/base'</span>
+<span class="n">my_app</span> <span class="o">=</span> <span class="no">Sinatra</span><span class="p">.</span><span class="nf">new</span> <span class="p">{</span> <span class="n">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)</span> <span class="p">{</span> <span class="s2">"hi"</span> <span class="p">}</span> <span class="p">}</span>
+<span class="n">my_app</span><span class="p">.</span><span class="nf">run!</span>
+</code></pre></div></div>
 
-It takes the application to inherit from as an optional argument:
+<p>It takes the application to inherit from as an optional argument:</p>
 
-~~~~ruby
-# config.ru (run with rackup)
-require 'sinatra/base'
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># config.ru (run with rackup)</span>
+<span class="nb">require</span> <span class="s1">'sinatra/base'</span>
 
-controller = Sinatra.new do
-  enable :logging
-  helpers MyHelpers
-end
+<span class="n">controller</span> <span class="o">=</span> <span class="no">Sinatra</span><span class="p">.</span><span class="nf">new</span> <span class="k">do</span>
+  <span class="n">enable</span> <span class="ss">:logging</span>
+  <span class="n">helpers</span> <span class="no">MyHelpers</span>
+<span class="k">end</span>
 
-map('/a') do
-  run Sinatra.new(controller) { get('/') { 'a' } }
-end
+<span class="n">map</span><span class="p">(</span><span class="s1">'/a'</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">run</span> <span class="no">Sinatra</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">controller</span><span class="p">)</span> <span class="p">{</span> <span class="n">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)</span> <span class="p">{</span> <span class="s1">'a'</span> <span class="p">}</span> <span class="p">}</span>
+<span class="k">end</span>
 
-map('/b') do
-  run Sinatra.new(controller) { get('/') { 'b' } }
-end
-~~~~
+<span class="n">map</span><span class="p">(</span><span class="s1">'/b'</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">run</span> <span class="no">Sinatra</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">controller</span><span class="p">)</span> <span class="p">{</span> <span class="n">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)</span> <span class="p">{</span> <span class="s1">'b'</span> <span class="p">}</span> <span class="p">}</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
-This is especially useful for testing Sinatra extensions or using Sinatra in
-your own library.
+<p>This is especially useful for testing Sinatra extensions or using Sinatra in
+your own library.</p>
 
-This also makes using Sinatra as middleware extremely easy:
+<p>This also makes using Sinatra as middleware extremely easy:</p>
 
-~~~~ruby
-require 'sinatra/base'
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'sinatra/base'</span>
 
-use Sinatra do
-  get('/') { ... }
-end
+<span class="n">use</span> <span class="no">Sinatra</span> <span class="k">do</span>
+  <span class="n">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
+<span class="k">end</span>
 
-run RailsProject::Application
-~~~~
+<span class="n">run</span> <span class="no">RailsProject</span><span class="o">::</span><span class="no">Application</span>
+</code></pre></div></div>
 
-## Scopes and Binding
+<h2 id="scopes-and-binding">Scopes and Binding</h2>
 
-The scope you are currently in determines what methods and variables are
-available.
+<p>The scope you are currently in determines what methods and variables are
+available.</p>
 
-### Application/Class Scope
+<h3 id="applicationclass-scope">Application/Class Scope</h3>
 
-Every Sinatra application corresponds to a subclass of `Sinatra::Base`.
-If you are using the top-level DSL (`require 'sinatra'`), then this
-class is `Sinatra::Application`, otherwise it is the subclass you
-created explicitly. At the class level, you have methods like `get` or
-`before`, but you cannot access the `request` or `session` objects, as
-there is only a single application class for all requests.
+<p>Every Sinatra application corresponds to a subclass of <code>Sinatra::Base</code>.
+If you are using the top-level DSL (<code>require 'sinatra'</code>), then this
+class is <code>Sinatra::Application</code>, otherwise it is the subclass you
+created explicitly. At the class level, you have methods like <code>get</code> or
+<code>before</code>, but you cannot access the <code>request</code> or <code>session</code> objects, as
+there is only a single application class for all requests.</p>
 
-Options created via `set` are methods at class level:
+<p>Options created via <code>set</code> are methods at class level:</p>
 
-~~~~ruby
-class MyApp &lt; Sinatra::Base
-  # Hey, I'm in the application scope!
-  set :foo, 42
-  foo # =&gt; 42
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MyApp</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+  <span class="c1"># Hey, I'm in the application scope!</span>
+  <span class="n">set</span> <span class="ss">:foo</span><span class="p">,</span> <span class="mi">42</span>
+  <span class="n">foo</span> <span class="c1"># =&gt; 42</span>
 
-  get '/foo' do
-    # Hey, I'm no longer in the application scope!
-  end
-end
-~~~~
+  <span class="n">get</span> <span class="s1">'/foo'</span> <span class="k">do</span>
+    <span class="c1"># Hey, I'm no longer in the application scope!</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
-You have the application scope binding inside:
+<p>You have the application scope binding inside:</p>
 
-* Your application class body
-* Methods defined by extensions
-* The block passed to `helpers`
-* Procs/blocks used as a value for `set`
-* The block passed to `Sinatra.new`
+<ul>
+  <li>Your application class body</li>
+  <li>Methods defined by extensions</li>
+  <li>The block passed to <code>helpers</code>
+</li>
+  <li>Procs/blocks used as a value for <code>set</code>
+</li>
+  <li>The block passed to <code>Sinatra.new</code>
+</li>
+</ul>
 
-You can reach the scope object (the class) like this:
+<p>You can reach the scope object (the class) like this:</p>
 
-* Via the object passed to configure blocks (`configure { |c| ... }`)
-* `settings` from within the request scope
+<ul>
+  <li>Via the object passed to configure blocks (<code>configure { |c| ... }</code>)</li>
+  <li>
+<code>settings</code> from within the request scope</li>
+</ul>
 
-### Request/Instance Scope
+<h3 id="requestinstance-scope">Request/Instance Scope</h3>
 
-For every incoming request, a new instance of your application class is
+<p>For every incoming request, a new instance of your application class is
 created, and all handler blocks run in that scope. From within this scope you
-can access the `request` and `session` objects or call rendering methods like
-`erb` or `haml`. You can access the application scope from within the request
-scope via the `settings` helper:
+can access the <code>request</code> and <code>session</code> objects or call rendering methods like
+<code>erb</code> or <code>haml</code>. You can access the application scope from within the request
+scope via the <code>settings</code> helper:</p>
 
-~~~~ruby
-class MyApp &lt; Sinatra::Base
-  # Hey, I'm in the application scope!
-  get '/define_route/:name' do
-    # Request scope for '/define_route/:name'
-    @value = 42
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MyApp</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+  <span class="c1"># Hey, I'm in the application scope!</span>
+  <span class="n">get</span> <span class="s1">'/define_route/:name'</span> <span class="k">do</span>
+    <span class="c1"># Request scope for '/define_route/:name'</span>
+    <span class="vi">@value</span> <span class="o">=</span> <span class="mi">42</span>
 
-    settings.get("/#{params['name']}") do
-      # Request scope for "/#{params['name']}"
-      @value # =&gt; nil (not the same request)
-    end
+    <span class="n">settings</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"/</span><span class="si">#{</span><span class="n">params</span><span class="p">[</span><span class="s1">'name'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span> <span class="k">do</span>
+      <span class="c1"># Request scope for "/#{params['name']}"</span>
+      <span class="vi">@value</span> <span class="c1"># =&gt; nil (not the same request)</span>
+    <span class="k">end</span>
 
-    "Route defined!"
-  end
-end
-~~~~
+    <span class="s2">"Route defined!"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
-You have the request scope binding inside:
+<p>You have the request scope binding inside:</p>
 
-* get, head, post, put, delete, options, patch, link and unlink blocks
-* before and after filters
-* helper methods
-* templates/views
+<ul>
+  <li>get, head, post, put, delete, options, patch, link and unlink blocks</li>
+  <li>before and after filters</li>
+  <li>helper methods</li>
+  <li>templates/views</li>
+</ul>
 
-### Delegation Scope
+<h3 id="delegation-scope">Delegation Scope</h3>
 
-The delegation scope just forwards methods to the class scope. However, it
+<p>The delegation scope just forwards methods to the class scope. However, it
 does not behave exactly like the class scope, as you do not have the class
 binding. Only methods explicitly marked for delegation are available, and you
 do not share variables/state with the class scope (read: you have a different
-`self`). You can explicitly add method delegations by calling
-`Sinatra::Delegator.delegate :method_name`.
+<code>self</code>). You can explicitly add method delegations by calling
+<code>Sinatra::Delegator.delegate :method_name</code>.</p>
 
-You have the delegate scope binding inside:
+<p>You have the delegate scope binding inside:</p>
 
-* The top-level binding, if you did `require "sinatra"`
-* An object extended with the `Sinatra::Delegator` mixin
+<ul>
+  <li>The top-level binding, if you did <code>require "sinatra"</code>
+</li>
+  <li>An object extended with the <code>Sinatra::Delegator</code> mixin</li>
+</ul>
 
-Have a look at the code for yourself: here's the
-[Sinatra::Delegator mixin](https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/base.rb#L1609-1633)
-being [extending the main object](https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/main.rb#L28-30).
+<p>Have a look at the code for yourself: here’s the
+<a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/base.rb#L1609-1633">Sinatra::Delegator mixin</a>
+being <a href="https://github.com/sinatra/sinatra/blob/ca06364/lib/sinatra/main.rb#L28-30">extending the main object</a>.</p>
 
-## Command Line
+<h2 id="command-line">Command Line</h2>
 
-Sinatra applications can be run directly:
+<p>Sinatra applications can be run directly:</p>
 
-~~~~shell
-ruby myapp.rb [-h] [-x] [-q] [-e ENVIRONMENT] [-p PORT] [-o HOST] [-s HANDLER]
-~~~~
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ruby myapp.rb <span class="o">[</span><span class="nt">-h</span><span class="o">]</span> <span class="o">[</span><span class="nt">-x</span><span class="o">]</span> <span class="o">[</span><span class="nt">-q</span><span class="o">]</span> <span class="o">[</span><span class="nt">-e</span> ENVIRONMENT] <span class="o">[</span><span class="nt">-p</span> PORT] <span class="o">[</span><span class="nt">-o</span> HOST] <span class="o">[</span><span class="nt">-s</span> HANDLER]
+</code></pre></div></div>
 
-Options are:
+<p>Options are:</p>
 
-~~~~
--h # help
+<pre><code>-h # help
 -p # set the port (default is 4567)
 -o # set the host (default is 0.0.0.0)
 -e # set the environment (default is development)
 -s # specify rack server/handler (default is puma)
 -q # turn on quiet mode for server (default is off)
 -x # turn on the mutex lock (default is off)
-~~~~
+</code></pre>
 
-### Multi-threading
+<h3 id="multi-threading">Multi-threading</h3>
 
-_Paraphrasing from
-[this StackOverflow answer](https://stackoverflow.com/a/6282999/5245129)
-by Konstantin_
+<p><em>Paraphrasing from
+<a href="https://stackoverflow.com/a/6282999/5245129">this StackOverflow answer</a>
+by Konstantin</em></p>
 
-Sinatra doesn't impose any concurrency model but leaves that to the
+<p>Sinatra doesn’t impose any concurrency model but leaves that to the
 underlying Rack handler (server) like Puma or Falcon. Sinatra
-itself is thread-safe, so there won't be any problem if the Rack handler
-uses a threaded model of concurrency.
+itself is thread-safe, so there won’t be any problem if the Rack handler
+uses a threaded model of concurrency.</p>
 
-## Requirement
+<h2 id="requirement">Requirement</h2>
 
-The following Ruby versions are officially supported:
+<p>The following Ruby versions are officially supported:</p>
 <dl>
   <dt>Ruby</dt>
   <dd>
@@ -2680,80 +2674,84 @@ The following Ruby versions are officially supported:
   </dd>
 </dl>
 
-Versions of Ruby before 2.7.8 are no longer supported as of Sinatra 4.0.0.
+<p>Versions of Ruby before 2.7.8 are no longer supported as of Sinatra 4.0.0.</p>
 
-Sinatra should work on any operating system supported by the chosen Ruby
-implementation.
+<p>Sinatra should work on any operating system supported by the chosen Ruby
+implementation.</p>
 
-Running Sinatra on a not officially supported Ruby flavor means that if things only break there we assume it's not our issue but theirs.
+<p>Running Sinatra on a not officially supported Ruby flavor means that if things only break there we assume it’s not our issue but theirs.</p>
 
-## The Bleeding Edge
+<h2 id="the-bleeding-edge">The Bleeding Edge</h2>
 
-If you would like to use Sinatra's latest bleeding-edge code, feel free
+<p>If you would like to use Sinatra’s latest bleeding-edge code, feel free
 to run your application against the main branch, it should be rather
-stable.
+stable.</p>
 
-We also push out prerelease gems from time to time, so you can do a
+<p>We also push out prerelease gems from time to time, so you can do a</p>
 
-~~~~shell
-gem install sinatra --pre
-~~~~
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>sinatra <span class="nt">--pre</span>
+</code></pre></div></div>
 
-to get some of the latest features.
+<p>to get some of the latest features.</p>
 
-### With Bundler
+<h3 id="with-bundler">With Bundler</h3>
 
-If you want to run your application with the latest Sinatra, using
-[Bundler](https://bundler.io) is the recommended way.
+<p>If you want to run your application with the latest Sinatra, using
+<a href="https://bundler.io">Bundler</a> is the recommended way.</p>
 
-First, install bundler, if you haven't:
+<p>First, install bundler, if you haven’t:</p>
 
-~~~~shell
-gem install bundler
-~~~~
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>bundler
+</code></pre></div></div>
 
-Then, in your project directory, create a `Gemfile`:
+<p>Then, in your project directory, create a <code>Gemfile</code>:</p>
 
-~~~~ruby
-source 'https://rubygems.org'
-gem 'sinatra', :github =&gt; 'sinatra/sinatra'
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">source</span> <span class="s1">'https://rubygems.org'</span>
+<span class="n">gem</span> <span class="s1">'sinatra'</span><span class="p">,</span> <span class="ss">:github</span> <span class="o">=&gt;</span> <span class="s1">'sinatra/sinatra'</span>
 
-# other dependencies
-gem 'haml'                    # for instance, if you use haml
-~~~~
+<span class="c1"># other dependencies</span>
+<span class="n">gem</span> <span class="s1">'haml'</span>                    <span class="c1"># for instance, if you use haml</span>
+</code></pre></div></div>
 
-Note that you will have to list all your application's dependencies in
-the `Gemfile`. Sinatra's direct dependencies (Rack and Tilt) will,
-however, be automatically fetched and added by Bundler.
+<p>Note that you will have to list all your application’s dependencies in
+the <code>Gemfile</code>. Sinatra’s direct dependencies (Rack and Tilt) will,
+however, be automatically fetched and added by Bundler.</p>
 
-Now you can run your app like this:
+<p>Now you can run your app like this:</p>
 
-~~~~shell
-bundle exec ruby myapp.rb
-~~~~
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">exec </span>ruby myapp.rb
+</code></pre></div></div>
 
-## Versioning
+<h2 id="versioning">Versioning</h2>
 
-Sinatra follows [Semantic Versioning](https://semver.org/), both SemVer and
-SemVerTag.
+<p>Sinatra follows <a href="https://semver.org/">Semantic Versioning</a>, both SemVer and
+SemVerTag.</p>
 
-## Further Reading
+<h2 id="further-reading">Further Reading</h2>
 
-* [Project Website](https://sinatrarb.com/) - Additional documentation,
-  news, and links to other resources.
-* [Contributing](https://sinatrarb.com/contributing) - Find a bug? Need
-  help? Have a patch?
-* [Issue tracker](https://github.com/sinatra/sinatra/issues)
-* [Twitter](https://twitter.com/sinatra)
-* [Mailing List](https://groups.google.com/forum/#!forum/sinatrarb)
-* IRC: [#sinatra](irc://chat.freenode.net/#sinatra) on [Freenode](https://freenode.net)
-* [Sinatra &amp; Friends](https://discord.gg/ncjsfsNHh7) on Discord
-* [Sinatra Book](https://github.com/sinatra/sinatra-book) - Cookbook Tutorial
-* [Sinatra Recipes](http://recipes.sinatrarb.com/) - Community contributed
-  recipes
-* API documentation for the [latest release](https://www.rubydoc.info/gems/sinatra)
-  or the [current HEAD](https://www.rubydoc.info/github/sinatra/sinatra) on
-  [RubyDoc](https://www.rubydoc.info/)
-* [CI Actions](https://github.com/sinatra/sinatra/actions)
-</dl>
+<ul>
+  <li>
+<a href="https://sinatrarb.com/">Project Website</a> - Additional documentation,
+news, and links to other resources.</li>
+  <li>
+<a href="https://sinatrarb.com/contributing">Contributing</a> - Find a bug? Need
+help? Have a patch?</li>
+  <li><a href="https://github.com/sinatra/sinatra/issues">Issue tracker</a></li>
+  <li><a href="https://twitter.com/sinatra">Twitter</a></li>
+  <li><a href="https://groups.google.com/forum/#!forum/sinatrarb">Mailing List</a></li>
+  <li>IRC: <a href="irc://chat.freenode.net/#sinatra">#sinatra</a> on <a href="https://freenode.net">Freenode</a>
+</li>
+  <li>
+<a href="https://discord.gg/ncjsfsNHh7">Sinatra &amp; Friends</a> on Discord</li>
+  <li>
+<a href="https://github.com/sinatra/sinatra-book">Sinatra Book</a> - Cookbook Tutorial</li>
+  <li>
+<a href="http://recipes.sinatrarb.com/">Sinatra Recipes</a> - Community contributed
+recipes</li>
+  <li>API documentation for the <a href="https://www.rubydoc.info/gems/sinatra">latest release</a>
+or the <a href="https://www.rubydoc.info/github/sinatra/sinatra">current HEAD</a> on
+<a href="https://www.rubydoc.info/">RubyDoc</a>
+</li>
+  <li><a href="https://github.com/sinatra/sinatra/actions">CI Actions</a></li>
+</ul>
 </body></html>
