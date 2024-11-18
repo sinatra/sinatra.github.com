@@ -42,16 +42,16 @@
 <p>Install the gem, then run the program:</p>
 
 <pre class="ruby"><span class="ruby-identifier">gem</span> <span class="ruby-identifier">install</span> <span class="ruby-string">&#39;rack-protection&#39;</span>
-<span class="ruby-identifier">ruby</span> <span class="ruby-identifier">server</span>.<span class="ruby-identifier">rb</span>
+<span class="ruby-identifier">puma</span> <span class="ruby-identifier">server</span>.<span class="ruby-identifier">ru</span>
 </pre>
 
-<p>Here is <code>server.rb</code>:</p>
+<p>Here is <code>server.ru</code>:</p>
 
 <pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;rack/protection&#39;</span>
 <span class="ruby-identifier">require</span> <span class="ruby-string">&#39;rack/session&#39;</span>
 
 <span class="ruby-identifier">app</span> = <span class="ruby-constant">Rack</span><span class="ruby-operator">::</span><span class="ruby-constant">Builder</span>.<span class="ruby-identifier">app</span> <span class="ruby-keyword">do</span>
-  <span class="ruby-identifier">use</span> <span class="ruby-constant">Rack</span><span class="ruby-operator">::</span><span class="ruby-constant">Session</span><span class="ruby-operator">::</span><span class="ruby-constant">Cookie</span>, <span class="ruby-value">secret:</span> <span class="ruby-string">&#39;secret&#39;</span>
+  <span class="ruby-identifier">use</span> <span class="ruby-constant">Rack</span><span class="ruby-operator">::</span><span class="ruby-constant">Session</span><span class="ruby-operator">::</span><span class="ruby-constant">Cookie</span>, <span class="ruby-value">secret:</span> <span class="ruby-string">&#39;CHANGEMEaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&#39;</span>
   <span class="ruby-identifier">use</span> <span class="ruby-constant">Rack</span><span class="ruby-operator">::</span><span class="ruby-constant">Protection</span><span class="ruby-operator">::</span><span class="ruby-constant">AuthenticityToken</span>
 
   <span class="ruby-identifier">run</span> <span class="ruby-operator">-&gt;</span> (<span class="ruby-identifier">env</span>) <span class="ruby-keyword">do</span>
@@ -85,7 +85,7 @@
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span>
 
-<span class="ruby-constant">Rack</span><span class="ruby-operator">::</span><span class="ruby-constant">Handler</span><span class="ruby-operator">::</span><span class="ruby-constant">WEBrick</span>.<span class="ruby-identifier">run</span> <span class="ruby-identifier">app</span>
+<span class="ruby-identifier">run</span> <span class="ruby-identifier">app</span>
 </pre>
 
 <h2 id="label-Example-3A+Customize+which+POST+parameter+holds+the+token">Example: Customize which POST parameter holds the token<span><a href="#label-Example-3A+Customize+which+POST+parameter+holds+the+token">&para;</a> <a href="#top">&uarr;</a></span></h2>
