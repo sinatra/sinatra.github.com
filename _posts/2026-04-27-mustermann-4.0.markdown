@@ -6,7 +6,7 @@ author_url: https://github.com/rkh
 publish_date: Monday, April 27, 2026
 ---
 
-[13 years ago today](https://github.com/sinatra/mustermann/commit/1b98e6273855fbd0492ec6b3f805e1b1773c7837), I released the very first version of [Mustermann](https://github.com/sinatra/mustermann).
+[13 years ago today](https://github.com/sinatra/mustermann/commit/1b98e6273855fbd0492ec6b3f805e1b1773c7837) I released the very first version of [Mustermann](https://github.com/sinatra/mustermann).
 
 It allows you to create Regexp-like pattern objects:
 
@@ -21,7 +21,7 @@ pattern.params("/hello/world") # => {"name" => "world"}
 
 This is what Sinatra [uses](https://github.com/sinatra/sinatra/blob/v4.2.1/lib/sinatra/base.rb#L1105) to match routes and extract parameters from the request path.
 
-Since then, [other projects](https://github.com/sinatra/mustermann#projects-using-mustermann) besides Sinatra have started using Mustermann, which I think is fantastic, and it has been maintained by a great community of [contributors](https://github.com/sinatra/mustermann/graphs/contributors) over the years. I myself took a break from Mustermann from 2017 until two weeks ago!
+Since then [other projects](https://github.com/sinatra/mustermann#projects-using-mustermann) besides Sinatra have started using Mustermann, which I think is fantastic, and it has been maintained by a great community of [contributors](https://github.com/sinatra/mustermann/graphs/contributors) over the years. I myself took a break from Mustermann from 2017 until two weeks ago!
 
 ## Performance, performance, performance!
 
@@ -41,7 +41,7 @@ And most of Hanami's routing logic currently doesn't even use Mustermann!
 
 #### For sets of patterns
 
-However, the biggest performance improvement is for sets of patterns. Mustermann 4 now comes with tooling to match against multiple patterns at once, at greatly improved performance. In my benchmarks, matching against a set of 1000 patterns is more than **400 times faster** than before, and the improvement grows with the number of patterns.
+However, the biggest performance improvement is for sets of patterns. Mustermann 4 now comes with tooling to match against multiple patterns at once, at greatly improved performance. In my benchmarks matching against a set of 1000 patterns is more than **400 times faster** than before, and the improvement grows with the number of patterns.
 
 ```ruby
 require "mustermann/set"
@@ -56,7 +56,7 @@ result.pattern # => #<Mustermann::Sinatra:""/hello/:name">
 result[:name]  # => "world"
 ```
 
-For convenience, you can also attach arbitrary values to individual patterns.
+For convenience you can also attach arbitrary values to individual patterns.
 
 ```ruby
 set.add "/users/:id", controller: "users", action: "show"
@@ -69,7 +69,7 @@ Here are experimental numbers for Sinatra [patched](https://github.com/sinatra/s
 
 <a href="{{ site.baseurl }}/images/mustermann-4.0/sinatra.png" alt><img src="{{ site.baseurl }}/images/mustermann-4.0/sinatra.png" alt="Sinatra with Mustermann 3.1.1 vs 4.0.0 (using Mustermann::Set)" style="width: 100%; border: solid 1px #ccc;" /></a>
 
-However, in Sinatra's case, the performance improvement is still smaller than it could be for other uses, as routes need to be tried in definition order, and all matching patterns need to be tried, as you can use `pass` to skip to the next route.
+However, in Sinatra's case the performance improvement is still smaller than it could be for other uses, as routes need to be tried in definition order, and all matching patterns need to be tried, as you can use `pass` to skip to the next route.
 
 With a [very minimalistic implementation](https://github.com/sinatra/mustermann/blob/v4.0.0/mustermann/lib/mustermann/router.rb) that doesn't have these constraints, I'm seeing the following results (attention, this is a logarithmic scale):
 
