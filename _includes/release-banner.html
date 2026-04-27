@@ -1,0 +1,32 @@
+<style>
+  #release-banner {
+    text-align: center;
+    padding: 6px 0;
+    font-family: anonymous_probold, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.85em;
+    background: #FAFAFA;
+    border-bottom: 1px solid #ddd;
+  }
+  #release-banner a {
+    color: #56534f;
+    text-decoration: none;
+  }
+  #release-banner a:hover {
+    color: #3A99D8;
+  }
+</style>
+<div id='release-banner'>
+  <a id='release-banner-link' href='https://github.com/sinatra/sinatra/blob/main/CHANGELOG.md' style='display:none'>
+    Latest release: <span id='release-version'></span> &mdash; <span id='release-date'></span>
+  </a>
+</div>
+<script>
+  fetch('https://rubygems.org/api/v1/gems/sinatra.json')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      document.getElementById('release-version').textContent = 'v' + data.version;
+      var date = new Date(data.version_created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+      document.getElementById('release-date').textContent = date;
+      document.getElementById('release-banner-link').style.display = '';
+    });
+</script>
