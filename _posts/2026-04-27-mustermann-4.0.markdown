@@ -35,7 +35,14 @@ Pattern creation is now **6 times faster** than before, and matching individual 
 
 Here are preliminary results for [hanami-router](https://github.com/hanami/hanami-router) when upgrading Mustermann from 3.1.1 to 4.0.0, without any other changes:
 
-<a href="{{ site.baseurl }}/images/mustermann-4.0/hanami-router.png"><img src="{{ site.baseurl }}/images/mustermann-4.0/hanami-router.png" alt="hanami-router with Mustermann 3.1.1 vs 4.0.0" style="width: 100%; border: solid 1px #ccc;" /></a>
+<figure style="width: 100%; border: solid 1px #ccc; margin: 0; background-color: #fff; padding: 8px;">
+  <a href="{{ site.baseurl }}/images/mustermann-4.0/hanami-router.png"><img src="{{ site.baseurl }}/images/mustermann-4.0/hanami-router.png" alt="hanami-router with Mustermann 3.1.1 vs 4.0.0" style="width: 100%;" /></a>
+  <figcaption style="font-size: 12px;">
+    <b style="color: #ef4444;">Lighter red:</b> Hanami Router with Mustermann 3.1.1<br>
+    <b style="color: #9f1616;">Darker red:</b> Hanami Router with Mustermann 4.0.0<br>
+    Requests per second for an application with <i>X</i> routes, linear scales, higher is better.
+  </figcaption>
+</figure>
 
 And most of Hanami's routing logic currently doesn't even use Mustermann!
 
@@ -67,13 +74,27 @@ As you might have spotted, this API is primarily intended for use within framewo
 
 Here are experimental numbers for Sinatra [patched](https://github.com/sinatra/sinatra/pull/2163) to use this new feature:
 
-<a href="{{ site.baseurl }}/images/mustermann-4.0/sinatra.png" alt><img src="{{ site.baseurl }}/images/mustermann-4.0/sinatra.png" alt="Sinatra with Mustermann 3.1.1 vs 4.0.0 (using Mustermann::Set)" style="width: 100%; border: solid 1px #ccc;" /></a>
+<figure style="width: 100%; border: solid 1px #ccc; margin: 0; background-color: #fff; padding: 8px;">
+  <a href="{{ site.baseurl }}/images/mustermann-4.0/sinatra.png" alt><img src="{{ site.baseurl }}/images/mustermann-4.0/sinatra.png" alt="Sinatra with Mustermann 3.1.1 vs 4.0.0 (using Mustermann::Set)" style="width: 100%;" /></a>
+  <figcaption style="font-size: 12px;">
+    <b style="color: #a855f7;">Lighter purple:</b> Sinatra with Mustermann 3.1.1<br>
+    <b style="color: #4f0c8e;">Darker purple:</b> Sinatra with Mustermann 4.0.0<br>
+    Requests per second for an application with <i>X</i> routes, linear scales, higher is better.
+  </figcaption>
+</figure>
 
 However, in Sinatra's case the performance improvement is still smaller than it could be for other uses, as routes need to be tried in definition order, and all matching patterns need to be tried, as you can use `pass` to skip to the next route.
 
 With a [very minimalistic implementation](https://github.com/sinatra/mustermann/blob/v4.0.0/mustermann/lib/mustermann/router.rb) that doesn't have these constraints, I'm seeing the following results (attention, this is a logarithmic scale):
 
-<a href="{{ site.baseurl }}/images/mustermann-4.0/mustermann-router.png"><img src="{{ site.baseurl }}/images/mustermann-4.0/mustermann-router.png" alt="Sinatra with Mustermann 3.1.1 vs Mustermann::Router" style="width: 100%; border: solid 1px #ccc;" /></a>
+<figure style="width: 100%; border: solid 1px #ccc; margin: 0; background-color: #fff; padding: 8px;">
+  <a href="{{ site.baseurl }}/images/mustermann-4.0/mustermann-router.png"><img src="{{ site.baseurl }}/images/mustermann-4.0/mustermann-router.png" alt="Sinatra with Mustermann 3.1.1 vs Mustermann::Router" style="width: 100%;" /></a>
+  <figcaption style="font-size: 12px;">
+    <b style="color: #a855f7;">Purple:</b> Sinatra with Mustermann 3.1.1<br>
+    <b style="color: #3b82f6;">Blue:</b> Mustermann Router<br>
+    Requests per second for an application with <i>X</i> routes, logarithmic scales, higher is better.
+  </figcaption>
+</figure>
 
 #### More numbers
 
