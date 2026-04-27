@@ -116,8 +116,8 @@ With a [very minimalistic implementation](https://github.com/sinatra/mustermann/
     </tr>
     <tr>
       <td>Matching against 1k different patterns</td>
-      <td class="number">3 M/s</td>
-      <td class="number highlight">7.1 K/s</td>
+      <td class="number">7.1 K/s</td>
+      <td class="number highlight">3 M/s</td>
       <td class="number">425x</td>
     </tr>
     <tr>
