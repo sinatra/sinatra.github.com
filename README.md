@@ -2,7 +2,7 @@ Sinatra Website / Documentation
 ===============================
 
 This repo contains the Sinatra website and documentation sources published
-at [https://sinatra.github.com/](https://sinatra.github.io/).
+at [https://sinatra.run/](https://sinatra.run/).
 
 Working Locally
 ---------------
@@ -26,7 +26,7 @@ Run the test server:
 
 Changes are immediately available at:
 
-    http://localhost:4000/sinatra.github.com/
+    http://localhost:4000/
 
 
 
