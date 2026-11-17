@@ -57,7 +57,7 @@ The following is a comprehensive list of features obsoleted in the
 
  * Test framework specific libraries (`sinatra/test/spec`,
    `sinatra/test/bacon`,`sinatra/test/rspec`, etc.) are obsolete. See
-   [Testing Sinatra](https://www.sinatrarb.com/testing.html)
+   [Testing Sinatra](https://sinatra.run/testing.html)
    for instructions on setting up a testing environment under each of
    these frameworks.
 
@@ -86,7 +86,7 @@ The following is a comprehensive list of features obsoleted in the
 
  * The `Sinatra::Event` and `Sinatra::EventContext` classes are no longer
    supported. This may effect extensions written for versions prior to 0.9.2.
-   See [Writing Sinatra Extensions](https://www.sinatrarb.com/extensions.html)
+   See [Writing Sinatra Extensions](https://sinatra.run/extensions.html)
    for the officially supported extensions API.
 
  * The `set_option` and `set_options` methods are obsolete; use `set`

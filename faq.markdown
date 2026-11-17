@@ -59,7 +59,7 @@ Sessions are disabled by default. You need to enable them and then use the
       session[:message]   # => 'Hello World!'
     end
 
-See the [Sinatra README](https://www.sinatrarb.com/intro.html#Using%20Sessions)
+See the [Sinatra README](https://sinatra.run/intro.html#Using%20Sessions)
 on how to set additional parameters for sessions, like the session secret
 or expiration date.
 

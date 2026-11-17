@@ -88,7 +88,7 @@ GitHub to track patch requests.
 
 ## When will my contribution be released?
 
-See: [Maintenance Policy for Sinatra](https://sinatrarb.com/maintenance-policy.html)
+See: [Maintenance Policy for Sinatra](https://sinatra.run/maintenance-policy.html)
 
 ## Looking for something to do?
 

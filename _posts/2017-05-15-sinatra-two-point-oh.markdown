@@ -86,7 +86,7 @@ Now let's take a look at the peripheral work that went into the release of Sinat
 
 ## Sinatra::Contrib
 
-This gem provides a bunch of helpful extensions for common patterns that can be applied to your Sinatra application. Take a look at the [documentation](https://www.sinatrarb.com/contrib/) for a list of what you get.
+This gem provides a bunch of helpful extensions for common patterns that can be applied to your Sinatra application. Take a look at the [documentation](https://sinatra.run/contrib/) for a list of what you get.
 
 The biggest change to the `sinatra-contrib` gem is that it is now bundled in the Sinatra source tree. [Ticket](https://github.com/sinatra/sinatra/issues/1145) by [Zachary Scott](https://github.com/zzak).
 
@@ -146,7 +146,7 @@ For full details, [compare the pre-merged diff](https://github.com/sinatra/sinat
 
 ## Rack::Protection
 
-This gem is designed to provide several middleware for protecting your applications against common web attacks. Take a look at the [documentation](https://www.sinatrarb.com/rack-protection/) for more information.
+This gem is designed to provide several middleware for protecting your applications against common web attacks. Take a look at the [documentation](https://sinatra.run/rack-protection/) for more information.
 
 The biggest change to the `rack-protection` gem is that it is now bundled in the Sinatra source tree. [PR](https://github.com/sinatra/sinatra/pull/1167) by [Zachary Scott](https://github.com/zzak).
 
@@ -194,7 +194,7 @@ For full details, [compare the pre-merged diff](https://github.com/sinatra/rack-
 
 Mustermann is a powerful library with many features and compatible `params` parsing interface. It will replace the existing router in Sinatra for version 2.0.
 
-Take a look at the [documentation](https://www.sinatrarb.com/mustermann/) for more information.
+Take a look at the [documentation](https://sinatra.run/mustermann/) for more information.
 
 Apart from the features and changes to the core of `Mustermann`, which I will list below, the biggest change in the first stable release is organizational.
 
@@ -246,7 +246,7 @@ There have been a [number](https://github.com/sinatra/sinatra/issues/1035) of [d
 
 While, there are some [missing features](https://github.com/sinatra/sinatra/issues/1140) mentioned, when this API was originally implemented Rack's hijack api was [still unfinished](https://github.com/sinatra/sinatra/issues/604).
 
-I don't exactly know the best route for this, but probably start with something in the Rack layer -- like is [already being discussed](https://github.com/rack/rack/issues/1093). Then we can provide an API on top of that inside Sinatra's DSL. For added bonus, we could wrap something like [Sinatra::Streaming](https://www.sinatrarb.com/contrib/streaming.html) to make it really nice.
+I don't exactly know the best route for this, but probably start with something in the Rack layer -- like is [already being discussed](https://github.com/rack/rack/issues/1093). Then we can provide an API on top of that inside Sinatra's DSL. For added bonus, we could wrap something like [Sinatra::Streaming](https://sinatra.run/contrib/streaming.html) to make it really nice.
 
 
 ### Exception Handling
@@ -287,6 +287,3 @@ At any rate, I hope that Sinatra 2.0 is everything you hoped for and more, and a
 Thank you everyone who has contributed over the years to this project, and continues to ensure it lives on.
 
 In the words of the great Nat King Cole, [you're unforgettable](https://www.youtube.com/watch?v=Fy_JRGjc1To).
-
-
-

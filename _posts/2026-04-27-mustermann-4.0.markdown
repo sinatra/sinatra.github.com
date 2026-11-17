@@ -252,7 +252,7 @@ Benchmarks taken on my development machine (2024 MacBook Pro).
 
 Again, keep in mind that these aren't measuring full applications, nor going through the full HTTP protocol. So while these numbers are exciting, they don't necessarily translate to a real world app.
 
-All these frameworks also come with differing sets of features, that will impact performance in different ways. The Hanami measurements are only measuring `hanami-router`, and are thus more comparable to the numbers from [Roda](https://roda.jeremyevans.net/) (without any plugins) or `Mustermann::Router`, which also only do Rack routing, and thus can't be directly compared to Sinatra and [Rails](https://rubyonrails.org/), which come with richer feature sets out of the box, as wall as a host of middleware to [secure your application](https://sinatrarb.com/protection/).
+All these frameworks also come with differing sets of features, that will impact performance in different ways. The Hanami measurements are only measuring `hanami-router`, and are thus more comparable to the numbers from [Roda](https://roda.jeremyevans.net/) (without any plugins) or `Mustermann::Router`, which also only do Rack routing, and thus can't be directly compared to Sinatra and [Rails](https://rubyonrails.org/), which come with richer feature sets out of the box, as wall as a host of middleware to [secure your application](https://sinatra.run/protection/).
 
 Rails and Roda are included for comparison, but they don't use Mustermann. Rails has a similar tool to Mustermann called [Journey](https://github.com/rails/rails/tree/main/actionpack/lib/action_dispatch/journey) and Roda uses nested Ruby blocks to mimic route structure.
 

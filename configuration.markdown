@@ -222,7 +222,7 @@ within the main application file:
     set :app_file, __FILE__
 
 It's also used to detect whether Sinatra should boot a web server when
-using [classic-style](https://www.sinatrarb.com/extensions.html#background)
+using [classic-style](https://sinatra.run/extensions.html#background)
 applications.
 
 ### `:dump_errors` - log exception backtraces to `STDERR`
